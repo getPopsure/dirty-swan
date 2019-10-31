@@ -1,0 +1,107 @@
+@keyframes spinner-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.p-btn {
+  position: relative;
+
+  display: inline-block;
+
+  cursor: pointer;
+
+  height: 48px;
+  padding: 0 16px;
+
+  font-size: 16px;
+  line-height: 48px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  font-weight: $p-font-weight-bold;
+
+  border-radius: 8px;
+  border: none;
+
+  transition: 0.3s opacity, 0.3s background-color;
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &--primary {
+    background-color: $popsure-purple-500;
+    color: white;
+
+    &:hover {
+      background-color: $popsure-purple-700;
+
+      @include p-size-mobile {
+        background-color: $popsure-purple-500;
+      }
+    }
+
+    &[disabled] {
+      background-color: $popsure-purple-300;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: $popsure-purple-500;
+
+    &:hover:enabled {
+      background-color: $popsure-purple-100;
+
+      @include p-size-mobile {
+        background-color: transparent;
+      }
+    }
+
+    &[disabled] {
+      color: $popsure-purple-700;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+    }
+  }
+
+  &--loading {
+    color: transparent;
+    cursor: default;
+
+    opacity: 1 !important;
+
+    &::before {
+      content: "";
+
+      $size: 26px;
+
+      position: absolute;
+
+      width: $size;
+      height: $size;
+
+      left: calc(50% - 13px);
+      top: calc(50% - 13px);
+
+      border-radius: 50%;
+      border: 2px solid rgba($color: #ffffff, $alpha: 0.5);
+      border-left-color: white;
+
+      animation: spinner-rotate 0.9s infinite;
+    }
+  }
+}

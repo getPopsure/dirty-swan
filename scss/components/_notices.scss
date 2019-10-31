@@ -1,0 +1,11 @@
+.p-notice {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 8px;
+
+  &--danger {
+    background-color: $popsure-red-100;
+    border-color: $popsure-red-500;
+    color: $popsure-red-500;
+  }
+}

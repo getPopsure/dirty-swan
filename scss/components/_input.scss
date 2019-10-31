@@ -1,0 +1,225 @@
+.p-input {
+  appearance: none;
+
+  display: block;
+
+  padding-left: 16px;
+  font-size: 16px;
+  line-height: 24px;
+
+  height: 48px;
+  width: 100%;
+
+  border-radius: 8px;
+  border: 1px solid $popsure-grey-300;
+  background-color: white;
+
+  color: $popsure-grey-900;
+
+  &::placeholder {
+    color: $popsure-grey-300;
+  }
+
+  &:disabled {
+    background-color: $popsure-grey-300;
+    border-color: $popsure-grey-500;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $popsure-purple-500;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    appearance: none;
+  }
+}
+
+.p-radio,
+.p-checkbox {
+  cursor: pointer;
+
+  position: absolute;
+  height: 0;
+  width: 0;
+
+  opacity: 0;
+}
+
+.p-radio {
+  & + label {
+    &::before {
+      content: "";
+
+      cursor: pointer;
+      display: inline-flex;
+
+      margin-right: 16px;
+
+      width: 16px;
+      height: 16px;
+
+      border: 1px solid $popsure-grey-300;
+      border-radius: 50%;
+
+      background-color: white;
+
+      transition: 0.3s background-color;
+    }
+  }
+}
+
+.p-radio:checked {
+  & + label::before {
+    @keyframes appearInAnimation {
+      0% {
+        background-size: 0;
+      }
+
+      75% {
+        background-size: 100%;
+      }
+
+      100% {
+        background-size: 12px 12px;
+      }
+    }
+
+    border-color: $popsure-purple-500;
+
+    background-image: url("../assets/circle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.p-checkbox {
+  & + label {
+    &::before {
+      content: "";
+
+      cursor: pointer;
+      display: inline-flex;
+
+      margin-right: 16px;
+
+      width: 16px;
+      height: 16px;
+
+      border: 1px solid $popsure-grey-300;
+      border-radius: 4px;
+
+      background-color: white;
+
+      transition: 0.3s background-color;
+    }
+  }
+}
+
+.p-checkbox:focus,
+.p-radio:focus {
+  & + label {
+    &::before {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+    }
+  }
+}
+
+.p-checkbox:checked {
+  & + label::before {
+    background-image: url("../assets/checkmark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-color: $popsure-purple-500;
+
+    border-color: $popsure-purple-500;
+  }
+}
+
+.p-label {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+  line-height: 24px;
+  color: $popsure-grey-900;
+
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  border-radius: 8px;
+  border: 1px solid $popsure-grey-300;
+  background-color: white;
+
+  transition: 0.3s border-color, 0.3s background-color;
+
+  &:hover {
+    border-color: $popsure-purple-500;
+  }
+}
+
+input:checked[type="radio"] + .p-label,
+input:checked[type="checkbox"] + .p-label {
+  border-color: $popsure-purple-500;
+  background-color: $popsure-purple-100;
+}
+
+.p-label-container {
+  position: relative;
+
+  input {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-60%);
+
+    left: 16px;
+  }
+}
+
+.p-select {
+  cursor: pointer;
+
+  appearance: none;
+
+  height: 48px;
+
+  border-radius: 8px;
+  border: 1px solid $popsure-grey-300;
+  background-color: white;
+
+  font-size: 16px;
+  line-height: 24px;
+  color: $popsure-grey-900;
+
+  padding-left: 16px;
+  padding-right: 32px;
+
+  background-image: url("../assets/icon-form-dropdown.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+
+  &:hover {
+    color: $popsure-grey-700 !important;
+    border-color: $popsure-purple-500;
+  }
+
+  &:invalid {
+    color: $popsure-grey-500;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $popsure-purple-500;
+  }
+}
