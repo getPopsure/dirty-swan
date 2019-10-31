@@ -14,36 +14,54 @@ body {
 
 .p-h1 {
   font-weight: $p-font-weight-bold;
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 32px;
+  line-height: 42px;
   letter-spacing: 0.5px;
 
   @include p-size-mobile {
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 0.5px;
+    font-size: 24px;
+    line-height: 34px;
+  }
+
+  &--xl {
+    font-size: 48px;
+    line-height: 58px;
+
+    @include p-size-mobile {
+      font-size: 32px;
+      line-height: 42px;
+    }
   }
 }
 
 .p-h2 {
   font-weight: bold;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 24px;
+  line-height: 34px;
   letter-spacing: 0.5px;
+
+  @include p-size-mobile {
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 
 .p-h3 {
   font-weight: $p-font-weight-bold;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 24px;
   letter-spacing: 0.5px;
+
+  @include p-size-mobile {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 .p-h4 {
   font-weight: $p-font-weight-bold;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 24px;
   letter-spacing: 0.5px;
 }
 
