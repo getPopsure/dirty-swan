@@ -4,20 +4,5 @@
   "main": "scss/dirtySwan.scss",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "css-loader": "^3.2.0",
-    "node-sass": "^4.13.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@storybook/html": "^5.2.5",
-    "babel-loader": "^8.0.6"
-  },
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  }
+  "private": true
 }
