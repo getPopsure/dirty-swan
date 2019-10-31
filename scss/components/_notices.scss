@@ -8,4 +8,9 @@
     border-color: $popsure-red-500;
     color: $popsure-red-500;
   }
+
+  &--warning {
+    background-color: $popsure-yellow-100;
+    border-color: $popsure-yellow-500;
+  }
 }
