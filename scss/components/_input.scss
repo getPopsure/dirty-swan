@@ -62,7 +62,9 @@
       margin-right: 16px;
 
       width: 16px;
+      min-width: 16px;
       height: 16px;
+      min-height: 16px;
 
       border: 1px solid $popsure-grey-300;
       border-radius: 50%;
@@ -109,7 +111,9 @@
       margin-right: 16px;
 
       width: 16px;
+      min-width: 16px;
       height: 16px;
+      min-height: 16px;
 
       border: 1px solid $popsure-grey-300;
       border-radius: 4px;
@@ -147,29 +151,33 @@
   cursor: pointer;
 
   display: flex;
-  align-items: center;
+  align-items: baseline;
 
   min-height: 48px;
   line-height: 24px;
   color: $popsure-grey-900;
 
-  padding-left: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  &--bordered {
+    align-items: center;
 
-  border-radius: 8px;
-  border: 1px solid $popsure-grey-300;
-  background-color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
 
-  transition: 0.3s border-color, 0.3s background-color;
+    border-radius: 8px;
+    border: 1px solid $popsure-grey-300;
+    background-color: white;
 
-  &:hover {
-    border-color: $popsure-purple-500;
+    &:hover {
+      border-color: $popsure-purple-500;
+    }
+
+    transition: 0.3s border-color, 0.3s background-color;
   }
 }
 
-input:checked[type="radio"] + .p-label,
-input:checked[type="checkbox"] + .p-label {
+input:checked[type="radio"] + .p-label--bordered,
+input:checked[type="checkbox"] + .p-label--bordered {
   border-color: $popsure-purple-500;
   background-color: $popsure-purple-100;
 }
