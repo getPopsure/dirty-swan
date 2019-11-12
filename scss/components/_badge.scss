@@ -1,0 +1,30 @@
+.p-badge {
+  display: inline-block;
+
+  padding: 0 16px;
+
+  size: 12px;
+  color: $popsure-grey-900;
+  text-align: center;
+
+  height: 18px;
+  line-height: 18px;
+
+  border-radius: 9px;
+
+  &--active {
+    background-color: $popsure-yellow-300;
+  }
+
+  &--pending {
+    background-color: $popsure-green-300;
+  }
+
+  &--inactive {
+    background-color: $popsure-red-300;
+  }
+
+  &--info {
+    background-color: $popsure-blue-300;
+  }
+}
