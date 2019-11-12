@@ -13,11 +13,11 @@
   border-radius: 9px;
 
   &--active {
-    background-color: $popsure-yellow-300;
+    background-color: $popsure-green-300;
   }
 
   &--pending {
-    background-color: $popsure-green-300;
+    background-color: $popsure-yellow-300;
   }
 
   &--inactive {
