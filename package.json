@@ -1,6 +1,6 @@
 {
   "name": "dirtySwan",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "src/scss/dirtySwan.scss",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
