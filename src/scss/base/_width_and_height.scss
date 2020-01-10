@@ -1,0 +1,5 @@
+@for $i from 1 through 6 {
+  .ws#{$i} {
+    width: $i * 60px + ($i - 1) * 16px;
+  }
+}
