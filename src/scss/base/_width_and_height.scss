@@ -1,5 +1,8 @@
-@for $i from 1 through 6 {
+@for $i from 1 through 12 {
   .ws#{$i} {
     width: $i * 60px + ($i - 1) * 16px;
+  }
+  .wmn#{$i} {
+    min-width: $i * 60px + ($i - 1) * 16px;
   }
 }
