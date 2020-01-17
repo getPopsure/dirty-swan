@@ -4,13 +4,28 @@ Dirty Swan UI is the Design system used at [popsure](https://getpopsure.com/)
 
 ---
 
+## Installation
+
+Run the following command using [npm](https://www.npmjs.com):
+
+```bash
+npm install @popsure/dirty-swan --save
+```
+
+If you prefer [Yarn](https://www.npmjs.com), use the following command instead:
+
+```bash
+yarn add @popsure/dirty-swan
+```
+
 ## Contributing
 
-### Releasing a new version
+### Releasing a new version using yarn
 
-You can release a new version using the `yarn version` command.
-This will update `package.json` and add a [tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) to your commit.
+You can release a new version using [yarn publish](https://yarnpkg.com/lang/en/docs/cli/publish/)
 
-You will then need to push your changes to the repository altogether with the tag.
+```bash
+yarn publish --access public
+```
 
-`git push --follow-tags`
+You will get asked to specify the new version number. We are using [Semantic Versioning](https://semver.org) (or semver) for that.
