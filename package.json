@@ -1,11 +1,16 @@
 {
   "name": "@popsure/dirty-swan",
   "version": "0.5.0",
-  "main": "src/scss/dirtySwan.scss",
+  "main": "dist/index.js",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
+  "files": [
+    "dist",
+    "Readme.md"
+  ],
   "dependencies": {
+    "@babel/preset-typescript": "^7.8.3",
     "node-sass": "^4.13.0"
   },
   "peerDependencies": {
@@ -18,9 +23,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf dist && NODE_ENV=production babel src --extensions '.tsx' --out-dir dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "release": "yarn build && yarn publish --access public",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -40,10 +46,17 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
     "@storybook/addon-actions": "^5.2.8",
     "@storybook/addon-links": "^5.2.8",
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
-    "react-scripts": "3.2.0"
+    "@types/jest": "^24.9.0",
+    "@types/node": "^13.1.7",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "babel-preset-react-app": "^9.1.0",
+    "react-scripts": "3.2.0",
+    "typescript": "^3.7.5"
   }
 }
