@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.5.0-alpha-5",
+  "version": "0.5.0",
   "main": "src/scss/dirtySwan.scss",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
