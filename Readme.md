@@ -22,10 +22,10 @@ yarn add @popsure/dirty-swan
 
 ### Releasing a new version using yarn
 
-You can release a new version using [yarn publish](https://yarnpkg.com/lang/en/docs/cli/publish/)
+You can release a new version by using the following command:
 
 ```bash
-yarn publish --access public
+yarn release
 ```
 
 You will get asked to specify the new version number. We are using [Semantic Versioning](https://semver.org) (or semver) for that.
