@@ -1,16 +1,22 @@
 {
-  "name": "dirtySwan",
-  "version": "0.4.4",
+  "name": "@getpopsure/dirty-swan",
+  "version": "0.5.0-alpha",
   "main": "src/scss/dirtySwan.scss",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "node-sass": "^4.13.0"
   },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:getPopsure/dirtySwan.git"
   },
   "scripts": {
     "start": "react-scripts start",
