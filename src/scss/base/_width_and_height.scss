@@ -5,4 +5,7 @@
   .wmn#{$i} {
     min-width: $i * 60px + ($i - 1) * 16px;
   }
+  .wmx#{$i} {
+    max-width: $i * 60px + ($i - 1) * 16px;
+  }
 }
