@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "outDir": "build",
     "baseUrl": "src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "sourceMap": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -14,8 +16,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "declaration": true
   },
-  "exclude": ["node_modules", "**/node_modules/*"],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "build",
+    "dist",
+    "rollup.config.js"
+  ],
   "include": ["src"]
 }
