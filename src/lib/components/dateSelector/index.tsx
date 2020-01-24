@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 
-import { DateObject } from "lib/models/dateObject";
+import { DateObject } from "../../models/dateObject";
 import styles from "./style.module.scss";
 
 /*

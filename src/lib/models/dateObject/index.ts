@@ -1,4 +1,4 @@
-import { zerofill } from "lib/util/zeroFill";
+import { zerofill } from "../../util/zeroFill";
 
 export interface DateObject {
   day: number;

@@ -1,6 +1,6 @@
 import React from "react";
 import "lib/scss/index.scss";
-import DateSelector from "lib/components/dateSelector";
+import DateSelector from "./lib/components/dateSelector";
 
 function App() {
   return (
