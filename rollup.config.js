@@ -29,11 +29,7 @@ export default {
   ],
   plugins: [
     external(),
-    // postcss({ modules: true }),
-    bundleScss(),
-    // copy({
-    //   assets: ["src/lib/scss/assets"]
-    // }),
+    postcss({ modules: true }),
     url(),
     svgr(),
     resolve(),
