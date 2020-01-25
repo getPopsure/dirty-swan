@@ -1,3 +1,42 @@
 <Meta title="Base/Typography" />
 
 # Typography
+
+Dirty swan provides classes to override default heading.
+
+### Typography classes
+
+#### Desktop
+
+| Class            | Font size        | Font weight |
+| ---------------- | ---------------- | ----------- |
+| `p-h1 p-h1--xl`  | font-size: 48px; | _bold_      |
+| `p-h1`           | font-size: 32px; | _bold_      |
+| `p-h2`           | font-size: 24px; | _bold_      |
+| `p-h3`           | font-size: 18px; | _bold_      |
+| `p-h4`           | font-size: 16px; | _bold_      |
+| `p-p`            | font-size: 16px; | normal      |
+| `p-p p-p--small` | font-size: 12x;  | normal      |
+
+#### Mobile
+
+| Class            | Font size        | Font weight |
+| ---------------- | ---------------- | ----------- |
+| `p-h1 p-h1--xl`  | font-size: 32px; | _bold_      |
+| `p-h1`           | font-size: 24px; | _bold_      |
+| `p-h2`           | font-size: 18px; | _bold_      |
+| `p-h3`           | font-size: 16px; | _bold_      |
+| `p-h4`           | font-size: 16px; | _bold_      |
+| `p-p`            | font-size: 16px; | normal      |
+| `p-p p-p--small` | font-size: 12x;  | normal      |
+
+### Typography classes example
+
+```html
+<h1 class="p-h1 p-h1--xl">The quick brown fox jumps over the lazy dog</h1>
+<h1 class="p-h1">The quick brown fox jumps over the lazy dog</h1>
+<h2 class="p-h2">The quick brown fox jumps over the lazy dog</h2>
+<h3 class="p-h3">The quick brown fox jumps over the lazy dog</h3>
+<h4 class="p-h4">The quick brown fox jumps over the lazy dog</h4>
+<p class="p-p">The quick brown fox jumps over the lazy dog</p>
+```
