@@ -38,7 +38,7 @@ export const daysInMonthOfYear = ({
   return moment(`${year}-${month}`, "YYYY-MM").daysInMonth();
 };
 
-export default ({
+const DateSelector = ({
   value,
   onChange,
   yearBoundaries
@@ -158,3 +158,5 @@ export default ({
     </div>
   );
 };
+
+export default DateSelector;
