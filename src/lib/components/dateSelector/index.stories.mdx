@@ -1,0 +1,25 @@
+import DateSelector from ".";
+
+<Meta title="Components/Date selector" component={DateSelector} />
+
+# Date selector
+
+Date selector are user interface elements which allow user to select a date in the `YYYY-MM-DD` format.
+
+## Default example
+
+<DateSelector
+  yearBoundaries={{ min: 1990, max: 2020 }}
+  onChange={date => {
+    console.log(date);
+  }}
+/>
+
+```typescript
+<DateSelector
+  yearBoundaries={{ min: 1990, max: 2020 }}
+  onChange={date => {
+    console.log(date);
+  }}
+/>
+```
