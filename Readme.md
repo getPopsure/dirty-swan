@@ -18,6 +18,14 @@ If you prefer [Yarn](https://www.npmjs.com), use the following command instead:
 yarn add @popsure/dirty-swan
 ```
 
+## Usage
+
+To use Dirty Swan, import the scss file in one of your App entry point (typically `index/js` or `App.js` if you’re using [create react app](https://create-react-app.dev))
+
+```javaScript
+import '@popsure/dirty-swan/dist/index.scss';
+```
+
 ## Contributing
 
 ### Releasing a new version using yarn

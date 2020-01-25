@@ -4,6 +4,6 @@ import App from "./App";
 
 import DateSelector from "./lib/components/dateSelector";
 
-ReactDOM.render(<App />, document.getElementById("root"));
-
 export { DateSelector };
+
+ReactDOM.render(<App />, document.getElementById("root"));
