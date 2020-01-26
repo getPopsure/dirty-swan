@@ -8,12 +8,14 @@ Date selector are user interface elements which allow user to select a date in t
 
 ## Default example
 
-<DateSelector
-  yearBoundaries={{ min: 1990, max: 2020 }}
-  onChange={date => {
-    console.log(date);
-  }}
-/>
+<Preview>
+  <DateSelector
+    yearBoundaries={{ min: 1990, max: 2020 }}
+    onChange={date => {
+      console.log(date);
+    }}
+  />
+</Preview>
 
 ```typescript
 <DateSelector
