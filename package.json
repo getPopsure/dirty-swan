@@ -1,7 +1,7 @@
 {
   "name": "@popsure/dirty-swan",
   "main": "dist/index.js",
-  "version": "0.6.0--aplha-4",
+  "version": "0.6.0",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
