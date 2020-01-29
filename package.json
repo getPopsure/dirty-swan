@@ -1,6 +1,5 @@
 {
   "name": "@popsure/dirty-swan",
-  "main": "dist/index.js",
   "version": "0.6.0",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
@@ -9,6 +8,8 @@
     "type": "git",
     "url": "git@github.com:getPopsure/dirtySwan.git"
   },
+  "main": "dist/index.js",
+  "sass": "dist/index.scss",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {
