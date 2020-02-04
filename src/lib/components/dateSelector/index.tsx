@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import moment from "moment";
 
-import { DateObject } from "../../models/dateObject";
+import {
+  DateObject,
+  dateObjectToISODate,
+  isoStringtoDateObject
+} from "../../models/dateObject";
 import styles from "./style.module.scss";
 
 /*
@@ -43,19 +47,22 @@ const DateSelector = ({
   onChange,
   yearBoundaries
 }: {
-  value?: DateObject;
-  onChange: (date: DateObject) => void;
+  value?: string;
+  onChange: (date: string) => void;
   yearBoundaries: { min: number; max: number };
 }) => {
-  const daysInSelectedDate =
-    value !== undefined
-      ? daysInMonthOfYear({ month: value.month, year: value.year })
-      : 31;
+  const dateObjectValue = value ? isoStringtoDateObject(value) : undefined;
+  const daysInSelectedDate = dateObjectValue
+    ? daysInMonthOfYear({
+        month: dateObjectValue.month,
+        year: dateObjectValue.year
+      })
+    : 31;
   const availableDays = fillArray(1, daysInSelectedDate);
   const availableYears = fillArray(yearBoundaries.max, yearBoundaries.min);
   const availableMonths = moment.monthsShort();
 
-  const [date, setDate] = useState<Partial<DateObject>>(value ? value : {});
+  const [date, setDate] = useState<Partial<DateObject>>(dateObjectValue ?? {});
 
   if (
     date.year !== undefined &&
@@ -63,12 +70,18 @@ const DateSelector = ({
     date.day !== undefined
   ) {
     if (
-      value === undefined ||
-      date.day !== value.day ||
-      date.month !== value.month ||
-      date.year !== value.year
+      dateObjectValue === undefined ||
+      date.day !== dateObjectValue.day ||
+      date.month !== dateObjectValue.month ||
+      date.year !== dateObjectValue.year
     ) {
-      onChange({ day: date.day, month: date.month, year: date.year });
+      onChange(
+        dateObjectToISODate({
+          day: date.day,
+          month: date.month,
+          year: date.year
+        })
+      );
     }
   }
 

@@ -1,4 +1,4 @@
-import { dateObjectToISODate, DateObject } from ".";
+import { dateObjectToISODate, isoStringtoDateObject, DateObject } from ".";
 
 describe("Date object to ISO date", () => {
   it("Should add trailing 0s", () => {
@@ -13,5 +13,19 @@ describe("Date object to ISO date", () => {
     const input: DateObject = { day: 29, month: 10, year: 2019 };
 
     expect(dateObjectToISODate(input)).toEqual(expectedOutput);
+  });
+});
+
+describe("ISO string to DateObject", () => {
+  test("Should convert valid ISO 8601 string to DateObject", () => {
+    expect(isoStringtoDateObject("1990-03-24")).toEqual({
+      year: 1990,
+      month: 3,
+      day: 24
+    });
+  });
+
+  test("Converting invalid ISO 8601 string to DateObject should be undefined", () => {
+    expect(isoStringtoDateObject("1990-24-03")).toBeUndefined();
   });
 });
