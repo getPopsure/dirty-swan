@@ -3,6 +3,12 @@
   border: 1px solid;
   border-radius: 8px;
 
+  &--info {
+    background-color: $popsure-blue-100;
+    border-color: $popsure-blue-500;
+    color: $popsure-grey-900;
+  }
+
   &--danger {
     background-color: $popsure-red-100;
     border-color: $popsure-red-500;
