@@ -2,7 +2,7 @@ import React from "react";
 import "./lib/scss/index.scss";
 
 import DateSelector from "./lib/components/dateSelector";
-import DropZone from "./lib/components/dropZone";
+import Dropzone from "./lib/components/dropzone";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         malesuada laoreet nulla, non maximus ante porta sit amet. Aenean non
         ipsum nec quam gravida convallis vitae sit amet nisi.
       </div>
-      <DropZone
+      <Dropzone
         uploading={true}
         progress={32}
         onSelectedFile={() => {}}
