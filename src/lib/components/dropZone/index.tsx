@@ -3,6 +3,10 @@ import { useDropzone } from "react-dropzone";
 
 import styles from "./style.module.scss";
 
+import errorImage from "./img/error.svg";
+import uploadImage from "./img/upload.svg";
+import fileImage from "./img/file.svg";
+
 export function truncateStringTail(aString: string, length: number) {
   if (aString.length > length) {
     const tail = "[...]";
@@ -96,28 +100,28 @@ export default ({
   } = {
     idle: {
       action: undefined,
-      image: require("./img/upload.svg"),
+      image: uploadImage,
       text: "Upload document",
       containerStyle: undefined,
       actionStyle: undefined
     },
     uploading: {
       action: undefined,
-      image: require("./img/upload.svg"),
+      image: uploadImage,
       text: "Uploading document…",
       containerStyle: styles["container--uploading"],
       actionStyle: undefined
     },
     error: {
       action: "Tap to retry",
-      image: require("./img/error.svg"),
+      image: errorImage,
       text: "Error!",
       containerStyle: styles["container--error"],
       actionStyle: styles["action--error"]
     },
     uploaded: {
       action: "Tap to replace",
-      image: require("./img/file.svg"),
+      image: fileImage,
       text: uploadedFileName,
       containerStyle: styles["container--uploaded"],
       actionStyle: styles["action--uploaded"]
