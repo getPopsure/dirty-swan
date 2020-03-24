@@ -1,0 +1,67 @@
+import Dropzone from ".";
+
+<Meta title="Components/Dropzone" component={Dropzone} />
+
+# Dropzone
+
+Date selector are user interface elements which allow user to select and upload a file.
+
+## Examples
+
+### Idle state
+
+<Preview>
+  <Dropzone uploading={false} onSelectedFile={() => {}} />
+</Preview>
+
+```typescript
+<Dropzone uploading={false} onSelectedFile={() => {}} />
+```
+
+### Uploading state
+
+<Preview>
+  <Dropzone uploading={true} progress={30} onSelectedFile={() => {}} />
+</Preview>
+
+```typescript
+<Dropzone uploading={true} progress={30} onSelectedFile={() => {}} />
+```
+
+### Error state
+
+<Preview>
+  <Dropzone
+    uploading={true}
+    progress={30}
+    error="Something went wront"
+    onSelectedFile={() => {}}
+  />
+</Preview>
+
+```typescript
+<Dropzone
+  uploading={true}
+  progress={30}
+  error="Something went wrong"
+  onSelectedFile={() => {}}
+/>
+```
+
+### Uploaded state
+
+<Preview>
+  <Dropzone
+    uploading={false}
+    uploadedFileUrl="http://getpopsure.com/my-file.png"
+    onSelectedFile={() => {}}
+  />
+</Preview>
+
+```typescript
+<Dropzone
+  uploading={false}
+  uploadedFileUrl="http://getpopsure.com/my-file.png"
+  onSelectedFile={() => {}}
+/>
+```
