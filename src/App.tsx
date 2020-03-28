@@ -12,7 +12,7 @@ function App() {
         onChange={() => {}}
         yearBoundaries={{ min: 1990, max: 2010 }}
       />
-      <div className="p-notice p-notice--info">
+      <div className="p-notice p-notice--info d-flex">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
         malesuada laoreet nulla, non maximus ante porta sit amet. Aenean non
         ipsum nec quam gravida convallis vitae sit amet nisi.
