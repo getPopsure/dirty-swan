@@ -9,3 +9,17 @@
     max-width: $i * 60px + ($i - 1) * 16px;
   }
 }
+
+.w-auto {
+  width: auto;
+}
+
+.w0 {
+  width: 0;
+}
+
+@for $i from 1 through 10 {
+  .w#{$i * 10} {
+    width: $i * 10%;
+  }
+}
