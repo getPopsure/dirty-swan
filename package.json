@@ -21,9 +21,12 @@
     "Readme.md"
   ],
   "dependencies": {
+    "@types/classnames": "^2.2.10",
+    "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
-    "react-dropzone": "^10.2.1"
+    "react-dropzone": "^10.2.1",
+    "signature_pad": "^3.0.0-beta.3"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -59,7 +62,7 @@
     "@storybook/addon-docs": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
     "@storybook/addons": "^5.3.9",
-    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.9",
     "@storybook/storybook-deployer": "^2.8.1",
     "@svgr/rollup": "^2.4.1",

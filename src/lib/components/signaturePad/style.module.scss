@@ -1,0 +1,85 @@
+@import "../../scss/index";
+
+.container {
+  position: relative;
+  background-color: $popsure-grey-100;
+  border-radius: 8px;
+  height: 272px;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.separator {
+  position: absolute;
+
+  height: 2px;
+
+  right: 112px;
+  left: 72px;
+  bottom: 32px;
+
+  background-color: $popsure-grey-300;
+
+  border-radius: 1px;
+}
+
+.reset {
+  display: flex;
+  position: absolute;
+
+  right: 16px;
+  bottom: 32px;
+
+  color: $popsure-purple-500;
+  cursor: pointer;
+
+  border: none;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 24px;
+
+  background-color: transparent;
+
+  &:hover {
+    color: $popsure-purple-700;
+  }
+
+  &:before {
+    content: "";
+
+    display: inline-block;
+
+    height: 24px;
+    width: 24px;
+
+    mask-image: url("img/reset.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: currentColor;
+
+    margin-right: 4px;
+  }
+
+  &[disabled] {
+    color: $popsure-grey-500;
+  }
+}
+
+.sign {
+  position: absolute;
+
+  bottom: 32px;
+  left: 16px;
+
+  height: 24px;
+  width: 24px;
+
+  mask-image: url("img/sign.svg");
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: $popsure-grey-500;
+}

@@ -3,6 +3,7 @@ import "./lib/scss/index.scss";
 
 import DateSelector from "./lib/components/dateSelector";
 import Dropzone from "./lib/components/dropzone";
+import SignaturePad from "./lib/components/signaturePad";
 
 function App() {
   return (
@@ -23,6 +24,13 @@ function App() {
         onSelectedFile={() => {}}
         // uploadedFileUrl="http://foo.com/my-file.png"
       />
+      <div style={{ backgroundColor: "white", padding: "24px" }}>
+        <SignaturePad
+          onChange={v => {
+            console.log(v);
+          }}
+        />
+      </div>
     </div>
   );
 }
