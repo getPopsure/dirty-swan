@@ -1,3 +1,10 @@
+import {
+  StaticWidthClasses,
+  FuildWidthClasses,
+  MaxWidthClasses,
+  MinWidthClasses,
+} from "./demo";
+
 <Meta title="Base/Width and height" />
 
 # Width and height
@@ -40,41 +47,49 @@ Dirty swan provides atomic sizing classes for widths and heights.
 <div class="ws12">…</div>
 ```
 
+<Preview>
+  <StaticWidthClasses />
+</Preview>
+
 ## Min widths
 
 ### Min widths classes
 
 | Class    | Output            |
 | -------- | ----------------- |
-| `.wmx1`  | min-width: 60px;  |
-| `.wmx2`  | min-width: 136px; |
-| `.wmx3`  | min-width: 212px; |
-| `.wmx4`  | min-width: 288px; |
-| `.wmx5`  | min-width: 364px; |
-| `.wmx6`  | min-width: 440px; |
-| `.wmx7`  | min-width: 516px; |
-| `.wmx8`  | min-width: 592px; |
-| `.wmx9`  | min-width: 668px; |
-| `.wmx10` | min-width: 744px; |
-| `.wmx11` | min-width: 820px; |
-| `.wmx12` | min-width: 896px; |
+| `.wmn1`  | min-width: 60px;  |
+| `.wmn2`  | min-width: 136px; |
+| `.wmn3`  | min-width: 212px; |
+| `.wmn4`  | min-width: 288px; |
+| `.wmn5`  | min-width: 364px; |
+| `.wmn6`  | min-width: 440px; |
+| `.wmn7`  | min-width: 516px; |
+| `.wmn8`  | min-width: 592px; |
+| `.wmn9`  | min-width: 668px; |
+| `.wmn10` | min-width: 744px; |
+| `.wmn11` | min-width: 820px; |
+| `.wmn12` | min-width: 896px; |
 
 ### Min width examples
 
 ```html
-<div class="wmx1">…</div>
-<div class="wmx2">…</div>
-<div class="wmx3">…</div>
-<div class="wmx4">…</div>
-<div class="wmx5">…</div>
-<div class="wmx6">…</div>
-<div class="wmx7">…</div>
-<div class="wmx8">…</div>
-<div class="wmx9">…</div>
-<div class="wmx10">…</div>
-<div class="wmx11">…</div>
-<div class="wmx12">…</div>
+<div class="wmn1">…</div>
+<div class="wmn2">…</div>
+<div class="wmn3">…</div>
+<div class="wmn4">…</div>
+<div class="wmn5">…</div>
+<div class="wmn6">…</div>
+<div class="wmn7">…</div>
+<div class="wmn8">…</div>
+<div class="wmn9">…</div>
+<div class="wmn10">…</div>
+<div class="wmn11">…</div>
+<div class="wmn12">…</div>
 ```
+
+<Preview>
+  <MinWidthClasses />
+</Preview>
 
 ## Max widths
 
@@ -112,6 +127,10 @@ Dirty swan provides atomic sizing classes for widths and heights.
 <div class="wmx12">…</div>
 ```
 
+<Preview>
+  <MaxWidthClasses />
+</Preview>
+
 ## Fuild width widths
 
 ### Fuild widths classes
@@ -147,3 +166,7 @@ Dirty swan provides atomic sizing classes for widths and heights.
 <div class="w90">…</div>
 <div class="w100">…</div>
 ```
+
+<Preview>
+  <FuildWidthClasses />
+</Preview>
