@@ -91,8 +91,8 @@ const AutoCompleteAddress = ({
     null
   );
   const [missingGeocoderFields, setMissingGeocoderFields] = useState({
-    postcode: true,
-    houseNumber: true,
+    postcode: false,
+    houseNumber: false,
   });
 
   const onPlaceChanged = () => {
