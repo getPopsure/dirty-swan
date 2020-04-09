@@ -159,6 +159,7 @@ const AutoCompleteAddress = ({
           <input
             className="p-input"
             id="autocomplete"
+            data-cy="autocomplete"
             type="text"
             ref={autocompleteElement}
             onChange={() => {
@@ -175,6 +176,7 @@ const AutoCompleteAddress = ({
         >
           <input
             className="p-input"
+            data-cy="autocomplete-house-number"
             placeholder="House Number"
             value={address?.houseNumber || ""}
             onChange={({ target: { value } }) => {
