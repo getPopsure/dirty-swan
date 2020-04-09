@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.8.1--alpha-1",
+  "version": "0.8.1--alpha-2",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -21,7 +21,7 @@
     "Readme.md"
   ],
   "dependencies": {
-    "@popsure/public-models": "^0.0.5",
+    "@popsure/public-models": "^0.0.7",
     "@types/classnames": "^2.2.10",
     "@types/googlemaps": "^3.39.3",
     "classnames": "^2.2.6",

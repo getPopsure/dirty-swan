@@ -4,6 +4,15 @@ import { Address } from "@popsure/public-models";
 import AutoCompleteAddress from ".";
 
 export default () => {
-  const [address, setAddress] = useState<Address>(undefined);
-  return <AutoCompleteAddress onAddressChange={setAddress} address={address} />;
+  const [address, setAddress] = useState<Partial<Address> | undefined>(
+    undefined
+  );
+  return (
+    <AutoCompleteAddress
+      onAddressChange={(address) => {
+        setAddress(address);
+      }}
+      address={address}
+    />
+  );
 };

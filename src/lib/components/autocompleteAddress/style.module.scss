@@ -22,6 +22,8 @@
 
     & > * {
       margin-top: 16px;
+      margin-left: 0 !important;
+      flex: 1 0 auto !important;
     }
   }
 }

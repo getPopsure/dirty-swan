@@ -79,7 +79,7 @@ const AutoCompleteAddress = ({
   address,
   onAddressChange,
 }: {
-  address?: Address;
+  address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
 }) => {
   const autocomplete = useRef<google.maps.places.Autocomplete | null>(null);
@@ -91,8 +91,8 @@ const AutoCompleteAddress = ({
     null
   );
   const [missingGeocoderFields, setMissingGeocoderFields] = useState({
-    postcode: false,
-    houseNumber: false,
+    postcode: true,
+    houseNumber: true,
   });
 
   const onPlaceChanged = () => {
