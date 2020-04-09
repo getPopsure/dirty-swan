@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { CalendarDate } from "@popsure/public-models";
 
 import {
-  DateObject,
-  dateObjectToISODate,
-  isoStringtoDateObject
-} from "../../models/dateObject";
+  calendarDateToISODate,
+  isoStringtoCalendarDate,
+} from "../../util/calendarDate";
 import styles from "./style.module.scss";
 
 /*
@@ -34,7 +34,7 @@ export const fillArray = (from: number, to: number): number[] => {
 */
 export const daysInMonthOfYear = ({
   month,
-  year
+  year,
 }: {
   month: number;
   year: number;
@@ -45,24 +45,26 @@ export const daysInMonthOfYear = ({
 const DateSelector = ({
   value,
   onChange,
-  yearBoundaries
+  yearBoundaries,
 }: {
   value?: string;
   onChange: (date: string) => void;
   yearBoundaries: { min: number; max: number };
 }) => {
-  const dateObjectValue = value ? isoStringtoDateObject(value) : undefined;
-  const daysInSelectedDate = dateObjectValue
+  const CalendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
+  const daysInSelectedDate = CalendarDateValue
     ? daysInMonthOfYear({
-        month: dateObjectValue.month,
-        year: dateObjectValue.year
+        month: CalendarDateValue.month,
+        year: CalendarDateValue.year,
       })
     : 31;
   const availableDays = fillArray(1, daysInSelectedDate);
   const availableYears = fillArray(yearBoundaries.max, yearBoundaries.min);
   const availableMonths = moment.monthsShort();
 
-  const [date, setDate] = useState<Partial<DateObject>>(dateObjectValue ?? {});
+  const [date, setDate] = useState<Partial<CalendarDate>>(
+    CalendarDateValue ?? {}
+  );
 
   if (
     date.year !== undefined &&
@@ -70,22 +72,22 @@ const DateSelector = ({
     date.day !== undefined
   ) {
     if (
-      dateObjectValue === undefined ||
-      date.day !== dateObjectValue.day ||
-      date.month !== dateObjectValue.month ||
-      date.year !== dateObjectValue.year
+      CalendarDateValue === undefined ||
+      date.day !== CalendarDateValue.day ||
+      date.month !== CalendarDateValue.month ||
+      date.year !== CalendarDateValue.year
     ) {
       onChange(
-        dateObjectToISODate({
+        calendarDateToISODate({
           day: date.day,
           month: date.month,
-          year: date.year
+          year: date.year,
         })
       );
     }
   }
 
-  const handleOnChange = (key: keyof DateObject, v: number) => {
+  const handleOnChange = (key: keyof CalendarDate, v: number) => {
     const newValue = { ...date, [key]: v };
     if (
       key !== "day" &&
@@ -113,14 +115,14 @@ const DateSelector = ({
         required={true}
         defaultValue=""
         value={date.day}
-        onChange={e => {
+        onChange={(e) => {
           handleOnChange("day", parseInt(e.target.value, 10));
         }}
       >
         <option value="" disabled={true}>
           Day
         </option>
-        {availableDays.map(day => (
+        {availableDays.map((day) => (
           <option key={day} value={day}>
             {day}
           </option>
@@ -134,7 +136,7 @@ const DateSelector = ({
         required={true}
         defaultValue=""
         value={date.month}
-        onChange={e => {
+        onChange={(e) => {
           handleOnChange("month", parseInt(e.target.value, 10));
         }}
       >
@@ -155,14 +157,14 @@ const DateSelector = ({
         required={true}
         defaultValue=""
         value={date.year}
-        onChange={e => {
+        onChange={(e) => {
           handleOnChange("year", parseInt(e.target.value, 10));
         }}
       >
         <option value="" disabled={true}>
           Year
         </option>
-        {availableYears.map(year => (
+        {availableYears.map((year) => (
           <option key={year} value={year}>
             {year}
           </option>

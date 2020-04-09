@@ -21,7 +21,9 @@
     "Readme.md"
   ],
   "dependencies": {
+    "@popsure/public-models": "^0.0.5",
     "@types/classnames": "^2.2.10",
+    "@types/googlemaps": "^3.39.3",
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",

@@ -4,6 +4,7 @@ import "./lib/scss/index.scss";
 import DateSelector from "./lib/components/dateSelector";
 import Dropzone from "./lib/components/dropzone";
 import SignaturePad from "./lib/components/signaturePad";
+import AutocompleteAddress from "./lib/components/autocompleteAddress";
 
 function App() {
   return (
@@ -26,10 +27,13 @@ function App() {
       />
       <div style={{ backgroundColor: "white", padding: "24px" }}>
         <SignaturePad
-          onChange={v => {
+          onChange={(v) => {
             console.log(v);
           }}
         />
+      </div>
+      <div className="mt80">
+        <AutocompleteAddress onAddressChange={(a) => console.log(a)} />
       </div>
     </div>
   );

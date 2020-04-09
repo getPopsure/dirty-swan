@@ -1,0 +1,43 @@
+import { useState } from "react";
+import AutocompleteAddress from ".";
+import AutocompleteAddressDemo from "./demo";
+
+<Meta title="Components/Autocomplete Address" component={AutocompleteAddress} />
+
+# Autocomplete Address
+
+Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.
+
+## Important notes
+
+This component is for now only restricted to "address" types and will restrict every query to Germany.
+
+## Installation
+
+Please make sure that you have added the Google Maps API header script before using this component.
+
+```html
+<!-- Google Maps API -->
+<script
+  type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=YOU_GOOGLE_MAPS_API_KEY=places"
+></script>
+```
+
+## Default example
+
+<Preview>
+  <AutocompleteAddressDemo />
+</Preview>
+
+```typescript
+import React, { useState } from "react";
+import { Address } from "@popsure/public-models";
+
+import AutoCompleteAddress from ".";
+
+export default () => {
+  const [address, setAddress] = useState<Address>(undefined);
+  return <AutoCompleteAddress onAddressChange={setAddress} address={address} />;
+};
+```
