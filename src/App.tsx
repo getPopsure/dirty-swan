@@ -33,7 +33,7 @@ function App() {
         />
       </div>
       <div className="mt80">
-        <AutocompleteAddress onAddressChange={(a) => console.log(a)} />
+        {/* <AutocompleteAddress onAddressChange={(a) => console.log(a)} /> */}
       </div>
     </div>
   );

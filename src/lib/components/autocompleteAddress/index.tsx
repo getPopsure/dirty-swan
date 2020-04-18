@@ -8,8 +8,6 @@ import {
 
 import styles from "./style.module.scss";
 
-import styledMapType from "./mapStyle";
-
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
 
 const MAP_CONFIG_OBJ = {
@@ -135,10 +133,11 @@ const AutoCompleteAddress = ({
       document.getElementById("map")!,
       MAP_CONFIG_OBJ
     );
-    if (styledMapType) {
-      map.current?.mapTypes.set("styled_map", styledMapType);
-    }
-    map.current?.setMapTypeId("styled_map");
+
+    import("./mapStyle").then(({ style }) => {
+      map.current?.mapTypes.set("styled_map", style);
+      map.current?.setMapTypeId("styled_map");
+    });
 
     marker.current = new google.maps.Marker({
       map: map.current,
