@@ -1,5 +1,6 @@
 import typescript from "@rollup/plugin-typescript";
-import commonjs from "rollup-plugin-commonjs";
+import image from "@rollup/plugin-image";
+import commonjs from "@rollup/plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import resolve from "rollup-plugin-node-resolve";
@@ -17,6 +18,7 @@ export default {
     },
   ],
   plugins: [
+    image(),
     external(),
     postcss({ modules: true }),
     url(),

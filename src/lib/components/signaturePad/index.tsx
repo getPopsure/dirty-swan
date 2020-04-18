@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import SignaturePad from "signature_pad";
 
+import reset from "./img/reset.svg";
+
 import styles from "./style.module.scss";
 
 interface Props {
@@ -20,7 +22,7 @@ class Signature extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      hasContent: false
+      hasContent: false,
     };
     this.canvasRef = React.createRef();
     this.notifyOnChange = this.notifyOnChange.bind(this);
@@ -31,7 +33,7 @@ class Signature extends Component<Props, State> {
   public componentDidMount() {
     this.canvas = this.canvasRef.current;
     this.signaturePad = new SignaturePad(this.canvas, {
-      onEnd: this.notifyOnChange
+      onEnd: this.notifyOnChange,
     });
     this.resizeCanvas();
   }
@@ -48,6 +50,7 @@ class Signature extends Component<Props, State> {
           className={styles.reset}
           onClick={this.clear}
           disabled={!hasContent}
+          style={{ backgroundImage: `url(${reset})` }}
         >
           Reset
         </button>
