@@ -135,7 +135,9 @@ const AutoCompleteAddress = ({
       document.getElementById("map")!,
       MAP_CONFIG_OBJ
     );
-    map.current?.mapTypes.set("styled_map", styledMapType);
+    if (styledMapType) {
+      map.current?.mapTypes.set("styled_map", styledMapType);
+    }
     map.current?.setMapTypeId("styled_map");
 
     marker.current = new google.maps.Marker({
