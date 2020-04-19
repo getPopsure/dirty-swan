@@ -1,5 +1,4 @@
 import typescript from "@rollup/plugin-typescript";
-import image from "@rollup/plugin-image";
 import commonjs from "@rollup/plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
@@ -17,7 +16,6 @@ export default {
     },
   ],
   plugins: [
-    image(),
     external(),
     postcss({ modules: true }),
     url(),
