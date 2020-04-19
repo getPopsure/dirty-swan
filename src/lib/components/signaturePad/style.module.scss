@@ -55,10 +55,13 @@
     height: 24px;
     width: 24px;
 
-    mask-image: url("./img/reset.svg");
     mask-repeat: no-repeat;
     mask-position: center;
     background-color: currentColor;
+
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-background-color: currentColor;
 
     margin-right: 4px;
   }
@@ -77,13 +80,13 @@
   height: 24px;
   width: 24px;
 
-  // background-position: center;
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  //
-  // mask-image: url("./img/sign.svg");
-  // mask-size: 24px 24px;
-  // mask-repeat: no-repeat;
-  // mask-position: center;
-  // background-color: $popsure-grey-500;
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  -webkit-mask-size: 24px 24px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  background-color: $popsure-grey-500;
 }
