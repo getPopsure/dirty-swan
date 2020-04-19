@@ -77,9 +77,13 @@
   height: 24px;
   width: 24px;
 
-  mask-image: url("./img/sign.svg");
-  mask-size: 24px 24px;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  background-color: $popsure-grey-500;
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  //
+  // mask-image: url("./img/sign.svg");
+  // mask-size: 24px 24px;
+  // mask-repeat: no-repeat;
+  // mask-position: center;
+  // background-color: $popsure-grey-500;
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SignaturePad from "signature_pad";
 
 import reset from "./img/reset.svg";
+import sign from "./img/sign.svg";
 
 import styles from "./style.module.scss";
 
@@ -45,12 +46,18 @@ class Signature extends Component<Props, State> {
       <div className={styles.container}>
         <canvas className={styles.canvas} ref={this.canvasRef} />
         <div className={styles.separator} />
-        <div className={styles.sign} />
+        <div
+          className={styles.sign}
+          style={{
+            backgroundImage: `url(${sign})`,
+            WebkitMaskImage: `url(${sign})`,
+            maskImage: `url(${sign})`,
+          }}
+        />
         <button
           className={styles.reset}
           onClick={this.clear}
           disabled={!hasContent}
-          style={{ backgroundImage: `url(${reset})` }}
         >
           Reset
         </button>

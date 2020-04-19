@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.8.2--alpha-4",
+  "version": "0.8.2--alpha-6",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -70,7 +70,6 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.9",
     "@storybook/storybook-deployer": "^2.8.1",
-    "@svgr/rollup": "^2.4.1",
     "@types/jest": "^24.9.0",
     "@types/node": "^13.1.7",
     "@types/react": "^16.9.17",
