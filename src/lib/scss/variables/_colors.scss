@@ -34,7 +34,7 @@ $colors: (
 
 @each $name, $hex in $colors {
   .tc-#{$name} {
-    color: $hex;
+    color: $hex !important;
   }
 }
 
