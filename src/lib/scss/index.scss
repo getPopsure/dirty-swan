@@ -1,6 +1,8 @@
-@import "variables/_all";
-@import "base/_all";
-@import "components/_all";
+@use 'variables/colors';
+
+@forward 'variables/all';
+@forward 'components/all';
+@forward 'base/all';
 
 html {
   box-sizing: border-box;
@@ -13,5 +15,5 @@ html {
 }
 
 body {
-  background-color: $popsure-grey-100;
+  background-color: colors.$popsure-grey-100;
 }
