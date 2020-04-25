@@ -10,6 +10,7 @@
   },
   "main": "dist/index.js",
   "sass": "dist/index.scss",
+  "style": "dist/index.css",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {
@@ -36,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && cp -a src/lib/scss dist && rollup -c",
+    "build": "rm -rf dist && cp -a src/lib/scss/public dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "release": "yarn build && yarn publish --access public",

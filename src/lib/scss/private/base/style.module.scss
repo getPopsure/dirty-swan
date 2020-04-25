@@ -1,4 +1,4 @@
-@use "../variables/colors" as *;
+@use "../../public/colors";
 
 .width-container {
   & > div {
@@ -7,7 +7,7 @@
     text-align: center;
     border-radius: 8px;
     color: white;
-    background-color: $popsure-purple-500;
+    background-color: colors.$popsure-purple-500;
 
     margin-top: 4px;
   }
@@ -29,13 +29,13 @@
     & > *:first-child {
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
-      background-color: $popsure-purple-500;
+      background-color: colors.$popsure-purple-500;
     }
 
     & > *:nth-child(2) {
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
-      background-color: $popsure-grey-300;
+      background-color: colors.$popsure-grey-300;
       width: 100%;
     }
   }

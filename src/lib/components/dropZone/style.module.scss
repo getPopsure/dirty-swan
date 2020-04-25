@@ -1,4 +1,4 @@
-@use "../../scss/index" as *;
+@use "../../scss/public/colors" as *;
 
 .container {
   cursor: pointer;
@@ -58,12 +58,6 @@
   width: 88px;
 }
 
-.text {
-  @extend .p-p;
-
-  margin-top: 16px;
-}
-
 .progress-container {
   height: 4px;
   width: 85%;
@@ -86,8 +80,6 @@
 }
 
 .action {
-  @extend .p-p;
-
   color: $popsure-purple-500;
 
   &--error {

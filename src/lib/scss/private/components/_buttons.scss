@@ -1,6 +1,6 @@
-@use '../base/grid' as *;
-@use '../variables/colors' as *;
-@use '../variables/font-weight' as *;
+@use '../../public/grid' as *;
+@use '../../public/colors' as *;
+@use '../../public/font-weight' as *;
 
 @keyframes spinner-rotate {
   from {

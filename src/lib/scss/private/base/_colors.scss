@@ -1,0 +1,7 @@
+@use '../../public/colors' as *;
+
+@each $name, $hex in $colors {
+  .tc-#{$name} {
+    color: $hex !important;
+  }
+}

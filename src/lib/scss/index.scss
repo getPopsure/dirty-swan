@@ -1,8 +1,7 @@
-@use 'variables/colors';
+@use 'public/colors';
 
-@forward 'variables/all';
-@forward 'components/all';
-@forward 'base/all';
+@forward 'private/base';
+@forward 'private/components';
 
 html {
   box-sizing: border-box;
