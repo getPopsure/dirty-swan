@@ -1,0 +1,21 @@
+$p-desktop-breakpoint: 64rem;
+$p-tablet-breakpoint: 45rem;
+$p-mobile-breakpoint: 34rem;
+
+@mixin p-size-mobile {
+  @media (max-width: $p-mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin p-size-tablet {
+  @media (min-width: $p-mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin p-size-desktop {
+  @media (min-width: $p-desktop-breakpoint) {
+    @content;
+  }
+}

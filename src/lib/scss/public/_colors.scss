@@ -32,12 +32,6 @@ $colors: (
   "yellow-900": #4a4129,
 );
 
-@each $name, $hex in $colors {
-  .tc-#{$name} {
-    color: $hex !important;
-  }
-}
-
 $popsure-blue-100: #e5f0ff;
 $popsure-blue-300: #b0cdf3;
 $popsure-blue-500: #8bb4ea;
