@@ -1,4 +1,4 @@
-@import "../../scss/index";
+@use "../../scss/index" as *;
 
 .container {
   position: relative;

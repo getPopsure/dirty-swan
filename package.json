@@ -21,13 +21,13 @@
     "Readme.md"
   ],
   "dependencies": {
-    "@popsure/public-models": "^0.0.7",
+    "@popsure/public-models": "^0.0.8",
     "@types/classnames": "^2.2.10",
     "@types/googlemaps": "^3.39.3",
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
     "react-dropzone": "^10.2.1",
+    "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
   },
   "peerDependencies": {
@@ -79,7 +79,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-is": "^16.12.0",
-    "react-scripts": "3.2.0",
+    "react-scripts": "3.4.1",
     "rollup": "^2.6.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
