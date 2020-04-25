@@ -26,7 +26,7 @@ export default ({
   progress,
   error,
   uploadedFileUrl,
-  onSelectedFile
+  onSelectedFile,
 }: {
   className?: string;
   uploading: boolean;
@@ -36,7 +36,7 @@ export default ({
   onSelectedFile: (file: File) => void;
 }) => {
   const onDrop = useCallback(
-    acceptedFiles => {
+    (acceptedFiles) => {
       onSelectedFile(acceptedFiles[0]);
     },
     [onSelectedFile]
@@ -56,7 +56,7 @@ export default ({
     uploading,
     progress,
     error,
-    uploadedFileUrl
+    uploadedFileUrl,
   }: {
     uploading: boolean;
     progress?: number;
@@ -82,7 +82,7 @@ export default ({
     uploading,
     progress,
     error,
-    uploadedFileUrl
+    uploadedFileUrl,
   });
 
   const {
@@ -90,42 +90,42 @@ export default ({
     image,
     text,
     containerStyle,
-    actionStyle
+    textColor,
   }: {
     action: string | undefined;
     image: string;
     text: string;
     containerStyle: string | undefined;
-    actionStyle: string | undefined;
+    textColor: string;
   } = {
     idle: {
       action: undefined,
       image: uploadImage,
       text: "Upload document",
       containerStyle: undefined,
-      actionStyle: undefined
+      textColor: "tc-purple-500",
     },
     uploading: {
       action: undefined,
       image: uploadImage,
       text: "Uploading document…",
       containerStyle: styles["container--uploading"],
-      actionStyle: undefined
+      textColor: "tc-purple-500",
     },
     error: {
       action: "Tap to retry",
       image: errorImage,
       text: "Error!",
       containerStyle: styles["container--error"],
-      actionStyle: styles["action--error"]
+      textColor: "tc-red-500",
     },
     uploaded: {
       action: "Tap to replace",
       image: fileImage,
       text: uploadedFileName,
       containerStyle: styles["container--uploaded"],
-      actionStyle: styles["action--uploaded"]
-    }
+      textColor: "tc-purple-500",
+    },
   }[state];
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -137,10 +137,8 @@ export default ({
     >
       <input {...getInputProps()} />
       <img className={styles.image} src={image} alt="" />
-      <div className={styles.text}>{text}</div>
-      {action && (
-        <div className={`${styles.action} ${actionStyle}`}>{action}</div>
-      )}
+      <div className="p-p mt16">{text}</div>
+      {action && <div className={`p-p ${textColor}`}>{action}</div>}
       {state === "uploading" && (
         <div className={styles["progress-container"]}>
           <div

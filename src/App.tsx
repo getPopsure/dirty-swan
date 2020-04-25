@@ -1,5 +1,5 @@
 import React from "react";
-import "./lib/scss/index.scss";
+// import "./lib/scss/index.scss";
 
 import DateSelector from "./lib/components/dateSelector";
 import Dropzone from "./lib/components/dropzone";

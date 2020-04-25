@@ -1,4 +1,5 @@
-@use "../../scss/index" as *;
+@use "../../scss/base/grid" as *;
+@use "../../scss/variables/colors" as *;
 
 .input-container {
   display: flex;
