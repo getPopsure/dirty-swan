@@ -1,4 +1,4 @@
-@import "buttons";
-@import "input";
-@import "notices";
-@import "badge";
+@forward "buttons";
+@forward "input";
+@forward "notices";
+@forward "badge";
