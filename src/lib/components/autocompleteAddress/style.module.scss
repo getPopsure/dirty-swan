@@ -1,4 +1,4 @@
-@import "../../scss/index";
+@use "../../scss/index" as *;
 
 .input-container {
   display: flex;
