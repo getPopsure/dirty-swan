@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.9.0--alpha-2",
+  "version": "0.9.0--alpha-3",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && cp -a src/lib/scss/public dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
+    "build": "rm -rf dist && cp -a src/lib/scss/public dist && cp -a src/lib/scss/private/components/assets dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "release": "yarn build && yarn publish --access public",
