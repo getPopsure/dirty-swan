@@ -1,40 +1,21 @@
-$p-desktop-breakpoint: 64rem;
-$p-tablet-breakpoint: 45rem;
-$p-mobile-breakpoint: 34rem;
-
-@mixin p-size-mobile {
-  @media (max-width: $p-mobile-breakpoint) {
-    @content;
-  }
-}
-
-@mixin p-size-tablet {
-  @media (min-width: $p-mobile-breakpoint) {
-    @content;
-  }
-}
-
-@mixin p-size-desktop {
-  @media (min-width: $p-desktop-breakpoint) {
-    @content;
-  }
-}
+@use '../../public/grid';
 
 .p-body {
-  @include p-size-mobile {
+  @include grid.p-size-mobile {
     margin: 0 1rem;
   }
 
-  @include p-size-tablet {
+  @include grid.p-size-tablet {
     margin: 0 1.5rem;
   }
 
-  @include p-size-desktop {
+  @include grid.p-size-desktop {
     width: 56rem;
     margin: 0 auto;
   }
 }
 
+// TODO: Deprecate this
 .grid {
   $grid-size: 12;
   display: grid;
@@ -50,7 +31,7 @@ $p-mobile-breakpoint: 34rem;
     }
   }
 
-  @include p-size-mobile {
+  @include grid.p-size-mobile {
     grid-column-gap: 8px;
     @for $i from 1 through $grid-size + 1 {
       @for $j from ($i + 1) through $grid-size + 1 {
