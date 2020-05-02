@@ -1,0 +1,41 @@
+<Meta title="Variables/Sizes" />
+
+# Sizes
+
+Dirty swan provide you with a set of sizes and utilities for building responsive layout.
+
+## Variable & value
+
+| Variable                | Value |
+| ----------------------- | ----- |
+| `$p-desktop-breakpoint` | 64rem |
+| `$p-tablet-breakpoint`  | 45rem |
+| `$p-mobile-breakpoint`  | 34rem |
+
+## Helper
+
+You can use the following helper within your sass code.
+`p-size-mobile`, `p-size-tablet` and `p-size-desktop`
+
+| Help             | Range   |
+| ---------------- | ------- |
+| `p-size-mobile`  | < 34rem |
+| `p-size-tablet`  | > 34rem |
+| `p-size-desktop` | > 64rem |
+
+### Example
+
+```sass
+// demo.scss
+@import '@popsure/dirty-swan/dist/grid';
+
+
+.reponsive-element {
+  height: 80px;
+
+  @include p-size-mobile {
+    // If the screen width is < 34rm, the following gets applied
+    height: 40px;
+  }
+}
+```
