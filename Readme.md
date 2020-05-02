@@ -4,27 +4,9 @@ Dirty Swan UI is the Design system used at [Feather Insurance](https://feather-i
 
 ---
 
-## Installation
+## Installation & Usage
 
-Run the following command using [npm](https://www.npmjs.com):
-
-```bash
-npm install @popsure/dirty-swan --save
-```
-
-If you prefer [Yarn](https://www.npmjs.com), use the following command instead:
-
-```bash
-yarn add @popsure/dirty-swan
-```
-
-## Usage
-
-To use Dirty Swan, import the scss file in one of your App entry point (typically `index/js` or `App.js` if you’re using [create react app](https://create-react-app.dev))
-
-```javaScript
-import '@popsure/dirty-swan/dist/index.scss';
-```
+See our official website for installation and usage [dirtyswan.design](http://dirtyswan.design/)
 
 ## Contributing
 
