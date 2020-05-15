@@ -32,6 +32,7 @@
     "start": "react-scripts start",
     "build": "rm -rf dist && cp -a src/lib/scss/public dist && cp -a src/lib/scss/private/components/assets dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
     "test": "react-scripts test",
+    "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "release": "yarn build && yarn publish --access public",
     "storybook": "start-storybook -p 9009 -s public",

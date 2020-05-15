@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: yarn install & test
+        run: |
+          yarn install
+          yarn test:ci
+
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: yarn install & build
+        run: |
+          yarn install
+          yarn build
+
+  test-build-storybook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: yarn install & build-storybook
+        run: |
+          yarn install
+          yarn build-storybook
