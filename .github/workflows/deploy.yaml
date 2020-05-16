@@ -1,0 +1,17 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: yarn install & deploy-storybook
+        run: |
+          yarn install
+          yarn deploy-storybook
