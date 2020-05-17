@@ -1,3 +1,5 @@
+import { Meta, Preview } from "@storybook/addon-docs/blocks";
+
 import Dropzone from ".";
 
 <Meta title="Components/Dropzone" component={Dropzone} />
@@ -14,19 +16,11 @@ Date selector are user interface elements which allow user to select and upload 
   <Dropzone uploading={false} onSelectedFile={() => {}} />
 </Preview>
 
-```typescript
-<Dropzone uploading={false} onSelectedFile={() => {}} />
-```
-
 ### Uploading state
 
 <Preview>
   <Dropzone uploading={true} progress={30} onSelectedFile={() => {}} />
 </Preview>
-
-```typescript
-<Dropzone uploading={true} progress={30} onSelectedFile={() => {}} />
-```
 
 ### Error state
 
@@ -39,15 +33,6 @@ Date selector are user interface elements which allow user to select and upload 
   />
 </Preview>
 
-```typescript
-<Dropzone
-  uploading={true}
-  progress={30}
-  error="Something went wrong"
-  onSelectedFile={() => {}}
-/>
-```
-
 ### Uploaded state
 
 <Preview>
@@ -57,11 +42,3 @@ Date selector are user interface elements which allow user to select and upload 
     onSelectedFile={() => {}}
   />
 </Preview>
-
-```typescript
-<Dropzone
-  uploading={false}
-  uploadedFileUrl="http://getpopsure.com/my-file.png"
-  onSelectedFile={() => {}}
-/>
-```

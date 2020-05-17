@@ -1,3 +1,5 @@
+import { Meta, Preview } from "@storybook/addon-docs/blocks";
+
 import DateSelector from ".";
 
 <Meta title="Components/Date selector" component={DateSelector} />
@@ -11,17 +13,8 @@ Date selector are user interface elements which allow user to select a date in t
 <Preview>
   <DateSelector
     yearBoundaries={{ min: 1990, max: 2020 }}
-    onChange={date => {
+    onChange={(date) => {
       console.log(date);
     }}
   />
 </Preview>
-
-```typescript
-<DateSelector
-  yearBoundaries={{ min: 1990, max: 2020 }}
-  onChange={date => {
-    console.log(date);
-  }}
-/>
-```

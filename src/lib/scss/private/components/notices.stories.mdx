@@ -1,4 +1,4 @@
-import { Notice } from "./demo";
+import { Meta, Preview } from "@storybook/addon-docs/blocks";
 
 <Meta title="Components/Notices" />
 
@@ -6,12 +6,20 @@ import { Notice } from "./demo";
 
 Notices deliver informations to the user. Wether it’s _warnings_, _informations_, _danger_ …
 
-```html
-<div class="p-notice p-notice--info">Info filled notice</div>
-<div class="p-notice p-notice--danger">Danger filled notice</div>
-<div class="p-notice p-notice--warning">Warning filled notice</div>
-```
+## Info
 
 <Preview>
-  <Notice />
+  <div className="p-notice--info">Info filled notice</div>
+</Preview>
+
+## Danger
+
+<Preview>
+  <div className="p-notice--danger">Danger filled notice</div>
+</Preview>
+
+## Warning
+
+<Preview>
+  <div className="p-notice--warning">Warning filled notice</div>
 </Preview>

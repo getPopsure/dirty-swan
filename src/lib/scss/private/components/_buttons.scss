@@ -39,6 +39,7 @@
   }
 
   &--primary {
+    @extend .p-btn;
     background-color: $popsure-purple-500;
     color: white;
 
@@ -62,6 +63,7 @@
   }
 
   &--secondary {
+    @extend .p-btn;
     background-color: transparent;
     color: $popsure-purple-500;
 

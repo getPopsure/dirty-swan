@@ -4,14 +4,13 @@ import styles from "./style.module.scss";
 
 export const Typography = () => (
   <>
+    <h1 className="p-h1--xl">The quick brown fox jumps over the lazy dog</h1>
     <h1 className="p-h1">The quick brown fox jumps over the lazy dog</h1>
     <h2 className="p-h2">The quick brown fox jumps over the lazy dog</h2>
     <h3 className="p-h3">The quick brown fox jumps over the lazy dog</h3>
     <h4 className="p-h4">The quick brown fox jumps over the lazy dog</h4>
     <p className="p-p">The quick brown fox jumps over the lazy dog</p>
-    <p className="p-p p-p--small">
-      The quick brown fox jumps over the lazy dog
-    </p>
+    <p className="p-p--small">The quick brown fox jumps over the lazy dog</p>
   </>
 );
 
