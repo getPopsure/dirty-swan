@@ -15,18 +15,22 @@
   border-radius: 9px;
 
   &--active {
+    @extend .p-badge;
     background-color: $popsure-green-300;
   }
 
   &--pending {
+    @extend .p-badge;
     background-color: $popsure-yellow-300;
   }
 
   &--inactive {
+    @extend .p-badge;
     background-color: $popsure-red-300;
   }
 
   &--info {
+    @extend .p-badge;
     background-color: $popsure-blue-300;
   }
 }

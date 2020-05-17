@@ -28,6 +28,7 @@ body {
   }
 
   &--xl {
+    @extend .p-h1;
     font-size: 48px;
     line-height: 58px;
 
@@ -76,6 +77,7 @@ body {
   letter-spacing: 0.5px;
 
   &--small {
+    @extend .p-p;
     font-size: 12px;
     line-height: 18px;
   }

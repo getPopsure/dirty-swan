@@ -1,3 +1,5 @@
+import { Meta, Preview } from "@storybook/addon-docs/blocks";
+
 import Signaturepad from ".";
 
 <Meta title="Components/Signaturepad" component={Signaturepad} />
@@ -13,7 +15,3 @@ Signature pad are user interface elements which allow user sign any legal docume
 <Preview>
   <Signaturepad onChange={() => {}} />
 </Preview>
-
-```typescript
-<Signaturepad onChange={(base64Signature: string) => {}} />
-```

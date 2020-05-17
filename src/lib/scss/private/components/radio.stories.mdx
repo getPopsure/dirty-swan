@@ -1,0 +1,47 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Radio" />
+
+# Radio
+
+A radio button or option button is a graphical control element that allows the user to choose only one of a predefined set of mutually exclusive options.
+
+## Radio input with label
+
+### Default
+
+<Preview>
+  <div className="p-label-container">
+    <input id="default-1" className="p-radio" type="radio" />
+    <label htmlFor="default-1" className="p-label">
+      Radio label 1
+    </label>
+    <input id="default-2" className="p-radio" type="radio" checked={true} />
+    <label htmlFor="default-2" className="p-label">
+      Radio label 2
+    </label>
+    <input id="default-3" className="p-radio" type="radio" />
+    <label htmlFor="default-3" className="p-label">
+      Radio label 3
+    </label>
+  </div>
+</Preview>
+
+### Bordered
+
+<Preview>
+  <div className="p-label-container">
+    <input id="bordered-1" className="p-radio" type="radio" />
+    <label htmlFor="bordered-1" className="p-label p-label--bordered">
+      Radio label 1
+    </label>
+    <input id="bordered-2" className="p-radio" type="radio" checked={true} />
+    <label htmlFor="bordered-2" className="p-label p-label--bordered mt16">
+      Radio label 2
+    </label>
+    <input id="bordered-3" className="p-radio" type="radio" />
+    <label htmlFor="bordered-3" className="p-label p-label--bordered mt16">
+      Radio label 3
+    </label>
+  </div>
+</Preview>

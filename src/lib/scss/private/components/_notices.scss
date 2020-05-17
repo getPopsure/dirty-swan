@@ -6,18 +6,21 @@
   border-radius: 8px;
 
   &--info {
+    @extend .p-notice;
     background-color: $popsure-blue-100;
     border-color: $popsure-blue-500;
     color: $popsure-grey-900;
   }
 
   &--danger {
+    @extend .p-notice;
     background-color: $popsure-red-100;
     border-color: $popsure-red-500;
     color: $popsure-grey-900;
   }
 
   &--warning {
+    @extend .p-notice;
     background-color: $popsure-yellow-100;
     border-color: $popsure-yellow-500;
   }
