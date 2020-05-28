@@ -32,6 +32,11 @@
     box-shadow: 0 0 0 2px $popsure-purple-500;
   }
 
+  &--error {
+    @extend .p-input;
+    border: 1px solid $popsure-red-500;
+  }
+
   input {
     position: absolute;
     opacity: 0;
