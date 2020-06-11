@@ -26,6 +26,11 @@
 
   &--inactive {
     @extend .p-badge;
+    background-color: $popsure-grey-300;
+  }
+
+  &--danger {
+    @extend .p-badge;
     background-color: $popsure-red-300;
   }
 
