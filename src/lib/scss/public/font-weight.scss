@@ -1,2 +1,9 @@
 $p-font-weight-bold: 700;
 $p-font-weight-normal: 400;
+
+.fw-normal {
+  font-weight: $p-font-weight-normal !important;
+}
+.fw-bold {
+  font-weight: $p-font-weight-bold !important;
+}
