@@ -1,12 +1,36 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 
+import Input from ".";
+
 <Meta title="Components/Inputs" />
 
 # Inputs
 
 Input elements are used to gather information from users.
 
-## Text Input
+We have two variants of our text input, a pure css version and a JSX version. The difference between the two would be that with the JSX version you'll have an animation when using with a placeholder.
+
+## JSX Text input
+
+### Idle state
+
+<Preview>
+  <Input />
+</Preview>
+
+### With placeholder
+
+<Preview>
+  <Input placeholder="Email" />
+</Preview>
+
+### Error
+
+<Preview>
+  <Input hasError={true} />
+</Preview>
+
+## Pure CSS Text Input
 
 ### Default
 
