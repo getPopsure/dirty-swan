@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-import {
+export {
   DateSelector,
   Dropzone,
   SignaturePad,
   AutocompleteAddress,
+  Input,
 } from "./lib";
-
-export { DateSelector, Dropzone, SignaturePad, AutocompleteAddress };
 
 ReactDOM.render(<App />, document.getElementById("root"));
