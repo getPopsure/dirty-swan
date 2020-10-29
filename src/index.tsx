@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
 export {
   DateSelector,
@@ -8,6 +8,7 @@ export {
   SignaturePad,
   AutocompleteAddress,
   Input,
-} from "./lib";
+  MultiDropzone,
+} from './lib';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,0 +1,96 @@
+@use "../../../scss/public/colors.scss" as *;
+
+.upload-file-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 16px;
+
+  border: 1px solid $popsure-grey-300;
+  border-radius: 8px;
+  background-color: white;
+
+  animation: appear-down 0.6s;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+}
+
+.upload-file-cell-error {
+  border-color: $popsure-red-500;
+  background-color: rgba(229, 84, 84, 0.2);
+}
+
+.cell-left-section {
+  display: flex;
+  align-items: center;
+}
+
+.main-icon {
+  width: 32px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.upload-display-text {
+  overflow-wrap: anywhere;
+}
+
+.progress-bar-container {
+  position: relative;
+}
+
+.progress-bar {
+  background-color: $popsure-grey-100;
+  border-radius: 10px;
+  height: 4px;
+}
+
+.progress-bar-filler {
+  background-color: $popsure-purple-500;
+  border-radius: 10px;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+
+  transition: 1s ease;
+}
+
+.cell-right-section {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 32px;
+  margin-left: 16px;
+}
+
+.cell-right-section-complete {
+  min-width: 64px;
+}
+
+.view-icon,
+.remove-icon {
+  cursor: pointer;
+}
+
+.remove-icon {
+  margin-left: 16px;
+}
+
+.spinner {
+  color: $popsure-purple-500;
+  animation: appear-down 0.6s;
+  animation-fill-mode: both;
+  animation-delay: 0.6s;
+}
+
+@keyframes appear-down {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
