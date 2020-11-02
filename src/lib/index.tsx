@@ -4,6 +4,7 @@ import SignaturePad from './components/signaturePad';
 import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
 import MultiDropzone from './components/multiDropzone';
+import DownloadRing from './components/downloadRing';
 
 export {
   DateSelector,
@@ -12,4 +13,5 @@ export {
   AutocompleteAddress,
   Input,
   MultiDropzone,
+  DownloadRing,
 };
