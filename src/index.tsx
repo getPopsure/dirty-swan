@@ -12,4 +12,6 @@ export {
   DownloadRing,
 } from './lib';
 
+export type {DownloadRingDownloadStatus} from './lib'
+
 ReactDOM.render(<App />, document.getElementById('root'));
