@@ -76,6 +76,11 @@
   margin-left: 16px;
 }
 
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 .spinner {
   color: $popsure-purple-500;
   animation: appear-down 0.6s;

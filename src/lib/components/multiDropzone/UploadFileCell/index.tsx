@@ -55,10 +55,12 @@ export default ({
   uploadStatus,
   file,
   onRemoveFile,
+  uploading,
 }: {
   uploadStatus: UploadStatus;
   file: UploadedFile;
   onRemoveFile: (id: string) => void;
+  uploading: boolean;
 }) => {
   const { id, error, type, name, progress, previewUrl } = file;
 
@@ -121,7 +123,9 @@ export default ({
               </a>
             )}
             <img
-              className={styles['remove-icon']}
+              className={classnames(styles['remove-icon'], {
+                [styles.disabled]: uploading,
+              })}
               src={icons.trashIcon}
               onClick={() => onRemoveFile(id)}
               alt='remove'

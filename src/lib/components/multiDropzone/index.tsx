@@ -88,6 +88,7 @@ export default ({
                 file={file}
                 key={file.id}
                 onRemoveFile={onRemoveFile}
+                uploading={uploading}
               />
             );
           })}
