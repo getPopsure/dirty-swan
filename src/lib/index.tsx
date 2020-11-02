@@ -15,3 +15,5 @@ export {
   MultiDropzone,
   DownloadRing,
 };
+
+export type {DownloadRingDownloadStatus} from './models/downloadRing'
