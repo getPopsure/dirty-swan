@@ -9,6 +9,7 @@ export {
   AutocompleteAddress,
   Input,
   MultiDropzone,
+  DownloadRing,
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
