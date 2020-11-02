@@ -1,0 +1,67 @@
+@use "../../scss/public/grid" as *;
+@use "../../scss/public/colors" as *;
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  .inner-circle-hover {
+    animation: borderBlink 1.3s ease-in-out infinite;
+  }
+}
+
+.button:focus {
+  outline: none;
+}
+
+circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+
+  position: absolute;
+}
+
+.overlay-circle {
+  z-index: 1;
+  stroke: $popsure-purple-500;
+  fill: transparent;
+}
+
+.overlay-circle-completed {
+  z-index: 1;
+  stroke: #90df9b;
+  fill: rgba(144, 223, 155, 0.1);
+}
+
+.inner-circle {
+  z-index: 0;
+  stroke: $popsure-purple-100;
+  fill: transparent;
+}
+
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes borderBlink {
+  from,
+  to {
+    stroke: $popsure-purple-100;
+  }
+  50% {
+    stroke: $popsure-purple-500;
+  }
+}

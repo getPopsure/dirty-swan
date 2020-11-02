@@ -1,0 +1,35 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import DownloadRing from '.';
+
+<Meta title='Components/DownloadRing' component={DownloadRing} />
+
+# DownloadRing
+
+DownloadRing component displays progress and status of downloading files.
+
+## Examples
+
+### Idle state
+
+<Preview>
+  <DownloadRing progress={0} status='INITIAL' handleClick={() => {}} />
+</Preview>
+
+### Downloading state
+
+<Preview>
+  <DownloadRing progress={74} status='DOWNLOADING' handleClick={() => {}} />
+</Preview>
+
+### Download complete state
+
+<Preview>
+  <DownloadRing progress={100} status='COMPLETED' handleClick={() => {}} />
+</Preview>
+
+### Error state
+
+<Preview>
+  <DownloadRing progress={100} status='FAILED' handleClick={() => {}} />
+</Preview>
