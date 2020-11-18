@@ -5,3 +5,15 @@
     color: $hex !important;
   }
 }
+
+@each $name, $hex in $colors {
+  .bg-#{$name} {
+    background-color: $hex !important;
+  }
+}
+
+:root {
+  @each $name, $hex in $colors {
+    --ds-#{$name}: #{$hex};
+  }
+}

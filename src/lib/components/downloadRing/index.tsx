@@ -1,9 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import CheckOutsideCircleIcon from './icons/check-outside-circle';
+import DownloadCloudIcon from './icons/download-cloud';
+
 import styles from './style.module.scss';
-import checkOutsideCircleIcon from './icons/check-outside-circle.svg';
-import downloadCloudIcon from './icons/download-cloud.svg';
 
 const RADIUS = 140;
 const STROKE = 4;
@@ -35,9 +36,9 @@ export default ({
     <div className={`w100 ${styles.container}`}>
       <button
         className={styles.button}
-        type='button'
+        type="button"
         onClick={handleClick}
-        data-cy='download-documents-button'
+        data-cy="download-documents-button"
       >
         <svg height={RADIUS * 2} width={RADIUS * 2}>
           <circle
@@ -65,15 +66,12 @@ export default ({
           />
         </svg>
         <div className={`ws2 ${styles['text-container']}`}>
-          <img
-            src={
-              status === 'COMPLETED'
-                ? checkOutsideCircleIcon
-                : downloadCloudIcon
-            }
-            alt=''
-          />
-          <div className='p-p mt8'>{mappingStatus[status]}</div>
+          {status === 'COMPLETED' ? (
+            <CheckOutsideCircleIcon />
+          ) : (
+            <DownloadCloudIcon />
+          )}
+          <div className="p-p mt8">{mappingStatus[status]}</div>
         </div>
       </button>
     </div>

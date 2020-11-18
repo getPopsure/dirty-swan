@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import classnames from 'classnames';
 
 import styles from './style.module.scss';
-import icons from './icons/index';
+import icons from './icons/index'; // TODO: inline all of the svgs
 import UploadFileCell from './UploadFileCell';
 
 export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
@@ -56,7 +56,7 @@ export default ({
     (acceptedFiles) => {
       onFileSelect(acceptedFiles[0]);
     },
-    [onFileSelect],
+    [onFileSelect]
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -70,13 +70,13 @@ export default ({
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        <img src={icons.uploadIcon} alt='' />
-        <div className='p-h4 mt8'>
+        <img src={icons.uploadIcon} alt="" />
+        <div className="p-h4 mt8">
           {uploading
             ? 'Please wait while uploading file...'
             : 'Choose file or drag & drop'}
         </div>
-        <div className='p-p--small tc-grey-500'>Supports JPEG, PNG, PDF</div>
+        <div className="p-p--small tc-grey-500">Supports JPEG, PNG, PDF</div>
       </div>
       {uploadedFiles.length > 0 && (
         <div className={`w100 mt16`}>

@@ -86,9 +86,9 @@ export default ({
         <img
           className={styles['main-icon']}
           src={mapFileIcon[uploadStatus]}
-          alt=''
+          alt=""
         />
-        <div className='w100'>
+        <div className="w100">
           <div className={`p-p wmx5 ${styles['upload-display-text']}`}>
             {mapDisplayText[uploadStatus]}
           </div>
@@ -116,10 +116,10 @@ export default ({
               <a
                 className={styles['view-icon']}
                 href={previewUrl}
-                target='_blank'
-                rel='noopener noreferrer'
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <img src={icons.eyeIcon} alt='preview' />
+                <img src={icons.eyeIcon} alt="preview" />
               </a>
             )}
             <img
@@ -128,7 +128,7 @@ export default ({
               })}
               src={icons.trashIcon}
               onClick={() => onRemoveFile(id)}
-              alt='remove'
+              alt="remove"
             />
           </div>
         )}

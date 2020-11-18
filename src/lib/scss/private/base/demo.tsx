@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
 export const Typography = () => (
   <>
@@ -15,7 +15,7 @@ export const Typography = () => (
 );
 
 export const StaticWidthClasses = () => (
-  <div className={styles["width-container"]}>
+  <div className={styles['width-container']}>
     <div className="ws1">ws1</div>
     <div className="ws2">ws2</div>
     <div className="ws3">ws3</div>
@@ -32,7 +32,7 @@ export const StaticWidthClasses = () => (
 );
 
 export const MinWidthClasses = () => (
-  <div className={styles["min-width-container"]}>
+  <div className={styles['min-width-container']}>
     <div>
       <div className="wmn1">wmn1</div>
       <div />
@@ -85,7 +85,7 @@ export const MinWidthClasses = () => (
 );
 
 export const MaxWidthClasses = () => (
-  <div className={styles["width-container"]}>
+  <div className={styles['width-container']}>
     <div className="wmx1">wmx1</div>
     <div className="wmx2">wmx2</div>
     <div className="wmx3">wmx3</div>
@@ -102,7 +102,7 @@ export const MaxWidthClasses = () => (
 );
 
 export const FuildWidthClasses = () => (
-  <div className={styles["width-container"]}>
+  <div className={styles['width-container']}>
     <div className="w-auto">w-auto</div>
     <div className="w0">w0</div>
     <div className="w10">w10</div>

@@ -1,9 +1,9 @@
 @forward 'private/reset';
 
-@use 'public/colors';
-
 @forward 'private/base';
 @forward 'private/components';
+
+@import 'public/colors';
 
 html {
   box-sizing: border-box;
@@ -16,5 +16,5 @@ html {
 }
 
 body {
-  background-color: colors.$popsure-grey-100;
+  background-color: $ds-grey-100;
 }

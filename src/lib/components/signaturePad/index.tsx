@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import SignaturePad from "signature_pad";
+import SignaturePad from 'signature_pad';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
-import sign from "./img/sign.svg";
-import reset from "./img/reset.svg";
+import sign from './img/sign.svg';
+import reset from './img/reset.svg';
 
 interface Props {
   onChange: (base64signature: string) => void;
@@ -76,7 +76,7 @@ class Signature extends Component<Props, State> {
 
   private notifyOnChange() {
     const { onChange } = this.props;
-    onChange(this.signaturePad.isEmpty() ? "" : this.signaturePad.toDataURL());
+    onChange(this.signaturePad.isEmpty() ? '' : this.signaturePad.toDataURL());
     this.setState({ hasContent: !this.signaturePad.isEmpty() });
   }
 
@@ -84,7 +84,7 @@ class Signature extends Component<Props, State> {
     const ratio = Math.max(window.devicePixelRatio || 1, 1);
     this.canvas.width = this.canvas.offsetWidth * ratio;
     this.canvas.height = this.canvas.offsetHeight * ratio;
-    this.canvas.getContext("2d").scale(ratio, ratio);
+    this.canvas.getContext('2d').scale(ratio, ratio);
   }
 
   private clear() {

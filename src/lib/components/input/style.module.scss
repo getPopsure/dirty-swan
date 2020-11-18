@@ -1,5 +1,3 @@
-@use "../../scss/public/colors" as *;
-
 .container {
   position: relative;
 }
@@ -16,14 +14,14 @@
 
   opacity: 1;
 
-  color: $popsure-purple-500;
+  color: var(--ds-primary-500);
 }
 
 .input {
   box-sizing: border-box;
   padding-top: 8.5px;
 
-  font-family: "Lato", sans-serif;
+  font-family: inherit;
 
   &--no-placeholder {
     padding-top: 0px;
@@ -40,5 +38,5 @@
   transform: translateY(-50%);
   transition: 0.3s ease all;
 
-  color: $popsure-grey-300;
+  color: var(--ds-grey-300);
 }

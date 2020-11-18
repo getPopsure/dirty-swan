@@ -7,21 +7,21 @@
 
   &--info {
     @extend .p-notice;
-    background-color: $popsure-purple-100;
-    border-color: $popsure-purple-500;
-    color: $popsure-grey-900;
+    background-color: $ds-purple-100;
+    border-color: $ds-purple-500;
+    color: $ds-grey-900;
   }
 
   &--danger {
     @extend .p-notice;
-    background-color: $popsure-red-100;
-    border-color: $popsure-red-500;
-    color: $popsure-grey-900;
+    background-color: $ds-red-100;
+    border-color: $ds-red-500;
+    color: $ds-grey-900;
   }
 
   &--warning {
     @extend .p-notice;
-    background-color: $popsure-yellow-100;
-    border-color: $popsure-yellow-500;
+    background-color: $ds-yellow-100;
+    border-color: $ds-yellow-500;
   }
 }

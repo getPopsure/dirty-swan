@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.2",
+  "version": "0.15.0-alpha.1",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -13,6 +13,7 @@
     "node": ">=8",
     "npm": ">=5"
   },
+  "bin": "dist/bin/index.js",
   "files": [
     "dist",
     "Readme.md"
@@ -22,6 +23,7 @@
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "react-dropzone": "^10.2.1",
+    "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
   },
   "peerDependencies": {
@@ -30,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && cp -a src/lib/scss/public dist && cp -a src/lib/scss/private/components/assets dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
+    "build": "./scripts/build.sh",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
@@ -70,9 +72,11 @@
     "@types/node": "^13.1.7",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/sass": "^1.16.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.1.4",
+    "prettier": "^2.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-is": "^16.12.0",
@@ -82,7 +86,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.6.4",
     "rollup-plugin-url": "^3.0.1",
-    "sass": "^1.26.5",
     "tslib": "^1.11.1",
     "typescript": "^3.7.5"
   }

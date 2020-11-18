@@ -41,35 +41,35 @@
 
   &--primary {
     @extend .p-btn;
-    background-color: $popsure-purple-500;
+    background-color: $ds-primary-500;
     color: white;
 
     &:hover {
-      background-color: $popsure-purple-700;
+      background-color: $ds-primary-700;
 
       @include p-size-mobile {
-        background-color: $popsure-purple-500;
+        background-color: $ds-primary-500;
       }
     }
 
     &[disabled] {
-      background-color: $popsure-purple-300;
+      background-color: $ds-primary-300;
       opacity: 1;
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
   }
 
   &--secondary {
     @extend .p-btn;
     background-color: transparent;
-    color: $popsure-purple-500;
+    color: $ds-primary-500;
 
     &:hover {
-      background-color: $popsure-purple-100;
+      background-color: $ds-primary-100;
 
       @include p-size-mobile {
         background-color: transparent;
@@ -77,7 +77,7 @@
     }
 
     &[disabled] {
-      color: $popsure-purple-700;
+      color: $ds-primary-700;
 
       &:hover {
         background-color: transparent;
@@ -86,31 +86,31 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
   }
 
   &--danger {
     @extend .p-btn;
-    background-color: $popsure-red-500;
+    background-color: $ds-red-500;
     color: white;
 
     &:hover {
-      background-color: $popsure-red-700;
+      background-color: $ds-red-700;
 
       @include p-size-mobile {
-        background-color: $popsure-red-500;
+        background-color: $ds-red-500;
       }
     }
 
     &[disabled] {
-      background-color: $popsure-red-300;
+      background-color: $ds-red-300;
       opacity: 1;
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $popsure-red-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: $ds-red-500, $alpha: 0.5);
     }
   }
 
