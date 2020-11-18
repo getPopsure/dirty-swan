@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.0-alpha.2",
+  "version": "0.14.0-alpha.3",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -22,6 +22,7 @@
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "react-dropzone": "^10.2.1",
+    "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
   },
   "peerDependencies": {
@@ -29,7 +30,7 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "install": "yarn sass src/lib/scss/index.scss",
+    "install": "yarn sass tmp/index.scss",
     "postinstall": "rm -rf tmp",
     "start": "react-scripts start",
     "build": "rm -rf dist && mkdir -p dist/tmp && cp -a src/lib/scss dist/tmp && cp -a src/lib/scss/public dist",
@@ -85,7 +86,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.6.4",
     "rollup-plugin-url": "^3.0.1",
-    "sass": "^1.26.5",
     "tslib": "^1.11.1",
     "typescript": "^3.7.5"
   }
