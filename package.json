@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.13.3",
+  "version": "0.14.0-alpha.2",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -29,15 +29,18 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
+    "install": "yarn sass src/lib/scss/index.scss",
+    "postinstall": "rm -rf tmp",
     "start": "react-scripts start",
-    "build": "rm -rf dist && cp -a src/lib/scss/public dist && cp -a src/lib/scss/private/components/assets dist && yarn sass src/lib/scss/index.scss dist/index.css && rollup -c",
+    "build": "rm -rf dist && mkdir -p dist/tmp && cp -a src/lib/scss dist/tmp && cp -a src/lib/scss/public dist",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "release": "yarn build && yarn publish --access public",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "preinstall": "echo 'foo' > bar.text"
   },
   "eslintConfig": {
     "extends": "react-app"
