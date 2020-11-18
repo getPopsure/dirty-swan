@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
+import React, { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import {
   Address,
   isPartialAddressValid,
   countryNameFromAlphaCode,
-} from "@popsure/public-models";
+} from '@popsure/public-models';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
 
@@ -29,7 +29,7 @@ export const geocoderAddressComponentToPartialAddress = (
 ): Partial<Address> => {
   interface MappedType {
     key: keyof Address;
-    value: "long_name" | "short_name";
+    value: 'long_name' | 'short_name';
   }
 
   const mapping: {
@@ -40,24 +40,24 @@ export const geocoderAddressComponentToPartialAddress = (
     country: MappedType;
   } = {
     route: {
-      key: "street",
-      value: "long_name",
+      key: 'street',
+      value: 'long_name',
     },
     street_number: {
-      key: "houseNumber",
-      value: "long_name",
+      key: 'houseNumber',
+      value: 'long_name',
     },
     postal_code: {
-      key: "postcode",
-      value: "long_name",
+      key: 'postcode',
+      value: 'long_name',
     },
     locality: {
-      key: "city",
-      value: "long_name",
+      key: 'city',
+      value: 'long_name',
     },
     country: {
-      key: "country",
-      value: "short_name",
+      key: 'country',
+      value: 'short_name',
     },
   };
 
@@ -116,13 +116,13 @@ const AutoCompleteAddress = ({
 
   useEffect(() => {
     const reference = document.getElementById(
-      "autocomplete"
+      'autocomplete'
     ) as HTMLInputElement;
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
-      types: ["address"],
-      componentRestrictions: { country: "de" },
+      types: ['address'],
+      componentRestrictions: { country: 'de' },
     });
-    autocomplete.current.addListener("place_changed", onPlaceChanged);
+    autocomplete.current.addListener('place_changed', onPlaceChanged);
     if (address && isPartialAddressValid(address)) {
       reference.value = `${address.street} ${address.houseNumber}, ${
         address.city
@@ -130,13 +130,13 @@ const AutoCompleteAddress = ({
     }
 
     map.current = new google.maps.Map(
-      document.getElementById("map")!,
+      document.getElementById('map')!,
       MAP_CONFIG_OBJ
     );
 
-    import("./mapStyle").then(({ style }) => {
-      map.current?.mapTypes.set("styled_map", style);
-      map.current?.setMapTypeId("styled_map");
+    import('./mapStyle').then(({ style }) => {
+      map.current?.mapTypes.set('styled_map', style);
+      map.current?.setMapTypeId('styled_map');
     });
 
     marker.current = new google.maps.Marker({
@@ -148,11 +148,11 @@ const AutoCompleteAddress = ({
     <>
       <div
         id="map"
-        className={classNames(`ws8 ${styles.map}`, {
-          [styles["map--hidden"]]: place === null,
+        className={classNames(`ws8 bg-grey-500 ${styles.map}`, {
+          [styles['map--hidden']]: place === null,
         })}
       />
-      <div className={`${styles["input-container"]} ws8`}>
+      <div className={`${styles['input-container']} ws8`}>
         <input
           className="p-input"
           id="autocomplete"
@@ -168,7 +168,7 @@ const AutoCompleteAddress = ({
             className="p-input"
             data-cy="autocomplete-house-number"
             placeholder="House Number"
-            value={address?.houseNumber || ""}
+            value={address?.houseNumber || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, houseNumber: value });
             }}
@@ -179,7 +179,7 @@ const AutoCompleteAddress = ({
             className="p-input"
             data-cy="autocomplete-postcode"
             placeholder="Postcode"
-            value={address?.postcode || ""}
+            value={address?.postcode || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, postcode: value });
             }}

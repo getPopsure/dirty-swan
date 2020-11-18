@@ -24,7 +24,9 @@
     "**/node_modules/*",
     "build",
     "dist",
-    "rollup.config.js"
+    "rollup.config.js",
+    "src/**/*.test.ts",
+    "src/bin"
   ],
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

@@ -63,7 +63,7 @@ const DateSelector = ({
   const availableMonths = moment.monthsShort();
 
   const [date, setDate] = useState<Partial<CalendarDate>>(
-    calendarDateValue ?? {},
+    calendarDateValue ?? {}
   );
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const DateSelector = ({
             day: date.day,
             month: date.month,
             year: date.year,
-          }),
+          })
         );
       }
     }
@@ -105,7 +105,7 @@ const DateSelector = ({
     ) {
       const cappedDays = Math.min(
         daysInMonthOfYear({ month: newValue.month, year: newValue.year }),
-        newValue.day,
+        newValue.day
       );
       setDate({ ...newValue, day: cappedDays });
     } else {
@@ -116,17 +116,17 @@ const DateSelector = ({
   return (
     <div className={styles.container}>
       <select
-        data-cy='date-selector-day'
-        className='p-select'
-        id='day'
-        name='day'
+        data-cy="date-selector-day"
+        className="p-select"
+        id="day"
+        name="day"
         required={true}
         value={date.day ?? ''}
         onChange={(e) => {
           handleOnChange('day', parseInt(e.target.value, 10));
         }}
       >
-        <option value='' disabled={true}>
+        <option value="" disabled={true}>
           Day
         </option>
         {availableDays.map((day) => (
@@ -136,17 +136,17 @@ const DateSelector = ({
         ))}
       </select>
       <select
-        data-cy='date-selector-month'
-        className='p-select'
-        id='month'
-        name='month'
+        data-cy="date-selector-month"
+        className="p-select"
+        id="month"
+        name="month"
         required={true}
         value={date.month ?? ''}
         onChange={(e) => {
           handleOnChange('month', parseInt(e.target.value, 10));
         }}
       >
-        <option value='' disabled={true}>
+        <option value="" disabled={true}>
           Month
         </option>
         {availableMonths.map((month, i) => (
@@ -156,17 +156,17 @@ const DateSelector = ({
         ))}
       </select>
       <select
-        data-cy='date-selector-year'
-        className='p-select'
-        id='year'
-        name='year'
+        data-cy="date-selector-year"
+        className="p-select"
+        id="year"
+        name="year"
         required={true}
         value={date.year ?? ''}
         onChange={(e) => {
           handleOnChange('year', parseInt(e.target.value, 10));
         }}
       >
-        <option value='' disabled={true}>
+        <option value="" disabled={true}>
           Year
         </option>
         {availableYears.map((year) => (

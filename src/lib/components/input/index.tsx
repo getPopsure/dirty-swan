@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
 export default (
   props: React.DetailedHTMLProps<
@@ -8,14 +8,14 @@ export default (
     HTMLInputElement
   > & { hasError?: boolean }
 ) => (
-  <div className={`${styles.container} ${props.className ?? ""}`}>
+  <div className={`${styles.container} ${props.className ?? ''}`}>
     <input
       type="text"
       {...props}
-      className={`${props.hasError ? "p-input--error" : "p-input"} ${
+      className={`${props.hasError ? 'p-input--error' : 'p-input'} ${
         props.placeholder && props.placeholder?.length > 0
           ? styles.input
-          : styles["input--no-placeholder"]
+          : styles['input--no-placeholder']
       }`}
       placeholder=" "
     />
