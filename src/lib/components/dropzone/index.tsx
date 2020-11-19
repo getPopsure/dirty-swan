@@ -1,18 +1,18 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
-import errorImage from "./img/error.svg";
-import uploadImage from "./img/upload.svg";
-import fileImage from "./img/file.svg";
+import errorImage from './img/error.svg';
+import uploadImage from './img/upload.svg';
+import fileImage from './img/file.svg';
 
 export function truncateStringTail(aString: string, length: number) {
   if (aString.length > length) {
-    const tail = "[...]";
+    const tail = '[...]';
     const truncatedString = aString.substring(
       aString.length - length + tail.length,
-      aString.length
+      aString.length,
     );
     return `${tail}${truncatedString}`;
   }
@@ -39,18 +39,18 @@ export default ({
     (acceptedFiles) => {
       onSelectedFile(acceptedFiles[0]);
     },
-    [onSelectedFile]
+    [onSelectedFile],
   );
 
   const uploadedFileName =
     (uploadedFileUrl &&
       truncateStringTail(
-        new URL(uploadedFileUrl).pathname.split("/").pop() || "",
-        22
+        new URL(uploadedFileUrl).pathname.split('/').pop() || '',
+        22,
       )) ||
-    "";
+    '';
 
-  type State = "idle" | "uploading" | "error" | "uploaded";
+  type State = 'idle' | 'uploading' | 'error' | 'uploaded';
 
   function stateFromParameters({
     uploading,
@@ -64,18 +64,18 @@ export default ({
     uploadedFileUrl?: string;
   }): State {
     if (error) {
-      return "error";
+      return 'error';
     }
 
     if (uploading && progress) {
-      return "uploading";
+      return 'uploading';
     }
 
     if (uploadedFileUrl) {
-      return "uploaded";
+      return 'uploaded';
     }
 
-    return "idle";
+    return 'idle';
   }
 
   const state = stateFromParameters({
@@ -101,30 +101,30 @@ export default ({
     idle: {
       action: undefined,
       image: uploadImage,
-      text: "Upload document",
+      text: 'Upload document',
       containerStyle: undefined,
-      textColor: "tc-purple-500",
+      textColor: 'tc-primary-500',
     },
     uploading: {
       action: undefined,
       image: uploadImage,
-      text: "Uploading document…",
-      containerStyle: styles["container--uploading"],
-      textColor: "tc-purple-500",
+      text: 'Uploading document…',
+      containerStyle: styles['container--uploading'],
+      textColor: 'tc-primary-500',
     },
     error: {
-      action: "Tap to retry",
+      action: 'Tap to retry',
       image: errorImage,
-      text: "Error!",
-      containerStyle: styles["container--error"],
-      textColor: "tc-red-500",
+      text: 'Error!',
+      containerStyle: styles['container--error'],
+      textColor: 'tc-red-500',
     },
     uploaded: {
-      action: "Tap to replace",
+      action: 'Tap to replace',
       image: fileImage,
       text: uploadedFileName,
-      containerStyle: styles["container--uploaded"],
-      textColor: "tc-purple-500",
+      containerStyle: styles['container--uploaded'],
+      textColor: 'tc-primary-500',
     },
   }[state];
 
@@ -136,13 +136,13 @@ export default ({
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <img className={styles.image} src={image} alt="" />
-      <div className="p-p mt16">{text}</div>
+      <img className={styles.image} src={image} alt='' />
+      <div className='p-p mt16'>{text}</div>
       {action && <div className={`p-p ${textColor}`}>{action}</div>}
-      {state === "uploading" && (
-        <div className={styles["progress-container"]}>
+      {state === 'uploading' && (
+        <div className={styles['progress-container']}>
           <div
-            className={styles["progress-bar"]}
+            className={styles['progress-bar']}
             style={{ width: `${progress}%` }}
           />
         </div>

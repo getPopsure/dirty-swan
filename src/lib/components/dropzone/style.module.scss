@@ -3,10 +3,10 @@
 .container {
   cursor: pointer;
 
-  background-color: $popsure-purple-100;
+  background-color: $ds-primary-100;
 
   border-radius: 8px;
-  border: 1px dashed $popsure-purple-500;
+  border: 1px dashed $ds-primary-500;
 
   height: 226px;
   width: 100%;
@@ -21,25 +21,25 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+    box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
   }
 
   &:hover {
-    background-color: $popsure-purple-300;
+    background-color: $ds-primary-300;
   }
 
   &--error {
-    border-color: $popsure-red-300;
-    background-color: $popsure-red-100;
+    border-color: $ds-red-300;
+    background-color: $ds-red-100;
 
     &:hover {
-      border-color: $popsure-red-300;
-      background-color: $popsure-red-100;
+      border-color: $ds-red-300;
+      background-color: $ds-red-100;
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $popsure-red-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: $ds-red-500, $alpha: 0.5);
     }
   }
 
@@ -49,7 +49,7 @@
 
   &--uploaded {
     &:hover {
-      background-color: $popsure-purple-100;
+      background-color: $ds-primary-100;
     }
   }
 }
@@ -65,14 +65,14 @@
   margin-top: 24px;
 
   border-radius: 2px;
-  background-color: $popsure-purple-300;
+  background-color: $ds-primary-300;
 
   overflow: hidden;
 
   & .progress-bar {
     height: 100%;
 
-    background-color: $popsure-purple-500;
+    background-color: $ds-primary-500;
     border-radius: 2px;
 
     transition: width 0.3s;
@@ -80,13 +80,13 @@
 }
 
 .action {
-  color: $popsure-purple-500;
+  color: $ds-primary-500;
 
   &--error {
-    color: $popsure-red-500;
+    color: $ds-red-500;
   }
 
   &--uploaded {
-    color: $popsure-purple-500;
+    color: $ds-primary-500;
   }
 }

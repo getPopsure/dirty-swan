@@ -33,7 +33,7 @@ circle {
 
 .overlay-circle {
   z-index: 1;
-  stroke: $popsure-purple-500;
+  stroke: $ds-primary-500;
   fill: transparent;
 }
 
@@ -45,7 +45,7 @@ circle {
 
 .inner-circle {
   z-index: 0;
-  stroke: $popsure-purple-100;
+  stroke: $ds-primary-100;
   fill: transparent;
 }
 
@@ -59,9 +59,9 @@ circle {
 @keyframes borderBlink {
   from,
   to {
-    stroke: $popsure-purple-100;
+    stroke: $ds-primary-100;
   }
   50% {
-    stroke: $popsure-purple-500;
+    stroke: $ds-primary-500;
   }
 }

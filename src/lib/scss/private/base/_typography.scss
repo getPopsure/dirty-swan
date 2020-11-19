@@ -2,10 +2,10 @@
 @use '../../public/font-weight' as *;
 @use '../../public/grid' as *;
 
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .p-h1,
@@ -13,7 +13,7 @@ body {
 .p-h3,
 .p-h4,
 .p-p {
-  color: $popsure-grey-900;
+  color: $ds-grey-900;
 }
 
 .p-h1 {
@@ -84,14 +84,14 @@ body {
 }
 
 .p-error {
-  color: $popsure-red-500;
+  color: $ds-red-500;
 }
 
 .p-a {
-  color: $popsure-purple-500;
+  color: $ds-primary-500;
   text-decoration: none;
   &:hover {
-    color: $popsure-purple-700;
+    color: $ds-primary-700;
   }
 }
 

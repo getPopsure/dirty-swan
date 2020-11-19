@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
+import React, { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import {
   Address,
   isPartialAddressValid,
   countryNameFromAlphaCode,
-} from "@popsure/public-models";
+} from '@popsure/public-models';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
 
@@ -25,11 +25,11 @@ const MAP_CONFIG_OBJ = {
 };
 
 export const geocoderAddressComponentToPartialAddress = (
-  input: google.maps.GeocoderAddressComponent[]
+  input: google.maps.GeocoderAddressComponent[],
 ): Partial<Address> => {
   interface MappedType {
     key: keyof Address;
-    value: "long_name" | "short_name";
+    value: 'long_name' | 'short_name';
   }
 
   const mapping: {
@@ -40,24 +40,24 @@ export const geocoderAddressComponentToPartialAddress = (
     country: MappedType;
   } = {
     route: {
-      key: "street",
-      value: "long_name",
+      key: 'street',
+      value: 'long_name',
     },
     street_number: {
-      key: "houseNumber",
-      value: "long_name",
+      key: 'houseNumber',
+      value: 'long_name',
     },
     postal_code: {
-      key: "postcode",
-      value: "long_name",
+      key: 'postcode',
+      value: 'long_name',
     },
     locality: {
-      key: "city",
-      value: "long_name",
+      key: 'city',
+      value: 'long_name',
     },
     country: {
-      key: "country",
-      value: "short_name",
+      key: 'country',
+      value: 'short_name',
     },
   };
 
@@ -86,7 +86,7 @@ const AutoCompleteAddress = ({
   const marker = useRef<google.maps.Marker | null>(null);
 
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(
-    null
+    null,
   );
   const [missingGeocoderFields, setMissingGeocoderFields] = useState({
     postcode: false,
@@ -97,7 +97,7 @@ const AutoCompleteAddress = ({
     const newPlace = autocomplete.current?.getPlace();
     if (newPlace && newPlace.geometry) {
       const geocoderAddress = geocoderAddressComponentToPartialAddress(
-        newPlace.address_components!
+        newPlace.address_components!,
       );
 
       setPlace(newPlace);
@@ -116,13 +116,13 @@ const AutoCompleteAddress = ({
 
   useEffect(() => {
     const reference = document.getElementById(
-      "autocomplete"
+      'autocomplete',
     ) as HTMLInputElement;
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
-      types: ["address"],
-      componentRestrictions: { country: "de" },
+      types: ['address'],
+      componentRestrictions: { country: 'de' },
     });
-    autocomplete.current.addListener("place_changed", onPlaceChanged);
+    autocomplete.current.addListener('place_changed', onPlaceChanged);
     if (address && isPartialAddressValid(address)) {
       reference.value = `${address.street} ${address.houseNumber}, ${
         address.city
@@ -130,13 +130,13 @@ const AutoCompleteAddress = ({
     }
 
     map.current = new google.maps.Map(
-      document.getElementById("map")!,
-      MAP_CONFIG_OBJ
+      document.getElementById('map')!,
+      MAP_CONFIG_OBJ,
     );
 
-    import("./mapStyle").then(({ style }) => {
-      map.current?.mapTypes.set("styled_map", style);
-      map.current?.setMapTypeId("styled_map");
+    import('./mapStyle').then(({ style }) => {
+      map.current?.mapTypes.set('styled_map', style);
+      map.current?.setMapTypeId('styled_map');
     });
 
     marker.current = new google.maps.Marker({
@@ -147,17 +147,17 @@ const AutoCompleteAddress = ({
   return (
     <>
       <div
-        id="map"
-        className={classNames(`ws8 ${styles.map}`, {
-          [styles["map--hidden"]]: place === null,
+        id='map'
+        className={classNames(`ws8 bg-grey-500 ${styles.map}`, {
+          [styles['map--hidden']]: place === null,
         })}
       />
-      <div className={`${styles["input-container"]} ws8`}>
+      <div className={`${styles['input-container']} ws8`}>
         <input
-          className="p-input"
-          id="autocomplete"
-          data-cy="autocomplete"
-          type="text"
+          className='p-input'
+          id='autocomplete'
+          data-cy='autocomplete'
+          type='text'
           ref={autocompleteElement}
           onChange={() => {
             onAddressChange({});
@@ -165,10 +165,10 @@ const AutoCompleteAddress = ({
         />
         {missingGeocoderFields.houseNumber && (
           <input
-            className="p-input"
-            data-cy="autocomplete-house-number"
-            placeholder="House Number"
-            value={address?.houseNumber || ""}
+            className='p-input'
+            data-cy='autocomplete-house-number'
+            placeholder='House Number'
+            value={address?.houseNumber || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, houseNumber: value });
             }}
@@ -176,10 +176,10 @@ const AutoCompleteAddress = ({
         )}
         {missingGeocoderFields.postcode && (
           <input
-            className="p-input"
-            data-cy="autocomplete-postcode"
-            placeholder="Postcode"
-            value={address?.postcode || ""}
+            className='p-input'
+            data-cy='autocomplete-postcode'
+            placeholder='Postcode'
+            value={address?.postcode || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, postcode: value });
             }}

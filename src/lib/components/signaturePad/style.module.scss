@@ -2,7 +2,7 @@
 
 .container {
   position: relative;
-  background-color: $popsure-grey-100;
+  background-color: $ds-grey-100;
   border-radius: 8px;
   height: 272px;
 }
@@ -21,7 +21,7 @@
   left: 72px;
   bottom: 32px;
 
-  background-color: $popsure-grey-300;
+  background-color: $ds-grey-300;
 
   border-radius: 1px;
 }
@@ -33,7 +33,7 @@
   right: 16px;
   bottom: 32px;
 
-  color: $popsure-purple-500;
+  color: $ds-primary-500;
   cursor: pointer;
 
   border: none;
@@ -44,11 +44,11 @@
   background-color: transparent;
 
   &:hover {
-    color: $popsure-purple-700;
+    color: $ds-primary-700;
   }
 
   &:before {
-    content: "";
+    content: '';
 
     display: inline-block;
 
@@ -67,7 +67,7 @@
   }
 
   &[disabled] {
-    color: $popsure-grey-500;
+    color: $ds-grey-500;
   }
 }
 
@@ -88,5 +88,5 @@
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 
-  background-color: $popsure-grey-500;
+  background-color: $ds-grey-500;
 }
