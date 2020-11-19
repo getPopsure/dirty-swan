@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.0-alpha.9",
+  "version": "0.14.0-alpha.10",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -34,7 +34,7 @@
     "install": "yarn sass dist/tmp/scss/index.scss dist/index.css",
     "postinstall": "rm -rf dist/tmp",
     "start": "react-scripts start",
-    "build": "rm -rf dist && mkdir -p dist/tmp && cp -a src/lib/scss dist/tmp && cp -a src/lib/scss/public dist && yarn tsc",
+    "build": "./scripts/build.sh",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
