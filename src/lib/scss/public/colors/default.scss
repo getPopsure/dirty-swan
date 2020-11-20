@@ -1,0 +1,81 @@
+$ds-primary-100: #e6e5ff !default;
+$ds-primary-300: #b1b0f5 !default;
+$ds-primary-500: #8e8cee !default;
+$ds-primary-700: #6160a2 !default;
+$ds-primary-900: #2e2e4c !default;
+
+$ds-purple-100: #e6e5ff;
+$ds-purple-300: #b1b0f5;
+$ds-purple-500: #8e8cee;
+$ds-purple-700: #6160a2;
+$ds-purple-900: #2e2e4c;
+
+$ds-blue-100: #e5f0ff;
+$ds-blue-300: #b0cdf3;
+$ds-blue-500: #8bb4ea;
+$ds-blue-700: #5f7ba0;
+$ds-blue-900: #2d394a;
+
+$ds-red-100: #fedede;
+$ds-red-300: #f08c8c;
+$ds-red-500: #e55454;
+$ds-red-700: #9e3f3f;
+$ds-red-900: #4b2525;
+
+$ds-grey-100: #f4f4f9;
+$ds-grey-300: #d2d2d8;
+$ds-grey-500: #b4b4ba;
+$ds-grey-600: #696970;
+$ds-grey-700: #4c4c53;
+$ds-grey-900: #26262e;
+
+$ds-green-100: #ebffe4;
+$ds-green-300: #bbebab;
+$ds-green-500: #9cde84;
+$ds-green-700: #6b985b;
+$ds-green-900: #354a2d;
+
+$ds-yellow-100: #fff8e3;
+$ds-yellow-300: #f2db9f;
+$ds-yellow-500: #e9c771;
+$ds-yellow-700: #9e884f;
+$ds-yellow-900: #4a4129;
+
+$colors: (
+  "blue-100": $ds-blue-100,
+  "blue-300": $ds-blue-300,
+  "blue-500": $ds-blue-500,
+  "blue-700": $ds-blue-700,
+  "blue-900": $ds-blue-900,
+  "purple-100": $ds-purple-100,
+  "purple-300": $ds-purple-300,
+  "purple-500": $ds-purple-500,
+  "purple-700": $ds-purple-700,
+  "purple-900": $ds-purple-900,
+  "primary-100": $ds-primary-100,
+  "primary-300": $ds-primary-300,
+  "primary-500": $ds-primary-500,
+  "primary-700": $ds-primary-700,
+  "primary-900": $ds-primary-900,
+  "red-100": $ds-red-100,
+  "red-300": $ds-red-300,
+  "red-500": $ds-red-500,
+  "red-700": $ds-red-700,
+  "red-900": $ds-red-900,
+  "grey-100": $ds-grey-100,
+  "grey-300": $ds-grey-300,
+  "grey-500": $ds-grey-500,
+  "grey-600": $ds-grey-600,
+  "grey-700": $ds-grey-700,
+  "grey-900": $ds-grey-900,
+  "green-100": $ds-green-100,
+  "green-300": $ds-green-300,
+  "green-500": $ds-green-500,
+  "green-700": $ds-green-700,
+  "green-900": $ds-green-900,
+  "yellow-100": $ds-yellow-100,
+  "yellow-300": $ds-yellow-300,
+  "yellow-500": $ds-yellow-500,
+  "yellow-700": $ds-yellow-700,
+  "yellow-900": $ds-yellow-900,
+);

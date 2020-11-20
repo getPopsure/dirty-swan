@@ -1,11 +1,10 @@
 @use '../../public/colors' as *;
 @use '../../public/font-weight' as *;
 @use '../../public/grid' as *;
-
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+@use '../../public/font' as *;
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: $font-family;
 }
 
 .p-h1,
