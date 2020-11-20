@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.0-alpha.17",
+  "version": "0.14.0-alpha.18",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -30,7 +30,7 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "preinstall": "cp ../../../dirty-swan-config-colors.scss dist/tmp/scss/public/colors/overrides.scss && cp ../../../dirty-swan-config-font.scss dist/tmp/scss/public/font/overrides.scss",
+    "preinstall": "cp ../../../dirty-swan-config-colors.scss dist/tmp/scss/public/colors/overrides.scss && cp ../../../dirty-swan-config-font.scss dist/tmp/scss/public/font/overrides.scss && cp ../../../dirty-swan-config-colors.scss dist/colors/overrides.scss",
     "install": "yarn sass dist/tmp/scss/index.scss dist/index.css",
     "postinstall": "rm -rf dist/tmp",
     "start": "react-scripts start",
