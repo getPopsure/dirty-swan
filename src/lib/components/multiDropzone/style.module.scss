@@ -1,5 +1,4 @@
 @use "../../scss/public/grid" as *;
-@use "../../scss/public/colors" as *;
 
 .container {
   background-color: white;
@@ -13,7 +12,7 @@
 }
 
 .upload-container {
-  border: 1px dashed $ds-primary-500;
+  border: 1px dashed var(--ds-primary-500);
   padding: 32px 0;
   cursor: pointer;
   border-radius: 8px;
@@ -24,7 +23,7 @@
 }
 
 .upload-container:hover {
-  background-color: $ds-primary-100;
+  background-color: var(--ds-primary-100);
   transition: 0.5s ease;
 }
 

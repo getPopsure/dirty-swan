@@ -11,3 +11,9 @@
     background-color: $hex !important;
   }
 }
+
+:root {
+  @each $name, $hex in $colors {
+    --ds-#{$name}: #{$hex};
+  }
+}

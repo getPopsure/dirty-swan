@@ -199,6 +199,7 @@ input:checked[type="checkbox"] + .p-label--bordered {
   border: 1px solid $ds-grey-300;
   background-color: white;
 
+  font-family: inherit;
   font-size: 16px;
   line-height: 24px;
   color: $ds-grey-900;

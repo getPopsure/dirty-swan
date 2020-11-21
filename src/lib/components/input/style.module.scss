@@ -1,5 +1,3 @@
-@use "../../scss/public/colors" as *;
-
 .container {
   position: relative;
 }
@@ -16,7 +14,7 @@
 
   opacity: 1;
 
-  color: $ds-primary-500;
+  color: var(--ds-primary-500);
 }
 
 .input {
@@ -40,5 +38,5 @@
   transform: translateY(-50%);
   transition: 0.3s ease all;
 
-  color: $ds-grey-300;
+  color: var(--ds-grey-300);
 }

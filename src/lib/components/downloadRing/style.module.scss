@@ -1,5 +1,4 @@
 @use "../../scss/public/grid" as *;
-@use "../../scss/public/colors" as *;
 
 .container {
   position: relative;
@@ -33,7 +32,7 @@ circle {
 
 .overlay-circle {
   z-index: 1;
-  stroke: $ds-primary-500;
+  stroke: var(--ds-primary-500);
   fill: transparent;
 }
 
@@ -45,7 +44,7 @@ circle {
 
 .inner-circle {
   z-index: 0;
-  stroke: $ds-primary-100;
+  stroke: var(--ds-primary-100);
   fill: transparent;
 }
 
@@ -59,9 +58,9 @@ circle {
 @keyframes borderBlink {
   from,
   to {
-    stroke: $ds-primary-100;
+    stroke: var(--ds-primary-100);
   }
   50% {
-    stroke: $ds-primary-500;
+    stroke: var(--ds-primary-500);
   }
 }

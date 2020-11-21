@@ -1,12 +1,10 @@
-@use "../../scss/public/colors" as *;
-
 .container {
   cursor: pointer;
 
-  background-color: $ds-primary-100;
+  background-color: var(--ds-primary-100);
 
   border-radius: 8px;
-  border: 1px dashed $ds-primary-500;
+  border: 1px dashed var(--ds-primary-500);
 
   height: 226px;
   width: 100%;
@@ -21,25 +19,25 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
+    box-shadow: 0 0 0 2px rgba($color: var(--ds-primary-500), $alpha: 0.5);
   }
 
   &:hover {
-    background-color: $ds-primary-300;
+    background-color: var(--ds-primary-300);
   }
 
   &--error {
-    border-color: $ds-red-300;
-    background-color: $ds-red-100;
+    border-color: var(--ds-red-300);
+    background-color: var(--ds-red-100);
 
     &:hover {
-      border-color: $ds-red-300;
-      background-color: $ds-red-100;
+      border-color: var(--ds-red-300);
+      background-color: var(--ds-red-100);
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-red-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: var(--ds-red-500), $alpha: 0.5);
     }
   }
 
@@ -49,7 +47,7 @@
 
   &--uploaded {
     &:hover {
-      background-color: $ds-primary-100;
+      background-color: var(--ds-primary-100);
     }
   }
 }
@@ -65,14 +63,14 @@
   margin-top: 24px;
 
   border-radius: 2px;
-  background-color: $ds-primary-300;
+  background-color: var(--ds-primary-300);
 
   overflow: hidden;
 
   & .progress-bar {
     height: 100%;
 
-    background-color: $ds-primary-500;
+    background-color: var(--ds-primary-500);
     border-radius: 2px;
 
     transition: width 0.3s;
@@ -80,13 +78,13 @@
 }
 
 .action {
-  color: $ds-primary-500;
+  color: var(--ds-primary-500);
 
   &--error {
-    color: $ds-red-500;
+    color: var(--ds-red-500);
   }
 
   &--uploaded {
-    color: $ds-primary-500;
+    color: var(--ds-primary-500);
   }
 }
