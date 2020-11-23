@@ -61,7 +61,7 @@
 .p-radio {
   & + label {
     &::before {
-      content: "";
+      content: '';
 
       cursor: pointer;
       display: inline-flex;
@@ -87,7 +87,7 @@
   & + label::before {
     border-color: $ds-primary-500;
 
-    background-image: url("./assets/circle.svg");
+    background-image: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.5" fill="#{$ds-primary-500}" stroke="#8E8CEE"/></svg>');
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -96,7 +96,7 @@
 .p-checkbox {
   & + label {
     &::before {
-      content: "";
+      content: '';
 
       cursor: pointer;
       display: inline-flex;
@@ -130,7 +130,7 @@
 
 .p-checkbox:checked {
   & + label::before {
-    background-image: url("./assets/checkmark.svg");
+    background-image: url('./assets/checkmark.svg');
     background-repeat: no-repeat;
     background-position: center;
 
@@ -169,8 +169,8 @@
   }
 }
 
-input:checked[type="radio"] + .p-label--bordered,
-input:checked[type="checkbox"] + .p-label--bordered {
+input:checked[type='radio'] + .p-label--bordered,
+input:checked[type='checkbox'] + .p-label--bordered {
   border-color: $ds-primary-500;
   background-color: $ds-primary-100;
 }
@@ -207,7 +207,7 @@ input:checked[type="checkbox"] + .p-label--bordered {
   padding-left: 16px;
   padding-right: 32px;
 
-  background-image: url("./assets/icon-form-dropdown.svg");
+  background-image: url('./assets/icon-form-dropdown.svg');
   background-repeat: no-repeat;
   background-position: right center;
 
