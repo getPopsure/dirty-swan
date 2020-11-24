@@ -1,8 +1,8 @@
-import { create } from "@storybook/theming/create";
+import { create } from '@storybook/theming/create';
 
 export default create({
-  base: "light",
-  brandTitle: "Dirty swan",
-  brandUrl: "https://dirtyswan.design",
-  brandImage: ""
+  base: 'light',
+  brandTitle: 'Dirty swan',
+  brandUrl: 'https://dirtyswan.design',
+  brandImage: '',
 });

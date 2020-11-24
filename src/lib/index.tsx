@@ -16,4 +16,4 @@ export {
   DownloadRing,
 };
 
-export type {DownloadRingDownloadStatus} from './models/downloadRing'
+export type { DownloadRingDownloadStatus } from './models/downloadRing';

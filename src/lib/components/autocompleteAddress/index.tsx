@@ -25,7 +25,7 @@ const MAP_CONFIG_OBJ = {
 };
 
 export const geocoderAddressComponentToPartialAddress = (
-  input: google.maps.GeocoderAddressComponent[],
+  input: google.maps.GeocoderAddressComponent[]
 ): Partial<Address> => {
   interface MappedType {
     key: keyof Address;
@@ -86,7 +86,7 @@ const AutoCompleteAddress = ({
   const marker = useRef<google.maps.Marker | null>(null);
 
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(
-    null,
+    null
   );
   const [missingGeocoderFields, setMissingGeocoderFields] = useState({
     postcode: false,
@@ -97,7 +97,7 @@ const AutoCompleteAddress = ({
     const newPlace = autocomplete.current?.getPlace();
     if (newPlace && newPlace.geometry) {
       const geocoderAddress = geocoderAddressComponentToPartialAddress(
-        newPlace.address_components!,
+        newPlace.address_components!
       );
 
       setPlace(newPlace);
@@ -116,7 +116,7 @@ const AutoCompleteAddress = ({
 
   useEffect(() => {
     const reference = document.getElementById(
-      'autocomplete',
+      'autocomplete'
     ) as HTMLInputElement;
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
       types: ['address'],
@@ -131,7 +131,7 @@ const AutoCompleteAddress = ({
 
     map.current = new google.maps.Map(
       document.getElementById('map')!,
-      MAP_CONFIG_OBJ,
+      MAP_CONFIG_OBJ
     );
 
     import('./mapStyle').then(({ style }) => {
@@ -147,17 +147,17 @@ const AutoCompleteAddress = ({
   return (
     <>
       <div
-        id='map'
+        id="map"
         className={classNames(`ws8 bg-grey-500 ${styles.map}`, {
           [styles['map--hidden']]: place === null,
         })}
       />
       <div className={`${styles['input-container']} ws8`}>
         <input
-          className='p-input'
-          id='autocomplete'
-          data-cy='autocomplete'
-          type='text'
+          className="p-input"
+          id="autocomplete"
+          data-cy="autocomplete"
+          type="text"
           ref={autocompleteElement}
           onChange={() => {
             onAddressChange({});
@@ -165,9 +165,9 @@ const AutoCompleteAddress = ({
         />
         {missingGeocoderFields.houseNumber && (
           <input
-            className='p-input'
-            data-cy='autocomplete-house-number'
-            placeholder='House Number'
+            className="p-input"
+            data-cy="autocomplete-house-number"
+            placeholder="House Number"
             value={address?.houseNumber || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, houseNumber: value });
@@ -176,9 +176,9 @@ const AutoCompleteAddress = ({
         )}
         {missingGeocoderFields.postcode && (
           <input
-            className='p-input'
-            data-cy='autocomplete-postcode'
-            placeholder='Postcode'
+            className="p-input"
+            data-cy="autocomplete-postcode"
+            placeholder="Postcode"
             value={address?.postcode || ''}
             onChange={({ target: { value } }) => {
               onAddressChange({ ...address, postcode: value });

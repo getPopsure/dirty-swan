@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import moment from "moment";
-import { CalendarDate } from "@popsure/public-models";
+import React, { useState } from 'react';
+import moment from 'moment';
+import { CalendarDate } from '@popsure/public-models';
 
 import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
-} from "../../util/calendarDate";
-import styles from "./style.module.scss";
+} from '../../util/calendarDate';
+import styles from './style.module.scss';
 
 /*
   Fill an array with an increment from a number to another number.
@@ -39,7 +39,7 @@ export const daysInMonthOfYear = ({
   month: number;
   year: number;
 }) => {
-  return moment(`${year}-${month}`, "YYYY-MM").daysInMonth();
+  return moment(`${year}-${month}`, 'YYYY-MM').daysInMonth();
 };
 
 const DateSelector = ({
@@ -90,7 +90,7 @@ const DateSelector = ({
   const handleOnChange = (key: keyof CalendarDate, v: number) => {
     const newValue = { ...date, [key]: v };
     if (
-      key !== "day" &&
+      key !== 'day' &&
       newValue.month !== undefined &&
       newValue.year !== undefined &&
       newValue.day !== undefined
@@ -116,7 +116,7 @@ const DateSelector = ({
         defaultValue=""
         value={date.day}
         onChange={(e) => {
-          handleOnChange("day", parseInt(e.target.value, 10));
+          handleOnChange('day', parseInt(e.target.value, 10));
         }}
       >
         <option value="" disabled={true}>
@@ -137,7 +137,7 @@ const DateSelector = ({
         defaultValue=""
         value={date.month}
         onChange={(e) => {
-          handleOnChange("month", parseInt(e.target.value, 10));
+          handleOnChange('month', parseInt(e.target.value, 10));
         }}
       >
         <option value="" disabled={true}>
@@ -158,7 +158,7 @@ const DateSelector = ({
         defaultValue=""
         value={date.year}
         onChange={(e) => {
-          handleOnChange("year", parseInt(e.target.value, 10));
+          handleOnChange('year', parseInt(e.target.value, 10));
         }}
       >
         <option value="" disabled={true}>

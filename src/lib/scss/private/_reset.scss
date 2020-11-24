@@ -120,7 +120,7 @@ q {
 blockquote {
   &:before,
   &:after {
-    content: "";
+    content: '';
     content: none;
   }
 }
@@ -128,7 +128,7 @@ blockquote {
 q {
   &:before,
   &:after {
-    content: "";
+    content: '';
     content: none;
   }
 }
@@ -138,8 +138,8 @@ table {
   border-spacing: 0;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

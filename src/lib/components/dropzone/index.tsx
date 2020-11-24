@@ -1,15 +1,15 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
-import styles from "./style.module.scss";
+import styles from './style.module.scss';
 
-import ErrorImage from "./images/error";
-import UploadImage from "./images/upload";
-import FileImage from "./images/file";
+import ErrorImage from './images/error';
+import UploadImage from './images/upload';
+import FileImage from './images/file';
 
 export function truncateStringTail(aString: string, length: number) {
   if (aString.length > length) {
-    const tail = "[...]";
+    const tail = '[...]';
     const truncatedString = aString.substring(
       aString.length - length + tail.length,
       aString.length
@@ -45,12 +45,12 @@ export default ({
   const uploadedFileName =
     (uploadedFileUrl &&
       truncateStringTail(
-        new URL(uploadedFileUrl).pathname.split("/").pop() || "",
+        new URL(uploadedFileUrl).pathname.split('/').pop() || '',
         22
       )) ||
-    "";
+    '';
 
-  type State = "idle" | "uploading" | "error" | "uploaded";
+  type State = 'idle' | 'uploading' | 'error' | 'uploaded';
 
   function stateFromParameters({
     uploading,
@@ -64,18 +64,18 @@ export default ({
     uploadedFileUrl?: string;
   }): State {
     if (error) {
-      return "error";
+      return 'error';
     }
 
     if (uploading && progress) {
-      return "uploading";
+      return 'uploading';
     }
 
     if (uploadedFileUrl) {
-      return "uploaded";
+      return 'uploaded';
     }
 
-    return "idle";
+    return 'idle';
   }
 
   const state = stateFromParameters({
@@ -101,30 +101,30 @@ export default ({
     idle: {
       action: undefined,
       Image: UploadImage,
-      text: "Upload document",
+      text: 'Upload document',
       containerStyle: undefined,
-      textColor: "tc-primary-500",
+      textColor: 'tc-primary-500',
     },
     uploading: {
       action: undefined,
       Image: UploadImage,
-      text: "Uploading document…",
-      containerStyle: styles["container--uploading"],
-      textColor: "tc-primary-500",
+      text: 'Uploading document…',
+      containerStyle: styles['container--uploading'],
+      textColor: 'tc-primary-500',
     },
     error: {
-      action: "Tap to retry",
+      action: 'Tap to retry',
       Image: ErrorImage,
-      text: "Error!",
-      containerStyle: styles["container--error"],
-      textColor: "tc-red-500",
+      text: 'Error!',
+      containerStyle: styles['container--error'],
+      textColor: 'tc-red-500',
     },
     uploaded: {
-      action: "Tap to replace",
+      action: 'Tap to replace',
       Image: FileImage,
       text: uploadedFileName,
-      containerStyle: styles["container--uploaded"],
-      textColor: "tc-primary-500",
+      containerStyle: styles['container--uploaded'],
+      textColor: 'tc-primary-500',
     },
   }[state];
 
@@ -139,10 +139,10 @@ export default ({
       <Image />
       <div className="p-p mt16">{text}</div>
       {action && <div className={`p-p ${textColor}`}>{action}</div>}
-      {state === "uploading" && (
-        <div className={styles["progress-container"]}>
+      {state === 'uploading' && (
+        <div className={styles['progress-container']}>
           <div
-            className={styles["progress-bar"]}
+            className={styles['progress-bar']}
             style={{ width: `${progress}%` }}
           />
         </div>
