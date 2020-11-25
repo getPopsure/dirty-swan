@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.0-alpha.27",
+  "version": "0.14.0-alpha.28",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -16,6 +16,7 @@
   },
   "files": [
     "dist",
+    "bin",
     "Readme.md"
   ],
   "dependencies": {
