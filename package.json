@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.14.0-alpha.26",
+  "version": "0.14.0-alpha.27",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -9,9 +9,7 @@
     "url": "git@github.com:getPopsure/dirtySwan.git"
   },
   "main": "dist/index.js",
-  "bin": {
-    "dirty-swan": "./cli.js"
-  },
+  "bin": "bin/cmd.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
