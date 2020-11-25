@@ -8,3 +8,4 @@ cp -a -v src/lib/scss dist/tmp
 cp -v src/lib/scss/public/*.scss dist
 cp -v src/lib/scss/public/colors/*.scss dist/colors
 rollup -c
+cp src/cli.js dist
