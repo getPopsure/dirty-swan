@@ -68,7 +68,7 @@
     background-color: transparent;
     color: $popsure-purple-500;
 
-    &:hover:enabled {
+    &:hover {
       background-color: $popsure-purple-100;
 
       @include p-size-mobile {
@@ -78,11 +78,39 @@
 
     &[disabled] {
       color: $popsure-purple-700;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
 
     &:focus {
       outline: none;
       box-shadow: 0 0 0 2px rgba($color: $popsure-purple-500, $alpha: 0.5);
+    }
+  }
+
+  &--danger {
+    @extend .p-btn;
+    background-color: $popsure-red-500;
+    color: white;
+
+    &:hover {
+      background-color: $popsure-red-700;
+
+      @include p-size-mobile {
+        background-color: $popsure-red-500;
+      }
+    }
+
+    &[disabled] {
+      background-color: $popsure-red-300;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($color: $popsure-red-500, $alpha: 0.5);
     }
   }
 
