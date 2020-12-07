@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import moment from "moment";
-import { CalendarDate } from "@popsure/public-models";
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import { CalendarDate } from '@popsure/public-models';
 
 import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
-} from "../../util/calendarDate";
-import styles from "./style.module.scss";
+} from '../../util/calendarDate';
+import styles from './style.module.scss';
 
 /*
   Fill an array with an increment from a number to another number.
@@ -39,7 +39,7 @@ export const daysInMonthOfYear = ({
   month: number;
   year: number;
 }) => {
-  return moment(`${year}-${month}`, "YYYY-MM").daysInMonth();
+  return moment(`${year}-${month}`, 'YYYY-MM').daysInMonth();
 };
 
 const DateSelector = ({
@@ -51,11 +51,11 @@ const DateSelector = ({
   onChange: (date: string) => void;
   yearBoundaries: { min: number; max: number };
 }) => {
-  const CalendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
-  const daysInSelectedDate = CalendarDateValue
+  const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
+  const daysInSelectedDate = calendarDateValue
     ? daysInMonthOfYear({
-        month: CalendarDateValue.month,
-        year: CalendarDateValue.year,
+        month: calendarDateValue.month,
+        year: calendarDateValue.year,
       })
     : 31;
   const availableDays = fillArray(1, daysInSelectedDate);
@@ -63,41 +63,49 @@ const DateSelector = ({
   const availableMonths = moment.monthsShort();
 
   const [date, setDate] = useState<Partial<CalendarDate>>(
-    CalendarDateValue ?? {}
+    calendarDateValue ?? {},
   );
 
-  if (
-    date.year !== undefined &&
-    date.month !== undefined &&
-    date.day !== undefined
-  ) {
-    if (
-      CalendarDateValue === undefined ||
-      date.day !== CalendarDateValue.day ||
-      date.month !== CalendarDateValue.month ||
-      date.year !== CalendarDateValue.year
-    ) {
-      onChange(
-        calendarDateToISODate({
-          day: date.day,
-          month: date.month,
-          year: date.year,
-        })
-      );
+  useEffect(() => {
+    if (calendarDateValue) {
+      setDate(calendarDateValue);
     }
-  }
+  }, [value]);
+
+  useEffect(() => {
+    if (
+      date.year !== undefined &&
+      date.month !== undefined &&
+      date.day !== undefined
+    ) {
+      if (
+        calendarDateValue === undefined ||
+        date.day !== calendarDateValue.day ||
+        date.month !== calendarDateValue.month ||
+        date.year !== calendarDateValue.year
+      ) {
+        onChange(
+          calendarDateToISODate({
+            day: date.day,
+            month: date.month,
+            year: date.year,
+          }),
+        );
+      }
+    }
+  }, [date]);
 
   const handleOnChange = (key: keyof CalendarDate, v: number) => {
     const newValue = { ...date, [key]: v };
     if (
-      key !== "day" &&
+      key !== 'day' &&
       newValue.month !== undefined &&
       newValue.year !== undefined &&
       newValue.day !== undefined
     ) {
       const cappedDays = Math.min(
         daysInMonthOfYear({ month: newValue.month, year: newValue.year }),
-        newValue.day
+        newValue.day,
       );
       setDate({ ...newValue, day: cappedDays });
     } else {
@@ -108,18 +116,17 @@ const DateSelector = ({
   return (
     <div className={styles.container}>
       <select
-        data-cy="date-selector-day"
-        className="p-select"
-        id="day"
-        name="day"
+        data-cy='date-selector-day'
+        className='p-select'
+        id='day'
+        name='day'
         required={true}
-        defaultValue=""
-        value={date.day}
+        value={date.day ?? ''}
         onChange={(e) => {
-          handleOnChange("day", parseInt(e.target.value, 10));
+          handleOnChange('day', parseInt(e.target.value, 10));
         }}
       >
-        <option value="" disabled={true}>
+        <option value='' disabled={true}>
           Day
         </option>
         {availableDays.map((day) => (
@@ -129,18 +136,17 @@ const DateSelector = ({
         ))}
       </select>
       <select
-        data-cy="date-selector-month"
-        className="p-select"
-        id="month"
-        name="month"
+        data-cy='date-selector-month'
+        className='p-select'
+        id='month'
+        name='month'
         required={true}
-        defaultValue=""
-        value={date.month}
+        value={date.month ?? ''}
         onChange={(e) => {
-          handleOnChange("month", parseInt(e.target.value, 10));
+          handleOnChange('month', parseInt(e.target.value, 10));
         }}
       >
-        <option value="" disabled={true}>
+        <option value='' disabled={true}>
           Month
         </option>
         {availableMonths.map((month, i) => (
@@ -150,18 +156,17 @@ const DateSelector = ({
         ))}
       </select>
       <select
-        data-cy="date-selector-year"
-        className="p-select"
-        id="year"
-        name="year"
+        data-cy='date-selector-year'
+        className='p-select'
+        id='year'
+        name='year'
         required={true}
-        defaultValue=""
-        value={date.year}
+        value={date.year ?? ''}
         onChange={(e) => {
-          handleOnChange("year", parseInt(e.target.value, 10));
+          handleOnChange('year', parseInt(e.target.value, 10));
         }}
       >
-        <option value="" disabled={true}>
+        <option value='' disabled={true}>
           Year
         </option>
         {availableYears.map((year) => (
