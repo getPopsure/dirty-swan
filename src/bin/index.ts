@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 import * as fs from 'fs';
-
-const { resolve } = require('path');
-var sass = require('sass');
+import * as path from 'path';
+import * as sass from 'sass';
 
 interface ConfigurationFile {
   theme?: {
@@ -61,7 +60,7 @@ export function generateFont(configuration: ConfigurationFile) {
 }
 
 export function readConfigurationFile(path: string): ConfigurationFile {
-  const configurationFile = fs.readFileSync(`${__dirname}${path}`, 'utf8');
+  const configurationFile = fs.readFileSync(path, 'utf8');
   const parsedConfigurationFile = JSON.parse(configurationFile);
   return parsedConfigurationFile;
 }
@@ -86,11 +85,14 @@ export function generateSass(configuration: ConfigurationFile) {
   fs.writeFileSync(__dirname + '/../index.css', result.css);
 }
 
-const [, , configurationFile] = process.argv.slice(2);
-const configurationFileAbsolutePath = resolve(process.cwd(), configurationFile);
-
-console.log(configurationFileAbsolutePath);
+const [, , configurationFile] = process.argv;
+const configurationFileAbsolutePath = path.resolve(
+  process.cwd(),
+  configurationFile
+);
+console.log(`🦢 Reading configuration file ${configurationFile}`);
 
 const configuration = readConfigurationFile(configurationFileAbsolutePath);
-
 generateSass(configuration);
+
+console.log(`🦢 Successfully updated with new theme 💫`);
