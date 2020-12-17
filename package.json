@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.16.0-alpha.3",
+  "version": "0.16.0-alpha.4",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -13,9 +13,7 @@
     "node": ">=8",
     "npm": ">=5"
   },
-  "bin": {
-    "regenerate": "dist/bin/index.js"
-  },
+  "bin": "dist/bin/index.js",
   "files": [
     "dist",
     "Readme.md"

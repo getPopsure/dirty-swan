@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "declaration": true,
+    "target": "ES5",
+    "moduleResolution": "node",
+    "rootDir": "./",
+    "outDir": "../../dist/bin",
+    "strict": true
+  },
+  "include": ["./index.ts"],
+  "exclude": ["*.test.ts"]
+}
