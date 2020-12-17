@@ -65,24 +65,29 @@ export function readConfigurationFile(path: string): ConfigurationFile {
   return parsedConfigurationFile;
 }
 
+const SCSS_LIB_FOLDER_PATH = __dirname + '/../lib/scss';
+
 export function generateSass(configuration: ConfigurationFile) {
   const colors = generatePrimaryColors(configuration);
   const font = generateFont(configuration);
 
   colors &&
     fs.writeFileSync(
-      __dirname + '/../scss/public/colors/overrides.scss',
+      SCSS_LIB_FOLDER_PATH + '/public/colors/overrides.scss',
       colors
     );
   font &&
-    fs.writeFileSync(__dirname + '/../scss/public/font/overrides.scss', font);
+    fs.writeFileSync(
+      SCSS_LIB_FOLDER_PATH + '/public/font/overrides.scss',
+      font
+    );
 
   const result = sass.renderSync({
-    file: __dirname + '/../scss/index.scss',
-    outFile: __dirname + '/../index.css',
+    file: SCSS_LIB_FOLDER_PATH + '/index.scss',
+    outFile: SCSS_LIB_FOLDER_PATH + '/../index.css',
   });
 
-  fs.writeFileSync(__dirname + '/../index.css', result.css);
+  fs.writeFileSync(SCSS_LIB_FOLDER_PATH + '/../index.css', result.css);
 }
 
 const [, , configurationFile] = process.argv;
