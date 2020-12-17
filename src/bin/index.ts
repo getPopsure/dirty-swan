@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import * as fs from 'fs';
+
+const { resolve } = require('path');
 var sass = require('sass');
 
 interface ConfigurationFile {
@@ -84,7 +86,11 @@ export function generateSass(configuration: ConfigurationFile) {
   fs.writeFileSync(__dirname + '/../index.css', result.css);
 }
 
-export default (() => {
-  const configuration = readConfigurationFile('/../../../../../data.json');
-  generateSass(configuration);
-})();
+const [, , configurationFile] = process.argv.slice(2);
+const configurationFileAbsolutePath = resolve(process.cwd(), configurationFile);
+
+console.log(configurationFileAbsolutePath);
+
+const configuration = readConfigurationFile(configurationFileAbsolutePath);
+
+generateSass(configuration);
