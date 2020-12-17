@@ -87,7 +87,7 @@ export function generateSass(configuration: ConfigurationFile) {
     outFile: SCSS_LIB_FOLDER_PATH + '/../index.css',
   });
 
-  fs.writeFileSync(SCSS_LIB_FOLDER_PATH + '/../index.css', result.css);
+  fs.writeFileSync(SCSS_LIB_FOLDER_PATH + '/../../index.css', result.css);
 }
 
 const [, , configurationFile] = process.argv;
