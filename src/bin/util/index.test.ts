@@ -1,11 +1,24 @@
-import {
-  generatePrimaryColors,
-  generateFont,
-  readConfigurationFile,
-  createConfigurationFile,
-} from '.';
+import { generatePrimaryColors, generateFont, readConfigurationFile } from '.';
 
 describe('Generate primary colors', () => {
+  it('Should skip unspecified primary colors', () => {
+    expect(
+      generatePrimaryColors({
+        theme: {
+          colors: {
+            primary: {
+              100: '#FFA07A',
+              300: '',
+              500: '',
+              700: '',
+              900: '',
+            },
+          },
+        },
+      })
+    ).toEqual(`$ds-primary-100: #FFA07A;`);
+  });
+
   it('Should generate sass primary colors', () => {
     expect(
       generatePrimaryColors({

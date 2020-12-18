@@ -26,12 +26,22 @@ interface ConfigurationFile {
 export function generatePrimaryColors(configuration: ConfigurationFile) {
   if (configuration.theme?.colors?.primary) {
     const primaryColors = configuration.theme.colors.primary;
-    return Object.entries(primaryColors).reduce(
-      (result, [shade, hex], index, arr) =>
-        result +
-        `$ds-primary-${shade}: ${hex};${index < arr.length - 1 ? '\n' : ''}`,
-      ''
-    );
+    return Object.entries(primaryColors)
+      .filter(([shade, hex]) => {
+        if (hex.length === 0) {
+          console.warn(
+            `🦢 value wasn’t specified for shade ${shade}, skipping.`
+          );
+          return false;
+        }
+        return true;
+      })
+      .reduce(
+        (result, [shade, hex], index, arr) =>
+          result +
+          `$ds-primary-${shade}: ${hex};${index < arr.length - 1 ? '\n' : ''}`,
+        ''
+      );
   }
   return undefined;
 }
@@ -40,7 +50,7 @@ export function generateFont(configuration: ConfigurationFile) {
   if (configuration.theme?.font?.sans) {
     const sans = configuration.theme.font.sans;
     let result = '';
-    if (sans.url) {
+    if (sans.url && sans.url.length > 0) {
       result = `@import url('${sans.url}');\n\n`;
     }
 
@@ -91,7 +101,7 @@ export function readConfigurationFile(path: string): ConfigurationFile {
   return parsedConfigurationFile;
 }
 
-const SCSS_LIB_FOLDER_PATH = __dirname + '/../lib/scss';
+const SCSS_LIB_FOLDER_PATH = __dirname + '/../../lib/scss';
 
 export function generateSass(configuration: ConfigurationFile) {
   const colors = generatePrimaryColors(configuration);
