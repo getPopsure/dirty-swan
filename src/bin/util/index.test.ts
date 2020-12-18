@@ -1,4 +1,9 @@
-import { generatePrimaryColors, generateFont, readConfigurationFile } from '.';
+import {
+  generatePrimaryColors,
+  generateFont,
+  readConfigurationFile,
+  createConfigurationFile,
+} from '.';
 
 describe('Generate primary colors', () => {
   it('Should generate sass primary colors', () => {
