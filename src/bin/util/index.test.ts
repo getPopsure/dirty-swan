@@ -62,6 +62,6 @@ describe('Generate font', () => {
 
 describe('Read configuration file', () => {
   it('Should read the configuration file', () => {
-    return readConfigurationFile('/data.json');
+    expect(readConfigurationFile(`${__dirname}/test/data.json`)).toBeDefined();
   });
 });
