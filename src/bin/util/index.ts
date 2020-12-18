@@ -58,6 +58,33 @@ export function generateFont(configuration: ConfigurationFile) {
   return undefined;
 }
 
+export function createConfigurationFile(path: string) {
+  type RecursiveRequired<T> = {
+    [P in keyof T]-?: RecursiveRequired<T[P]>;
+  };
+  const exampleConfigurationFile: RecursiveRequired<ConfigurationFile> = {
+    theme: {
+      colors: {
+        primary: {
+          100: '',
+          300: '',
+          500: '',
+          700: '',
+          900: '',
+        },
+      },
+      font: {
+        sans: {
+          family: [],
+          url: '',
+        },
+      },
+    },
+  };
+
+  fs.appendFileSync(path, JSON.stringify(exampleConfigurationFile, null, 2));
+}
+
 export function readConfigurationFile(path: string): ConfigurationFile {
   const configurationFile = fs.readFileSync(path, 'utf8');
   const parsedConfigurationFile = JSON.parse(configurationFile);
