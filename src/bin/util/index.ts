@@ -102,21 +102,26 @@ export function readConfigurationFile(path: string): ConfigurationFile {
 }
 
 const SCSS_LIB_FOLDER_PATH = __dirname + '/../../lib/scss';
+const COLORS_OVERRIDE_PATH =
+  SCSS_LIB_FOLDER_PATH + '/public/colors/overrides.scss';
+const FONT_OVERRIDE_PATH = SCSS_LIB_FOLDER_PATH + '/public/font/overrides.scss';
+
+export function resetToDefaultTheme() {
+  fs.writeFileSync(COLORS_OVERRIDE_PATH, '');
+  fs.writeFileSync(FONT_OVERRIDE_PATH, '');
+  const result = sass.renderSync({
+    file: SCSS_LIB_FOLDER_PATH + '/index.scss',
+    outFile: SCSS_LIB_FOLDER_PATH + '/../index.css',
+  });
+  fs.writeFileSync(SCSS_LIB_FOLDER_PATH + '/../../index.css', result.css);
+}
 
 export function generateSass(configuration: ConfigurationFile) {
   const colors = generatePrimaryColors(configuration);
   const font = generateFont(configuration);
 
-  colors &&
-    fs.writeFileSync(
-      SCSS_LIB_FOLDER_PATH + '/public/colors/overrides.scss',
-      colors
-    );
-  font &&
-    fs.writeFileSync(
-      SCSS_LIB_FOLDER_PATH + '/public/font/overrides.scss',
-      font
-    );
+  colors && fs.writeFileSync(COLORS_OVERRIDE_PATH, colors);
+  font && fs.writeFileSync(FONT_OVERRIDE_PATH, font);
 
   const result = sass.renderSync({
     file: SCSS_LIB_FOLDER_PATH + '/index.scss',

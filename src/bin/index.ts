@@ -5,6 +5,7 @@ import {
   readConfigurationFile,
   generateSass,
   createConfigurationFile,
+  resetToDefaultTheme,
 } from './util';
 import * as path from 'path';
 import * as yargs from 'yargs';
@@ -37,19 +38,34 @@ yargs
         describe: '',
         default: `${DEFAULT_PATH}${DEFAULT_FILENAME}`,
       });
+      yargs.option('reset', { alias: '-R', default: false, type: 'boolean' });
     },
-    ({ configuration: configurationFile }: { configuration: string }) => {
-      const configurationFileAbsolutePath = path.resolve(
-        process.cwd(),
-        configurationFile
-      );
-      console.log(`🦢 Reading configuration file ${configurationFile}`);
+    ({
+      configuration: configurationFile,
+      reset,
+    }: {
+      configuration: string;
+      reset: boolean;
+    }) => {
+      if (reset === true) {
+        console.log('🦢 Reseting to default theme');
+        resetToDefaultTheme();
+        console.log('🦢 Successfully reseted to default theme 💫');
+      } else {
+        const configurationFileAbsolutePath = path.resolve(
+          process.cwd(),
+          configurationFile
+        );
+        console.log(`🦢 Reading configuration file ${configurationFile}`);
 
-      const configuration = readConfigurationFile(
-        configurationFileAbsolutePath
-      );
-      generateSass(configuration);
-      console.log(`🦢 Successfully updated with new theme 💫`);
+        const configuration = readConfigurationFile(
+          configurationFileAbsolutePath
+        );
+        generateSass(configuration);
+        console.log(`🦢 Successfully updated with new theme 💫`);
+      }
     }
   )
-  .help().argv;
+  .demandCommand()
+  .showHelpOnFail(true)
+  .help('help', 'Show usage instructions.').argv;
