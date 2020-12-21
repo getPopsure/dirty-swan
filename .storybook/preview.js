@@ -1,6 +1,9 @@
-import { configure } from '@storybook/react';
+import dirtySwanTheme from './dirtySwanTheme';
 
 import '../src/lib/scss/index.scss';
 
-// automatically import all files ending in *.stories.js
-configure(require.context('../src', true, /\.stories\.mdx$/), module);
+export const parameters = {
+  docs: {
+    theme: dirtySwanTheme,
+  },
+};
