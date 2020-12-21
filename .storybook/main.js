@@ -1,13 +1,4 @@
-const path = require('path');
-
 module.exports = {
-  addons: [
-    '@storybook/preset-create-react-app',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        configureJSX: true,
-      },
-    },
-  ],
+  stories: ['../src/**/*.stories.@(tsx|mdx)'],
+  addons: ['@storybook/addon-docs', '@storybook/preset-create-react-app'],
 };
