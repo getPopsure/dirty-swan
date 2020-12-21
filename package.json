@@ -37,8 +37,8 @@
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "release": "yarn build && yarn publish --access public",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
+    "storybook": "start-storybook -p 9009 -s public,storybook-assets",
+    "build-storybook": "build-storybook -s public,storybook-assets",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "eslintConfig": {
