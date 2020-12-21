@@ -4,7 +4,6 @@ import './lib/scss/index.scss';
 import DateSelector from './lib/components/dateSelector';
 import Dropzone from './lib/components/dropzone';
 import SignaturePad from './lib/components/signaturePad';
-import AutocompleteAddress from './lib/components/autocompleteAddress';
 
 function App() {
   return (

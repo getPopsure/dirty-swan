@@ -70,7 +70,7 @@ const DateSelector = ({
     if (calendarDateValue) {
       setDate(calendarDateValue);
     }
-  }, [value]);
+  }, [value]); //eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (
@@ -93,7 +93,7 @@ const DateSelector = ({
         );
       }
     }
-  }, [date]);
+  }, [date]); //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleOnChange = (key: keyof CalendarDate, v: number) => {
     const newValue = { ...date, [key]: v };
