@@ -1,0 +1,60 @@
+@use '../../public/colors' as *;
+
+.ds-spinner {
+  position: relative;
+
+  width: 16px;
+  height: 16px;
+
+  &::before,
+  &::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid $ds-primary-500;
+    border-radius: 16px;
+  }
+
+  &::before {
+    opacity: 0.5;
+    transform: rotate(90deg);
+  }
+
+  &::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    animation: spinner-rotate 0.9s infinite cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  }
+
+  &.ds-spinner__l {
+    width: 48px;
+    height: 48px;
+    &::before,
+    &::after {
+      border-radius: 48px;
+      border-width: 6px;
+    }
+  }
+
+  &.ds-spinner__m {
+    width: 32px;
+    height: 32px;
+    &::before,
+    &::after {
+      border-radius: 32px;
+      border-width: 4px;
+    }
+  }
+}
+
+@keyframes spinner-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
