@@ -7,7 +7,7 @@ import DownloadCloudIcon from './icons/download-cloud';
 import styles from './style.module.scss';
 
 const RADIUS = 140;
-const STROKE = 4;
+const STROKE = 2;
 
 type Status = 'INITIAL' | 'GENERATING' | 'DOWNLOADING' | 'COMPLETED' | 'FAILED';
 
@@ -28,7 +28,7 @@ export default ({
   status: Status;
   handleClick: () => void;
 }) => {
-  const normalizedRadius = RADIUS - STROKE * 2;
+  const normalizedRadius = RADIUS - STROKE / 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 

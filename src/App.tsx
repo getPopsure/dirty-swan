@@ -4,6 +4,7 @@ import './lib/scss/index.scss';
 import DateSelector from './lib/components/dateSelector';
 import Dropzone from './lib/components/dropzone';
 import SignaturePad from './lib/components/signaturePad';
+import DownloadRing from './lib/components/downloadRing';
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
         malesuada laoreet nulla, non maximus ante porta sit amet. Aenean non
         ipsum nec quam gravida convallis vitae sit amet nisi.
       </div>
+      <DownloadRing
+        progress={75}
+        status={'DOWNLOADING'}
+        handleClick={() => {}}
+      />
       <Dropzone
         uploading={true}
         progress={32}
