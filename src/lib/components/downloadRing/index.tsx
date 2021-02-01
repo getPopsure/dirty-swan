@@ -7,7 +7,7 @@ import DownloadCloudIcon from './icons/download-cloud';
 import styles from './style.module.scss';
 
 const RADIUS = 140;
-const STROKE = 2;
+const STROKE = 4;
 
 type Status = 'INITIAL' | 'GENERATING' | 'DOWNLOADING' | 'COMPLETED' | 'FAILED';
 
