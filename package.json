@@ -21,8 +21,10 @@
   "dependencies": {
     "@popsure/public-models": "^0.0.8",
     "classnames": "^2.2.6",
+    "libphonenumber-js": "^1.9.11",
     "moment": "^2.24.0",
     "react-dropzone": "^10.2.1",
+    "react-phone-input-2": "^2.13.9",
     "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
   },
