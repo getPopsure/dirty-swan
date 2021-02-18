@@ -10,6 +10,7 @@ export {
   Input,
   MultiDropzone,
   DownloadRing,
+  PhoneInput,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
