@@ -11,6 +11,7 @@ export {
   MultiDropzone,
   DownloadRing,
   PhoneInput,
+  IbanInput,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
