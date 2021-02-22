@@ -1,0 +1,38 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+
+import IbanInput from '.';
+
+<Meta title="Components/IbanInput" component={IbanInput} />
+
+# IbanInput
+
+IbanInput component is an extension of the Input component, used to collect and format users' IBAN
+
+## Examples
+
+### Empty state
+
+<Preview>
+  <IbanInput value="" onChange={() => {}} placeholder="IBAN" />
+</Preview>
+
+### Filled state
+
+<Preview>
+  <IbanInput
+    value="de1234123412341234"
+    onChange={() => {}}
+    placeholder="IBAN"
+  />
+</Preview>
+
+### Error state
+
+<Preview>
+  <IbanInput
+    value="de1234123412341234"
+    onChange={() => {}}
+    placeholder="IBAN"
+    hasError={true}
+  />
+</Preview>
