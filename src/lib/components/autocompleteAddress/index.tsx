@@ -1,12 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import debounce from 'lodash.debounce';
 import {
   Address,
-  isPartialAddressValid,
   countryNameFromAlphaCode,
+  isPartialAddressValid,
 } from '@popsure/public-models';
 
+import {
+  geocoderAddressComponentToPartialAddress,
+  inlineAddress,
+} from './util';
+
 import styles from './style.module.scss';
+import './style.scss';
 
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
 
@@ -24,57 +31,8 @@ const MAP_CONFIG_OBJ = {
   draggable: false,
 };
 
-export const geocoderAddressComponentToPartialAddress = (
-  input: google.maps.GeocoderAddressComponent[]
-): Partial<Address> => {
-  interface MappedType {
-    key: keyof Address;
-    value: 'long_name' | 'short_name';
-  }
-
-  const mapping: {
-    route: MappedType;
-    street_number: MappedType;
-    postal_code: MappedType;
-    locality: MappedType;
-    country: MappedType;
-  } = {
-    route: {
-      key: 'street',
-      value: 'long_name',
-    },
-    street_number: {
-      key: 'houseNumber',
-      value: 'long_name',
-    },
-    postal_code: {
-      key: 'postcode',
-      value: 'long_name',
-    },
-    locality: {
-      key: 'city',
-      value: 'long_name',
-    },
-    country: {
-      key: 'country',
-      value: 'short_name',
-    },
-  };
-
-  const toReturn: Partial<Address> = {};
-  input.forEach((value) => {
-    const type = value.types[0] as keyof typeof mapping;
-    const mappedValue = mapping[type];
-    if (mappedValue) {
-      toReturn[mappedValue.key] = value[mappedValue.value];
-    }
-  });
-
-  return toReturn;
-};
-
 const AutoCompleteAddress = ({
-  address,
+  address: initialAddress,
   onAddressChange,
 }: {
   address?: Partial<Address>;
@@ -84,6 +42,7 @@ const AutoCompleteAddress = ({
   const autocompleteElement = useRef<HTMLInputElement | null>(null);
   const map = useRef<google.maps.Map | null>(null);
   const marker = useRef<google.maps.Marker | null>(null);
+  const [address, setAddress] = useState(initialAddress);
 
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(
     null
@@ -93,15 +52,31 @@ const AutoCompleteAddress = ({
     houseNumber: false,
   });
 
-  const onPlaceChanged = () => {
-    const newPlace = autocomplete.current?.getPlace();
+  const debouncedSetPlace = useCallback(
+    debounce(
+      (newValue: Partial<Address> | undefined) => setPlaceFromAddress(newValue),
+      1000
+    ),
+    []
+  );
+
+  const onPlaceChanged = (
+    newPlace:
+      | google.maps.places.PlaceResult
+      | undefined = autocomplete.current?.getPlace()
+  ) => {
     if (newPlace && newPlace.geometry) {
       const geocoderAddress = geocoderAddressComponentToPartialAddress(
         newPlace.address_components!
       );
 
       setPlace(newPlace);
-      onAddressChange(geocoderAddress);
+      setAddress(geocoderAddress);
+
+      if (autocompleteElement.current && newPlace.formatted_address) {
+        autocompleteElement.current.value = newPlace.formatted_address;
+      }
+
       setMissingGeocoderFields({
         houseNumber: geocoderAddress.houseNumber === undefined,
         postcode: geocoderAddress.postcode === undefined,
@@ -111,6 +86,40 @@ const AutoCompleteAddress = ({
       map.current?.setZoom(15);
 
       marker.current?.setPosition(newPlace.geometry.location);
+
+      onAddressChange(geocoderAddress);
+    }
+  };
+
+  const setPlaceFromAddress = (address: Partial<Address> | undefined) => {
+    if (!map.current) {
+      return;
+    }
+
+    if (address) {
+      const service = new google.maps.places.PlacesService(map.current);
+      const query = `${address.street ?? ''} ${address.houseNumber ?? ''}, ${
+        address.city ?? ''
+      }, ${address.country ? countryNameFromAlphaCode(address.country) : ''}`;
+
+      service.findPlaceFromQuery(
+        {
+          fields: ['place_id'],
+          query,
+        },
+        (results) => {
+          const firstResult = results && results[0];
+          console.log(firstResult);
+          if (firstResult && firstResult.place_id) {
+            service.getDetails(
+              { placeId: firstResult.place_id },
+              (newPlace) => {
+                onPlaceChanged(newPlace);
+              }
+            );
+          }
+        }
+      );
     }
   };
 
@@ -118,15 +127,16 @@ const AutoCompleteAddress = ({
     const reference = document.getElementById(
       'autocomplete'
     ) as HTMLInputElement;
+
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
       types: ['address'],
       componentRestrictions: { country: 'de' },
     });
+
     autocomplete.current.addListener('place_changed', onPlaceChanged);
+
     if (address && isPartialAddressValid(address)) {
-      reference.value = `${address.street} ${address.houseNumber}, ${
-        address.city
-      }, ${countryNameFromAlphaCode(address.country)}`;
+      reference.value = inlineAddress(address);
     }
 
     map.current = new google.maps.Map(
@@ -142,6 +152,8 @@ const AutoCompleteAddress = ({
     marker.current = new google.maps.Marker({
       map: map.current,
     });
+
+    setPlaceFromAddress(address);
   }, []); // eslint-disable-line
 
   return (
@@ -159,9 +171,6 @@ const AutoCompleteAddress = ({
           data-cy="autocomplete"
           type="text"
           ref={autocompleteElement}
-          onChange={() => {
-            onAddressChange({});
-          }}
         />
         {missingGeocoderFields.houseNumber && (
           <input
@@ -170,7 +179,9 @@ const AutoCompleteAddress = ({
             placeholder="House Number"
             value={address?.houseNumber || ''}
             onChange={({ target: { value } }) => {
-              onAddressChange({ ...address, houseNumber: value });
+              const newAddress = { ...address, houseNumber: value };
+              setAddress(newAddress);
+              debouncedSetPlace(newAddress);
             }}
           />
         )}
@@ -181,7 +192,9 @@ const AutoCompleteAddress = ({
             placeholder="Postcode"
             value={address?.postcode || ''}
             onChange={({ target: { value } }) => {
-              onAddressChange({ ...address, postcode: value });
+              const newAddress = { ...address, postcode: value };
+              setAddress(newAddress);
+              debouncedSetPlace(newAddress);
             }}
           />
         )}
