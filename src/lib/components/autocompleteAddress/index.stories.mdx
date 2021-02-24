@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import { useState } from 'react';
 import AutocompleteAddress from '.';
-import AutocompleteAddressDemo from './demo';
+import { WithoutAddress, WithAddress } from './demo';
 
 <Meta title="JSX/Autocomplete Address" component={AutocompleteAddress} />
 
@@ -28,9 +29,13 @@ Please make sure that you have added the Google Maps API header script before us
 
 ## Default example
 
-<Preview>
-  <AutocompleteAddressDemo />
-</Preview>
+### Input without an address filled
+
+<WithoutAddress />
+
+### Input with an address filled
+
+<WithAddress />
 
 ```typescript
 import React, { useState } from 'react';

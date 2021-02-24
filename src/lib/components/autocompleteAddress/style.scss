@@ -1,0 +1,62 @@
+@use "../../scss/public/font-weight.scss" as *;
+
+.pac-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  cursor: pointer;
+
+  border-top: none;
+
+  font-family: Lato, sans-serif;
+
+  &:hover {
+    background-color: var(--ds-grey-100);
+  }
+}
+
+.pac-item-selected {
+  background-color: var(--ds-primary-100);
+}
+
+.pac-item {
+  padding-left: 16px;
+}
+
+.pac-matched,
+.pac-item-query,
+.pac-item {
+  font-size: 16px;
+  //   font-weight: $p-font-weight-normal;
+}
+
+.pac-icon {
+  display: none;
+}
+
+@keyframes appear-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.pac-container {
+  background-color: white;
+  border: 1px solid var(--ds-grey-300);
+  box-shadow: none;
+  border-radius: 8px;
+  margin-top: 8px;
+  animation-name: appear-in;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+
+  &::after {
+    content: ('');
+    display: none;
+  }
+}

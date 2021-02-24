@@ -1,44 +1,68 @@
 @use "../../scss/public/grid" as *;
+@use "../../scss/public/colors" as *;
 
-.input-container {
-  display: flex;
-  max-width: 100%;
+.input-line {
+  margin-left: -16px;
 
-  & > * {
-    &:first-child {
-      flex: 1 1 auto;
-    }
-
-    &:not(:first-child) {
-      flex: 1 1 50%;
-      margin-left: 16px;
-    }
-  }
-
-  @include p-size-mobile {
-    flex-wrap: wrap;
-
-    margin-top: -16px;
-
-    & > * {
-      margin-top: 16px;
-      margin-left: 0 !important;
-      flex: 1 0 auto !important;
-    }
+  > * {
+    margin-left: 16px;
   }
 }
 
-.map {
-  max-width: 100%;
+.map-container {
+  position: relative;
+
   height: 112px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 
   border-radius: 8px;
 
   transition: 0.3s height ease-in-out, 0.3s margin-top ease-in-out;
 
+  overflow: hidden;
+
   &--hidden {
     height: 0;
     margin: 0;
   }
+}
+
+@keyframes appear-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.appear-in-animate {
+  animation-name: appear-in;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.loading-spinner {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  position: absolute !important;
+  background-color: rgba($ds-primary-500, 0.25);
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+
+  animation-name: appear-in;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
 }
