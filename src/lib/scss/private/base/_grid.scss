@@ -14,32 +14,3 @@
     margin: 0 auto;
   }
 }
-
-// TODO: Deprecate this
-.grid {
-  $grid-size: 12;
-  display: grid;
-  grid-template-columns: repeat($grid-size, 1fr);
-  grid-column-gap: 16px;
-
-  @for $i from 1 through $grid-size + 1 {
-    @for $j from ($i + 1) through $grid-size + 1 {
-      &--cell-#{$i}-#{$j} {
-        grid-column-start: $i;
-        grid-column-end: $j;
-      }
-    }
-  }
-
-  @include grid.p-size-mobile {
-    grid-column-gap: 8px;
-    @for $i from 1 through $grid-size + 1 {
-      @for $j from ($i + 1) through $grid-size + 1 {
-        &--cell--mobile-#{$i}-#{$j} {
-          grid-column-start: $i;
-          grid-column-end: $j;
-        }
-      }
-    }
-  }
-}
