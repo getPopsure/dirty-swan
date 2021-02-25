@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.15.7-alpha.4",
+  "version": "0.15.7",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
