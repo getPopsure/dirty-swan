@@ -12,6 +12,9 @@ export {
   DownloadRing,
   PhoneInput,
   IbanInput,
+  BottomModal,
+  RegularModal,
+  BottomOrRegularModal,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
