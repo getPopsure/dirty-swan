@@ -6,6 +6,11 @@ import Input from './components/input';
 import MultiDropzone from './components/multiDropzone';
 import DownloadRing from './components/downloadRing';
 import IbanInput from './components/ibanInput';
+import {
+  BottomModal,
+  RegularModal,
+  BottomOrRegularModal,
+} from './components/modal';
 
 export {
   DateSelector,
@@ -16,6 +21,9 @@ export {
   MultiDropzone,
   DownloadRing,
   IbanInput,
+  BottomModal,
+  RegularModal,
+  BottomOrRegularModal,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';

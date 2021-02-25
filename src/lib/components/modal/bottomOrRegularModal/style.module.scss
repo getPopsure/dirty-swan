@@ -1,0 +1,16 @@
+@use "../../../scss/public/grid" as *;
+
+.mobile {
+  @include p-size-tablet {
+    display: none;
+  }
+  @include p-size-mobile {
+    display: block !important;
+  }
+}
+
+.desktop {
+  @include p-size-mobile {
+    display: none;
+  }
+}
