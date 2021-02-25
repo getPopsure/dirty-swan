@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.15.7-alpha.3",
+  "version": "0.15.7-alpha.4",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -21,10 +21,8 @@
   "dependencies": {
     "@popsure/public-models": "^0.0.8",
     "classnames": "^2.2.6",
-    "libphonenumber-js": "^1.9.11",
     "moment": "^2.24.0",
     "react-dropzone": "^10.2.1",
-    "react-phone-input-2": "2.12.1",
     "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
   },

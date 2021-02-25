@@ -10,7 +10,6 @@ export {
   Input,
   MultiDropzone,
   DownloadRing,
-  PhoneInput,
   IbanInput,
 } from './lib';
 
