@@ -11,6 +11,12 @@ import {
   RegularModal,
   BottomOrRegularModal,
 } from './components/modal';
+import {
+  CardWithTopLeftIcon,
+  CardWithLeftIcon,
+  CardWithTopIcon,
+  InfoCard,
+} from './components/cards';
 
 export {
   DateSelector,
@@ -24,6 +30,10 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
+  CardWithTopLeftIcon,
+  CardWithLeftIcon,
+  CardWithTopIcon,
+  InfoCard,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
