@@ -1,0 +1,16 @@
+.container {
+  padding: 24px 24px 24px 32px;
+  align-items: center;
+
+  &--small {
+    padding: 16px 24px 16px 32px;
+  }
+}
+
+.left-icon {
+  margin-right: 32px;
+}
+
+.right-icon {
+  margin-left: auto;
+}
