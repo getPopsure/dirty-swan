@@ -1,10 +1,10 @@
-import { Meta, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import { useState } from "react";
-import AutocompleteAddress from ".";
-import AutocompleteAddressDemo from "./demo";
+import { useState } from 'react';
+import AutocompleteAddress from '.';
+import AutocompleteAddressDemo from './demo';
 
-<Meta title="Components/Autocomplete Address" component={AutocompleteAddress} />
+<Meta title="JSX/Autocomplete Address" component={AutocompleteAddress} />
 
 # Autocomplete Address
 
@@ -33,10 +33,10 @@ Please make sure that you have added the Google Maps API header script before us
 </Preview>
 
 ```typescript
-import React, { useState } from "react";
-import { Address } from "@popsure/public-models";
+import React, { useState } from 'react';
+import { Address } from '@popsure/public-models';
 
-import AutoCompleteAddress from ".";
+import AutoCompleteAddress from '.';
 
 export default () => {
   const [address, setAddress] = useState<Address>(undefined);
