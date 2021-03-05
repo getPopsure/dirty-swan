@@ -14,6 +14,10 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
+  CardWithTopLeftIcon,
+  CardWithLeftIcon,
+  CardWithTopIcon,
+  InfoCard,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
