@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+import Input from '../input';
 import {
   Address,
   countryNameFromAlphaCode,
@@ -38,6 +39,8 @@ const AutoCompleteAddress = ({
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
 }) => {
+  const [manualAddressEntry, setManualAddressEntry] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const autocomplete = useRef<google.maps.places.Autocomplete | null>(null);
   const autocompleteElement = useRef<HTMLInputElement | null>(null);
   const map = useRef<google.maps.Map | null>(null);
@@ -47,10 +50,6 @@ const AutoCompleteAddress = ({
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(
     null
   );
-  const [missingGeocoderFields, setMissingGeocoderFields] = useState({
-    postcode: false,
-    houseNumber: false,
-  });
 
   const debouncedSetPlace = useCallback(
     debounce(
@@ -59,6 +58,17 @@ const AutoCompleteAddress = ({
     ),
     []
   );
+
+  useEffect(() => {
+    if (address) {
+      if (autocompleteElement.current && address.street) {
+        autocompleteElement.current.value = address.street;
+      }
+
+      onAddressChange(address);
+      setManualAddressEntry(true);
+    }
+  }, [address, onAddressChange]);
 
   const onPlaceChanged = (
     newPlace:
@@ -71,23 +81,15 @@ const AutoCompleteAddress = ({
       );
 
       setPlace(newPlace);
-      setAddress(geocoderAddress);
-
-      if (autocompleteElement.current && newPlace.formatted_address) {
-        autocompleteElement.current.value = newPlace.formatted_address;
-      }
-
-      setMissingGeocoderFields({
-        houseNumber: geocoderAddress.houseNumber === undefined,
-        postcode: geocoderAddress.postcode === undefined,
-      });
+      setAddress((oldValue) => ({
+        ...geocoderAddress,
+        additionalInformation: oldValue?.additionalInformation,
+      }));
 
       map.current?.panTo(newPlace.geometry.location);
       map.current?.setZoom(15);
 
       marker.current?.setPosition(newPlace.geometry.location);
-
-      onAddressChange(geocoderAddress);
     }
   };
 
@@ -101,7 +103,7 @@ const AutoCompleteAddress = ({
       const query = `${address.street ?? ''} ${address.houseNumber ?? ''}, ${
         address.city ?? ''
       }, ${address.country ? countryNameFromAlphaCode(address.country) : ''}`;
-
+      setIsLoading(true);
       service.findPlaceFromQuery(
         {
           fields: ['place_id'],
@@ -109,7 +111,6 @@ const AutoCompleteAddress = ({
         },
         (results) => {
           const firstResult = results && results[0];
-          console.log(firstResult);
           if (firstResult && firstResult.place_id) {
             service.getDetails(
               { placeId: firstResult.place_id },
@@ -118,6 +119,7 @@ const AutoCompleteAddress = ({
               }
             );
           }
+          setIsLoading(false);
         }
       );
     }
@@ -134,10 +136,6 @@ const AutoCompleteAddress = ({
     });
 
     autocomplete.current.addListener('place_changed', onPlaceChanged);
-
-    if (address && isPartialAddressValid(address)) {
-      reference.value = inlineAddress(address);
-    }
 
     map.current = new google.maps.Map(
       document.getElementById('map')!,
@@ -156,49 +154,106 @@ const AutoCompleteAddress = ({
     setPlaceFromAddress(address);
   }, []); // eslint-disable-line
 
+  const handleEnterAddressManually = () => {
+    setManualAddressEntry(true);
+  };
+
   return (
     <>
       <div
-        id="map"
-        className={classNames(`ws8 bg-grey-500 ${styles.map}`, {
-          [styles['map--hidden']]: place === null,
+        className={classNames(`wmx8 bg-grey-500 ${styles['map-container']}`, {
+          [styles['map-container--hidden']]: place === null,
         })}
-      />
-      <div className={`${styles['input-container']} ws8`}>
-        <input
-          className="p-input"
-          id="autocomplete"
-          data-cy="autocomplete"
-          type="text"
-          ref={autocompleteElement}
-        />
-        {missingGeocoderFields.houseNumber && (
-          <input
-            className="p-input"
-            data-cy="autocomplete-house-number"
-            placeholder="House Number"
-            value={address?.houseNumber || ''}
-            onChange={({ target: { value } }) => {
-              const newAddress = { ...address, houseNumber: value };
-              setAddress(newAddress);
-              debouncedSetPlace(newAddress);
-            }}
-          />
-        )}
-        {missingGeocoderFields.postcode && (
-          <input
-            className="p-input"
-            data-cy="autocomplete-postcode"
-            placeholder="Postcode"
-            value={address?.postcode || ''}
-            onChange={({ target: { value } }) => {
-              const newAddress = { ...address, postcode: value };
-              setAddress(newAddress);
-              debouncedSetPlace(newAddress);
-            }}
-          />
+      >
+        <div className={`${styles.map}`} id="map" />
+        {isLoading && (
+          <div className={styles['loading-spinner']}>
+            <div className="ds-spinner ds-spinner__m" />
+          </div>
         )}
       </div>
+      <div className={`wmx8`}>
+        <div className={`d-flex ${styles['input-line']}`}>
+          <input
+            className="p-input"
+            id="autocomplete"
+            data-cy="autocomplete"
+            type="text"
+            ref={autocompleteElement}
+          />
+          {manualAddressEntry && (
+            <Input
+              className="wmx2"
+              data-cy="autocomplete-house-number"
+              placeholder="House Number"
+              value={address?.houseNumber || ''}
+              onChange={({ target: { value } }) => {
+                const newAddress = { ...address, houseNumber: value };
+                setAddress(newAddress);
+                debouncedSetPlace(newAddress);
+              }}
+            />
+          )}
+        </div>
+        {manualAddressEntry && (
+          <>
+            <Input
+              className="mt16"
+              data-cy="autocomplete-additional-info"
+              placeholder="Additional information (C/O, appartment…)"
+              value={address?.additionalInformation || ''}
+              onChange={({ target: { value } }) => {
+                const newAddress = { ...address, additionalInformation: value };
+                setAddress(newAddress);
+              }}
+            />
+            <div className={`d-flex mt16 ${styles['input-line']}`}>
+              <Input
+                data-cy="autocomplete-postcode"
+                placeholder="Postcode"
+                value={address?.postcode || ''}
+                onChange={({ target: { value } }) => {
+                  const newAddress = { ...address, postcode: value };
+                  setAddress(newAddress);
+                  debouncedSetPlace(newAddress);
+                }}
+              />
+              <Input
+                data-cy="autocomplete-city"
+                placeholder="City"
+                value={address?.city || ''}
+                onChange={({ target: { value } }) => {
+                  const newAddress = { ...address, city: value };
+                  setAddress(newAddress);
+                  debouncedSetPlace(newAddress);
+                }}
+              />
+              <Input
+                data-cy="autocomplete-country"
+                placeholder="Country"
+                value={countryNameFromAlphaCode(address?.country ?? '')}
+                disabled={true}
+                onChange={({ target: { value } }) => {
+                  const newAddress = { ...address, country: value };
+                  setAddress(newAddress);
+                  debouncedSetPlace(newAddress);
+                }}
+              />
+            </div>
+          </>
+        )}
+      </div>
+      {manualAddressEntry === false && (
+        <div className="p-p mt8">
+          Or{' '}
+          <span
+            className="p-a fw-bold c-pointer"
+            onClick={handleEnterAddressManually}
+          >
+            Enter address manually
+          </span>
+        </div>
+      )}
     </>
   );
 };
