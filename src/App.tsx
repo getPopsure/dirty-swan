@@ -4,6 +4,7 @@ import './lib/scss/index.scss';
 import DateSelector from './lib/components/dateSelector';
 import Dropzone from './lib/components/dropzone';
 import SignaturePad from './lib/components/signaturePad';
+import { CardWithLeftIcon } from './lib/components/cards';
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
       <div className="mt80">
         {/* <AutocompleteAddress onAddressChange={(a) => console.log(a)} /> */}
       </div>
+      <CardWithLeftIcon
+        title="Lorem ipsum"
+        titleSize="small"
+        className="wmx6 mt8"
+        rightIcon="arrow"
+      >
+        Praesent euismod porta odio at tempus. Aenean urna massa, facilisis
+        malesuada eros at, rhoncus imperdiet nunc
+      </CardWithLeftIcon>
     </div>
   );
 }

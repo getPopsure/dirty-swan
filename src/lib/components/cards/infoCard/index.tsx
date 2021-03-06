@@ -38,7 +38,7 @@ export default ({
         />
       )}
       <div className="p-h4 ta-center mt64">{title}</div>
-      {children}
+      <p className="p-p mt16">{children}</p>
     </div>
   </div>
 );
