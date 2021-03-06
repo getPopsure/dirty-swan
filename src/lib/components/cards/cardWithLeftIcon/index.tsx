@@ -51,7 +51,7 @@ export default ({
           />
         )}
       </div>
-      {children}
+      <p className="p-p mt8">{children}</p>
     </div>
   </div>
 );

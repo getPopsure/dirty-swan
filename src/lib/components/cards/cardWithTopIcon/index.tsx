@@ -41,7 +41,7 @@ export default ({
           />
         )}
       </div>
-      {children}
+      <p className="p-p mt16">{children}</p>
     </div>
   </>
 );

@@ -6,13 +6,10 @@ import InfoCard from './infoCard';
 type CardState = 'actionable' | 'static' | 'muted';
 
 export type CardProps = {
-  className?: string;
   title: string;
   children: React.ReactNode;
   state?: CardState;
-  onClick?: () => void;
-  tabIndex?: number;
-};
+} & JSX.IntrinsicElements['div'];
 
 export const headingForTitleSize = (
   titleSize: 'small' | 'medium' | 'big'
