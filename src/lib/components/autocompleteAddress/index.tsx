@@ -167,11 +167,12 @@ const AutoCompleteAddress = ({
       </div>
       <div className={`wmx8`}>
         <div className={`d-flex ${styles['input-line']}`}>
-          <input
-            className="p-input"
+          <Input
+            className="w100"
             id="autocomplete"
             data-cy="autocomplete"
             type="text"
+            placeholder="Street"
             ref={autocompleteElement}
           />
           {manualAddressEntry && (
