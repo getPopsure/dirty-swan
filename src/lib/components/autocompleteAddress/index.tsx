@@ -7,7 +7,6 @@ import { Address, countryNameFromAlphaCode } from '@popsure/public-models';
 import { geocoderAddressComponentToPartialAddress } from './util';
 
 import styles from './style.module.scss';
-import './style.scss';
 
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
 
@@ -181,7 +180,8 @@ const AutoCompleteAddress = ({
               data-cy="autocomplete-house-number"
               placeholder="House Number"
               value={address?.houseNumber || ''}
-              onChange={({ target: { value } }) => {
+              onChange={({ target: { value }, preventDefault }) => {
+                preventDefault();
                 const newAddress = { ...address, houseNumber: value };
                 setAddress(newAddress);
                 debouncedSetPlace(newAddress);
@@ -196,7 +196,8 @@ const AutoCompleteAddress = ({
               data-cy="autocomplete-additional-info"
               placeholder="Additional information (C/O, appartment…)"
               value={address?.additionalInformation || ''}
-              onChange={({ target: { value } }) => {
+              onChange={({ target: { value }, preventDefault }) => {
+                preventDefault();
                 const newAddress = { ...address, additionalInformation: value };
                 setAddress(newAddress);
               }}
@@ -206,7 +207,8 @@ const AutoCompleteAddress = ({
                 data-cy="autocomplete-postcode"
                 placeholder="Postcode"
                 value={address?.postcode || ''}
-                onChange={({ target: { value } }) => {
+                onChange={({ target: { value }, preventDefault }) => {
+                  preventDefault();
                   const newAddress = { ...address, postcode: value };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
@@ -216,7 +218,8 @@ const AutoCompleteAddress = ({
                 data-cy="autocomplete-city"
                 placeholder="City"
                 value={address?.city || ''}
-                onChange={({ target: { value } }) => {
+                onChange={({ target: { value }, preventDefault }) => {
+                  preventDefault();
                   const newAddress = { ...address, city: value };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
@@ -227,7 +230,8 @@ const AutoCompleteAddress = ({
                 placeholder="Country"
                 value={countryNameFromAlphaCode(address?.country ?? '')}
                 disabled={true}
-                onChange={({ target: { value } }) => {
+                onChange={({ target: { value }, preventDefault }) => {
+                  preventDefault();
                   const newAddress = { ...address, country: value };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
