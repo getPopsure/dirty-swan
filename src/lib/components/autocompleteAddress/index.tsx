@@ -2,16 +2,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import Input from '../input';
-import {
-  Address,
-  countryNameFromAlphaCode,
-  isPartialAddressValid,
-} from '@popsure/public-models';
+import { Address, countryNameFromAlphaCode } from '@popsure/public-models';
 
-import {
-  geocoderAddressComponentToPartialAddress,
-  inlineAddress,
-} from './util';
+import { geocoderAddressComponentToPartialAddress } from './util';
 
 import styles from './style.module.scss';
 import './style.scss';
