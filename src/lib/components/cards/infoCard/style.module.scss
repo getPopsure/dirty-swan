@@ -1,26 +1,41 @@
+@keyframes appear-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .root-container {
   position: relative;
   padding-top: 40px;
+
+  &:hover {
+    .right-icon {
+      visibility: visible;
+
+      animation-name: appear-in;
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+  }
 }
 
-.top-icon-background {
+.top-icon {
   position: absolute;
-
-  width: 80px;
-  height: 80px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   left: 50%;
   transform: translateX(-50%) translateY(-40px);
 
-  background-color: var(--ds-primary-100);
-  border-radius: 50%;
+  &--muted {
+    opacity: 0.25;
+  }
 }
 
 .right-icon {
+  visibility: hidden;
   position: absolute;
   top: 64px;
   right: 24px;

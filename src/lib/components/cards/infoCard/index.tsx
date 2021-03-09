@@ -16,15 +16,15 @@ export default ({
   rightIcon?: 'info' | Icon;
 }) => (
   <div className={`${styles['root-container']} ${className ?? ''}`} {...props}>
-    <div className={styles['top-icon-background']}>
-      <img
-        src={topIcon.src}
-        alt={topIcon.alt}
-        className={styles['top-icon']}
-        width="48px"
-        height="48px"
-      />
-    </div>
+    <img
+      src={topIcon.src}
+      alt={topIcon.alt}
+      className={`${styles['top-icon']} ${
+        state === 'muted' ? styles['top-icon--muted'] : ''
+      } `}
+      width="80px"
+      height="80px"
+    />
     <div
       className={`${associatedClassForCardState(state)} ${styles.container}`}
     >
