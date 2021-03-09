@@ -6,6 +6,8 @@
   border: 2px solid transparent;
   box-shadow: 0px 2px 28px rgba(97, 96, 162, 0.1);
 
+  transition: border-color 0.3s;
+
   &--actionable {
     cursor: pointer;
     @extend .ds-card;
