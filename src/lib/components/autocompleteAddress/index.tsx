@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
+import isEqual from 'lodash.isequal';
 import Input from '../input';
 import { Address, countryNameFromAlphaCode } from '@popsure/public-models';
 
@@ -9,6 +10,8 @@ import { geocoderAddressComponentToPartialAddress } from './util';
 import styles from './style.module.scss';
 
 const GERMANY_LAT_LNG = { lat: 51.54317, lng: 10.3181503 };
+
+const GERMANY_ALPHA_CODE = 'DE';
 
 const MAP_CONFIG_OBJ = {
   zoom: 6,
@@ -57,7 +60,9 @@ const AutoCompleteAddress = ({
         autocompleteElement.current.value = address.street;
       }
 
-      onAddressChange(address);
+      if (isEqual(address, initialAddress) === false) {
+        onAddressChange({ ...address });
+      }
       setManualAddressEntry(true);
     }
   }, [address, onAddressChange]);
@@ -127,7 +132,7 @@ const AutoCompleteAddress = ({
 
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
       types: ['address'],
-      componentRestrictions: { country: 'de' },
+      componentRestrictions: { country: GERMANY_ALPHA_CODE },
     });
 
     autocomplete.current.addListener('place_changed', onPlaceChanged);
@@ -190,6 +195,7 @@ const AutoCompleteAddress = ({
                   const newAddress = {
                     ...address,
                     street: e.target.value,
+                    country: GERMANY_ALPHA_CODE,
                   };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
@@ -204,6 +210,7 @@ const AutoCompleteAddress = ({
                   const newAddress = {
                     ...address,
                     houseNumber: e.target.value,
+                    country: GERMANY_ALPHA_CODE,
                   };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
@@ -219,6 +226,7 @@ const AutoCompleteAddress = ({
                 const newAddress = {
                   ...address,
                   additionalInformation: e.target.value,
+                  country: GERMANY_ALPHA_CODE,
                 };
                 setAddress(newAddress);
               }}
@@ -230,7 +238,11 @@ const AutoCompleteAddress = ({
                 placeholder="Postcode"
                 value={address?.postcode || ''}
                 onChange={(e) => {
-                  const newAddress = { ...address, postcode: e.target.value };
+                  const newAddress = {
+                    ...address,
+                    postcode: e.target.value,
+                    country: GERMANY_ALPHA_CODE,
+                  };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
                 }}
@@ -241,7 +253,11 @@ const AutoCompleteAddress = ({
                 placeholder="City"
                 value={address?.city || ''}
                 onChange={(e) => {
-                  const newAddress = { ...address, city: e.target.value };
+                  const newAddress = {
+                    ...address,
+                    city: e.target.value,
+                    country: GERMANY_ALPHA_CODE,
+                  };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
                 }}
