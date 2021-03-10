@@ -65,7 +65,8 @@ const AutoCompleteAddress = ({
   const onPlaceChanged = (
     newPlace:
       | google.maps.places.PlaceResult
-      | undefined = autocomplete.current?.getPlace()
+      | undefined = autocomplete.current?.getPlace(),
+    updateAddress: boolean = true
   ) => {
     if (newPlace && newPlace.geometry) {
       const geocoderAddress = geocoderAddressComponentToPartialAddress(
@@ -73,10 +74,12 @@ const AutoCompleteAddress = ({
       );
 
       setPlace(newPlace);
-      setAddress((oldValue) => ({
-        ...geocoderAddress,
-        additionalInformation: oldValue?.additionalInformation,
-      }));
+      if (updateAddress) {
+        setAddress((oldValue) => ({
+          ...geocoderAddress,
+          additionalInformation: oldValue?.additionalInformation,
+        }));
+      }
 
       map.current?.panTo(newPlace.geometry.location);
       map.current?.setZoom(15);
@@ -107,7 +110,7 @@ const AutoCompleteAddress = ({
             service.getDetails(
               { placeId: firstResult.place_id },
               (newPlace) => {
-                onPlaceChanged(newPlace);
+                onPlaceChanged(newPlace, false);
               }
             );
           }
@@ -165,74 +168,80 @@ const AutoCompleteAddress = ({
         )}
       </div>
       <div className={`wmx8`}>
-        <div className={`d-flex ${styles['input-line']}`}>
+        {manualAddressEntry === false ? (
           <Input
             className="w100"
             id="autocomplete"
             data-cy="autocomplete"
             type="text"
-            placeholder="Street"
+            placeholder="Search for address"
             ref={autocompleteElement}
           />
-          {manualAddressEntry && (
-            <Input
-              className="wmx2"
-              data-cy="autocomplete-house-number"
-              placeholder="House Number"
-              value={address?.houseNumber || ''}
-              onChange={({ target: { value }, preventDefault }) => {
-                preventDefault();
-                const newAddress = { ...address, houseNumber: value };
-                setAddress(newAddress);
-                debouncedSetPlace(newAddress);
-              }}
-            />
-          )}
-        </div>
-        {manualAddressEntry && (
+        ) : (
           <>
+            <div className={`d-flex ${styles['input-line']}`}>
+              <Input
+                className="w100"
+                data-cy="autocomplete"
+                type="text"
+                placeholder="Street"
+                value={address?.street || ''}
+                onChange={(e) => {
+                  const newAddress = {
+                    ...address,
+                    street: e.target.value,
+                  };
+                  setAddress(newAddress);
+                  debouncedSetPlace(newAddress);
+                }}
+              />
+              <Input
+                className={`wmx2 ${styles['house-number-input']}`}
+                data-cy="autocomplete-house-number"
+                placeholder="House Number"
+                value={address?.houseNumber || ''}
+                onChange={(e) => {
+                  const newAddress = {
+                    ...address,
+                    houseNumber: e.target.value,
+                  };
+                  setAddress(newAddress);
+                  debouncedSetPlace(newAddress);
+                }}
+              />
+            </div>
             <Input
               className="mt16"
               data-cy="autocomplete-additional-info"
               placeholder="Additional information (C/O, appartment…)"
               value={address?.additionalInformation || ''}
-              onChange={({ target: { value }, preventDefault }) => {
-                preventDefault();
-                const newAddress = { ...address, additionalInformation: value };
+              onChange={(e) => {
+                const newAddress = {
+                  ...address,
+                  additionalInformation: e.target.value,
+                };
                 setAddress(newAddress);
               }}
             />
             <div className={`d-flex mt16 ${styles['input-line']}`}>
               <Input
+                className="w100"
                 data-cy="autocomplete-postcode"
                 placeholder="Postcode"
                 value={address?.postcode || ''}
-                onChange={({ target: { value }, preventDefault }) => {
-                  preventDefault();
-                  const newAddress = { ...address, postcode: value };
+                onChange={(e) => {
+                  const newAddress = { ...address, postcode: e.target.value };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
                 }}
               />
               <Input
+                className="w100"
                 data-cy="autocomplete-city"
                 placeholder="City"
                 value={address?.city || ''}
-                onChange={({ target: { value }, preventDefault }) => {
-                  preventDefault();
-                  const newAddress = { ...address, city: value };
-                  setAddress(newAddress);
-                  debouncedSetPlace(newAddress);
-                }}
-              />
-              <Input
-                data-cy="autocomplete-country"
-                placeholder="Country"
-                value={countryNameFromAlphaCode(address?.country ?? '')}
-                disabled={true}
-                onChange={({ target: { value }, preventDefault }) => {
-                  preventDefault();
-                  const newAddress = { ...address, country: value };
+                onChange={(e) => {
+                  const newAddress = { ...address, city: e.target.value };
                   setAddress(newAddress);
                   debouncedSetPlace(newAddress);
                 }}
