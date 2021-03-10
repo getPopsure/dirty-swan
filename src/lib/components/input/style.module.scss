@@ -13,13 +13,15 @@
   line-height: 12px;
 
   opacity: 1;
+}
 
+.input:focus ~ .placeholder {
   color: var(--ds-primary-500);
 }
 
 .input {
   box-sizing: border-box;
-  padding-top: 8.5px;
+  padding-top: 9px;
 
   font-family: inherit;
 
