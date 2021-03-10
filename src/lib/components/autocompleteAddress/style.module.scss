@@ -7,6 +7,20 @@
   > * {
     margin-left: 16px;
   }
+
+  @include p-size-mobile {
+    flex-direction: column;
+
+    > *:not(:first-child) {
+      margin-top: 16px;
+    }
+  }
+}
+
+.house-number-input {
+  @include p-size-mobile {
+    max-width: none;
+  }
 }
 
 .map-container {

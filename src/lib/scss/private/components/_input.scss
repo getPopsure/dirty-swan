@@ -19,8 +19,10 @@
 
   color: $ds-grey-900;
 
+  transition: box-shadow 0.3s;
+
   &::placeholder {
-    color: $ds-grey-300;
+    color: $ds-grey-500;
   }
 
   &:disabled {
