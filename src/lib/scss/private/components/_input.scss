@@ -214,6 +214,8 @@ input:checked[type='checkbox'] + .p-label--bordered {
   background-repeat: no-repeat;
   background-position: right center;
 
+  transition: box-shadow 0.3s;
+
   &:hover {
     color: $ds-grey-700 !important;
     border-color: $ds-primary-500;
@@ -226,5 +228,9 @@ input:checked[type='checkbox'] + .p-label--bordered {
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px $ds-primary-500;
+  }
+
+  & option {
+    font-family: Arial, Helvetica, sans-serif;
   }
 }
