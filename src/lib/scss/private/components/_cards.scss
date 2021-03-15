@@ -25,4 +25,8 @@
     @extend .ds-card;
     opacity: 0.25;
   }
+
+  &--no-dropshadow {
+    box-shadow: none;
+  }
 }

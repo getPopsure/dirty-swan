@@ -15,6 +15,7 @@ export default ({
   topIcon,
   rightIcon,
   state = 'actionable',
+  dropshadow = true,
   ...props
 }: CardProps & {
   topIcon: Icon;
@@ -23,7 +24,7 @@ export default ({
 }) => (
   <>
     <div
-      className={`d-flex ${associatedClassForCardState(state)} ${
+      className={`d-flex ${associatedClassForCardState(state, dropshadow)} ${
         styles.container
       } ${className ?? ''}`}
       {...props}

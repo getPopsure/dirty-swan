@@ -15,6 +15,7 @@ export default ({
   leftIcon,
   rightIcon,
   state = 'actionable',
+  dropshadow = true,
   ...props
 }: CardProps & {
   titleSize?: 'medium' | 'big';
@@ -22,9 +23,9 @@ export default ({
   rightIcon?: 'arrow' | Icon;
 }) => (
   <div
-    className={`${associatedClassForCardState(state)} ${styles.container} ${
-      className ?? ''
-    }`}
+    className={`${associatedClassForCardState(state, dropshadow)} ${
+      styles.container
+    } ${className ?? ''}`}
     {...props}
   >
     <div className={styles['title-container']}>
