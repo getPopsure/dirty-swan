@@ -9,6 +9,7 @@ export type CardProps = {
   title: string;
   children: React.ReactNode;
   state?: CardState;
+  dropshadow?: boolean;
 } & JSX.IntrinsicElements['div'];
 
 export const headingForTitleSize = (
@@ -24,15 +25,25 @@ export const headingForTitleSize = (
   }
 };
 
-export const associatedClassForCardState = (state: CardState): string => {
-  switch (state) {
-    case 'actionable':
-      return 'ds-card--actionable';
-    case 'muted':
-      return 'ds-card--muted';
-    case 'static':
-      return 'ds-card';
+export const associatedClassForCardState = (
+  state: CardState,
+  dropshadow: boolean
+): string => {
+  const baseClass = (() => {
+    switch (state) {
+      case 'actionable':
+        return 'ds-card--actionable';
+      case 'muted':
+        return 'ds-card--muted';
+      case 'static':
+        return 'ds-card';
+    }
+  })();
+
+  if (dropshadow === false) {
+    return `${baseClass} ds-card--no-dropshadow`;
   }
+  return baseClass;
 };
 
 export { CardWithTopLeftIcon, CardWithLeftIcon, CardWithTopIcon, InfoCard };

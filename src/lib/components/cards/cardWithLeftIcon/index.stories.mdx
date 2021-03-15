@@ -7,13 +7,14 @@ import { featherLogo } from '../icons';
 
 # Card with left icon
 
-| attribute | unit                                                                                 | description                                       | default value | required |
-| --------- | ------------------------------------------------------------------------------------ | ------------------------------------------------- | ------------- | -------- |
-| title     | string                                                                               | The title text that needs to be displayed         | n/a           | true     |
-| titleSize | [Title Size (s,m,b)](?path=/story/jsx-cards-intro--page#title-size-small-medium-big) | Size of the title                                 | medium        | false    |
-| leftIcon  | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the left hand side of the card  | n/a           | false    |
-| rightIcon | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the right hand side of the card | n/a           | false    |
-| state     | [Card State](?path=/story/jsx-cards-intro--page#card-state)                          | State that describe the interation with the card  | actionable    | false    |
+| attribute  | unit                                                                                 | description                                       | default value | required |
+| ---------- | ------------------------------------------------------------------------------------ | ------------------------------------------------- | ------------- | -------- |
+| title      | string                                                                               | The title text that needs to be displayed         | n/a           | true     |
+| titleSize  | [Title Size (s,m,b)](?path=/story/jsx-cards-intro--page#title-size-small-medium-big) | Size of the title                                 | medium        | false    |
+| leftIcon   | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the left hand side of the card  | n/a           | false    |
+| rightIcon  | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the right hand side of the card | n/a           | false    |
+| state      | [Card State](?path=/story/jsx-cards-intro--page#card-state)                          | State that describe the interation with the card  | actionable    | false    |
+| dropshadow | boolean                                                                              | If the card should have a box-shadow or not       | true          | false    |
 
 <Preview>
   <>
@@ -68,6 +69,19 @@ import { featherLogo } from '../icons';
     </CardWithLeftIcon>
     <h4 className="p-h4 mt24">No left icon and right icon</h4>
     <CardWithLeftIcon title="Lorem ipsum" titleSize="big" className="wmx6 mt8">
+      Praesent euismod porta odio at tempus.{' '}
+      <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
+      eros at, rhoncus imperdiet nunc
+    </CardWithLeftIcon>
+    <h4 className="p-h4 mt24">No dropshadow</h4>
+    <CardWithLeftIcon
+      title="Lorem ipsum"
+      titleSize="medium"
+      className="wmx6 mt8"
+      rightIcon="arrow"
+      leftIcon={featherLogo}
+      dropshadow={false}
+    >
       Praesent euismod porta odio at tempus.{' '}
       <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
       eros at, rhoncus imperdiet nunc

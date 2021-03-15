@@ -7,13 +7,14 @@ import { featherLogo } from '../icons';
 
 # Card with top icon
 
-| attribute | unit                                                                                 | description                                      | default value | required |
-| --------- | ------------------------------------------------------------------------------------ | ------------------------------------------------ | ------------- | -------- |
-| title     | string                                                                               | The title text that needs to be displayed        | n/a           | true     |
-| titleSize | [Title Size (s,m,b)](?path=/story/jsx-cards-intro--page#title-size-small-medium-big) | Size of the title                                | medium        | false    |
-| topIcon   | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the top of the card            | n/a           | true     |
-| rightIcon | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the right of the title         | n/a           | false    |
-| state     | [Card State](?path=/story/jsx-cards-intro--page#card-state)                          | State that describe the interation with the card | actionable    | false    |
+| attribute  | unit                                                                                 | description                                      | default value | required |
+| ---------- | ------------------------------------------------------------------------------------ | ------------------------------------------------ | ------------- | -------- |
+| title      | string                                                                               | The title text that needs to be displayed        | n/a           | true     |
+| titleSize  | [Title Size (s,m,b)](?path=/story/jsx-cards-intro--page#title-size-small-medium-big) | Size of the title                                | medium        | false    |
+| topIcon    | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the top of the card            | n/a           | true     |
+| rightIcon  | [Icon](?path=/story/jsx-cards-intro--page#icon)                                      | Icon displayed on the right of the title         | n/a           | false    |
+| state      | [Card State](?path=/story/jsx-cards-intro--page#card-state)                          | State that describe the interation with the card | actionable    | false    |
+| dropshadow | boolean                                                                              | If the card should have a box-shadow or not      | true          | false    |
 
 <Preview>
   <>
@@ -71,6 +72,18 @@ import { featherLogo } from '../icons';
       topIcon={featherLogo}
       titleSize="small"
       className="wmx6 mt8"
+    >
+      Praesent euismod porta odio at tempus.{' '}
+      <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
+      eros at, rhoncus imperdiet nunc
+    </CardWithTopIcon>
+    <h4 className="p-h4 mt24">No dropshadow</h4>
+    <CardWithTopIcon
+      title="Lorem ipsum"
+      topIcon={featherLogo}
+      titleSize="small"
+      className="wmx6 mt8"
+      dropshadow={false}
     >
       Praesent euismod porta odio at tempus.{' '}
       <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada

@@ -15,6 +15,7 @@ export default ({
   leftIcon,
   rightIcon,
   state = 'actionable',
+  dropshadow = true,
   ...props
 }: CardProps & {
   titleSize?: 'small' | 'medium' | 'big';
@@ -22,7 +23,7 @@ export default ({
   rightIcon?: 'arrow' | Icon;
 }) => (
   <div
-    className={`${associatedClassForCardState(state)} d-flex ${
+    className={`${associatedClassForCardState(state, dropshadow)} d-flex ${
       styles.container
     } ${className ?? ''} ${
       titleSize === 'small' ? styles['container--small'] : ''
