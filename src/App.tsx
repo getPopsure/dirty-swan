@@ -5,6 +5,7 @@ import DateSelector from './lib/components/dateSelector';
 import Dropzone from './lib/components/dropzone';
 import SignaturePad from './lib/components/signaturePad';
 import { CardWithLeftIcon } from './lib/components/cards';
+import AutocompleteAddress from './lib/components/autocompleteAddress';
 
 function App() {
   return (
@@ -33,7 +34,10 @@ function App() {
         />
       </div>
       <div className="mt80">
-        {/* <AutocompleteAddress onAddressChange={(a) => console.log(a)} /> */}
+        <AutocompleteAddress
+          apiKey="AIzaSyDIWFI5l_8A__M3KU8_Z-1-kxJN7icwAps"
+          onAddressChange={(a) => console.log(a)}
+        />
       </div>
       <CardWithLeftIcon
         title="Lorem ipsum"
