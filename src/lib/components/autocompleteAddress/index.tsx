@@ -27,10 +27,30 @@ const MAP_CONFIG_OBJ = {
   draggable: false,
 };
 
+const loadGoogleMapsApiDynamically = (callback: () => void, apiKey: string) => {
+  const existingScript = document.getElementById('googleMapsImportScript');
+
+  if (existingScript) {
+    return;
+  }
+
+  const googleMapImportScript = document.createElement('script');
+  googleMapImportScript.id = 'googleMapsImportScript';
+  googleMapImportScript.type = 'text/javascript';
+  googleMapImportScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+  document.head.appendChild(googleMapImportScript);
+
+  googleMapImportScript.onload = () => {
+    callback();
+  };
+};
+
 const AutoCompleteAddress = ({
+  apiKey,
   address: initialAddress,
   onAddressChange,
 }: {
+  apiKey: string;
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
 }) => {
@@ -41,6 +61,13 @@ const AutoCompleteAddress = ({
   const map = useRef<google.maps.Map | null>(null);
   const marker = useRef<google.maps.Marker | null>(null);
   const [address, setAddress] = useState(initialAddress);
+  const [hasLoadedGoogleAPI, setHasLoadedGoogleAPI] = useState(
+    window.google !== undefined
+  );
+
+  loadGoogleMapsApiDynamically(() => {
+    setHasLoadedGoogleAPI(true);
+  }, apiKey);
 
   const [place, setPlace] = useState<google.maps.places.PlaceResult | null>(
     null
@@ -65,7 +92,40 @@ const AutoCompleteAddress = ({
       }
       setManualAddressEntry(true);
     }
-  }, [address, onAddressChange]);
+  }, [address, onAddressChange, hasLoadedGoogleAPI]);
+
+  useEffect(() => {
+    if (hasLoadedGoogleAPI === false) {
+      return;
+    }
+
+    const reference = document.getElementById(
+      'autocomplete'
+    ) as HTMLInputElement;
+
+    autocomplete.current = new google.maps.places.Autocomplete(reference, {
+      types: ['address'],
+      componentRestrictions: { country: GERMANY_ALPHA_CODE },
+    });
+
+    autocomplete.current.addListener('place_changed', onPlaceChanged);
+
+    map.current = new google.maps.Map(
+      document.getElementById('map')!,
+      MAP_CONFIG_OBJ
+    );
+
+    import('./mapStyle').then(({ style }) => {
+      map.current?.mapTypes.set('styled_map', style);
+      map.current?.setMapTypeId('styled_map');
+    });
+
+    marker.current = new google.maps.Marker({
+      map: map.current,
+    });
+
+    setPlaceFromAddress(address);
+  }, [hasLoadedGoogleAPI]); // eslint-disable-line
 
   const onPlaceChanged = (
     newPlace:
@@ -125,35 +185,6 @@ const AutoCompleteAddress = ({
     }
   };
 
-  useEffect(() => {
-    const reference = document.getElementById(
-      'autocomplete'
-    ) as HTMLInputElement;
-
-    autocomplete.current = new google.maps.places.Autocomplete(reference, {
-      types: ['address'],
-      componentRestrictions: { country: GERMANY_ALPHA_CODE },
-    });
-
-    autocomplete.current.addListener('place_changed', onPlaceChanged);
-
-    map.current = new google.maps.Map(
-      document.getElementById('map')!,
-      MAP_CONFIG_OBJ
-    );
-
-    import('./mapStyle').then(({ style }) => {
-      map.current?.mapTypes.set('styled_map', style);
-      map.current?.setMapTypeId('styled_map');
-    });
-
-    marker.current = new google.maps.Marker({
-      map: map.current,
-    });
-
-    setPlaceFromAddress(address);
-  }, []); // eslint-disable-line
-
   const handleEnterAddressManually = () => {
     setManualAddressEntry(true);
   };
@@ -165,7 +196,7 @@ const AutoCompleteAddress = ({
           [styles['map-container--hidden']]: place === null,
         })}
       >
-        <div className={`${styles.map}`} id="map" />
+        <div className={styles.map} id="map" />
         {isLoading && (
           <div className={styles['loading-spinner']}>
             <div className="ds-spinner ds-spinner__m" />
@@ -174,14 +205,21 @@ const AutoCompleteAddress = ({
       </div>
       <div className={`wmx8`}>
         {manualAddressEntry === false ? (
-          <Input
-            className="w100"
-            id="autocomplete"
-            data-cy="autocomplete"
-            type="text"
-            placeholder="Search for address"
-            ref={autocompleteElement}
-          />
+          <div style={{ position: 'relative' }}>
+            <Input
+              className="w100"
+              id="autocomplete"
+              data-cy="autocomplete"
+              type="text"
+              placeholder="Search for address"
+              ref={autocompleteElement}
+            />
+            {hasLoadedGoogleAPI === false && (
+              <div className={styles['loading-spinner']}>
+                <div className="ds-spinner ds-spinner__m" />
+              </div>
+            )}
+          </div>
         ) : (
           <>
             <div className={`d-flex ${styles['input-line']}`}>

@@ -49,6 +49,6 @@ export default ({
         />
       )}
     </div>
-    <p className="p-p mt16">{children}</p>
+    <p className="p-p mt16 tc-grey-700">{children}</p>
   </div>
 );

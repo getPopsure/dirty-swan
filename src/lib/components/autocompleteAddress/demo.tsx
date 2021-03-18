@@ -13,6 +13,7 @@ export const WithoutAddress = () => {
         setAddress(address);
       }}
       address={address}
+      apiKey="AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8"
     />
   );
 };
@@ -31,6 +32,7 @@ export const WithAddress = () => {
         setAddress(address);
       }}
       address={address}
+      apiKey="AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8"
     />
   );
 };
