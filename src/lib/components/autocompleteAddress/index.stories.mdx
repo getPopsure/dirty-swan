@@ -9,11 +9,11 @@ import { WithoutAddress, WithAddress } from './demo';
 
 # Autocomplete Address
 
-| attribute       | unit                                    | description                                                                                                                    | default value | required |
-| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------- |
-| address         | Partial<Address>                        | The address                                                                                                                    | undefined     | false    |
-| onAddressChange | function (newAddress: Partial<Address>) | Callback with the updated address, this function will get called everytime the address gets updated.                           | n/a           | true     |
-| apiKey          | string                                  | Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) | n/a           | true     |
+| attribute       | unit                                      | description                                                                                                                    | default value | required |
+| --------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------- |
+| address         | `Partial<Address>`                        | The address                                                                                                                    | undefined     | false    |
+| onAddressChange | `function (newAddress: Partial<Address>)` | Callback with the updated address, this function will get called everytime the address gets updated.                           | n/a           | true     |
+| apiKey          | string                                    | Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) | n/a           | true     |
 
 Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.
 
