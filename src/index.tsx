@@ -18,6 +18,7 @@ export {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  Button,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
