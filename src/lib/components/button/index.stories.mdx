@@ -1,0 +1,83 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import Button from '.';
+import { purpleSend, whiteSend } from './icons';
+
+<Meta title="JSX/Button" />
+
+# Button
+
+Buttons allow users to take actions, and make choices, with a single tap. Buttons communicate actions that users can take.
+
+You are looking at the JSX definition of the Button component, if you want you can use the [css alternative](?path=/story/css-components-button--page)
+
+<Preview>
+  <iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FMKs4cbojdVOBKUxv7okb93%2FDirty-Swan-Pattern-Library%3Fnode-id%3D251%253A26"
+    allowfullscreen
+  ></iframe>
+</Preview>
+
+| attribute   | unit                                       | description                                             | default value | required |
+| ----------- | ------------------------------------------ | ------------------------------------------------------- | ------------- | -------- |
+| buttonTitle | string                                     | The title text that needs to be displayed               | n/a           | true     |
+| buttonType  | 'primary' 'secondary'                      | Button type will influence the look of the button       | 'primary'     | false    |
+| leftIcon    | [Icon](?path=/story/jsx-button--page#icon) | Icon displayed left side of the button (w:20px, h:20px) | n/a           | false    |
+| loading     | boolean                                    | Wether the button should display a loading spinner      | false         | false    |
+
+<Preview>
+  <>
+    <h1 className="p-h1">Primary button</h1>
+    <h4 className="p-h4 mt24">Default</h4>
+    <Button className="wmn3 mt8" buttonTitle="Click me" />
+    <h4 className="p-h4 mt24">Loading</h4>
+    <Button className="wmn3 mt8" buttonTitle="Click me" loading={true} />
+    <h4 className="p-h4 mt24">Disabled</h4>
+    <Button className="wmn3 mt8" buttonTitle="Click me" disabled={true} />
+    <h4 className="p-h4 mt24">With left icon</h4>
+    <Button className="wmn3 mt8" buttonTitle="Click me" leftIcon={whiteSend} />
+    <h1 className="p-h1 mt32">Secondary button</h1>
+    <h4 className="p-h4 mt24">Default</h4>
+    <Button
+      className="wmn3 mt8"
+      buttonTitle="Click me"
+      buttonType="secondary"
+    />
+    <h4 className="p-h4 mt24">Loading</h4>
+    <Button
+      className="wmn3 mt8"
+      buttonTitle="Click me"
+      buttonType="secondary"
+      loading={true}
+    />
+    <h4 className="p-h4 mt24">Disabled</h4>
+    <Button
+      className="wmn3 mt8"
+      buttonTitle="Click me"
+      buttonType="secondary"
+      disabled={true}
+    />
+    <h4 className="p-h4 mt24">With left icon</h4>
+    <Button
+      className="wmn3 mt8"
+      buttonTitle="Click me"
+      buttonType="secondary"
+      leftIcon={purpleSend}
+    />
+  </>
+</Preview>
+
+# Models
+
+## Icon
+
+The icon object is defined with the following poperties
+
+```typescript
+export interface Icon {
+  src: string; // source of the image
+  alt: string; // alternate text if the image can't be displayed
+}
+```

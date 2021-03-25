@@ -17,6 +17,7 @@ import {
   CardWithTopIcon,
   InfoCard,
 } from './components/cards';
+import Button from './components/button';
 
 export {
   DateSelector,
@@ -34,6 +35,7 @@ export {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  Button,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
