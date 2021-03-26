@@ -1,3 +1,5 @@
+@use "../../../scss/public/grid" as *;
+
 @keyframes appear-in {
   from {
     opacity: 0;
@@ -43,4 +45,9 @@
 
 .container {
   padding: 0 24px 24px 24px;
+  height: 100%;
+
+  @include p-size-mobile {
+    height: fit-content;
+  }
 }
