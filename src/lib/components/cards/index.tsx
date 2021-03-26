@@ -10,6 +10,7 @@ export type CardProps = {
   children: React.ReactNode;
   state?: CardState;
   dropshadow?: boolean;
+  cardClassName?: string;
 } & JSX.IntrinsicElements['div'];
 
 export const headingForTitleSize = (
