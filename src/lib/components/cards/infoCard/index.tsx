@@ -11,6 +11,7 @@ export default ({
   rightIcon,
   state = 'actionable',
   dropshadow = true,
+  cardClassName,
   ...props
 }: CardProps & {
   topIcon: Icon;
@@ -29,7 +30,7 @@ export default ({
     <div
       className={`${associatedClassForCardState(state, dropshadow)} ${
         styles.container
-      }`}
+      } ${cardClassName}`}
     >
       {rightIcon && (
         <img
