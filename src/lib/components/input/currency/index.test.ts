@@ -24,10 +24,6 @@ describe('Format input', () => {
   it('Should truncate 2 digits after decimal separator', () => {
     expect(formatInput('1728281.23392')).toEqual('1 728 281.23');
   });
-
-  it('foo', () => {
-    expect(formatInput('10000')).toEqual('10 000');
-  });
 });
 
 describe('Reverse format input', () => {
