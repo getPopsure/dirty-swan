@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import Input, { InputProps } from '..';
 
 export const formatInput = (input: string): string => {
@@ -28,7 +29,6 @@ const CurrencyInput = ({
 } & Omit<InputProps, 'onChange' | 'value' | 'ref'>) => {
   const [shadowValue, setShadowValue] = useState('');
 
-  // const formattedShadowValue = formatInput(shadowValue.replace(/[^\d.,]/g, ''));
   const formattedShadowValue = formatInput(
     shadowValue
       .replace(/ /g, '')
