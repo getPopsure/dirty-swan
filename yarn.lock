@@ -11964,13 +11964,6 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-number-format@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.npmjs.org/react-number-format/-/react-number-format-4.5.3.tgz#c7b99cad759c6ccd7f82379f2f86d2d920c5ff29"
-  integrity sha512-y7+2HtVjQI82Pome1Xxdf8RODZ6vAGwBnao4Iohl8/zhzWpkuLzvquXHXzXuHT6Xija4QddFAGitUbW3dN4sNg==
-  dependencies:
-    prop-types "^15.7.2"
-
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/react-popper-tooltip/-/react-popper-tooltip-3.1.1.tgz#329569eb7b287008f04fcbddb6370452ad3f9eac"
