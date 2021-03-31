@@ -5,7 +5,8 @@ import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
 import MultiDropzone from './components/multiDropzone';
 import DownloadRing from './components/downloadRing';
-import IbanInput from './components/ibanInput';
+import IbanInput from './components/input/iban';
+import CurrencyInput from './components/input/currency';
 import {
   BottomModal,
   RegularModal,
@@ -36,6 +37,7 @@ export {
   CardWithTopIcon,
   InfoCard,
   Button,
+  CurrencyInput,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';

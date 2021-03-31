@@ -1,0 +1,25 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import CurrencyInput from '.';
+
+<Meta title="JSX/Inputs/Currency Input" />
+
+# Currency Input
+
+Currency input is a component built on top of the [Input](?path=/story/jsx-inputs-intro--page) component that give you a better formatting when numerical currency values.
+
+The following will be done:
+
+- Adding a Euro sign (€) prefix.
+- Formatting thousand separators with a space as user type in.
+- Setting decimal reparator as a dot (.)
+
+<Preview>
+  <>
+    <h1 className="p-h1">Currency Input</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <CurrencyInput className="wmx5 mt8" />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <CurrencyInput className="wmx5 mt8" value={1234567.32} />
+  </>
+</Preview>
