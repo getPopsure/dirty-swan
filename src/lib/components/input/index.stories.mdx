@@ -1,57 +1,41 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
 import Input from '.';
 
-<Meta title="JSX/Inputs" />
+<Meta title="JSX/Inputs/Input" />
 
-# Inputs
+## Input
 
-Input elements are used to gather information from users.
+The default input component is used to gather informations from the user.
 
-We have two variants of our text input, a pure css version and a JSX version. The difference between the two would be that with the JSX version you'll have an animation when using with a placeholder.
-
-## JSX Text input
-
-### Idle state
+You are looking at the JSX definition of the Input component, if you want you can use the [css alternative](?path=/story/css-components-input--page)
 
 <Preview>
-  <Input />
-</Preview>
-
-### With placeholder
-
-<Preview>
-  <Input placeholder="Email" />
-</Preview>
-
-### Error
-
-<Preview>
-  <Input hasError={true} />
-</Preview>
-
-## Pure CSS Text Input
-
-### Default
-
-<Preview>
-  <input className="p-input" />
-</Preview>
-
-### Error
-
-<Preview>
-  <input className="p-input--error" />
-</Preview>
-
-### With placeholder
-
-<Preview>
-  <input className="p-input" placeholder="Enter your input here" />
-</Preview>
-
-### Disabled
-
-<Preview>
-  <input className="p-input" disabled={true} />
+  <>
+    <h1 className="p-h1">Without placeholder</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <Input className="wmx5 mt8" />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <Input className="wmx5 mt8" value="Lorem ipsum" />
+    <h4 className="p-h4 mt24">Disabled</h4>
+    <Input className="wmx5 mt8" value="Lorem ipsum" disabled={true} />
+    <h1 className="p-h1 mt32">With placeholder</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <Input className="wmx5 mt8" placeholder="Email" />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <Input
+      className="wmx5 mt8"
+      value="jane.doe@feather-insurance.com"
+      placeholder="Email"
+    />
+    <h1 className="p-h1 mt32">With prefix</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <Input className="wmx5 mt8" prefix="€" />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <Input className="wmx5 mt8" value="100" prefix="€" />
+    <h4 className="p-h4 mt24">Empty with placeholder</h4>
+    <Input className="wmx5 mt8" placeholder="amount" prefix="€" />
+    <h4 className="p-h4 mt24">Filled with placeholder</h4>
+    <Input className="wmx5 mt8" placeholder="amount" value="100" prefix="€" />
+  </>
 </Preview>

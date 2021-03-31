@@ -11,6 +11,7 @@ export {
   MultiDropzone,
   DownloadRing,
   IbanInput,
+  CurrencyInput,
   BottomModal,
   RegularModal,
   BottomOrRegularModal,

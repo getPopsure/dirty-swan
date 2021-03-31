@@ -1,21 +1,20 @@
-import Input from '../input';
+import Input, { InputProps } from '..';
+
 import { formatIban } from './formatIban';
 
-export default ({
+const IbanInput = ({
   value,
-  placeholder,
   onChange,
-  hasError,
+  ...props
 }: {
   value?: string;
-  placeholder: string;
   onChange: (value: string) => void;
-  hasError?: boolean;
-}) => (
+} & Omit<InputProps, 'onChange' | 'value' | 'ref'>) => (
   <Input
     value={formatIban(value)}
-    placeholder="IBAN"
     onChange={(e) => onChange(formatIban(e.target.value))}
-    hasError={hasError}
+    {...props}
   />
 );
+
+export default IbanInput;

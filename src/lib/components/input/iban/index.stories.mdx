@@ -1,0 +1,21 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import IbanInput from '.';
+
+<Meta title="JSX/Inputs/Iban Input" />
+
+# Iban Input
+
+Iban input is a component built on top of the [Input](?path=/story/jsx-inputs-intro--page) component that give you a better formatting when entering [IBAN](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
+
+As the user enter their IBAN, a spacing will be applied for better readability.
+
+<Preview>
+  <>
+    <h1 className="p-h1">Currency Input</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <IbanInput className="wmx5 mt8" />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <IbanInput className="wmx5 mt8" value="DE91100000000123456789" />
+  </>
+</Preview>

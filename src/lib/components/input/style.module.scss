@@ -2,6 +2,19 @@
   position: relative;
 }
 
+.prefix {
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--ds-grey-300);
+
+  transition: 0.3s top;
+}
+
 .input:not(:placeholder-shown) ~ .placeholder,
 .input:focus ~ .placeholder {
   top: 7px;
@@ -19,6 +32,15 @@
   color: var(--ds-primary-500);
 }
 
+.input:focus ~ .prefix {
+  color: var(--ds-primary-500);
+}
+
+.input:not(:placeholder-shown) ~ .prefix,
+.input:focus ~ .prefix {
+  top: 28px;
+}
+
 .input {
   box-sizing: border-box;
   padding-top: 9px;
@@ -27,6 +49,10 @@
 
   &--no-placeholder {
     padding-top: 0px;
+  }
+
+  &--with-prefix {
+    padding-left: 32px;
   }
 }
 
@@ -41,4 +67,8 @@
   transition: 0.3s ease all;
 
   color: var(--ds-grey-300);
+
+  &--with-prefix {
+    left: 32px;
+  }
 }
