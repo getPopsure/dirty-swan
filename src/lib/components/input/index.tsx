@@ -16,6 +16,7 @@ export default React.forwardRef(
   ) => (
     <div className={`${styles.container} ${className ?? ''}`}>
       <input
+        data-testid="ds-input-input"
         type="text"
         ref={ref}
         className={`${props.hasError ? 'p-input--error' : 'p-input'} ${
