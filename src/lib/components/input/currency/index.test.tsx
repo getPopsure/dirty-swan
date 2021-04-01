@@ -47,4 +47,10 @@ describe('Currency input component', () => {
     fireEvent.change(input, { target: { value: '1234567..34' } });
     expect(input.value).toBe('1 234 567.34');
   });
+
+  it('Should only allow one decimal separator after a sequence of number', () => {
+    const { input } = setup();
+    fireEvent.change(input, { target: { value: '1234567..34.4' } });
+    expect(input.value).toBe('1 234 567.34');
+  });
 });
