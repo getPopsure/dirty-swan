@@ -16,9 +16,12 @@ const CurrencyInput = ({
 
   const formattedShadowValue = formatInput(
     shadowValue
-      .replace(/ /g, '')
-      .replace(',', '.')
-      .replace(/[^\d\\.]/g, '')
+      .replace(/ /g, '') // remove all whitespace
+      .replace(',', '.') // change commas to dot for decimal separator
+      .replace('.', 'DECIMAL_SEPARATOR') // Gymnastic  to remove all the decimal separators 🤸
+      .replace(/\./g, '')
+      .replace('DECIMAL_SEPARATOR', '.') // End of the Gymnastic 🤸
+      .replace(/[^\d\\.]/g, '') // remove all non decimal and dot
   );
 
   useEffect(() => {
