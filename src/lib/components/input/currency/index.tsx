@@ -6,6 +6,7 @@ import Input, { InputProps } from '..';
 const CurrencyInput = ({
   value,
   onChange,
+  type,
   ...props
 }: {
   value?: number;
@@ -39,6 +40,7 @@ const CurrencyInput = ({
   return (
     <Input
       prefix="€"
+      type="string"
       value={formattedShadowValue}
       onChange={(e) => {
         setShadowValue(e.target.value);
