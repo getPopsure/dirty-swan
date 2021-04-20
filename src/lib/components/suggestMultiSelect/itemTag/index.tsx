@@ -3,11 +3,7 @@ import { useState } from 'react';
 import styles from './style.module.scss';
 import removeButtonIcon from '../icons/remove-button.svg';
 import removeButtonHighlightedIcon from '../icons/remove-button-highlighted.svg';
-
-interface Option {
-  value: string;
-  img?: string;
-}
+import { Option } from '../../../models/suggestMultiSelect';
 
 export default ({ value, onClick }: { value: Option; onClick: () => void }) => {
   const [hoveredRemoveButton, setHoveredRemoveButton] = useState(false);
