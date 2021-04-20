@@ -1,0 +1,66 @@
+@keyframes appearInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.suggestionsList {
+  position: absolute;
+
+  z-index: 100;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--ds-primary-500);
+
+  width: 100%;
+  max-width: 364px;
+  height: fit-content;
+  max-height: 216px;
+
+  overflow-y: scroll;
+
+  background-color: white;
+
+  animation-name: appearInAnimation;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+
+  transform: translateY(8px);
+}
+
+.suggestion-option {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  position: relative;
+
+  margin: 0;
+  padding-left: 16px;
+
+  color: var(--ds-grey-900);
+
+  min-height: 48px;
+  line-height: 48px;
+}
+
+.suggestion-img {
+  width: 32px;
+  height: 24px;
+
+  border-radius: 2px;
+}
+
+.suggestionHighlighted {
+  background-color: var(--ds-primary-100);
+}
+
+.item-card-container {
+  display: flex;
+  flex-wrap: wrap;
+}

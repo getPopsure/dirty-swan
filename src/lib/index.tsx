@@ -19,6 +19,7 @@ import {
   InfoCard,
 } from './components/cards';
 import Button from './components/button';
+import SuggestMultiSelect from './components/suggestMultiSelect';
 
 export {
   DateSelector,
@@ -38,6 +39,7 @@ export {
   InfoCard,
   Button,
   CurrencyInput,
+  SuggestMultiSelect,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
