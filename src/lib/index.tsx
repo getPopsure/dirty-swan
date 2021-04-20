@@ -20,6 +20,7 @@ import {
 } from './components/cards';
 import Button from './components/button';
 import SuggestMultiSelect from './components/suggestMultiSelect';
+import ChipList from './components/chipList';
 
 export {
   DateSelector,
@@ -40,6 +41,7 @@ export {
   Button,
   CurrencyInput,
   SuggestMultiSelect,
+  ChipList,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
