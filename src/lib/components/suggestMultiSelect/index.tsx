@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import styles from './style.module.scss';
-import ItemTag from './itemTag';
 import { limitTextLength } from '../../util/limitTextLength';
 import { Option } from '../../models/suggestMultiSelect';
-import Input from '../../components/input';
+import ChipList from '../chipList';
+import Input from '../input';
 
 export default ({
   options,
@@ -62,19 +62,16 @@ export default ({
   return (
     <>
       {selectedValues && selectedValues.length > 0 && (
-        <div className={`wmx9 mb16 ${styles['item-card-container']}`}>
-          {selectedValues.map((value) => (
-            <ItemTag
-              value={value}
-              onClick={() => {
-                const newValues = [...selectedValues].filter(
-                  (selectedValue) => selectedValue.value !== value.value
-                );
-                setValues(newValues);
-              }}
-            />
-          ))}
-        </div>
+        <ChipList
+          values={selectedValues}
+          onRemove={(value: Option) => {
+            const newValues = [...selectedValues].filter(
+              (selectedValue) => selectedValue.value !== value.value
+            );
+            setValues(newValues);
+          }}
+          className="wmx9 mb16"
+        />
       )}
       <div className="wmx5">
         <Autosuggest

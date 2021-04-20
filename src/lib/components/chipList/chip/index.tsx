@@ -5,7 +5,13 @@ import removeButtonIcon from '../icons/remove-button.svg';
 import removeButtonHighlightedIcon from '../icons/remove-button-highlighted.svg';
 import { Option } from '../../../models/suggestMultiSelect';
 
-export default ({ value, onClick }: { value: Option; onClick: () => void }) => {
+export default ({
+  value,
+  onRemove,
+}: {
+  value: Option;
+  onRemove: () => void;
+}) => {
   const [hoveredRemoveButton, setHoveredRemoveButton] = useState(false);
 
   return (
@@ -22,7 +28,7 @@ export default ({ value, onClick }: { value: Option; onClick: () => void }) => {
         onMouseEnter={() => setHoveredRemoveButton(true)}
         onMouseLeave={() => setHoveredRemoveButton(false)}
         className={`c-pointer ${styles['item-card-remove-button']}`}
-        onClick={onClick}
+        onClick={onRemove}
       >
         <img
           src={

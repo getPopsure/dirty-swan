@@ -20,6 +20,7 @@ export {
   InfoCard,
   Button,
   SuggestMultiSelect,
+  ChipList,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';
