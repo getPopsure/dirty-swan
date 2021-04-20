@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
@@ -20,6 +19,7 @@ export {
   CardWithTopIcon,
   InfoCard,
   Button,
+  SuggestMultiSelect,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';

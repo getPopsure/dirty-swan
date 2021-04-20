@@ -1,0 +1,42 @@
+.item-card {
+  background: var(--ds-primary-100);
+
+  border: 2px solid var(--ds-primary-100);
+  border-radius: 8px;
+
+  padding: 4px 8px;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  animation-name: appearInAnimation;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.item-card:hover {
+  transition: 0.2s ease-in;
+  border: 2px solid var(--ds-primary-500);
+}
+
+.item-card-image {
+  width: 24px;
+  height: 14px;
+}
+
+.item-card-remove-button {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes appearInAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
