@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.19.0",
+  "version": "0.19.1-alpha.1",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -20,10 +20,12 @@
   ],
   "dependencies": {
     "@popsure/public-models": "^0.0.8",
+    "@types/react-autosuggest": "^10.1.4",
     "classnames": "^2.2.6",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "moment": "^2.24.0",
+    "react-autosuggest": "^10.1.0",
     "react-dropzone": "^10.2.1",
     "sass": "^1.26.5",
     "signature_pad": "^3.0.0-beta.3"
