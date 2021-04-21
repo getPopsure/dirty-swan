@@ -1,8 +1,8 @@
 import Autosuggest from 'react-autosuggest';
 
 import styles from './style.module.scss';
-import { Option } from '../../models/autoSuggestInput';
-import Input from '../input';
+import { Option } from '../../../models/autoSuggestInput';
+import Input from '../index';
 
 export default ({
   currentOption,
