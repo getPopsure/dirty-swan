@@ -41,16 +41,12 @@
   position: relative;
 
   margin: 0;
-  padding-left: 16px;
+  padding: 0 16px;
 
   color: var(--ds-grey-900);
 
   min-height: 48px;
   line-height: 48px;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .suggestion-img {
@@ -58,6 +54,12 @@
   height: 24px;
 
   border-radius: 2px;
+}
+
+.suggestion-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .suggestionHighlighted {
