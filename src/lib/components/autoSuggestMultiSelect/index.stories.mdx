@@ -21,11 +21,14 @@ Prop `setValues` function must be provided to keep track of removed and added op
     options={[
       { value: 'This is a test option' },
       { value: 'Here is another test option' },
-      { value: 'Last test option' },
+      {
+        value:
+          'This is a very long option for testing and needs to be very long',
+      },
     ]}
     selectedValues={[{ value: 'This is a test option' }]}
     setValues={() => {}}
     placeholder="Placeholder"
-    multiSelectClassName="wmx5"
+    multiSelectClassName="wmx5 mb80"
   />
 </Preview>

@@ -24,7 +24,7 @@ export default ({
   className?: string;
 }) => {
   const renderSuggestion = (suggestion: Option) => (
-    <div className={styles['suggestion-option']}>
+    <div className={`${styles['suggestion-option']}`}>
       {suggestion.leftIcon && (
         <img
           className={`mr16 ${styles['suggestion-img']}`}
@@ -32,7 +32,7 @@ export default ({
           alt={suggestion.value}
         />
       )}
-      {suggestion.value}
+      <div className={styles['suggestion-text']}>{suggestion.value}</div>
     </div>
   );
 
