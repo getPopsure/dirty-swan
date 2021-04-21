@@ -2,7 +2,7 @@ import Autosuggest from 'react-autosuggest';
 
 import styles from './style.module.scss';
 import { Option } from '../../../models/autoSuggestInput';
-import Input from '../index';
+import Input, { InputProps } from '../index';
 
 export default ({
   currentOption,
@@ -38,7 +38,7 @@ export default ({
 
   const getSuggestionValue = (suggestion: Option) => suggestion.value;
 
-  const renderInputComponent = (inputProps: any) => (
+  const renderInputComponent = (inputProps: Omit<InputProps, 'ref'>) => (
     <Input
       {...inputProps}
       placeholder={placeholder}
