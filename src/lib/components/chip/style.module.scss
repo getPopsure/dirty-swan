@@ -1,4 +1,4 @@
-.item-card {
+.chip {
   background: var(--ds-primary-100);
 
   border: 2px solid var(--ds-primary-100);
@@ -15,19 +15,30 @@
   animation-fill-mode: both;
 }
 
-.item-card:hover {
+.chip:hover {
   transition: 0.2s ease-in;
   border: 2px solid var(--ds-primary-500);
 }
 
-.item-card-image {
+.chip-image {
   width: 24px;
   height: 14px;
 }
 
-.item-card-remove-button {
+.chip-button-container {
   width: 16px;
   height: 16px;
+
+  position: relative;
+}
+
+.chip-remove-button,
+.chip-remove-button-highlighted {
+  position: absolute;
+}
+
+.chip-remove-button:hover {
+  opacity: 0;
 }
 
 @keyframes appearInAnimation {

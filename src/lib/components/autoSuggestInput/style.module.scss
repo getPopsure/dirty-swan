@@ -47,6 +47,10 @@
 
   min-height: 48px;
   line-height: 48px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .suggestion-img {
