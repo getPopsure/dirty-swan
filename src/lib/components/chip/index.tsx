@@ -3,7 +3,7 @@ import removeButtonIcon from './icons/remove-button.svg';
 import removeButtonHighlightedIcon from './icons/remove-button-highlighted.svg';
 import { Option } from '../../models/autoSuggestInput';
 
-const Chip = ({
+export default ({
   value,
   onRemove,
 }: {
@@ -36,5 +36,3 @@ const Chip = ({
     </div>
   </div>
 );
-
-export default Chip;

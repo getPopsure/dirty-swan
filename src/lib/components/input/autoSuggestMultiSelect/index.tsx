@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { Option } from '../../models/autoSuggestInput';
-import Chip from '../chip';
+import { Option } from '../../../models/autoSuggestInput';
+import Chip from '../../chip';
 import AutoSuggestInput from '../autoSuggestInput';
 import styles from './style.module.scss';
 

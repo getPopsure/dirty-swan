@@ -19,9 +19,9 @@ import {
   InfoCard,
 } from './components/cards';
 import Button from './components/button';
-import AutoSuggestMultiSelect from './components/autoSuggestMultiSelect';
+import AutoSuggestMultiSelect from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
-import AutoSuggestInput from './components/autoSuggestInput';
+import AutoSuggestInput from './components/input/autoSuggestInput';
 
 export {
   DateSelector,

@@ -1,25 +1,92 @@
+import { useState } from 'react';
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
 import Chip from '.';
 import featherLogo from '../cards/icons/feather-logo.svg';
 
-<Meta title="JSX/Component/Chip" />
+<Meta title="JSX/Chip" />
 
-## Chip
+# Chip
 
-This component is Chip component that displays an image, selection value, and a remove button.
+Chip component displays text and image (optional) of given values.
 
-The component takes in an argument `value` as `Option` type (see models for Option interface).
-
-Chip can be removed by clicking on the X button with the provided `onRemove` function.
-
-Images can shown on the chip, if provided in the `value` prop (optional)
+The X button in the right calls the prop `onRemove` function to keep track of removed selected values.
 
 ## Example
 
-<Preview>
-  <Chip
-    value={value: 'Feather', leftIcon: featherLogo }
-    onRemove={() => {}}
-  />
-</Preview>
+export const ChipStory = () => {
+  const values = [
+    { value: 'feather', leftIcon: featherLogo },
+    { value: 'feather2', leftIcon: featherLogo },
+    {
+      value: 'feather3',
+      leftIcon: featherLogo,
+    },
+    {
+      value: 'dirtyswan',
+      leftIcon: featherLogo,
+    },
+    {
+      value: 'test value',
+      leftIcon: featherLogo,
+    },
+  ];
+  const [selectedValues, setSelectedValues] = useState(values);
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {selectedValues.map((value) => (
+        <Chip
+          value={value}
+          onRemove={(value) => {
+            const newValues = [...selectedValues].filter(
+              (selectedValue) => selectedValue.value !== value.value
+            );
+            setSelectedValues(newValues);
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+<ChipStory />
+
+```typescript
+import React, { useState } from 'react';
+import { Chip } from '@popsure/dirty-swan';
+
+export default () => {
+  const values = [
+    { value: 'feather', leftIcon: featherLogo },
+    { value: 'feather2', leftIcon: featherLogo },
+    {
+      value: 'feather3',
+      leftIcon: featherLogo,
+    },
+    {
+      value: 'dirtyswan',
+      leftIcon: featherLogo,
+    },
+    {
+      value: 'test value',
+      leftIcon: featherLogo,
+    },
+  ];
+  const [selectedValues, setSelectedValues] = useState(values);
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {selectedValues.map((value) => (
+        <Chip
+          value={value}
+          onRemove={(value) => {
+            const newValues = [...selectedValues].filter(
+              (selectedValue) => selectedValue.value !== value.value
+            );
+            setSelectedValues(newValues);
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+```
