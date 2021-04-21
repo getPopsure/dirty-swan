@@ -19,8 +19,9 @@ export {
   CardWithTopIcon,
   InfoCard,
   Button,
-  SuggestMultiSelect,
-  ChipList,
+  AutoSuggestMultiSelect,
+  Chip,
+  AutoSuggestInput,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';

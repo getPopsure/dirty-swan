@@ -1,0 +1,25 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import Chip from '.';
+import featherLogo from '../cards/icons/feather-logo.svg';
+
+<Meta title="JSX/Component/Chip" />
+
+## Chip
+
+This component is Chip component that displays an image, selection value, and a remove button.
+
+The component takes in an argument `value` as `Option` type (see models for Option interface).
+
+Chip can be removed by clicking on the X button with the provided `onRemove` function.
+
+Images can shown on the chip, if provided in the `value` prop (optional)
+
+## Example
+
+<Preview>
+  <Chip
+    value={value: 'Feather', leftIcon: featherLogo }
+    onRemove={() => {}}
+  />
+</Preview>

@@ -1,10 +1,10 @@
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import SuggestMultiSelect from '.';
+import AutoSuggestMultiSelect from '.';
 
-<Meta title="JSX/SuggestMultiSelect" />
+<Meta title="JSX/AutoSuggestMultiSelect" />
 
-## SuggestMultiSelect
+## AutoSuggestMultiSelect
 
 This component allows quick search via the input field to find an option for selection.
 
@@ -17,7 +17,7 @@ Prop `setValues` function must be provided to keep track of removed and added op
 ## Example
 
 <Preview>
-  <SuggestMultiSelect
+  <AutoSuggestMultiSelect
     options={[
       { value: 'This is a test option' },
       { value: 'Here is another test option' },
@@ -26,5 +26,6 @@ Prop `setValues` function must be provided to keep track of removed and added op
     selectedValues={[{ value: 'This is a test option' }]}
     setValues={() => {}}
     placeholder="Placeholder"
+    multiSelectClassName="wmx5"
   />
 </Preview>

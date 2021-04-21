@@ -19,8 +19,9 @@ import {
   InfoCard,
 } from './components/cards';
 import Button from './components/button';
-import SuggestMultiSelect from './components/suggestMultiSelect';
-import ChipList from './components/chipList';
+import AutoSuggestMultiSelect from './components/autoSuggestMultiSelect';
+import Chip from './components/chip';
+import AutoSuggestInput from './components/autoSuggestInput';
 
 export {
   DateSelector,
@@ -40,8 +41,9 @@ export {
   InfoCard,
   Button,
   CurrencyInput,
-  SuggestMultiSelect,
-  ChipList,
+  AutoSuggestMultiSelect,
+  Chip,
+  AutoSuggestInput,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
