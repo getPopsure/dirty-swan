@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { Props } from '..';
 import styles from './style.module.scss';
@@ -7,11 +7,7 @@ import imageClose from './img/close.svg';
 
 export default ({ title, isOpen, children, onClose }: Props) => {
   const [containerXOffset, setContainerXOffset] = useState(0);
-  const [isClosing, setIsClosing] = useState(isOpen);
-
-  useEffect(() => {
-    setIsClosing(!isOpen);
-  }, [isOpen]);
+  const [isClosing, setIsClosing] = useState(false);
 
   const containerRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
