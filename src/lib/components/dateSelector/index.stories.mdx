@@ -8,13 +8,26 @@ import DateSelector from '.';
 
 Date selector are user interface elements which allow user to select a date in the `YYYY-MM-DD` format.
 
+<Preview>
+  <iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FMKs4cbojdVOBKUxv7okb93%2FDirty-Swan-Design-System%3Fnode-id%3D293%253A169"
+    allowfullscreen
+  ></iframe>
+</Preview>
+
 ## Default example
 
 <Preview>
-  <DateSelector
-    yearBoundaries={{ min: 1990, max: 2020 }}
-    onChange={(date) => {
-      console.log(date);
-    }}
-  />
+  <>
+    <h1 className="p-h1">Date selector</h1>
+    <DateSelector
+      className="mt24"
+      yearBoundaries={{ min: 1990, max: 2020 }}
+      onChange={(date) => {
+        console.log(date);
+      }}
+    />
+  </>
 </Preview>
