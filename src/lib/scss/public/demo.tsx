@@ -79,6 +79,11 @@ const colors = [
   {
     name: 'Grey 100',
     code: 'grey-100',
+    hex: '#fafaff',
+  },
+  {
+    name: 'Grey 200',
+    code: 'grey-200',
     hex: '#f4f4f9',
   },
   {
