@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 import imageClose from './img/close.svg';
 
 export default ({ title, isOpen, children, onClose }: Props) => {
-  const [isClosing, setIsClosing] = useState(isOpen);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -14,10 +14,6 @@ export default ({ title, isOpen, children, onClose }: Props) => {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
-
-  useEffect(() => {
-    setIsClosing(!isOpen);
   }, [isOpen]);
 
   const handleOnClose = () => {
