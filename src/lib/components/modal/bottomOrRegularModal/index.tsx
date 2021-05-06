@@ -33,11 +33,11 @@ export default ({ isOpen, ...props }: Props) => {
       <div className={styles.mobile} ref={mobileRef}>
         {visibleSize === 'mobile' && <BottomModal {...props} isOpen={isOpen} />}
       </div>
-      <div className={styles.desktop}>
-        {visibleSize === 'desktop' && (
+      {visibleSize === 'desktop' && (
+        <div className={styles.desktop}>
           <RegularModal {...props} isOpen={isOpen} />
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };
