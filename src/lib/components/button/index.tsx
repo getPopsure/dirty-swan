@@ -2,7 +2,14 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-type ButtonType = 'primary' | 'secondary';
+type ButtonType = 'primary' | 'secondary' | 'outline' | 'outlineGrey';
+
+const buttonTypeClassNameMap: { [K in ButtonType]: string } = {
+  primary: 'p-btn--primary',
+  secondary: 'p-btn--secondary',
+  outline: 'p-btn--outline',
+  outlineGrey: 'p-btn--outline-grey',
+};
 
 interface Icon {
   src: string;
@@ -26,8 +33,7 @@ export default React.forwardRef(
     type,
     ...props
   }: InputProps) => {
-    const buttonClassName =
-      buttonType === 'primary' ? 'p-btn--primary' : 'p-btn--secondary';
+    const buttonClassName = buttonTypeClassNameMap[buttonType];
     const loadingClassName = loading ? 'p-btn--loading' : '';
     return (
       <button

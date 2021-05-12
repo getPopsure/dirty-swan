@@ -140,4 +140,54 @@
       animation: spinner-rotate 0.9s infinite;
     }
   }
+
+  &--outline {
+    @extend .p-btn;
+
+    color: $ds-primary-500;
+    background-color: white;
+
+    border: 1px dashed $ds-primary-300;
+
+    &:hover {
+      color: $ds-primary-700;
+      border-color: $ds-primary-500;
+    }
+
+    &[disabled] {
+      color: $ds-primary-500;
+      border-color: $ds-primary-300;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      color: $ds-primary-700;
+      border-color: $ds-primary-700;
+    }
+
+    &-grey {
+      @extend .p-btn;
+
+      color: $ds-grey-500;
+      background-color: white;
+
+      border: 1px dashed $ds-grey-300;
+
+      &:hover {
+        color: $ds-grey-600;
+        border-color: $ds-grey-500;
+      }
+
+      &[disabled] {
+        color: $ds-grey-500;
+        border-color: $ds-grey-300;
+        opacity: 0.5;
+      }
+
+      &:focus {
+        color: $ds-grey-600;
+        border-color: $ds-grey-600;
+      }
+    }
+  }
 }
