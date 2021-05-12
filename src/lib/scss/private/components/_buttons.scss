@@ -145,7 +145,7 @@
     @extend .p-btn;
 
     color: $ds-primary-500;
-    background-color: white;
+    background-color: transparent;
 
     border: 1px dashed $ds-primary-300;
 
@@ -169,7 +169,7 @@
       @extend .p-btn;
 
       color: $ds-grey-500;
-      background-color: white;
+      background-color: transparent;
 
       border: 1px dashed $ds-grey-300;
 
