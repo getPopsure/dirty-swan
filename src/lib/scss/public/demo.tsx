@@ -59,7 +59,7 @@ const colors = [
   {
     name: 'Red 300',
     code: 'red-300',
-    hex: '#f08c8c',
+    hex: '#faa0a0',
   },
   {
     name: 'Red 500',
@@ -69,7 +69,7 @@ const colors = [
   {
     name: 'Red 700',
     code: 'red-700',
-    hex: '#9e3f3f',
+    hex: '#c64848',
   },
   {
     name: 'Red 900',
@@ -84,7 +84,7 @@ const colors = [
   {
     name: 'Grey 200',
     code: 'grey-200',
-    hex: '#f4f4f9',
+    hex: '#f5f5fa',
   },
   {
     name: 'Grey 300',
@@ -114,22 +114,22 @@ const colors = [
   {
     name: 'Green 100',
     code: 'green-100',
-    hex: '#ebffe4',
+    hex: '#e4ffe6',
   },
   {
     name: 'Green 300',
     code: 'green-300',
-    hex: '#bbebab',
+    hex: '#c4f5c8',
   },
   {
     name: 'Green 500',
     code: 'green-500',
-    hex: '#9cde84',
+    hex: '#84de8a',
   },
   {
     name: 'Green 700',
     code: 'green-700',
-    hex: '#6b985b',
+    hex: '#5b985f',
   },
   {
     name: 'Green 900',
@@ -144,22 +144,22 @@ const colors = [
   {
     name: 'Yellow 300',
     code: 'yellow-300',
-    hex: '#f2db9f',
+    hex: '#fae3a5',
   },
   {
     name: 'Yellow 500',
     code: 'yellow-500',
-    hex: '#e9c771',
+    hex: '#f7ce5c',
   },
   {
     name: 'Yellow 700',
     code: 'yellow-700',
-    hex: '#9e884f',
+    hex: '#cc9e21',
   },
   {
     name: 'Yellow 900',
     code: 'yellow-900',
-    hex: '#4a4129',
+    hex: '#4a3d10',
   },
 ];
 
