@@ -115,49 +115,51 @@ const DateSelector = ({
 
   return (
     <div className={styles.container}>
-      <select
-        data-cy="date-selector-day"
-        className="p-select"
-        id="day"
-        name="day"
-        required={true}
-        value={date.day ?? ''}
-        onChange={(e) => {
-          handleOnChange('day', parseInt(e.target.value, 10));
-        }}
-      >
-        <option value="" disabled={true}>
-          Day
-        </option>
-        {availableDays.map((day) => (
-          <option key={day} value={day}>
-            {day}
+      <div className={styles['row-container']}>
+        <select
+          data-cy="date-selector-day"
+          className={`p-select ${styles['day-select']}`}
+          id="day"
+          name="day"
+          required={true}
+          value={date.day ?? ''}
+          onChange={(e) => {
+            handleOnChange('day', parseInt(e.target.value, 10));
+          }}
+        >
+          <option value="" disabled={true}>
+            Day
           </option>
-        ))}
-      </select>
-      <select
-        data-cy="date-selector-month"
-        className="p-select"
-        id="month"
-        name="month"
-        required={true}
-        value={date.month ?? ''}
-        onChange={(e) => {
-          handleOnChange('month', parseInt(e.target.value, 10));
-        }}
-      >
-        <option value="" disabled={true}>
-          Month
-        </option>
-        {availableMonths.map((month, i) => (
-          <option key={month} value={i + 1}>
-            {month}
+          {availableDays.map((day) => (
+            <option key={day} value={day}>
+              {day}
+            </option>
+          ))}
+        </select>
+        <select
+          data-cy="date-selector-month"
+          className={`p-select ${styles['month-select']}`}
+          id="month"
+          name="month"
+          required={true}
+          value={date.month ?? ''}
+          onChange={(e) => {
+            handleOnChange('month', parseInt(e.target.value, 10));
+          }}
+        >
+          <option value="" disabled={true}>
+            Month
           </option>
-        ))}
-      </select>
+          {availableMonths.map((month, i) => (
+            <option key={month} value={i + 1}>
+              {month}
+            </option>
+          ))}
+        </select>
+      </div>
       <select
         data-cy="date-selector-year"
-        className="p-select"
+        className={`p-select ${styles['year-select']}`}
         id="year"
         name="year"
         required={true}

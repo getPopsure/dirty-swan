@@ -1,7 +1,63 @@
+@use '../../scss/public/grid' as *;
+
 .container {
   margin-left: -8px;
 
+  display: flex;
+
   > select {
     margin-left: 8px;
+
+    @include p-size-mobile {
+      margin-left: 0;
+    }
+  }
+
+  @include p-size-mobile {
+    margin-left: 0;
+    display: unset;
+  }
+}
+
+.row-container {
+  > select {
+    margin-left: 8px;
+
+    @include p-size-mobile {
+      margin-left: 0;
+    }
+  }
+
+  @include p-size-mobile {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.day-select {
+  width: 88px;
+
+  @include p-size-mobile {
+    flex: 1;
+    margin-right: 8px;
+  }
+}
+
+.month-select {
+  width: 104px;
+
+  @include p-size-mobile {
+    flex: 1;
+  }
+}
+
+.year-select {
+  width: 104px;
+
+  @include p-size-mobile {
+    display: block;
+
+    margin-top: 8px;
+    width: 100%;
   }
 }
