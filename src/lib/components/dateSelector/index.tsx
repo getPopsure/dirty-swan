@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { CalendarDate } from '@popsure/public-models';
+import DayPicker from 'react-day-picker';
 
 import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
 } from '../../util/calendarDate';
 import styles from './style.module.scss';
+import './datepicker.scss';
+import calendarIcon from './icons/calendar.svg';
+
+const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
 
 /*
   Fill an array with an increment from a number to another number.
@@ -46,10 +51,12 @@ const DateSelector = ({
   value,
   onChange,
   yearBoundaries,
+  displayCalendar,
 }: {
   value?: string;
   onChange: (date: string) => void;
   yearBoundaries: { min: number; max: number };
+  displayCalendar?: boolean;
 }) => {
   const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
   const daysInSelectedDate = calendarDateValue
@@ -65,6 +72,15 @@ const DateSelector = ({
   const [date, setDate] = useState<Partial<CalendarDate>>(
     calendarDateValue ?? {}
   );
+  const [openCalendar, setOpenCalendar] = useState(false);
+
+  const selectedDateInDateType = value ? moment(value).toDate() : undefined;
+  const dateCalendarFromMonth = moment(String(yearBoundaries.min))
+    .startOf('year')
+    .toDate();
+  const dateCalendarToMonth = moment(String(yearBoundaries.max))
+    .endOf('year')
+    .toDate();
 
   useEffect(() => {
     if (calendarDateValue) {
@@ -115,68 +131,97 @@ const DateSelector = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles['row-container']}>
-        <select
-          data-cy="date-selector-day"
-          className={`p-select ${styles['day-select']}`}
-          id="day"
-          name="day"
-          required={true}
-          value={date.day ?? ''}
-          onChange={(e) => {
-            handleOnChange('day', parseInt(e.target.value, 10));
-          }}
-        >
-          <option value="" disabled={true}>
-            Day
-          </option>
-          {availableDays.map((day) => (
-            <option key={day} value={day}>
-              {day}
+      <div className={styles['date-selector-container']}>
+        <div className={styles['row-container']}>
+          <select
+            data-cy="date-selector-day"
+            className={`p-select ${styles['day-select']}`}
+            id="day"
+            name="day"
+            required={true}
+            value={date.day ?? ''}
+            onChange={(e) => {
+              handleOnChange('day', parseInt(e.target.value, 10));
+            }}
+          >
+            <option value="" disabled={true}>
+              Day
             </option>
-          ))}
-        </select>
+            {availableDays.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+          <select
+            data-cy="date-selector-month"
+            className={`p-select ${styles['month-select']}`}
+            id="month"
+            name="month"
+            required={true}
+            value={date.month ?? ''}
+            onChange={(e) => {
+              handleOnChange('month', parseInt(e.target.value, 10));
+            }}
+          >
+            <option value="" disabled={true}>
+              Month
+            </option>
+            {availableMonths.map((month, i) => (
+              <option key={month} value={i + 1}>
+                {month}
+              </option>
+            ))}
+          </select>
+        </div>
         <select
-          data-cy="date-selector-month"
-          className={`p-select ${styles['month-select']}`}
-          id="month"
-          name="month"
+          data-cy="date-selector-year"
+          className={`p-select ${styles['year-select']}`}
+          id="year"
+          name="year"
           required={true}
-          value={date.month ?? ''}
+          value={date.year ?? ''}
           onChange={(e) => {
-            handleOnChange('month', parseInt(e.target.value, 10));
+            handleOnChange('year', parseInt(e.target.value, 10));
           }}
         >
           <option value="" disabled={true}>
-            Month
+            Year
           </option>
-          {availableMonths.map((month, i) => (
-            <option key={month} value={i + 1}>
-              {month}
+          {availableYears.map((year) => (
+            <option key={year} value={year}>
+              {year}
             </option>
           ))}
         </select>
       </div>
-      <select
-        data-cy="date-selector-year"
-        className={`p-select ${styles['year-select']}`}
-        id="year"
-        name="year"
-        required={true}
-        value={date.year ?? ''}
-        onChange={(e) => {
-          handleOnChange('year', parseInt(e.target.value, 10));
-        }}
-      >
-        <option value="" disabled={true}>
-          Year
-        </option>
-        {availableYears.map((year) => (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        ))}
-      </select>
+      {displayCalendar === true && (
+        <div className={styles['date-calendar-container']}>
+          <img
+            className="c-pointer"
+            src={calendarIcon}
+            alt="calendar"
+            onClick={() => setOpenCalendar(!openCalendar)}
+          />
+          {openCalendar && (
+            <DayPicker
+              month={selectedDateInDateType}
+              showOutsideDays={true}
+              fromMonth={dateCalendarFromMonth}
+              toMonth={dateCalendarToMonth}
+              selectedDays={selectedDateInDateType}
+              onDayClick={(date: Date) => {
+                const selectedDate = moment(date).format(
+                  COLLECTABLE_DATE_FORMAT
+                );
+                onChange(selectedDate);
+                setOpenCalendar(false);
+              }}
+              pagedNavigation={true}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };
