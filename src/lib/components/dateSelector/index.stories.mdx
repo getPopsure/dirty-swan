@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
 import DateSelector from '.';
@@ -19,15 +20,43 @@ Date selector are user interface elements which allow user to select a date in t
 
 ## Default example
 
-<Preview>
-  <>
-    <h1 className="p-h1">Date selector</h1>
-    <DateSelector
-      className="mt24"
-      yearBoundaries={{ min: 1990, max: 2020 }}
-      onChange={(date) => {
-        console.log(date);
-      }}
-    />
-  </>
-</Preview>
+### Without calendar
+
+export const DateSelectorWithoutCalendarStory = () => {
+  const [date, setDate] = useState('');
+  return (
+    <>
+      <DateSelector
+        value={date}
+        className="mt24"
+        yearBoundaries={{ min: 2020, max: 2022 }}
+        onChange={(date) => {
+          setDate(date);
+        }}
+      />
+    </>
+  );
+};
+
+<DateSelectorWithoutCalendarStory />
+
+### With calendar
+
+export const DateSelectorWithCalendarStory = () => {
+  const [date, setDate] = useState('');
+  return (
+    <div style={{ paddingBottom: '120px' }}>
+      <DateSelector
+        value={date}
+        className="mt24"
+        yearBoundaries={{ min: 2020, max: 2022 }}
+        onChange={(date) => {
+          setDate(date);
+        }}
+        displayCalendar={true}
+      />
+    </div>
+  );
+};
+
+<DateSelectorWithCalendarStory />
