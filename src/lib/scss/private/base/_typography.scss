@@ -95,7 +95,7 @@ body {
 .p-a {
   color: $ds-primary-500;
   text-decoration: none;
-  &:hover {
+  &:hover, &:focus {
     color: $ds-primary-700;
   }
 }
