@@ -1,6 +1,6 @@
 {
   "name": "@popsure/dirty-swan",
-  "version": "0.20.8",
+  "version": "1.0.0-0",
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
@@ -40,7 +40,6 @@
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "release": "yarn build && yarn publish --access public",
     "storybook": "start-storybook -p 9009 -s public,storybook-assets",
     "build-storybook": "build-storybook -s public,storybook-assets",
     "deploy-storybook": "storybook-to-ghpages"
