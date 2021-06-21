@@ -13,14 +13,14 @@ export default ({
   titleSize = 'medium',
   children,
   topIcon,
-  topIconSize,
+  topIconSize = { width: 48, height: 48 },
   rightIcon,
   state = 'actionable',
   dropshadow = true,
   ...props
 }: CardProps & {
   topIcon: Icon;
-  topIconSize?: IconSize;
+  topIconSize: IconSize;
   titleSize?: 'small' | 'medium' | 'big';
   rightIcon?: 'arrow' | Icon;
 }) => (
@@ -32,8 +32,8 @@ export default ({
       {...props}
     >
       <img
-        width={topIconSize ? `${topIconSize?.width}px` : '48xp'}
-        height={topIconSize ? `${topIconSize?.height}px` : '48xp'}
+        width={topIconSize?.width}
+        height={topIconSize?.height}
         alt={topIcon.alt}
         src={topIcon.src}
       />
