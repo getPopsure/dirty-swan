@@ -23,7 +23,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
       - name: Build new version
-          run: yarn build
+        run: yarn build
       - name: Publish new version
         run: yarn publish --new-version $RELEASE_VERSION --no-git-tag-version --access public
         env:
