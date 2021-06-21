@@ -3,7 +3,7 @@ import {
   CardProps,
   headingForTitleSize,
 } from '..';
-import { Icon, arrowRight } from '../icons';
+import { Icon, arrowRight, IconSize } from '../icons';
 
 import styles from './style.module.scss';
 
@@ -13,12 +13,14 @@ export default ({
   titleSize = 'medium',
   children,
   topIcon,
+  topIconSize,
   rightIcon,
   state = 'actionable',
   dropshadow = true,
   ...props
 }: CardProps & {
   topIcon: Icon;
+  topIconSize?: IconSize;
   titleSize?: 'small' | 'medium' | 'big';
   rightIcon?: 'arrow' | Icon;
 }) => (
@@ -29,7 +31,12 @@ export default ({
       } ${className ?? ''}`}
       {...props}
     >
-      <img width="48xp" height="48px" alt={topIcon.alt} src={topIcon.src} />
+      <img
+        width={topIconSize?.width ? `${topIconSize?.width}px` : '48xp'}
+        height={topIconSize?.height ? `${topIconSize?.height}px` : '48xp'}
+        alt={topIcon.alt}
+        src={topIcon.src}
+      />
       <div className="d-flex mt16">
         <div className={headingForTitleSize(titleSize)}>{title}</div>
         {rightIcon && (
@@ -42,7 +49,7 @@ export default ({
           />
         )}
       </div>
-      <p className="p-p mt16 tc-grey-700">{children}</p>
+      {children}
     </div>
   </>
 );

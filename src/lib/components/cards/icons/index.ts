@@ -7,6 +7,11 @@ export interface Icon {
   alt: string;
 }
 
+export interface IconSize {
+  width: number;
+  height: number;
+}
+
 const arrowRight: Icon = {
   src: arrowRightImage,
   alt: 'arrow pointing right',
