@@ -10,12 +10,8 @@ See our official website for installation and usage [dirtyswan.design](http://di
 
 ## Contributing
 
-### Releasing a new version using yarn
+### Releasing a new version
 
-You can release a new version by using the following command:
+To release a new version, use "Draft a new release" on GitHub (please refer to [Managing a release in a repository](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/managing-releases-in-a-repository)). You'll need to specify a correct "Tag version" that is following [Semantic Versioning](https://semver.org) (or semver).
 
-```bash
-yarn release
-```
-
-You will get asked to specify the new version number. We are using [Semantic Versioning](https://semver.org) (or semver) for that.
+GitHub Action will then automatically pick it up from there and release the new version for you.
