@@ -24,10 +24,10 @@ jobs:
           git config user.email github-actions@github.com
       - name: Build new version
         run: yarn build
-      - name: Add GitHub package auth token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PKG_GITHUB_TOKEN }}" >> .npmrc
       - name: Publish new version
         run: yarn publish --new-version $RELEASE_VERSION --no-git-tag-version --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Push new package.json version
         run: |
           git commit -am "Bumped package.json to $RELEASE_VERSION"
