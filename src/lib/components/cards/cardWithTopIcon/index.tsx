@@ -32,8 +32,8 @@ export default ({
       {...props}
     >
       <img
-        width={topIconSize?.width ? `${topIconSize?.width}px` : '48xp'}
-        height={topIconSize?.height ? `${topIconSize?.height}px` : '48xp'}
+        width={topIconSize ? `${topIconSize?.width}px` : '48xp'}
+        height={topIconSize ? `${topIconSize?.height}px` : '48xp'}
         alt={topIcon.alt}
         src={topIcon.src}
       />
