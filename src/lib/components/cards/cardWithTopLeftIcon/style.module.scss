@@ -1,5 +1,9 @@
 .container {
   padding: 24px;
+
+  &--xsmall {
+    padding: 16px 24px;
+  }
 }
 
 .title-container {
@@ -10,4 +14,8 @@
 
 .right-icon {
   margin-left: auto;
+}
+
+.indent {
+  margin-left: 36px;
 }

@@ -18,14 +18,16 @@ export default ({
   dropshadow = true,
   ...props
 }: CardProps & {
-  titleSize?: 'medium' | 'big';
+  titleSize?: 'xsmall' | 'small' | 'medium' | 'big';
   leftIcon?: 'logo' | Icon;
   rightIcon?: 'arrow' | Icon;
 }) => (
   <div
     className={`${associatedClassForCardState(state, dropshadow)} ${
       styles.container
-    } ${className ?? ''}`}
+    }
+    ${titleSize === 'xsmall' ? styles['container--xsmall'] : ''}
+    ${className ?? ''}`}
     {...props}
   >
     <div className={styles['title-container']}>
@@ -49,6 +51,12 @@ export default ({
         />
       )}
     </div>
-    <p className="p-p mt16 tc-grey-700">{children}</p>
+    <p
+      className={`p-p tc-grey-700 ${
+        titleSize === 'xsmall' ? styles.indent : 'mt16'
+      }`}
+    >
+      {children}
+    </p>
   </div>
 );
