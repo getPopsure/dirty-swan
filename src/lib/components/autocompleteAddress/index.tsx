@@ -133,7 +133,7 @@ const AutoCompleteAddress = ({
       | undefined = autocomplete.current?.getPlace(),
     updateAddress: boolean = true
   ) => {
-    if (newPlace && newPlace.geometry) {
+    if (newPlace?.geometry?.location) {
       const geocoderAddress = geocoderAddressComponentToPartialAddress(
         newPlace.address_components!
       );
@@ -175,7 +175,7 @@ const AutoCompleteAddress = ({
             service.getDetails(
               { placeId: firstResult.place_id },
               (newPlace) => {
-                onPlaceChanged(newPlace, false);
+                onPlaceChanged(newPlace ? newPlace : undefined, false);
               }
             );
           }
