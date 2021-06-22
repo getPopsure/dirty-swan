@@ -13,9 +13,10 @@ export type CardProps = {
 } & JSX.IntrinsicElements['div'];
 
 export const headingForTitleSize = (
-  titleSize: 'small' | 'medium' | 'big'
+  titleSize: 'xsmall' | 'small' | 'medium' | 'big'
 ): string => {
   switch (titleSize) {
+    case 'xsmall':
     case 'small':
       return 'p-h4';
     case 'medium':
