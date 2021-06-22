@@ -27,6 +27,16 @@ const colors = [
     hex: '#2d394a',
   },
   {
+    name: 'Primary 25',
+    code: 'primary-25',
+    hex: '#fcfcff',
+  },
+  {
+    name: 'Primary 50',
+    code: 'primary-50',
+    hex: '#f7f7ff',
+  },
+  {
     name: 'Primary 100',
     code: 'primary-100',
     hex: '#e6e5ff',
