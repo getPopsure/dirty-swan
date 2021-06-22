@@ -175,7 +175,7 @@ const AutoCompleteAddress = ({
             service.getDetails(
               { placeId: firstResult.place_id },
               (newPlace) => {
-                onPlaceChanged(newPlace ? newPlace : undefined, false);
+                onPlaceChanged(newPlace ?? undefined, false);
               }
             );
           }
