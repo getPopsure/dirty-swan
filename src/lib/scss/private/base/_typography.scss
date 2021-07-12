@@ -95,7 +95,8 @@ body {
 .p-a {
   color: $ds-primary-500;
   text-decoration: none;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $ds-primary-700;
   }
 }
@@ -115,4 +116,13 @@ body {
 
 .ta-justify {
   text-align: justify;
+}
+
+// Font style
+.fs-italic {
+  font-style: italic;
+}
+
+.fs-normal {
+  font-style: normal;
 }
