@@ -1,37 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { Props } from '..';
 import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
+import useOnClose from '../hooks/useOnClose';
 
-export default ({ title, isOpen, children, onClose }: Props) => {
-  const [isClosing, setIsClosing] = useState(false);
+export default ({
+  title,
+  isOpen,
+  children,
+  onClose,
+  className = '',
+}: Props) => {
+  const { isClosing, handleContainerClick, handleOnClose } =
+    useOnClose(onClose);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
+
+    if (isOpen) {
+      window.addEventListener('wheel', handleWheelEvent, { passive: false });
+    } else {
+      window.removeEventListener('wheel', handleWheelEvent);
+    }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      window.removeEventListener('wheel', handleWheelEvent);
     };
   }, [isOpen]);
-
-  const handleOnClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-      setIsClosing(false);
-    }, 300);
-  };
 
   if (!isOpen) {
     return <></>;
   }
 
   return (
-    <div className={isClosing ? styles['overlay--close'] : styles.overlay}>
+    <div
+      className={isClosing ? styles['overlay--close'] : styles.overlay}
+      onClick={handleOnClose}
+    >
       <div
-        className={isClosing ? styles['container--close'] : styles.container}
+        className={`${
+          isClosing ? styles['container--close'] : styles.container
+        } ${className}`}
+        onClick={handleContainerClick}
       >
         <div className={styles.header}>
           <div className={`p-h2 ${styles.title}`}>{title}</div>
