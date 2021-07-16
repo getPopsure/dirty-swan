@@ -25,6 +25,7 @@ Modals are dialog overlays that prevent the user from interacting with the rest 
 | isOpen    | boolean               | When set to `true`, the modal is displayed. When set to `false` the modal gets removed | n/a           | true     |
 | onClose   | `function () => void` | Callback when the user close the modal                                                 | n/a           | true     |
 | children  | React.jsx             | The content that gets displayed on the modal                                           | n/a           | true     |
+| className | string                | Any additional className                                                               | n/a           | false    |
 
 export const RegularModalStory = () => {
   const [display, setDisplay] = useState(false);
