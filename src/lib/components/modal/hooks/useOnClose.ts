@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const useOnClose = (onClose: () => void) => {
+const useOnClose = (
+  onClose: () => void,
+  isOpen: boolean,
+  required: boolean
+) => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
@@ -11,7 +15,29 @@ const useOnClose = (onClose: () => void) => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
+
+    /**
+     * If we add an event listener with identical options,
+     * the event listener will be discarded.
+     * So we can safely add the event inside a useEffect function
+     * that will excecute multiple times.
+     *
+     * More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#multiple_identical_event_listeners
+     */
+    window.addEventListener('touchmove', handleWheelEvent, { passive: false }); // mobile
+    window.addEventListener('wheel', handleWheelEvent, { passive: false }); // desktop
+
+    return () => {
+      window.removeEventListener('touchmove', handleWheelEvent);
+      window.removeEventListener('wheel', handleWheelEvent);
+    };
+  }, [isOpen]);
+
   const handleOnClose = () => {
+    if (required) return null;
+
     setIsClosing(true);
     setTimeout(() => {
       onClose();
