@@ -4,10 +4,18 @@ import { Props } from '..';
 import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
+import useOnClose from '../hooks/useOnClose';
 
-export default ({ title, isOpen, children, onClose }: Props) => {
+export default ({
+  title,
+  isOpen,
+  children,
+  onClose,
+  className = '',
+}: Props) => {
   const [containerXOffset, setContainerXOffset] = useState(0);
-  const [isClosing, setIsClosing] = useState(false);
+  const { isClosing, handleContainerClick, handleOnClose } =
+    useOnClose(onClose);
 
   const containerRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
@@ -24,20 +32,18 @@ export default ({ title, isOpen, children, onClose }: Props) => {
     return <></>;
   }
 
-  const handleOnClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-      setIsClosing(false);
-    }, 300);
-  };
-
   return (
-    <div className={isClosing ? styles['overlay--close'] : styles.overlay}>
+    <div
+      className={isClosing ? styles['overlay--close'] : styles.overlay}
+      onClick={handleOnClose}
+    >
       <div
-        className={isClosing ? styles['container--close'] : styles.container}
+        className={`${
+          isClosing ? styles['container--close'] : styles.container
+        } ${className}`}
         ref={containerRef}
         style={{ top: `${containerXOffset}px` }}
+        onClick={handleContainerClick}
       >
         <div className={styles.header}>
           <div className={`p-h4 ${styles.title}`}>{title}</div>
