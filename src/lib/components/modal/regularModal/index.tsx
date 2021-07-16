@@ -17,10 +17,16 @@ export default ({
     useOnClose(onClose);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
+
+    if (isOpen) {
+      window.addEventListener('wheel', handleWheelEvent, { passive: false });
+    } else {
+      window.removeEventListener('wheel', handleWheelEvent);
+    }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      window.removeEventListener('wheel', handleWheelEvent);
     };
   }, [isOpen]);
 
