@@ -12,10 +12,14 @@ export default ({
   children,
   onClose,
   className = '',
+  required = false,
 }: Props) => {
   const [containerXOffset, setContainerXOffset] = useState(0);
-  const { isClosing, handleContainerClick, handleOnClose } =
-    useOnClose(onClose);
+  const { isClosing, handleContainerClick, handleOnClose } = useOnClose(
+    onClose,
+    isOpen,
+    required
+  );
 
   const containerRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
@@ -47,13 +51,15 @@ export default ({
       >
         <div className={styles.header}>
           <div className={`p-h4 ${styles.title}`}>{title}</div>
-          <button
-            type="button"
-            className={styles.close}
-            onClick={handleOnClose}
-          >
-            <img src={imageClose} alt="Close" />
-          </button>
+          {!required && (
+            <button
+              type="button"
+              className={styles.close}
+              onClick={handleOnClose}
+            >
+              <img src={imageClose} alt="Close" />
+            </button>
+          )}
         </div>
         <div className={styles.content}>{children}</div>
       </div>
