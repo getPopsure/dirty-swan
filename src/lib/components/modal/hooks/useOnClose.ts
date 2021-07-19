@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const useOnClose = (
   onClose: () => void,
   isOpen: boolean,
-  required: boolean
+  dismissable: boolean
 ) => {
   const [isClosing, setIsClosing] = useState(false);
 
@@ -13,7 +13,7 @@ const useOnClose = (
     return () => {
       window.removeEventListener('keydown', handleEscKey);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
@@ -36,7 +36,7 @@ const useOnClose = (
   }, [isOpen]);
 
   const handleOnClose = () => {
-    if (required) return null;
+    if (!dismissable) return null;
 
     setIsClosing(true);
     setTimeout(() => {

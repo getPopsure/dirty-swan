@@ -12,13 +12,13 @@ export default ({
   children,
   onClose,
   className = '',
-  required = false,
+  dismissable = true,
 }: Props) => {
   const [containerXOffset, setContainerXOffset] = useState(0);
   const { isClosing, handleContainerClick, handleOnClose } = useOnClose(
     onClose,
     isOpen,
-    required
+    dismissable
   );
 
   const containerRef = useCallback((node: HTMLDivElement) => {
@@ -51,7 +51,7 @@ export default ({
       >
         <div className={styles.header}>
           <div className={`p-h4 ${styles.title}`}>{title}</div>
-          {!required && (
+          {dismissable && (
             <button
               type="button"
               className={styles.close}

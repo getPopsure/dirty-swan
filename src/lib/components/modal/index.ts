@@ -8,7 +8,7 @@ export interface Props {
   children: React.ReactNode;
   onClose: () => void;
   className?: string;
-  required?: boolean;
+  dismissable?: boolean;
 }
 
 export { BottomModal, RegularModal, BottomOrRegularModal };
