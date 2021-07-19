@@ -1,0 +1,13 @@
+@use "../../../../scss/public/colors" as *;
+
+.icon {
+  margin-right: 4px;
+}
+
+.filled {
+  fill: $ds-primary-500;
+}
+
+.empty {
+  fill: $ds-grey-200;
+}

@@ -1,0 +1,108 @@
+@use "../../scss/public/grid" as *;
+@use "../../scss/public/colors" as *;
+
+.container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+  @include p-size-tablet {
+    scroll-snap-type: unset;
+  }
+}
+
+.overflow-container {
+  width: max-content;
+  min-width: 100%;
+}
+
+.group-container {
+  display: flex;
+  flex-flow: column;
+  width: max-content;
+  margin: auto;
+  min-width: calc(56rem + 48px);
+}
+
+.group-title {
+  width: 100%;
+
+  background-color: $ds-grey-100;
+  border-radius: 8px;
+
+  margin-top: 48px;
+
+  & > h4 {
+    padding: 24px;
+    display: inline-block;
+  }
+
+  @include p-size-tablet {
+    margin-top: 72px;
+  }
+}
+
+.sticky {
+  position: sticky;
+  justify-content: flex-start;
+  z-index: 1;
+
+  top: 0;
+  left: 0;
+
+  @include p-size-tablet {
+    border-right: 1px solid $ds-grey-100;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 64px;
+  z-index: 2;
+  background-color: white;
+
+  .container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include p-size-desktop {
+    top: 72px; // TODO: add top position as prop
+  }
+}
+
+.show-details-container {
+  width: 100%;
+  max-width: calc(100vw - 24px);
+
+  padding-left: 16px;
+
+  border: none;
+}
+
+.show-details-button {
+  font-family: inherit;
+  background-color: $ds-grey-100;
+
+  border: none;
+  border-radius: 8px;
+
+  height: 64px;
+
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-left: 8px;
+  }
+}
+
+.icon-inverted {
+  transform: rotate(180deg);
+  transition: all 0.25s ease;
+}

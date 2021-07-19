@@ -1,0 +1,53 @@
+@use "../../../../scss/public/colors" as *;
+@use "../../../../scss/public/grid" as *;
+
+.container {
+  position: absolute;
+  width: 100vw;
+  padding: 0 16px;
+  justify-content: space-between;
+  z-index: 1;
+  display: flex;
+  @include p-size-tablet {
+    display: none;
+  }
+}
+
+.next {
+  transform: rotate(-90deg);
+}
+
+.prev {
+  transform: rotate(90deg);
+}
+
+.arrow {
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border-radius: 50%;
+  background-color: $ds-grey-200;
+
+  justify-content: center;
+  align-items: center;
+
+  stroke: $ds-primary-100;
+
+  &:hover,
+  &:focus {
+    background-color: $ds-grey-200;
+    cursor: not-allowed;
+  }
+}
+
+.active {
+  stroke: $ds-primary-500;
+
+  &:hover,
+  &:focus {
+    background-color: $ds-grey-200;
+    cursor: pointer;
+  }
+}

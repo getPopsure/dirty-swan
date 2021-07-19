@@ -1,0 +1,114 @@
+@use "../../../../scss/public/colors" as *;
+@use "../../../../scss/public/grid" as *;
+
+$cell-min-width: 256px;
+
+.header {
+  position: relative;
+
+  & > div {
+    width: 100vw;
+
+    &:nth-child(n + 3) {
+      margin: 0;
+    }
+
+    @include p-size-tablet {
+      width: $cell-min-width;
+      scroll-snap-align: unset;
+    }
+  }
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  scroll-snap-align: end;
+
+  line-height: 24px;
+
+  padding: 16px;
+
+  color: $ds-grey-700;
+
+  width: 50vw;
+
+  &:first-child {
+    background-color: white;
+    /** Add scroll snap to every column except the first one */
+    scroll-snap-align: unset;
+  }
+
+  &:nth-child(n + 3) {
+    margin-left: 50vw;
+
+    @include p-size-tablet {
+      margin-left: unset;
+    }
+  }
+
+  @include p-size-tablet {
+    flex: 1 0 $cell-min-width;
+    width: $cell-min-width;
+    padding: 24px;
+
+    &:last-child {
+      padding: 24px 8px 24px 24px;
+    }
+  }
+}
+
+.title {
+  position: relative;
+  color: $ds-grey-900;
+
+  display: none;
+
+  &:after {
+    content: '';
+    display: block;
+
+    position: absolute;
+    top: calc(
+      50% + 16px
+    ); // Display bottom border at the same distance regardless of cell height
+
+    height: 4px;
+    width: 100%;
+    max-width: 140px;
+
+    background-color: $ds-primary-500;
+  }
+
+  @include p-size-tablet {
+    display: flex;
+  }
+}
+
+.sticky {
+  position: sticky;
+  justify-content: flex-start;
+  z-index: 1;
+
+  top: 0;
+  left: 0;
+
+  width: 50vw;
+
+  @include p-size-tablet {
+    border-right: 1px solid $ds-grey-100;
+    flex: 1 0 288px;
+  }
+}
+
+.addon {
+  width: 100%;
+  border-right: none;
+  max-width: 100vw;
+
+  @include p-size-desktop {
+    max-width: 944px;
+  }
+}
