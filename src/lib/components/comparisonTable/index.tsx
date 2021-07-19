@@ -6,8 +6,8 @@ import Row from './components/Row';
 import TableArrows, { ArrowValues } from './components/TableArrows';
 import TableRating from './components/TableRating';
 import TableTrueFalse from './components/TableTrueFalse';
-import RowHeader from './components/RowHeader';
-import InfoButton from './components/InfoButton';
+import TableRowHeader from './components/TableRowHeader';
+import TableInfoButton from './components/TableInfoButton';
 import Chevron from './components/Chevron';
 import { useActiveTableArrows } from './hooks/useActiveTableArrows';
 
@@ -54,11 +54,8 @@ const ComparisonTable = <T extends { id: number }>(
   const { headers, data, hideDetails } = props;
   const [showMore, setShowMore] = useState<boolean>(false);
   const headerContainerRef = useRef<HTMLDivElement | null>(null);
-  const {
-    activeArrows,
-    contentContainerRef,
-    contentWrapperRef,
-  } = useActiveTableArrows();
+  const { activeArrows, contentContainerRef, contentWrapperRef } =
+    useActiveTableArrows();
 
   /** narrow types */
   const headerContainer = headerContainerRef
@@ -200,6 +197,6 @@ export {
   ComparisonTable as default,
   TableRating,
   TableTrueFalse,
-  RowHeader,
-  InfoButton,
+  TableRowHeader,
+  TableInfoButton,
 };

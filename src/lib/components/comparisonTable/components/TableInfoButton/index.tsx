@@ -1,6 +1,6 @@
 import styles from './style.module.scss';
 
-const InfoButton = ({
+const TableInfoButton = ({
   onClick,
   className = '',
 }: {
@@ -34,4 +34,4 @@ const InfoButton = ({
   </span>
 );
 
-export default InfoButton;
+export default TableInfoButton;

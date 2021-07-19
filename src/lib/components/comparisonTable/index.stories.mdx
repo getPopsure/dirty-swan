@@ -1,0 +1,235 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import ComparisonTable, { TableRating, TableTrueFalse } from '.';
+
+<Meta title="JSX/Comparison Table" component={ComparisonTable} />
+
+# Comparison Table
+
+The Comparison Table component provides an easy way to compare vast amounts of information in a fast and easy way.
+
+<Preview>
+  <iframe
+    width="100%"
+    height="450"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FMKs4cbojdVOBKUxv7okb93%2FDirty-Swan-Design-System%3Fnode-id%3D2025%253A12194"
+    allowFullScreen
+  />
+</Preview>
+
+## Arguments
+
+| attribute   | unit                | description                                                | default value | required |
+| ----------- | ------------------- | ---------------------------------------------------------- | ------------- | -------- |
+| headers     | [Header[]](#header) | The structure of the table                                 | n/a           | true     |
+| data        | array               | The title text that needs to be displayed                  | n/a           | true     |
+| hideDetails | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
+
+## Types
+
+### Cell
+
+```typescript
+export interface CellBaseProps<T> {
+  label?: React.ReactNode;
+  render?: (value: any, element: T) => React.ReactNode;
+  key: Extract<keyof T, string>;
+  addonId?: string | number;
+}
+```
+
+### Header
+
+```typescript
+export interface Header<T> {
+  id: number;
+  label?: React.ReactNode;
+  cells: Array<Cell<T>>;
+  default?: boolean;
+}
+```
+
+## Default example
+
+export const ComparisonTableWithData = () => {
+  const headers = [
+    {
+      id: 1,
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Family friendly',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+  ];
+  const data = [
+    {
+      id: 1,
+      name: 'Pulp Fiction',
+      country: 'United States',
+      year: '1994',
+      rating: 3,
+      imdb: 8.9,
+      recommended: 3,
+      familyFriendly: false,
+      boxOffice: 213928762,
+    },
+    {
+      id: 2,
+      name: 'Parasite',
+      country: 'South Korea',
+      year: '2019',
+      rating: 2,
+      imdb: 8.6,
+      recommended: 3,
+      familyFriendly: false,
+      boxOffice: 355475245,
+    },
+    {
+      id: 3,
+      name: 'Spirited Away',
+      country: 'Japan',
+      year: '2001',
+      rating: 3,
+      imdb: 8.6,
+      recommended: 3,
+      familyFriendly: true,
+      boxOffice: 258908054,
+    },
+  ];
+  return <ComparisonTable data={data} headers={headers} />;
+};
+
+<ComparisonTableWithData />
+
+```typescript jsx
+import ComparisonTable, { TableRating, TableTrueFalse } from '.';
+
+export const ComparisonTableWithData = () => {
+  const headers = [
+    {
+      id: 1,
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Family friendly',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+  ];
+  const data = [
+    {
+      id: 1,
+      name: 'Pulp Fiction',
+      country: 'United States',
+      year: '1994',
+      rating: 3,
+      imdb: 8.9,
+      recommended: 3,
+      family_friendly: false,
+    },
+    {
+      id: 2,
+      name: 'Parasite',
+      country: 'South Korea',
+      year: '2019',
+      rating: 2,
+      imdb: 8.6,
+      recommended: 3,
+      family_friendly: false,
+    },
+    {
+      id: 3,
+      name: 'Spirited Away',
+      country: 'Japan',
+      year: '2001',
+      rating: 3,
+      imdb: 8.6,
+      recommended: 3,
+      family_friendly: true,
+    },
+  ];
+  return <ComparisonTable data={data} headers={headers} />;
+};
+
+<ComparisonTableWithData />;
+```

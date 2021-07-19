@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import InfoButton from '../InfoButton';
+import TableInfoButton from '../TableInfoButton';
 
 import styles from './style.module.scss';
 
-const RowHeader = (props: {
+const TableRowHeader = (props: {
   label: string;
   icon?: string;
   subtitle?: string;
@@ -24,7 +24,7 @@ const RowHeader = (props: {
           >
             {label}
           </span>
-          {onClickInfo && <InfoButton onClick={onClickInfo} />}
+          {onClickInfo && <TableInfoButton onClick={onClickInfo} />}
         </p>
         {subtitle && <p className="p-p--small tc-grey-500">{subtitle}</p>}
       </div>
@@ -32,4 +32,4 @@ const RowHeader = (props: {
   );
 };
 
-export default RowHeader;
+export default TableRowHeader;
