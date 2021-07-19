@@ -22,6 +22,7 @@ export {
   AutoSuggestMultiSelect,
   Chip,
   AutoSuggestInput,
+  ComparisonTable,
 } from './lib';
 
 export type { DownloadRingDownloadStatus } from './lib';

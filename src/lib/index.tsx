@@ -22,6 +22,7 @@ import Button from './components/button';
 import AutoSuggestMultiSelect from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
 import AutoSuggestInput from './components/input/autoSuggestInput';
+import ComparisonTable from './components/comparisonTable';
 
 export {
   DateSelector,
@@ -44,6 +45,7 @@ export {
   AutoSuggestMultiSelect,
   Chip,
   AutoSuggestInput,
+  ComparisonTable,
 };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';

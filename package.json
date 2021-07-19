@@ -27,6 +27,7 @@
     "react-autosuggest": "^10.1.0",
     "react-day-picker": "^7.4.10",
     "react-dropzone": "^11.3.2",
+    "react-scroll-sync": "^0.9.0",
     "sass": "^1.35.1",
     "signature_pad": "^3.0.0-beta.3"
   },
