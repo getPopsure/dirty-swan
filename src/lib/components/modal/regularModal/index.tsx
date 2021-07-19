@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Props } from '..';
+import useOnClose from '../hooks/useOnClose';
+
 import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
-import useOnClose from '../hooks/useOnClose';
 
 export default ({
   title,
@@ -12,23 +13,13 @@ export default ({
   children,
   onClose,
   className = '',
+  dismissable = true,
 }: Props) => {
-  const { isClosing, handleContainerClick, handleOnClose } =
-    useOnClose(onClose);
-
-  useEffect(() => {
-    const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
-
-    if (isOpen) {
-      window.addEventListener('wheel', handleWheelEvent, { passive: false });
-    } else {
-      window.removeEventListener('wheel', handleWheelEvent);
-    }
-
-    return () => {
-      window.removeEventListener('wheel', handleWheelEvent);
-    };
-  }, [isOpen]);
+  const { isClosing, handleContainerClick, handleOnClose } = useOnClose(
+    onClose,
+    isOpen,
+    dismissable
+  );
 
   if (!isOpen) {
     return <></>;
@@ -47,13 +38,15 @@ export default ({
       >
         <div className={styles.header}>
           <div className={`p-h2 ${styles.title}`}>{title}</div>
-          <button
-            type="button"
-            className={styles.close}
-            onClick={handleOnClose}
-          >
-            <img src={imageClose} alt="Close" />
-          </button>
+          {dismissable && (
+            <button
+              type="button"
+              className={styles.close}
+              onClick={handleOnClose}
+            >
+              <img src={imageClose} alt="Close" />
+            </button>
+          )}
         </div>
         {children}
       </div>
