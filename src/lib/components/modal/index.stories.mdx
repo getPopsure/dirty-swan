@@ -26,7 +26,7 @@ Modals are dialog overlays that prevent the user from interacting with the rest 
 | onClose     | `function () => void` | Callback when the user close the modal                                                 | n/a           | true     |
 | children    | React.jsx             | The content that gets displayed on the modal                                           | n/a           | true     |
 | className   | string                | Any additional className                                                               | n/a           | false    |
-| dismissable | boolean               | When set to `false` prevents the user from closing the modal                     | true          | false    |
+| dismissible | boolean               | When set to `false` prevents the user from closing the modal                     | true          | false    |
 
 export const RegularModalStory = () => {
   const [display, setDisplay] = useState(false);
@@ -264,7 +264,7 @@ Bottom or Regular modal will automatically choose what’s best to display based
 
 ## Required modal
 
-Passing the `required` prop to the modal will hide the close button and prevent the user from closing it using the escape key or clicking outside.
-This prop can be useful if we don't want the user to dismiss the modal and close it after direct interaction.
+Setting the `dismissible` prop to false will hide the close button and prevent the user from closing it using the escape key or clicking outside.
+This prop can be useful if we want the user to explicitly interact with the modal options.
 
-**Warning:** a modal with the `required` prop can only be closed by setting the `isOpen` prop to `false`.
+**Warning:** a modal with the `dismissible` prop can only be closed by changing the `isOpen` prop to `false`.

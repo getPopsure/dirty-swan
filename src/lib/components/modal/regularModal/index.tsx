@@ -13,12 +13,12 @@ export default ({
   children,
   onClose,
   className = '',
-  dismissable = true,
+  dismissible = true,
 }: Props) => {
   const { isClosing, handleContainerClick, handleOnClose } = useOnClose(
     onClose,
     isOpen,
-    dismissable
+    dismissible
   );
 
   if (!isOpen) {
@@ -38,7 +38,7 @@ export default ({
       >
         <div className={styles.header}>
           <div className={`p-h2 ${styles.title}`}>{title}</div>
-          {dismissable && (
+          {dismissible && (
             <button
               type="button"
               className={styles.close}

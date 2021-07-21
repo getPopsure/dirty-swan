@@ -29,8 +29,9 @@ export default ({
         <div
           className={`mb8 ${styles['chip-container']} ${chipsListClassName}`}
         >
-          {selectedValues.map((value) => (
+          {selectedValues.map((value, index) => (
             <Chip
+              key={`${value.value}-${index}`}
               value={value}
               onRemove={(value: Option) => {
                 const newValues = [...selectedValues].filter(
