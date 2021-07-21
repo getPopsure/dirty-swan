@@ -194,7 +194,7 @@ const ComparisonTable = <T extends { id: number }>(
 };
 
 export {
-  ComparisonTable as default,
+  ComparisonTable,
   TableRating,
   TableTrueFalse,
   TableRowHeader,
