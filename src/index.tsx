@@ -29,6 +29,8 @@ export {
   TableInfoButton,
 } from './lib';
 
+export type { TableHeader } from './lib';
+
 export type { DownloadRingDownloadStatus } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));

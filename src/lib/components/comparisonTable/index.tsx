@@ -11,7 +11,7 @@ import TableInfoButton from './components/TableInfoButton';
 import Chevron from './components/Chevron';
 import { useActiveTableArrows } from './hooks/useActiveTableArrows';
 
-import styles from './style.module.scss';
+import baseStyles from './style.module.scss';
 
 export interface CellBaseProps<T> {
   /** Used to display the row's title */
@@ -33,7 +33,7 @@ export type Cell<T> =
   | ({ key: Extract<keyof T, string> } & CellBaseProps<T>)
   | ({ key?: undefined } & CellWithId<T>);
 
-export interface Header<T> {
+export interface TableHeader<T> {
   /** Required unique id number for each table group */
   id: number;
   /** Used to display a table group subheader */
@@ -43,15 +43,19 @@ export interface Header<T> {
 }
 
 export interface ComparisonTableProps<T> {
-  headers: Array<Header<T>>;
+  headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
+  styles?: {
+    header?: string;
+    container?: string;
+  };
 }
 
 const ComparisonTable = <T extends { id: number }>(
   props: ComparisonTableProps<T>
 ) => {
-  const { headers, data, hideDetails } = props;
+  const { headers, data, hideDetails, styles } = props;
   const [showMore, setShowMore] = useState<boolean>(false);
   const headerContainerRef = useRef<HTMLDivElement | null>(null);
   const { activeArrows, contentContainerRef, contentWrapperRef } =
@@ -94,11 +98,11 @@ const ComparisonTable = <T extends { id: number }>(
   return (
     <ScrollSync>
       <div>
-        <div className={styles.header}>
+        <div className={classNames(baseStyles.header, styles?.header)}>
           <ScrollSyncPane>
-            <div className={styles.container} ref={headerContainerRef}>
-              <div className={classNames(styles['overflow-container'])}>
-                <div className={styles['group-container']}>
+            <div className={baseStyles.container} ref={headerContainerRef}>
+              <div className={classNames(baseStyles['overflow-container'])}>
+                <div className={baseStyles['group-container']}>
                   <TableArrows
                     onClick={handleArrowsClick}
                     active={activeArrows}
@@ -116,12 +120,15 @@ const ComparisonTable = <T extends { id: number }>(
           </ScrollSyncPane>
         </div>
         <ScrollSyncPane>
-          <div className={styles.container} ref={contentWrapperRef}>
+          <div
+            className={classNames(baseStyles.container, styles?.container)}
+            ref={contentWrapperRef}
+          >
             <div
-              className={classNames(styles['overflow-container'])}
+              className={classNames(baseStyles['overflow-container'])}
               ref={contentContainerRef}
             >
-              <div className={styles['group-container']}>
+              <div className={baseStyles['group-container']}>
                 {Array.isArray(headers) &&
                   headers
                     .filter(
@@ -135,8 +142,8 @@ const ComparisonTable = <T extends { id: number }>(
                            * Print a table subheader if the `label` value is present
                            */
                           headerGroup.label && (
-                            <div className={styles['group-title']}>
-                              <h4 className={`p-h4 ${styles.sticky}`}>
+                            <div className={baseStyles['group-title']}>
+                              <h4 className={`p-h4 ${baseStyles.sticky}`}>
                                 {headerGroup.label}
                               </h4>
                             </div>
@@ -166,19 +173,21 @@ const ComparisonTable = <T extends { id: number }>(
                 {hideDetails && (
                   <div
                     className={classNames(
-                      styles['show-details-container'],
-                      styles.sticky,
+                      baseStyles['show-details-container'],
+                      baseStyles.sticky,
                       'mt48'
                     )}
                   >
                     <div>
                       <button
-                        className={`w100 d-flex p-a p-h4 c-pointer ${styles['show-details-button']}`}
+                        className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
                         onClick={toggleMoreRows}
                       >
                         {showMore ? 'Hide details' : 'Show details'}
                         <Chevron
-                          className={showMore ? '' : styles['icon-inverted']}
+                          className={
+                            showMore ? '' : baseStyles['icon-inverted']
+                          }
                         />
                       </button>
                     </div>
@@ -194,7 +203,7 @@ const ComparisonTable = <T extends { id: number }>(
 };
 
 export {
-  ComparisonTable as default,
+  ComparisonTable,
   TableRating,
   TableTrueFalse,
   TableRowHeader,

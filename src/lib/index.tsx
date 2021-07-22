@@ -22,11 +22,13 @@ import Button from './components/button';
 import AutoSuggestMultiSelect from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
 import AutoSuggestInput from './components/input/autoSuggestInput';
-import ComparisonTable, {
+import {
+  ComparisonTable,
   TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
+  TableHeader,
 } from './components/comparisonTable';
 
 export {
@@ -56,5 +58,7 @@ export {
   TableRowHeader,
   TableInfoButton,
 };
+
+export type { TableHeader };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
