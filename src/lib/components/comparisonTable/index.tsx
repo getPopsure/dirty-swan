@@ -33,7 +33,7 @@ export type Cell<T> =
   | ({ key: Extract<keyof T, string> } & CellBaseProps<T>)
   | ({ key?: undefined } & CellWithId<T>);
 
-export interface Header<T> {
+export interface TableHeader<T> {
   /** Required unique id number for each table group */
   id: number;
   /** Used to display a table group subheader */
@@ -43,7 +43,7 @@ export interface Header<T> {
 }
 
 export interface ComparisonTableProps<T> {
-  headers: Array<Header<T>>;
+  headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
   styles?: {

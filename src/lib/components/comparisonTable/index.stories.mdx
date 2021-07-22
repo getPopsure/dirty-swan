@@ -92,7 +92,7 @@ export const ComparisonTableWithData = () => {
         {
           id: 6,
           key: 'boxOffice',
-          label: 'Family friendly',
+          label: 'Box office',
           render: (value) =>
             value.toLocaleString('de-DE', {
               style: 'currency',
@@ -143,10 +143,26 @@ export const ComparisonTableWithData = () => {
 <ComparisonTableWithData />
 
 ```typescript jsx
-import ComparisonTable, { TableRating, TableTrueFalse } from '.';
+import ComparisonTable, {
+  TableRating,
+  TableTrueFalse,
+  TableHeader,
+} from '@popsure/dirty-swan';
+
+interface TableData {
+  id: number;
+  name: string;
+  country: string;
+  year: string;
+  rating: number;
+  imdb: number;
+  recommended: number;
+  familyFriendly: boolean;
+  boxOffice: number;
+}
 
 export const ComparisonTableWithData = () => {
-  const headers = [
+  const headers: Array<TableHeader<TableData>> = [
     {
       id: 1,
       cells: [
@@ -186,7 +202,7 @@ export const ComparisonTableWithData = () => {
         {
           id: 6,
           key: 'boxOffice',
-          label: 'Family friendly',
+          label: 'Box office',
           render: (value) =>
             value.toLocaleString('de-DE', {
               style: 'currency',
@@ -196,7 +212,7 @@ export const ComparisonTableWithData = () => {
       ],
     },
   ];
-  const data = [
+  const data: Array<TableData> = [
     {
       id: 1,
       name: 'Pulp Fiction',
@@ -205,7 +221,8 @@ export const ComparisonTableWithData = () => {
       rating: 3,
       imdb: 8.9,
       recommended: 3,
-      family_friendly: false,
+      familyFriendly: false,
+      boxOffice: 213928762,
     },
     {
       id: 2,
@@ -215,7 +232,8 @@ export const ComparisonTableWithData = () => {
       rating: 2,
       imdb: 8.6,
       recommended: 3,
-      family_friendly: false,
+      familyFriendly: false,
+      boxOffice: 355475245,
     },
     {
       id: 3,
@@ -225,7 +243,8 @@ export const ComparisonTableWithData = () => {
       rating: 3,
       imdb: 8.6,
       recommended: 3,
-      family_friendly: true,
+      familyFriendly: true,
+      boxOffice: 258908054,
     },
   ];
   return <ComparisonTable data={data} headers={headers} />;

@@ -28,6 +28,7 @@ import {
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
+  TableHeader,
 } from './components/comparisonTable';
 
 export {
@@ -57,5 +58,7 @@ export {
   TableRowHeader,
   TableInfoButton,
 };
+
+export type { TableHeader };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
