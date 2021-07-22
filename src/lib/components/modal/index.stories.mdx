@@ -26,7 +26,7 @@ Modals are dialog overlays that prevent the user from interacting with the rest 
 | onClose     | `function () => void` | Callback when the user close the modal                                                 | n/a           | true     |
 | children    | React.jsx             | The content that gets displayed on the modal                                           | n/a           | true     |
 | className   | string                | Any additional className                                                               | n/a           | false    |
-| dismissible | boolean               | When set to `false` prevents the user from closing the modal                     | true          | false    |
+| dismissible | boolean               | When set to `false` prevents the user from closing the modal                           | true          | false    |
 
 export const RegularModalStory = () => {
   const [display, setDisplay] = useState(false);
@@ -124,6 +124,50 @@ export const BottomModalStory = () => {
           </button>
         </div>
       </BottomModal>
+    </>
+  );
+};
+
+export const NonDismissibleModal = () => {
+  const [display, setDisplay] = useState(false);
+  return (
+    <>
+      <button
+        className="p-btn--primary wmn2"
+        onClick={() => {
+          setDisplay(!display);
+        }}
+      >
+        Open modal
+      </button>
+      <RegularModal
+        title="Non-dismissible modal title"
+        isOpen={display}
+        onClose={() => {
+          setDisplay(false);
+        }}
+        dismissible={false}
+      >
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <p className="p-p">
+            This modal requires clear user interaction to dismiss it. The close
+            button is hidden, and it cannot be closed using the keyboard nor
+            clicking outside.
+          </p>
+          <button
+            className="p-btn--primary bg-red-500 mt24 wmn3"
+            onClick={() => setDisplay(false)}
+          >
+            Reject
+          </button>
+          <button
+            className="p-btn--primary mt24 wmn3 ml16"
+            onClick={() => setDisplay(false)}
+          >
+            Accept
+          </button>
+        </div>
+      </RegularModal>
     </>
   );
 };
@@ -262,9 +306,11 @@ export default () => {
 
 Bottom or Regular modal will automatically choose what’s best to display based on the users screen width.
 
-## Required modal
+## Non-dismissible modal
 
 Setting the `dismissible` prop to false will hide the close button and prevent the user from closing it using the escape key or clicking outside.
 This prop can be useful if we want the user to explicitly interact with the modal options.
 
 **Warning:** a modal with the `dismissible` prop can only be closed by changing the `isOpen` prop to `false`.
+
+<NonDismissibleModal />
