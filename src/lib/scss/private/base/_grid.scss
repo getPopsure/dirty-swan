@@ -1,4 +1,5 @@
 @use '../../public/grid';
+@use '../utils/str-replace';
 
 .p-body {
   @include grid.p-size-mobile {
@@ -12,5 +13,35 @@
   @include grid.p-size-desktop {
     width: 56rem;
     margin: 0 auto;
+  }
+}
+
+/** Taken from https://gist.github.com/Bamieh/912a6f0b63cbb53f3ad0bd8df7171c6a */
+@function remove-dot-from-class($class) {
+  $class-string: quote($class);
+  @return if(
+    str-slice($class-string, 0, 1) == '.',
+    str-slice($class-string, 2, str-length($class-string)),
+    $class-string
+  );
+}
+
+@mixin add-responsive {
+  $selector: remove-dot-from-class(#{&});
+  @content;
+
+  /** We need to use @at-root to prevent the following rules to be nested */
+  @at-root {
+    .md\:#{$selector} {
+      @include grid.p-size-tablet {
+        @content;
+      }
+    }
+
+    .lg\:#{$selector} {
+      @include grid.p-size-desktop {
+        @content;
+      }
+    }
   }
 }

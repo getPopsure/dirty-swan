@@ -9,7 +9,7 @@ $p-mobile-breakpoint: 34rem;
 }
 
 @mixin p-size-tablet {
-  @media (min-width: $p-mobile-breakpoint) {
+  @media (min-width: $p-tablet-breakpoint) and (max-width: $p-desktop-breakpoint) {
     @content;
   }
 }

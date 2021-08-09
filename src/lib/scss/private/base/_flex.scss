@@ -1,0 +1,43 @@
+@use 'grid';
+
+/** Shared values across align and justify properties */
+$common-values: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+);
+
+$align-values: map-merge(
+  $common-values,
+  (
+    'stretch': stretch,
+    'baseline': baseline,
+  )
+);
+
+$jutify-values: map-merge(
+  $common-values,
+  (
+    'between': space-between,
+    'around': space-around,
+    'evenly': space-evenly,
+  )
+);
+
+// Align items
+@each $name, $value in $align-values {
+  .ai-#{$name} {
+    @include grid.add-responsive {
+      align-items: $value;
+    }
+  }
+}
+
+// Justify content
+@each $name, $value in $jutify-values {
+  .jc-#{$name} {
+    @include grid.add-responsive {
+      justify-content: $value;
+    }
+  }
+}
