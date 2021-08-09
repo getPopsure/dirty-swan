@@ -32,6 +32,12 @@
 
   // We need to use @at-root to prevent the following rules to be nested inside the selector
   @at-root {
+    .sm\:#{$selector} {
+      @include grid.p-size-mobile {
+        @content;
+      }
+    }
+
     .md\:#{$selector} {
       @include grid.p-size-tablet {
         @content;
