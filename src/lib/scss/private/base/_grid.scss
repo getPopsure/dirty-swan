@@ -16,7 +16,7 @@
   }
 }
 
-/** Taken from https://gist.github.com/Bamieh/912a6f0b63cbb53f3ad0bd8df7171c6a */
+// Taken from https://gist.github.com/Bamieh/912a6f0b63cbb53f3ad0bd8df7171c6a
 @function remove-dot-from-class($class) {
   $class-string: quote($class);
   @return if(
@@ -30,7 +30,7 @@
   $selector: remove-dot-from-class(#{&});
   @content;
 
-  /** We need to use @at-root to prevent the following rules to be nested */
+  // We need to use @at-root to prevent the following rules to be nested inside the selector
   @at-root {
     .md\:#{$selector} {
       @include grid.p-size-tablet {
