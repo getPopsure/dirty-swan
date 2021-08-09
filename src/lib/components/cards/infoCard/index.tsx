@@ -41,7 +41,7 @@ export default ({
         />
       )}
       <div className="p-h4 ta-center mt64">{title}</div>
-      <p className="p-p mt16 tc-grey-700">{children}</p>
+      <p className="p-p mt16 tc-grey-600">{children}</p>
     </div>
   </div>
 );
