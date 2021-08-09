@@ -1,5 +1,4 @@
 @use '../../public/grid';
-@use '../utils/str-replace';
 
 .p-body {
   @include grid.p-size-mobile {
