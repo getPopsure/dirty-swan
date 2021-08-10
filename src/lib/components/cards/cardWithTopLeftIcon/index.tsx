@@ -52,7 +52,7 @@ export default ({
       )}
     </div>
     <p
-      className={`p-p tc-grey-700 ${
+      className={`p-p tc-grey-600 ${
         titleSize === 'xsmall' ? styles.indent : 'mt16'
       }`}
     >

@@ -52,7 +52,7 @@ export default ({
           />
         )}
       </div>
-      <p className="p-p mt8 tc-grey-700">{children}</p>
+      <p className="p-p mt8 tc-grey-600">{children}</p>
     </div>
   </div>
 );
