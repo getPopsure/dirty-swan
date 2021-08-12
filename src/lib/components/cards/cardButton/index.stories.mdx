@@ -1,0 +1,58 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import CardButton from '.';
+
+<Meta title="JSX/Cards/Card Button" />
+
+# Card Button
+
+| attribute   | unit     | description                                                  | default value | required                            |
+| ----------- | -------- | ------------------------------------------------------------ | ------------- | ----------------------------------- |
+| title       | string   | Title text that needs to be displayed                        | n/a           | true                                |
+| description | string   | Description text that is displayed under title               | n/a           | true                                |
+| disabled    | boolean  | Disabled state of the button                                 | n/a           | false                               |
+| maxChar     | number   | Maximum number of characters to be displayed for description | n/a           | false                               |
+| className   | string   | Class name for most top parent element                       | n/a           | false                               |
+| onClick     | function | Function that runs on click of the button                    | n/a           | true (false if href prop exists)    |
+| href        | string   | Redirect URL on click of the button                          | n/a           | true (false if onClick prop exists) |
+
+<Preview>
+  <>
+    <h4 className="p-h4">Normal state</h4>
+    <br />
+    <CardButton
+      title="Name"
+      description="Seungha Kong"
+      onClick={() => console.log('This is a button component')}
+    />
+    <br />
+    <br />
+    <h4 className="p-h4">Long description</h4>
+    <br />
+    <CardButton
+      title="Risky Sports"
+      description="Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping"
+      onClick={() => console.log('This is a button component')}
+    />
+    <br />
+    <br />
+    <h4 className="p-h4">Long description with limited text</h4>
+    <br />
+    <CardButton
+      title="Risky Sports"
+      description="Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping"
+      onClick={() => console.log('This is a button component')}
+      maxChar={54}
+    />
+    <br />
+    <br />
+    <h4 className="p-h4">Disabled state</h4>
+    <br />
+    <CardButton
+      title="Address"
+      description="Lohmühlenstraße 65 10557 Berlin"
+      onClick={() => console.log('This is a button component')}
+      disabled
+    />
+  </>
+</Preview>
