@@ -1,0 +1,19 @@
+.container {
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+
+  label {
+    flex-flow: row-reverse;
+    align-items: center;
+
+    &:before {
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
+      margin: 0 0 0 auto;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import CardWithCheckbox from './index';
+import { featherLogo } from '../icons';
+
+<Meta title="JSX/Cards/Card with checkbox" />
+
+# Card with checkbox input
+
+<Preview>
+  <>
+    <div className="bg-grey-100" style={{ padding: 16 }}>
+      <h4 className="p-h4 mt48">Base component</h4>
+      <CardWithCheckbox
+        id="card-with-checkbox-1"
+        title="Card with Checkbox"
+        onChange={(e) => console.log('Checked:', e.target.checked)}
+      />
+      <h4 className="p-h4 mt48">With icon</h4>
+      <CardWithCheckbox
+        id="card-with-checkbox-2"
+        title="Card with Checkbox"
+        icon={featherLogo}
+        onChange={(e) => console.log('Checked:', e.target.checked)}
+      />
+      <h4 className="p-h4 mt48">With description</h4>
+      <CardWithCheckbox
+        id="card-with-checkbox-3"
+        title="Card with Checkbox"
+        description="Praesent euismod porta odio at tempus. Aenean urna massa, facilisis malesuada eros at, rhoncus imperdiet nunc"
+        icon={featherLogo}
+        onChange={(e) => console.log('Checked:', e.target.checked)}
+      />
+    </div>
+  </>
+</Preview>
