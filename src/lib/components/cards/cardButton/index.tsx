@@ -1,15 +1,13 @@
-import { FormEvent, createElement } from 'react';
+import { FormEvent, createElement, ReactNode } from 'react';
 
 import styles from './style.module.scss';
 import { arrowRight } from '../icons';
-import classnames from 'classnames';
 
 interface Props {
   title: string;
-  description: string;
+  description: string | ReactNode;
   disabled?: boolean;
   className?: string;
-  ellipsis: boolean;
 }
 
 type ActionProps =
@@ -19,22 +17,14 @@ type ActionProps =
 const CardContent = ({
   title,
   description,
-  ellipsis,
 }: {
   title: string;
-  description: string;
-  ellipsis: boolean;
+  description: string | ReactNode;
 }) => (
   <>
-    <div className="w90">
+    <div>
       <div className="p-p--small">{title}</div>
-      <div
-        className={classnames('tc-primary-500 p-p', {
-          [styles['text-ellipsis']]: ellipsis,
-        })}
-      >
-        {description}
-      </div>
+      <div className="tc-primary-500 p-p">{description}</div>
     </div>
     <img {...arrowRight} />
   </>
@@ -47,7 +37,6 @@ export default ({
   onClick,
   href,
   className,
-  ellipsis = false,
 }: Props & ActionProps) => {
   const component = href ? 'a' : 'button';
   return (
@@ -57,13 +46,7 @@ export default ({
           className ?? ''
         }
         `,
-        children: (
-          <CardContent
-            title={title}
-            description={description}
-            ellipsis={ellipsis}
-          />
-        ),
+        children: <CardContent title={title} description={description} />,
         disabled,
         ...(component === 'a' ? { href } : { onClick }),
       })}
