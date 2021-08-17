@@ -24,13 +24,17 @@ const CardContent = ({
   <>
     <div>
       <div className="p-p--small">{title}</div>
-      <div className="tc-primary-500 p-p">{description}</div>
+      {typeof description === 'string' ? (
+        <div className="tc-primary-500 p-p">{description}</div>
+      ) : (
+        description
+      )}
     </div>
     <img {...arrowRight} />
   </>
 );
 
-export default ({
+const CardButton = ({
   title,
   description,
   disabled,
@@ -53,3 +57,5 @@ export default ({
     </>
   );
 };
+
+export default CardButton;
