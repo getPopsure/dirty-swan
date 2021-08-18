@@ -2,6 +2,7 @@ import CardWithTopLeftIcon from './cardWithTopLeftIcon';
 import CardWithLeftIcon from './cardWithLeftIcon';
 import CardWithTopIcon from './cardWithTopIcon';
 import InfoCard from './infoCard';
+import CardButton from './cardButton';
 
 type CardState = 'actionable' | 'static' | 'muted';
 
@@ -47,4 +48,10 @@ export const associatedClassForCardState = (
   return baseClass;
 };
 
-export { CardWithTopLeftIcon, CardWithLeftIcon, CardWithTopIcon, InfoCard };
+export {
+  CardWithTopLeftIcon,
+  CardWithLeftIcon,
+  CardWithTopIcon,
+  InfoCard,
+  CardButton,
+};

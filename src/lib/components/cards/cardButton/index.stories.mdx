@@ -6,14 +6,14 @@ import CardButton from '.';
 
 # Card Button
 
-| attribute   | unit     | description                                    | default value | required                            |
-| ----------- | -------- | ---------------------------------------------- | ------------- | ----------------------------------- |
-| title       | string   | Title text that needs to be displayed          | n/a           | true                                |
-| description | string   | Description text that is displayed under title | n/a           | true                                |
-| disabled    | boolean  | Disabled state of the button                   | n/a           | false                               |
-| className   | string   | Class name for most top parent element         | n/a           | false                               |
-| onClick     | function | Function that runs on click of the button      | n/a           | true (false if href prop exists)    |
-| href        | string   | Redirect URL on click of the button            | n/a           | true (false if onClick prop exists) |
+| attribute   | unit                     | description                                    | default value | required                            |
+| ----------- | ------------------------ | ---------------------------------------------- | ------------- | ----------------------------------- |
+| title       | string                   | Title text that needs to be displayed          | n/a           | true                                |
+| description | string / ReactNode (JSX) | Description text that is displayed under title | n/a           | true                                |
+| disabled    | boolean                  | Disabled state of the button                   | false         | false                               |
+| className   | string                   | Class name for most top parent element         | n/a           | false                               |
+| onClick     | function                 | Function that runs on click of the button      | n/a           | true (false if href prop exists)    |
+| href        | string                   | Redirect URL on click of the button            | n/a           | true (false if onClick prop exists) |
 
 <Preview>
   <>
