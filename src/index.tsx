@@ -18,6 +18,7 @@ export {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  CardButton,
   Button,
   AutoSuggestMultiSelect,
   Chip,
