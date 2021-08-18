@@ -17,6 +17,7 @@ import {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  CardButton,
 } from './components/cards';
 import Button from './components/button';
 import AutoSuggestMultiSelect from './components/input/autoSuggestMultiSelect';
@@ -47,6 +48,7 @@ export {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  CardButton,
   Button,
   CurrencyInput,
   AutoSuggestMultiSelect,
