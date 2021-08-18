@@ -6,7 +6,7 @@ import { arrowRight } from '../icons';
 interface Props {
   title: string;
   description: string | ReactNode;
-  disabled: boolean;
+  disabled?: boolean;
   className?: string;
 }
 
