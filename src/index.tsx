@@ -28,6 +28,7 @@ export {
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
+  SegmentedControl,
 } from './lib';
 
 export type { TableHeader } from './lib';

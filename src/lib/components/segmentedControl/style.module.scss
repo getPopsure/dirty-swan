@@ -1,0 +1,36 @@
+.background-container {
+  position: relative;
+  display: inline-block;
+
+  background-color: var(--ds-primary-100);
+  border-radius: 8px;
+
+  padding: 0 8px;
+}
+
+.chip-container {
+  display: flex;
+  align-items: center;
+}
+
+.chip {
+  cursor: pointer;
+
+  z-index: 2;
+
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.select-chip-background {
+  position: absolute;
+
+  background-color: white;
+  border-radius: 8px;
+
+  top: 8px;
+
+  z-index: 1;
+
+  transition: width 0.3s, left 0.3s;
+}

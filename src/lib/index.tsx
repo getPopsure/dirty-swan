@@ -31,6 +31,7 @@ import {
   TableInfoButton,
   TableHeader,
 } from './components/comparisonTable';
+import SegmentedControl from './components/segmentedControl';
 
 export {
   DateSelector,
@@ -59,6 +60,7 @@ export {
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
+  SegmentedControl,
 };
 
 export type { TableHeader };
