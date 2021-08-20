@@ -22,12 +22,15 @@ const SegmentedControl = ({
       left: number;
       width: number;
     }>({ left: 0, width: 0 });
-  const chipContainer = useRef<any | null>(null);
+  const chipContainer = useRef<HTMLDivElement | null>(null);
   const height = typeof values[0] === 'string' ? 48 : 66;
 
   useEffect(() => {
-    const left = chipContainer.current.children[selectedIndex].offsetLeft;
-    const width = chipContainer.current.children[selectedIndex].offsetWidth;
+    const selectedChip = chipContainer.current?.children[
+      selectedIndex
+    ] as HTMLDivElement;
+    const left = selectedChip.offsetLeft;
+    const width = selectedChip.offsetWidth;
     setSelectedChipBackgroundWidthLeft({ left, width });
   }, [selectedIndex]);
 
