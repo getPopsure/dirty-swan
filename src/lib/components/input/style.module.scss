@@ -13,6 +13,10 @@
   color: var(--ds-grey-300);
 
   transition: 0.3s top;
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
 }
 
 .input:not(:placeholder-shown) ~ .placeholder,
@@ -30,10 +34,18 @@
 
 .input:focus ~ .placeholder {
   color: var(--ds-primary-500);
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
 }
 
 .input:focus ~ .prefix {
   color: var(--ds-primary-500);
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
 }
 
 .input:not(:placeholder-shown) ~ .prefix,
@@ -71,4 +83,12 @@
   &--with-prefix {
     left: 32px;
   }
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
+}
+
+.error {
+  margin-top: 4px;
 }
