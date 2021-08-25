@@ -12,7 +12,14 @@ export type InputProps = {
 
 export default React.forwardRef(
   (
-    { className, placeholder, prefix, ...props }: InputProps,
+    {
+      className,
+      placeholder,
+      prefix,
+      hasError,
+      errorMessage,
+      ...props
+    }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => (
     <div className={`${styles.container} ${className ?? ''}`}>
@@ -20,7 +27,7 @@ export default React.forwardRef(
         data-testid="ds-input-input"
         type="text"
         ref={ref}
-        className={`${props.hasError ? 'p-input--error' : 'p-input'} ${
+        className={`${hasError ? 'p-input--error' : 'p-input'} ${
           placeholder && placeholder?.length > 0
             ? styles.input
             : styles['input--no-placeholder']
@@ -31,7 +38,7 @@ export default React.forwardRef(
       {prefix && (
         <span
           className={`${styles.prefix} ${
-            props.hasError ? styles['prefix--with-error'] : ''
+            hasError ? styles['prefix--with-error'] : ''
           }`}
         >
           {prefix}
@@ -40,13 +47,13 @@ export default React.forwardRef(
       <span
         className={`${styles.placeholder} ${
           prefix ? styles['placeholder--with-prefix'] : ''
-        } ${props.hasError ? styles['placeholder--with-error'] : ''}`}
+        } ${hasError ? styles['placeholder--with-error'] : ''}`}
       >
         {placeholder}
       </span>
-      {props.hasError && props.errorMessage && (
+      {hasError && errorMessage && (
         <p className={`p-p--small tc-red-500 w100 ${styles.error}`}>
-          {props.errorMessage}
+          {errorMessage}
         </p>
       )}
     </div>
