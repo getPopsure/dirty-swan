@@ -19,6 +19,13 @@ You are looking at the JSX definition of the Input component, if you want you ca
     <Input className="wmx5 mt8" value="Lorem ipsum" />
     <h4 className="p-h4 mt24">Disabled</h4>
     <Input className="wmx5 mt8" value="Lorem ipsum" disabled={true} />
+    <h4 className="p-h4 mt24">Error</h4>
+    <Input
+      className="wmx5 mt8"
+      value="Lorem ipsum"
+      hasError
+      errorMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    />
     <h1 className="p-h1 mt32">With placeholder</h1>
     <h4 className="p-h4 mt24">Empty</h4>
     <Input className="wmx5 mt8" placeholder="Email" />
@@ -27,6 +34,14 @@ You are looking at the JSX definition of the Input component, if you want you ca
       className="wmx5 mt8"
       value="jane.doe@feather-insurance.com"
       placeholder="Email"
+    />
+    <h4 className="p-h4 mt24">Error</h4>
+    <Input
+      className="wmx5 mt8"
+      value="jane.doe@feather-insurance.com"
+      placeholder="Email"
+      hasError
+      errorMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     />
     <h1 className="p-h1 mt32">With prefix</h1>
     <h4 className="p-h4 mt24">Empty</h4>
@@ -37,5 +52,14 @@ You are looking at the JSX definition of the Input component, if you want you ca
     <Input className="wmx5 mt8" placeholder="amount" prefix="€" />
     <h4 className="p-h4 mt24">Filled with placeholder</h4>
     <Input className="wmx5 mt8" placeholder="amount" value="100" prefix="€" />
+    <h4 className="p-h4 mt24">Error</h4>
+    <Input
+      className="wmx5 mt8"
+      placeholder="amount"
+      value="100"
+      prefix="€"
+      hasError
+      errorMessage="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac hendrerit justo. Nunc nibh ex, vulputate ac leo id, feugiat rhoncus purus."
+    />
   </>
 </Preview>

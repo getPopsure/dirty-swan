@@ -38,6 +38,11 @@
   &--error {
     @extend .p-input;
     border: 1px solid $ds-red-500;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $ds-red-500;
+    }
   }
 
   input {
