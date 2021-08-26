@@ -16,22 +16,10 @@ const useOnClose = (
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const handleWheelEvent = (e: Event) => (isOpen ? e.preventDefault() : null);
-
-    /**
-     * If we add an event listener with identical options,
-     * the event listener will be discarded.
-     * So we can safely add the event inside a useEffect function
-     * that will excecute multiple times.
-     *
-     * More info: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#multiple_identical_event_listeners
-     */
-    window.addEventListener('touchmove', handleWheelEvent, { passive: false }); // mobile
-    window.addEventListener('wheel', handleWheelEvent, { passive: false }); // desktop
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
 
     return () => {
-      window.removeEventListener('touchmove', handleWheelEvent);
-      window.removeEventListener('wheel', handleWheelEvent);
+      document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
 
