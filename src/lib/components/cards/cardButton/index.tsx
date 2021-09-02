@@ -1,7 +1,7 @@
 import { FormEvent, createElement, ReactNode } from 'react';
 
 import styles from './style.module.scss';
-import { arrowRight } from '../icons';
+import { chevronRight } from '../icons';
 
 interface Props {
   title: string;
@@ -30,7 +30,7 @@ const CardContent = ({
         description
       )}
     </div>
-    <img {...arrowRight} />
+    <img {...chevronRight} />
   </>
 );
 
