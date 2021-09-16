@@ -21,9 +21,9 @@
   "dependencies": {
     "@popsure/public-models": "^0.0.14",
     "classnames": "^2.3.1",
+    "dayjs": "^1.10.7",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
-    "moment": "^2.24.0",
     "react-autosuggest": "^10.1.0",
     "react-day-picker": "^7.4.10",
     "react-dropzone": "^11.3.2",

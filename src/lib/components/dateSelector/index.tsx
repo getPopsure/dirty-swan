@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
 import DayPicker from 'react-day-picker';
 
@@ -10,6 +11,8 @@ import {
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
+
+dayjs.extend(localeData);
 
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
 
@@ -44,7 +47,7 @@ export const daysInMonthOfYear = ({
   month: number;
   year: number;
 }) => {
-  return moment(`${year}-${month}`, 'YYYY-MM').daysInMonth();
+  return dayjs(`${year}-${month}`, 'YYYY-MM').daysInMonth();
 };
 
 const DateSelector = ({
@@ -67,18 +70,24 @@ const DateSelector = ({
     : 31;
   const availableDays = fillArray(1, daysInSelectedDate);
   const availableYears = fillArray(yearBoundaries.max, yearBoundaries.min);
-  const availableMonths = moment.monthsShort();
+  const availableMonths = dayjs.monthsShort();
 
   const [date, setDate] = useState<Partial<CalendarDate>>(
     calendarDateValue ?? {}
   );
   const [openCalendar, setOpenCalendar] = useState(false);
 
-  const selectedDateInDateType = value ? moment(value).toDate() : undefined;
-  const dateCalendarFromMonth = moment(String(yearBoundaries.min))
+  const calendarDefaultDate =
+    dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
+      ? dayjs().toDate()
+      : dayjs().set('year', yearBoundaries.max).toDate();
+  const selectedDateInDateType = value
+    ? dayjs(value).toDate()
+    : calendarDefaultDate;
+  const dateCalendarFromMonth = dayjs(String(yearBoundaries.min))
     .startOf('year')
     .toDate();
-  const dateCalendarToMonth = moment(String(yearBoundaries.max))
+  const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
     .endOf('year')
     .toDate();
 
@@ -195,7 +204,7 @@ const DateSelector = ({
           ))}
         </select>
       </div>
-      {displayCalendar === true && (
+      {displayCalendar && (
         <div className={styles['date-calendar-container']}>
           <img
             className="c-pointer"
@@ -211,13 +220,22 @@ const DateSelector = ({
               toMonth={dateCalendarToMonth}
               selectedDays={selectedDateInDateType}
               onDayClick={(date: Date) => {
-                const selectedDate = moment(date).format(
-                  COLLECTABLE_DATE_FORMAT
-                );
-                onChange(selectedDate);
-                setOpenCalendar(false);
+                if (
+                  dayjs(date).isAfter(dateCalendarFromMonth) ||
+                  dayjs(date).isBefore(dateCalendarToMonth)
+                ) {
+                  const selectedDate = dayjs(date).format(
+                    COLLECTABLE_DATE_FORMAT
+                  );
+                  onChange(selectedDate);
+                  setOpenCalendar(false);
+                }
               }}
               pagedNavigation={true}
+              disabledDays={{
+                before: dateCalendarFromMonth,
+                after: dateCalendarToMonth,
+              }}
             />
           )}
         </div>

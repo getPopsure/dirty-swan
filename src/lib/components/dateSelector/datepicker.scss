@@ -200,17 +200,6 @@
   cursor: pointer;
 }
 
-.DayPicker-Day--outside {
-  color: #8b9898;
-  cursor: default;
-}
-
-.DayPicker-Day--disabled {
-  color: #dce0e0;
-  cursor: default;
-  background-color: #eff1f1;
-}
-
 .DayPicker-Day--sunday {
   background-color: #f7f8f8;
 }
@@ -403,5 +392,15 @@
 
 .DayPicker-Day--outside {
   color: $ds-grey-300;
-  cursor: default;
+  cursor: pointer;
+
+  &:hover {
+    background: $ds-primary-100;
+  }
+}
+
+.DayPicker-Day--disabled {
+  color: $ds-grey-300;
+  background-color: transparent;
+  pointer-events: none;
 }
