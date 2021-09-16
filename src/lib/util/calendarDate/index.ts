@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { CalendarDate } from '@popsure/public-models';
 
 import { zerofill } from '../../util/zeroFill';
@@ -12,7 +12,7 @@ export function calendarDateToISODate(calendarDate: CalendarDate) {
 export function isoStringtoCalendarDate(
   input: string
 ): CalendarDate | undefined {
-  const date = moment(input, 'YYYY-MM-DD');
+  const date = dayjs(input, 'YYYY-MM-DD');
 
   if (date.isValid() === false) {
     return;
