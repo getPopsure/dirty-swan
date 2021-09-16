@@ -47,7 +47,7 @@ export const daysInMonthOfYear = ({
   month: number;
   year: number;
 }) => {
-  return dayjs(`${year}-${month}`, 'YYYY-MM').daysInMonth();
+  return dayjs(`${year}-${month}`).daysInMonth();
 };
 
 const DateSelector = ({
