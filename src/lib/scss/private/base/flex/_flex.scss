@@ -1,4 +1,4 @@
-@use 'grid';
+@use 'src/lib/scss/private/base/grid';
 
 /** Shared values across align and justify properties */
 $common-values: (
@@ -40,4 +40,28 @@ $jutify-values: map-merge(
       justify-content: $value;
     }
   }
+}
+
+.fd-row {
+  flex-direction: row !important;
+}
+
+.fd-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.fd-column {
+  flex-direction: column !important;
+}
+
+.fd-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+}
+
+.f-nowrap {
+  flex-wrap: nowrap;
 }
