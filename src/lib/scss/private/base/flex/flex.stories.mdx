@@ -1,0 +1,139 @@
+import style from './style.module.scss';
+
+<Meta title="CSS/Base/Flex" />
+
+# Flex
+
+Dirty swan provides the most common alignment options using Flexbox
+
+## Adding flex to a layout
+
+| Class            | Output                  |
+| ---------------- | ----------------------- |
+| `.d-flex`        | `display: flex;`        |
+| `.d-inline-flex` | `display: inline-flex;` |
+
+## Flex wrap
+
+| Class       | Output               |
+| ----------- | -------------------- |
+| `.f-wrap`   | `flex-wrap: wrap;`   |
+| `.f-nowrap` | `flex-wrap: nowrap;` |
+
+## Flex direction
+
+| Class                | Output                           |
+| -------------------- | -------------------------------- |
+| `.fd-row`            | `flex-direction: row`            |
+| `.fd-row-reverse`    | `flex-direction: row-reverse`    |
+| `.fd-column`         | `flex-direction:column `         |
+| `.fd-column-reverse` | `flex-direction: column-reverse` |
+
+export const RenderFdExample = () => {
+  const values = ['row', 'row-reverse', 'column', 'column-reverse'];
+  return (
+    <div>
+      {values.map((value) => (
+        <div key={value}>
+          <p className="p-p fw-bold">.fd-{value}</p>
+          <div
+            className={`d-flex bg-grey-500 w100 fd-${value} p16 ${style.container}`}
+          >
+            <div
+              className={`bg-grey-100 p16 m8 d-flex ai-center jc-center ${style.item}`}
+            >
+              1
+            </div>
+            <div
+              className={`bg-grey-100 p16 m8 d-flex ai-center jc-center ${style.item}`}
+            >
+              2
+            </div>
+            <div
+              className={`bg-grey-100 p16 m8 d-flex ai-center jc-center ${style.item}`}
+            >
+              3
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+<RenderFdExample />
+
+## Align items
+
+| Class          | Output                    |
+| -------------- | ------------------------- |
+| `.ai-start`    | `align-items: flex-start` |
+| `.ai-end`      | `align-items: flex-end`   |
+| `.ai-center`   | `align-items: center`     |
+| `.ai-stretch`  | `align-items: stretch`    |
+| `.ai-baseline` | `align-items: baseline`   |
+
+export const RenderAiExample = () => {
+  const values = ['start', 'end', 'center', 'stretch', 'baseline'];
+  return (
+    <div>
+      {values.map((value) => (
+        <div key={value}>
+          <p className="p-p fw-bold">.ai-{value}</p>
+          <div
+            className={`d-flex bg-grey-500 w100 ai-${value} p16 ${style.container} ${style['ai-container']}`}
+          >
+            <div className={`bg-grey-100 p16  m8 ${style.item}`}>Item</div>
+            <div
+              className={`bg-grey-100 p16 m8 d-flex ai-center ${style.item} ${style['ai-item-2']}`}
+            >
+              Item
+            </div>
+            <div
+              className={`bg-grey-100 p16 m8 ${style.item} ${
+                style[['ai-item-3']]
+              }`}
+            >
+              Item
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+<RenderAiExample />
+
+## Justify content
+
+| Class         | Output                           |
+| ------------- | -------------------------------- |
+| `.jc-start`   | `justify-content: flex-start`    |
+| `.jc-end`     | `justify-content: flex-end`      |
+| `.jc-center`  | `justify-content: center`        |
+| `.jc-between` | `justify-content: space-between` |
+| `.jc-around`  | `justify-content: space-around`  |
+| `.jc-evenly`  | `justify-content: space-evenly`  |
+
+export const RenderJcExample = () => {
+  const values = ['start', 'end', 'center', 'between', 'around', 'evenly'];
+  return (
+    <div>
+      {values.map((value) => (
+        <div key={value}>
+          <p className="p-p fw-bold">.jc-{value}</p>
+          <div
+            className={`d-flex bg-grey-500 w100 jc-${value} p16 ${style.container}`}
+          >
+            <div className={`bg-grey-100 p16 m8 ${style.item}`}>Item</div>
+            <div className={`bg-grey-100 p16 m8 ${style.item}`}>Item</div>
+            <div className={`bg-grey-100 p16 m8 ${style.item}`}>Item</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+<RenderJcExample />

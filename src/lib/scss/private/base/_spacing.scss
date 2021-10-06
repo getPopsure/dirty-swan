@@ -1,43 +1,80 @@
+@use 'grid';
+
 @for $i from 0 through 12 {
-  .mt#{$i * 8} {
-    margin-top: $i * 8px;
+  .m#{$i * 8} {
+    @include grid.add-responsive {
+      margin: $i * 8px;
+    }
+  }
+
+  .p#{$i * 8} {
+    @include grid.add-responsive {
+      padding: $i * 8px;
+    }
   }
 }
 
+// Spacing left & right
 @for $i from 0 through 12 {
-  .mb#{$i * 8} {
-    margin-bottom: $i * 8px;
+  .mx#{$i * 8} {
+    @include grid.add-responsive {
+      margin-left: $i * 8px;
+      margin-right: $i * 8px;
+    }
+  }
+
+  .px#{$i * 8} {
+    @include grid.add-responsive {
+      padding-left: $i * 8px;
+      padding-right: $i * 8px;
+    }
   }
 }
 
+// Spacing up & down
 @for $i from 0 through 12 {
-  .mr#{$i * 8} {
-    margin-right: $i * 8px;
+  .my#{$i * 8} {
+    @include grid.add-responsive {
+      margin-top: $i * 8px;
+      margin-bottom: $i * 8px;
+    }
+  }
+
+  .py#{$i * 8} {
+    @include grid.add-responsive {
+      padding-top: $i * 8px;
+      padding-bottom: $i * 8px;
+    }
   }
 }
 
-@for $i from 0 through 12 {
-  .ml#{$i * 8} {
-    margin-left: $i * 8px;
+// Spacing for each specific area
+$valid_areas: (
+  't': 'top',
+  'b': 'bottom',
+  'l': 'left',
+  'r': 'right',
+);
+
+@each $key, $area in $valid_areas {
+  @for $i from 0 through 12 {
+    .m#{$key}#{$i * 8} {
+      @include grid.add-responsive {
+        margin-#{$area}: $i * 8px;
+      }
+    }
+
+    .p#{$key}#{$i * 8} {
+      @include grid.add-responsive {
+        padding-#{$area}: $i * 8px;
+      }
+    }
   }
-}
 
-.m-auto {
-  margin: auto;
-}
-
-.mt-auto {
-  margin-top: auto;
-}
-
-.mb-auto {
-  margin-bottom: auto;
-}
-
-.mr-auto {
-  margin-right: auto;
-}
-
-.ml-auto {
-  margin-left: auto;
+  // Auto value for margin
+  .m#{$key}-auto {
+    @include grid.add-responsive {
+      margin-#{$area}: auto;
+    }
+  }
 }
