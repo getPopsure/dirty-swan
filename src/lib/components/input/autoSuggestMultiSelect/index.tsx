@@ -12,6 +12,7 @@ export default ({
   placeholder,
   chipsListClassName,
   multiSelectClassName,
+  wrapText,
 }: {
   options: Option[];
   selectedValues?: Option[];
@@ -19,6 +20,7 @@ export default ({
   placeholder: string;
   chipsListClassName?: string;
   multiSelectClassName?: string;
+  wrapText?: boolean;
 }) => {
   const [suggestions, setSuggestions] = useState<Option[]>([]);
   const [currentOption, setCurrentOption] = useState('');
@@ -66,6 +68,7 @@ export default ({
         currentOption={currentOption}
         suggestions={suggestions}
         handleSuggestionClearRequest={() => setSuggestions([])}
+        wrapText={wrapText}
       />
     </>
   );
