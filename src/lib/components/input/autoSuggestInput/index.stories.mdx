@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Meta, Preview } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 import AutoSuggestInput from '.';
 import featherLogo from '../../cards/icons/feather-logo.svg';
@@ -31,6 +31,7 @@ export interface Option {
 | handleSuggestionClearRequest | function | Function that runs when suggestions are cleared (eg. input removal, selecting suggestion) | n/a           | true     |
 | placeholder                  | string   | Placeholder for DirtySwan Input component                                                 | n/a           | true     |
 | className                    | string   | Class name for the most parent element                                                    | undefined     | false    |
+| wrapText                     | boolean  | Wether or not wrap the entries in the dropdown or hide overflown text                     | false         | false    |
 
 ## Example
 

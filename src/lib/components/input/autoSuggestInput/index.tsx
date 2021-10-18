@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Autosuggest from 'react-autosuggest';
 
 import styles from './style.module.scss';
@@ -13,6 +14,7 @@ export default ({
   handleSuggestionClearRequest,
   placeholder,
   className,
+  wrapText,
 }: {
   currentOption: string;
   suggestions: Option[];
@@ -22,6 +24,7 @@ export default ({
   handleSuggestionClearRequest: () => void;
   placeholder: string;
   className?: string;
+  wrapText?: boolean;
 }) => {
   const renderSuggestion = (suggestion: Option) => (
     <div className={`${styles['suggestion-option']}`}>
@@ -32,7 +35,13 @@ export default ({
           alt={suggestion.value}
         />
       )}
-      <div className={styles['suggestion-text']}>{suggestion.value}</div>
+      <div
+        className={classNames(styles['suggestion-text'], {
+          [styles.nowrap]: !wrapText,
+        })}
+      >
+        {suggestion.value}
+      </div>
     </div>
   );
 
