@@ -5,7 +5,7 @@
   border: 1px solid;
   border-radius: 8px;
 
-  &--info {
+  &--primary {
     @extend .p-notice;
     background-color: $ds-purple-100;
     border-color: $ds-purple-500;
@@ -23,5 +23,17 @@
     @extend .p-notice;
     background-color: $ds-yellow-100;
     border-color: $ds-yellow-500;
+  }
+
+  &--success {
+    @extend .p-notice;
+    background-color: $ds-green-100;
+    border-color: $ds-green-500;
+  }
+
+  &--info {
+    @extend .p-notice;
+    background-color: $ds-blue-100;
+    border-color: $ds-blue-500;
   }
 }
