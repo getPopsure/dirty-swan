@@ -27,18 +27,14 @@ $jutify-values: map-merge(
 // Align items
 @each $name, $value in $align-values {
   .ai-#{$name} {
-    @include grid.add-responsive {
-      align-items: $value;
-    }
+    align-items: $value;
   }
 }
 
 // Justify content
 @each $name, $value in $jutify-values {
   .jc-#{$name} {
-    @include grid.add-responsive {
-      justify-content: $value;
-    }
+    justify-content: $value;
   }
 }
 
