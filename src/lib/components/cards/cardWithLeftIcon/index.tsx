@@ -42,6 +42,7 @@ export default ({
 
   const headingStyle = headingForCardSize(cardSize);
   const iconStyle = cardSize === 'xsmall' ? 'mr16' : 'mr32';
+  const cardTextStyle = `tc-grey-600 ${cardSize === 'xsmall' ? 'p-p--small' : 'p-p '}`;
 
   return (
     <div className={cardStyle} {...props}>
@@ -67,7 +68,7 @@ export default ({
             />
           )}
         </div>
-        <p className="p-p mt8 tc-grey-600">{children}</p>
+        <p className={cardTextStyle}>{children}</p>
       </div>
     </div>
   );
