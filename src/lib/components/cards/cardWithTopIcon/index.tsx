@@ -1,7 +1,7 @@
 import {
   associatedClassForCardState,
   CardProps,
-  headingForTitleSize,
+  headingForCardSize,
 } from '..';
 import { Icon, arrowRight, IconSize } from '../icons';
 
@@ -10,7 +10,7 @@ import styles from './style.module.scss';
 export default ({
   className,
   title,
-  titleSize = 'medium',
+  cardSize = 'medium',
   children,
   topIcon,
   topIconSize = { width: 48, height: 48 },
@@ -21,7 +21,7 @@ export default ({
 }: CardProps & {
   topIcon: Icon;
   topIconSize: IconSize;
-  titleSize?: 'small' | 'medium' | 'big';
+  cardSize?: 'small' | 'medium' | 'big';
   rightIcon?: 'arrow' | Icon;
 }) => {
   const cardStyle = `d-flex fd-column ai-center ${className} ${associatedClassForCardState(
@@ -29,7 +29,7 @@ export default ({
     dropshadow
   )} ${styles.container}`;
 
-  const headingStyle = headingForTitleSize(titleSize);
+  const headingStyle = headingForCardSize(cardSize);
   const iconStyle = styles['right-icon'];
 
   return (

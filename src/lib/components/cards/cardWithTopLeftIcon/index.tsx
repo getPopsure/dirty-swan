@@ -1,7 +1,7 @@
 import {
   associatedClassForCardState,
   CardProps,
-  headingForTitleSize,
+  headingForCardSize,
 } from '..';
 import { Icon, arrowRight, featherLogo } from '../icons';
 
@@ -21,7 +21,7 @@ const containerStyleFromTitleSize = (
 export default ({
   className,
   title,
-  titleSize = 'medium',
+  cardSize = 'medium',
   children,
   leftIcon,
   rightIcon,
@@ -29,19 +29,19 @@ export default ({
   dropshadow = true,
   ...props
 }: CardProps & {
-  titleSize?: 'xsmall' | 'small' | 'medium' | 'big';
+  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
   leftIcon?: 'logo' | Icon;
   rightIcon?: 'arrow' | Icon;
 }) => {
   const cardStyle = `${className} ${associatedClassForCardState(
     state,
     dropshadow
-  )} ${styles[containerStyleFromTitleSize(titleSize)]}`;
+  )} ${styles[containerStyleFromTitleSize(cardSize)]}`;
 
   const titleContainerStyle = styles['title-container'];
-  const headingStyle = headingForTitleSize(titleSize);
+  const headingStyle = headingForCardSize(cardSize);
   const iconStyle = styles['right-icon'];
-  const cardTextStyle = `p-p tc-grey-600 ${titleSize === 'xsmall' ? styles.indent : 'mt16'}`;
+  const cardTextStyle = `p-p tc-grey-600 ${cardSize === 'xsmall' ? styles.indent : 'mt16'}`;
 
   return (
     <div className={cardStyle} {...props}>

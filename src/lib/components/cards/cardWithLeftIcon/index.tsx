@@ -1,16 +1,16 @@
 import {
   associatedClassForCardState,
   CardProps,
-  headingForTitleSize,
+  headingForCardSize,
 } from '..';
 import { Icon, arrowRight } from '../icons';
 
 import styles from './style.module.scss';
 
-const containerStyleFromTitleSize = (
-  titleSize: 'xsmall' | 'small' | 'medium' | 'big'
+const containerStyleFromCardSize = (
+  cardSize: 'xsmall' | 'small' | 'medium' | 'big'
 ): string => {
-  switch (titleSize) {
+  switch (cardSize) {
     case 'xsmall':
       return 'container--xsmall';
     case 'small':
@@ -23,7 +23,7 @@ const containerStyleFromTitleSize = (
 export default ({
   className = '',
   title,
-  titleSize = 'medium',
+  cardSize = 'medium',
   children,
   leftIcon,
   rightIcon,
@@ -31,17 +31,17 @@ export default ({
   dropshadow = true,
   ...props
 }: CardProps & {
-  titleSize?: 'xsmall' | 'small' | 'medium' | 'big';
+  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
   leftIcon?: Icon;
   rightIcon?: 'arrow' | Icon;
 }) => {
   const cardStyle = `d-flex ai-center ${className} ${associatedClassForCardState(
     state,
     dropshadow
-  )} ${styles[containerStyleFromTitleSize(titleSize)]}`;
+  )} ${styles[containerStyleFromCardSize(cardSize)]}`;
 
-  const headingStyle = headingForTitleSize(titleSize);
-  const iconStyle = titleSize === 'xsmall' ? 'mr16' : 'mr32';
+  const headingStyle = headingForCardSize(cardSize);
+  const iconStyle = cardSize === 'xsmall' ? 'mr16' : 'mr32';
 
   return (
     <div className={cardStyle} {...props}>
