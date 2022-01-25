@@ -10,7 +10,7 @@ import { featherLogo } from '../icons';
 | attribute  | unit                                                                              | description                                      | default value | required |
 | ---------- | --------------------------------------------------------------------------------- | ------------------------------------------------ | ------------- | -------- |
 | title      | string                                                                            | The title text that needs to be displayed        | n/a           | true     |
-| titleSize  | [Title Size (xs,s,m,b)](?path=/story/jsx-cards-intro--page#title-size-medium-big) | Size of the title                                | medium        | false    |
+| cardSize  | [Card Size (xs,s,m,b)](?path=/story/jsx-cards-intro--page#card-size-xsmall-small-medium-big) | Size of the card                                | medium        | false    |
 | topIcon    | [Icon](?path=/story/jsx-cards-intro--page#icon)                                   | Icon displayed on the left of the title          | n/a           | false    |
 | rightIcon  | [Icon](?path=/story/jsx-cards-intro--page#icon)                                   | Icon displayed on the right of the title         | n/a           | false    |
 | state      | [Card State](?path=/story/jsx-cards-intro--page#card-state)                       | State that describe the interation with the card | actionable    | false    |
@@ -18,10 +18,10 @@ import { featherLogo } from '../icons';
 
 <Preview>
   <>
-    <h4 className="p-h4">Extra small title</h4>
+    <h4 className="p-h4">Extra small card</h4>
     <CardWithTopLeftIcon
       title="Lorem ipsum"
-      titleSize="xsmall"
+      cardSize="xsmall"
       className="wmx6 mt8"
       rightIcon="arrow"
       leftIcon={featherLogo}
@@ -30,10 +30,10 @@ import { featherLogo } from '../icons';
       <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
       eros at, rhoncus imperdiet nunc
     </CardWithTopLeftIcon>
-    <h4 className="p-h4 mt24">Small title</h4>
+    <h4 className="p-h4 mt24">Small card</h4>
     <CardWithTopLeftIcon
       title="Lorem ipsum"
-      titleSize="small"
+      cardSize="small"
       className="wmx6 mt8"
       rightIcon="arrow"
       leftIcon={featherLogo}
@@ -42,10 +42,10 @@ import { featherLogo } from '../icons';
       <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
       eros at, rhoncus imperdiet nunc
     </CardWithTopLeftIcon>
-    <h4 className="p-h4 mt24">Medium title</h4>
+    <h4 className="p-h4 mt24">Medium card</h4>
     <CardWithTopLeftIcon
       title="Lorem ipsum"
-      titleSize="medium"
+      cardSize="medium"
       className="wmx6 mt8"
       rightIcon="arrow"
       leftIcon={featherLogo}
@@ -54,10 +54,10 @@ import { featherLogo } from '../icons';
       <span className="fw-bold">Aenean urna massa</span>, facilisis malesuada
       eros at, rhoncus imperdiet nunc
     </CardWithTopLeftIcon>
-    <h4 className="p-h4 mt24">Big title</h4>
+    <h4 className="p-h4 mt24">Big card</h4>
     <CardWithTopLeftIcon
       title="Lorem ipsum"
-      titleSize="big"
+      cardSize="big"
       className="wmx6 mt8"
       rightIcon="arrow"
       leftIcon={featherLogo}
@@ -87,7 +87,7 @@ import { featherLogo } from '../icons';
     <h4 className="p-h4">No dropshadow</h4>
     <CardWithTopLeftIcon
       title="Lorem ipsum"
-      titleSize="medium"
+      cardSize="medium"
       className="wmx6 mt8"
       rightIcon="arrow"
       leftIcon={featherLogo}

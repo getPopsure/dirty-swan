@@ -36,7 +36,7 @@ function App() {
       <div className="mt80"></div>
       <CardWithLeftIcon
         title="Lorem ipsum"
-        titleSize="small"
+        cardSize="small"
         className="wmx6 mt8"
         rightIcon="arrow"
       >

@@ -13,10 +13,10 @@ export type CardProps = {
   dropshadow?: boolean;
 } & JSX.IntrinsicElements['div'];
 
-export const headingForTitleSize = (
-  titleSize: 'xsmall' | 'small' | 'medium' | 'big'
+export const headingForCardSize = (
+  cardSize: 'xsmall' | 'small' | 'medium' | 'big'
 ): string => {
-  switch (titleSize) {
+  switch (cardSize) {
     case 'xsmall':
     case 'small':
       return 'p-h4';
