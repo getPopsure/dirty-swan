@@ -1,8 +1,4 @@
-import {
-  associatedClassForCardState,
-  CardProps,
-  headingForCardSize,
-} from '..';
+import { associatedClassForCardState, CardProps, headingForCardSize } from '..';
 import { Icon, arrowRight } from '../icons';
 
 import styles from './style.module.scss';
@@ -17,6 +13,20 @@ const containerStyleFromCardSize = (
       return 'container--small';
     default:
       return 'container';
+  }
+};
+
+const cardTextStyleFromCardSize = (
+  cardSize: 'xsmall' | 'small' | 'medium' | 'big'
+): string => {
+  switch (cardSize) {
+    case 'xsmall':
+    case 'small':
+      return 'card-text--small';
+    case 'medium':
+      return 'card-text--medium';
+    default:
+      return 'card-text--big';
   }
 };
 
@@ -42,7 +52,9 @@ export default ({
 
   const headingStyle = headingForCardSize(cardSize);
   const iconStyle = cardSize === 'xsmall' ? 'mr16' : 'mr32';
-  const cardTextStyle = `tc-grey-600 ${cardSize === 'xsmall' ? 'p-p--small' : 'p-p '}`;
+  const cardTextStyle = `tc-grey-600 ${
+    cardSize === 'xsmall' ? 'p-p--small' : 'p-p '
+  } ${styles[cardTextStyleFromCardSize(cardSize)]}`;
 
   return (
     <div className={cardStyle} {...props}>
