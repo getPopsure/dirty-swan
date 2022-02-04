@@ -1,43 +1,43 @@
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import DownloadStatus from '.';
+import DownloadButton from '.';
 
-<Meta title="JSX/DownloadStatus" component={DownloadStatus} />
+<Meta title="JSX/DownloadButton" component={DownloadButton} />
 
-# DownloadStatus
+# DownloadButton
 
-DownloadStatus component displays progress and status of downloading files.
+DownloadButton component displays progress and status of downloading files.
 
 ## Examples
 
 ### Idle state
 
 <Preview>
-  <DownloadStatus downloadStatus="INITIAL" onDownload={() => {}} />
+  <DownloadButton downloadStatus="INITIAL" onDownload={() => {}} />
 </Preview>
 
 ### Generating state
 
 <Preview>
-  <DownloadStatus downloadStatus="GENERATING" onDownload={() => {}} />
+  <DownloadButton downloadStatus="GENERATING" onDownload={() => {}} />
 </Preview>
 
 ### Download complete state
 
 <Preview>
-  <DownloadStatus downloadStatus="COMPLETED" onDownload={() => {}} />
+  <DownloadButton downloadStatus="COMPLETED" onDownload={() => {}} />
 </Preview>
 
 ### Error state
 
 <Preview>
-  <DownloadStatus downloadStatus="FAILED" onDownload={() => {}} />
+  <DownloadButton downloadStatus="FAILED" onDownload={() => {}} />
 </Preview>
 
 ### Custom Error state
 
 <Preview>
-  <DownloadStatus
+  <DownloadButton
     customFail={
       <>
         An error occured while generating your documents. Please try again or{' '}
