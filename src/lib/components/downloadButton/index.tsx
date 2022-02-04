@@ -6,8 +6,6 @@ import checkIcon from './icons/check.svg';
 import downloadIcon from './icons/download.svg';
 import styles from './style.module.scss';
 
-const email = { help: 'test ' };
-
 interface Props {
   downloadStatus: DownloadStatus;
   onDownload: () => void;
