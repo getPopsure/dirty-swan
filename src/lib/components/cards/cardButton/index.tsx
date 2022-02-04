@@ -30,7 +30,7 @@ const CardContent = ({
         description
       )}
     </div>
-    <img {...chevronRight} />
+    <img {...chevronRight} alt="Expander icon" />
   </>
 );
 

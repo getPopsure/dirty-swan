@@ -73,14 +73,6 @@ const AutoCompleteAddress = ({
     null
   );
 
-  const debouncedSetPlace = useCallback(
-    debounce(
-      (newValue: Partial<Address> | undefined) => setPlaceFromAddress(newValue),
-      1000
-    ),
-    []
-  );
-
   useEffect(() => {
     if (address) {
       if (autocompleteElement.current && address.street) {
@@ -90,9 +82,9 @@ const AutoCompleteAddress = ({
       if (isEqual(address, initialAddress) === false) {
         onAddressChange({ ...address });
       }
-      setManualAddressEntry(true);
+      handleEnterAddressManually();
     }
-  }, [address, onAddressChange, hasLoadedGoogleAPI]);
+  }, [initialAddress, address, onAddressChange, hasLoadedGoogleAPI]);
 
   useEffect(() => {
     if (hasLoadedGoogleAPI === false) {
@@ -153,7 +145,7 @@ const AutoCompleteAddress = ({
     }
   };
 
-  const setPlaceFromAddress = (address: Partial<Address> | undefined) => {
+  const setPlaceFromAddress = useCallback((address: Partial<Address> | undefined) => {
     if (!map.current) {
       return;
     }
@@ -183,7 +175,9 @@ const AutoCompleteAddress = ({
         }
       );
     }
-  };
+  }, []);
+
+  const debouncedSetPlace = debounce(setPlaceFromAddress, 1000)
 
   const handleEnterAddressManually = () => {
     setManualAddressEntry(true);
