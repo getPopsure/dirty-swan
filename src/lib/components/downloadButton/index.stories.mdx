@@ -1,0 +1,59 @@
+import { Meta, Preview } from '@storybook/addon-docs/blocks';
+
+import DownloadStatus from '.';
+
+<Meta title="JSX/DownloadStatus" component={DownloadStatus} />
+
+# DownloadStatus
+
+DownloadStatus component displays progress and status of downloading files.
+
+## Examples
+
+### Idle state
+
+<Preview>
+  <DownloadStatus downloadStatus="INITIAL" onDownload={() => {}} />
+</Preview>
+
+### Generating state
+
+<Preview>
+  <DownloadStatus downloadStatus="GENERATING" onDownload={() => {}} />
+</Preview>
+
+### Download complete state
+
+<Preview>
+  <DownloadStatus downloadStatus="COMPLETED" onDownload={() => {}} />
+</Preview>
+
+### Error state
+
+<Preview>
+  <DownloadStatus downloadStatus="FAILED" onDownload={() => {}} />
+</Preview>
+
+### Custom Error state
+
+<Preview>
+  <DownloadStatus
+    customFail={
+      <>
+        An error occured while generating your documents. Please try again or{' '}
+        <a
+          className='tc-primary-500'
+          href={`mailto:help@yourcompany.com`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact us
+        </a>
+        .
+      </>
+    }
+    downloadStatus="FAILED"
+    onDownload={() => {}}
+  />
+</Preview>
+
