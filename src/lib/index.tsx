@@ -5,6 +5,7 @@ import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
 import MultiDropzone from './components/multiDropzone';
 import DownloadRing from './components/downloadRing';
+import DownloadButton from './components/downloadButton';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
 import {
@@ -41,6 +42,7 @@ export {
   Input,
   MultiDropzone,
   DownloadRing,
+  DownloadButton,
   IbanInput,
   BottomModal,
   RegularModal,
@@ -66,3 +68,4 @@ export {
 export type { TableHeader };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
+export type { DownloadStatus } from './models/download'
