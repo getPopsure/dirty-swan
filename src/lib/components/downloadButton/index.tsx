@@ -1,4 +1,3 @@
-// import { email } from '@getpopsure/private-constants';
 import Button from '../button';
 import { DownloadStatus } from '../../models/download';
 
