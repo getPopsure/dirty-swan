@@ -1,0 +1,1 @@
+export type DownloadStatus = 'INITIAL' | 'GENERATING' | 'COMPLETED' | 'FAILED';

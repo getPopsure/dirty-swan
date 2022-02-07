@@ -24,19 +24,23 @@ type InputProps = {
 } & Omit<JSX.IntrinsicElements['button'], 'children'>;
 
 export default React.forwardRef(
-  ({
-    className,
-    loading = false,
-    buttonTitle,
-    buttonType = 'primary',
-    leftIcon,
-    type,
-    ...props
-  }: InputProps) => {
+  (
+    {
+      className,
+      loading = false,
+      buttonTitle,
+      buttonType = 'primary',
+      leftIcon,
+      type,
+      ...props
+    }: InputProps,
+    ref?: React.ForwardedRef<HTMLButtonElement>
+  ) => {
     const buttonClassName = buttonTypeClassNameMap[buttonType];
     const loadingClassName = loading ? 'p-btn--loading' : '';
     return (
       <button
+        ref={ref}
         className={`${buttonClassName} ${loadingClassName} ${className ?? ''}`}
         {...props}
       >
