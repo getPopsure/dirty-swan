@@ -73,3 +73,17 @@ $valid_areas: (
   margin-top: auto;
   margin-bottom: auto;
 }
+
+@for $i from 0 through 12 {
+  .gap#{$i * 8} {
+    gap: $i * 8px;
+  }
+
+  .c-gap#{$i * 8} {
+    column-gap: $i * 8px;
+  }
+
+  .r-gap#{$i * 8} {
+    row-gap: $i * 8px;
+  }
+}
