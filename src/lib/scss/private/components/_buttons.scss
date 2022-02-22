@@ -12,12 +12,9 @@
 }
 
 .p-btn {
+  display: inline-block;
+
   position: relative;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
   cursor: pointer;
 
   height: 48px;
@@ -25,7 +22,6 @@
 
   font-size: 16px;
   font-family: inherit;
-  line-height: 48px;
   letter-spacing: 0.5px;
   text-decoration: none;
   text-align: center;
