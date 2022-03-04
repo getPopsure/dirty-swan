@@ -16,6 +16,7 @@
   "bin": "dist/bin/index.js",
   "files": [
     "dist",
+    "src",
     "Readme.md"
   ],
   "dependencies": {
