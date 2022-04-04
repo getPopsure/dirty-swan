@@ -1,0 +1,43 @@
+<Meta title="CSS/Base/Border Radius" />
+
+import styles from './style.module.scss';
+
+# Border Radius
+
+Utilities for changing an element's border radius
+
+## Classes
+
+| Class        | Output                  |
+| ------------ | ----------------------- |
+| `.br0`       | `border-radius: 0;`     |
+| `.br2`       | `border-radius: 4px;`   |
+| `.br4`       | `border-radius: 4px;`   |
+| `.br8`       | `border-radius: 8px;`   |
+| `.br12`      | `border-radius: 12px;`  |
+| `.br16`      | `border-radius: 16px;`  |
+| `.br24`      | `border-radius: 24px;`  |
+|              |                         |
+| `.br-circle` | `border-radius: 50%;`   |
+| `.br-pill`   | `border-radius: 999px;` |
+
+export const BorderRadiusExample = () => {
+  const values = ['0', '2', '4', '8', '12', '16', '24', '-circle', '-pill'];
+  return (
+    <div className="d-flex gap16">
+      {values.map((value) =>
+        value === '-pill' ? (
+          <div
+            className={`d-flex ai-center jc-center bg-primary-100 br${value} ${styles.rectangle}`}
+          >{`br${value}`}</div>
+        ) : (
+          <div
+            className={`d-flex ai-center jc-center bg-primary-100 br${value} ${styles.square}`}
+          >{`br${value}`}</div>
+        )
+      )}
+    </div>
+  );
+};
+
+<BorderRadiusExample />
