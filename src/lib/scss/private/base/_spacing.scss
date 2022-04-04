@@ -87,3 +87,57 @@ $valid_areas: (
     row-gap: $i * 8px;
   }
 }
+
+$non-8-steps: 2, 4, 6, 10, 12, 14;
+
+@each $size in $non-8-steps {
+  .m#{$size} {
+    margin: $size * 1px;
+  }
+
+  .mx#{$size} {
+    margin-left: $size * 1px;
+    margin-right: $size * 1px;
+  }
+
+  .my#{$size} {
+    margin-top: $size * 1px;
+    margin-bottom: $size * 1px;
+  }
+
+  .p#{$size} {
+    padding: $size * 1px;
+  }
+
+  .px#{$size} {
+    padding-left: $size * 1px;
+    padding-right: $size * 1px;
+  }
+
+  .py#{$size} {
+    padding-top: $size * 1px;
+    padding-bottom: $size * 1px;
+  }
+
+  .gap#{$size} {
+    gap: $size * 1px;
+  }
+
+  .c-gap#{$size} {
+    column-gap: $size * 1px;
+  }
+
+  .r-gap#{$size} {
+    row-gap: $size * 1px;
+  }
+
+  @each $key, $area in $valid_areas {
+    .m#{$key}#{$size} {
+      margin-#{$area}: $size * 1px;
+    }
+
+    .p#{$key}#{$size} {
+      padding-#{$area}: $size * 1px;
+    }
+  }
+}
