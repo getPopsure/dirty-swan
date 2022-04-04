@@ -2,6 +2,16 @@ import React from 'react';
 
 const colors = [
   {
+    name: 'Transparent',
+    code: 'transparent',
+    hex: 'transparent',
+  },
+  {
+    name: 'White',
+    code: 'white',
+    hex: '#fff',
+  },
+  {
     name: 'Primary 25',
     code: 'primary-25',
     hex: '#fcfcff',
@@ -260,7 +270,8 @@ export const Colors = () => (
       <th style={{ fontWeight: 'bold' }}>Color</th>
       <th style={{ fontWeight: 'bold' }}>Name</th>
       <th style={{ fontWeight: 'bold' }}>Sass</th>
-      <th style={{ fontWeight: 'bold' }}>Text class</th>
+      <th style={{ fontWeight: 'bold' }}>Text color class</th>
+      <th style={{ fontWeight: 'bold' }}>BG color class</th>
       <th style={{ fontWeight: 'bold' }}>Hex</th>
     </tr>
     {colors.map((color) => (
@@ -278,6 +289,7 @@ export const Colors = () => (
         <td>{color.name}</td>
         <td>{`$ds-${color.code}`}</td>
         <td>{`tc-${color.code}`}</td>
+        <td>{`bg-${color.code}`}</td>
         <td>{color.hex}</td>
       </tr>
     ))}

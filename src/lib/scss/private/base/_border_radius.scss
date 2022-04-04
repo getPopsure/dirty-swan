@@ -1,0 +1,15 @@
+$border_sizes: 0, 2, 4, 8, 12, 16, 24;
+
+@each $size in $border_sizes {
+  .br#{$size} {
+    border-radius: $size * 1px;
+  }
+}
+
+.br-circle {
+  border-radius: 50%;
+}
+
+.br-pill {
+  border-radius: 999px;
+}
