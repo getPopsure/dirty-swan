@@ -16,6 +16,12 @@ You can use the shorthand class name to define the four margin properties:
 
 `margin-left` with `.ml{x}`
 
+You can use `mx` and `my` respectively to set horizontal or vertical margins:
+
+`margin-left & margin-right` with `.mx{x}`
+
+`margin-top & margin-bottom` with `.my{x}`
+
 The same applies for padding:
 
 `padding-top` with `.pt{x}`
@@ -25,6 +31,10 @@ The same applies for padding:
 `padding-right` with `.pr{x}`
 
 `padding-left` with `.pl{x}`
+
+`padding-left & padding-right` with `.px{x}`
+
+`padding-top & padding-bottom` with `.py{x}`
 
 Gaps can be expressed via 3 different classes, depending on your use case:
 
@@ -110,13 +120,15 @@ Gaps can be expressed via 3 different classes, depending on your use case:
 
 Note: this only applies to the margin property
 
-| Class      | Output                |
-| ---------- | --------------------- |
-| `.m-auto`  | `margin: auto`        |
-| `.mt-auto` | `margin-top: auto`    |
-| `.mb-auto` | `margin-bottom: auto` |
-| `.ml-auto` | `margin-left: auto`   |
-| `.mr-auto` | `margin-right: auto`  |
+| Class      | Output                                   |
+| ---------- | ---------------------------------------- |
+| `.m-auto`  | `margin: auto`                           |
+| `.mt-auto` | `margin-top: auto`                       |
+| `.mb-auto` | `margin-bottom: auto`                    |
+| `.ml-auto` | `margin-left: auto`                      |
+| `.mr-auto` | `margin-right: auto`                     |
+| `.mx-auto` | `margin-left: auto & margin-right: auto` |
+| `.my-auto` | `margin-top: auto & margin-bottom: auto` |
 
 ### gap (Equal gap horizontally and vertically)
 
