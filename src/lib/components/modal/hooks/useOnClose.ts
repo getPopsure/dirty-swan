@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const useOnClose = (
   onClose: () => void,
@@ -7,13 +7,32 @@ const useOnClose = (
 ) => {
   const [isClosing, setIsClosing] = useState(false);
 
+  const handleOnClose = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, 300);
+  }, [setIsClosing, onClose]);
+
+  const handleEscKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.code !== 'Escape') return;
+      if (!dismissable) return null;
+      if (!isOpen) return null;
+
+      handleOnClose();
+    },
+    [isOpen, dismissable, handleOnClose]
+  );
+
   useEffect(() => {
     window.addEventListener('keydown', handleEscKey);
 
     return () => {
       window.removeEventListener('keydown', handleEscKey);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [handleEscKey]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -22,22 +41,6 @@ const useOnClose = (
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
-
-  const handleOnClose = () => {
-    if (!dismissable) return null;
-
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-      setIsClosing(false);
-    }, 300);
-  };
-
-  const handleEscKey = (e: KeyboardEvent) => {
-    if (e.code !== 'Escape') return;
-
-    handleOnClose();
-  };
 
   const handleContainerClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

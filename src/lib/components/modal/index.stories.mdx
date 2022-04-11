@@ -30,22 +30,19 @@ Modals are dialog overlays that prevent the user from interacting with the rest 
 
 export const RegularModalStory = () => {
   const [display, setDisplay] = useState(false);
+  const toggleOpen = () => setDisplay(!display);
   return (
     <>
       <button
         className="p-btn--primary wmn2"
-        onClick={() => {
-          setDisplay(!display);
-        }}
+        onClick={toggleOpen}
       >
         Regular modal
       </button>
       <RegularModal
         title="Regular modal title"
         isOpen={display}
-        onClose={() => {
-          setDisplay(false);
-        }}
+        onClose={toggleOpen}
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
           <p className="p-p">
