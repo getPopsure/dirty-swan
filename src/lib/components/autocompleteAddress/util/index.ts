@@ -1,4 +1,8 @@
-import { Address, countryNameFromAlphaCode } from '@popsure/public-models';
+import {
+  Address,
+  countryNameFromAlphaCode,
+  Alpha2CountryCode,
+} from '@popsure/public-models';
 
 export const geocoderAddressComponentToPartialAddress = (
   input: google.maps.GeocoderAddressComponent[]
@@ -52,4 +56,4 @@ export const geocoderAddressComponentToPartialAddress = (
 export const inlineAddress = (address: Address) =>
   `${address.street} ${address.houseNumber}, ${
     address.city
-  }, ${countryNameFromAlphaCode(address.country)}`;
+  }, ${countryNameFromAlphaCode(address.country as Alpha2CountryCode)}`;
