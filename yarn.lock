@@ -1781,10 +1781,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
   integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
 
-"@popsure/public-models@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.npmjs.org/@popsure/public-models/-/public-models-0.0.14.tgz#228eda53f9400e908e57931a341a3f5293abd21f"
-  integrity sha512-rfDvCE/HiNEPTISRpfKbyv2w2JzmeQzT7QRLEvpf/+Rv5LQu/+viegj0yopn+IrEqUFR+nEd9jBarrIAUh/dfQ==
+"@popsure/public-models@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@popsure/public-models/-/public-models-1.0.0.tgz#38928a24fc6afc529964e4a0588b160b57f94399"
+  integrity sha512-qN3eSHUZEyKBkyC9WG0KXEK3X9+Os9ydv1/wh6rslmIXmMjwC/Sjpa2S6N9tK4bVaHJmx5d1DF6J49ooOwFvBg==
   dependencies:
     "@rollup/plugin-image" "^2.0.6"
 
