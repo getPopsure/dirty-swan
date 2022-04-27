@@ -3,7 +3,11 @@ import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import isEqual from 'lodash.isequal';
 import Input from '../input';
-import { Address, countryNameFromAlphaCode } from '@popsure/public-models';
+import {
+  Address,
+  countryNameFromAlphaCode,
+  Alpha2CountryCode,
+} from '@popsure/public-models';
 
 import { geocoderAddressComponentToPartialAddress } from './util';
 
@@ -145,39 +149,46 @@ const AutoCompleteAddress = ({
     }
   };
 
-  const setPlaceFromAddress = useCallback((address: Partial<Address> | undefined) => {
-    if (!map.current) {
-      return;
-    }
+  const setPlaceFromAddress = useCallback(
+    (address: Partial<Address> | undefined) => {
+      if (!map.current) {
+        return;
+      }
 
-    if (address) {
-      const service = new google.maps.places.PlacesService(map.current);
-      const query = `${address.street ?? ''} ${address.houseNumber ?? ''}, ${
-        address.city ?? ''
-      }, ${address.country ? countryNameFromAlphaCode(address.country) : ''}`;
-      setIsLoading(true);
-      service.findPlaceFromQuery(
-        {
-          fields: ['place_id'],
-          query,
-        },
-        (results) => {
-          const firstResult = results && results[0];
-          if (firstResult && firstResult.place_id) {
-            service.getDetails(
-              { placeId: firstResult.place_id },
-              (newPlace) => {
-                onPlaceChanged(newPlace ?? undefined, false);
-              }
-            );
+      if (address) {
+        const service = new google.maps.places.PlacesService(map.current);
+        const query = `${address.street ?? ''} ${address.houseNumber ?? ''}, ${
+          address.city ?? ''
+        }, ${
+          address.country
+            ? countryNameFromAlphaCode(address.country as Alpha2CountryCode)
+            : ''
+        }`;
+        setIsLoading(true);
+        service.findPlaceFromQuery(
+          {
+            fields: ['place_id'],
+            query,
+          },
+          (results) => {
+            const firstResult = results && results[0];
+            if (firstResult && firstResult.place_id) {
+              service.getDetails(
+                { placeId: firstResult.place_id },
+                (newPlace) => {
+                  onPlaceChanged(newPlace ?? undefined, false);
+                }
+              );
+            }
+            setIsLoading(false);
           }
-          setIsLoading(false);
-        }
-      );
-    }
-  }, []);
+        );
+      }
+    },
+    []
+  );
 
-  const debouncedSetPlace = debounce(setPlaceFromAddress, 1000)
+  const debouncedSetPlace = debounce(setPlaceFromAddress, 1000);
 
   const handleEnterAddressManually = () => {
     setManualAddressEntry(true);
