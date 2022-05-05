@@ -12,6 +12,7 @@ See our official website for installation and usage [dirtyswan.design](http://di
 
 ### Releasing a new version
 
-To release a new version, use "Draft a new release" on GitHub (please refer to [Managing a release in a repository](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/managing-releases-in-a-repository)). You'll need to specify a correct "Tag version" that is following [Semantic Versioning](https://semver.org) (or semver).
+1. Create a tag with the correct version number that follow the [Semantic Versioning](https://semver.org) standard (e.g. `git tag v27.0.0)
+2. Use the "Draft a new release" on GitHub and write down some release notes containing "what's updated", "breaking change" (if any) and "Migration from previous version" (if any)
 
 GitHub Action will then automatically pick it up from there and release the new version for you.
