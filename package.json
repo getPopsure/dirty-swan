@@ -43,6 +43,7 @@
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public,storybook-assets",
+    "storybook:static": "STORYBOOK_STATIC=true yarn storybook",
     "build-storybook": "build-storybook -s public,storybook-assets",
     "deploy-storybook": "storybook-to-ghpages"
   },
