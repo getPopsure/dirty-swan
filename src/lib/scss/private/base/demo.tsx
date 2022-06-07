@@ -11,6 +11,10 @@ export const Typography = () => (
     <h4 className="p-h4">The quick brown fox jumps over the lazy dog</h4>
     <p className="p-p">The quick brown fox jumps over the lazy dog</p>
     <p className="p-p--small">The quick brown fox jumps over the lazy dog</p>
+    <a href="#" className="p-a">
+      The quick brown fox jumps over the lazy dog
+    </a>
+    <p className="p-error">The quick brown fox jumps over the lazy dog</p>
   </>
 );
 

@@ -95,9 +95,16 @@ body {
 .p-a {
   color: $ds-primary-500;
   text-decoration: none;
+
   &:hover,
   &:focus {
     color: $ds-primary-700;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $ds-grey-900;
+    border-radius: 2px;
+    outline-offset: 2px;
   }
 }
 
