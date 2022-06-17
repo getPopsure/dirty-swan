@@ -94,10 +94,7 @@
 .p-radio:checked {
   & + label::before {
     border-color: $ds-primary-500;
-
-    background-image: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5.5" fill="#{util.url-encoded-color($ds-primary-500)}" /></svg>');
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-primary-500)}"/></svg>');
   }
 }
 
