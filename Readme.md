@@ -8,6 +8,14 @@ Dirty Swan UI is the Design system used at [Feather Insurance](https://feather-i
 
 See our official website for installation and usage [dirtyswan.design](http://dirtyswan.design/)
 
+### Preview
+
+Start the development server using
+
+```shell
+yarn storybook
+```
+
 ## Contributing
 
 ### Releasing a new version
