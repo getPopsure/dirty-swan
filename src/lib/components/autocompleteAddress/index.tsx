@@ -227,7 +227,7 @@ const AutoCompleteAddress = ({
           </div>
         ) : (
           <>
-            <div className={`d-flex ${styles['input-line']}`}>
+            <div className={`d-flex c-gap16 ${styles['input-line']}`}>
               <Input
                 className="w100"
                 data-cy="autocomplete"
@@ -274,7 +274,7 @@ const AutoCompleteAddress = ({
                 setAddress(newAddress);
               }}
             />
-            <div className={`d-flex mt16 ${styles['input-line']}`}>
+            <div className={`d-flex mt16 c-gap16 ${styles['input-line']}`}>
               <Input
                 className="w100"
                 data-cy="autocomplete-postcode"
