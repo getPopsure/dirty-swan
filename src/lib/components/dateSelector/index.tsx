@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+
 import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
 import DayPicker from 'react-day-picker';
@@ -13,7 +14,6 @@ import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
 
 dayjs.extend(localeData);
-
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
 
 /*
@@ -55,11 +55,21 @@ const DateSelector = ({
   onChange,
   yearBoundaries,
   displayCalendar,
+  placeholders,
+  dayjsLocale,
+  firstDayOfWeek = 0,
 }: {
   value?: string;
   onChange: (date: string) => void;
   yearBoundaries: { min: number; max: number };
   displayCalendar?: boolean;
+  placeholders?: {
+    day?: string;
+    month?: string;
+    year?: string;
+  };
+  dayjsLocale?: ILocale;
+  firstDayOfWeek?: number;
 }) => {
   const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
   const daysInSelectedDate = calendarDateValue
@@ -68,9 +78,19 @@ const DateSelector = ({
         year: calendarDateValue.year,
       })
     : 31;
+
+  const localeDate = dayjsLocale
+    ? dayjs().locale(dayjsLocale).localeData()
+    : dayjs().locale('en').localeData();
+
+  const localizedWeekdays = localeDate.weekdays();
+  const localizedWeekdaysShort = localeDate.weekdaysShort();
+  const localizedMonths = localeDate.months();
+  const localizedMonthsShort = localeDate.monthsShort();
+
   const availableDays = fillArray(1, daysInSelectedDate);
   const availableYears = fillArray(yearBoundaries.max, yearBoundaries.min);
-  const availableMonths = dayjs.monthsShort();
+  const availableMonths = localizedMonthsShort;
 
   const [date, setDate] = useState<Partial<CalendarDate>>(
     calendarDateValue ?? {}
@@ -154,7 +174,7 @@ const DateSelector = ({
             }}
           >
             <option value="" disabled={true}>
-              Day
+              {placeholders?.day || 'Day'}
             </option>
             {availableDays.map((day) => (
               <option key={day} value={day}>
@@ -174,7 +194,7 @@ const DateSelector = ({
             }}
           >
             <option value="" disabled={true}>
-              Month
+              {placeholders?.month || 'Month'}
             </option>
             {availableMonths.map((month, i) => (
               <option key={month} value={i + 1}>
@@ -195,7 +215,7 @@ const DateSelector = ({
           }}
         >
           <option value="" disabled={true}>
-            Year
+            {placeholders?.year || 'Year'}
           </option>
           {availableYears.map((year) => (
             <option key={year} value={year}>
@@ -236,6 +256,11 @@ const DateSelector = ({
                 before: dateCalendarFromMonth,
                 after: dateCalendarToMonth,
               }}
+              firstDayOfWeek={firstDayOfWeek}
+              locale={dayjsLocale?.name || 'en'}
+              months={localizedMonths}
+              weekdaysLong={localizedWeekdays}
+              weekdaysShort={localizedWeekdaysShort}
             />
           )}
         </div>

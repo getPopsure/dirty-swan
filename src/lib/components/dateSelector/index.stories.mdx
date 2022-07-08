@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
 import DateSelector from '.';
+import de from 'dayjs/locale/de';
 
 <Meta title="JSX/Date selector" component={DateSelector} />
 
@@ -60,3 +61,46 @@ export const DateSelectorWithCalendarStory = () => {
 };
 
 <DateSelectorWithCalendarStory />
+
+### Localization
+
+| attribute      | unit                                               | description                                                                             | default value | required |
+| -------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------- | -------- |
+| placeholders   | `{ day?: string; month: string?; year?: string; }` | Placeholder text                                                                        | undefined     | false    |
+| dayjsLocale    | `ILocale`                                          | Imported [Day.js locale Object](https://day.js.org/docs/en/customization/customization) | undefined     | false    |
+| firstDayOfWeek | number                                             | Index of the first day of the week (0 = Sunday, 1 = Monday, etc.)                       | 0             | false    |
+
+The `dayjsLocale` and `firstDayOfWeek` properties are used to localize the calendar of the `DateSelector`, whereas
+the `placeholders` object can be used to change the text of the different dropdowns. If no `dayjsLocale` is supplied, the default locale 'en' will be used for the DateSelector.
+
+Additional locales can be imported from dayjs like
+`import de from 'dayjs/locale/de';` and then passed on to the component:
+`<DateSelector ... dayjsLocale={de} />`
+
+[List of all supported locales](https://github.com/iamkun/dayjs/tree/dev/src/locale)
+
+export const DateSelectorWithCalendarLocalizedStory = () => {
+  const [date, setDate] = useState('');
+  return (
+    <div style={{ paddingBottom: '120px' }}>
+      <DateSelector
+        value={date}
+        className="mt24"
+        yearBoundaries={{ min: 2020, max: 2022 }}
+        onChange={(date) => {
+          setDate(date);
+        }}
+        displayCalendar={true}
+        placeholders={{
+          day: 'Tag',
+          month: 'Monat',
+          year: 'Jahr',
+        }}
+        dayjsLocale={de}
+        firstDayOfWeek={1}
+      />
+    </div>
+  );
+};
+
+<DateSelectorWithCalendarLocalizedStory />

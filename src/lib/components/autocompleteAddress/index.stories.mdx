@@ -3,17 +3,24 @@ import { useState } from 'react';
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
 import AutocompleteAddress from '.';
-import { WithoutAddress, WithAddress } from './demo';
+import {
+  WithoutAddress,
+  WithoutAddressLocalized,
+  WithAddress,
+  WithAddressLocalized,
+} from './demo';
 
 <Meta title="JSX/Autocomplete Address" component={AutocompleteAddress} />
 
 # Autocomplete Address
 
-| attribute       | unit                                      | description                                                                                                                    | default value | required |
-| --------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------- |
-| address         | `Partial<Address>`                        | The address                                                                                                                    | undefined     | false    |
-| onAddressChange | `function (newAddress: Partial<Address>)` | Callback with the updated address, this function will get called everytime the address gets updated.                           | n/a           | true     |
-| apiKey          | string                                    | Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) | n/a           | true     |
+| attribute               | unit                                                                                                                                        | description                                                                                                                    | default value | required |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------- | -------- |
+| address                 | `Partial<Address>`                                                                                                                          | The address                                                                                                                    | undefined     | false    |
+| onAddressChange         | `function (newAddress: Partial<Address>)`                                                                                                   | Callback with the updated address, this function will get called everytime the address gets updated.                           | n/a           | true     |
+| apiKey                  | string                                                                                                                                      | Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) | n/a           | true     |
+| placeholders            | `{ manualAddressEntry?: string; street: string?; houseNumber?: string; additionalInformation?: string; postcode?: string; city?: string; }` | Placeholder text                                                                                                               | undefined     | false    |
+| manualAddressEntryTexts | `{ preText?: string; cta: string?; }`                                                                                                       | The CTA that enables manual address entry and the text preceding it                                                            | undefined     | false    |
 
 Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.
 
@@ -31,10 +38,12 @@ This component is for now only restricted to "address" types and will restrict e
 
 <WithAddress />
 
-```typescript
-import React, { useState } from 'react';
-import { Address } from '@popsure/public-models';
+### Localized inputs
 
+<WithoutAddressLocalized />
+<WithAddressLocalized />
+
+```typescript import React, {useState} from 'react'; import {Address} from '@popsure/public-models';
 import AutoCompleteAddress from '.';
 
 export default () => {

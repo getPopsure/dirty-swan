@@ -53,10 +53,24 @@ const AutoCompleteAddress = ({
   apiKey,
   address: initialAddress,
   onAddressChange,
+  placeholders,
+  manualAddressEntryTexts,
 }: {
   apiKey: string;
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
+  placeholders?: {
+    manualAddressEntry?: string;
+    street?: string;
+    houseNumber?: string;
+    additionalInformation?: string;
+    postcode?: string;
+    city?: string;
+  };
+  manualAddressEntryTexts?: {
+    preText?: string;
+    cta?: string;
+  };
 }) => {
   const [manualAddressEntry, setManualAddressEntry] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -216,7 +230,9 @@ const AutoCompleteAddress = ({
               id="autocomplete"
               data-cy="autocomplete"
               type="text"
-              placeholder="Search for address"
+              placeholder={
+                placeholders?.manualAddressEntry || 'Search for address'
+              }
               ref={autocompleteElement}
             />
             {hasLoadedGoogleAPI === false && (
@@ -227,12 +243,12 @@ const AutoCompleteAddress = ({
           </div>
         ) : (
           <>
-            <div className={`d-flex ${styles['input-line']}`}>
+            <div className={`d-flex c-gap16 ${styles['input-line']}`}>
               <Input
                 className="w100"
                 data-cy="autocomplete"
                 type="text"
-                placeholder="Street"
+                placeholder={placeholders?.street || 'Street'}
                 value={address?.street || ''}
                 onChange={(e) => {
                   const newAddress = {
@@ -247,7 +263,7 @@ const AutoCompleteAddress = ({
               <Input
                 className={`wmx2 ${styles['house-number-input']}`}
                 data-cy="autocomplete-house-number"
-                placeholder="House Number"
+                placeholder={placeholders?.houseNumber || 'House Number'}
                 value={address?.houseNumber || ''}
                 onChange={(e) => {
                   const newAddress = {
@@ -263,7 +279,10 @@ const AutoCompleteAddress = ({
             <Input
               className="mt16"
               data-cy="autocomplete-additional-info"
-              placeholder="Additional information (C/O, appartment…)"
+              placeholder={
+                placeholders?.additionalInformation ||
+                'Additional information (C/O, apartment, …)'
+              }
               value={address?.additionalInformation || ''}
               onChange={(e) => {
                 const newAddress = {
@@ -274,11 +293,11 @@ const AutoCompleteAddress = ({
                 setAddress(newAddress);
               }}
             />
-            <div className={`d-flex mt16 ${styles['input-line']}`}>
+            <div className={`d-flex mt16 c-gap16 ${styles['input-line']}`}>
               <Input
                 className="w100"
                 data-cy="autocomplete-postcode"
-                placeholder="Postcode"
+                placeholder={placeholders?.postcode || 'Postcode'}
                 value={address?.postcode || ''}
                 onChange={(e) => {
                   const newAddress = {
@@ -293,7 +312,7 @@ const AutoCompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete-city"
-                placeholder="City"
+                placeholder={placeholders?.city || 'City'}
                 value={address?.city || ''}
                 onChange={(e) => {
                   const newAddress = {
@@ -311,12 +330,12 @@ const AutoCompleteAddress = ({
       </div>
       {manualAddressEntry === false && (
         <div className="p-p mt8">
-          Or{' '}
+          {manualAddressEntryTexts?.preText || 'Or '}
           <span
             className="p-a fw-bold c-pointer"
             onClick={handleEnterAddressManually}
           >
-            Enter address manually
+            {manualAddressEntryTexts?.cta || 'Enter address manually'}
           </span>
         </div>
       )}
