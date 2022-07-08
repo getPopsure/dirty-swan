@@ -60,3 +60,40 @@ export const DateSelectorWithCalendarStory = () => {
 };
 
 <DateSelectorWithCalendarStory />
+
+### Localization
+
+| attribute      | unit                                               | description                                                       | default value | required |
+| -------------- | -------------------------------------------------- | ----------------------------------------------------------------- | ------------- | -------- |
+| placeholders   | `{ day?: string; month: string?; year?: string; }` | Placeholder text                                                  | undefined     | false    |
+| locale         | string                                             | Locale string                                                     | 'en'          | false    |
+| firstDayOfWeek | number                                             | Index of the first day of the week (0 = Sunday, 1 = Monday, etc.) | 0             | false    |
+
+The `locale` and `firstDayOfWeek` properties are used to localize the calendar of the `DateSelector`, whereas
+the `placeholders` object can be used to change the text of the different dropdowns.
+
+export const DateSelectorWithCalendarLocalizedStory = () => {
+  const [date, setDate] = useState('');
+  return (
+    <div style={{ paddingBottom: '120px' }}>
+      <DateSelector
+        value={date}
+        className="mt24"
+        yearBoundaries={{ min: 2020, max: 2022 }}
+        onChange={(date) => {
+          setDate(date);
+        }}
+        displayCalendar={true}
+        placeholders={{
+          day: 'Tag',
+          month: 'Monat',
+          year: 'Jahr',
+        }}
+        locale="de"
+        firstDayOfWeek={1}
+      />
+    </div>
+  );
+};
+
+<DateSelectorWithCalendarLocalizedStory />
