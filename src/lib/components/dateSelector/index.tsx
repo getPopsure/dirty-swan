@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-// Import 'de' so that it can be used locale
-import 'dayjs/locale/de';
 
 import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
@@ -14,9 +12,6 @@ import {
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
-
-// Union of all dayjs locales the component supports ('en' by default + all other imported locales)
-export type supportedDayJSLocales = 'en' | 'de';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -61,7 +56,7 @@ const DateSelector = ({
   yearBoundaries,
   displayCalendar,
   placeholders,
-  locale = 'en',
+  dayjsLocale,
   firstDayOfWeek = 0,
 }: {
   value?: string;
@@ -73,7 +68,7 @@ const DateSelector = ({
     month?: string;
     year?: string;
   };
-  locale?: supportedDayJSLocales;
+  dayjsLocale?: ILocale;
   firstDayOfWeek?: number;
 }) => {
   const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
@@ -84,7 +79,9 @@ const DateSelector = ({
       })
     : 31;
 
-  const localeDate = dayjs().locale(locale).localeData();
+  const localeDate = dayjsLocale
+    ? dayjs().locale(dayjsLocale).localeData()
+    : dayjs().locale('en').localeData();
 
   const localizedWeekdays = localeDate.weekdays();
   const localizedWeekdaysShort = localeDate.weekdaysShort();
@@ -260,7 +257,7 @@ const DateSelector = ({
                 after: dateCalendarToMonth,
               }}
               firstDayOfWeek={firstDayOfWeek}
-              locale={locale}
+              locale={dayjsLocale?.name || 'en'}
               months={localizedMonths}
               weekdaysLong={localizedWeekdays}
               weekdaysShort={localizedWeekdaysShort}
