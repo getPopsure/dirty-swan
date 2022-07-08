@@ -66,11 +66,15 @@ export const DateSelectorWithCalendarStory = () => {
 | attribute      | unit                                               | description                                                       | default value | required |
 | -------------- | -------------------------------------------------- | ----------------------------------------------------------------- | ------------- | -------- |
 | placeholders   | `{ day?: string; month: string?; year?: string; }` | Placeholder text                                                  | undefined     | false    |
-| locale         | string                                             | Locale string                                                     | 'en'          | false    |
+| locale         | supportedDayJSLocales                              | 'en' or 'de'                                                      | 'en'          | false    |
 | firstDayOfWeek | number                                             | Index of the first day of the week (0 = Sunday, 1 = Monday, etc.) | 0             | false    |
 
 The `locale` and `firstDayOfWeek` properties are used to localize the calendar of the `DateSelector`, whereas
 the `placeholders` object can be used to change the text of the different dropdowns.
+
+Currently, only the locales 'en' and 'de' are supported - additional languages can be added in the future by importing them like
+`import 'dayjs/locale/ko';`
+and adding a corresponding entry in the exported `supportedDayJSLocales` type.
 
 export const DateSelectorWithCalendarLocalizedStory = () => {
   const [date, setDate] = useState('');

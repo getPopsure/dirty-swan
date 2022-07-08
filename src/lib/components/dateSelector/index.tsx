@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/de';
-import 'dayjs/locale/bs';
 
 import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
@@ -14,6 +13,8 @@ import {
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
+
+export type supportedDayJSLocales = 'en' | 'de';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -70,7 +71,7 @@ const DateSelector = ({
     month?: string;
     year?: string;
   };
-  locale?: string;
+  locale?: supportedDayJSLocales;
   firstDayOfWeek?: number;
 }) => {
   const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
