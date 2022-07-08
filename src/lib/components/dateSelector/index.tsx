@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+// Import 'de' so that it can be used locale
 import 'dayjs/locale/de';
 
 import localeData from 'dayjs/plugin/localeData';
@@ -14,6 +15,7 @@ import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
 
+// Union of all dayjs locales the component supports ('en' by default + all other imported locales)
 export type supportedDayJSLocales = 'en' | 'de';
 
 dayjs.extend(localeData);
