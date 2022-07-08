@@ -13,7 +13,7 @@
 
 .house-number-input {
   @include p-size-mobile {
-    max-width: none;
+    max-width: none !important;
   }
 }
 
