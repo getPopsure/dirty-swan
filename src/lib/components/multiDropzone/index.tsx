@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import classnames from 'classnames';
 
@@ -44,6 +44,7 @@ interface Props {
   uploadedFiles: UploadedFile[];
   uploading: boolean;
   onRemoveFile: (id: string) => void;
+  isCondensed?: boolean;
 }
 
 export default ({
@@ -51,6 +52,7 @@ export default ({
   onFileSelect,
   uploading,
   onRemoveFile,
+  isCondensed = false,
 }: Props) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -62,16 +64,23 @@ export default ({
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div className={`w100 ${styles.container}`}>
+    <div className={styles.container}>
       <div
-        className={classnames(`w100 ta-center ${styles['upload-container']}`, {
-          [styles['upload-container-disabled']]: uploading,
-        })}
+        className={classnames(
+          `w100 ta-center br8 c-pointer ${styles.dropzoneContainer}`,
+          {
+            [styles['dropzoneContainerDisabled']]: uploading,
+          }
+        )}
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        <img src={icons.uploadIcon} alt="" />
-        <div className="p-h4 mt8">
+        <img
+          className={isCondensed ? styles.img : ''}
+          src={icons.uploadIcon}
+          alt="purple cloud with an arrow"
+        />
+        <div className={`p-h4 mt8 ${isCondensed ? styles.textInline : ''}`}>
           {uploading
             ? 'Please wait while uploading file...'
             : 'Choose file or drag & drop'}
@@ -79,7 +88,7 @@ export default ({
         <div className="p-p--small tc-grey-500">Supports JPEG, PNG, PDF</div>
       </div>
       {uploadedFiles.length > 0 && (
-        <div className={`w100 mt16`}>
+        <div className="w100 mt16">
           {uploadedFiles.map((file) => {
             const uploadStatus = getUploadStatus(file.progress, file.error);
             return (
