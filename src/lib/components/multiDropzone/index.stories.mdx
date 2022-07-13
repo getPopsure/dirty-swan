@@ -69,6 +69,27 @@ MultiDropzone component allows upload of multiple documents / files.
   />
 </Preview>
 
+### Condensed view
+
+<Preview>
+  <MultiDropzone
+    uploadedFiles={[
+      {
+        id: '123',
+        type: 'pdf',
+        progress: '100',
+        name: 'test_file_name.pdf',
+        token: 'abc',
+        previewUrl: 'http://getpopsure.com/test_file_name.pdf',
+      },
+    ]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+    isCondensed
+  />
+</Preview>
+
 ### Error state
 
 <Preview>
