@@ -14,7 +14,7 @@
   width: 100%;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-300;
+  border: 1px solid $ds-grey-400;
   background-color: white;
 
   color: $ds-grey-900;
@@ -27,7 +27,7 @@
 
   &:disabled {
     background-color: $ds-grey-300;
-    border-color: $ds-grey-500;
+    border: none;
   }
 
   &:focus {
@@ -81,7 +81,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-300;
+      border: 1px solid $ds-grey-400;
       border-radius: 50%;
 
       background-color: white;
@@ -113,7 +113,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-300;
+      border: 1px solid $ds-grey-400;
       border-radius: 4px;
 
       background-color: white;
@@ -163,7 +163,7 @@
     padding-left: 16px;
 
     border-radius: 8px;
-    border: 1px solid $ds-grey-300;
+    border: 1px solid $ds-grey-400;
     background-color: white;
 
     &:hover {
@@ -201,7 +201,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
   height: 48px;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-300;
+  border: 1px solid $ds-grey-400;
   background-color: white;
 
   font-family: inherit;

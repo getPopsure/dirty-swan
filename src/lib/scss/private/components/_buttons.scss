@@ -171,7 +171,7 @@
       color: $ds-grey-500;
       background-color: transparent;
 
-      border: 1px dashed $ds-grey-300;
+      border: 1px dashed $ds-grey-400;
 
       &:hover {
         color: $ds-grey-600;
@@ -180,7 +180,7 @@
 
       &[disabled] {
         color: $ds-grey-500;
-        border-color: $ds-grey-300;
+        border-color: $ds-grey-400;
         opacity: 0.5;
       }
 
