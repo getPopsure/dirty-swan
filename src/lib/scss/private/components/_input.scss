@@ -27,7 +27,7 @@
 
   &:disabled {
     background-color: $ds-grey-300;
-    border-color: $ds-grey-500;
+    border: none;
   }
 
   &:focus {
