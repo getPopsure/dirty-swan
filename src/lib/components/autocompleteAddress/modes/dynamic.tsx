@@ -1,0 +1,105 @@
+import usePlacesAutocomplete, { getDetails } from 'use-places-autocomplete';
+import Input from '../../input';
+import { Address } from '@popsure/public-models';
+import { ChangeEventHandler } from 'react';
+import { geocoderAddressComponentToPartialAddress } from '../util/index';
+
+import styles from './dynamic.module.scss'
+
+export const loadApiErr =
+  '💡 autocompleteAddress-DynamicMode: Google Maps Places API library must be loaded.';
+
+const DynamicAddressEntry = ({
+  isGeometryEnabled,
+  address: initialAddress,
+  onAddressChange,
+  onGeometryChange,
+}: {
+  isGeometryEnabled: boolean;
+  address?: Partial<Address>;
+  onAddressChange: (address: Partial<Address>) => void;
+  onGeometryChange: (geometry: google.maps.places.PlaceGeometry) => void;
+}) => {
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    debounce: 400,
+    defaultValue: initialAddress?.street
+  });
+
+  const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSelect =
+    (suggestion: google.maps.places.AutocompletePrediction) => () => {
+      setValue(suggestion.description, false);
+      clearSuggestions();
+
+      const parameter = {
+        placeId: suggestion.place_id,
+        fields: ['address_component', ...(isGeometryEnabled ? ['geometry'] : [])],
+      };
+
+      getDetails(parameter)
+        .then((details) => {
+          if (typeof details === 'string') {
+            console.log('Details: ', details);
+          } else if (details?.address_components) {
+            const geocoderAddress = geocoderAddressComponentToPartialAddress(
+              details.address_components
+            );
+            onAddressChange({
+              ...geocoderAddress,
+              additionalInformation: initialAddress?.additionalInformation,
+            });
+            if (isGeometryEnabled && details.geometry) {
+              onGeometryChange(details.geometry);
+            }
+          }
+        })
+        .catch((error) => {
+          console.log('Error: ', error);
+        });
+    };
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      // TODO: main_text_matched_substrings can be used to highlight queryText
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)} className={styles.suggestionItem}>
+          <span className='fw-bold pr8'>{main_text}</span>{" "}<small>{secondary_text}</small>
+        </li>
+      );
+    });
+
+  return (
+    <>
+      <div style={{ position: 'relative' }}>
+        <Input
+          className="w100"
+          id="autocomplete"
+          data-cy="autocomplete"
+          type="text"
+          placeholder="Search for address"
+          disabled={!ready}
+          onChange={handleInput}
+          value={value}
+        />
+        {status === 'OK' && <ul className={styles.suggestionList}>{renderSuggestions()}</ul>}
+      </div>
+    </>
+  );
+};
+
+export default DynamicAddressEntry;
