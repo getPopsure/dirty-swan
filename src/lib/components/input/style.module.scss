@@ -17,6 +17,10 @@
   &--with-error {
     color: var(--ds-red-500);
   }
+
+  &--disabled {
+    color: var(--ds-grey-600);
+  }
 }
 
 .input:not(:placeholder-shown) ~ .placeholder,

@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import styles from './style.module.scss';
 
@@ -11,7 +12,7 @@ export type InputProps = {
 
 export default React.forwardRef(
   (
-    { className, placeholder, prefix, error, ...props }: InputProps,
+    { className, placeholder, prefix, error, disabled, ...props }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => (
     <div className={`${styles.container} ${className ?? ''}`}>
@@ -19,27 +20,34 @@ export default React.forwardRef(
         data-testid="ds-input-input"
         type="text"
         ref={ref}
-        className={`${error ? 'p-input--error' : 'p-input'} ${
-          placeholder && placeholder?.length > 0
+        className={classnames(
+          error ? 'p-input--error' : 'p-input',
+          placeholder && placeholder.length > 0
             ? styles.input
-            : styles['input--no-placeholder']
-        } ${prefix ? styles['input--with-prefix'] : ''}`}
+            : styles['input--no-placeholder'],
+          { [styles['input--with-prefix']]: prefix }
+        )}
         placeholder=" "
+        disabled={disabled}
         {...props}
       />
       {prefix && (
         <span
-          className={`${styles.prefix} ${
-            error ? styles['prefix--with-error'] : ''
-          }`}
+          className={classnames(
+            styles.prefix,
+            { [styles['prefix--with-error']]: error },
+            { [styles['prefix--disabled']]: disabled }
+          )}
         >
           {prefix}
         </span>
       )}
       <span
-        className={`${styles.placeholder} ${
-          prefix ? styles['placeholder--with-prefix'] : ''
-        } ${error ? styles['placeholder--with-error'] : ''}`}
+        className={classnames(
+          styles.placeholder,
+          { [styles['placeholder--with-prefix']]: prefix },
+          { [styles['placeholder--with-error']]: error }
+        )}
       >
         {placeholder}
       </span>
