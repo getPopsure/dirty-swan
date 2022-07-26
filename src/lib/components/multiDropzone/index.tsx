@@ -40,7 +40,7 @@ export interface UploadedFile {
 }
 
 interface Props {
-  onFileSelect: (file: File) => void;
+  onFileSelect: (files: File[]) => void;
   uploadedFiles: UploadedFile[];
   uploading: boolean;
   onRemoveFile: (id: string) => void;
@@ -55,8 +55,8 @@ export default ({
   isCondensed = false,
 }: Props) => {
   const onDrop = useCallback(
-    (acceptedFiles) => {
-      onFileSelect(acceptedFiles[0]);
+    (acceptedFiles: File[]) => {
+      onFileSelect(acceptedFiles);
     },
     [onFileSelect]
   );
