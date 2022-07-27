@@ -60,10 +60,14 @@ export default ({
 
   const onDrop = useCallback(
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
-      if (filesRejected.length === 0) {
-        onFileSelect(acceptedFiles);
+      setError('');
+
+      if (filesRejected.length > 0) {
+        setError(filesRejected[0].errors[0].message);
+        return;
       }
-      setError(filesRejected[0].errors[0].message);
+
+      onFileSelect(acceptedFiles);
     },
     [onFileSelect]
   );
