@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useCallback, useState } from 'react';
+import { useDropzone, FileRejection } from 'react-dropzone';
 import classnames from 'classnames';
-
+import AnimateHeight from 'react-animate-height';
 import styles from './style.module.scss';
 import icons from './icons/index'; // TODO: inline all of the svgs
 import UploadFileCell from './UploadFileCell';
@@ -45,6 +45,7 @@ interface Props {
   uploading: boolean;
   onRemoveFile: (id: string) => void;
   isCondensed?: boolean;
+  maxFiles?: number;
 }
 
 export default ({
@@ -53,15 +54,21 @@ export default ({
   uploading,
   onRemoveFile,
   isCondensed = false,
+  maxFiles = 0,
 }: Props) => {
+  const [error, setError] = useState('');
+
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      onFileSelect(acceptedFiles);
+    (acceptedFiles: File[], filesRejected: FileRejection[]) => {
+      if (filesRejected.length === 0) {
+        onFileSelect(acceptedFiles);
+      }
+      setError(filesRejected[0].errors[0].message);
     },
     [onFileSelect]
   );
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles });
 
   return (
     <div className={styles.container}>
@@ -87,6 +94,9 @@ export default ({
         </div>
         <div className="p-p--small tc-grey-500">Supports JPEG, PNG, PDF</div>
       </div>
+      <AnimateHeight duration={300} height={error ? 'auto' : 0}>
+        <p className="tc-red-500 p-p--small">{error}</p>
+      </AnimateHeight>
       {uploadedFiles.length > 0 && (
         <div className="w100 mt16">
           {uploadedFiles.map((file) => {
