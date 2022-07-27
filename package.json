@@ -26,6 +26,7 @@
     "hastscript": "^7.0.2",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
+    "react-animate-height": "^3.0.4",
     "react-autosuggest": "^10.1.0",
     "react-day-picker": "^7.4.10",
     "react-dropzone": "^11.3.2",
