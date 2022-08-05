@@ -33,6 +33,7 @@ import {
   TableHeader,
 } from './components/comparisonTable';
 import SegmentedControl from './components/segmentedControl';
+import Markdown from './components/markdown';
 
 export {
   DateSelector,
@@ -63,9 +64,10 @@ export {
   TableRowHeader,
   TableInfoButton,
   SegmentedControl,
+  Markdown,
 };
 
 export type { TableHeader };
 
 export type { DownloadRingDownloadStatus } from './models/downloadRing';
-export type { DownloadStatus } from './models/download'
+export type { DownloadStatus } from './models/download';
