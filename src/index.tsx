@@ -29,9 +29,14 @@ export {
   TableRowHeader,
   TableInfoButton,
   SegmentedControl,
-  DownloadButton
+  DownloadButton,
+  Markdown,
 } from './lib';
 
-export type { TableHeader, DownloadRingDownloadStatus, DownloadStatus } from './lib';
+export type {
+  TableHeader,
+  DownloadRingDownloadStatus,
+  DownloadStatus,
+} from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
