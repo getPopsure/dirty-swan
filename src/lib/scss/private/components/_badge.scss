@@ -38,4 +38,9 @@
     @extend .p-badge;
     background-color: $ds-blue-300;
   }
+
+  &--default {
+    @extend .p-badge;
+    background-color: $ds-purple-100;
+  }
 }
