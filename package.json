@@ -9,6 +9,7 @@
     "url": "git@github.com:getPopsure/dirtySwan.git"
   },
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -103,6 +104,7 @@
     "rollup": "^2.52.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-polyfill-node": "^0.10.2",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-url": "^3.0.1",
     "tslib": "^2.3.0",
