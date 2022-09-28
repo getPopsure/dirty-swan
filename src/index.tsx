@@ -3,12 +3,10 @@ import App from './App';
 
 export {
   DateSelector,
-  Dropzone,
   SignaturePad,
   AutocompleteAddress,
   Input,
   MultiDropzone,
-  DownloadRing,
   IbanInput,
   CurrencyInput,
   BottomModal,
@@ -16,7 +14,6 @@ export {
   BottomOrRegularModal,
   CardWithTopLeftIcon,
   CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   CardButton,
   Button,
@@ -24,7 +21,6 @@ export {
   Chip,
   AutoSuggestInput,
   ComparisonTable,
-  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
@@ -33,10 +29,6 @@ export {
   Markdown,
 } from './lib';
 
-export type {
-  TableHeader,
-  DownloadRingDownloadStatus,
-  DownloadStatus,
-} from './lib';
+export type { TableHeader, DownloadStatus } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));

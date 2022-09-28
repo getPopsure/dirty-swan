@@ -1,10 +1,8 @@
 import DateSelector from './components/dateSelector';
-import Dropzone from './components/dropzone';
 import SignaturePad from './components/signaturePad';
 import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
 import MultiDropzone from './components/multiDropzone';
-import DownloadRing from './components/downloadRing';
 import DownloadButton from './components/downloadButton';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
@@ -16,7 +14,6 @@ import {
 import {
   CardWithTopLeftIcon,
   CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   CardButton,
 } from './components/cards';
@@ -26,7 +23,6 @@ import Chip from './components/chip';
 import AutoSuggestInput from './components/input/autoSuggestInput';
 import {
   ComparisonTable,
-  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
@@ -37,12 +33,10 @@ import Markdown from './components/markdown';
 
 export {
   DateSelector,
-  Dropzone,
   SignaturePad,
   AutocompleteAddress,
   Input,
   MultiDropzone,
-  DownloadRing,
   DownloadButton,
   IbanInput,
   BottomModal,
@@ -50,7 +44,6 @@ export {
   BottomOrRegularModal,
   CardWithTopLeftIcon,
   CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   CardButton,
   Button,
@@ -59,7 +52,6 @@ export {
   Chip,
   AutoSuggestInput,
   ComparisonTable,
-  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
@@ -69,5 +61,4 @@ export {
 
 export type { TableHeader };
 
-export type { DownloadRingDownloadStatus } from './models/downloadRing';
 export type { DownloadStatus } from './models/download';
