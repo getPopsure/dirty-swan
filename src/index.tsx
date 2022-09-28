@@ -21,6 +21,7 @@ export {
   Chip,
   AutoSuggestInput,
   ComparisonTable,
+  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,

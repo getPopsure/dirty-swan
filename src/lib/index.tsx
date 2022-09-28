@@ -23,6 +23,7 @@ import Chip from './components/chip';
 import AutoSuggestInput from './components/input/autoSuggestInput';
 import {
   ComparisonTable,
+  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
@@ -52,6 +53,7 @@ export {
   Chip,
   AutoSuggestInput,
   ComparisonTable,
+  TableRating,
   TableTrueFalse,
   TableRowHeader,
   TableInfoButton,
