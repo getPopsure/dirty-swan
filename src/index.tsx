@@ -14,6 +14,7 @@ export {
   BottomOrRegularModal,
   CardWithTopLeftIcon,
   CardWithLeftIcon,
+  CardWithTopIcon,
   InfoCard,
   CardButton,
   Button,

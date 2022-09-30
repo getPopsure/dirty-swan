@@ -14,6 +14,7 @@ import {
 import {
   CardWithTopLeftIcon,
   CardWithLeftIcon,
+  CardWithTopIcon,
   InfoCard,
   CardButton,
 } from './components/cards';
@@ -45,6 +46,7 @@ export {
   BottomOrRegularModal,
   CardWithTopLeftIcon,
   CardWithLeftIcon,
+  CardWithTopIcon,
   InfoCard,
   CardButton,
   Button,
