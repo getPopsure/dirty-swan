@@ -1,8 +1,4 @@
-import {
-  associatedClassForCardState,
-  CardProps,
-  headingForCardSize,
-} from '..';
+import { associatedClassForCardState, CardProps, headingForCardSize } from '..';
 import { Icon, arrowRight, IconSize } from '../icons';
 
 import styles from './style.module.scss';

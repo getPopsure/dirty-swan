@@ -3,12 +3,10 @@ import App from './App';
 
 export {
   DateSelector,
-  Dropzone,
   SignaturePad,
   AutocompleteAddress,
   Input,
   MultiDropzone,
-  DownloadRing,
   IbanInput,
   CurrencyInput,
   BottomModal,
@@ -33,10 +31,6 @@ export {
   Markdown,
 } from './lib';
 
-export type {
-  TableHeader,
-  DownloadRingDownloadStatus,
-  DownloadStatus,
-} from './lib';
+export type { TableHeader, DownloadStatus } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));

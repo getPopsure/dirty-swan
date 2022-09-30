@@ -2,10 +2,8 @@ import React from 'react';
 import './lib/scss/index.scss';
 
 import DateSelector from './lib/components/dateSelector';
-import Dropzone from './lib/components/dropzone';
 import SignaturePad from './lib/components/signaturePad';
 import { CardWithLeftIcon } from './lib/components/cards';
-import AutocompleteAddress from './lib/components/autocompleteAddress';
 
 function App() {
   return (
@@ -20,12 +18,6 @@ function App() {
         malesuada laoreet nulla, non maximus ante porta sit amet. Aenean non
         ipsum nec quam gravida convallis vitae sit amet nisi.
       </div>
-      <Dropzone
-        uploading={true}
-        progress={32}
-        onSelectedFile={() => {}}
-        // uploadedFileUrl="http://foo.com/my-file.png"
-      />
       <div style={{ backgroundColor: 'white', padding: '24px' }}>
         <SignaturePad
           onChange={(v) => {
