@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 
 import localeData from 'dayjs/plugin/localeData';
@@ -156,6 +156,8 @@ const DateSelector = ({
     } else {
       setDate(newValue);
     }
+
+    setOpenCalendar(false);
   };
 
   return (
