@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import styles from '../style.module.scss';
 
@@ -18,35 +18,16 @@ const MAP_CONFIG_OBJ = {
   draggable: false,
 };
 
-export const loadGoogleMapsApiDynamically = (
-  callback: () => void,
-  apiKey: string
-) => {
-  const existingScript = document.getElementById('googleMapsImportScript');
-
-  if (existingScript) {
-    return;
-  }
-
-  const googleMapImportScript = document.createElement('script');
-  googleMapImportScript.id = 'googleMapsImportScript';
-  googleMapImportScript.type = 'text/javascript';
-  // googleMapImportScript.async = true;
-  // googleMapImportScript.defer = true;
-  googleMapImportScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-  document.head.appendChild(googleMapImportScript);
-
-  googleMapImportScript.onload = () => {
-    callback();
-  };
-};
-
 export function GoogleMapsWrapper({
+  mapId,
   geometry,
   hasLoadedGoogleAPI,
+  isLoading,
 }: {
+  mapId: string;
   geometry: google.maps.places.PlaceGeometry | undefined;
   hasLoadedGoogleAPI: boolean;
+  isLoading: boolean;
 }) {
   const map = useRef<google.maps.Map | null>(null);
   const marker = useRef<google.maps.Marker | null>(null);
@@ -60,12 +41,12 @@ export function GoogleMapsWrapper({
   }, [geometry]);
 
   useEffect(() => {
-    if (hasLoadedGoogleAPI === false) {
+    if (!hasLoadedGoogleAPI) {
       return;
     }
 
     map.current = new google.maps.Map(
-      document.getElementById('map')!,
+      document.getElementById(mapId)!,
       MAP_CONFIG_OBJ
     );
 
@@ -77,7 +58,7 @@ export function GoogleMapsWrapper({
     marker.current = new google.maps.Marker({
       map: map.current,
     });
-  }, [hasLoadedGoogleAPI]);
+  }, [hasLoadedGoogleAPI, mapId]);
 
   return (
     <div
@@ -85,7 +66,12 @@ export function GoogleMapsWrapper({
         [styles['map-container--hidden']]: geometry === undefined,
       })}
     >
-      <div className={styles.map} id="map" />
+      <div className={styles.map} id={mapId} />
+      {isLoading && (
+          <div className={styles['loading-spinner']}>
+            <div className="ds-spinner ds-spinner__m" />
+          </div>
+        )}
     </div>
   );
 }

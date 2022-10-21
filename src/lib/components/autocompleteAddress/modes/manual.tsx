@@ -8,7 +8,7 @@ const GERMANY_ALPHA_CODE = 'DE'; // default country can be cumbersome for new co
 
 const ManualAddressEntry = ({
   address,
-  onAddressChange
+  onAddressChange,
 }: {
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
@@ -17,9 +17,12 @@ const ManualAddressEntry = ({
     onAddressChange({
       ...address,
       [event.target.name]: event.target.value,
-      ...(address?.country ? {} : { country: GERMANY_ALPHA_CODE })
+      ...(address?.country
+        ? { country: address.country }
+        : { country: GERMANY_ALPHA_CODE }), // default country is germany
     });
-  }
+  };
+
   return (
     <>
       <div className={`d-flex c-gap16 ${styles['input-line']}`}>

@@ -7,13 +7,13 @@ export const WithoutAddress = () => {
   const [address, setAddress] = useState<Partial<Address> | undefined>(
     undefined
   );
+  console.log(address);
   return (
     <AutoCompleteAddress
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      address={address}
-      apiKey="AIzaSyDjb3EBXClNHsnf-kj1nCC6_3x-XZiEFHI" // change it back to production one
+      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI" // change it back to production one
     />
   );
 };
@@ -28,24 +28,26 @@ export const WithAddress = () => {
   });
   return (
     <AutoCompleteAddress
+      mapId="with-address-map"
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      address={address}
-      apiKey="AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8"
+      initialAddress={address}
+      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI"
     />
   );
 };
 
 export const WithoutAddressLocalized = () => {
   const [address, setAddress] = useState<Partial<Address> | undefined>();
+  console.log(address);
   return (
     <AutoCompleteAddress
+      mapId="without-address-localized-map"
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      address={address}
-      apiKey="AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8"
+      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI"
       placeholders={{
         manualAddressEntry: 'Adresse suchen',
         street: 'Straße',
@@ -66,11 +68,12 @@ export const WithAddressLocalized = () => {
   const [address, setAddress] = useState<Partial<Address> | undefined>({});
   return (
     <AutoCompleteAddress
+      mapId="with-address-localized-map"
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      address={address}
-      apiKey="AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8"
+      initialAddress={address}
+      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI"
       placeholders={{
         manualAddressEntry: 'Adresse suchen',
         street: 'Straße',

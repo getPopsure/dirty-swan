@@ -53,7 +53,7 @@ export const geocoderAddressComponentToPartialAddress = (
   return toReturn;
 };
 
-export const inlineAddress = (address: Address) =>
+export const inlineAddress = (address: Partial<Address>) =>
   `${address.street} ${address.houseNumber}, ${
     address.city
   }, ${countryNameFromAlphaCode(address.country as Alpha2CountryCode)}`;
