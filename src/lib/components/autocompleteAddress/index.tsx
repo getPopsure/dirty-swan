@@ -7,7 +7,7 @@ import ManualAddressEntry from './modes/manual';
 import DynamicAddressEntry from './modes/dynamic';
 import { getGeocode } from 'use-places-autocomplete';
 import { inlineAddress } from './util';
-import { useJsApiLoader } from './util/googleMapsLoader'
+import { useJsApiLoader } from './util/googleMapsLoader';
 
 type AutoCompleteAddressProps = {
   mapId?: string;
@@ -43,10 +43,13 @@ const AutoCompleteAddress = ({
     google.maps.places.PlaceGeometry | undefined
   >(undefined);
   const [manualAddressEntry, setManualAddressEntry] = useState(false);
-  const { isLoaded: hasLoadedGoogleAPI, loadError: loadGoogleAPIError } = useJsApiLoader({
-    googleMapsApiKey: apiKey,
-  })
-  if (loadGoogleAPIError) console.log(loadGoogleAPIError)
+  // you can read more about it here:
+  // https://github.com/JustFly1984/react-google-maps-api/blob/develop/packages/react-google-maps-api/src/useJsApiLoader.md
+  const { isLoaded: hasLoadedGoogleAPI, loadError: loadGoogleAPIError } =
+    useJsApiLoader({
+      googleMapsApiKey: apiKey,
+    });
+  if (loadGoogleAPIError) console.log(loadGoogleAPIError);
 
   const isGeometryEnabled = !staticVersion;
 
@@ -79,8 +82,10 @@ const AutoCompleteAddress = ({
 
   const handleManualAddress = (address: Partial<Address>) => {
     setAddress(address);
-    setIsLoading(true);
-    updateMapGeometry(address);
+    if (isGeometryEnabled) {
+      setIsLoading(true);
+      updateMapGeometry(address);
+    }
   };
 
   return (
