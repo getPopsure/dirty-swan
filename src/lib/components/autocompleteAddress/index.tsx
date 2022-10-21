@@ -128,6 +128,7 @@ const AutoCompleteAddress = ({
             className="p-a bg-transparent fw-bold c-pointer"
             onClick={handleModeSwitch}
             data-value={'false'}
+            type="button"
           >
             {manualAddressEntryTexts?.cta || 'Enter address dynamically'}
           </button>
@@ -139,6 +140,7 @@ const AutoCompleteAddress = ({
             className="p-a bg-transparent fw-bold c-pointer"
             onClick={handleModeSwitch}
             data-value={'true'}
+            type="button"
           >
             {manualAddressEntryTexts?.cta || 'Enter address manually'}
           </button>
