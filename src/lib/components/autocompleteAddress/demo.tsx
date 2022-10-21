@@ -13,7 +13,7 @@ export const WithoutAddress = () => {
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI" // change it back to production one
+      apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI" // TODO: change it back to production one
     />
   );
 };
@@ -25,6 +25,7 @@ export const WithAddress = () => {
     city: 'Berlin',
     country: 'DE',
     additionalInformation: 'c/o Factory',
+    postcode: '12435',
   });
   return (
     <AutoCompleteAddress

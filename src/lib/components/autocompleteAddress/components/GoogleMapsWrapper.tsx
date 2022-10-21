@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import styles from '../style.module.scss';
 
@@ -50,7 +50,7 @@ export function GoogleMapsWrapper({
       MAP_CONFIG_OBJ
     );
 
-    import('./mapStyle').then(({ style }) => {
+    import('../util/mapStyle').then(({ style }) => {
       map.current?.mapTypes.set('styled_map', style);
       map.current?.setMapTypeId('styled_map');
     });
@@ -59,6 +59,10 @@ export function GoogleMapsWrapper({
       map: map.current,
     });
   }, [hasLoadedGoogleAPI, mapId]);
+
+  if (document.querySelectorAll(`[id='${mapId}']`).length > 1) {
+    throw Error(`This MapId is already in use: ${mapId}`)
+  }
 
   return (
     <div

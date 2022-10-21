@@ -1,8 +1,8 @@
 import { MouseEventHandler, useState, useCallback } from 'react';
-import debounce from 'lodash.debounce';
+import _debounce from 'lodash.debounce';
 
 import { Address } from '@popsure/public-models';
-import { GoogleMapsWrapper } from './util/gmaps';
+import { GoogleMapsWrapper } from './components/GoogleMapsWrapper';
 import ManualAddressEntry from './modes/manual';
 import DynamicAddressEntry from './modes/dynamic';
 import { getGeocode } from 'use-places-autocomplete';
@@ -42,14 +42,13 @@ const AutoCompleteAddress = ({
   const [geometry, setGeometry] = useState<
     google.maps.places.PlaceGeometry | undefined
   >(undefined);
-  const [manualAddressEntry, setManualAddressEntry] = useState(false);
+  const [manualAddressEntry, setManualAddressEntry] = useState(!!initialAddress);
   // you can read more about it here:
   // https://github.com/JustFly1984/react-google-maps-api/blob/develop/packages/react-google-maps-api/src/useJsApiLoader.md
   const { isLoaded: hasLoadedGoogleAPI, loadError: loadGoogleAPIError } =
     useJsApiLoader({
       googleMapsApiKey: apiKey,
     });
-  if (loadGoogleAPIError) console.log(loadGoogleAPIError);
 
   const isGeometryEnabled = !staticVersion;
 
@@ -57,13 +56,19 @@ const AutoCompleteAddress = ({
     setManualAddressEntry(event.currentTarget.dataset.value === 'true');
   };
 
-  const handleDynamicAddress = (address: Partial<Address>) => {
+  const handleAddressChange = (address: Partial<Address>) => {
     setAddress(address);
+    onAddressChange(address);
+  };
+
+  const handleDynamicAddress = (address: Partial<Address>) => {
+    handleAddressChange(address);
     setManualAddressEntry(true);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateMapGeometry = useCallback(
-    debounce((address: Partial<Address>) => {
+    _debounce((address: Partial<Address>) => {
       const parameter = {
         address: inlineAddress(address),
       };
@@ -77,11 +82,11 @@ const AutoCompleteAddress = ({
           console.log('Error: ', error);
         });
     }, 1000),
-    [debounce]
+    [_debounce]
   );
 
   const handleManualAddress = (address: Partial<Address>) => {
-    setAddress(address);
+    handleAddressChange(address);
     if (isGeometryEnabled) {
       setIsLoading(true);
       updateMapGeometry(address);
@@ -96,11 +101,12 @@ const AutoCompleteAddress = ({
           hasLoadedGoogleAPI={hasLoadedGoogleAPI}
           geometry={geometry}
           isLoading={isLoading}
-        />
+        /> // this can be composable <AutocompleteAddress>{({geometry} ) => <GoogleMapsWrapper geometry={geometry}>}
       )}
+      {loadGoogleAPIError && <p>Google API is not responding.</p>}
       {hasLoadedGoogleAPI && (
         <div className={`wmx8`}>
-          {manualAddressEntry ? (
+          {manualAddressEntry || loadGoogleAPIError ? (
             <ManualAddressEntry
               address={address}
               onAddressChange={handleManualAddress}

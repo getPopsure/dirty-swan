@@ -18,7 +18,7 @@ export interface UseLoadScriptOptions extends LoadScriptUrlOptions {
 }
 
 const id = 'script-loader'
-const version = 'weekly'
+const version = 'quarterly'
 const libraries: Libraries = ['places']
 
 export function useJsApiLoader({
@@ -26,7 +26,6 @@ export function useJsApiLoader({
   googleMapsApiKey,
   language,
   region,
-  mapIds,
   authReferrerPolicy,
 }: UseLoadScriptOptions): {
   isLoaded: boolean
@@ -51,11 +50,10 @@ export function useJsApiLoader({
       libraries,
       language,
       region,
-      mapIds,
       nonce,
       authReferrerPolicy,
     })
-  }, [googleMapsApiKey, language, region, mapIds, nonce, authReferrerPolicy])
+  }, [googleMapsApiKey, language, region, nonce, authReferrerPolicy])
 
   useEffect(function effect() {
     if (isLoaded) {

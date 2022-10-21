@@ -1,10 +1,11 @@
 import usePlacesAutocomplete, { getDetails } from 'use-places-autocomplete';
-import Input from '../../input';
-import { Address } from '@popsure/public-models';
 import { ChangeEventHandler } from 'react';
-import { geocoderAddressComponentToPartialAddress } from '../util/index';
+import { Address } from '@popsure/public-models';
 
-import styles from './dynamic.module.scss'
+import Input from '../../input';
+import { geocoderAddressComponentToPartialAddress } from '../util';
+
+import styles from './dynamic.module.scss';
 
 export const loadApiErr =
   '💡 autocompleteAddress-DynamicMode: Google Maps Places API library must be loaded.';
@@ -28,7 +29,7 @@ const DynamicAddressEntry = ({
     clearSuggestions,
   } = usePlacesAutocomplete({
     debounce: 400,
-    defaultValue: initialAddress?.street
+    defaultValue: initialAddress?.street,
   });
 
   const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -42,7 +43,10 @@ const DynamicAddressEntry = ({
 
       const parameter = {
         placeId: suggestion.place_id,
-        fields: ['address_component', ...(isGeometryEnabled ? ['geometry'] : [])],
+        fields: [
+          'address_component',
+          ...(isGeometryEnabled ? ['geometry'] : []),
+        ],
       };
 
       getDetails(parameter)
@@ -77,8 +81,13 @@ const DynamicAddressEntry = ({
       // TODO: main_text_matched_substrings can be used to highlight queryText
 
       return (
-        <li key={place_id} onClick={handleSelect(suggestion)} className={styles.suggestionItem}>
-          <span className='fw-bold pr8'>{main_text}</span>{" "}<small>{secondary_text}</small>
+        <li
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+          className={styles.suggestionItem}
+        >
+          <span className="fw-bold pr8">{main_text}</span>{' '}
+          <small>{secondary_text}</small>
         </li>
       );
     });
@@ -96,7 +105,9 @@ const DynamicAddressEntry = ({
           onChange={handleInput}
           value={value}
         />
-        {status === 'OK' && <ul className={styles.suggestionList}>{renderSuggestions()}</ul>}
+        {status === 'OK' && (
+          <ul className={styles.suggestionList}>{renderSuggestions()}</ul>
+        )}
       </div>
     </>
   );
