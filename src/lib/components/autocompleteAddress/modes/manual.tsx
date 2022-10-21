@@ -2,11 +2,11 @@ import Input from '../../input';
 import { Address } from '@popsure/public-models';
 
 import styles from '../style.module.scss';
-import { ChangeEventHandler } from 'react'; // default country can be cumbersome for new country implementation
+import { ChangeEventHandler } from 'react';
 
 import type { AutoCompleteAddressProps } from '../index'
 
-const GERMANY_ALPHA_CODE = 'DE';
+const GERMANY_ALPHA_CODE = 'DE'; // default country can be cumbersome for new country implementation
 
 const ManualAddressEntry = ({
   address,
@@ -22,7 +22,7 @@ const ManualAddressEntry = ({
       ...address,
       [event.target.name]: event.target.value,
       ...(address?.country
-        ? { country: address.country }
+        ? {}
         : { country: GERMANY_ALPHA_CODE }), // default country is germany
     });
   };
@@ -35,7 +35,7 @@ const ManualAddressEntry = ({
           data-cy="autocomplete"
           type="text"
           placeholder={placeholders?.street}
-          value={address?.street || ''}
+          defaultValue={address?.street || ''}
           name="street"
           onChange={handleInputChange}
         />
@@ -43,7 +43,7 @@ const ManualAddressEntry = ({
           className={`wmx2 ${styles['house-number-input']}`}
           data-cy="autocomplete-house-number"
           placeholder={placeholders?.houseNumber}
-          value={address?.houseNumber || ''}
+          defaultValue={address?.houseNumber || ''}
           name="houseNumber"
           onChange={handleInputChange}
         />
@@ -52,7 +52,7 @@ const ManualAddressEntry = ({
         className="mt16"
         data-cy="autocomplete-additional-info"
         placeholder={placeholders?.additionalInformation}
-        value={address?.additionalInformation || ''}
+        defaultValue={address?.additionalInformation || ''}
         name="additionalInformation"
         onChange={handleInputChange}
       />
@@ -61,7 +61,7 @@ const ManualAddressEntry = ({
           className="w100"
           data-cy="autocomplete-postcode"
           placeholder={placeholders?.postcode}
-          value={address?.postcode || ''}
+          defaultValue={address?.postcode || ''}
           name="postcode"
           onChange={handleInputChange}
         />
@@ -69,7 +69,7 @@ const ManualAddressEntry = ({
           className="w100"
           data-cy="autocomplete-city"
           placeholder={placeholders?.city}
-          value={address?.city || ''}
+          defaultValue={address?.city || ''}
           name="city"
           onChange={handleInputChange}
         />

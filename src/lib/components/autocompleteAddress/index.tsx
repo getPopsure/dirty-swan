@@ -36,7 +36,7 @@ const AutoCompleteAddress = ({
   staticVersion = !!process.env.STORYBOOK_STATIC,
   onAddressChange,
   manualAddressEntryTexts,
-  placeholders
+  placeholders,
 }: AutoCompleteAddressProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [geometry, setGeometry] = useState<
@@ -49,7 +49,6 @@ const AutoCompleteAddress = ({
     useJsApiLoader({
       googleMapsApiKey: apiKey,
     });
-
   const isGeometryEnabled = !staticVersion;
 
   const handleModeSwitch: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -88,36 +87,37 @@ const AutoCompleteAddress = ({
     }
   };
 
+  if (!hasLoadedGoogleAPI) {
+    return <></>;
+  }
+
   return (
     <>
       {isGeometryEnabled && address && (
         <GoogleMapsWrapper
           mapId={mapId}
-          hasLoadedGoogleAPI={hasLoadedGoogleAPI}
-          geometry={geometry}
+          markerLocation={geometry?.location}
           isLoading={isLoading}
         /> // this can be composable <AutocompleteAddress>{({geometry} ) => <GoogleMapsWrapper geometry={geometry}>}
       )}
       {loadGoogleAPIError && <p>Google API is not responding.</p>}
-      {hasLoadedGoogleAPI && (
-        <div className={`wmx8`}>
-          {manualAddressEntry || loadGoogleAPIError ? (
-            <ManualAddressEntry
-              address={address}
-              onAddressChange={handleManualAddress}
-              placeholders={placeholders}
-            />
-          ) : (
-            <DynamicAddressEntry
-              address={address}
-              onAddressChange={handleDynamicAddress}
-              isGeometryEnabled={isGeometryEnabled}
-              onGeometryChange={setGeometry}
-              manualAddressEntryText={placeholders?.manualAddressEntry}
-            />
-          )}
-        </div>
-      )}
+      <div className={`wmx8`}>
+        {manualAddressEntry || loadGoogleAPIError ? (
+          <ManualAddressEntry
+            address={address}
+            onAddressChange={handleManualAddress}
+            placeholders={placeholders}
+          />
+        ) : (
+          <DynamicAddressEntry
+            address={address}
+            onAddressChange={handleDynamicAddress}
+            isGeometryEnabled={isGeometryEnabled}
+            onGeometryChange={setGeometry}
+            manualAddressEntryText={placeholders?.manualAddressEntry}
+          />
+        )}
+      </div>
       {manualAddressEntry ? (
         <div className="p-p mt8">
           {manualAddressEntryTexts?.preText || 'Or '}

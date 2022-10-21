@@ -18,32 +18,21 @@ const MAP_CONFIG_OBJ = {
   draggable: false,
 };
 
-export function GoogleMapsWrapper({
-  mapId,
-  geometry,
-  hasLoadedGoogleAPI,
-  isLoading,
-}: {
+interface IGoogleMapsWrapper {
   mapId: string;
-  geometry: google.maps.places.PlaceGeometry | undefined;
-  hasLoadedGoogleAPI: boolean;
+  markerLocation: google.maps.LatLng | undefined;
   isLoading: boolean;
-}) {
+}
+
+export const GoogleMapsWrapper = ({
+  mapId,
+  markerLocation,
+  isLoading,
+}: IGoogleMapsWrapper) => {
   const map = useRef<google.maps.Map | null>(null);
   const marker = useRef<google.maps.Marker | null>(null);
 
   useEffect(() => {
-    if (geometry?.location) {
-      map.current?.panTo(geometry.location);
-      map.current?.setZoom(15);
-      marker.current?.setPosition(geometry.location);
-    }
-  }, [geometry]);
-
-  useEffect(() => {
-    if (!hasLoadedGoogleAPI) {
-      return;
-    }
 
     map.current = new google.maps.Map(
       document.getElementById(mapId)!,
@@ -58,7 +47,15 @@ export function GoogleMapsWrapper({
     marker.current = new google.maps.Marker({
       map: map.current,
     });
-  }, [hasLoadedGoogleAPI, mapId]);
+  }, [mapId]);
+
+  useEffect(() => {
+    if (markerLocation) {
+      map.current?.panTo(markerLocation);
+      map.current?.setZoom(15);
+      marker.current?.setPosition(markerLocation);
+    }
+  }, [markerLocation]);
 
   if (document.querySelectorAll(`[id='${mapId}']`).length > 1) {
     throw Error(`This MapId is already in use: ${mapId}`)
@@ -67,7 +64,7 @@ export function GoogleMapsWrapper({
   return (
     <div
       className={classNames(`wmx8 bg-grey-500 ${styles['map-container']}`, {
-        [styles['map-container--hidden']]: geometry === undefined,
+        [styles['map-container--hidden']]: markerLocation === undefined,
       })}
     >
       <div className={styles.map} id={mapId} />

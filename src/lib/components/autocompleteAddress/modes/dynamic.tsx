@@ -7,6 +7,8 @@ import { geocoderAddressComponentToPartialAddress } from '../util';
 
 import styles from './dynamic.module.scss';
 
+const GERMANY_ALPHA_CODE = 'DE'; // default country can be cumbersome for new country implementation
+
 export const loadApiErr =
   '💡 autocompleteAddress-DynamicMode: Google Maps Places API library must be loaded.';
 
@@ -31,7 +33,10 @@ const DynamicAddressEntry = ({
     clearSuggestions,
   } = usePlacesAutocomplete({
     debounce: 400,
-    defaultValue: initialAddress?.street ? `${initialAddress?.street} ${initialAddress?.houseNumber}` : '',
+    defaultValue: initialAddress?.street ? `${initialAddress?.street} ${initialAddress.houseNumber}` : '',
+    requestOptions: {
+      componentRestrictions: { country: GERMANY_ALPHA_CODE },
+    }
   });
 
   const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
