@@ -12,7 +12,7 @@ import { useJsApiLoader } from './util/googleMapsLoader';
 type AutoCompleteAddressProps = {
   mapId?: string;
   apiKey: string;
-  initialAddress?: Partial<Address>;
+  address?: Partial<Address>;
   staticVersion?: boolean;
   onAddressChange: (address: Partial<Address>) => void;
   manualAddressEntryTexts?: {
@@ -32,17 +32,16 @@ type AutoCompleteAddressProps = {
 const AutoCompleteAddress = ({
   mapId = 'map',
   apiKey,
-  initialAddress,
+  address,
   staticVersion = !!process.env.STORYBOOK_STATIC,
   onAddressChange,
   manualAddressEntryTexts,
 }: AutoCompleteAddressProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [address, setAddress] = useState(initialAddress);
   const [geometry, setGeometry] = useState<
     google.maps.places.PlaceGeometry | undefined
   >(undefined);
-  const [manualAddressEntry, setManualAddressEntry] = useState(!!initialAddress);
+  const [manualAddressEntry, setManualAddressEntry] = useState(!!address);
   // you can read more about it here:
   // https://github.com/JustFly1984/react-google-maps-api/blob/develop/packages/react-google-maps-api/src/useJsApiLoader.md
   const { isLoaded: hasLoadedGoogleAPI, loadError: loadGoogleAPIError } =
@@ -56,13 +55,8 @@ const AutoCompleteAddress = ({
     setManualAddressEntry(event.currentTarget.dataset.value === 'true');
   };
 
-  const handleAddressChange = (address: Partial<Address>) => {
-    setAddress(address);
-    onAddressChange(address);
-  };
-
   const handleDynamicAddress = (address: Partial<Address>) => {
-    handleAddressChange(address);
+    onAddressChange(address);
     setManualAddressEntry(true);
   };
 
@@ -86,7 +80,7 @@ const AutoCompleteAddress = ({
   );
 
   const handleManualAddress = (address: Partial<Address>) => {
-    handleAddressChange(address);
+    onAddressChange(address);
     if (isGeometryEnabled) {
       setIsLoading(true);
       updateMapGeometry(address);
