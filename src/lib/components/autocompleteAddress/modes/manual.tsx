@@ -2,16 +2,20 @@ import Input from '../../input';
 import { Address } from '@popsure/public-models';
 
 import styles from '../style.module.scss';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler } from 'react'; // default country can be cumbersome for new country implementation
 
-const GERMANY_ALPHA_CODE = 'DE'; // default country can be cumbersome for new country implementation
+import type { AutoCompleteAddressProps } from '../index'
+
+const GERMANY_ALPHA_CODE = 'DE';
 
 const ManualAddressEntry = ({
   address,
   onAddressChange,
+  placeholders
 }: {
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
+  placeholders: AutoCompleteAddressProps['placeholders']
 }) => {
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     onAddressChange({
@@ -30,7 +34,7 @@ const ManualAddressEntry = ({
           className="w100"
           data-cy="autocomplete"
           type="text"
-          placeholder="Street"
+          placeholder={placeholders?.street}
           value={address?.street || ''}
           name="street"
           onChange={handleInputChange}
@@ -38,7 +42,7 @@ const ManualAddressEntry = ({
         <Input
           className={`wmx2 ${styles['house-number-input']}`}
           data-cy="autocomplete-house-number"
-          placeholder="House Number"
+          placeholder={placeholders?.houseNumber}
           value={address?.houseNumber || ''}
           name="houseNumber"
           onChange={handleInputChange}
@@ -47,7 +51,7 @@ const ManualAddressEntry = ({
       <Input
         className="mt16"
         data-cy="autocomplete-additional-info"
-        placeholder="Additional information (C/O, appartment…)"
+        placeholder={placeholders?.additionalInformation}
         value={address?.additionalInformation || ''}
         name="additionalInformation"
         onChange={handleInputChange}
@@ -56,7 +60,7 @@ const ManualAddressEntry = ({
         <Input
           className="w100"
           data-cy="autocomplete-postcode"
-          placeholder="Postcode"
+          placeholder={placeholders?.postcode}
           value={address?.postcode || ''}
           name="postcode"
           onChange={handleInputChange}
@@ -64,7 +68,7 @@ const ManualAddressEntry = ({
         <Input
           className="w100"
           data-cy="autocomplete-city"
-          placeholder="City"
+          placeholder={placeholders?.city}
           value={address?.city || ''}
           name="city"
           onChange={handleInputChange}

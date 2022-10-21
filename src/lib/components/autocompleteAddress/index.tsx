@@ -9,7 +9,7 @@ import { getGeocode } from 'use-places-autocomplete';
 import { inlineAddress } from './util';
 import { useJsApiLoader } from './util/googleMapsLoader';
 
-type AutoCompleteAddressProps = {
+export type AutoCompleteAddressProps = {
   mapId?: string;
   apiKey: string;
   address?: Partial<Address>;
@@ -36,6 +36,7 @@ const AutoCompleteAddress = ({
   staticVersion = !!process.env.STORYBOOK_STATIC,
   onAddressChange,
   manualAddressEntryTexts,
+  placeholders
 }: AutoCompleteAddressProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [geometry, setGeometry] = useState<
@@ -104,6 +105,7 @@ const AutoCompleteAddress = ({
             <ManualAddressEntry
               address={address}
               onAddressChange={handleManualAddress}
+              placeholders={placeholders}
             />
           ) : (
             <DynamicAddressEntry
@@ -111,6 +113,7 @@ const AutoCompleteAddress = ({
               onAddressChange={handleDynamicAddress}
               isGeometryEnabled={isGeometryEnabled}
               onGeometryChange={setGeometry}
+              manualAddressEntryText={placeholders?.manualAddressEntry}
             />
           )}
         </div>

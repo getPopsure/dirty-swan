@@ -66,6 +66,7 @@ export function useJsApiLoader({
         setLoadError(error)
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { isLoaded, loadError }

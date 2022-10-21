@@ -7,12 +7,12 @@ export const WithoutAddress = () => {
   const [address, setAddress] = useState<Partial<Address> | undefined>(
     undefined
   );
-  console.log(address);
   return (
     <AutoCompleteAddress
       onAddressChange={(address) => {
         setAddress(address);
       }}
+      address={address}
       apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI" // TODO: change it back to production one
     />
   );
@@ -33,7 +33,7 @@ export const WithAddress = () => {
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      initialAddress={address}
+      address={address}
       apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI"
     />
   );
@@ -73,7 +73,7 @@ export const WithAddressLocalized = () => {
       onAddressChange={(address) => {
         setAddress(address);
       }}
-      initialAddress={address}
+      address={address}
       apiKey="AIzaSyBxybgaQ6LaPX8MdpH8z4nEYWBHCUEEXhI"
       placeholders={{
         manualAddressEntry: 'Adresse suchen',

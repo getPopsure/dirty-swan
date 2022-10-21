@@ -15,11 +15,13 @@ const DynamicAddressEntry = ({
   address: initialAddress,
   onAddressChange,
   onGeometryChange,
+  manualAddressEntryText = "Search for address",
 }: {
   isGeometryEnabled: boolean;
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
   onGeometryChange: (geometry: google.maps.places.PlaceGeometry) => void;
+  manualAddressEntryText?: string;
 }) => {
   const {
     ready,
@@ -29,7 +31,7 @@ const DynamicAddressEntry = ({
     clearSuggestions,
   } = usePlacesAutocomplete({
     debounce: 400,
-    defaultValue: initialAddress?.street,
+    defaultValue: initialAddress?.street ? `${initialAddress?.street} ${initialAddress?.houseNumber}` : '',
   });
 
   const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -100,7 +102,7 @@ const DynamicAddressEntry = ({
           id="autocomplete"
           data-cy="autocomplete"
           type="text"
-          placeholder="Search for address"
+          placeholder={manualAddressEntryText}
           disabled={!ready}
           onChange={handleInput}
           value={value}
