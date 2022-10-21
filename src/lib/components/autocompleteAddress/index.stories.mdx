@@ -48,6 +48,6 @@ import AutoCompleteAddress from '.';
 
 export default () => {
   const [address, setAddress] = useState<Address>(undefined);
-  return <AutoCompleteAddress onAddressChange={setAddress} address={address} />;
+  return <AutoCompleteAddress onAddressChange={setAddress} initialAddress={address} />;
 };
 ```
