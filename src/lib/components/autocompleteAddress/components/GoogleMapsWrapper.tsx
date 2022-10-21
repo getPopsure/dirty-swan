@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import classNames from 'classnames';
 import styles from '../style.module.scss';
 
@@ -24,7 +24,7 @@ interface IGoogleMapsWrapper {
   isLoading: boolean;
 }
 
-export const GoogleMapsWrapper = ({
+const GoogleMapsWrapperComponent = ({
   mapId,
   markerLocation,
   isLoading,
@@ -76,3 +76,14 @@ export const GoogleMapsWrapper = ({
     </div>
   );
 }
+
+
+function areEqual(prevProps: Readonly<any>, nextProps: Readonly<any>) {
+ if (prevProps.isLoading === nextProps.isLoading && prevProps.markerLocation?.equals(nextProps.markerLocation)) {
+  return true
+ } else {
+  return false
+ }
+}
+
+export const GoogleMapsWrapper = memo(GoogleMapsWrapperComponent, areEqual)

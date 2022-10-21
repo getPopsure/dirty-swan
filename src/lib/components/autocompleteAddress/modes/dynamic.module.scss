@@ -47,6 +47,11 @@
     border-top-right-radius: 8px;
   }
 
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
   padding-left: 16px;
 }
 

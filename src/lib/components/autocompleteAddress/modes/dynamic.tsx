@@ -111,6 +111,7 @@ const DynamicAddressEntry = ({
           disabled={!ready}
           onChange={handleInput}
           value={value}
+          autoComplete="nope"
         />
         {status === 'OK' && (
           <ul className={styles.suggestionList}>{renderSuggestions()}</ul>
