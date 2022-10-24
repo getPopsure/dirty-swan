@@ -271,9 +271,10 @@ interface TableData {
 }
 
 export const ComparisonTableWithData = () => {
-  const headers: Array<TableHeader<TableData>> = [
+  const headers = [
     {
       id: 1,
+      default: true,
       cells: [
         {
           id: 1,
@@ -322,7 +323,56 @@ export const ComparisonTableWithData = () => {
     },
     {
       id: 2,
-      label: 'Label Pobabel'
+      label: 'SUBSECTION',
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Box office',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+    {
+      id: 3,
+      label: 'SUBSECTION 2',
       cells: [
         {
           id: 1,
@@ -405,7 +455,14 @@ export const ComparisonTableWithData = () => {
       boxOffice: 258908054,
     },
   ];
-  return <ComparisonTable data={data} headers={headers} />;
+  return (
+    <ComparisonTable
+      data={data}
+      headers={headers}
+      collapsibleSections
+      hideDetails
+    />
+  );
 };
 
 <ComparisonTableWithData />;
