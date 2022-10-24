@@ -12,6 +12,20 @@
   }
 }
 
+.noScrollBars {
+  // Disable the scrollbar in all browsers
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  &::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+  // Disable snapping since it's not needed without scrollbars
+  scroll-snap-type: unset;
+}
+
 .overflow-container {
   width: max-content;
   min-width: 100%;
@@ -22,7 +36,7 @@
   flex-flow: column;
   width: max-content;
   margin: auto;
-  min-width: calc(56rem + 48px);
+  // min-width: calc(56rem + 48px);
 }
 
 .group-title {

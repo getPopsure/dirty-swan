@@ -7,7 +7,7 @@ $cell-min-width: 256px;
   position: relative;
 
   & > div {
-    width: 100vw;
+    width: var(--headerWidth);
 
     &:nth-child(n + 3) {
       margin: 0;
@@ -58,6 +58,11 @@ $cell-min-width: 256px;
       padding: 24px 8px 24px 24px;
     }
   }
+
+  // @include ds-above-tablet {
+  //   flex: 1 0 calc(var(--headerWidth) / 4) !important;
+  //   width: calc(var(--headerWidth) / 4) !important;
+  // }
 }
 
 .title {

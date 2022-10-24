@@ -1,0 +1,47 @@
+@import '../../../../scss/public/colors';
+
+.chevron {
+  transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.chevronClosed {
+  transform: rotate(180deg);
+}
+
+.iconAndTextContainer {
+  column-gap: 12px;
+}
+
+.headerButton {
+  border: none;
+  background: $ds-grey-100;
+  column-gap: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+  position: relative;
+  text-align: inherit;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    background: $ds-primary-100;
+  }
+}
+
+.headerButton:hover {
+  .chevron {
+    filter: brightness(0.425);
+  }
+}
+
+.markdown {
+  margin-top: 14px;
+
+  a {
+    transition: color 0.3s ease-in-out;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Cell } from '../../index';
 
 import styles from './style.module.scss';
@@ -9,10 +8,13 @@ interface RowProps<T> {
   data: Array<T>;
   isRowHeader?: boolean;
   rowId: string;
+  width?: number;
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {
-  const { cell, data, isRowHeader, rowId } = props;
+  const { cell, data, isRowHeader, rowId, width } = props;
+
+  const widthStyle = { '--headerWidth': `${width}px` } as React.CSSProperties;
 
   return (
     <div
@@ -31,6 +33,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
           ${typeof cell.key === 'undefined' ? styles.addon : ''}
         `}
+        style={width ? widthStyle : {}}
       >
         {cell.label}
       </h4>
@@ -48,6 +51,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
             <div
               className={`ta-center ${styles.cell}`}
               key={`${rowId}-${item.id}`}
+              style={width ? widthStyle : {}}
             >
               {
                 /**
