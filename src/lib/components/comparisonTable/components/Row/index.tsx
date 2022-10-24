@@ -8,13 +8,17 @@ interface RowProps<T> {
   data: Array<T>;
   isRowHeader?: boolean;
   rowId: string;
-  width?: number;
+  mobileWidth?: number;
+  desktopWidth?: number;
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {
-  const { cell, data, isRowHeader, rowId, width } = props;
+  const { cell, data, isRowHeader, rowId, mobileWidth, desktopWidth } = props;
 
-  const widthStyle = { '--headerWidth': `${width}px` } as React.CSSProperties;
+  const widthStyle = {
+    ...(mobileWidth ? { '--mobileRowWidth': `${mobileWidth}px` } : {}),
+    ...(desktopWidth ? { '--desktopRowWidth': `${desktopWidth}px` } : {}),
+  } as React.CSSProperties;
 
   return (
     <div
@@ -33,7 +37,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
           ${typeof cell.key === 'undefined' ? styles.addon : ''}
         `}
-        style={width ? widthStyle : {}}
+        style={widthStyle}
       >
         {cell.label}
       </h4>
@@ -51,7 +55,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
             <div
               className={`ta-center ${styles.cell}`}
               key={`${rowId}-${item.id}`}
-              style={width ? widthStyle : {}}
+              style={widthStyle}
             >
               {
                 /**

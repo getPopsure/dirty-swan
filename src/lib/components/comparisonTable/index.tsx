@@ -1,15 +1,14 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import classNames from 'classnames';
 import { AccordionItem } from './components/AccordionItem';
 import Row from './components/Row';
-import TableArrows, { ArrowValues } from './components/TableArrows';
+import TableArrows from './components/TableArrows';
 import TableRating from './components/TableRating';
 import TableTrueFalse from './components/TableTrueFalse';
 import TableRowHeader from './components/TableRowHeader';
 import TableInfoButton from './components/TableInfoButton';
 import Chevron from './components/Chevron';
-
+import { useComparisonTable } from './hooks/useComparisonTable';
 import baseStyles from './style.module.scss';
 
 export interface CellBaseProps<T> {
@@ -45,7 +44,7 @@ export interface ComparisonTableProps<T> {
   headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
-  noScrollBars?: boolean;
+  hideScrollBars?: boolean;
   dynamicColumnWidths?: boolean;
   collapsibleSections?: boolean;
   styles?: {
@@ -62,88 +61,22 @@ const ComparisonTable = <T extends { id: number }>(
     data,
     hideDetails,
     styles,
-    noScrollBars,
+    hideScrollBars,
+    dynamicColumnWidths,
     collapsibleSections,
   } = props;
-  const [showMore, setShowMore] = useState<boolean>(false);
-  const [headerWidth, setHeaderWidth] = useState(0);
 
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-
-  const [selectedSection, setSelectedSection] = useState('');
-
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const contentContainerRef = useRef<HTMLDivElement | null>(null);
-  const observerRef = useRef<ResizeObserver | null>(null);
-
-  const scrollContainerCallbackRef = useCallback((node) => {
-    if (node) {
-      setHeaderWidth(node.clientWidth);
-    }
-
-    headerRef.current = node;
-  }, []);
-
-  useEffect(() => {
-    if (!observerRef.current) {
-      observerRef.current = new ResizeObserver((entries) => {
-        entries.forEach((entry) => {
-          const currentTabIndex = Math.round(
-            entry.target.scrollLeft / entry.contentRect.width
-          );
-          entry.target.scrollLeft = entry.contentRect.width * currentTabIndex;
-          setHeaderWidth(entry.contentRect.width);
-        });
-      });
-    }
-
-    if (headerRef.current) {
-      observerRef.current.observe(headerRef.current);
-    }
-
-    return () => {
-      if (headerRef.current) {
-        observerRef.current?.unobserve(headerRef.current);
-      }
-      observerRef.current?.disconnect();
-    };
-  }, []);
-
-  /** narrow types */
-  const handleArrowsClick = (value: ArrowValues) => {
-    if (headerRef.current) {
-      const currentTabIndex = Math.round(
-        headerRef.current.scrollLeft / headerRef.current.clientWidth
-      );
-
-      const direction = value === 'next' ? 1 : -1;
-
-      const newTabIndex = currentTabIndex + direction;
-
-      headerRef.current.scroll({
-        top: 0,
-        left: headerWidth * newTabIndex,
-        behavior: 'smooth',
-      });
-
-      setSelectedTabIndex(() => {
-        return newTabIndex;
-      });
-    }
-  };
-
-  const toggleMoreRows = async () => {
-    if (showMore && headerRef.current && contentContainerRef.current) {
-      window.scroll(
-        0,
-        window.scrollY +
-          (contentContainerRef.current.getBoundingClientRect().y -
-            headerRef.current.getBoundingClientRect().bottom)
-      );
-    }
-
-    setShowMore(!showMore);
-  };
+  const {
+    headerWidth,
+    contentContainerRef,
+    selectedSection,
+    setSelectedSection,
+    selectedTabIndex,
+    scrollContainerCallbackRef,
+    handleArrowsClick,
+    toggleMoreRows,
+    showMore,
+  } = useComparisonTable();
 
   return (
     <ScrollSync>
@@ -152,7 +85,7 @@ const ComparisonTable = <T extends { id: number }>(
           <ScrollSyncPane>
             <div
               className={classNames(baseStyles.container, {
-                [baseStyles.noScrollBars]: noScrollBars,
+                [baseStyles.noScrollBars]: hideScrollBars,
               })}
               ref={scrollContainerCallbackRef}
             >
@@ -162,7 +95,7 @@ const ComparisonTable = <T extends { id: number }>(
                     onClick={handleArrowsClick}
                     active={{
                       left: selectedTabIndex > 0,
-                      right: selectedTabIndex < headers.length - 1,
+                      right: selectedTabIndex < data.length - 1,
                     }}
                   />
                   <Row<T>
@@ -171,7 +104,12 @@ const ComparisonTable = <T extends { id: number }>(
                     cell={headers[0].cells[0]}
                     data={data}
                     isRowHeader
-                    width={headerWidth}
+                    mobileWidth={headerWidth}
+                    desktopWidth={
+                      dynamicColumnWidths
+                        ? headerWidth / (data.length + 1)
+                        : undefined
+                    }
                   />
                 </div>
               </div>
@@ -199,7 +137,12 @@ const ComparisonTable = <T extends { id: number }>(
                       rowId={rowId}
                       cell={cell}
                       data={data}
-                      width={headerWidth}
+                      mobileWidth={headerWidth}
+                      desktopWidth={
+                        dynamicColumnWidths
+                          ? headerWidth / (data.length + 1)
+                          : undefined
+                      }
                     />
                   );
                 });
@@ -236,7 +179,7 @@ const ComparisonTable = <T extends { id: number }>(
                               baseStyles.container,
                               styles?.container,
                               {
-                                [baseStyles['noScrollBars']]: noScrollBars,
+                                [baseStyles.noScrollBars]: hideScrollBars,
                               }
                             )}
                           >
@@ -259,7 +202,7 @@ const ComparisonTable = <T extends { id: number }>(
                             baseStyles.container,
                             styles?.container,
                             {
-                              [baseStyles['noScrollBars']]: noScrollBars,
+                              [baseStyles.noScrollBars]: hideScrollBars,
                             }
                           )}
                         >

@@ -7,7 +7,8 @@ $cell-min-width: 256px;
   position: relative;
 
   & > div {
-    width: var(--headerWidth);
+    width: var(--mobileRowWidth);
+    max-width: var(--mobileRowWidth);
 
     &:nth-child(n + 3) {
       margin: 0;
@@ -15,6 +16,8 @@ $cell-min-width: 256px;
 
     @include p-size-tablet {
       width: $cell-min-width;
+      max-width: var(--desktopRowWidth, auto);
+
       scroll-snap-align: unset;
     }
   }
@@ -34,6 +37,7 @@ $cell-min-width: 256px;
   color: $ds-grey-700;
 
   width: 50vw;
+  max-width: calc(var(--mobileRowWidth, auto) / 2);
 
   &:first-child {
     background-color: white;
@@ -51,18 +55,15 @@ $cell-min-width: 256px;
 
   @include p-size-tablet {
     flex: 1 0 $cell-min-width;
-    width: $cell-min-width;
+    // !important is needed to consistently overwrite width (50vw) even if max-width is set (possible bug)
+    width: $cell-min-width !important;
     padding: 24px;
+    max-width: var(--desktopRowWidth, auto);
 
     &:last-child {
       padding: 24px 8px 24px 24px;
     }
   }
-
-  // @include ds-above-tablet {
-  //   flex: 1 0 calc(var(--headerWidth) / 4) !important;
-  //   width: calc(var(--headerWidth) / 4) !important;
-  // }
 }
 
 .title {

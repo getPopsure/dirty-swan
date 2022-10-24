@@ -29,15 +29,22 @@ export const AccordionItem = ({
     typeof children === 'string' ? (
       <ReactMarkdown
         className={`p-p ${styles.markdown} ${markdownClassName}`}
-        source={children}
-        renderers={{
-          link: ({ href, children: linkChildren }) => (
+        components={{
+          link: ({
+            href,
+            children: linkChildren,
+          }: {
+            href?: string;
+            children: React.ReactNode;
+          }) => (
             <a href={href} className="p-a" target="_blank" rel="noreferrer">
               {linkChildren}
             </a>
           ),
         }}
-      />
+      >
+        {children}
+      </ReactMarkdown>
     ) : (
       children
     );
@@ -67,7 +74,9 @@ export const AccordionItem = ({
           alt="expand / collapse"
         />
       </button>
-      <AnimateHeight duration={300} height={isOpen ? 'auto' : 0}>
+      {/* Min height is 0.1 so that the scroll position is correctly synced across accordion items but is not actually shown.
+      If set to 0, react-animate-height will set display to "none" which means scrolling is not synced.*/}
+      <AnimateHeight duration={300} height={isOpen ? 'auto' : 0.1}>
         {content}
       </AnimateHeight>
     </div>
