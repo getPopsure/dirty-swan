@@ -45,8 +45,10 @@ export interface ComparisonTableProps<T> {
   data: Array<T>;
   hideDetails?: boolean;
   hideScrollBars?: boolean;
-  dynamicColumnWidths?: boolean;
   collapsibleSections?: boolean;
+  minCellWidth?: number;
+  maxFirstColumnWidth?: number;
+  stickyHeaderTopOffset?: number;
   styles?: {
     header?: string;
     container?: string;
@@ -62,8 +64,10 @@ const ComparisonTable = <T extends { id: number }>(
     hideDetails,
     styles,
     hideScrollBars,
-    dynamicColumnWidths,
     collapsibleSections,
+    minCellWidth,
+    maxFirstColumnWidth,
+    stickyHeaderTopOffset,
   } = props;
 
   const {
@@ -78,10 +82,19 @@ const ComparisonTable = <T extends { id: number }>(
     showMore,
   } = useComparisonTable();
 
+  const cssVariablesStyle = {
+    ...(stickyHeaderTopOffset
+      ? { '--stickyHeaderTopOffset': `${stickyHeaderTopOffset}px` }
+      : {}),
+  } as React.CSSProperties;
+
   return (
     <ScrollSync>
       <div>
-        <div className={classNames(baseStyles.header, styles?.header)}>
+        <div
+          className={classNames(baseStyles.header, styles?.header)}
+          style={cssVariablesStyle}
+        >
           <ScrollSyncPane>
             <div
               className={classNames(baseStyles.container, {
@@ -104,12 +117,9 @@ const ComparisonTable = <T extends { id: number }>(
                     cell={headers[0].cells[0]}
                     data={data}
                     isRowHeader
-                    mobileWidth={headerWidth}
-                    desktopWidth={
-                      dynamicColumnWidths
-                        ? headerWidth / (data.length + 1)
-                        : undefined
-                    }
+                    tableWidth={headerWidth}
+                    minCellWidth={minCellWidth}
+                    maxFirstColumnWidth={maxFirstColumnWidth}
                   />
                 </div>
               </div>
@@ -137,12 +147,9 @@ const ComparisonTable = <T extends { id: number }>(
                       rowId={rowId}
                       cell={cell}
                       data={data}
-                      mobileWidth={headerWidth}
-                      desktopWidth={
-                        dynamicColumnWidths
-                          ? headerWidth / (data.length + 1)
-                          : undefined
-                      }
+                      tableWidth={headerWidth}
+                      minCellWidth={minCellWidth}
+                      maxFirstColumnWidth={maxFirstColumnWidth}
                     />
                   );
                 });

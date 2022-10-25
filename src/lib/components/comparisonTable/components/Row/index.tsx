@@ -8,16 +8,28 @@ interface RowProps<T> {
   data: Array<T>;
   isRowHeader?: boolean;
   rowId: string;
-  mobileWidth?: number;
-  desktopWidth?: number;
+  tableWidth?: number;
+  minCellWidth?: number;
+  maxFirstColumnWidth?: number;
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {
-  const { cell, data, isRowHeader, rowId, mobileWidth, desktopWidth } = props;
+  const {
+    cell,
+    data,
+    isRowHeader,
+    rowId,
+    tableWidth,
+    minCellWidth,
+    maxFirstColumnWidth,
+  } = props;
 
-  const widthStyle = {
-    ...(mobileWidth ? { '--mobileRowWidth': `${mobileWidth}px` } : {}),
-    ...(desktopWidth ? { '--desktopRowWidth': `${desktopWidth}px` } : {}),
+  const cssVariablesStyle = {
+    ...(tableWidth ? { '--mobileRowWidth': `${tableWidth}px` } : {}),
+    ...(minCellWidth ? { '--minCellWidth': `${minCellWidth}px` } : {}),
+    ...(maxFirstColumnWidth
+      ? { '--maxFirstColumnWidth': `${maxFirstColumnWidth}px` }
+      : {}),
   } as React.CSSProperties;
 
   return (
@@ -37,7 +49,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
           ${typeof cell.key === 'undefined' ? styles.addon : ''}
         `}
-        style={widthStyle}
+        style={cssVariablesStyle}
       >
         {cell.label}
       </h4>
@@ -55,7 +67,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
             <div
               className={`ta-center ${styles.cell}`}
               key={`${rowId}-${item.id}`}
-              style={widthStyle}
+              style={cssVariablesStyle}
             >
               {
                 /**

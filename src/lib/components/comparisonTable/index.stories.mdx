@@ -19,14 +19,16 @@ The Comparison Table component provides an easy way to compare vast amounts of i
 
 ## Arguments
 
-| attribute           | unit                | description                                                           | default value | required |
-| ------------------- | ------------------- | --------------------------------------------------------------------- | ------------- | -------- |
-| headers             | [Header[]](#header) | The structure of the table                                            | n/a           | true     |
-| data                | array               | The title text that needs to be displayed                             | n/a           | true     |
-| hideDetails         | boolean             | Hide table groups that do not have the `default` attribute            | false         | false    |
-| hideScrollBars      | boolean             | Hide scroll bars                                                      | false         | false    |
-| collapsibleSections | boolean             | Make table groups with a label collapsible                            | false         | false    |
-| dynamicColumnWidths | boolean             | Allow dynamical widths for columns instead of the 256px default width | false         | false    |
+| attribute             | unit                | description                                                | default value | required |
+| --------------------- | ------------------- | ---------------------------------------------------------- | ------------- | -------- |
+| headers               | [Header[]](#header) | The structure of the table                                 | n/a           | true     |
+| data                  | array               | The title text that needs to be displayed                  | n/a           | true     |
+| hideDetails           | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
+| hideScrollBars        | boolean             | Hide scroll bars                                           | false         | false    |
+| collapsibleSections   | boolean             | Make table groups with a label collapsible                 | false         | false    |
+| minCellWidth          | number              | Minimum width of a table content cell                      | 256px         | false    |
+| maxFirstColumnWidth   | number              | Maximum width of the first column of the table             | 288px         | false    |
+| stickyHeaderTopOffset | number              | Y-offset of the sticky header row                          | 0px           | false    |
 
 ## Types
 
