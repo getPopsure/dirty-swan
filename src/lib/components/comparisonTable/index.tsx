@@ -1,13 +1,14 @@
-import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import classNames from 'classnames';
+import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
+
 import { AccordionItem } from './components/AccordionItem';
+import Chevron from './components/Chevron';
 import Row from './components/Row';
 import TableArrows from './components/TableArrows';
-import TableRating from './components/TableRating';
-import TableTrueFalse from './components/TableTrueFalse';
-import TableRowHeader from './components/TableRowHeader';
 import TableInfoButton from './components/TableInfoButton';
-import Chevron from './components/Chevron';
+import TableRating from './components/TableRating';
+import TableRowHeader from './components/TableRowHeader';
+import TableTrueFalse from './components/TableTrueFalse';
 import { useComparisonTable } from './hooks/useComparisonTable';
 import baseStyles from './style.module.scss';
 
@@ -19,7 +20,7 @@ export interface CellBaseProps<T> {
    * @param value The current data value
    * @param element The complete data object
    */
-  render?: (value: any, element: T) => React.ReactNode; //TODO: add typing to value param
+  render?: (value: any, element: T) => React.ReactNode; // TODO: add typing to value param
 }
 
 interface CellWithId<T> extends CellBaseProps<T> {
@@ -49,6 +50,7 @@ export interface ComparisonTableProps<T> {
   minCellWidth?: number;
   maxFirstColumnWidth?: number;
   stickyHeaderTopOffset?: number;
+  growContent?: boolean;
   styles?: {
     header?: string;
     container?: string;
@@ -68,6 +70,7 @@ const ComparisonTable = <T extends { id: number }>(
     minCellWidth,
     maxFirstColumnWidth,
     stickyHeaderTopOffset,
+    growContent,
   } = props;
 
   const {
@@ -83,18 +86,21 @@ const ComparisonTable = <T extends { id: number }>(
   } = useComparisonTable();
 
   const cssVariablesStyle = {
+    '--tableWidth': `${headerWidth}px`,
+    ...(minCellWidth ? { '--minCellWidth': `${minCellWidth}px` } : {}),
+    ...(maxFirstColumnWidth
+      ? { '--maxFirstColumnWidth': `${maxFirstColumnWidth}px` }
+      : {}),
     ...(stickyHeaderTopOffset
       ? { '--stickyHeaderTopOffset': `${stickyHeaderTopOffset}px` }
       : {}),
+    ...(growContent ? { '--growContent': `${100}%` } : {}),
   } as React.CSSProperties;
 
   return (
     <ScrollSync>
-      <div>
-        <div
-          className={classNames(baseStyles.header, styles?.header)}
-          style={cssVariablesStyle}
-        >
+      <div style={cssVariablesStyle}>
+        <div className={classNames(baseStyles.header, styles?.header)}>
           <ScrollSyncPane>
             <div
               className={classNames(baseStyles.container, {
@@ -117,9 +123,6 @@ const ComparisonTable = <T extends { id: number }>(
                     cell={headers[0].cells[0]}
                     data={data}
                     isRowHeader
-                    tableWidth={headerWidth}
-                    minCellWidth={minCellWidth}
-                    maxFirstColumnWidth={maxFirstColumnWidth}
                   />
                 </div>
               </div>
@@ -142,15 +145,7 @@ const ComparisonTable = <T extends { id: number }>(
                   if (index === 0 && headerGroupIndex === 0) return null;
 
                   return (
-                    <Row<T>
-                      key={rowId}
-                      rowId={rowId}
-                      cell={cell}
-                      data={data}
-                      tableWidth={headerWidth}
-                      minCellWidth={minCellWidth}
-                      maxFirstColumnWidth={maxFirstColumnWidth}
-                    />
+                    <Row<T> key={rowId} rowId={rowId} cell={cell} data={data} />
                   );
                 });
 
@@ -240,6 +235,7 @@ const ComparisonTable = <T extends { id: number }>(
                 <button
                   className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
                   onClick={toggleMoreRows}
+                  type="button"
                 >
                   {showMore ? 'Hide details' : 'Show details'}
                   <Chevron
@@ -257,8 +253,8 @@ const ComparisonTable = <T extends { id: number }>(
 
 export {
   ComparisonTable,
-  TableRating,
-  TableTrueFalse,
-  TableRowHeader,
   TableInfoButton,
+  TableRating,
+  TableRowHeader,
+  TableTrueFalse,
 };

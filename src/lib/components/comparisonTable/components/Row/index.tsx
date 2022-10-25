@@ -1,6 +1,6 @@
 import React from 'react';
-import { Cell } from '../../index';
 
+import type { Cell } from '../../index';
 import styles from './style.module.scss';
 
 interface RowProps<T> {
@@ -14,23 +14,7 @@ interface RowProps<T> {
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {
-  const {
-    cell,
-    data,
-    isRowHeader,
-    rowId,
-    tableWidth,
-    minCellWidth,
-    maxFirstColumnWidth,
-  } = props;
-
-  const cssVariablesStyle = {
-    ...(tableWidth ? { '--mobileRowWidth': `${tableWidth}px` } : {}),
-    ...(minCellWidth ? { '--minCellWidth': `${minCellWidth}px` } : {}),
-    ...(maxFirstColumnWidth
-      ? { '--maxFirstColumnWidth': `${maxFirstColumnWidth}px` }
-      : {}),
-  } as React.CSSProperties;
+  const { cell, data, isRowHeader, rowId } = props;
 
   return (
     <div
@@ -49,7 +33,6 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
           ${typeof cell.key === 'undefined' ? styles.addon : ''}
         `}
-        style={cssVariablesStyle}
       >
         {cell.label}
       </h4>
@@ -67,7 +50,6 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
             <div
               className={`ta-center ${styles.cell}`}
               key={`${rowId}-${item.id}`}
-              style={cssVariablesStyle}
             >
               {
                 /**

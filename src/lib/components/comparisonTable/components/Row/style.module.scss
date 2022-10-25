@@ -7,7 +7,8 @@ $cell-min-width: var(--minCellWidth, 256px);
   position: relative;
 
   & > div {
-    width: var(--mobileRowWidth);
+    width: var(--tableWidth);
+    max-width: var(--tableWidth);
 
     &:nth-child(n + 3) {
       margin: 0;
@@ -34,6 +35,7 @@ $cell-min-width: var(--minCellWidth, 256px);
   color: $ds-grey-700;
 
   width: 50vw;
+  max-width: calc(var(--tableWidth) / 2);
 
   &:first-child {
     background-color: white;
@@ -61,7 +63,13 @@ $cell-min-width: var(--minCellWidth, 256px);
 }
 
 h4.cell {
-  max-width: var(--maxFirstColumnWidth, 288px);
+  // Set the max width of the first column to the supplied maxFirstColumnWidth (or 288px if not specified) but only
+  // if this value does not exceed half of the table's width.
+  // This is to ensure that the first column is at most as wide as half the table, which will be the case on mobile where only the first column and one other are shown.
+  max-width: min(
+    var(--maxFirstColumnWidth, 288px),
+    calc(var(--tableWidth) / 2)
+  );
 }
 
 .title {

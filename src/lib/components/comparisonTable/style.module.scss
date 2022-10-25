@@ -34,7 +34,7 @@
 .group-container {
   display: flex;
   flex-flow: column;
-  width: 100%;
+  width: var(--growContent, max-content);
   margin: auto;
 }
 
@@ -71,7 +71,7 @@
 
 .header {
   position: sticky;
-  top: var(--stickyHeaderTopOffset);
+  top: var(--stickyHeaderTopOffset, 0);
   z-index: 2;
   background-color: white;
 
