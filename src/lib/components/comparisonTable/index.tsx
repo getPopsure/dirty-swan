@@ -47,8 +47,8 @@ export interface ComparisonTableProps<T> {
   hideDetails?: boolean;
   hideScrollBars?: boolean;
   collapsibleSections?: boolean;
-  minCellWidth?: number;
-  maxFirstColumnWidth?: number;
+  cellWidth?: number;
+  firstColumnWidth?: number;
   stickyHeaderTopOffset?: number;
   growContent?: boolean;
   styles?: {
@@ -67,8 +67,8 @@ const ComparisonTable = <T extends { id: number }>(
     styles,
     hideScrollBars,
     collapsibleSections,
-    minCellWidth,
-    maxFirstColumnWidth,
+    cellWidth,
+    firstColumnWidth,
     stickyHeaderTopOffset,
     growContent,
   } = props;
@@ -87,9 +87,9 @@ const ComparisonTable = <T extends { id: number }>(
 
   const cssVariablesStyle = {
     '--tableWidth': `${headerWidth}px`,
-    ...(minCellWidth ? { '--minCellWidth': `${minCellWidth}px` } : {}),
-    ...(maxFirstColumnWidth
-      ? { '--maxFirstColumnWidth': `${maxFirstColumnWidth}px` }
+    ...(cellWidth ? { '--cellWidth': `${cellWidth}px` } : {}),
+    ...(firstColumnWidth
+      ? { '--firstColumnWidth': `${firstColumnWidth}px` }
       : {}),
     ...(stickyHeaderTopOffset
       ? { '--stickyHeaderTopOffset': `${stickyHeaderTopOffset}px` }

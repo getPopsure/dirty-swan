@@ -1,7 +1,7 @@
 @use "../../../../scss/public/colors" as *;
 @use "../../../../scss/public/grid" as *;
 
-$cell-min-width: var(--minCellWidth, 256px);
+$cell-min-width: var(--cellWidth, 256px);
 
 .header {
   position: relative;
@@ -63,13 +63,10 @@ $cell-min-width: var(--minCellWidth, 256px);
 }
 
 h4.cell {
-  // Set the max width of the first column to the supplied maxFirstColumnWidth (or 288px if not specified) but only
+  // Set the max width of the first column to the supplied firstColumnWidth (or 288px if not specified) but only
   // if this value does not exceed half of the table's width.
   // This is to ensure that the first column is at most as wide as half the table, which will be the case on mobile where only the first column and one other are shown.
-  max-width: min(
-    var(--maxFirstColumnWidth, 288px),
-    calc(var(--tableWidth) / 2)
-  );
+  max-width: min(var(--firstColumnWidth, 288px), calc(var(--tableWidth) / 2));
 }
 
 .title {
