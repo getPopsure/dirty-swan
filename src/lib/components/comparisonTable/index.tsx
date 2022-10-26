@@ -94,7 +94,7 @@ const ComparisonTable = <T extends { id: number }>(
     ...(stickyHeaderTopOffset
       ? { '--stickyHeaderTopOffset': `${stickyHeaderTopOffset}px` }
       : {}),
-    ...(growContent ? { '--growContent': `${100}%` } : {}),
+    ...(growContent ? { '--growContent': '100%' } : {}),
   } as React.CSSProperties;
 
   return (
