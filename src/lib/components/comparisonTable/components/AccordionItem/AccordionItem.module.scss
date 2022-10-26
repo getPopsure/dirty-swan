@@ -1,5 +1,14 @@
 @import '../../../../scss/public/colors';
 
+.container {
+  width: var(--growContent, min-content);
+  margin: 0 auto;
+}
+
+.container + .container {
+  margin-top: 8px;
+}
+
 .chevron {
   transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
 }

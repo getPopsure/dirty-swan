@@ -8,9 +8,6 @@ interface RowProps<T> {
   data: Array<T>;
   isRowHeader?: boolean;
   rowId: string;
-  tableWidth?: number;
-  minCellWidth?: number;
-  maxFirstColumnWidth?: number;
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {

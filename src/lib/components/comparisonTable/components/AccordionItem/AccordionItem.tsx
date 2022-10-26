@@ -49,7 +49,7 @@ export const AccordionItem = ({
   };
 
   return (
-    <div className={`d-flex fd-column ${className}`}>
+    <div className={`d-flex fd-column ${className} ${styles.container}`}>
       <button
         className={`d-flex ai-center jc-between ${styles.headerButton} ${headerClassName}`}
         onClick={handleClick}

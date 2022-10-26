@@ -151,18 +151,6 @@ const ComparisonTable = <T extends { id: number }>(
 
                 return (
                   <>
-                    {
-                      /**
-                       * Print a table subheader if the `label` value is present
-                       */
-                      headerGroup.label && !collapsibleSections && (
-                        <div className={baseStyles['group-title']}>
-                          <h4 className={`p-h4 ${baseStyles.sticky}`}>
-                            {headerGroup.label}
-                          </h4>
-                        </div>
-                      )
-                    }
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className="mt8"
@@ -214,6 +202,18 @@ const ComparisonTable = <T extends { id: number }>(
                             )}
                           >
                             <div className={baseStyles['group-container']}>
+                              {
+                                /**
+                                 * Print a table subheader if the `label` value is present
+                                 */
+                                headerGroup.label && !collapsibleSections && (
+                                  <div className={baseStyles['group-title']}>
+                                    <h4 className={`p-h4 ${baseStyles.sticky}`}>
+                                      {headerGroup.label}
+                                    </h4>
+                                  </div>
+                                )
+                              }
                               {content}
                             </div>
                           </div>

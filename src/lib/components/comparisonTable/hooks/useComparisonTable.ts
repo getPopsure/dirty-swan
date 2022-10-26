@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
 import debounce from 'lodash.debounce';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { ArrowValues } from '../components/TableArrows';
 
 export const useComparisonTable = () => {
