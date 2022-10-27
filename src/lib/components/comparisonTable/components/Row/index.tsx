@@ -24,7 +24,6 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
     >
       <h4
         className={`
-          wmx4
           ${styles.cell}
           ${styles.sticky}
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
