@@ -2,15 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 import ArrowIcon from './Arrow';
-import { ActiveTableArrows } from '../../hooks/useActiveTableArrows';
-
 import styles from './style.module.scss';
 
 export type ArrowValues = 'prev' | 'next';
 
 interface TableArrowsProps {
   onClick: (value: ArrowValues) => void;
-  active: ActiveTableArrows;
+  active: { left: boolean; right: boolean };
 }
 
 const TableArrows = (props: TableArrowsProps) => {

@@ -19,11 +19,17 @@ The Comparison Table component provides an easy way to compare vast amounts of i
 
 ## Arguments
 
-| attribute   | unit                | description                                                | default value | required |
-| ----------- | ------------------- | ---------------------------------------------------------- | ------------- | -------- |
-| headers     | [Header[]](#header) | The structure of the table                                 | n/a           | true     |
-| data        | array               | The title text that needs to be displayed                  | n/a           | true     |
-| hideDetails | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
+| attribute             | unit                | description                                                | default value | required |
+| --------------------- | ------------------- | ---------------------------------------------------------- | ------------- | -------- |
+| headers               | [Header[]](#header) | The structure of the table                                 | n/a           | true     |
+| data                  | array               | The title text that needs to be displayed                  | n/a           | true     |
+| hideDetails           | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
+| hideScrollBars        | boolean             | Hide scroll bars                                           | false         | false    |
+| collapsibleSections   | boolean             | Make table groups with a label collapsible                 | false         | false    |
+| cellWidth             | number              | Width of a table content cell                              | 256px         | false    |
+| firstColumnWidth      | number              | Width of the first column of the table                     | 288px         | false    |
+| stickyHeaderTopOffset | number              | Y-offset of the sticky header row                          | 0px           | false    |
+| growContent           | boolean             | Makes the content area grow to fill the available space    | false         | false    |
 
 ## Types
 
@@ -55,6 +61,105 @@ export const ComparisonTableWithData = () => {
   const headers = [
     {
       id: 1,
+      default: true,
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Box office',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+    {
+      id: 2,
+      label: 'SUBSECTION',
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Box office',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+    {
+      id: 3,
+      label: 'SUBSECTION 2',
       cells: [
         {
           id: 1,
@@ -137,7 +242,14 @@ export const ComparisonTableWithData = () => {
       boxOffice: 258908054,
     },
   ];
-  return <ComparisonTable data={data} headers={headers} />;
+  return (
+    <ComparisonTable
+      data={data}
+      headers={headers}
+      collapsibleSections
+      hideDetails
+    />
+  );
 };
 
 <ComparisonTableWithData />
@@ -162,9 +274,108 @@ interface TableData {
 }
 
 export const ComparisonTableWithData = () => {
-  const headers: Array<TableHeader<TableData>> = [
+  const headers = [
     {
       id: 1,
+      default: true,
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Box office',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+    {
+      id: 2,
+      label: 'SUBSECTION',
+      cells: [
+        {
+          id: 1,
+          key: 'name',
+          label: 'Films',
+        },
+        {
+          id: 2,
+          key: 'country',
+          label: 'Country',
+        },
+        {
+          id: 4,
+          key: 'imdb',
+          label: 'IMDB rating',
+        },
+        {
+          id: 3,
+          key: 'rating',
+          label: 'Our rating',
+          render: (value) => <TableRating type="star" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'recommended',
+          label: 'Recommended',
+          render: (value) => <TableRating type="zap" rating={value} />,
+        },
+        {
+          id: 5,
+          key: 'familyFriendly',
+          label: 'Family friendly',
+          render: (value) => <TableTrueFalse value={value} />,
+        },
+        {
+          id: 6,
+          key: 'boxOffice',
+          label: 'Box office',
+          render: (value) =>
+            value.toLocaleString('de-DE', {
+              style: 'currency',
+              currency: 'EUR',
+            }),
+        },
+      ],
+    },
+    {
+      id: 3,
+      label: 'SUBSECTION 2',
       cells: [
         {
           id: 1,
@@ -247,7 +458,14 @@ export const ComparisonTableWithData = () => {
       boxOffice: 258908054,
     },
   ];
-  return <ComparisonTable data={data} headers={headers} />;
+  return (
+    <ComparisonTable
+      data={data}
+      headers={headers}
+      collapsibleSections
+      hideDetails
+    />
+  );
 };
 
 <ComparisonTableWithData />;

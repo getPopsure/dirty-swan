@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Cell } from '../../index';
-
+import type { Cell } from '../../index';
 import styles from './style.module.scss';
 
 interface RowProps<T> {
@@ -25,7 +24,6 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
     >
       <h4
         className={`
-          wmx4
           ${styles.cell}
           ${styles.sticky}
           ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}

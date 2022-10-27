@@ -1,16 +1,15 @@
-import React, { useRef, useState } from 'react';
-import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 import classNames from 'classnames';
+import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
-import Row from './components/Row';
-import TableArrows, { ArrowValues } from './components/TableArrows';
-import TableRating from './components/TableRating';
-import TableTrueFalse from './components/TableTrueFalse';
-import TableRowHeader from './components/TableRowHeader';
-import TableInfoButton from './components/TableInfoButton';
+import { AccordionItem } from './components/AccordionItem';
 import Chevron from './components/Chevron';
-import { useActiveTableArrows } from './hooks/useActiveTableArrows';
-
+import Row from './components/Row';
+import TableArrows from './components/TableArrows';
+import TableInfoButton from './components/TableInfoButton';
+import TableRating from './components/TableRating';
+import TableRowHeader from './components/TableRowHeader';
+import TableTrueFalse from './components/TableTrueFalse';
+import { useComparisonTable } from './hooks/useComparisonTable';
 import baseStyles from './style.module.scss';
 
 export interface CellBaseProps<T> {
@@ -21,7 +20,7 @@ export interface CellBaseProps<T> {
    * @param value The current data value
    * @param element The complete data object
    */
-  render?: (value: any, element: T) => React.ReactNode; //TODO: add typing to value param
+  render?: (value: any, element: T) => React.ReactNode; // TODO: add typing to value param
 }
 
 interface CellWithId<T> extends CellBaseProps<T> {
@@ -46,6 +45,12 @@ export interface ComparisonTableProps<T> {
   headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
+  hideScrollBars?: boolean;
+  collapsibleSections?: boolean;
+  cellWidth?: number;
+  firstColumnWidth?: number;
+  stickyHeaderTopOffset?: number;
+  growContent?: boolean;
   styles?: {
     header?: string;
     container?: string;
@@ -55,57 +60,62 @@ export interface ComparisonTableProps<T> {
 const ComparisonTable = <T extends { id: number }>(
   props: ComparisonTableProps<T>
 ) => {
-  const { headers, data, hideDetails, styles } = props;
-  const [showMore, setShowMore] = useState<boolean>(false);
-  const headerContainerRef = useRef<HTMLDivElement | null>(null);
-  const { activeArrows, contentContainerRef, contentWrapperRef } =
-    useActiveTableArrows();
+  const {
+    headers,
+    data,
+    hideDetails,
+    styles,
+    hideScrollBars,
+    collapsibleSections,
+    cellWidth,
+    firstColumnWidth,
+    stickyHeaderTopOffset,
+    growContent,
+  } = props;
 
-  /** narrow types */
-  const headerContainer = headerContainerRef
-    ? headerContainerRef.current
-    : null;
-  const contentWrapper =
-    typeof contentWrapperRef === 'object' && contentWrapperRef
-      ? contentWrapperRef.current
-      : null;
+  const {
+    headerWidth,
+    contentContainerRef,
+    selectedSection,
+    setSelectedSection,
+    selectedTabIndex,
+    scrollContainerCallbackRef,
+    handleArrowsClick,
+    toggleMoreRows,
+    showMore,
+  } = useComparisonTable();
 
-  const handleArrowsClick = (value: ArrowValues) => {
-    if (headerContainerRef.current) {
-      headerContainerRef.current.scroll({
-        top: 0,
-        left:
-          value === 'next'
-            ? headerContainerRef.current.scrollLeft + window.innerWidth
-            : headerContainerRef.current.scrollLeft - window.innerWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const toggleMoreRows = async () => {
-    if (showMore && headerContainer && contentWrapper) {
-      window.scroll(
-        0,
-        window.scrollY +
-          (contentWrapper.getBoundingClientRect().y -
-            headerContainer.getBoundingClientRect().bottom)
-      );
-    }
-    setShowMore(!showMore);
-  };
+  const cssVariablesStyle = {
+    '--tableWidth': `${headerWidth}px`,
+    ...(cellWidth ? { '--cellWidth': `${cellWidth}px` } : {}),
+    ...(firstColumnWidth
+      ? { '--firstColumnWidth': `${firstColumnWidth}px` }
+      : {}),
+    ...(stickyHeaderTopOffset
+      ? { '--stickyHeaderTopOffset': `${stickyHeaderTopOffset}px` }
+      : {}),
+    ...(growContent ? { '--growContent': '100%' } : {}),
+  } as React.CSSProperties;
 
   return (
     <ScrollSync>
-      <div>
+      <div style={cssVariablesStyle}>
         <div className={classNames(baseStyles.header, styles?.header)}>
           <ScrollSyncPane>
-            <div className={baseStyles.container} ref={headerContainerRef}>
+            <div
+              className={classNames(baseStyles.container, {
+                [baseStyles.noScrollBars]: hideScrollBars,
+              })}
+              ref={scrollContainerCallbackRef}
+            >
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
                   <TableArrows
                     onClick={handleArrowsClick}
-                    active={activeArrows}
+                    active={{
+                      left: selectedTabIndex > 0,
+                      right: selectedTabIndex < data.length - 1,
+                    }}
                   />
                   <Row<T>
                     key="table-header-row"
@@ -119,84 +129,123 @@ const ComparisonTable = <T extends { id: number }>(
             </div>
           </ScrollSyncPane>
         </div>
-        <ScrollSyncPane>
-          <div
-            className={classNames(baseStyles.container, styles?.container)}
-            ref={contentWrapperRef}
-          >
-            <div
-              className={classNames(baseStyles['overflow-container'])}
-              ref={contentContainerRef}
-            >
-              <div className={baseStyles['group-container']}>
-                {Array.isArray(headers) &&
-                  headers
-                    .filter(
-                      (headerGroup) =>
-                        !hideDetails || showMore || headerGroup.default
-                    )
-                    .map((headerGroup, headerGroupIndex) => (
-                      <div key={headerGroup.id}>
-                        {
-                          /**
-                           * Print a table subheader if the `label` value is present
-                           */
-                          headerGroup.label && (
-                            <div className={baseStyles['group-title']}>
-                              <h4 className={`p-h4 ${baseStyles.sticky}`}>
-                                {headerGroup.label}
-                              </h4>
-                            </div>
-                          )
+        <div ref={contentContainerRef}>
+          {Array.isArray(headers) &&
+            headers
+              .filter(
+                (headerGroup) => !hideDetails || showMore || headerGroup.default
+              )
+              .map((headerGroup, headerGroupIndex) => {
+                const content = headerGroup.cells?.map((cell, index) => {
+                  const rowId = `${headerGroup.id}-${
+                    cell.key ?? 'addon'
+                  }-${index}`;
+
+                  /** Do not render the first row */
+                  if (index === 0 && headerGroupIndex === 0) return null;
+
+                  return (
+                    <Row<T> key={rowId} rowId={rowId} cell={cell} data={data} />
+                  );
+                });
+
+                return (
+                  <>
+                    {headerGroup.label && collapsibleSections ? (
+                      <AccordionItem
+                        className="mt8"
+                        title={String(headerGroup.label)}
+                        headerClassName="p24 br8"
+                        isOpen={selectedSection === String(headerGroup.label)}
+                        onOpen={() =>
+                          setSelectedSection(String(headerGroup.label))
                         }
-
-                        {headerGroup.cells?.map((cell, index) => {
-                          const rowId = `${headerGroup.id}-${
-                            cell.key ?? 'addon'
-                          }-${index}`;
-
-                          /** Do not render the first row */
-                          if (index === 0 && headerGroupIndex === 0)
-                            return null;
-
-                          return (
-                            <Row<T>
-                              key={rowId}
-                              rowId={rowId}
-                              cell={cell}
-                              data={data}
-                            />
-                          );
-                        })}
-                      </div>
-                    ))}
-                {hideDetails && (
-                  <div
-                    className={classNames(
-                      baseStyles['show-details-container'],
-                      baseStyles.sticky,
-                      'mt48'
-                    )}
-                  >
-                    <div>
-                      <button
-                        className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
-                        onClick={toggleMoreRows}
+                        onClose={() => setSelectedSection('')}
+                        key={String(headerGroup.label)}
                       >
-                        {showMore ? 'Hide details' : 'Show details'}
-                        <Chevron
-                          className={
-                            showMore ? '' : baseStyles['icon-inverted']
-                          }
-                        />
-                      </button>
-                    </div>
-                  </div>
-                )}
+                        <ScrollSyncPane>
+                          <div
+                            className={classNames(
+                              baseStyles.container,
+                              styles?.container,
+                              {
+                                [baseStyles.noScrollBars]: hideScrollBars,
+                              }
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                baseStyles['overflow-container']
+                              )}
+                            >
+                              <div className={baseStyles['group-container']}>
+                                {content}
+                              </div>
+                            </div>
+                          </div>
+                        </ScrollSyncPane>
+                      </AccordionItem>
+                    ) : (
+                      <ScrollSyncPane>
+                        <div
+                          className={classNames(
+                            baseStyles.container,
+                            styles?.container,
+                            {
+                              [baseStyles.noScrollBars]: hideScrollBars,
+                            }
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              baseStyles['overflow-container']
+                            )}
+                          >
+                            <div className={baseStyles['group-container']}>
+                              {
+                                /**
+                                 * Print a table subheader if the `label` value is present
+                                 */
+                                headerGroup.label && !collapsibleSections && (
+                                  <div className={baseStyles['group-title']}>
+                                    <h4 className={`p-h4 ${baseStyles.sticky}`}>
+                                      {headerGroup.label}
+                                    </h4>
+                                  </div>
+                                )
+                              }
+                              {content}
+                            </div>
+                          </div>
+                        </div>
+                      </ScrollSyncPane>
+                    )}
+                  </>
+                );
+              })}
+          {hideDetails && (
+            <div
+              className={classNames(
+                baseStyles['show-details-container'],
+                baseStyles.sticky,
+                'mt48'
+              )}
+            >
+              <div>
+                <button
+                  className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
+                  onClick={toggleMoreRows}
+                  type="button"
+                >
+                  {showMore ? 'Hide details' : 'Show details'}
+                  <Chevron
+                    className={showMore ? '' : baseStyles['icon-inverted']}
+                  />
+                </button>
               </div>
             </div>
-          </div>
-        </ScrollSyncPane>
+          )}
+        </div>
       </div>
     </ScrollSync>
   );
@@ -204,8 +253,8 @@ const ComparisonTable = <T extends { id: number }>(
 
 export {
   ComparisonTable,
-  TableRating,
-  TableTrueFalse,
-  TableRowHeader,
   TableInfoButton,
+  TableRating,
+  TableRowHeader,
+  TableTrueFalse,
 };

@@ -1,13 +1,14 @@
 @use "../../../../scss/public/colors" as *;
 @use "../../../../scss/public/grid" as *;
 
-$cell-min-width: 256px;
+$cell-min-width: var(--cellWidth, 256px);
 
 .header {
   position: relative;
 
   & > div {
-    width: 100vw;
+    width: var(--tableWidth);
+    max-width: var(--tableWidth);
 
     &:nth-child(n + 3) {
       margin: 0;
@@ -34,6 +35,7 @@ $cell-min-width: 256px;
   color: $ds-grey-700;
 
   width: 50vw;
+  max-width: calc(var(--tableWidth) / 2);
 
   &:first-child {
     background-color: white;
@@ -58,6 +60,13 @@ $cell-min-width: 256px;
       padding: 24px 8px 24px 24px;
     }
   }
+}
+
+h4.cell {
+  // Set the max width of the first column to the supplied firstColumnWidth (or 288px if not specified) but only
+  // if this value does not exceed half of the table's width.
+  // This is to ensure that the first column is at most as wide as half the table, which will be the case on mobile where only the first column and one other are shown.
+  max-width: min(var(--firstColumnWidth, 288px), calc(var(--tableWidth) / 2));
 }
 
 .title {
