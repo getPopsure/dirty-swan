@@ -154,7 +154,7 @@ const ComparisonTable = <T extends { id: number }>(
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className="mt8"
-                        title={String(headerGroup.label)}
+                        label={headerGroup.label}
                         headerClassName="p24 br8"
                         isOpen={selectedSection === String(headerGroup.label)}
                         onOpen={() =>

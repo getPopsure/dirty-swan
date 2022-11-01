@@ -25,20 +25,18 @@ export const AccordionItem = ({
   children,
   className = '',
   headerClassName = '',
-  iconSrc = '',
   isOpen,
   onOpen,
   onClose,
-  title,
+  label,
 }: {
   children: React.ReactNode | string;
   className?: string;
   headerClassName?: string;
-  iconSrc?: string;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  title: string;
+  label: React.ReactNode;
 }) => {
   const handleClick = () => {
     if (!isOpen) {
@@ -56,8 +54,11 @@ export const AccordionItem = ({
         type="button"
       >
         <div className={`d-flex ai-center ${styles.iconAndTextContainer}`}>
-          {!!iconSrc && <img src={iconSrc} alt={`${title} icon`} />}
-          <h4 className="p-h4">{title}</h4>
+          {typeof label === 'string' ? (
+            <h4 className="p-h4">{label}</h4>
+          ) : (
+            <>{label}</>
+          )}
         </div>
         <ChevronSVG
           className={`${styles.chevron} ${!isOpen && styles.chevronClosed}`}
