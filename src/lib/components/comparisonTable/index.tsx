@@ -149,6 +149,8 @@ const ComparisonTable = <T extends { id: number }>(
                   );
                 });
 
+                const idString = `headerGroup-${headerGroup.id}`;
+
                 return (
                   <>
                     {headerGroup.label && collapsibleSections ? (
@@ -156,12 +158,10 @@ const ComparisonTable = <T extends { id: number }>(
                         className="mt8"
                         label={headerGroup.label}
                         headerClassName="p24 br8"
-                        isOpen={selectedSection === String(headerGroup.label)}
-                        onOpen={() =>
-                          setSelectedSection(String(headerGroup.label))
-                        }
+                        isOpen={selectedSection === idString}
+                        onOpen={() => setSelectedSection(idString)}
                         onClose={() => setSelectedSection('')}
-                        key={String(headerGroup.label)}
+                        key={idString}
                       >
                         <ScrollSyncPane>
                           <div
