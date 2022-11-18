@@ -46,6 +46,11 @@ interface Props {
   onRemoveFile: (id: string) => void;
   isCondensed?: boolean;
   maxFiles?: number;
+  textOverrides?: {
+    instructionsText?: string;
+    currentlyUploadingText?: string;
+    supportsText?: string;
+  };
 }
 
 export default ({
@@ -55,6 +60,7 @@ export default ({
   onRemoveFile,
   isCondensed = false,
   maxFiles = 0,
+  textOverrides,
 }: Props) => {
   const [error, setError] = useState('');
 
@@ -93,10 +99,13 @@ export default ({
         />
         <div className={`p-h4 mt8 ${isCondensed ? styles.textInline : ''}`}>
           {uploading
-            ? 'Please wait while uploading file...'
-            : 'Choose file or drag & drop'}
+            ? textOverrides?.currentlyUploadingText ||
+              'Please wait while uploading file...'
+            : textOverrides?.instructionsText || 'Choose file or drag & drop'}
         </div>
-        <div className="p-p--small tc-grey-500">Supports JPEG, PNG, PDF</div>
+        <div className="p-p--small tc-grey-500">
+          {textOverrides?.supportsText || 'Supports JPEG, PNG, PDF'}
+        </div>
       </div>
       <AnimateHeight duration={300} height={error ? 'auto' : 0}>
         <p className="tc-red-500 p-p--small">{error}</p>
