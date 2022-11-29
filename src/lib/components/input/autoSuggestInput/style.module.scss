@@ -9,14 +9,19 @@
   }
 }
 
+.suggestionsContainer {
+  position: relative;
+}
+
 .suggestionsList {
+  position: absolute;
+
   z-index: 100;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid var(--ds-primary-500);
 
   width: 100%;
-  max-width: 364px;
   height: fit-content;
   max-height: 216px;
 
