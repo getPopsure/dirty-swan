@@ -34,6 +34,10 @@
   line-height: 12px;
 
   opacity: 1;
+
+  &--not-as-label {
+    opacity: 0;
+  }
 }
 
 .input:focus ~ .placeholder {
@@ -52,8 +56,8 @@
   }
 }
 
-.input:not(:placeholder-shown) ~ .prefix,
-.input:focus ~ .prefix {
+.input:not(:placeholder-shown):not(.input--placeholder-not-as-title) ~ .prefix,
+.input:focus:not(.input--placeholder-not-as-title) ~ .prefix {
   top: 28px;
 }
 
@@ -69,6 +73,10 @@
 
   &--with-prefix {
     padding-left: 32px !important;
+  }
+
+  &--placeholder-not-as-title {
+    padding-top: 0px;
   }
 }
 

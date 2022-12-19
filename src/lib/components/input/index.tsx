@@ -7,12 +7,21 @@ import styles from './style.module.scss';
 export type InputProps = {
   error?: string;
   prefix?: string;
+  placeholderAsLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
   Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>>;
 
 export default React.forwardRef(
   (
-    { className, placeholder, prefix, error, disabled, ...props }: InputProps,
+    {
+      className,
+      placeholder,
+      placeholderAsLabel = true,
+      prefix,
+      error,
+      disabled,
+      ...props
+    }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => (
     <div className={`${styles.container} ${className ?? ''}`}>
@@ -25,7 +34,8 @@ export default React.forwardRef(
           placeholder && placeholder.length > 0
             ? styles.input
             : styles['input--no-placeholder'],
-          { [styles['input--with-prefix']]: prefix }
+          { [styles['input--with-prefix']]: prefix },
+          { [styles['input--placeholder-not-as-title']]: !placeholderAsLabel }
         )}
         placeholder=" "
         disabled={disabled}
@@ -46,7 +56,8 @@ export default React.forwardRef(
         className={classnames(
           styles.placeholder,
           { [styles['placeholder--with-prefix']]: prefix },
-          { [styles['placeholder--with-error']]: error }
+          { [styles['placeholder--with-error']]: error },
+          { [styles['placeholder--not-as-label']]: !placeholderAsLabel }
         )}
       >
         {placeholder}
