@@ -56,6 +56,7 @@ const SegmentedControl = ({
                   onChange(index);
                 }}
                 className={styles.chip}
+                key={typeof value === 'string' ? value : value.title}
               >
                 {typeof value === 'string' ? (
                   <div
