@@ -1,7 +1,5 @@
 import { Address } from '@popsure/public-models';
 import { fireEvent, render } from '@testing-library/react';
-import { ChangeEvent } from 'react';
-import { RenderInputComponent } from 'react-autosuggest';
 
 import AutoCompleteAddress from '.';
 
@@ -38,8 +36,8 @@ describe('AutocompleteAddress component', () => {
       }
       // @ts-ignore
       addListener(_action, callback) {
-        document.addEventListener('change', (e: Event) =>
-          e?.target?.value !== ''
+        this.reference.addEventListener('change', (e: Event) =>
+          (e.target as HTMLInputElement).value !== ''
             ? callback({
                 geometry: {
                   location: class {},
