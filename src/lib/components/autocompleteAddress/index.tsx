@@ -228,6 +228,7 @@ const AutoCompleteAddress = ({
             <Input
               className="w100"
               id="autocomplete"
+              key="autocomplete-search"
               data-cy="autocomplete"
               type="text"
               placeholder={
@@ -247,6 +248,7 @@ const AutoCompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete"
+                key="autocomplete-street"
                 type="text"
                 placeholder={placeholders?.street || 'Street'}
                 value={address?.street || ''}
@@ -263,6 +265,7 @@ const AutoCompleteAddress = ({
               <Input
                 className={`wmx2 ${styles['house-number-input']}`}
                 data-cy="autocomplete-house-number"
+                key="autocomplete-house-number"
                 placeholder={placeholders?.houseNumber || 'House Number'}
                 value={address?.houseNumber || ''}
                 onChange={(e) => {
@@ -279,6 +282,7 @@ const AutoCompleteAddress = ({
             <Input
               className="mt16"
               data-cy="autocomplete-additional-info"
+              key="autocomplete-additional-info"
               placeholder={
                 placeholders?.additionalInformation ||
                 'Additional information (C/O, apartment, …)'
@@ -297,6 +301,7 @@ const AutoCompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete-postcode"
+                key="autocomplete-postcode"
                 placeholder={placeholders?.postcode || 'Postcode'}
                 value={address?.postcode || ''}
                 onChange={(e) => {
@@ -312,6 +317,7 @@ const AutoCompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete-city"
+                key="autocomplete-city"
                 placeholder={placeholders?.city || 'City'}
                 value={address?.city || ''}
                 onChange={(e) => {
