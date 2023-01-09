@@ -28,12 +28,6 @@ You are looking at the JSX definition of the Input component, if you want you ca
     <h1 className="p-h1 mt32">With placeholder</h1>
     <h4 className="p-h4 mt24">Empty</h4>
     <Input className="wmx5 mt8" placeholder="Email" />
-    <h4 className="p-h4 mt24">Not as label</h4>
-    <Input
-      className="wmx5 mt8"
-      placeholderAsLabel={false}
-      placeholder="Email"
-    />
     <h4 className="p-h4 mt24">Filled</h4>
     <Input
       className="wmx5 mt8"
@@ -67,6 +61,44 @@ You are looking at the JSX definition of the Input component, if you want you ca
       value="100"
       prefix="€"
       error="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac hendrerit justo. Nunc nibh ex, vulputate ac leo id, feugiat rhoncus purus."
+    />
+    <h1 className="p-h1 mt32">With label</h1>
+    <h4 className="p-h4 mt24">Empty</h4>
+    <Input className="wmx5 mt8" label="Email" />
+    <h4 className="p-h4 mt24">With placeholder</h4>
+    <Input
+      className="wmx5 mt8"
+      label="Email"
+      placeholder="email@feather-insurance.com"
+    />
+    <h4 className="p-h4 mt24">Filled</h4>
+    <Input
+      className="wmx5 mt8"
+      value="email@feather-insurance.com"
+      label="Email"
+      placeholder="email@feather-insurance.com"
+    />
+    <h4 className="p-h4 mt24">Disabled</h4>
+    <Input
+      className="wmx5 mt8"
+      label="Email"
+      placeholder="email@feather-insurance.com"
+      disabled
+    />
+    <h4 className="p-h4 mt24">Error</h4>
+    <Input
+      className="wmx5 mt8"
+      label="Email"
+      value="invalid.email@feather-insurance.com"
+      placeholder="email@feather-insurance.com"
+      error="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    />
+    <h4 className="p-h4 mt24">With prefix</h4>
+    <Input
+      className="wmx5 mt8"
+      label="Amount"
+      value="100"
+      prefix="€"
     />
   </>
 </Preview>

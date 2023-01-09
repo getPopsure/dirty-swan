@@ -34,10 +34,6 @@
   line-height: 12px;
 
   opacity: 1;
-
-  &--not-as-label {
-    opacity: 0;
-  }
 }
 
 .input:focus ~ .placeholder {
@@ -56,8 +52,8 @@
   }
 }
 
-.input:not(:placeholder-shown):not(.input--placeholder-not-as-title) ~ .prefix,
-.input:focus:not(.input--placeholder-not-as-title) ~ .prefix {
+.input:not(:placeholder-shown) ~ .prefix,
+.input:focus ~ .prefix {
   top: 28px;
 }
 
@@ -73,10 +69,6 @@
 
   &--with-prefix {
     padding-left: 32px !important;
-  }
-
-  &--placeholder-not-as-title {
-    padding-top: 0px;
   }
 }
 
@@ -95,6 +87,17 @@
   &--with-prefix {
     left: 32px;
   }
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
+}
+
+.label {
+  display: inline-block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--ds-grey-600);
 
   &--with-error {
     color: var(--ds-red-500);

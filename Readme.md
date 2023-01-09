@@ -16,6 +16,8 @@ Start the development server using
 yarn storybook
 ```
 
+This will start storybook at `http://localhost:9009/`.
+
 ## Contributing
 
 ### Releasing a new version
