@@ -94,11 +94,15 @@ You are looking at the JSX definition of the Input component, if you want you ca
       error="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     />
     <h4 className="p-h4 mt24">With prefix</h4>
+    <Input className="wmx5 mt8" label="Amount" value="100" prefix="€" />
+    <h4 className="p-h4 mt24">With label hidden</h4>
     <Input
       className="wmx5 mt8"
       label="Amount"
       value="100"
       prefix="€"
+      hideLabel
+      onChange={() => {}}
     />
   </>
 </Preview>

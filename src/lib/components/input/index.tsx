@@ -10,6 +10,7 @@ export type InputProps = {
   prefix?: string;
   label?: string;
   id?: string;
+  hideLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
   Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>>;
 
@@ -23,11 +24,12 @@ export default React.forwardRef(
       prefix,
       error,
       disabled,
+      hideLabel = false,
       ...props
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const uniqueId = id ?? `${label?.toLowerCase()}-${uuidv4()}`;
+    const uniqueId = id ?? uuidv4();
     return (
       <div className={`${styles.container} ${className ?? ''}`}>
         {label && (
@@ -35,6 +37,7 @@ export default React.forwardRef(
             htmlFor={uniqueId}
             className={classnames('p-p', styles.label, {
               [styles['label--with-error']]: error,
+              [styles['label--hidden']]: hideLabel,
             })}
           >
             {label}
