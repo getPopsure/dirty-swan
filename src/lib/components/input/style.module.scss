@@ -93,6 +93,22 @@
   }
 }
 
+.label {
+  display: inline-block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--ds-grey-600);
+
+  &--with-error {
+    color: var(--ds-red-500);
+  }
+
+  &--hidden {
+    visibility: hidden;
+    height: 0;
+  }
+}
+
 .error {
   margin-top: 4px;
 }

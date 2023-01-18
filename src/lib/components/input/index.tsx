@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './style.module.scss';
 
@@ -7,53 +8,88 @@ import styles from './style.module.scss';
 export type InputProps = {
   error?: string;
   prefix?: string;
+  label?: string;
+  id?: string;
+  hideLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
   Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>>;
 
 export default React.forwardRef(
   (
-    { className, placeholder, prefix, error, disabled, ...props }: InputProps,
+    {
+      className,
+      placeholder,
+      label,
+      id,
+      prefix,
+      error,
+      disabled,
+      hideLabel = false,
+      ...props
+    }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
-  ) => (
-    <div className={`${styles.container} ${className ?? ''}`}>
-      <input
-        data-testid="ds-input-input"
-        type="text"
-        ref={ref}
-        className={classnames(
-          error ? 'p-input--error' : 'p-input',
-          placeholder && placeholder.length > 0
-            ? styles.input
-            : styles['input--no-placeholder'],
-          { [styles['input--with-prefix']]: prefix }
+  ) => {
+    const uniqueId = id ?? uuidv4();
+    return (
+      <div className={`${styles.container} ${className ?? ''}`}>
+        {label && (
+          <label
+            htmlFor={uniqueId}
+            className={classnames('p-p', styles.label, {
+              [styles['label--with-error']]: error,
+              [styles['label--hidden']]: hideLabel,
+            })}
+          >
+            {label}
+          </label>
         )}
-        placeholder=" "
-        disabled={disabled}
-        {...props}
-      />
-      {prefix && (
-        <span
-          className={classnames(
-            styles.prefix,
-            { [styles['prefix--with-error']]: error },
-            { [styles['prefix--disabled']]: disabled }
+        <div style={{ position: 'relative' }}>
+          <input
+            id={uniqueId}
+            data-testid="ds-input-input"
+            type="text"
+            ref={ref}
+            className={classnames(
+              error ? 'p-input--error' : 'p-input',
+              !label && placeholder && placeholder.length > 0
+                ? styles.input
+                : styles['input--no-placeholder'],
+              { [styles['input--with-prefix']]: prefix }
+            )}
+            placeholder={label ? placeholder : ' '}
+            disabled={disabled}
+            {...props}
+          />
+          {prefix && (
+            <span
+              className={classnames(
+                styles.prefix,
+                { [styles['prefix--with-error']]: error },
+                { [styles['prefix--disabled']]: disabled }
+              )}
+            >
+              {prefix}
+            </span>
           )}
-        >
-          {prefix}
-        </span>
-      )}
-      <span
-        className={classnames(
-          styles.placeholder,
-          { [styles['placeholder--with-prefix']]: prefix },
-          { [styles['placeholder--with-error']]: error }
+          {!label && (
+            <label
+              htmlFor={uniqueId}
+              className={classnames(
+                styles.placeholder,
+                { [styles['placeholder--with-prefix']]: prefix },
+                { [styles['placeholder--with-error']]: error }
+              )}
+            >
+              {placeholder}
+            </label>
+          )}
+        </div>
+        {error && (
+          <p className={`p-p--small tc-red-500 w100 ${styles.error}`}>
+            {error}
+          </p>
         )}
-      >
-        {placeholder}
-      </span>
-      {error && (
-        <p className={`p-p--small tc-red-500 w100 ${styles.error}`}>{error}</p>
-      )}
-    </div>
-  )
+      </div>
+    );
+  }
 );
