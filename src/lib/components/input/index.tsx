@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
 
 import styles from './style.module.scss';
+
+const generateUniqueId = () => {
+  return `input-id-${Math.floor(Math.random() * 10000000)}`;
+};
 
 // Something weird is going on with enterKeyHint that makes it a required field under certain circumstances. The & Omit<…> and & Pick<…> is a hacky way to go around that.
 export type InputProps = {
@@ -29,7 +32,7 @@ export default React.forwardRef(
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const uniqueId = id ?? uuidv4();
+    const [uniqueId] = useState(id ?? generateUniqueId());
     return (
       <div className={`${styles.container} ${className ?? ''}`}>
         {label && (
