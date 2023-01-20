@@ -16,7 +16,7 @@ const TableArrows = (props: TableArrowsProps) => {
   const handleButtonClick = (value: ArrowValues) => () => onClick(value);
 
   return (
-    <div className={`mt24 ${styles.container}`}>
+    <div className={styles.container}>
       <button
         onClick={handleButtonClick('prev')}
         className={classNames(

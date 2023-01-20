@@ -186,39 +186,43 @@ const ComparisonTable = <T extends { id: number }>(
                         </ScrollSyncPane>
                       </AccordionItem>
                     ) : (
-                      <ScrollSyncPane>
-                        <div
-                          className={classNames(
-                            baseStyles.container,
-                            styles?.container,
-                            {
-                              [baseStyles.noScrollBars]: hideScrollBars,
-                            }
-                          )}
-                        >
+                      <div key={idString}>
+                        <ScrollSyncPane>
                           <div
                             className={classNames(
-                              baseStyles['overflow-container']
+                              baseStyles.container,
+                              styles?.container,
+                              {
+                                [baseStyles.noScrollBars]: hideScrollBars,
+                              }
                             )}
                           >
-                            <div className={baseStyles['group-container']}>
-                              {
-                                /**
-                                 * Print a table subheader if the `label` value is present
-                                 */
-                                headerGroup.label && !collapsibleSections && (
-                                  <div className={baseStyles['group-title']}>
-                                    <h4 className={`p-h4 ${baseStyles.sticky}`}>
-                                      {headerGroup.label}
-                                    </h4>
-                                  </div>
-                                )
-                              }
-                              {content}
+                            <div
+                              className={classNames(
+                                baseStyles['overflow-container']
+                              )}
+                            >
+                              <div className={baseStyles['group-container']}>
+                                {
+                                  /**
+                                   * Print a table subheader if the `label` value is present
+                                   */
+                                  headerGroup.label && !collapsibleSections && (
+                                    <div className={baseStyles['group-title']}>
+                                      <h4
+                                        className={`p-h4 ${baseStyles.sticky}`}
+                                      >
+                                        {headerGroup.label}
+                                      </h4>
+                                    </div>
+                                  )
+                                }
+                                {content}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </ScrollSyncPane>
+                        </ScrollSyncPane>
+                      </div>
                     )}
                   </>
                 );
