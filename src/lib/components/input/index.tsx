@@ -40,7 +40,7 @@ export default React.forwardRef(
             htmlFor={uniqueId}
             className={classnames('p-p', styles.label, {
               [styles['label--with-error']]: error,
-              [styles['label--hidden']]: hideLabel,
+              "sr-only": hideLabel,
             })}
           >
             {label}

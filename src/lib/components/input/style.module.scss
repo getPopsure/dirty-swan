@@ -101,12 +101,6 @@
   &--with-error {
     color: var(--ds-red-500);
   }
-
-  &--hidden {
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-  }
 }
 
 .error {
