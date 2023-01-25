@@ -4,11 +4,14 @@
   "author": "Vincent Audoire <vincent@getpopsure.com>",
   "license": "MIT",
   "private": false,
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git@github.com:getPopsure/dirtySwan.git"
   },
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
