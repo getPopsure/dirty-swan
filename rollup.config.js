@@ -47,10 +47,10 @@ export default [
     input: Object.fromEntries(
       glob
         // we need to look into why adding ts breaks the build
-        .sync('src/**/*(*.tsx)')
+        .sync('src/lib/**/*(*.tsx)')
         .map((file) => [
           path.relative(
-            'src',
+            'src/lib',
             file.slice(0, file.length - path.extname(file).length)
           ),
           fileURLToPath(new URL(file, import.meta.url)),
