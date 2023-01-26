@@ -10,6 +10,8 @@ interface Props {
   file: UploadedFile;
   onRemoveFile: (id: string) => void;
   uploading: boolean;
+  showSpinnerLoader?: boolean;
+  showProgressLoader?: boolean;
 }
 
 const UploadFileCell: React.FC<Props> = ({
@@ -17,6 +19,8 @@ const UploadFileCell: React.FC<Props> = ({
   file,
   onRemoveFile,
   uploading,
+  showSpinnerLoader = false,
+  showProgressLoader = true,
 }) => {
   const { id, error, name, progress, previewUrl } = file;
   const isComplete = uploadStatus === 'COMPLETE';
@@ -51,7 +55,8 @@ const UploadFileCell: React.FC<Props> = ({
           <div className={`p-p wmx5 ${styles['upload-display-text']}`}>
             {mapDisplayText[uploadStatus]}
           </div>
-          {isUploading && (
+
+          {isUploading && showProgressLoader && (
             <div className={`mt8 w100 ${styles['progress-bar-container']}`}>
               <div className={`${styles['progress-bar']}`} />
               <div
@@ -68,7 +73,9 @@ const UploadFileCell: React.FC<Props> = ({
         })}
       >
         {isUploading ? (
-          <div className={`p-spinner p-spinner__m ${styles.spinner}`} />
+          <div className={styles.spinner}>
+            {showSpinnerLoader && <div className='ds-spinner ds-spinner__m' />}
+          </div>
         ) : (
           <div>
             {isComplete && (

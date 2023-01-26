@@ -37,6 +37,8 @@ export interface UploadedFile {
   previewUrl?: string;
   progress: number;
   error?: string;
+  showProgressLoader?: boolean;
+  showSpinnerLoader?: boolean;
 }
 
 interface Props {
@@ -120,6 +122,8 @@ export default ({
                 file={file}
                 key={file.id}
                 onRemoveFile={onRemoveFile}
+                showProgressLoader={file.showProgressLoader}
+                showSpinnerLoader={file.showSpinnerLoader}
                 uploading={uploading}
               />
             );
