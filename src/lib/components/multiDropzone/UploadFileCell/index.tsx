@@ -3,71 +3,30 @@ import classnames from 'classnames';
 
 import styles from './style.module.scss';
 import icons from '../icons/index';
-import { UploadStatus, UploadedFile, FileType } from '..';
+import { UploadStatus, UploadedFile } from '..';
 
-const getUploadingIcon = (type: FileType | string): string => {
-  switch (type) {
-    case 'heic':
-      return icons.heicIcon;
-    case 'bmp':
-      return icons.bmpIcon;
-    case 'doc':
-      return icons.docIcon;
-    case 'docx':
-      return icons.docxIcon;
-    case 'jpeg':
-      return icons.jpegIcon;
-    case 'jpg':
-      return icons.jpgIcon;
-    case 'pdf':
-      return icons.pdfIcon;
-    case 'png':
-      return icons.pngIcon;
-    default:
-      return icons.genericIcon;
-  }
-};
-
-const getCompleteIcon = (type: FileType | string): string => {
-  switch (type) {
-    case 'heic':
-      return icons.heicCompleteIcon;
-    case 'bmp':
-      return icons.bmpCompleteIcon;
-    case 'doc':
-      return icons.docCompleteIcon;
-    case 'docx':
-      return icons.docxCompleteIcon;
-    case 'jpeg':
-      return icons.jpegCompleteIcon;
-    case 'jpg':
-      return icons.jpgCompleteIcon;
-    case 'pdf':
-      return icons.pdfCompleteIcon;
-    case 'png':
-      return icons.pngCompleteIcon;
-    default:
-      return icons.genericCompleteIcon;
-  }
-};
-
-export default ({
-  uploadStatus,
-  file,
-  onRemoveFile,
-  uploading,
-}: {
+interface Props {
   uploadStatus: UploadStatus;
   file: UploadedFile;
   onRemoveFile: (id: string) => void;
   uploading: boolean;
+}
+
+const UploadFileCell: React.FC<Props> = ({
+  uploadStatus,
+  file,
+  onRemoveFile,
+  uploading,
 }) => {
-  const { id, error, type, name, progress, previewUrl } = file;
+  const { id, error, name, progress, previewUrl } = file;
+  const isComplete = uploadStatus === 'COMPLETE';
+  const isUploading = uploadStatus === 'UPLOADING';
+  const hasError = uploadStatus === 'ERROR';
 
   const mapFileIcon: { [k in UploadStatus]: string } = {
-    UPLOADING: getUploadingIcon(type),
-    COMPLETE: getCompleteIcon(type),
-    ERROR: icons.errorIcon,
+    UPLOADING: icons.fileUploadIcon,
+    COMPLETE: icons.fileIcon,
+    ERROR: icons.fileErrorIcon,
   };
 
   const mapDisplayText: { [s in UploadStatus]: string } = {
@@ -79,7 +38,7 @@ export default ({
   return (
     <div
       className={classnames(`mt8 ${styles['upload-file-cell']}`, {
-        [styles['upload-file-cell-error']]: uploadStatus === 'ERROR',
+        [styles['upload-file-cell-error']]: hasError,
       })}
     >
       <div className={`w100 ${styles['cell-left-section']}`}>
@@ -92,7 +51,7 @@ export default ({
           <div className={`p-p wmx5 ${styles['upload-display-text']}`}>
             {mapDisplayText[uploadStatus]}
           </div>
-          {uploadStatus === 'UPLOADING' && (
+          {isUploading && (
             <div className={`mt8 w100 ${styles['progress-bar-container']}`}>
               <div className={`${styles['progress-bar']}`} />
               <div
@@ -105,14 +64,14 @@ export default ({
       </div>
       <div
         className={classnames(styles['cell-right-section'], {
-          [styles['cell-right-section-complete']]: uploadStatus === 'COMPLETE',
+          [styles['cell-right-section-complete']]: isComplete,
         })}
       >
-        {uploadStatus === 'UPLOADING' ? (
+        {isUploading ? (
           <div className={`p-spinner p-spinner__m ${styles.spinner}`} />
         ) : (
           <div>
-            {uploadStatus === 'COMPLETE' && (
+            {isComplete && (
               <a
                 className={styles['view-icon']}
                 href={previewUrl}
@@ -122,11 +81,12 @@ export default ({
                 <img src={icons.eyeIcon} alt="preview" />
               </a>
             )}
+
             <img
               className={classnames(styles['remove-icon'], {
                 [styles.disabled]: uploading,
               })}
-              src={icons.trashIcon}
+              src={hasError ? icons.trashErrorIcon : icons.trashIcon}
               onClick={() => onRemoveFile(id)}
               alt="remove"
             />
@@ -136,3 +96,5 @@ export default ({
     </div>
   );
 };
+
+export default UploadFileCell;
