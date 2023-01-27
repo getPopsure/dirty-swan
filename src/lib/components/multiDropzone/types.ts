@@ -12,7 +12,7 @@ export type FileType =
   | 'docx'
   | 'pdf';
 
-export interface UploadedFile {
+  export interface UploadedFile {
   id: string;
   name: string;
   type: FileType | string;
@@ -24,7 +24,6 @@ export interface UploadedFile {
 }
 
 export type AcceptType = "document" | "image" | Accept;
-
 export interface TextOverrides {
   currentlyUploadingText?: string;
   fileTypeError?: string;
@@ -33,7 +32,6 @@ export interface TextOverrides {
   supportsTextShort?: string;
   tooManyFilesError?: string;
 }
-
 export interface ErrorMessage {
   inlineError: boolean;
   message: string;
