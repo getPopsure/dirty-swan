@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
-import { useDropzone, FileRejection } from 'react-dropzone';
 import classnames from 'classnames';
+import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './style.module.scss';
 import icons from './icons/index'; // TODO: inline all of the svgs
 import UploadFileCell from './UploadFileCell';
@@ -11,6 +12,7 @@ import {
   getFormattedAcceptObject, 
   getUploadStatus 
 } from './utils';
+
 import { 
   AcceptType, 
   ErrorMessage, 
@@ -38,37 +40,42 @@ const MultiDropZone = ({
   uploading,
   onRemoveFile,
   isCondensed = false,
-  maxFiles = 0,
+  maxFiles = 2,
   textOverrides,
 }: Props) => {
-  const [error, setError] = useState<ErrorMessage | null>();
-  const resetError = () => setError(null);
+  const [errors, setErrors] = useState<ErrorMessage[]>([]);
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
   const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileList || "JPEG, PNG, PDF"}`;
+  const isOverMaxFiles = maxFiles > 0 && uploadedFiles.length > maxFiles;
+
+  const removeError = (removeId: string) => (
+    setErrors(errors.filter(({ id }) => id !== removeId))
+  );
 
   const onDrop = useCallback(
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
-      resetError();
-
-      if (filesRejected.length > 0) {
-        setError(getErrorMessage(
-          filesRejected[0].errors[0],
-          { fileList },
-          textOverrides
-        ));
-        return;
-      }
-
       onFileSelect(acceptedFiles);
+
+      setErrors((previousErrors) => ([
+        ...previousErrors,
+        ...filesRejected.map(({ errors }) => ({
+          id: uuidv4(),
+          message: getErrorMessage(
+            errors[0],
+            { fileList },
+            textOverrides
+          ),
+        }))
+      ]));
     },
     [fileList, onFileSelect, textOverrides]
   );
 
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: formattedAccept,
     onDrop,
-    maxFiles
   });
 
   return (
@@ -99,24 +106,21 @@ const MultiDropZone = ({
         </div>
       </div>
 
-      {error?.message && !error?.inlineError && (
+      {errors.map(({ id, message }) => message && (
         <UploadFileCell
           uploadStatus="ERROR"
           file={{
-            error: error.message,
-            id: "error",
-            name: error.message,
+            error: message,
+            id,
+            name: message,
             progress: 0,
             type: "",
           }}
-          onRemoveFile={resetError}
+          key={id}
+          onRemoveFile={() => removeError(id)}
           uploading={false}
         />
-      )}
-
-      <AnimateHeight duration={300} height={error?.message && error?.inlineError ? 'auto' : 0}>
-        <p className="tc-red-500 p-p--small">{error?.message}</p>
-      </AnimateHeight>
+      ))}
 
       {uploadedFiles.length > 0 && (
         <div className="w100 mt16">
@@ -131,6 +135,12 @@ const MultiDropZone = ({
           ))}
         </div>
       )}
+
+      <AnimateHeight duration={300} height={isOverMaxFiles ? 'auto' : 0}>
+        <p className="tc-red-500 p-p--small">
+          {textOverrides?.tooManyFilesError || "Too many files."}
+        </p>
+      </AnimateHeight>
     </div>
   );
 };

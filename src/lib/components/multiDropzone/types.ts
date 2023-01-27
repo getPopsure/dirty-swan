@@ -2,17 +2,13 @@ import { Accept } from "react-dropzone";
 
 export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
 
-export type FileType =
-  | 'heic'
-  | 'bmp'
-  | 'jpeg'
-  | 'jpg'
-  | 'png'
-  | 'doc'
-  | 'docx'
-  | 'pdf';
+export const DOCUMENT_FILES = ['doc', 'docx', 'pdf'];
+export const IMAGE_FILES = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
 
-  export interface UploadedFile {
+export const FILE_TYPES = [...DOCUMENT_FILES, ...IMAGE_FILES];
+export type FileType = typeof FILE_TYPES[number];
+
+export interface UploadedFile {
   id: string;
   name: string;
   type: FileType | string;
@@ -33,6 +29,6 @@ export interface TextOverrides {
   tooManyFilesError?: string;
 }
 export interface ErrorMessage {
-  inlineError: boolean;
+  id: string;
   message: string;
 }
