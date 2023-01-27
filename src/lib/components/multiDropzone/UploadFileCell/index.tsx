@@ -18,7 +18,16 @@ const UploadFileCell: React.FC<Props> = ({
   onRemoveFile,
   uploading,
 }) => {
-  const { id, error, name, progress, previewUrl } = file;
+  const {
+    id,
+    error,
+    name,
+    progress,
+    previewUrl,
+    showLoadingSpinner = false,
+    showProgressBar = true
+  } = file;
+
   const isComplete = uploadStatus === 'COMPLETE';
   const isUploading = uploadStatus === 'UPLOADING';
   const hasError = uploadStatus === 'ERROR';
@@ -51,7 +60,8 @@ const UploadFileCell: React.FC<Props> = ({
           <div className={`p-p wmx5 ${styles['upload-display-text']}`}>
             {mapDisplayText[uploadStatus]}
           </div>
-          {isUploading && (
+
+          {isUploading && showProgressBar && (
             <div className={`mt8 w100 ${styles['progress-bar-container']}`}>
               <div className={`${styles['progress-bar']}`} />
               <div
@@ -68,7 +78,9 @@ const UploadFileCell: React.FC<Props> = ({
         })}
       >
         {isUploading ? (
-          <div className={`p-spinner p-spinner__m ${styles.spinner}`} />
+          <div className={styles.spinner}>
+            {showLoadingSpinner && <div className='ds-spinner ds-spinner__m' />}
+          </div>
         ) : (
           <div>
             {isComplete && (
