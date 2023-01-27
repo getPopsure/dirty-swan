@@ -122,8 +122,6 @@ export default ({
                 file={file}
                 key={file.id}
                 onRemoveFile={onRemoveFile}
-                showProgressLoader={file.showProgressLoader}
-                showSpinnerLoader={file.showSpinnerLoader}
                 uploading={uploading}
               />
             );

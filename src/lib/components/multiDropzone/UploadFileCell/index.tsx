@@ -10,8 +10,6 @@ interface Props {
   file: UploadedFile;
   onRemoveFile: (id: string) => void;
   uploading: boolean;
-  showSpinnerLoader?: boolean;
-  showProgressLoader?: boolean;
 }
 
 const UploadFileCell: React.FC<Props> = ({
@@ -19,10 +17,17 @@ const UploadFileCell: React.FC<Props> = ({
   file,
   onRemoveFile,
   uploading,
-  showSpinnerLoader = false,
-  showProgressLoader = true,
 }) => {
-  const { id, error, name, progress, previewUrl } = file;
+  const {
+    id,
+    error,
+    name,
+    progress,
+    previewUrl,
+    showSpinnerLoader = false,
+    showProgressLoader = true
+  } = file;
+
   const isComplete = uploadStatus === 'COMPLETE';
   const isUploading = uploadStatus === 'UPLOADING';
   const hasError = uploadStatus === 'ERROR';
