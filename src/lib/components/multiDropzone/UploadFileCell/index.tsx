@@ -24,8 +24,8 @@ const UploadFileCell: React.FC<Props> = ({
     name,
     progress,
     previewUrl,
-    showSpinnerLoader = false,
-    showProgressLoader = true
+    showLoadingSpinner = false,
+    showProgressBar = true
   } = file;
 
   const isComplete = uploadStatus === 'COMPLETE';
@@ -61,7 +61,7 @@ const UploadFileCell: React.FC<Props> = ({
             {mapDisplayText[uploadStatus]}
           </div>
 
-          {isUploading && showProgressLoader && (
+          {isUploading && showProgressBar && (
             <div className={`mt8 w100 ${styles['progress-bar-container']}`}>
               <div className={`${styles['progress-bar']}`} />
               <div
@@ -79,7 +79,7 @@ const UploadFileCell: React.FC<Props> = ({
       >
         {isUploading ? (
           <div className={styles.spinner}>
-            {showSpinnerLoader && <div className='ds-spinner ds-spinner__m' />}
+            {showLoadingSpinner && <div className='ds-spinner ds-spinner__m' />}
           </div>
         ) : (
           <div>

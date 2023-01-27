@@ -37,8 +37,8 @@ export interface UploadedFile {
   previewUrl?: string;
   progress: number;
   error?: string;
-  showProgressLoader?: boolean;
-  showSpinnerLoader?: boolean;
+  showProgressBar?: boolean;
+  showLoadingSpinner?: boolean;
 }
 
 interface Props {
