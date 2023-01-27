@@ -94,7 +94,7 @@ export default ({
         <input {...getInputProps()} />
         <img
           className={isCondensed ? styles.img : ''}
-          src={icons.uploadIcon}
+          src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
           alt="purple cloud with an arrow"
         />
         <div className={`p-h4 mt8 ${isCondensed ? styles.textInline : ''}`}>
