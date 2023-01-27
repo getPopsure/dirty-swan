@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import styles from './style.module.scss';
 import icons from '../icons/index';
-import { UploadStatus, UploadedFile } from '..';
+import { UploadStatus, UploadedFile } from '../types';
 
 interface Props {
   uploadStatus: UploadStatus;
@@ -57,7 +57,7 @@ const UploadFileCell: React.FC<Props> = ({
           alt=""
         />
         <div className="w100">
-          <div className={`p-p wmx5 ${styles['upload-display-text']}`}>
+          <div className={`p-p ${styles['upload-display-text']}`}>
             {mapDisplayText[uploadStatus]}
           </div>
 

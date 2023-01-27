@@ -130,6 +130,32 @@ MultiDropzone component allows upload of multiple documents / files.
   />
 </Preview>
 
+### Accepting only images
+
+<Preview>
+  <MultiDropzone
+    accept="image"
+    isCondensed
+    uploadedFiles={[]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+  />
+</Preview>
+
+### Accepting only documents
+
+<Preview>
+  <MultiDropzone
+    accept="document"
+    isCondensed
+    uploadedFiles={[]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+  />
+</Preview>
+
 ### i18n support
 
 <Preview>
@@ -140,9 +166,9 @@ MultiDropzone component allows upload of multiple documents / files.
     onRemoveFile={() => {}}
     textOverrides={{
       instructionsText: 'Datei auswählen oder per Drag & Drop platzieren',
-      supportsText: 'Unterstützt werden JPEG, PNG, PDF',
+      supportsTextShort: 'Unterstützt werden',
       currentlyUploadingText:
-        'Bitte warten während die Datei hochgeladen wird...',
+        'Bitte warten während die Datei hochgeladen wird...'
     }}
   />
 </Preview>
