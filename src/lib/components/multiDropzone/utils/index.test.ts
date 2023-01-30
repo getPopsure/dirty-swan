@@ -36,13 +36,7 @@ describe('getUploadStatus', () => {
 
 describe('getFormattedAcceptObject', () => {
   it('Should return image accept object if is of type image', () => {
-    expect(getFormattedAcceptObject("image")).toEqual({
-      'image/heic': [".heic"],
-      'image/bmp': [".bmp"],
-      'image/jpeg': [".jpeg"],
-      'image/jpg': [".jpg"],
-      'image/png': [".png"]
-    });
+    expect(getFormattedAcceptObject("image")).toEqual(imagesAccept);
   });
 
   it('Should return documents accept object if is of type document', () => {
