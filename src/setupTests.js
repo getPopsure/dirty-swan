@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom';
+
 window.google = {
   maps: {
     StyledMapType: class {},

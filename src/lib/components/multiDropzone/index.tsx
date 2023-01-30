@@ -22,7 +22,7 @@ import {
   UploadStatus 
 } from './types';
 
-interface Props {
+interface MultiDropzoneProps {
   accept?: AcceptType;
   onFileSelect: (files: File[]) => void;
   uploadedFiles: UploadedFile[];
@@ -42,7 +42,7 @@ const MultiDropZone = ({
   isCondensed = false,
   maxFiles = 0,
   textOverrides,
-}: Props) => {
+}: MultiDropzoneProps) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
@@ -75,6 +75,7 @@ const MultiDropZone = ({
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: formattedAccept,
+    disabled: uploading,
     onDrop,
   });
 
@@ -89,7 +90,10 @@ const MultiDropZone = ({
         )}
         {...getRootProps()}
       >
-        <input {...getInputProps()} />
+        <input
+          data-testid="ds-drop-input"
+          {...getInputProps()}
+        />
         <img
           className={isCondensed ? styles.img : ''}
           src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
@@ -145,5 +149,5 @@ const MultiDropZone = ({
   );
 };
 
-export type { FileType, UploadedFile, UploadStatus };
+export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus };
 export default MultiDropZone;

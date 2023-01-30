@@ -1,5 +1,11 @@
 import { Accept, ErrorCode, FileError } from "react-dropzone";
-import { AcceptType, DOCUMENT_FILES, FileType, IMAGE_FILES, TextOverrides, UploadStatus } from "./types";
+import { 
+  AcceptType, 
+  DOCUMENT_FILES, 
+  FileType, 
+  IMAGE_FILES, 
+  TextOverrides,
+  UploadStatus } from "../types";
 
 export const getUploadStatus = (progress: number, error?: string): UploadStatus => {
   if (error) {
@@ -48,7 +54,7 @@ export const formatAcceptFileList = (accept: Accept): string => (
 
 export const getErrorMessage = (
   { code, message }: FileError,
-  { fileList }: { fileList?: string },
+  { fileList = "" }: { fileList?: string },
   textOverrides?: TextOverrides,
 ): string => {
   switch (code) {

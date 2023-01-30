@@ -65,6 +65,7 @@ const UploadFileCell: React.FC<Props> = ({
             <div className={`mt8 w100 ${styles['progress-bar-container']}`}>
               <div className={`${styles['progress-bar']}`} />
               <div
+                data-testid="ds-filecell-progressbar"
                 className={`${styles['progress-bar-filler']}`}
                 style={{ width: `${progress}%` }}
               />
@@ -79,7 +80,12 @@ const UploadFileCell: React.FC<Props> = ({
       >
         {isUploading ? (
           <div className={styles.spinner}>
-            {showLoadingSpinner && <div className='ds-spinner ds-spinner__m' />}
+            {showLoadingSpinner && (
+              <div
+                className='ds-spinner ds-spinner__m'
+                data-testid="ds-filecell-spinner"
+              />
+            )}
           </div>
         ) : (
           <div>
