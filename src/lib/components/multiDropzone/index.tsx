@@ -1,61 +1,40 @@
 import { useCallback, useState } from 'react';
-import { useDropzone, FileRejection } from 'react-dropzone';
 import classnames from 'classnames';
+import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './style.module.scss';
 import icons from './icons/index'; // TODO: inline all of the svgs
 import UploadFileCell from './UploadFileCell';
+import { 
+  formatAcceptFileList, 
+  getErrorMessage, 
+  getFormattedAcceptObject, 
+  getUploadStatus 
+} from './utils';
 
-export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
+import { 
+  AcceptType, 
+  ErrorMessage, 
+  FileType, 
+  TextOverrides, 
+  UploadedFile, 
+  UploadStatus 
+} from './types';
 
-export type FileType =
-  | 'heic'
-  | 'bmp'
-  | 'jpeg'
-  | 'jpg'
-  | 'png'
-  | 'doc'
-  | 'docx'
-  | 'pdf';
-
-const getUploadStatus = (progress: number, error?: string): UploadStatus => {
-  if (error) {
-    return 'ERROR';
-  }
-
-  if (progress < 100) {
-    return 'UPLOADING';
-  }
-
-  return 'COMPLETE';
-};
-
-export interface UploadedFile {
-  id: string;
-  name: string;
-  type: FileType | string;
-  previewUrl?: string;
-  progress: number;
-  error?: string;
-  showProgressBar?: boolean;
-  showLoadingSpinner?: boolean;
-}
-
-interface Props {
+interface MultiDropzoneProps {
+  accept?: AcceptType;
   onFileSelect: (files: File[]) => void;
   uploadedFiles: UploadedFile[];
   uploading: boolean;
   onRemoveFile: (id: string) => void;
   isCondensed?: boolean;
   maxFiles?: number;
-  textOverrides?: {
-    instructionsText?: string;
-    currentlyUploadingText?: string;
-    supportsText?: string;
-  };
+  textOverrides?: TextOverrides;
 }
 
-export default ({
+const MultiDropZone = ({
+  accept,
   uploadedFiles,
   onFileSelect,
   uploading,
@@ -63,24 +42,42 @@ export default ({
   isCondensed = false,
   maxFiles = 0,
   textOverrides,
-}: Props) => {
-  const [error, setError] = useState('');
+}: MultiDropzoneProps) => {
+  const [errors, setErrors] = useState<ErrorMessage[]>([]);
+  const formattedAccept = getFormattedAcceptObject(accept);
+  const fileList = formatAcceptFileList(formattedAccept);
+  const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileList || "JPEG, PNG, PDF"}`;
+  const isOverMaxFiles = maxFiles > 0 && uploadedFiles.length > maxFiles;
+
+  const removeError = (removeId: string) => (
+    setErrors(errors.filter(({ id }) => id !== removeId))
+  );
 
   const onDrop = useCallback(
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
-      setError('');
-
-      if (filesRejected.length > 0) {
-        setError(filesRejected[0].errors[0].message);
-        return;
-      }
-
       onFileSelect(acceptedFiles);
+
+      setErrors((previousErrors) => ([
+        ...previousErrors,
+        ...filesRejected.map(({ errors }) => ({
+          id: uuidv4(),
+          message: getErrorMessage(
+            errors[0],
+            { fileList },
+            textOverrides
+          ),
+        }))
+      ]));
     },
-    [onFileSelect]
+    [fileList, onFileSelect, textOverrides]
   );
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles });
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: formattedAccept,
+    disabled: uploading,
+    onDrop,
+  });
 
   return (
     <div className={styles.container}>
@@ -93,7 +90,10 @@ export default ({
         )}
         {...getRootProps()}
       >
-        <input {...getInputProps()} />
+        <input
+          data-testid="ds-drop-input"
+          {...getInputProps()}
+        />
         <img
           className={isCondensed ? styles.img : ''}
           src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
@@ -106,28 +106,48 @@ export default ({
             : textOverrides?.instructionsText || 'Choose file or drag & drop'}
         </div>
         <div className="p-p--small tc-grey-500">
-          {textOverrides?.supportsText || 'Supports JPEG, PNG, PDF'}
+          {textOverrides?.supportsText || placeholder}
         </div>
       </div>
-      <AnimateHeight duration={300} height={error ? 'auto' : 0}>
-        <p className="tc-red-500 p-p--small">{error}</p>
-      </AnimateHeight>
+
+      {errors.map(({ id, message }) => message && (
+        <UploadFileCell
+          uploadStatus="ERROR"
+          file={{
+            error: message,
+            id,
+            name: message,
+            progress: 0,
+            type: "",
+          }}
+          key={id}
+          onRemoveFile={() => removeError(id)}
+          uploading={false}
+        />
+      ))}
+
       {uploadedFiles.length > 0 && (
         <div className="w100 mt16">
-          {uploadedFiles.map((file) => {
-            const uploadStatus = getUploadStatus(file.progress, file.error);
-            return (
-              <UploadFileCell
-                uploadStatus={uploadStatus}
-                file={file}
-                key={file.id}
-                onRemoveFile={onRemoveFile}
-                uploading={uploading}
-              />
-            );
-          })}
+          {uploadedFiles.map((file) => (
+            <UploadFileCell
+              uploadStatus={getUploadStatus(file.progress, file.error)}
+              file={file}
+              key={file.id}
+              onRemoveFile={onRemoveFile}
+              uploading={uploading}
+            />
+          ))}
         </div>
       )}
+
+      <AnimateHeight duration={300} height={isOverMaxFiles ? 'auto' : 0}>
+        <p className="tc-red-500 p-p--small">
+          {textOverrides?.tooManyFilesError || "Too many files."}
+        </p>
+      </AnimateHeight>
     </div>
   );
 };
+
+export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus };
+export default MultiDropZone;
