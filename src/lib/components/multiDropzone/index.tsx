@@ -40,7 +40,7 @@ const MultiDropZone = ({
   uploading,
   onRemoveFile,
   isCondensed = false,
-  maxFiles = 2,
+  maxFiles = 0,
   textOverrides,
 }: Props) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
