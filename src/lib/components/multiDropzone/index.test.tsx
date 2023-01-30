@@ -6,7 +6,7 @@ import MultiDropzone, { MultiDropzoneProps } from '.';
 
 const mockOnFileSelect = jest.fn();
 const mockOnRemoveFile = jest.fn();
-const file = new File(['FileTest'], 'chucknorris.png', { type: 'image/png' });
+const file = new File(['DummyFile'], 'dummy.png', { type: 'image/png' });
 
 const inputTestId = "ds-drop-input";
 const spinnerTestId = "ds-filecell-spinner";
