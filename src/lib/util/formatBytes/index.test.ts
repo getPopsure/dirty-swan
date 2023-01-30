@@ -6,11 +6,11 @@ describe('Format bytes', () => {
   });
 
   it('Should format to 1KB with two decimals', () => {
-    expect(formatBytes(1234)).toEqual("1.21 KB");
+    expect(formatBytes(1234, 2)).toEqual("1.21 KB");
   });
 
   it('Should format to 0 bytes', () => {
-    expect(formatBytes(0)).toEqual("0 bytes");
+    expect(formatBytes(0)).toEqual("0 Bytes");
   });
 
   it('Should format to 1MB', () => {
