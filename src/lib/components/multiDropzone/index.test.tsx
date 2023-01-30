@@ -60,6 +60,21 @@ describe('MultiDropzone component', () => {
       expect(screen.getByText("Too many files.")).toBeVisible();
     });
 
+    it("should show max file size error message", async () => {
+      const screen = setup({maxSize: 10 });
+      const input = screen.getByTestId(inputTestId);
+      const bigFile = file;
+      Object.defineProperty(bigFile, 'size', { value: 1024 });
+
+      await act(async () => {
+        fireEvent.change(input, { target: { files: [bigFile] } });
+      });
+
+      expect(
+        screen.getByText("File is too large. It must be less than 10 Bytes.")
+      ).toBeInTheDocument();
+    });
+
     it("should show wrong filetype error message", async () => {
       const screen = setup({ accept: "document" });
       const input = screen.getByTestId(inputTestId);

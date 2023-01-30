@@ -156,6 +156,19 @@ MultiDropzone component allows upload of multiple documents / files.
   />
 </Preview>
 
+### Limiting file size to 2MB
+
+<Preview>
+  <MultiDropzone
+    isCondensed
+    uploadedFiles={[]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+    maxSize={2096000}
+  />
+</Preview>
+
 ### i18n support
 
 <Preview>

@@ -23,7 +23,9 @@ export type AcceptType = "document" | "image" | Accept;
 export interface TextOverrides {
   currentlyUploadingText?: string;
   fileTypeError?: string;
+  fileTooLargeError?: string;
   instructionsText?: string;
+  sizeUpToText?: string;
   supportsText?: string;
   supportsTextShort?: string;
   tooManyFilesError?: string;
