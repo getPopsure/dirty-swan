@@ -20,28 +20,29 @@ const postcssCustomProperties = require('postcss-custom-properties');
  * Need to look into which plugins are needed for each build.
  *
  */
+const plugins = [
+  external(),
+  postcss({
+    modules: true,
+    plugins: [postcssCustomProperties({ preserve: true })],
+  }),
+  url(),
+  resolve(),
+  commonjs(),
+];
+
 export default [
   {
     input: 'src/lib/index.tsx',
     output: [
       {
-        dir: 'dist',
+        dir: 'dist/cjs',
         format: 'cjs',
         exports: 'named',
         sourcemap: true,
       },
     ],
-    plugins: [
-      external(),
-      postcss({
-        modules: true,
-        plugins: [postcssCustomProperties({ preserve: true })],
-      }),
-      url(),
-      resolve(),
-      typescript(),
-      commonjs(),
-    ],
+    plugins: [...plugins, typescript({ outDir: 'dist/cjs' })],
   },
   {
     input: Object.fromEntries(
@@ -63,16 +64,6 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [
-      external(),
-      postcss({
-        modules: true,
-        plugins: [postcssCustomProperties({ preserve: true })],
-      }),
-      url(),
-      resolve(),
-      typescript(),
-      commonjs(),
-    ],
+    plugins: [...plugins, typescript({ outDir: 'dist/esm' })],
   },
 ];
