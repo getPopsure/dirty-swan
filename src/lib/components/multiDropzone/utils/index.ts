@@ -1,4 +1,5 @@
 import { Accept, ErrorCode, FileError } from "react-dropzone";
+import { formatBytes } from "../../../util/formatBytes";
 import { 
   AcceptType, 
   DOCUMENT_FILES, 
@@ -54,12 +55,14 @@ export const formatAcceptFileList = (accept: Accept): string => (
 
 export const getErrorMessage = (
   { code, message }: FileError,
-  { fileList = "" }: { fileList?: string },
+  { fileList = "", maxSize }: { fileList?: string, maxSize?: number },
   textOverrides?: TextOverrides,
 ): string => {
   switch (code) {
     case ErrorCode.FileInvalidType:
       return `${textOverrides?.fileTypeError || "File type must be one of"} ${fileList}`;
+    case ErrorCode.FileTooLarge:
+      return `${textOverrides?.fileTooLargeError || "File is too large. It must be less than"} ${formatBytes(maxSize || 0)}.`;
     default:
       return message;
   }

@@ -21,6 +21,7 @@ import {
   UploadedFile, 
   UploadStatus 
 } from './types';
+import { formatBytes } from '../../util/formatBytes';
 
 interface MultiDropzoneProps {
   accept?: AcceptType;
@@ -30,6 +31,7 @@ interface MultiDropzoneProps {
   onRemoveFile: (id: string) => void;
   isCondensed?: boolean;
   maxFiles?: number;
+  maxSize?: number;
   textOverrides?: TextOverrides;
 }
 
@@ -41,12 +43,16 @@ const MultiDropZone = ({
   onRemoveFile,
   isCondensed = false,
   maxFiles = 0,
+  maxSize,
   textOverrides,
 }: MultiDropzoneProps) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
-  const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileList || "JPEG, PNG, PDF"}`;
+  const maxSizePlaceholder = maxSize && maxSize > 0
+  ? `${textOverrides?.sizeUpToText || "up to"} ${formatBytes(maxSize)}`
+  : "";
+const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileList || "JPEG, PNG, PDF"} ${maxSizePlaceholder}`;
   const isOverMaxFiles = maxFiles > 0 && uploadedFiles.length > maxFiles;
 
   const removeError = (removeId: string) => (
@@ -63,19 +69,20 @@ const MultiDropZone = ({
           id: uuidv4(),
           message: getErrorMessage(
             errors[0],
-            { fileList },
+            { fileList, maxSize },
             textOverrides
           ),
         }))
       ]));
     },
-    [fileList, onFileSelect, textOverrides]
+    [fileList, maxSize, onFileSelect, textOverrides]
   );
 
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: formattedAccept,
     disabled: uploading,
+    maxSize,
     onDrop,
   });
 
