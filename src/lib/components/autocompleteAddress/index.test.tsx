@@ -1,5 +1,5 @@
 import { Address } from '@popsure/public-models';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '../../util/testUtils';
 
 import AutoCompleteAddress from '.';
 
@@ -27,7 +27,7 @@ const setup = (
 const inputTestId = 'ds-input-input';
 
 describe('AutocompleteAddress component', () => {
-  it('Should show all address fields once a search is completed', () => {
+  it('Should show all address fields once a search is completed', async () => {
     // @ts-ignore
     window.google.maps.places.Autocomplete = class {
       reference: HTMLElement;
@@ -55,29 +55,32 @@ describe('AutocompleteAddress component', () => {
       }
     };
 
-    const screen = setup();
-    fireEvent.change(screen.getByTestId(inputTestId), {
+    const { getAllByTestId, getByTestId } = setup();
+
+    fireEvent.change(getByTestId(inputTestId), {
       target: { value: 'Köpeniker' },
     });
 
-    const inputs = screen.getAllByTestId(inputTestId);
-    expect(inputs[0].getAttribute('value')).toBe('Köpeniker Strasse');
+    const inputs = getAllByTestId(inputTestId);
+
     expect(inputs.length).toEqual(5);
+    expect(inputs[0].getAttribute('value')).toBe("Köpeniker Strasse");
   });
 
   it('Should enable to enter the address manually', async () => {
     const callback = jest.fn();
-    const screen = setup(undefined, callback);
-    const btn = await screen.findByText('Enter address manually');
-    fireEvent.click(btn);
+    const { findByText, getAllByTestId, user } = setup(undefined, callback);
+    const btn = await findByText('Enter address manually');
+
+    await user.click(btn);
 
     // fill out all fields
-    const inputs = screen.getAllByTestId(inputTestId);
+    const inputs = getAllByTestId(inputTestId);
 
-    fireEvent.change(inputs[0], { target: { value: 'Köpeniker Strasse' } });
-    fireEvent.change(inputs[1], { target: { value: '4000' } });
-    fireEvent.change(inputs[3], { target: { value: '10179' } });
-    fireEvent.change(inputs[4], { target: { value: 'Berlin' } });
+    await user.type(inputs[0], 'Köpeniker Strasse');
+    await user.type(inputs[1], '4000');
+    await user.type(inputs[3], '10179');
+    await user.type(inputs[4], 'Berlin');
 
     // callback should be called with a complete address
     expect(callback).toHaveBeenCalledWith(address);
@@ -85,7 +88,8 @@ describe('AutocompleteAddress component', () => {
 
   it('Should prefill fields if an address is provided', async () => {
     const screen = setup(address);
-    const inputs = screen.getAllByTestId(inputTestId);
+    const inputs = await screen.findAllByTestId(inputTestId);
+
     expect(inputs[0].getAttribute('value')).toBe('Köpeniker Strasse');
     expect(inputs[1].getAttribute('value')).toBe('4000');
     expect(inputs[3].getAttribute('value')).toBe('10179');

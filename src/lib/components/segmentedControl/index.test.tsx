@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '../../util/testUtils';
 
 import SegmentedControl from '.';
 
@@ -15,36 +15,30 @@ const setup = (onChange: (selectedIndex: number) => void = () => {}) => {
 describe('SegmentedControl component', () => {
   it('Should provide the index of the clicked button', async () => {
     const callback = jest.fn();
-    const screen = setup(callback);
-    const buttons = screen.getAllByRole('button');
+    const { getAllByRole, user } = setup(callback);
+    const buttons = getAllByRole('button');
 
     // click first button
-    fireEvent.click(buttons[0]);
+    await user.click(buttons[0]);
 
     // click second button
-    fireEvent.click(buttons[1]);
+    await user.click(buttons[1]);
 
     expect(callback.mock.calls).toEqual([[0], [1]]);
   });
 
   it('Should provide the index of the selected button on key down', async () => {
     const callback = jest.fn();
-    const screen = setup(callback);
-    const buttons = screen.getAllByRole('button');
+    const { getAllByRole, user } = setup(callback);
+    const buttons = getAllByRole('button');
 
-    // select first button on key down
-    fireEvent.keyDown(buttons[0], {
-      key: 'Enter',
-      code: 'Enter',
-      charCode: 13,
-    });
+    // focus first button and select with keyboard
+    buttons[0].focus();
+    await user.keyboard('{enter}');
 
-    // select second button on key down
-    fireEvent.keyDown(buttons[1], {
-      key: 'Enter',
-      code: 'Enter',
-      charCode: 13,
-    });
+    // focus second button and select with keyboard
+    buttons[1].focus();
+    await user.keyboard('{enter}');
 
     expect(callback.mock.calls).toEqual([[0], [1]]);
   });

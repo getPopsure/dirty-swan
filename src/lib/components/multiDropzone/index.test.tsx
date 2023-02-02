@@ -1,5 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { act, fireEvent, render } from '../../util/testUtils';
 import '@testing-library/jest-dom';
 
 import MultiDropzone, { MultiDropzoneProps } from '.';
@@ -36,13 +35,10 @@ const setup = ({
 
 describe('MultiDropzone component', () => {
   it("should call onFileSelect on files change", async () => {
-    const screen = setup({});
-    const input = screen.getByTestId(inputTestId);
+    const { getByTestId, user } = setup({});
     const files = [file, file];
 
-    await act(async () => {
-      fireEvent.change(input, { target: { files } });
-    });
+    await user.upload(getByTestId(inputTestId), files);
 
     expect(mockOnFileSelect).toHaveBeenCalledWith(files);
   });
@@ -61,46 +57,45 @@ describe('MultiDropzone component', () => {
     });
 
     it("should show max file size error message", async () => {
-      const screen = setup({maxSize: 10 });
-      const input = screen.getByTestId(inputTestId);
+      const { getByTestId, getByText, user } = setup({ maxSize: 10 });
       const bigFile = file;
       Object.defineProperty(bigFile, 'size', { value: 1024 });
 
-      await act(async () => {
-        fireEvent.change(input, { target: { files: [bigFile] } });
-      });
+      await user.upload(getByTestId(inputTestId), [bigFile]);
 
       expect(
-        screen.getByText("File is too large. It must be less than 10 Bytes.")
+        getByText("File is too large. It must be less than 10 Bytes.")
       ).toBeInTheDocument();
     });
 
     it("should show wrong filetype error message", async () => {
-      const screen = setup({ accept: "document" });
-      const input = screen.getByTestId(inputTestId);
-  
+      const { getByTestId, getByText } = setup({ accept: "document" });
+      const input = getByTestId(inputTestId);
+
       await act(async () => {
+        // Keeping fireevent to emulate file change like drop
+        // Using userevent.upload doesn't work since input has an accept/html validation
         fireEvent.change(input, { target: { files: [file] } });
       });
-  
+
       expect(
-        screen.getByText("File type must be one of DOC, DOCX, PDF")
+        getByText("File type must be one of DOC, DOCX, PDF")
       ).toBeInTheDocument();
     });
 
     it("should remove wrong filetype error message", async () => {
-      const screen = setup({ accept: "document" });
-      const input = screen.getByTestId(inputTestId);
-  
+      const { getByAltText, getByTestId, queryByText, user } = setup({ accept: "document" });
+      const input = getByTestId(inputTestId);
+
       await act(async () => {
+        // Keeping fireevent to emulate file change like drop
+        // Using userevent.upload doesn't work since input has an accept/html validation
         fireEvent.change(input, { target: { files: [file] } });
       });
-      
-      screen.getByAltText("remove").click();
 
-      expect(
-        screen.queryByText("File type must be one of DOC, DOCX, PDF")
-      ).not.toBeInTheDocument();
+      await user.click(getByAltText("remove"));
+
+      expect(queryByText("File type must be one of DOC, DOCX, PDF")).not.toBeInTheDocument();
     });
   });
 
