@@ -1,5 +1,5 @@
 import { Address } from '@popsure/public-models';
-import { fireEvent, render, waitFor } from '../../util/testUtils';
+import { fireEvent, getByDisplayValue, render } from '../../util/testUtils';
 
 import AutoCompleteAddress from '.';
 
@@ -55,16 +55,14 @@ describe('AutocompleteAddress component', () => {
       }
     };
 
-    const { getAllByTestId, getByTestId } = setup();
+    const { getAllByTestId, getByDisplayValue, getByTestId } = setup();
 
     fireEvent.change(getByTestId(inputTestId), {
       target: { value: 'Köpeniker' },
     });
 
-    const inputs = getAllByTestId(inputTestId);
-
-    expect(inputs.length).toEqual(5);
-    expect(inputs[0].getAttribute('value')).toBe("Köpeniker Strasse");
+    expect(getAllByTestId(inputTestId)).toEqual(5);
+    expect(getByDisplayValue("Köpeniker Strasse")).toBeVisible();
   });
 
   it('Should enable to enter the address manually', async () => {
@@ -87,12 +85,11 @@ describe('AutocompleteAddress component', () => {
   });
 
   it('Should prefill fields if an address is provided', async () => {
-    const screen = setup(address);
-    const inputs = await screen.findAllByTestId(inputTestId);
+    const { getByDisplayValue } = setup(address);
 
-    expect(inputs[0].getAttribute('value')).toBe('Köpeniker Strasse');
-    expect(inputs[1].getAttribute('value')).toBe('4000');
-    expect(inputs[3].getAttribute('value')).toBe('10179');
-    expect(inputs[4].getAttribute('value')).toBe('Berlin');
+    expect(getByDisplayValue("Köpeniker Strasse")).toBeVisible();
+    expect(getByDisplayValue("4000")).toBeVisible();
+    expect(getByDisplayValue("10179")).toBeVisible();
+    expect(getByDisplayValue("Berlin")).toBeVisible();
   });
 });
