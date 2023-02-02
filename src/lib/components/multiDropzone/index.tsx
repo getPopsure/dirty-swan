@@ -16,7 +16,6 @@ import {
 import { 
   AcceptType, 
   ErrorMessage, 
-  FileType, 
   TextOverrides, 
   UploadedFile, 
   UploadStatus 
@@ -156,5 +155,5 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
   );
 };
 
-export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus };
+export type { MultiDropzoneProps, UploadedFile, UploadStatus };
 export default MultiDropZone;

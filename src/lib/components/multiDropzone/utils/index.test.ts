@@ -7,8 +7,8 @@ import {
 } from '.';
 
 const documentsAccept = {
-  'application/doc': ['.doc'],
-  'application/docx': ['.docx'],
+  'application/msword': ['.doc'],
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
   'application/pdf': ['.pdf']
 };
 

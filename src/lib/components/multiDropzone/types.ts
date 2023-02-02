@@ -1,12 +1,12 @@
 import { Accept } from "react-dropzone";
+import { FileType } from "../../types/file-type";
 
 export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
 
-export const DOCUMENT_FILES = ['doc', 'docx', 'pdf'];
-export const IMAGE_FILES = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
+export const DOCUMENT_FILES: FileType[] = ['doc', 'docx', 'pdf'];
+export const IMAGE_FILES: FileType[] = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
 
 export const FILE_TYPES = [...DOCUMENT_FILES, ...IMAGE_FILES];
-export type FileType = typeof FILE_TYPES[number];
 
 export interface UploadedFile {
   id: string;
@@ -20,6 +20,7 @@ export interface UploadedFile {
 }
 
 export type AcceptType = "document" | "image" | Accept;
+
 export interface TextOverrides {
   currentlyUploadingText?: string;
   fileTypeError?: string;
