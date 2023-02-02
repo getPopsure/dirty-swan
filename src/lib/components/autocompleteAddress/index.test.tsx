@@ -61,7 +61,7 @@ describe('AutocompleteAddress component', () => {
       target: { value: 'Köpeniker' },
     });
 
-    expect(getAllByTestId(inputTestId)).toEqual(5);
+    expect(getAllByTestId(inputTestId).length).toEqual(5);
     expect(getByDisplayValue("Köpeniker Strasse")).toBeVisible();
   });
 
