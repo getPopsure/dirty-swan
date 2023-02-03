@@ -36,19 +36,21 @@ export default ({
         } ${className}`}
         onClick={handleContainerClick}
       >
-        <div className={styles.header}>
-          <div className={`p-h2 ${styles.title}`}>{title}</div>
-          {dismissible && (
-            <button
-              type="button"
-              className={styles.close}
-              onClick={handleOnClose}
-            >
-              <img src={imageClose} alt="Close" />
-            </button>
-          )}
+        <div className={styles.body}>
+          <div className={styles.header}>
+            <div className={`p-h2 ${styles.title}`}>{title}</div>
+            {dismissible && (
+              <button
+                type="button"
+                className={styles.close}
+                onClick={handleOnClose}
+              >
+                <img src={imageClose} alt="Close" />
+              </button>
+            )}
+          </div>
+          {children}
         </div>
-        {children}
       </div>
     </div>
   );
