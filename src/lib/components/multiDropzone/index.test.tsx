@@ -1,4 +1,4 @@
-import { act, fireEvent, render } from '../../util/testUtils';
+import { act, fireEvent, render } from 'lib/util/testUtils';
 import '@testing-library/jest-dom';
 
 import MultiDropzone, { MultiDropzoneProps } from '.';

@@ -8,7 +8,7 @@ import DayPicker from 'react-day-picker';
 import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
-} from '../../util/calendarDate';
+} from 'lib/util/calendarDate';
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';

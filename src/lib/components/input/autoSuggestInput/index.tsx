@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Autosuggest from 'react-autosuggest';
 
 import styles from './style.module.scss';
-import { Option } from '../../../models/autoSuggestInput';
+import { Option } from 'lib/models/autoSuggestInput';
 import Input, { InputProps } from '../index';
 
 export default ({

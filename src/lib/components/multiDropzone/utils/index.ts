@@ -1,5 +1,5 @@
 import { Accept, ErrorCode, FileError } from "react-dropzone";
-import { formatBytes } from "../../../util/formatBytes";
+import { formatBytes } from "lib/util/formatBytes";
 import { 
   AcceptType, 
   DOCUMENT_FILES, 
