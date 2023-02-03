@@ -1,5 +1,5 @@
 import Button from '../button';
-import { DownloadStatus } from '../../models/download';
+import { DownloadStatus } from 'lib/models/download';
 
 import checkIcon from './icons/check.svg';
 import downloadIcon from './icons/download.svg';

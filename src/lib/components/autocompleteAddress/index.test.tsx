@@ -1,5 +1,5 @@
 import { Address } from '@popsure/public-models';
-import { fireEvent, render } from '../../util/testUtils';
+import { fireEvent, render } from 'lib/util/testUtils';
 
 import AutoCompleteAddress from '.';
 

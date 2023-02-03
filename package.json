@@ -108,6 +108,7 @@
     "react-is": "^17.0.2",
     "react-scripts": "4.0.3",
     "rollup": "^2.52.2",
+    "rollup-plugin-includepaths": "^0.2.4",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",

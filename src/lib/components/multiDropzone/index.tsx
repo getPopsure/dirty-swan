@@ -21,8 +21,7 @@ import {
   UploadedFile, 
   UploadStatus 
 } from './types';
-
-import { formatBytes } from '../../util/formatBytes';
+import { formatBytes } from 'lib/util/formatBytes';
 
 interface MultiDropzoneProps {
   accept?: AcceptType;

@@ -1,4 +1,4 @@
-import { render } from '../../util/testUtils';
+import { render } from 'lib/util/testUtils';
 
 import SegmentedControl from '.';
 

@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 import removeButtonIcon from './icons/remove-button.svg';
 import removeButtonHighlightedIcon from './icons/remove-button-highlighted.svg';
-import { Option } from '../../models/autoSuggestInput';
+import { Option } from 'lib/models/autoSuggestInput';
 
 export default ({
   value,

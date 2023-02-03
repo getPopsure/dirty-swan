@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
+import includePaths from 'rollup-plugin-includepaths';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
@@ -28,6 +29,7 @@ const plugins = [
   }),
   url(),
   resolve(),
+  includePaths({ paths: ['src'] }),
   commonjs(),
 ];
 
@@ -49,7 +51,7 @@ export default [
       glob
         // we need to look into why adding ts breaks the build
         .sync('src/lib/**/*(*.tsx)')
-        .map((file) => [
+      .map((file) => [
           path.relative(
             'src/lib',
             file.slice(0, file.length - path.extname(file).length)

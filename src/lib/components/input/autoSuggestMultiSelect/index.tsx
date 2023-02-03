@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Option } from '../../../models/autoSuggestInput';
+import { Option } from 'lib/models/autoSuggestInput';
 import Chip from '../../chip';
 import AutoSuggestInput from '../autoSuggestInput';
 import styles from './style.module.scss';
