@@ -22,12 +22,12 @@
 
 @keyframes appear-in {
   0% {
-    transform: translateY(24px) translateX(-50%);
+    transform: translateY(24px);
     opacity: 0;
     visibility: hidden;
   }
   100% {
-    transform: translateY(0) translateX(-50%);
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
@@ -35,12 +35,12 @@
 
 @keyframes disappear-out {
   0% {
-    transform: translateY(0) translateX(-50%);
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
   100% {
-    transform: translateY(24px) translateX(-50%);
+    transform: translateY(24px);
     opacity: 0;
     visibility: hidden;
   }
@@ -70,24 +70,19 @@
 .container {
   position: relative;
 
-  background-color: white;
-
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
 
   max-width: 592px;
-  width: fit-content;
-  width: -moz-fit-content;
+  width: 100%;
+  min-height: 100%;
+
+  margin: 0 auto;
 
   animation-name: appear-in;
   animation-duration: 0.4s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
-
-  top: calc(100vh / 2 - 50% / 2);
-  left: 50%;
-  transform: translateX(-50%);
-
-  margin-bottom: 80px;
 
   &--close {
     @extend .container;
@@ -97,6 +92,12 @@
     animation-fill-mode: both;
     animation-timing-function: ease-out;
   }
+}
+
+.body {
+  background-color: white;
+  border-radius: 8px;
+  margin: 32px auto;
 }
 
 .header {
