@@ -64,6 +64,9 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [...plugins, typescript({ outDir: 'dist/esm' })],
+    plugins: [
+      ...plugins,
+      typescript({ outDir: 'dist/esm', sourceMap: true, inlineSources: true }),
+    ],
   },
 ];
