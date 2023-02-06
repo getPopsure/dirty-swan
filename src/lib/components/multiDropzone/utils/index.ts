@@ -1,9 +1,10 @@
 import { Accept, ErrorCode, FileError } from "react-dropzone";
-import { FileMimeTypes, FileType } from "../../../types/file-type";
 import { formatBytes } from "../../../util/formatBytes";
 import { 
   AcceptType, 
   DOCUMENT_FILES, 
+  FileMimeTypes,
+  FileType,
   IMAGE_FILES, 
   TextOverrides,
   UploadStatus
