@@ -2,7 +2,12 @@ import DateSelector from './components/dateSelector';
 import SignaturePad from './components/signaturePad';
 import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
-import MultiDropzone from './components/multiDropzone';
+import MultiDropzone, { 
+  FileType,
+  MultiDropzoneProps,
+  UploadedFile,
+  UploadStatus
+} from './components/multiDropzone';
 import DownloadButton from './components/downloadButton';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
@@ -32,6 +37,13 @@ import {
 } from './components/comparisonTable';
 import SegmentedControl from './components/segmentedControl';
 import Markdown from './components/markdown';
+
+export type {
+  FileType,
+  MultiDropzoneProps,
+  UploadedFile,
+  UploadStatus
+};
 
 export {
   DateSelector,

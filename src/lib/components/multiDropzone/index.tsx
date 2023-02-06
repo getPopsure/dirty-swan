@@ -16,10 +16,12 @@ import {
 import { 
   AcceptType, 
   ErrorMessage, 
+  FileType,
   TextOverrides, 
   UploadedFile, 
   UploadStatus 
 } from './types';
+
 import { formatBytes } from '../../util/formatBytes';
 
 interface MultiDropzoneProps {
@@ -154,5 +156,5 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
   );
 };
 
-export type { MultiDropzoneProps, UploadedFile, UploadStatus };
+export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus };
 export default MultiDropZone;
