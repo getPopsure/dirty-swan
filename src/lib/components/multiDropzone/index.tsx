@@ -124,7 +124,6 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
             id,
             name: message,
             progress: 0,
-            type: "",
           }}
           key={id}
           onRemoveFile={() => removeError(id)}
