@@ -25,6 +25,7 @@ export {
   TableRating,
   TableTrueFalse,
   TableRowHeader,
+  TableButton,
   TableInfoButton,
   SegmentedControl,
   DownloadButton,

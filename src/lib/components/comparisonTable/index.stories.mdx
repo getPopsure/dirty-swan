@@ -1,6 +1,6 @@
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import { ComparisonTable, TableRating, TableTrueFalse } from '.';
+import { ComparisonTable, TableRating, TableRowHeader, TableButton, TableTrueFalse } from '.';
 
 <Meta title="JSX/Comparison Table" component={ComparisonTable} />
 
@@ -81,8 +81,12 @@ export const ComparisonTableWithData = () => {
         {
           id: 3,
           key: 'rating',
-          label: 'Our rating',
-          render: (value) => <TableRating type="star" rating={value} />,
+          label: <TableRowHeader label="Our Rating" onClickInfo={console.log} />,
+          render: (value) => (
+            <TableButton className="jc-center" onClick={console.log}>
+              <TableRating type="star" rating={value} />
+            </TableButton>
+          ),
         },
         {
           id: 5,
@@ -297,8 +301,12 @@ export const ComparisonTableWithData = () => {
         {
           id: 3,
           key: 'rating',
-          label: 'Our rating',
-          render: (value) => <TableRating type="star" rating={value} />,
+          label: <TableRowHeader label="Our Rating" onClickInfo={console.log} />,
+          render: (value) => (
+            <TableButton className="jc-center" onClick={console.log}>
+              <TableRating type="star" rating={value} />
+            </TableButton>
+          ),
         },
         {
           id: 5,

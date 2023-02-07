@@ -32,6 +32,7 @@ import {
   TableRating,
   TableTrueFalse,
   TableRowHeader,
+  TableButton,
   TableInfoButton,
   TableHeader,
 } from './components/comparisonTable';
@@ -70,6 +71,7 @@ export {
   TableRating,
   TableTrueFalse,
   TableRowHeader,
+  TableButton,
   TableInfoButton,
   SegmentedControl,
   Markdown,

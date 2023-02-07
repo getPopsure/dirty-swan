@@ -1,0 +1,16 @@
+@use "../../../../scss/public/colors" as *;
+
+.button {
+  border-bottom: 2px dashed $ds-grey-600;
+  color: $ds-grey-700;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: 0.3s ease;
+  transition-property: color, border-color;
+
+  &:hover,
+  &:focus {
+    border-color: $ds-primary-500;
+    color: $ds-primary-500;
+  }
+}
