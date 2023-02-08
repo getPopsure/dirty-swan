@@ -24,7 +24,7 @@ export const IMAGE_FILES: FileType[] = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
 export interface UploadedFile {
   id: string;
   name: string;
-  type?: FileType;
+  type?: FileType | string;
   previewUrl?: string;
   progress: number;
   error?: string;
