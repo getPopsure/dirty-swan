@@ -50,7 +50,9 @@
     "build": "./scripts/build.sh",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
+    "test:prepush": "CI=true react-scripts test --ci --env=jsdom --lastCommit",
     "eject": "react-scripts eject",
+    "prepare": "is-ci || husky install",
     "storybook": "start-storybook -p 9009 -s public,storybook-assets",
     "build-storybook": "build-storybook -s public,storybook-assets",
     "deploy-storybook": "storybook-to-ghpages"
@@ -74,6 +76,7 @@
     ]
   },
   "devDependencies": {
+    "@getpopsure/conventional-commit": "^0.0.2",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@storybook/addon-actions": "^6.2.9",
@@ -101,7 +104,11 @@
     "@types/uuid": "^9.0.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
+    "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^12.1.5",
     "postcss": "^8.3.5",
     "postcss-custom-properties": "^12.1.10",
     "prettier": "^2.3.1",
@@ -120,5 +127,17 @@
   },
   "resolutions": {
     "babel-loader": "8.1.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "eslint --max-warnings 0 --ext js,ts,tsx"
+    ],
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@getpopsure/conventional-commit"
+    }
   }
 }
