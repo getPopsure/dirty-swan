@@ -16,11 +16,12 @@ import {
 import { 
   AcceptType, 
   ErrorMessage, 
-  FileType, 
+  FileType,
   TextOverrides, 
   UploadedFile, 
   UploadStatus 
 } from './types';
+
 import { formatBytes } from '../../util/formatBytes';
 
 interface MultiDropzoneProps {
@@ -125,7 +126,6 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
             id,
             name: message,
             progress: 0,
-            type: "",
           }}
           key={id}
           onRemoveFile={() => removeError(id)}

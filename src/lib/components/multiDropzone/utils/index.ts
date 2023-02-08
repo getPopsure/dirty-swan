@@ -3,10 +3,12 @@ import { formatBytes } from "../../../util/formatBytes";
 import { 
   AcceptType, 
   DOCUMENT_FILES, 
-  FileType, 
+  FileMimeTypes,
+  FileType,
   IMAGE_FILES, 
   TextOverrides,
-  UploadStatus } from "../types";
+  UploadStatus
+} from "../types";
 
 export const getUploadStatus = (progress: number, error?: string): UploadStatus => {
   if (error) {
@@ -20,18 +22,18 @@ export const getUploadStatus = (progress: number, error?: string): UploadStatus 
   return 'COMPLETE';
 };
 
-const formatMimeType = (type: string, values: FileType[]): Accept  => {
+const formatMimeType = (values: FileType[]): Accept  => {
   const formatedValues = {} as Accept;
 
   values.forEach((value) => {
-    formatedValues[`${type}/${value}`] = [`.${value}`];
+    formatedValues[FileMimeTypes[value]] = [`.${value}`];
   });
 
   return formatedValues;
 };
 
-export const DOCUMENT_FILES_ACCEPT = formatMimeType("application", DOCUMENT_FILES);
-export const IMAGE_FILES_ACCEPT = formatMimeType("image", IMAGE_FILES);
+export const DOCUMENT_FILES_ACCEPT = formatMimeType(DOCUMENT_FILES);
+export const IMAGE_FILES_ACCEPT = formatMimeType(IMAGE_FILES);
   
 export const getFormattedAcceptObject = (accept: AcceptType = {}): Accept => {
   if (accept === "document") {

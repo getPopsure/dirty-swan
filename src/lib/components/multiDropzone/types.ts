@@ -1,17 +1,30 @@
 import { Accept } from "react-dropzone";
 
+export enum FileMimeTypes {
+  bmp = "image/bmp",
+  doc = "application/msword",
+  docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  heic = "image/heic",
+  jpeg = "image/jpeg",
+  jpg = "image/jpg",
+  pdf = "application/pdf",
+  png = "image/png",
+  tif = "image/tiff",
+  tiff = "image/tiff",
+  webp = "image/webp",
+}
+
+export type FileType = keyof typeof FileMimeTypes;
+
 export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
 
-export const DOCUMENT_FILES = ['doc', 'docx', 'pdf'];
-export const IMAGE_FILES = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
-
-export const FILE_TYPES = [...DOCUMENT_FILES, ...IMAGE_FILES];
-export type FileType = typeof FILE_TYPES[number];
+export const DOCUMENT_FILES: FileType[] = ['doc', 'docx', 'pdf'];
+export const IMAGE_FILES: FileType[] = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
 
 export interface UploadedFile {
   id: string;
   name: string;
-  type: FileType | string;
+  type?: FileType;
   previewUrl?: string;
   progress: number;
   error?: string;
@@ -20,6 +33,7 @@ export interface UploadedFile {
 }
 
 export type AcceptType = "document" | "image" | Accept;
+
 export interface TextOverrides {
   currentlyUploadingText?: string;
   fileTypeError?: string;
