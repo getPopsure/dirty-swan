@@ -10,15 +10,13 @@ const TableButton: React.FC<Props> = ({
   onClick,
   className = '',
 }) => (
-  <span
+  <button
     className={`${styles.button} ${className}`}
     data-testid="ds-table-button"
     onClick={onClick}
-    role="button"
-    tabIndex={0}
   >
     {children}
-  </span>
+  </button>
 );
 
 export default TableButton;
