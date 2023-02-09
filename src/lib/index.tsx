@@ -39,13 +39,6 @@ import {
 import SegmentedControl from './components/segmentedControl';
 import Markdown from './components/markdown';
 
-export type {
-  FileType,
-  MultiDropzoneProps,
-  UploadedFile,
-  UploadStatus
-};
-
 export {
   DateSelector,
   SignaturePad,
@@ -77,6 +70,12 @@ export {
   Markdown,
 };
 
-export type { TableHeader };
+export type {
+  FileType,
+  MultiDropzoneProps,
+  TableHeader,
+  UploadedFile,
+  UploadStatus
+};
 
 export type { DownloadStatus } from './models/download';
