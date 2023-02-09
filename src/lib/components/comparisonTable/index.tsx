@@ -5,6 +5,7 @@ import { AccordionItem } from './components/AccordionItem';
 import Chevron from './components/Chevron';
 import Row from './components/Row';
 import TableArrows from './components/TableArrows';
+import TableButton from './components/TableButton';
 import TableInfoButton from './components/TableInfoButton';
 import TableRating from './components/TableRating';
 import TableRowHeader from './components/TableRowHeader';
@@ -257,6 +258,7 @@ const ComparisonTable = <T extends { id: number }>(
 
 export {
   ComparisonTable,
+  TableButton,
   TableInfoButton,
   TableRating,
   TableRowHeader,
