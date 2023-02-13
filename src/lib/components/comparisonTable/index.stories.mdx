@@ -85,13 +85,18 @@ export const ComparisonTableWithData = () => {
           id: 4,
           key: 'imdb',
           label: 'IMDB rating',
+          render: (value) => (
+            <TableButton onClick={() => {}}>
+              {value}
+            </TableButton>
+          ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our Rating" onClickInfo={() => {}} />,
+          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
           render: (value) => (
-            <TableButton className="jc-center" onClick={() => {}}>
+            <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
             </TableButton>
           ),
@@ -99,7 +104,13 @@ export const ComparisonTableWithData = () => {
         {
           id: 5,
           key: 'recommended',
-          label: 'Recommended',
+          label: (
+            <TableRowHeader
+              label="Recommended"
+              subtitle="Our favourites"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => <TableRating type="zap" rating={value} />,
         },
         {
@@ -315,13 +326,18 @@ export const ComparisonTableWithData = () => {
           id: 4,
           key: 'imdb',
           label: 'IMDB rating',
+          render: (value) => (
+            <TableButton onClick={() => {}}>
+              {value}
+            </TableButton>
+          ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our Rating" onClickInfo={() => {}} />,
+          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
           render: (value) => (
-            <TableButton className="jc-center" onClick={() => {}}>
+            <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
             </TableButton>
           ),
@@ -329,7 +345,13 @@ export const ComparisonTableWithData = () => {
         {
           id: 5,
           key: 'recommended',
-          label: 'Recommended',
+          label: (
+            <TableRowHeader
+              label="Recommended"
+              subtitle="Our favourites"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => <TableRating type="zap" rating={value} />,
         },
         {

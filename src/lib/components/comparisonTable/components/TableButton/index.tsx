@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
 import styles from './style.module.scss';
 
 interface Props {
+  children: ReactNode;
   onClick: () => void;
   className?: string;
 }
@@ -15,7 +17,9 @@ const TableButton: React.FC<Props> = ({
     data-testid="ds-table-button"
     onClick={onClick}
   >
-    {children}
+    <span>
+      {children}
+    </span>
   </button>
 );
 
