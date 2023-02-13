@@ -1,6 +1,14 @@
 import { Meta, Preview } from '@storybook/addon-docs/blocks';
 
-import { ComparisonTable, TableRating, TableRowHeader, TableButton, TableTrueFalse } from '.';
+import { CardButton } from '../cards';
+
+import {
+  ComparisonTable,
+  TableButton,
+  TableRating,
+  TableRowHeader,
+  TableTrueFalse,
+} from '.';
 
 <Meta title="JSX/Comparison Table" component={ComparisonTable} />
 
@@ -81,9 +89,9 @@ export const ComparisonTableWithData = () => {
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our Rating" onClickInfo={console.log} />,
+          label: <TableRowHeader label="Our Rating" onClickInfo={() => {}} />,
           render: (value) => (
-            <TableButton className="jc-center" onClick={console.log}>
+            <TableButton className="jc-center" onClick={() => {}}>
               <TableRating type="star" rating={value} />
             </TableButton>
           ),
@@ -158,6 +166,16 @@ export const ComparisonTableWithData = () => {
               style: 'currency',
               currency: 'EUR',
             }),
+        },
+        {
+          addonId: 'addon-movies',
+          label: (
+            <CardButton
+              title="All Review"
+              description="Click here to read all reviews"
+              onClick={() => {}}
+            />
+          ),
         },
       ],
     },
@@ -301,9 +319,9 @@ export const ComparisonTableWithData = () => {
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our Rating" onClickInfo={console.log} />,
+          label: <TableRowHeader label="Our Rating" onClickInfo={() => {}} />,
           render: (value) => (
-            <TableButton className="jc-center" onClick={console.log}>
+            <TableButton className="jc-center" onClick={() => {}}>
               <TableRating type="star" rating={value} />
             </TableButton>
           ),
@@ -329,6 +347,16 @@ export const ComparisonTableWithData = () => {
               style: 'currency',
               currency: 'EUR',
             }),
+        },
+        {
+          addonId: 'addon-movies',
+          label: (
+            <CardButton
+              title="All Review"
+              description="Click here to read all reviews"
+              onClick={() => {}}
+            />
+          ),
         },
       ],
     },
