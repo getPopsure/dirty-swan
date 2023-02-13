@@ -28,7 +28,7 @@ const TableRating = (props: TableRatingProps) => {
   const SelectedIcon = getRatingIcon(type);
 
   return (
-    <div>
+    <>
       {VALID_VALUES.map((value) => (
         <SelectedIcon
           key={value}
@@ -38,7 +38,7 @@ const TableRating = (props: TableRatingProps) => {
           )}
         />
       ))}
-    </div>
+    </>
   );
 };
 

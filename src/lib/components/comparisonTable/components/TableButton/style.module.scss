@@ -2,17 +2,26 @@
 
 .button {
   background-color: transparent;
-  border-bottom: 2px dashed $ds-grey-600;
   color: $ds-grey-700;
   cursor: pointer;
+  margin: 2px 0;
   padding: 2px;
-  transition: 0.3s ease;
-  transition-property: color, border-color;
+  text-align: left;
+  transition: color 0.3s ease;
+
+  span {
+    border-bottom: 2px dashed $ds-grey-600;
+    display: inline;
+    transition: border-color 0.3s ease;
+  }
 
   &:hover,
   &:focus {
-    border-color: $ds-primary-500;
     color: $ds-primary-500;
     outline-color: $ds-primary-500;
+    
+    span {
+      border-color: $ds-primary-500;
+    }
   }
 }
