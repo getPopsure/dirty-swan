@@ -32,6 +32,13 @@ export {
   Markdown,
 } from './lib';
 
-export type { TableHeader, DownloadStatus } from './lib';
+export type {
+  DownloadStatus,
+  FileType,
+  MultiDropzoneProps,
+  TableHeader,
+  UploadedFile,
+  UploadStatus
+ } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
