@@ -96,10 +96,9 @@ export const ComparisonTableWithData = () => {
           key: 'rating',
           label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
           render: (value) => (
-            <TableButton className="jc-center" onClick={() => {}}>
+            <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
             </TableButton>
-            </span>
           ),
         },
         {
@@ -336,17 +335,23 @@ export const ComparisonTableWithData = () => {
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our Rating" onClickInfo={() => {}} />,
+          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
           render: (value) => (
             <TableButton onClick={() => {}}>
-              <TableRating type="star" rating={value} />
+              <TableRating type="stars" rating={value} />
             </TableButton>
           ),
         },
         {
           id: 5,
           key: 'recommended',
-          label: 'Recommended',
+          label: (
+            <TableRowHeader
+              label="Recommended"
+              subtitle="Our favourites"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => <TableRating type="zap" rating={value} />,
         },
         {

@@ -16,7 +16,7 @@ const TableRowHeader = ({ icon, label, subtitle, onClickInfo }: TableRowHeaderPr
         {!onClickInfo ? (
           <span>{label}</span>
         ) : (
-          <TableButton className="mr8" onClick={onClickInfo}>
+          <TableButton className="mr8 ta-left" onClick={onClickInfo}>
             {label}
           </TableButton>
         )}
