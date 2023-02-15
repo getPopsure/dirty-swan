@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import classnames from 'classnames';
 import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
-import { v4 as uuidv4 } from 'uuid';
+import generateId from '../../util/generateId';
 import styles from './style.module.scss';
 import icons from './icons/index'; // TODO: inline all of the svgs
 import UploadFileCell from './UploadFileCell';
@@ -67,7 +67,7 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
       setErrors((previousErrors) => ([
         ...previousErrors,
         ...filesRejected.map(({ errors }) => ({
-          id: uuidv4(),
+          id: generateId(),
           message: getErrorMessage(
             errors[0],
             { fileList, maxSize },

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+import generateId from '../../util/generateId';
 
 import styles from './style.module.scss';
 
@@ -29,7 +29,7 @@ export default React.forwardRef(
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const [uniqueId] = useState(id ?? uuidv4());
+    const [uniqueId] = useState(id ?? generateId());
     return (
       <div className={`${styles.container} ${className ?? ''}`}>
         {label && (

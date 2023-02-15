@@ -38,8 +38,7 @@
     "react-scroll-sync": "^0.9.0",
     "remark-directive": "^2.0.1",
     "sass": "^1.35.1",
-    "signature_pad": "^3.0.0-beta.3",
-    "uuid": "^8.3.2"
+    "signature_pad": "^3.0.0-beta.3"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -98,7 +97,6 @@
     "@types/react-dom": "^17.0.8",
     "@types/react-scroll-sync": "^0.8.2",
     "@types/sass": "^1.16.0",
-    "@types/uuid": "^9.0.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "cross-env": "^7.0.3",
