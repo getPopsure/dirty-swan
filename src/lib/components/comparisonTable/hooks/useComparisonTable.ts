@@ -5,7 +5,7 @@ import { ArrowValues } from '../components/TableArrows';
 
 export const useComparisonTable = () => {
   const [showMore, setShowMore] = useState<boolean>(false);
-  const [headerWidth, setHeaderWidth] = useState(0);
+  const [headerWidth, setHeaderWidth] = useState(1400);
 
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 

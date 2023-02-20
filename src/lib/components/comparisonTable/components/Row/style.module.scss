@@ -8,7 +8,7 @@ $cell-min-width: var(--cellWidth, 256px);
 
   & > div {
     width: var(--tableWidth);
-    max-width: var(--tableWidth);
+    max-width: calc(100vw - 32px);
 
     &:nth-child(n + 3) {
       margin: 0;
