@@ -8,6 +8,7 @@ $cell-min-width: var(--cellWidth, 256px);
 
   & > div {
     width: var(--tableWidth);
+    // 100% of viewport width minus 16px horizontal padding
     max-width: calc(100vw - 32px);
 
     &:nth-child(n + 3) {
