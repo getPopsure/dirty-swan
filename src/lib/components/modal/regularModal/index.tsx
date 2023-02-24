@@ -34,9 +34,11 @@ export default ({
         className={`${
           isClosing ? styles['container--close'] : styles.container
         } ${className}`}
-        onClick={handleContainerClick}
       >
-        <div className={styles.body}>
+        <div
+          className={styles.body}
+          onClick={handleContainerClick}
+        >
           <div className={styles.header}>
             <div className={`p-h2 ${styles.title}`}>{title}</div>
             {dismissible && (
