@@ -1,10 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+interface OnCloseReturn {
+  isClosing: boolean;
+  handleContainerClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  handleOnClose: () => void;
+  handleOnOverlayClick: () => void;
+}
+
 const useOnClose = (
   onClose: () => void,
   isOpen: boolean,
   dismissable: boolean
-) => {
+): OnCloseReturn => {
   const [isClosing, setIsClosing] = useState(false);
 
   const handleOnClose = useCallback(() => {
@@ -14,6 +21,14 @@ const useOnClose = (
       setIsClosing(false);
     }, 300);
   }, [setIsClosing, onClose]);
+
+  const handleOnOverlayClick = useCallback(() => {
+    if (!dismissable) {
+      return;
+    }
+
+    handleOnClose();
+  }, [dismissable, handleOnClose]);
 
   const handleEscKey = useCallback(
     (e: KeyboardEvent) => {
@@ -48,7 +63,7 @@ const useOnClose = (
     e.stopPropagation();
   };
 
-  return { isClosing, handleContainerClick, handleOnClose };
+  return { isClosing, handleContainerClick, handleOnClose, handleOnOverlayClick };
 };
 
 export default useOnClose;

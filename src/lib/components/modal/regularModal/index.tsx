@@ -15,7 +15,12 @@ export default ({
   className = '',
   dismissible = true,
 }: Props) => {
-  const { isClosing, handleContainerClick, handleOnClose } = useOnClose(
+  const {
+    isClosing,
+    handleContainerClick,
+    handleOnClose,
+    handleOnOverlayClick
+  } = useOnClose(
     onClose,
     isOpen,
     dismissible
@@ -28,15 +33,17 @@ export default ({
   return (
     <div
       className={isClosing ? styles['overlay--close'] : styles.overlay}
-      onClick={handleOnClose}
+      onClick={handleOnOverlayClick}
     >
       <div
         className={`${
           isClosing ? styles['container--close'] : styles.container
         } ${className}`}
-        onClick={handleContainerClick}
       >
-        <div className={styles.body}>
+        <div
+          className={styles.body}
+          onClick={handleContainerClick}
+        >
           <div className={styles.header}>
             <div className={`p-h2 ${styles.title}`}>{title}</div>
             {dismissible && (
