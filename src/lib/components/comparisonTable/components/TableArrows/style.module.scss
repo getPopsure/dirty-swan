@@ -8,7 +8,6 @@
   padding: 0 16px;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
   display: flex;
   @include p-size-tablet {
     display: none;
@@ -26,6 +25,7 @@
 .arrow {
   width: 32px;
   height: 32px;
+  z-index: 3;
 
   padding: 0;
 
