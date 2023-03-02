@@ -3,7 +3,7 @@ import RegularModal from './regularModal';
 import BottomOrRegularModal from './bottomOrRegularModal';
 
 export interface Props {
-  title: string;
+  title?: string;
   isOpen: boolean;
   children: React.ReactNode;
   onClose: () => void;
