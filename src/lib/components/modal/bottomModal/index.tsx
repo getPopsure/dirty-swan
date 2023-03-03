@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
 import useOnClose from '../hooks/useOnClose';
+import classNames from 'classnames';
 
 export default ({
   title,
@@ -54,7 +55,10 @@ export default ({
         style={{ top: `${containerXOffset}px` }}
         onClick={handleContainerClick}
       >
-        <div className={styles.header}>
+        <div className={classNames(styles.header, {
+          'jc-between': !!title,
+          'jc-end': !title
+        })}>
           <div className={`p-h4 ${styles.title}`}>{title}</div>
           {dismissible && (
             <button

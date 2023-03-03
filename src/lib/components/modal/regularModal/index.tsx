@@ -6,6 +6,7 @@ import useOnClose from '../hooks/useOnClose';
 import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
+import classNames from 'classnames';
 
 export default ({
   title,
@@ -44,8 +45,11 @@ export default ({
           className={styles.body}
           onClick={handleContainerClick}
         >
-          <div className={styles.header}>
-            <div className={`p-h2 ${styles.title}`}>{title}</div>
+          <div className={classNames(styles.header, {
+            'jc-between': !!title,
+            'jc-end': !title
+          })}>
+            {title && <div className={`p-h2 ${styles.title}`}>{title}</div>}
             {dismissible && (
               <button
                 type="button"
