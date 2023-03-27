@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { formatInput, reverseFormatInput } from './format';
 import Input, { InputProps } from '..';
@@ -13,6 +13,8 @@ const CurrencyInput = ({
   placeholder?: string;
   onChange?: (value: number) => void;
 } & Omit<InputProps, 'onChange' | 'value' | 'ref'>) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [cursor, setCursor] = useState<number | null>(null);
   const [shadowValue, setShadowValue] = useState('');
 
   const formattedShadowValue = formatInput(
@@ -37,12 +39,26 @@ const CurrencyInput = ({
     // eslint-disable-next-line
   }, [shadowValue]);
 
+  useEffect(() => {
+    if (!inputRef.current || !cursor) {
+      return;
+    }
+
+    const cursorDiff =  String(formattedShadowValue).length - String(shadowValue).length;
+    const newCursor = cursorDiff + cursor;
+
+    inputRef.current.selectionStart = newCursor;
+    inputRef.current.selectionEnd = newCursor;
+  },[cursor, formattedShadowValue, shadowValue])
+
   return (
     <Input
       prefix="€"
+      ref={inputRef}
       type="string"
       value={formattedShadowValue}
       onChange={(e) => {
+        setCursor(e.target.selectionStart);
         setShadowValue(e.target.value);
       }}
       {...props}
