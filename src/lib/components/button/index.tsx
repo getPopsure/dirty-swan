@@ -2,11 +2,17 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-type ButtonType = 'primary' | 'secondary' | 'outline' | 'outlineGrey';
+type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'secondaryGrey'
+  | 'outline'
+  | 'outlineGrey';
 
 const buttonTypeClassNameMap: { [K in ButtonType]: string } = {
   primary: 'p-btn--primary',
   secondary: 'p-btn--secondary',
+  secondaryGrey: 'p-btn--secondary-grey',
   outline: 'p-btn--outline',
   outlineGrey: 'p-btn--outline-grey',
 };
