@@ -88,6 +88,11 @@
       outline: none;
       box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
+
+    &-grey {
+      @extend .p-btn--secondary;
+      background-color: $ds-primary-50;
+    }
   }
 
   &--danger {
