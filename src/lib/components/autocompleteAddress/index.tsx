@@ -237,7 +237,7 @@ const AutoCompleteAddress = ({
               ref={autocompleteElement}
             />
             {hasLoadedGoogleAPI === false && (
-              <div className={styles['loading-spinner']}>
+              <div data-cy="google-api-loader" className={styles['loading-spinner']}>
                 <div className="ds-spinner ds-spinner__m" />
               </div>
             )}
