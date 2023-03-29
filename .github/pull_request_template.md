@@ -6,13 +6,14 @@ _Please include a summary of the change(s)._
 2.
 3.
 
-### Why is this needed?
+### How to test?
 
-_Please include additional context of why this PR is necessary._
+_Please include additional context on how to test this PR._
 
-Solves:  
-STO-XXX  
+Solves:
+STO-XXX
 EMU-XXX
+RVN-XXX
 
 ### Checklist:
 
