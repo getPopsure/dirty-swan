@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 
 import localeData from 'dayjs/plugin/localeData';
@@ -97,6 +97,8 @@ const DateSelector = ({
   );
   const [openCalendar, setOpenCalendar] = useState(false);
 
+  const calendarContainerRef = useRef<HTMLDivElement | null>(null);
+
   const calendarDefaultDate =
     dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
       ? dayjs().toDate()
@@ -110,6 +112,22 @@ const DateSelector = ({
   const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
     .endOf('year')
     .toDate();
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!calendarContainerRef || !calendarContainerRef.current) {
+        return;
+      }
+      if (!calendarContainerRef.current.contains(event.target as Node)) {
+        setOpenCalendar(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [calendarContainerRef, setOpenCalendar]);
 
   useEffect(() => {
     if (calendarDateValue) {
@@ -227,7 +245,10 @@ const DateSelector = ({
         </select>
       </div>
       {displayCalendar && (
-        <div className={styles['date-calendar-container']}>
+        <div
+          className={styles['date-calendar-container']}
+          ref={calendarContainerRef}
+        >
           <img
             className="c-pointer"
             src={calendarIcon}
