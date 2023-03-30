@@ -12,6 +12,7 @@ import {
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -113,21 +114,7 @@ const DateSelector = ({
     .endOf('year')
     .toDate();
 
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (!calendarContainerRef || !calendarContainerRef.current) {
-        return;
-      }
-      if (!calendarContainerRef.current.contains(event.target as Node)) {
-        setOpenCalendar(false);
-      }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [calendarContainerRef, setOpenCalendar]);
+  useOnClickOutside(calendarContainerRef, () => setOpenCalendar(false));
 
   useEffect(() => {
     if (calendarDateValue) {
