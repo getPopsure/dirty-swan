@@ -1,0 +1,20 @@
+$bs-xs: 0px 4px 6px rgba(97, 96, 162, 0.01);
+$bs-sm: 0px 2px 28px rgba(97, 96, 162, 0.1);
+$bs-md: 0px 2px 28px rgba(97, 96, 162, 0.12);
+$bs-l: 0px 2px 28px rgba(97, 96, 162, 0.15);
+
+.bs-xs {
+  box-shadow: $bs-xs;
+}
+
+.bs-sm {
+  box-shadow: $bs-sm;
+}
+
+.bs-md {
+  box-shadow: $bs-md;
+}
+
+.bs-lg {
+  box-shadow: $bs-l;
+}

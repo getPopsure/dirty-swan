@@ -295,3 +295,34 @@ export const Colors = () => (
     ))}
   </table>
 );
+
+export const BoxShadows = () => {
+  return (
+    <div className="d-flex fd-row f-wrap gap16">
+      <div
+        className="d-flex ai-center jc-center ws2 border br8 bs-xs p-p"
+        style={{ height: '136px' }}
+      >
+        .bx-xs
+      </div>
+      <div
+        className="d-flex ai-center jc-center ws2 border br8 bs-sm p-p"
+        style={{ height: '136px' }}
+      >
+        .bx-sm
+      </div>
+      <div
+        className="d-flex ai-center jc-center ws2 border br8 bs-md p-p"
+        style={{ height: '136px' }}
+      >
+        .bx-md
+      </div>
+      <div
+        className="d-flex ai-center jc-center ws2 border br8 bs-lg p-p"
+        style={{ height: '136px' }}
+      >
+        .bx-lg
+      </div>
+    </div>
+  );
+};
