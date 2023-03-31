@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 
 import localeData from 'dayjs/plugin/localeData';
@@ -12,6 +12,7 @@ import {
 import styles from './style.module.scss';
 import './datepicker.scss';
 import calendarIcon from './icons/calendar.svg';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -97,6 +98,8 @@ const DateSelector = ({
   );
   const [openCalendar, setOpenCalendar] = useState(false);
 
+  const calendarContainerRef = useRef<HTMLDivElement | null>(null);
+
   const calendarDefaultDate =
     dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
       ? dayjs().toDate()
@@ -110,6 +113,8 @@ const DateSelector = ({
   const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
     .endOf('year')
     .toDate();
+
+  useOnClickOutside(calendarContainerRef, () => setOpenCalendar(false));
 
   useEffect(() => {
     if (calendarDateValue) {
@@ -227,7 +232,10 @@ const DateSelector = ({
         </select>
       </div>
       {displayCalendar && (
-        <div className={styles['date-calendar-container']}>
+        <div
+          className={styles['date-calendar-container']}
+          ref={calendarContainerRef}
+        >
           <img
             className="c-pointer"
             src={calendarIcon}
