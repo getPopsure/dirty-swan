@@ -11,6 +11,11 @@ const TableInfoButton = ({
     role="button"
     className={`p-btn--secondary ${styles.button} ${className}`}
     onClick={onClick}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        onClick();
+      }
+    }}
     tabIndex={0}
   >
     <svg
