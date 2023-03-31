@@ -11,6 +11,7 @@ const TableInfoButton = ({
     role="button"
     className={`p-btn--secondary ${styles.button} ${className}`}
     onClick={onClick}
+    tabIndex={0}
   >
     <svg
       width="20"

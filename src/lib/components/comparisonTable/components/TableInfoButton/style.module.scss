@@ -9,6 +9,7 @@
 
   vertical-align: bottom;
 
+  border-radius: 12px;
   width: 24px;
   height: 24px;
 
@@ -26,5 +27,9 @@
   svg {
     fill: $ds-primary-100;
     transition: all 0.3s ease;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $ds-primary-500;
   }
 }
