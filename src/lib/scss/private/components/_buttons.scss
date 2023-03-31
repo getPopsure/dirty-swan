@@ -59,7 +59,8 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
+      box-shadow: 0 0 0 1px white,
+        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
   }
 
@@ -86,7 +87,8 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
+      box-shadow: 0 0 0 1px white,
+        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
 
     &-grey {
@@ -115,7 +117,8 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-red-500, $alpha: 0.5);
+      box-shadow: 0 0 0 1px white,
+        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
     }
   }
 
