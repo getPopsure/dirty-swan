@@ -12,7 +12,9 @@ const TableInfoButton = ({
     className={`p-btn--secondary ${styles.button} ${className}`}
     onClick={onClick}
     onKeyDown={(e) => {
-      if (e.key === 'Enter') {
+      e.stopPropagation();
+
+      if (e.key === 'Enter' || e.key === " ") {
         onClick();
       }
     }}
