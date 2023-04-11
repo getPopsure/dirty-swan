@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Fragment } from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 import { AccordionItem } from './components/AccordionItem';
@@ -153,7 +154,7 @@ const ComparisonTable = <T extends { id: number }>(
                 const idString = `headerGroup-${headerGroup.id}`;
 
                 return (
-                  <>
+                  <Fragment key={idString}>
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className="mt8"
@@ -162,7 +163,6 @@ const ComparisonTable = <T extends { id: number }>(
                         isOpen={selectedSection === idString}
                         onOpen={() => setSelectedSection(idString)}
                         onClose={() => setSelectedSection('')}
-                        key={idString}
                       >
                         <ScrollSyncPane>
                           <div
@@ -225,7 +225,7 @@ const ComparisonTable = <T extends { id: number }>(
                         </ScrollSyncPane>
                       </div>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
           {hideDetails && (
