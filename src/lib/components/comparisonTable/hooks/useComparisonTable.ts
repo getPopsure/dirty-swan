@@ -56,12 +56,15 @@ export const useComparisonTable = () => {
       return;
     }
 
+    const headerWidth = headerRef.current.getBoundingClientRect().width;
+
     const currentTabIndex = Math.round(
-      headerRef.current.scrollLeft /
-        headerRef.current.getBoundingClientRect().width
+      headerRef.current.scrollLeft / headerWidth
     );
 
-    setSelectedTabIndex(currentTabIndex);
+    if (headerWidth < 544) {
+      setSelectedTabIndex(currentTabIndex);
+    }
   };
 
   const debouncedTableScroll = debounce(handleTableScroll, 150);
