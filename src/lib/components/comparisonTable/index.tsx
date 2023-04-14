@@ -100,7 +100,7 @@ const ComparisonTable = <T extends { id: number }>(
   } as React.CSSProperties;
 
   return (
-    <ScrollSync>
+    <ScrollSync onSync={scrollContainerCallbackRef}>
       <div style={cssVariablesStyle}>
         <div className={classNames(baseStyles.header, styles?.header)}>
           <ScrollSyncPane>
@@ -108,7 +108,6 @@ const ComparisonTable = <T extends { id: number }>(
               className={classNames(baseStyles.container, {
                 [baseStyles.noScrollBars]: hideScrollBars,
               })}
-              ref={scrollContainerCallbackRef}
             >
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
