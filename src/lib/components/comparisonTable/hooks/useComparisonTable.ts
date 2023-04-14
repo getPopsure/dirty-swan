@@ -62,9 +62,7 @@ export const useComparisonTable = () => {
       headerRef.current.scrollLeft / headerWidth
     );
 
-    if (headerWidth < 544) {
-      setSelectedTabIndex(currentTabIndex);
-    }
+    setSelectedTabIndex(currentTabIndex);
   };
 
   const debouncedTableScroll = debounce(handleTableScroll, 150);
