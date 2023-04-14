@@ -1,3 +1,5 @@
+@use "../../../scss/public/grid" as *;
+
 @keyframes fade-in {
   0% {
     background-color: rgba($color: #000000, $alpha: 0);
@@ -100,4 +102,10 @@
   align-items: center;
 
   padding: 0 16px;
+}
+
+.content {
+  @include p-size-mobile {
+    padding-bottom: 48px;
+  }
 }
