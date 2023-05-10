@@ -6,17 +6,19 @@ interface TitleWithSubtitle {
   subtitle: string;
 }
 
+export interface SegmentedControlProps {
+  className?: string;
+  values: Array<TitleWithSubtitle> | Array<string>;
+  selectedIndex: number;
+  onChange: (selectedIndex: number) => void;
+}
+
 const SegmentedControl = ({
   className = '',
   values,
   selectedIndex,
   onChange,
-}: {
-  className?: string;
-  values: Array<TitleWithSubtitle> | Array<string>;
-  selectedIndex: number;
-  onChange: (selectedIndex: number) => void;
-}) => {
+}: SegmentedControlProps) => {
   const [selectedChipBackgroundWidthLeft, setSelectedChipBackgroundWidthLeft] =
     useState<{
       left: number;
