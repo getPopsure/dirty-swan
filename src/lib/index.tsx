@@ -2,11 +2,11 @@ import DateSelector from './components/dateSelector';
 import SignaturePad from './components/signaturePad';
 import AutocompleteAddress from './components/autocompleteAddress';
 import Input from './components/input';
-import MultiDropzone, { 
+import MultiDropzone, {
   FileType,
   MultiDropzoneProps,
   UploadedFile,
-  UploadStatus
+  UploadStatus,
 } from './components/multiDropzone';
 import DownloadButton from './components/downloadButton';
 import IbanInput from './components/input/iban';
@@ -25,7 +25,7 @@ import {
 } from './components/cards';
 import Button from './components/button';
 import AutoSuggestMultiSelect from './components/input/autoSuggestMultiSelect';
-import Chip from './components/chip';
+import { Chip } from './components/chip';
 import AutoSuggestInput from './components/input/autoSuggestInput';
 import {
   ComparisonTable,
@@ -75,7 +75,7 @@ export type {
   MultiDropzoneProps,
   TableHeader,
   UploadedFile,
-  UploadStatus
+  UploadStatus,
 };
 
 export type { DownloadStatus } from './models/download';
