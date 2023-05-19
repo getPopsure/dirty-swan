@@ -1,6 +1,6 @@
 import { render } from '../../util/testUtils';
 
-import SegmentedControl from '.';
+import { SegmentedControl } from '.';
 
 const setup = (onChange: (selectedIndex: number) => void = () => {}) => {
   return render(
