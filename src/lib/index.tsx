@@ -36,7 +36,7 @@ import {
   TableInfoButton,
   TableHeader,
 } from './components/comparisonTable';
-import SegmentedControl from './components/segmentedControl';
+import { SegmentedControl } from './components/segmentedControl';
 import Markdown from './components/markdown';
 
 export {

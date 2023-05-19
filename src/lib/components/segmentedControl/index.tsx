@@ -105,4 +105,4 @@ const SegmentedControl = ({
   );
 };
 
-export default SegmentedControl;
+export { SegmentedControl };
