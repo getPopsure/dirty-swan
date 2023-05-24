@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Autosuggest from 'react-autosuggest';
+import Autosuggest, { RenderInputComponentProps } from 'react-autosuggest';
 
 import styles from './style.module.scss';
 import { Option } from '../../../models/autoSuggestInput';
@@ -15,6 +15,7 @@ export default ({
   placeholder,
   className,
   wrapText,
+  inputProps
 }: {
   currentOption: string;
   suggestions: Option[];
@@ -25,6 +26,7 @@ export default ({
   placeholder: string;
   className?: string;
   wrapText?: boolean;
+  inputProps?: RenderInputComponentProps;
 }) => {
   const renderSuggestion = (suggestion: Option) => (
     <div className={`${styles['suggestion-option']}`}>
@@ -47,9 +49,9 @@ export default ({
 
   const getSuggestionValue = (suggestion: Option) => suggestion.value;
 
-  const renderInputComponent = (inputProps: Omit<InputProps, 'ref'>) => (
+  const renderInputComponent = (autoSuggestsInputProps: Omit<InputProps, 'ref'>) => (
     <Input
-      {...inputProps}
+      {...autoSuggestsInputProps}
       placeholder={placeholder}
       data-cy="suggest-multi-select-input"
     />
@@ -66,6 +68,7 @@ export default ({
         renderSuggestion={renderSuggestion}
         highlightFirstSuggestion={true}
         inputProps={{
+          ...inputProps,
           value: currentOption,
           onChange: (_, { newValue }) => {
             onChange(newValue);
