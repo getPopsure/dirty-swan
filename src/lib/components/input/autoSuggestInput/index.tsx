@@ -26,7 +26,7 @@ export default ({
   placeholder: string;
   className?: string;
   wrapText?: boolean;
-  inputProps?: RenderInputComponentProps;
+  inputProps?: Omit<RenderInputComponentProps, 'value' | 'onChange'>;
 }) => {
   const renderSuggestion = (suggestion: Option) => (
     <div className={`${styles['suggestion-option']}`}>
