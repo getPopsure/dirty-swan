@@ -49,9 +49,9 @@ export default ({
 
   const getSuggestionValue = (suggestion: Option) => suggestion.value;
 
-  const renderInputComponent = (autoSuggestsInputProps: Omit<InputProps, 'ref'>) => (
+  const renderInputComponent = (autoSuggestInputProps: Omit<InputProps, 'ref'>) => (
     <Input
-      {...autoSuggestsInputProps}
+      {...autoSuggestInputProps}
       placeholder={placeholder}
       data-cy="suggest-multi-select-input"
     />
