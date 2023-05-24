@@ -8,7 +8,7 @@ $cell-min-width: var(--cellWidth, 256px);
 
   & > div {
     width: var(--tableWidth);
-    max-width: var(--tableWidth);
+    max-width: 100vw;
 
     &:nth-child(n + 3) {
       margin: 0;
@@ -16,6 +16,7 @@ $cell-min-width: var(--cellWidth, 256px);
 
     @include p-size-tablet {
       width: $cell-min-width;
+      max-width: var(--tableWidth);
       scroll-snap-align: unset;
     }
   }
