@@ -1,7 +1,7 @@
 import { Address } from '@popsure/public-models';
 import { fireEvent, render } from '../../util/testUtils';
 
-import AutoCompleteAddress from '.';
+import { AutocompleteAddress } from '.';
 
 const address = {
   street: 'Köpeniker Strasse',
@@ -16,7 +16,7 @@ const setup = (
   onAddressChange: (address: Partial<Address>) => void = () => {}
 ) => {
   return render(
-    <AutoCompleteAddress
+    <AutocompleteAddress
       address={address}
       apiKey={''}
       onAddressChange={onAddressChange}

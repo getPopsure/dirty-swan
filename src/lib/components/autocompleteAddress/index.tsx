@@ -49,13 +49,7 @@ const loadGoogleMapsApiDynamically = (callback: () => void, apiKey: string) => {
   };
 };
 
-const AutoCompleteAddress = ({
-  apiKey,
-  address: initialAddress,
-  onAddressChange,
-  placeholders,
-  manualAddressEntryTexts,
-}: {
+export interface AutocompleteAddressProps {
   apiKey: string;
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
@@ -71,7 +65,15 @@ const AutoCompleteAddress = ({
     preText?: string;
     cta?: string;
   };
-}) => {
+}
+
+const AutocompleteAddress = ({
+  apiKey,
+  address: initialAddress,
+  onAddressChange,
+  placeholders,
+  manualAddressEntryTexts,
+}: AutocompleteAddressProps) => {
   const [manualAddressEntry, setManualAddressEntry] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const autocomplete = useRef<google.maps.places.Autocomplete | null>(null);
@@ -349,4 +351,4 @@ const AutoCompleteAddress = ({
   );
 };
 
-export default AutoCompleteAddress;
+export { AutocompleteAddress };
