@@ -28,11 +28,7 @@ const story = {
     selectedIndex: 0,
   },
   parameters: {
-    docs: {
-      description: {
-        component: 'A segmented control is a linear set of two or more segments, each of which functions as a mutually exclusive button.',
-      },
-    },
+    componentSubtitle: 'A segmented control is a linear set of two or more segments, each of which functions as a mutually exclusive button.',
   },
 };
 
