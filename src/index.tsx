@@ -30,6 +30,7 @@ export {
   SegmentedControl,
   DownloadButton,
   Markdown,
+  images
 } from './lib';
 
 export type {
@@ -38,7 +39,7 @@ export type {
   MultiDropzoneProps,
   TableHeader,
   UploadedFile,
-  UploadStatus
+  UploadStatus,
  } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
