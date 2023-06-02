@@ -38,6 +38,7 @@ import {
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
 import Markdown from './components/markdown';
+import { Image, ImageProps } from './components/image';
 
 export {
   DateSelector,
@@ -68,9 +69,11 @@ export {
   TableInfoButton,
   SegmentedControl,
   Markdown,
+  Image,
 };
 
 export type {
+  ImageProps,
   FileType,
   MultiDropzoneProps,
   TableHeader,
