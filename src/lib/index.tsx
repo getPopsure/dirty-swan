@@ -1,5 +1,5 @@
 import DateSelector from './components/dateSelector';
-import SignaturePad from './components/signaturePad';
+import { SignaturePad } from './components/signaturePad';
 import { AutocompleteAddress } from './components/autocompleteAddress';
 import Input from './components/input';
 import MultiDropzone, { 
@@ -8,7 +8,7 @@ import MultiDropzone, {
   UploadedFile,
   UploadStatus
 } from './components/multiDropzone';
-import DownloadButton from './components/downloadButton';
+import { DownloadButton } from './components/downloadButton';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
 import {
