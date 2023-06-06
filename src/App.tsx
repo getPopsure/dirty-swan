@@ -2,7 +2,7 @@ import React from 'react';
 import './lib/scss/index.scss';
 
 import DateSelector from './lib/components/dateSelector';
-import SignaturePad from './lib/components/signaturePad';
+import { SignaturePad } from './lib/components/signaturePad';
 import { CardWithLeftIcon } from './lib/components/cards';
 
 function App() {

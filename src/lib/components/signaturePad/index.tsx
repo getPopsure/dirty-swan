@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import SignaturePad from 'signature_pad';
+import Signature from 'signature_pad';
 
 import styles from './style.module.scss';
 
 import sign from './img/sign.svg';
 import reset from './img/reset.svg';
 
-interface Props {
+export interface SignaturePadProps {
   onChange: (base64signature: string) => void;
 }
 
@@ -15,12 +15,12 @@ interface State {
   hasContent: boolean;
 }
 
-class Signature extends Component<Props, State> {
+class SignaturePad extends Component<SignaturePadProps, State> {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private canvas: any;
   private signaturePad: any;
 
-  constructor(props: Props) {
+  constructor(props: SignaturePadProps) {
     super(props);
     this.state = {
       hasContent: false,
@@ -33,7 +33,7 @@ class Signature extends Component<Props, State> {
 
   public componentDidMount() {
     this.canvas = this.canvasRef.current;
-    this.signaturePad = new SignaturePad(this.canvas, {
+    this.signaturePad = new Signature(this.canvas, {
       onEnd: this.notifyOnChange,
     });
     this.resizeCanvas();
@@ -93,4 +93,4 @@ class Signature extends Component<Props, State> {
   }
 }
 
-export default Signature;
+export { SignaturePad };

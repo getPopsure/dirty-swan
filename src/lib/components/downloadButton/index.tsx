@@ -5,7 +5,7 @@ import checkIcon from './icons/check.svg';
 import downloadIcon from './icons/download.svg';
 import styles from './style.module.scss';
 
-interface Props {
+export interface DownloadButtonProps {
   downloadStatus: DownloadStatus;
   onDownload: () => void;
   className?: string;
@@ -43,7 +43,7 @@ const DownloadButton = ({
   onDownload,
   className = '',
   customFail,
-}: Props) => {
+}: DownloadButtonProps) => {
   const mapDownloadButton: { [K in DownloadStatus]: React.ReactNode } = {
     INITIAL: <InitialButton onDownload={onDownload} />,
     GENERATING: <GeneratingButton />,
@@ -64,4 +64,4 @@ const DownloadButton = ({
   );
 };
 
-export default DownloadButton;
+export { DownloadButton };
