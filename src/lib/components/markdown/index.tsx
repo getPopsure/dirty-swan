@@ -1,5 +1,5 @@
 import { h } from 'hastscript/html.js';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkDirective from 'remark-directive';
 import visit from 'unist-util-visit';
@@ -101,19 +101,21 @@ const Code = (props: any) => {
   );
 };
 
+export interface MarkdownProps {
+  children: string;
+  customMDComponents?: Record<string, FunctionComponent<any>>;
+  className?: string;
+  openLinksInNewTab?: boolean;
+  paragraphClassName?: string;
+}
+
 const Markdown = ({
   children,
   customMDComponents,
   className = '',
   openLinksInNewTab = false,
   paragraphClassName = '',
-}: {
-  children: string;
-  customMDComponents?: Record<string, FunctionComponent<any>>;
-  className?: string;
-  openLinksInNewTab?: boolean;
-  paragraphClassName?: string;
-}) => (
+}: MarkdownProps) => (
   <ReactMarkdown
     children={children}
     className={className}
@@ -136,4 +138,4 @@ const Markdown = ({
   />
 );
 
-export default Markdown;
+export { Markdown};
