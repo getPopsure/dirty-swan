@@ -37,7 +37,7 @@ import {
   TableHeader,
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
-import Markdown from './components/markdown';
+import { Markdown } from './components/markdown';
 import { images } from './util/images';
 
 export {
