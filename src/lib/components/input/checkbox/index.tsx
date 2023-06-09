@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
 
+import styles from './styles.module.scss';
 export interface CheckboxWithDescription {
   title: string;
   description?: string;
@@ -67,7 +68,7 @@ export const Checkbox = <ValueType extends string>({
 
   return (
     <div
-      className={classNames(className, 'd-flex gap8', {
+      className={classNames(className, styles.container, 'd-flex gap8', {
         ws10: wide,
         ws6: !wide,
         'fd-row': inlineLayout,
