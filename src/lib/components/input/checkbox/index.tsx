@@ -69,8 +69,8 @@ export const Checkbox = <ValueType extends string>({
   return (
     <div
       className={classNames(className, styles.container, 'd-flex gap8', {
-        ws10: wide,
-        ws6: !wide,
+        [styles.wide]: wide,
+        [styles.narrow]: !wide,
         'fd-row': inlineLayout,
         'f-wrap': inlineLayout,
         'fd-column': !inlineLayout,
