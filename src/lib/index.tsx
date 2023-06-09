@@ -11,6 +11,7 @@ import MultiDropzone, {
 import { DownloadButton } from './components/downloadButton';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
+import { Checkbox } from './components/input/checkbox';
 import {
   BottomModal,
   RegularModal,
@@ -69,6 +70,7 @@ export {
   TableInfoButton,
   SegmentedControl,
   Markdown,
+  Checkbox,
   images,
 };
 

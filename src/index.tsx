@@ -30,6 +30,7 @@ export {
   SegmentedControl,
   DownloadButton,
   Markdown,
+  Checkbox,
   images
 } from './lib';
 
