@@ -1,4 +1,7 @@
+import { colouredIcons } from "./colouredIcons";
+
 const images = {
+  colouredIcons,
   aid: 'https://assets.cdn.feather-insurance.com/assets/images/aid.svg',
   bed: 'https://assets.cdn.feather-insurance.com/assets/images/bed.svg',
   bigDog: 'https://assets.cdn.feather-insurance.com/assets/images/bigDog.svg',
