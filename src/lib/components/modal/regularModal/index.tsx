@@ -8,7 +8,7 @@ import styles from './style.module.scss';
 import imageClose from './img/close.svg';
 import classNames from 'classnames';
 
-export default ({
+export const RegularModal = ({
   title,
   isOpen,
   children,
