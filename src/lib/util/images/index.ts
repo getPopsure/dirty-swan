@@ -1,12 +1,17 @@
+const basePath = 'https://assets.cdn.feather-insurance.com/assets/images';
+
 const images = {
-  aid: 'https://assets.cdn.feather-insurance.com/assets/images/aid.svg',
-  bed: 'https://assets.cdn.feather-insurance.com/assets/images/bed.svg',
-  bigDog: 'https://assets.cdn.feather-insurance.com/assets/images/bigDog.svg',
-  brokenAquarium: 'https://assets.cdn.feather-insurance.com/assets/images/brokenAquarium.svg',
-  brokenGlass: 'https://assets.cdn.feather-insurance.com/assets/images/brokenGlass.svg',
-  damagedLaptop: 'https://assets.cdn.feather-insurance.com/assets/images/damagedLaptop.svg',
-  moneyIncome: 'https://assets.cdn.feather-insurance.com/assets/images/moneyIncome.svg',
-  washingMachine: 'https://assets.cdn.feather-insurance.com/assets/images/washingMachine.svg',
+  aid: `${basePath}/aid.svg`,
+  bed: `${basePath}/bed.svg`,
+  bigDog: `${basePath}/bigDog.svg`,
+  dogLiability: `${basePath}/dogLiabilityIcon.png`,
+  dogLiability2x: `${basePath}/dogLiabilityIcon2x.png`,
+  dogLiability3x: `${basePath}/dogLiabilityIcon3x.png`,
+  brokenAquarium: `${basePath}/brokenAquarium.svg`,
+  brokenGlass: `${basePath}/brokenGlass.svg`,
+  damagedLaptop: `${basePath}/damagedLaptop.svg`,
+  moneyIncome: `${basePath}/moneyIncome.svg`,
+  washingMachine: `${basePath}/washingMachine.svg`,
 } as const;
 
 export { images };
