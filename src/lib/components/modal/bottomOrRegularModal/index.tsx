@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Props, RegularModal } from '..';
-import BottomModal from '../bottomModal';
+import { BottomModal } from '../bottomModal';
 
 import styles from './style.module.scss';
 
-export default ({ isOpen, ...props }: Props) => {
+export const BottomOrRegularModal = ({ isOpen, ...props }: Props) => {
   const mobileRef = useRef<HTMLDivElement>(null);
   const [visibleSize, setVisibleSize] = useState<'desktop' | 'mobile'>(
     'desktop'

@@ -7,7 +7,7 @@ import imageClose from './img/close.svg';
 import useOnClose from '../hooks/useOnClose';
 import classNames from 'classnames';
 
-export default ({
+export const BottomModal = ({
   title,
   isOpen,
   children,
