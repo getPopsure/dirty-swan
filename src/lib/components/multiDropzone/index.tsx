@@ -25,24 +25,24 @@ import {
 import { formatBytes } from '../../util/formatBytes';
 
 interface MultiDropzoneProps {
-  accept?: AcceptType;
-  onFileSelect: (files: File[]) => void;
   uploadedFiles: UploadedFile[];
   uploading: boolean;
+  onFileSelect: (files: File[]) => void;
   onRemoveFile: (id: string) => void;
+  accept?: AcceptType;
   isCondensed?: boolean;
   maxFiles?: number;
   maxSize?: number;
   textOverrides?: TextOverrides;
 }
 
-const MultiDropZone = ({
-  accept,
+const MultiDropzone = ({
   uploadedFiles,
   onFileSelect,
-  uploading,
   onRemoveFile,
+  uploading,
   isCondensed = false,
+  accept,
   maxFiles = 0,
   maxSize,
   textOverrides,
@@ -157,4 +157,4 @@ const placeholder = `${textOverrides?.supportsTextShort || "Supports"} ${fileLis
 };
 
 export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus };
-export default MultiDropZone;
+export { MultiDropzone };
