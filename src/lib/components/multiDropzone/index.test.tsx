@@ -1,7 +1,7 @@
 import { act, fireEvent, render } from '../../util/testUtils';
 import '@testing-library/jest-dom';
 
-import MultiDropzone, { MultiDropzoneProps } from '.';
+import { MultiDropzone, MultiDropzoneProps } from '.';
 
 const mockOnFileSelect = jest.fn();
 const mockOnRemoveFile = jest.fn();
