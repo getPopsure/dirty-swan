@@ -1,6 +1,6 @@
-import { render, fireEvent } from '../../util/testUtils';
+import { render } from '../../util/testUtils';
 
-import DateSelector from '.';
+import { DateSelector } from '.';
 
 const setup = (date: string, onChange: (date: string) => void = () => {}) => {
   return render(

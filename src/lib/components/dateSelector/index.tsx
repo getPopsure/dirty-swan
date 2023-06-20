@@ -51,7 +51,21 @@ export const daysInMonthOfYear = ({
   return dayjs(`${year}-${month}`).daysInMonth();
 };
 
-const DateSelector = ({
+export interface DateSelectorProps {
+  value?: string;
+  onChange: (date: string) => void;
+  yearBoundaries: { min: number; max: number };
+  displayCalendar?: boolean;
+  dayjsLocale?: ILocale;
+  placeholders?: {
+    day?: string;
+    month?: string;
+    year?: string;
+  };
+  firstDayOfWeek?: number;
+}
+
+export const DateSelector = ({
   value,
   onChange,
   yearBoundaries,
@@ -59,19 +73,7 @@ const DateSelector = ({
   placeholders,
   dayjsLocale,
   firstDayOfWeek = 0,
-}: {
-  value?: string;
-  onChange: (date: string) => void;
-  yearBoundaries: { min: number; max: number };
-  displayCalendar?: boolean;
-  placeholders?: {
-    day?: string;
-    month?: string;
-    year?: string;
-  };
-  dayjsLocale?: ILocale;
-  firstDayOfWeek?: number;
-}) => {
+}: DateSelectorProps) => {
   const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
   const daysInSelectedDate = calendarDateValue
     ? daysInMonthOfYear({
@@ -278,5 +280,3 @@ const DateSelector = ({
     </div>
   );
 };
-
-export default DateSelector;
