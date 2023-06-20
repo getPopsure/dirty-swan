@@ -1,4 +1,4 @@
-import DateSelector from './components/dateSelector';
+import { DateSelector } from './components/dateSelector';
 import { SignaturePad } from './components/signaturePad';
 import { AutocompleteAddress } from './components/autocompleteAddress';
 import Input from './components/input';
