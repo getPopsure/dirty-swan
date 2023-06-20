@@ -20,7 +20,7 @@ const story = {
       }
     },
     displayCalendar: {
-      description: 'Wther the calendar icon/button trigger should show',
+      description: 'Whether the calendar icon/button trigger should show',
       defaultValue: false
     },
     onChange: {
