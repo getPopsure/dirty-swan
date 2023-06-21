@@ -3,7 +3,14 @@ import { Icon, arrowRight, IconSize } from '../icons';
 
 import styles from './style.module.scss';
 
-export default ({
+export type CardWithTopIconProps = CardProps & {
+  topIcon: Icon;
+  topIconSize: IconSize;
+  cardSize?: 'small' | 'medium' | 'big';
+  rightIcon?: 'arrow' | Icon;
+};
+
+export const CardWithTopIcon = ({
   className,
   title,
   cardSize = 'medium',
@@ -14,12 +21,7 @@ export default ({
   state = 'actionable',
   dropshadow = true,
   ...props
-}: CardProps & {
-  topIcon: Icon;
-  topIconSize: IconSize;
-  cardSize?: 'small' | 'medium' | 'big';
-  rightIcon?: 'arrow' | Icon;
-}) => {
+}: CardWithTopIconProps) => {
   const cardStyle = `d-flex fd-column ai-center ${className} ${associatedClassForCardState(
     state,
     dropshadow

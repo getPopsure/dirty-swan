@@ -18,7 +18,13 @@ const containerStyleFromTitleSize = (
   }
 };
 
-export default ({
+export type CardWithTopLeftIconProps = CardProps & {
+  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
+  leftIcon?: 'logo' | Icon;
+  rightIcon?: 'arrow' | Icon;
+};
+
+export const CardWithTopLeftIcon = ({
   className,
   title,
   cardSize = 'medium',
@@ -28,11 +34,7 @@ export default ({
   state = 'actionable',
   dropshadow = true,
   ...props
-}: CardProps & {
-  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
-  leftIcon?: 'logo' | Icon;
-  rightIcon?: 'arrow' | Icon;
-}) => {
+}: CardWithTopLeftIconProps) => {
   const cardStyle = `${className} ${associatedClassForCardState(
     state,
     dropshadow

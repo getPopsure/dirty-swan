@@ -3,16 +3,17 @@ import { FormEvent, createElement, ReactNode } from 'react';
 import styles from './style.module.scss';
 import { chevronRight } from '../icons';
 
-interface Props {
-  title: string;
-  description: string | ReactNode;
-  disabled?: boolean;
-  className?: string;
-}
 
 type ActionProps =
   | { href: string; onClick?: (e: FormEvent) => void }
   | { href?: string; onClick: (e: FormEvent) => void };
+
+export type CardButtonProps = {
+  title: string;
+  description: string | ReactNode;
+  disabled?: boolean;
+  className?: string;
+} & ActionProps;
 
 const CardContent = ({
   title,
@@ -34,14 +35,14 @@ const CardContent = ({
   </>
 );
 
-const CardButton = ({
+export const CardButton = ({
   title,
   description,
   disabled = false,
   onClick,
   href,
   className,
-}: Props & ActionProps) => {
+}: CardButtonProps) => {
   const component = href ? 'a' : 'button';
   return (
     <>
@@ -57,5 +58,3 @@ const CardButton = ({
     </>
   );
 };
-
-export default CardButton;

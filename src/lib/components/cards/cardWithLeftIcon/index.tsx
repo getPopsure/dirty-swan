@@ -30,7 +30,13 @@ const cardTextStyleFromCardSize = (
   }
 };
 
-export default ({
+export type CardWithLeftIconProps = CardProps & {
+  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
+  leftIcon?: Icon;
+  rightIcon?: 'arrow' | Icon;
+}
+
+export const CardWithLeftIcon = ({
   className = '',
   title,
   cardSize = 'medium',
@@ -40,11 +46,7 @@ export default ({
   state = 'actionable',
   dropshadow = true,
   ...props
-}: CardProps & {
-  cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
-  leftIcon?: Icon;
-  rightIcon?: 'arrow' | Icon;
-}) => {
+}: CardWithLeftIconProps) => {
   const cardStyle = `d-flex ai-center ${className} ${associatedClassForCardState(
     state,
     dropshadow
