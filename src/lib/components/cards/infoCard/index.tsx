@@ -3,7 +3,12 @@ import { Icon, info } from '../icons';
 
 import styles from './style.module.scss';
 
-export default ({
+export type InfoCardProps = CardProps & {
+  topIcon: Icon;
+  rightIcon?: 'info' | Icon;
+};
+
+export const InfoCard = ({
   className,
   title,
   children,
@@ -12,10 +17,7 @@ export default ({
   state = 'actionable',
   dropshadow = true,
   ...props
-}: CardProps & {
-  topIcon: Icon;
-  rightIcon?: 'info' | Icon;
-}) => (
+}: InfoCardProps) => (
   <div className={`${styles['root-container']} ${className ?? ''}`} {...props}>
     <img
       src={topIcon.src}
