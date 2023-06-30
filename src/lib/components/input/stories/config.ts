@@ -20,17 +20,17 @@ const sharedConfig = {
     control: { type: 'text' }
   },
   hideLabel: {
-    description: 'Wether a label should be hidden. This is needed for accessibility purposes and a label should always be provided',
+    description: 'Whether or not a label should be hidden.. This is needed for accessibility purposes and a label should always be provided',
     defaultValue: false,
     control: { type: 'boolean' }
   },
   prefix: {
-    description: 'A preffix that can be displayed on the left of the input. Specially useful for currencies.',
+    description: 'A prefix that can be displayed on the left of the input. Specially useful for currencies.',
     defaultValue: '£',
     control: { type: 'text' }
   },
   id: {
-    description: 'Unique ID identifier of the input. Relevent for accessibility.',
+    description: 'Unique ID identifier of the input. Relevant for accessibility.',
     defaultValue: '1234567890',
     control: { type: 'text' }
   },
