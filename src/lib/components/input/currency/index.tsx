@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { formatInput, reverseFormatInput } from './format';
-import Input, { InputProps } from '..';
+import { Input, InputProps } from '..';
 
 const CurrencyInput = ({
   value,

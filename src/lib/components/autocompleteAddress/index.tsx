@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import isEqual from 'lodash.isequal';
-import Input from '../input';
+import { Input } from '../input';
 import {
   Address,
   countryNameFromAlphaCode,
