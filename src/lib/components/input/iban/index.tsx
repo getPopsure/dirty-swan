@@ -1,4 +1,4 @@
-import Input, { InputProps } from '..';
+import { Input, InputProps } from '..';
 
 import { formatIban } from './formatIban';
 

@@ -5,16 +5,16 @@ import generateId from '../../util/generateId';
 import styles from './style.module.scss';
 
 // Something weird is going on with enterKeyHint that makes it a required field under certain circumstances. The & Omit<…> and & Pick<…> is a hacky way to go around that.
-export type InputProps = {
+export type InputProps =  Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
+ Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>> & {
   error?: string;
   prefix?: string;
   label?: string;
   id?: string;
   hideLabel?: boolean;
-} & Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
-  Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>>;
+};
 
-export default React.forwardRef(
+export const Input = React.forwardRef(
   (
     {
       className,

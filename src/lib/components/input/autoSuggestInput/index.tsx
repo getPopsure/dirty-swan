@@ -3,7 +3,7 @@ import Autosuggest, { RenderInputComponentProps } from 'react-autosuggest';
 
 import styles from './style.module.scss';
 import { Option } from '../../../models/autoSuggestInput';
-import Input, { InputProps } from '../index';
+import { Input, InputProps } from '../index';
 
 export default ({
   currentOption,
