@@ -24,7 +24,7 @@ const colors = [
   {
     name: 'Primary 100',
     code: 'primary-100',
-    hex: '#e6e5ff',
+    hex: '#ebebff',
   },
   {
     name: 'Primary 300',
