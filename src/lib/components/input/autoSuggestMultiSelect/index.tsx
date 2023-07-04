@@ -4,6 +4,7 @@ import { Option } from '../../../models/autoSuggestInput';
 import Chip from '../../chip';
 import AutoSuggestInput from '../autoSuggestInput';
 import styles from './style.module.scss';
+import classNames from 'classnames';
 
 export default ({
   options,
@@ -24,27 +25,37 @@ export default ({
 }) => {
   const [suggestions, setSuggestions] = useState<Option[]>([]);
   const [currentOption, setCurrentOption] = useState('');
+  const hasChips = Boolean(selectedValues && selectedValues.length > 0);
 
   return (
     <>
-      {selectedValues && selectedValues.length > 0 && (
-        <div
-          className={`mb8 ${styles['chip-container']} ${chipsListClassName}`}
-        >
-          {selectedValues.map((value, index) => (
-            <Chip
-              key={`${value.value}-${index}`}
-              value={value}
-              onRemove={(value: Option) => {
-                const newValues = [...selectedValues].filter(
-                  (selectedValue) => selectedValue.value !== value.value
-                );
-                setValues(newValues);
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <div
+        className={classNames(
+          styles['chip-container'],
+          chipsListClassName,
+          {
+            [styles.appearIn]: hasChips
+          },
+        )}
+      >
+        {selectedValues && hasChips && (
+          <>
+            {selectedValues.map((value, index) => (
+              <Chip
+                key={`${value.value}-${index}`}
+                className="mb16"
+                value={value}
+                onRemove={(value: Option) => {
+                  const newValues = [...selectedValues].filter(
+                    (selectedValue) => selectedValue.value !== value.value
+                  );
+                  setValues(newValues);
+                }}
+              />
+            ))}
+          </>
+        )}
+      </div>
       <AutoSuggestInput
         className={multiSelectClassName}
         placeholder={placeholder}
