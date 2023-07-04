@@ -40,6 +40,7 @@ import {
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
 import { Markdown } from './components/markdown';
+import { Link } from './components/link';
 import { images } from './util/images';
 
 export {
@@ -72,6 +73,7 @@ export {
   SegmentedControl,
   Markdown,
   Checkbox,
+  Link,
   images,
 };
 
