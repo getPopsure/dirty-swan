@@ -31,6 +31,7 @@ export {
   DownloadButton,
   Markdown,
   Checkbox,
+  Link,
   images
 } from './lib';
 
