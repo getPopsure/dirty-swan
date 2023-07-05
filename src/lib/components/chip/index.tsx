@@ -4,13 +4,15 @@ import removeButtonHighlightedIcon from './icons/remove-button-highlighted.svg';
 import { Option } from '../../models/autoSuggestInput';
 
 export default ({
+  className,
   value,
   onRemove,
 }: {
   value: Option;
   onRemove: (value: Option) => void;
+  className?: string;
 }) => (
-  <div className={`p-p mr8 mb8 d-flex ${styles['chip']}`}>
+  <div className={`p-p mr8 mb8 d-flex ${className} ${styles['chip']}`}>
     {value.leftIcon && (
       <img
         className={`mr8 ${styles['chip-image']}`}
