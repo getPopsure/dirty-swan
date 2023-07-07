@@ -10,6 +10,7 @@ import {
   UploadStatus
 } from './components/multiDropzone';
 import { DownloadButton } from './components/downloadButton';
+import { InformationBox } from './components/informationBox';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
 import { Checkbox } from './components/input/checkbox';
@@ -74,6 +75,7 @@ export {
   Markdown,
   Checkbox,
   Link,
+  InformationBox,
   images,
 };
 
