@@ -32,6 +32,7 @@ export {
   Markdown,
   Checkbox,
   Link,
+  InformationBox,
   images
 } from './lib';
 
