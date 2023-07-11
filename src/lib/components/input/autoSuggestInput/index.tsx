@@ -5,18 +5,7 @@ import styles from './style.module.scss';
 import { Option } from '../../../models/autoSuggestInput';
 import { Input, InputProps } from '../index';
 
-export default ({
-  currentOption,
-  suggestions,
-  handleSuggestionSelected,
-  onChange,
-  handleSuggestionFetchRequest,
-  handleSuggestionClearRequest,
-  placeholder,
-  className,
-  wrapText,
-  inputProps
-}: {
+export interface AutoSuggestInputProps {
   currentOption: string;
   suggestions: Option[];
   handleSuggestionSelected: (value: Option) => void;
@@ -27,7 +16,20 @@ export default ({
   className?: string;
   wrapText?: boolean;
   inputProps?: Omit<RenderInputComponentProps, 'value' | 'onChange'>;
-}) => {
+}
+
+export const AutoSuggestInput = ({
+  currentOption,
+  suggestions,
+  handleSuggestionSelected,
+  onChange,
+  handleSuggestionFetchRequest,
+  handleSuggestionClearRequest,
+  placeholder,
+  className,
+  wrapText,
+  inputProps
+}: AutoSuggestInputProps) => {
   const renderSuggestion = (suggestion: Option) => (
     <div className={`${styles['suggestion-option']}`}>
       {suggestion.leftIcon && (
