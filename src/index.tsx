@@ -36,6 +36,8 @@ export {
   images
 } from './lib';
 
+export * from './lib/components/icon/icons';
+
 export type {
   DownloadStatus,
   FileType,

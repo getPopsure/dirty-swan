@@ -1,0 +1,14 @@
+@use '../../scss/public/colors' as *;
+
+.wrapper {
+  position: relative;
+}
+
+.searchBar {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  right: -20px;
+
+  border-bottom: 1px solid $ds-grey-300;
+}

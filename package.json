@@ -52,7 +52,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public,storybook-assets",
     "build-storybook": "build-storybook -s public,storybook-assets",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "generate-icons": "svgr src/lib/components/icon/assets"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -82,6 +83,7 @@
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.5.16",
     "@storybook/storybook-deployer": "^2.8.10",
+    "@svgr/cli": "^8.0.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^8.0.1",
