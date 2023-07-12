@@ -2,19 +2,11 @@ import { useState } from 'react';
 
 import { Option } from '../../../models/autoSuggestInput';
 import Chip from '../../chip';
-import AutoSuggestInput from '../autoSuggestInput';
+import { AutoSuggestInput } from '../autoSuggestInput';
 import styles from './style.module.scss';
 import classNames from 'classnames';
 
-export default ({
-  options,
-  selectedValues,
-  setValues,
-  placeholder,
-  chipsListClassName,
-  multiSelectClassName,
-  wrapText,
-}: {
+export interface AutoSuggestMultiSelectProps {
   options: Option[];
   selectedValues?: Option[];
   setValues: (values: Option[]) => void;
@@ -22,7 +14,17 @@ export default ({
   chipsListClassName?: string;
   multiSelectClassName?: string;
   wrapText?: boolean;
-}) => {
+}
+
+export const AutoSuggestMultiSelect = ({
+  options,
+  selectedValues,
+  setValues,
+  placeholder,
+  chipsListClassName,
+  multiSelectClassName,
+  wrapText,
+}: AutoSuggestMultiSelectProps) => {
   const [suggestions, setSuggestions] = useState<Option[]>([]);
   const [currentOption, setCurrentOption] = useState('');
   const hasChips = Boolean(selectedValues && selectedValues.length > 0);
