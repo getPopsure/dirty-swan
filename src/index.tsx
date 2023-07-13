@@ -33,6 +33,7 @@ export {
   Checkbox,
   Link,
   InformationBox,
+  Badge,
   images
 } from './lib';
 

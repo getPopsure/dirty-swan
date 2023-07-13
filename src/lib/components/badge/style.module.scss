@@ -1,0 +1,13 @@
+
+.badge {
+  &--small,
+  &--medium {
+    padding-bottom: 6px;
+    padding-top: 6px;
+  }
+ 
+  &--large {
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+}
