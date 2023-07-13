@@ -1,5 +1,5 @@
 import { associatedClassForCardState, CardProps, headingForCardSize } from '..';
-import { Icon, arrowRight } from '../icons';
+import { Icon, IconSize, arrowRight } from '../icons';
 
 import styles from './style.module.scss';
 
@@ -30,21 +30,26 @@ const cardTextStyleFromCardSize = (
   }
 };
 
-export type CardWithLeftIconProps = CardProps & {
+export type CardWithLeftIconProps = Omit<CardProps, 'title'> & {
   cardSize?: 'xsmall' | 'small' | 'medium' | 'big';
   leftIcon?: Icon;
   rightIcon?: 'arrow' | Icon;
+  leftIconSize?: IconSize;
+  title?: string;
+  subtitle?: string;
 }
 
 export const CardWithLeftIcon = ({
   className = '',
   title,
+  subtitle,
   cardSize = 'medium',
   children,
   leftIcon,
   rightIcon,
   state = 'actionable',
   dropshadow = true,
+  leftIconSize,
   ...props
 }: CardWithLeftIconProps) => {
   const cardStyle = `d-flex ai-center ${className} ${associatedClassForCardState(
@@ -62,8 +67,8 @@ export const CardWithLeftIcon = ({
     <div className={cardStyle} {...props}>
       {leftIcon && (
         <img
-          width="48px"
-          height="48px"
+          width={`${leftIconSize?.width || 48}px`}
+          height={`${leftIconSize?.height || 48}px`}
           className={iconStyle}
           src={leftIcon.src}
           alt={leftIcon.alt}
@@ -71,7 +76,16 @@ export const CardWithLeftIcon = ({
       )}
       <div>
         <div className="d-flex">
-          <div className={headingStyle}>{title}</div>
+          {(title || subtitle) && (
+            <div>
+              {title && (
+                <div className={headingStyle}>{title}</div>
+              )}
+              {subtitle && (
+                <div className={`tc-grey-500 ${headingStyle}`}>{subtitle}</div>
+              )}
+            </div>
+          )}
           {rightIcon && (
             <img
               className="ml-auto"
