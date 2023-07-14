@@ -9,6 +9,10 @@ const story = {
       defaultValue: 'Lorem Ipsum',
       description: 'Title text that needs to be displayed',
     },
+    subtitle: {
+      defaultValue: 'Lorem Ipsum dolorem',
+      description: 'Subitle text that needs to be displayed',
+    },
     children: {
       type: 'text',
       defaultValue: 'Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping, Mountain or rock climbing, Bouldering, Martial arts,',
@@ -24,6 +28,13 @@ const story = {
         alt: 'Image alt'
       },
       description: 'Icon displayed on the left of the card.',
+    },
+    leftIconSize: {
+      defaultValue: {
+        width: 48,
+        height: 48
+      },
+      description: 'Size of the left icon',
     },
     rightIcon: {
       defaultValue: {
@@ -51,11 +62,13 @@ const story = {
 
 export const CardWithLeftIconStory = ({
   title,
+  subtitle,
   dropshadow,
   children,
   className,
   cardSize,
   leftIcon,
+  leftIconSize,
   rightIcon,
   state,
 }: CardWithLeftIconProps) => {
@@ -66,8 +79,10 @@ export const CardWithLeftIconStory = ({
       dropshadow={dropshadow}
       state={state}
       leftIcon={leftIcon}
+      leftIconSize={leftIconSize}
       rightIcon={rightIcon}
       title={title}
+      subtitle={subtitle}
     >
       {children}
     </CardWithLeftIcon>
