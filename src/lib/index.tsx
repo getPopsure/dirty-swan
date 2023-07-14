@@ -13,6 +13,7 @@ import { DownloadButton } from './components/downloadButton';
 import { InformationBox } from './components/informationBox';
 import IbanInput from './components/input/iban';
 import CurrencyInput from './components/input/currency';
+import { Badge } from './components/badge';
 import { Checkbox } from './components/input/checkbox';
 import {
   BottomModal,
@@ -76,6 +77,7 @@ export {
   Checkbox,
   Link,
   InformationBox,
+  Badge,
   images,
 };
 
