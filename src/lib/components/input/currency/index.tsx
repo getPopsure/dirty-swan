@@ -35,7 +35,9 @@ const CurrencyInput = ({
   }, [value]);
 
   useEffect(() => {
-    onChange?.(reverseFormatInput(shadowValue));
+    if (shadowValue) {
+      onChange?.(reverseFormatInput(shadowValue));
+    }
     // eslint-disable-next-line
   }, [shadowValue]);
 
@@ -44,12 +46,13 @@ const CurrencyInput = ({
       return;
     }
 
-    const cursorDiff =  String(formattedShadowValue).length - String(shadowValue).length;
+    const cursorDiff =
+      String(formattedShadowValue).length - String(shadowValue).length;
     const newCursor = cursorDiff + cursor;
 
     inputRef.current.selectionStart = newCursor;
     inputRef.current.selectionEnd = newCursor;
-  },[cursor, formattedShadowValue, shadowValue])
+  }, [cursor, formattedShadowValue, shadowValue]);
 
   return (
     <Input
