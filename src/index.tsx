@@ -34,6 +34,7 @@ export {
   Link,
   InformationBox,
   Badge,
+  icons,
   images
 } from './lib';
 
