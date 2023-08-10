@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom';
 import App from './App';
 
+export * from './lib/components/icon';
+
 export {
   DateSelector,
   SignaturePad,
@@ -34,10 +36,10 @@ export {
   Link,
   InformationBox,
   Badge,
-  images
+  images,
 } from './lib';
 
-export * from './lib/components/icon/icons';
+
 
 export type {
   DownloadStatus,

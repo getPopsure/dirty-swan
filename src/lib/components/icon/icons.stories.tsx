@@ -36,8 +36,9 @@ export const IconsList = () => {
   };
 
   return (
-    <div className={classNames(styles.wrapper, 'pt96')}>
-      <div className={classNames(styles.searchBar, 'bg-white d-flex gap8 p16 pt0')}>
+    <div>
+      <div className={classNames(styles.searchBar, 'bg-white')}>
+        <div className='d-flex gap8 wmx12 m-auto'>
         <Input
           className='w70'
           onChange={handleOnSearch}
@@ -45,13 +46,16 @@ export const IconsList = () => {
           value={value} 
         />
         <Button className='w30' disabled={!value} buttonTitle='Clear search' onClick={clearSearch} />
+        </div>
       </div>
 
-      <div className='d-flex gap8'>
+      <div className='d-flex f-wrap'>
         {options.map(([iconKey, Icon]) => (
-          <div key={iconKey} className="w20 d-flex fd-column ai-center br4 p24 pt16 pb16 bg-grey-100">
-            <Icon size={32} />
-            <span className='p-p--small'>{iconKey}</span>
+          <div key={iconKey} className="w20 p8">
+            <div className='br4 p24 pt16 pb16 bg-grey-100 w100 d-flex fd-column ai-center'>
+              <Icon size={32} />
+              <span className='p-p--small'>{iconKey}</span>
+            </div>
           </div>
         ))}
       </div>
