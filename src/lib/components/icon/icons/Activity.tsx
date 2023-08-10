@@ -11,6 +11,6 @@ export default (props: IconWrapperProps) =>
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M22 12h-4l-3 9L9 3l-3 9H2"
+      d="M21 12h-3l-3 9L9 3l-3 9H3"
     />
   );
