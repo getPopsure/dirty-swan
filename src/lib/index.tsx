@@ -43,6 +43,7 @@ import {
 import { SegmentedControl } from './components/segmentedControl';
 import { Markdown } from './components/markdown';
 import { Link } from './components/link';
+import * as icons from './components/icon/icons';
 import { images } from './util/images';
 
 export {
@@ -78,6 +79,7 @@ export {
   Link,
   InformationBox,
   Badge,
+  icons,
   images,
 };
 
