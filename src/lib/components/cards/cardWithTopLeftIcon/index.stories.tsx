@@ -1,5 +1,4 @@
 import { CardWithTopLeftIcon, CardWithTopLeftIconProps } from '.';
-import { images } from '../../../util/images';
 
 const story = {
   title: 'JSX/Cards/CardWithTopLeftIcon',
