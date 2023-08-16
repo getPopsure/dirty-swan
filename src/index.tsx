@@ -34,10 +34,10 @@ export {
   Link,
   InformationBox,
   Badge,
-  images
+  images,
 } from './lib';
 
-export * from './lib/components/icon/icons';
+export * from './lib/components/icon';
 
 export type {
   DownloadStatus,

@@ -6,7 +6,6 @@ module.exports = {
   icon: '{props.size}',
   replaceAttrValues: {
       '#8E8CEE': 'currentColor',
-      '#fff': 'currentColor',
   },
   role: 'img',
   typescript: true,

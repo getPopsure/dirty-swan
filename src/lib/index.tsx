@@ -45,6 +45,8 @@ import { Markdown } from './components/markdown';
 import { Link } from './components/link';
 import { images } from './util/images';
 
+export * from './components/icon';
+
 export {
   DateSelector,
   SignaturePad,
