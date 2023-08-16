@@ -14,7 +14,7 @@ export type IconWrapperProps = {
 const IconWrapper = ({
   children,
   size = 16,
-  color = 'primary-500',
+  color,
   className,
 }: IconWrapperProps) => (
   <span
