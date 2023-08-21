@@ -31,6 +31,7 @@ export {
   DownloadButton,
   Markdown,
   Checkbox,
+  Radio,
   Link,
   InformationBox,
   Badge,
