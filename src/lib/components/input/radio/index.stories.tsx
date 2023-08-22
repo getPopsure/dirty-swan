@@ -42,17 +42,13 @@ const story = {
       description: 'Property that defines if options should show inline instead of block. Check inline radio options story for examples.',
       defaultValue: false
     },
-    className: {
-      description: 'Wrapper classNames for custom styling',
-      defaultValue: ''
-    },
-    optionClassName: {
-      description: 'Option classNames for custom styling',
-      defaultValue: ''
-    },
-    labelClassName: {
-      description: 'Label classNames for custom styling',
-      defaultValue: ''
+    classNames: {
+      description: 'ClassNames for custom styling',
+      defaultValue: {
+        container: '',
+        label: '',
+        option: ''
+      }
     },
     bordered: {
       description: 'Property that defines if option should show with border',
@@ -65,9 +61,7 @@ export const RadioStory = ({
   onChange,
   options,
   wide,
-  className,
-  optionClassName,
-  labelClassName,
+  classNames,
   inlineLayout,
   bordered,
 }: RadioProps<string>) => {
@@ -84,9 +78,7 @@ export const RadioStory = ({
       options={options} 
       onChange={handleOnChange}
       value={checkedValues}
-      className={className}
-      labelClassName={labelClassName}
-      optionClassName={optionClassName}
+      classNames={classNames}
       inlineLayout={inlineLayout}
       bordered={bordered}
     />
@@ -109,7 +101,7 @@ export const RadioWithCustomWrapperStyles = ({ onChange }: RadioProps<string>) =
         CAT1: 'Cat',
         DOG1: 'Dog',
       }} 
-      className="p32 bg-primary-300 br24 bs-lg"
+      classNames={{ container: "p32 bg-primary-300 br24 bs-lg" }}
     />
   );
 }
@@ -130,7 +122,7 @@ export const RadioWithCustomOptionStyles = ({ onChange }: RadioProps<string>) =>
         CAT2: 'Cat',
         DOG2: 'Dog',
       }} 
-      optionClassName="mb32 p24 bg-green-100 br12 bs-lg"
+      classNames={{ option: "mb32 p24 bg-green-100 br12 bs-lg" }}
     />
   );
 }
@@ -151,7 +143,7 @@ export const RadioWithCustomLabelStyles = ({ onChange }: RadioProps<string>) => 
         CAT3: 'Cat',
         DOG3: 'Dog',
       }} 
-      labelClassName="bg-grey-900 tc-white"
+      classNames={{ label: "bg-grey-900 tc-white" }}
     />
   );
 }
@@ -176,14 +168,14 @@ export const RadioWithInlineLayout = ({ onChange }: RadioProps<string>) => {
         RAT: 'Rat',
         ANOTHER: 'Other',
       }} 
-      optionClassName="w30"
+      classNames={{ option: "w30" }}
       inlineLayout
       wide
     />
   );
 }
 
-export const RadioWithCustomLabel = ({ onChange, wide, className, optionClassName, inlineLayout }: RadioProps<string>) => {
+export const RadioWithCustomLabel = ({ onChange, wide, classNames, inlineLayout }: RadioProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string>();
 
   const handleOnChange = (newValue: string) => {
@@ -209,7 +201,7 @@ export const RadioWithCustomLabel = ({ onChange, wide, className, optionClassNam
       }} 
       onChange={handleOnChange}
       value={checkedValues}
-      optionClassName="w30"
+      classNames={{ option: "w30" }}
       inlineLayout
     />
   );
@@ -217,7 +209,7 @@ export const RadioWithCustomLabel = ({ onChange, wide, className, optionClassNam
 
 RadioStory.storyName = 'Radio';
 
-export const RadioIconOnly = ({ onChange, wide, className, optionClassName, inlineLayout }: RadioProps<string>) => {
+export const RadioIconOnly = ({ onChange, wide, classNames, inlineLayout }: RadioProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string>();
 
   const handleOnChange = (newValue: string) => {
@@ -229,7 +221,7 @@ export const RadioIconOnly = ({ onChange, wide, className, optionClassName, inli
     <Radio 
       options={{ NOTHING: '' }} 
       onChange={handleOnChange}
-      labelClassName='jc-start'
+      classNames={{ label: 'jc-start' }}
       value={checkedValues}
       bordered={false}
     />

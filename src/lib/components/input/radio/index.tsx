@@ -15,9 +15,11 @@ export interface RadioProps<ValueType extends string> {
   onChange: (value: ValueType) => void;
   wide?: boolean;
   inlineLayout?: boolean;
-  className?: string;
-  labelClassName?: string;
-  optionClassName?: string
+  classNames?: {
+    container?: string;
+    label?: string;
+    option?: string;
+  };
   bordered?: boolean;
 }
 
@@ -27,9 +29,7 @@ export const Radio = <ValueType extends string>({
   onChange,
   wide = false,
   inlineLayout = false,
-  className = '',
-  labelClassName = '',
-  optionClassName = '',
+  classNames: classNamesObj,
   bordered = true
 }: RadioProps<ValueType>) => {
   const entries = Object.entries(options) as [
@@ -37,9 +37,10 @@ export const Radio = <ValueType extends string>({
     string | RadioWithDescription
   ][];
 
+
   return (
     <div
-      className={classNames(className, styles.container, 'd-flex gap8', {
+      className={classNames(classNamesObj?.container, styles.container, 'd-flex gap8', {
         [styles.wide]: wide,
         [styles.narrow]: !wide,
         'fd-row': inlineLayout,
@@ -53,7 +54,7 @@ export const Radio = <ValueType extends string>({
         const hideIcon = (label as RadioWithDescription)?.hideBox;
 
         return (
-          <div className={optionClassName} key={currentValue}>
+          <div className={classNamesObj?.option} key={currentValue}>
             <input
               className={classNames(
                 "p-radio", {
@@ -72,7 +73,7 @@ export const Radio = <ValueType extends string>({
             <label
               htmlFor={currentValue}
               className={classNames(
-                labelClassName,
+                classNamesObj?.label,
                 'p-label',
                 {
                   'jc-center': customIcon,
