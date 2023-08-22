@@ -15,9 +15,11 @@ export interface CheckboxProps<ValueType extends string> {
   wide?: boolean;
   inlineLayout?: boolean;
   bordered?: Boolean,
-  className?: string;
-  labelClassName?: string;
-  optionClassName?: string
+  classNames?: {
+    container?: string;
+    label?: string;
+    option?: string;
+  }
 }
 
 export const Checkbox = <ValueType extends string>({
@@ -27,9 +29,7 @@ export const Checkbox = <ValueType extends string>({
   wide = false,
   inlineLayout = false,
   bordered = true,
-  className = '',
-  labelClassName = '',
-  optionClassName = '',
+  classNames: classNamesObj,
 }: CheckboxProps<ValueType> & {  }) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
 
@@ -70,7 +70,7 @@ export const Checkbox = <ValueType extends string>({
 
   return (
     <div
-      className={classNames(className, styles.container, 'd-flex gap8', {
+      className={classNames(classNamesObj?.container, styles.container, 'd-flex gap8', {
         [styles.narrow]: !wide,
         'fd-row': inlineLayout,
         'f-wrap': inlineLayout,
@@ -82,7 +82,7 @@ export const Checkbox = <ValueType extends string>({
         const customIcon = (label as CheckboxWithDescription)?.icon;
 
         return (
-          <div className={optionClassName} key={currentValue}>
+          <div className={classNamesObj?.option} key={currentValue}>
             <input
               className={classNames(
                 "p-checkbox", {
@@ -100,7 +100,7 @@ export const Checkbox = <ValueType extends string>({
             <label
               htmlFor={currentValue}
               className={classNames(
-                labelClassName,
+                classNamesObj?.label,
                 'p-label pr16',
                 {
                   'p-label--bordered': bordered,
