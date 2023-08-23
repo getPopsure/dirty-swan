@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ArrowValues } from '../components/TableArrows';
 
+const headerId = 'comparison-table-header';
+
 export const useComparisonTable = () => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [headerWidth, setHeaderWidth] = useState(1400);
@@ -110,8 +112,21 @@ export const useComparisonTable = () => {
     setShowMore(!showMore);
   };
 
+  useEffect(() => {
+    if (headerRef.current) {
+      return;
+    }
+
+    const headerById = document.getElementById(headerId);
+console.log('headerById :>> ', headerById);
+    if (headerById) {
+      scrollContainerCallbackRef(headerById);
+    }
+  }, [scrollContainerCallbackRef]);
+
   return {
     headerWidth,
+    headerId,
     contentContainerRef,
     selectedSection,
     setSelectedSection,
