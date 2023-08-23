@@ -118,7 +118,7 @@ export const useComparisonTable = () => {
     }
 
     const headerById = document.getElementById(headerId);
-console.log('headerById :>> ', headerById);
+
     if (headerById) {
       scrollContainerCallbackRef(headerById);
     }
