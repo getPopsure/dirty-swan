@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 import { AccordionItem } from './components/AccordionItem';
@@ -85,6 +85,7 @@ const ComparisonTable = <T extends { id: number }>(
     handleArrowsClick,
     toggleMoreRows,
     showMore,
+    headerId,
   } = useComparisonTable();
 
   const cssVariablesStyle = {
@@ -105,6 +106,7 @@ const ComparisonTable = <T extends { id: number }>(
         <div className={classNames(baseStyles.header, styles?.header)}>
           <ScrollSyncPane>
             <div
+              id={headerId}
               className={classNames(baseStyles.container, {
                 [baseStyles.noScrollBars]: hideScrollBars,
               })}
