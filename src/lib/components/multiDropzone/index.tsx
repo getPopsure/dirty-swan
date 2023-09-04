@@ -88,6 +88,8 @@ const MultiDropzone = ({
     onDrop,
   });
 
+  const [uniqueId] = useState(generateId());
+
   return (
     <div className={styles.container}>
       <div
@@ -99,18 +101,14 @@ const MultiDropzone = ({
         )}
         {...getRootProps()}
       >
-        <input
-          data-testid="ds-drop-input"
-          id="ds-drop-input"
-          {...getInputProps()}
-        />
+        <input data-testid="ds-drop-input" id={uniqueId} {...getInputProps()} />
         <img
           className={isCondensed ? styles.img : ''}
           src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
           alt="purple cloud with an arrow"
         />
         <label
-          htmlFor="ds-drop-input"
+          htmlFor={uniqueId}
           className={`p-h4 mt8 d-block ${isCondensed ? styles.textInline : ''}`}
         >
           {uploading
