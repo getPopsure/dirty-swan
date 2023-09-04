@@ -35,6 +35,7 @@ export {
   InformationBox,
   Badge,
   images,
+  Spinner,
 } from './lib';
 
 export * from './lib/components/icon';
@@ -46,6 +47,6 @@ export type {
   TableHeader,
   UploadedFile,
   UploadStatus,
- } from './lib';
+} from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
