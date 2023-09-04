@@ -157,7 +157,7 @@ describe('MultiDropzone component', () => {
       ).toBeInTheDocument();
     });
 
-    it('should correctly match input with label text', () => {
+    it('should associate input with its label', () => {
       const { getByLabelText } = setup({});
       const input = getByLabelText('Choose file or drag & drop');
 
