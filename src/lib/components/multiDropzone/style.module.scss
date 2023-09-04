@@ -1,4 +1,4 @@
-@use "../../scss/public/grid" as *;
+@use '../../scss/public/grid' as *;
 
 .container {
   background-color: transparent;
@@ -33,5 +33,5 @@
 
 .dropzoneContainerDisabled {
   pointer-events: none;
-  opacity: 0.4
+  opacity: 0.4;
 }
