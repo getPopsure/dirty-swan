@@ -2,12 +2,12 @@ import { DateSelector } from './components/dateSelector';
 import { SignaturePad } from './components/signaturePad';
 import { AutocompleteAddress } from './components/autocompleteAddress';
 import { Input } from './components/input';
-import { 
+import {
   MultiDropzone,
   FileType,
   MultiDropzoneProps,
   UploadedFile,
-  UploadStatus
+  UploadStatus,
 } from './components/multiDropzone';
 import { DownloadButton } from './components/downloadButton';
 import { InformationBox } from './components/informationBox';
@@ -45,6 +45,7 @@ import { SegmentedControl } from './components/segmentedControl';
 import { Markdown } from './components/markdown';
 import { Link } from './components/link';
 import { images } from './util/images';
+import { Spinner } from './components/spinner';
 
 export * from './components/icon';
 
@@ -83,6 +84,7 @@ export {
   InformationBox,
   Badge,
   images,
+  Spinner,
 };
 
 export type {
@@ -90,7 +92,7 @@ export type {
   MultiDropzoneProps,
   TableHeader,
   UploadedFile,
-  UploadStatus
+  UploadStatus,
 };
 
 export type { DownloadStatus } from './models/download';
