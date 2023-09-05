@@ -48,16 +48,12 @@ const story = {
       defaultValue: false
     },
     className: {
-      description: 'Wrapper classNames for custom styling',
-      defaultValue: ''
-    },
-    optionClassName: {
-      description: 'Option classNames for custom styling',
-      defaultValue: ''
-    },
-    labelClassName: {
-      description: 'Label classNames for custom styling',
-      defaultValue: ''
+      description: 'ClassNames for custom styling',
+      defaultValue: {
+        container: '',
+        label: '',
+        option: ''
+      }
     },
   }
 };
@@ -67,9 +63,7 @@ export const CheckboxStory = ({
   options,
   wide,
   bordered,
-  className,
-  optionClassName,
-  labelClassName,
+  classNames,
   inlineLayout,
 }: CheckboxProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string[]>([]);
@@ -86,9 +80,7 @@ export const CheckboxStory = ({
       onChange={handleOnChange}
       value={checkedValues}
       bordered={bordered}
-      className={className}
-      labelClassName={labelClassName}
-      optionClassName={optionClassName}
+      classNames={classNames}
       inlineLayout={inlineLayout}
     />
   );
@@ -110,7 +102,7 @@ export const CheckboxWithCustomWrapperStyles = ({ onChange }: CheckboxProps<stri
         CAT1: 'Cat',
         DOG1: 'Dog',
       }} 
-      className="p32 bg-primary-300 br24 bs-lg"
+      classNames={{ container: "p32 bg-primary-300 br24 bs-lg" }}
     />
   );
 }
@@ -131,7 +123,7 @@ export const CheckboxWithCustomOptionStyles = ({ onChange }: CheckboxProps<strin
         CAT2: 'Cat',
         DOG2: 'Dog',
       }} 
-      optionClassName="mb32 p24 bg-green-100 br12 bs-lg"
+      classNames={{ option: "mb32 p24 bg-green-100 br12 bs-lg" }}
     />
   );
 }
@@ -152,7 +144,7 @@ export const CheckboxWithCustomLabelStyles = ({ onChange }: CheckboxProps<string
         CAT3: 'Cat',
         DOG3: 'Dog',
       }} 
-      labelClassName="bg-grey-900 tc-white"
+      classNames={{ label: "bg-grey-900 tc-white" }}
     />
   );
 }
@@ -177,14 +169,14 @@ export const CheckboxWithInlineLayout = ({ onChange }: CheckboxProps<string>) =>
         RAT: 'Rat',
         ANOTHER: 'Other',
       }} 
-      optionClassName="w30"
+      classNames={{ option: "w30" }}
       inlineLayout
       wide
     />
   );
 }
 
-export const CheckboxWithCustomLabel = ({ onChange, wide, className, optionClassName, inlineLayout }: CheckboxProps<string>) => {
+export const CheckboxWithCustomLabel = ({ onChange, wide, classNames, inlineLayout }: CheckboxProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string[]>([]);
 
   const handleOnChange = (newValue: string[] = []) => {
@@ -210,7 +202,7 @@ export const CheckboxWithCustomLabel = ({ onChange, wide, className, optionClass
       }} 
       onChange={handleOnChange}
       value={checkedValues}
-      optionClassName="w30"
+      classNames={{ option: "w30" }}
       inlineLayout
     />
   );
