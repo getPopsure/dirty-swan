@@ -38,6 +38,11 @@ const story = {
       description: 'Property that defines if options should fill 100% of available horizontal space',
       defaultValue: false
     },
+    bordered: {
+      control: { type: 'boolean' },
+      description: 'Property that defines if checkbox should show the border around each label',
+      defaultValue: true
+    },
     inlineLayout: {
       description: 'Property that defines if options should show inline instead of block. Check inline checkbox options story for examples.',
       defaultValue: false
@@ -61,6 +66,7 @@ export const CheckboxStory = ({
   onChange,
   options,
   wide,
+  bordered,
   className,
   optionClassName,
   labelClassName,
@@ -79,6 +85,7 @@ export const CheckboxStory = ({
       options={options} 
       onChange={handleOnChange}
       value={checkedValues}
+      bordered={bordered}
       className={className}
       labelClassName={labelClassName}
       optionClassName={optionClassName}
