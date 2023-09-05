@@ -14,6 +14,7 @@ export interface CheckboxProps<ValueType extends string> {
   onChange: (value: ValueType[]) => void;
   wide?: boolean;
   inlineLayout?: boolean;
+  bordered?: Boolean,
   className?: string;
   labelClassName?: string;
   optionClassName?: string
@@ -25,6 +26,7 @@ export const Checkbox = <ValueType extends string>({
   onChange,
   wide = false,
   inlineLayout = false,
+  bordered = true,
   className = '',
   labelClassName = '',
   optionClassName = '',
@@ -69,7 +71,6 @@ export const Checkbox = <ValueType extends string>({
   return (
     <div
       className={classNames(className, styles.container, 'd-flex gap8', {
-        [styles.wide]: wide,
         [styles.narrow]: !wide,
         'fd-row': inlineLayout,
         'f-wrap': inlineLayout,
@@ -100,8 +101,9 @@ export const Checkbox = <ValueType extends string>({
               htmlFor={currentValue}
               className={classNames(
                 labelClassName,
-                'p-label p-label--bordered pr16',
+                'p-label pr16',
                 {
+                  'p-label--bordered': bordered,
                   'jc-center': customIcon,
                   'fd-column': customIcon
                 }
