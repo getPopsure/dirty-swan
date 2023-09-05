@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import classnames from 'classnames';
 import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
@@ -88,7 +88,7 @@ const MultiDropzone = ({
     onDrop,
   });
 
-  const [uniqueId] = useState(generateId());
+  const uniqueId = useRef(generateId());
 
   return (
     <div className={styles.container}>
@@ -101,14 +101,18 @@ const MultiDropzone = ({
         )}
         {...getRootProps()}
       >
-        <input data-testid="ds-drop-input" id={uniqueId} {...getInputProps()} />
+        <input
+          data-testid="ds-drop-input"
+          id={uniqueId.current}
+          {...getInputProps()}
+        />
         <img
           className={isCondensed ? styles.img : ''}
           src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
           alt="purple cloud with an arrow"
         />
         <label
-          htmlFor={uniqueId}
+          htmlFor={uniqueId.current}
           className={`p-h4 mt8 d-block ${isCondensed ? styles.textInline : ''}`}
         >
           {uploading
