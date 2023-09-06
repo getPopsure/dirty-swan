@@ -239,7 +239,10 @@ const AutocompleteAddress = ({
               ref={autocompleteElement}
             />
             {hasLoadedGoogleAPI === false && (
-              <div data-cy="google-api-loader" className={styles['loading-spinner']}>
+              <div
+                data-cy="google-api-loader"
+                className={styles['loading-spinner']}
+              >
                 <div className="ds-spinner ds-spinner__m" />
               </div>
             )}
@@ -339,12 +342,13 @@ const AutocompleteAddress = ({
       {manualAddressEntry === false && (
         <div className="p-p mt8">
           {manualAddressEntryTexts?.preText || 'Or '}
-          <span
-            className="p-a fw-bold c-pointer"
+          <button
+            className={'p-a p-p fw-bold c-pointer bg-transparent'}
             onClick={handleEnterAddressManually}
+            type="button"
           >
-            {manualAddressEntryTexts?.cta || 'Enter address manually'}
-          </span>
+            {manualAddressEntryTexts?.cta || 'enter address manually'}
+          </button>
         </div>
       )}
     </>

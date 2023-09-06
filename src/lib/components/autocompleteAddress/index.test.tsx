@@ -62,13 +62,13 @@ describe('AutocompleteAddress component', () => {
     });
 
     expect(getAllByTestId(inputTestId).length).toEqual(5);
-    expect(getByDisplayValue("Köpeniker Strasse")).toBeVisible();
+    expect(getByDisplayValue('Köpeniker Strasse')).toBeVisible();
   });
 
   it('Should enable to enter the address manually', async () => {
     const callback = jest.fn();
     const { findByText, getAllByTestId, user } = setup(undefined, callback);
-    const btn = await findByText('Enter address manually');
+    const btn = await findByText('enter address manually');
 
     await user.click(btn);
 
@@ -87,9 +87,9 @@ describe('AutocompleteAddress component', () => {
   it('Should prefill fields if an address is provided', async () => {
     const { getByDisplayValue } = setup(address);
 
-    expect(getByDisplayValue("Köpeniker Strasse")).toBeVisible();
-    expect(getByDisplayValue("4000")).toBeVisible();
-    expect(getByDisplayValue("10179")).toBeVisible();
-    expect(getByDisplayValue("Berlin")).toBeVisible();
+    expect(getByDisplayValue('Köpeniker Strasse')).toBeVisible();
+    expect(getByDisplayValue('4000')).toBeVisible();
+    expect(getByDisplayValue('10179')).toBeVisible();
+    expect(getByDisplayValue('Berlin')).toBeVisible();
   });
 });
