@@ -343,7 +343,7 @@ const AutocompleteAddress = ({
         <div className="p-p mt8">
           {manualAddressEntryTexts?.preText || 'Or '}
           <button
-            className={classNames(`p-a p-p fw-bold c-pointer bg-transparent`)}
+            className={'p-a p-p fw-bold c-pointer bg-transparent'}
             onClick={handleEnterAddressManually}
             type="button"
           >
