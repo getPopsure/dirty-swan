@@ -113,7 +113,9 @@ const MultiDropzone = ({
         />
         <label
           htmlFor={uniqueId.current}
-          className={`p-h4 mt8 d-block ${isCondensed ? styles.textInline : ''}`}
+          className={`p-h4 mt8 d-block c-pointer ${
+            isCondensed ? styles.textInline : ''
+          }`}
         >
           {uploading
             ? textOverrides?.currentlyUploadingText ||
