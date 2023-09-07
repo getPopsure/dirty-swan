@@ -22,7 +22,7 @@ interface Icon {
   alt: string;
 }
 
-type InputProps = {
+type ButtonProps = {
   buttonTitle: string;
   buttonType?: ButtonType;
   leftIcon?: Icon;
@@ -37,9 +37,8 @@ export default React.forwardRef(
       buttonTitle,
       buttonType = 'primary',
       leftIcon,
-      type,
       ...props
-    }: InputProps,
+    }: ButtonProps,
     ref?: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const buttonClassName = buttonTypeClassNameMap[buttonType];
