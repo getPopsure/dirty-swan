@@ -21,8 +21,12 @@ const IconWrapper = ({
     className={classNames('d-inline-block', styles.wrapper, className ?? '', {
       [`tc-${color}`]: !!color,
     })}
+    style={{
+      width: `${size}px`,
+      height: `${size}px`
+    }}
   >
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <svg className='w100' viewBox="0 0 24 24" fill="none">
       {children}
     </svg>
   </span>
