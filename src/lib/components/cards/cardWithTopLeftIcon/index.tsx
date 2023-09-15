@@ -1,9 +1,5 @@
-import {
-  associatedClassForCardState,
-  CardProps,
-  headingForCardSize,
-} from '..';
-import { Icon, arrowRight, featherLogo } from '../icons';
+import { associatedClassForCardState, CardProps, headingForCardSize } from '..';
+import { arrowRight, featherLogo, Icon } from '../icons';
 
 import styles from './style.module.scss';
 
@@ -43,7 +39,9 @@ export const CardWithTopLeftIcon = ({
   const titleContainerStyle = styles['title-container'];
   const headingStyle = headingForCardSize(cardSize);
   const iconStyle = styles['right-icon'];
-  const cardTextStyle = `p-p tc-grey-600 ${cardSize === 'xsmall' ? styles.indent : 'mt16'}`;
+  const cardTextStyle = `p-p tc-grey-600 ${
+    cardSize === 'xsmall' ? styles.indent : 'mt16'
+  }`;
 
   return (
     <div className={cardStyle} {...props}>
@@ -68,7 +66,7 @@ export const CardWithTopLeftIcon = ({
           />
         )}
       </div>
-      <p className={cardTextStyle}>{children}</p>
+      <div className={cardTextStyle}>{children}</div>
     </div>
   );
 };
