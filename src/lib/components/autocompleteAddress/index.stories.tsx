@@ -9,49 +9,55 @@ const story = {
     address: {
       description: 'The address properties',
       table: {
-        type: { 
-          summary: 'Partial<Address>'
+        type: {
+          summary: 'Partial<Address>',
         },
       },
     },
     apiKey: {
       defaultValue: 'AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8',
-      description: 'Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview)',
+      description:
+        'Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview)',
       table: {
-        type: { 
-          summary: 'Partial<Address>'
+        type: {
+          summary: 'Partial<Address>',
         },
       },
     },
     onAddressChange: {
-      description: 'Callback with the updated address, this function will get called everytime the address gets updated',
+      description:
+        'Callback with the updated address, this function will get called everytime the address gets updated',
       action: true,
       table: {
-        category: "Callbacks",
+        category: 'Callbacks',
       },
     },
     manualAddressEntryTexts: {
-      description: 'The CTA that enables manual address entry and the text preceding it',
+      description:
+        'The CTA that enables manual address entry and the text preceding it',
       table: {
         type: {
-            summary: '{ preText?: string; cta: string?; }'
-        }
-      }
+          summary: '{ preText?: string; cta: string?; }',
+        },
+      },
     },
     placeholders: {
       description: 'Placeholder text',
       table: {
         type: {
-            summary: '{ manualAddressEntry?: string; street: string?; houseNumber?: string; additionalInformation?: string; postcode?: string; city?: string; }'
-        }
-      }
-    }
+          summary:
+            '{ manualAddressEntry?: string; street: string?; houseNumber?: string; additionalInformation?: string; postcode?: string; city?: string; }',
+        },
+      },
+    },
   },
   parameters: {
-    componentSubtitle: 'Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.',
+    componentSubtitle:
+      'Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.',
     docs: {
       description: {
-          component: 'This component is for now only restricted to "address" types and will restrict every query to Germany.',
+        component:
+          'This component is for now only restricted to "address" types and will restrict every query to Germany.',
       },
     },
     customTypes: {
@@ -62,8 +68,8 @@ const story = {
           city: string;
           additionalInformation?: string;
           country: string;
-      }`
-    }
+      }`,
+    },
   },
 };
 
@@ -74,9 +80,11 @@ export const AutocompleteAddressStory = ({
   onAddressChange,
   placeholders,
 }: AutocompleteAddressProps) => {
-  const [address, setAddress] = useState<Partial<Address> | undefined>(defaultAddress);
+  const [address, setAddress] = useState<Partial<Address> | undefined>(
+    defaultAddress
+  );
   const handleOnAddressChange = (newAddress: Partial<Address>) => {
-    onAddressChange(newAddress);
+    onAddressChange?.(newAddress);
     setAddress(newAddress);
   };
 
@@ -91,24 +99,24 @@ export const AutocompleteAddressStory = ({
   );
 };
 
-AutocompleteAddressStory.storyName = "AutocompleteAddress";
+AutocompleteAddressStory.storyName = 'AutocompleteAddress';
 
 export const WithAddress = ({
   apiKey,
   onAddressChange,
   placeholders,
 }: AutocompleteAddressProps) => (
-    <AutocompleteAddress
-      address={{
-        street: 'Lohmuehlenstraße',
-        houseNumber: '65',
-        city: 'Berlin',
-        country: 'DE',
-        additionalInformation: 'c/o Factory',
-      }}
-      apiKey={apiKey}
-      onAddressChange={onAddressChange}
-    />
+  <AutocompleteAddress
+    address={{
+      street: 'Lohmuehlenstraße',
+      houseNumber: '65',
+      city: 'Berlin',
+      country: 'DE',
+      additionalInformation: 'c/o Factory',
+    }}
+    apiKey={apiKey}
+    onAddressChange={onAddressChange}
+  />
 );
 
 export const WithLocalisationEntryText = ({
