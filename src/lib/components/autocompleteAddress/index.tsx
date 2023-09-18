@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
-import isEqual from 'lodash.isequal';
 import { Input } from '../input';
 import {
   Address,
-  countryNameFromAlphaCode,
   Alpha2CountryCode,
+  countryNameFromAlphaCode,
 } from '@popsure/public-models';
 
 import { geocoderAddressComponentToPartialAddress } from './util';
@@ -53,6 +52,23 @@ export interface AutocompleteAddressProps {
   apiKey: string;
   address?: Partial<Address>;
   onAddressChange: (address: Partial<Address>) => void;
+  inputProps?: {
+    street?: {
+      name?: string;
+    };
+    houseNumber?: {
+      name?: string;
+    };
+    additionalInformation?: {
+      name?: string;
+    };
+    postcode?: {
+      name?: string;
+    };
+    city?: {
+      name?: string;
+    };
+  };
   placeholders?: {
     manualAddressEntry?: string;
     street?: string;
@@ -73,6 +89,7 @@ const AutocompleteAddress = ({
   onAddressChange,
   placeholders,
   manualAddressEntryTexts,
+  inputProps,
 }: AutocompleteAddressProps) => {
   const [manualAddressEntry, setManualAddressEntry] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -99,15 +116,12 @@ const AutocompleteAddress = ({
         autocompleteElement.current.value = address.street;
       }
 
-      if (isEqual(address, initialAddress) === false) {
-        onAddressChange({ ...address });
-      }
       handleEnterAddressManually();
     }
-  }, [initialAddress, address, onAddressChange, hasLoadedGoogleAPI]);
+  }, [address, onAddressChange, hasLoadedGoogleAPI]);
 
   useEffect(() => {
-    if (hasLoadedGoogleAPI === false) {
+    if (!hasLoadedGoogleAPI) {
       return;
     }
 
@@ -156,6 +170,7 @@ const AutocompleteAddress = ({
           ...geocoderAddress,
           additionalInformation: oldValue?.additionalInformation,
         }));
+        onAddressChange?.(geocoderAddress);
       }
 
       map.current?.panTo(newPlace.geometry.location);
@@ -204,11 +219,27 @@ const AutocompleteAddress = ({
     []
   );
 
-  const debouncedSetPlace = debounce(setPlaceFromAddress, 1000);
+  const debouncedSetPlace = debounce(setPlaceFromAddress, 2000);
 
   const handleEnterAddressManually = () => {
     setManualAddressEntry(true);
   };
+
+  const onManualAddressChange =
+    ({ updatePlace } = { updatePlace: true }) =>
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const newAddress = {
+        ...address,
+        [e.target.name]: e.target.value,
+        country: GERMANY_ALPHA_CODE,
+      };
+      setAddress(newAddress);
+      onAddressChange(newAddress);
+
+      if (updatePlace) {
+        debouncedSetPlace(newAddress);
+      }
+    };
 
   return (
     <>
@@ -257,15 +288,9 @@ const AutocompleteAddress = ({
                 type="text"
                 placeholder={placeholders?.street || 'Street'}
                 value={address?.street || ''}
-                onChange={(e) => {
-                  const newAddress = {
-                    ...address,
-                    street: e.target.value,
-                    country: GERMANY_ALPHA_CODE,
-                  };
-                  setAddress(newAddress);
-                  debouncedSetPlace(newAddress);
-                }}
+                onChange={onManualAddressChange()}
+                name="street"
+                {...inputProps?.street}
               />
               <Input
                 className={`wmx2 ${styles['house-number-input']}`}
@@ -273,15 +298,9 @@ const AutocompleteAddress = ({
                 key="autocomplete-house-number"
                 placeholder={placeholders?.houseNumber || 'House Number'}
                 value={address?.houseNumber || ''}
-                onChange={(e) => {
-                  const newAddress = {
-                    ...address,
-                    houseNumber: e.target.value,
-                    country: GERMANY_ALPHA_CODE,
-                  };
-                  setAddress(newAddress);
-                  debouncedSetPlace(newAddress);
-                }}
+                name="houseNumber"
+                onChange={onManualAddressChange()}
+                {...inputProps?.houseNumber}
               />
             </div>
             <Input
@@ -293,14 +312,9 @@ const AutocompleteAddress = ({
                 'Additional information (C/O, apartment, …)'
               }
               value={address?.additionalInformation || ''}
-              onChange={(e) => {
-                const newAddress = {
-                  ...address,
-                  additionalInformation: e.target.value,
-                  country: GERMANY_ALPHA_CODE,
-                };
-                setAddress(newAddress);
-              }}
+              name="additionalInformation"
+              onChange={onManualAddressChange({ updatePlace: false })}
+              {...inputProps?.additionalInformation}
             />
             <div className={`d-flex mt16 c-gap16 ${styles['input-line']}`}>
               <Input
@@ -309,15 +323,9 @@ const AutocompleteAddress = ({
                 key="autocomplete-postcode"
                 placeholder={placeholders?.postcode || 'Postcode'}
                 value={address?.postcode || ''}
-                onChange={(e) => {
-                  const newAddress = {
-                    ...address,
-                    postcode: e.target.value,
-                    country: GERMANY_ALPHA_CODE,
-                  };
-                  setAddress(newAddress);
-                  debouncedSetPlace(newAddress);
-                }}
+                name="postcode"
+                onChange={onManualAddressChange()}
+                {...inputProps?.postcode}
               />
               <Input
                 className="w100"
@@ -325,15 +333,9 @@ const AutocompleteAddress = ({
                 key="autocomplete-city"
                 placeholder={placeholders?.city || 'City'}
                 value={address?.city || ''}
-                onChange={(e) => {
-                  const newAddress = {
-                    ...address,
-                    city: e.target.value,
-                    country: GERMANY_ALPHA_CODE,
-                  };
-                  setAddress(newAddress);
-                  debouncedSetPlace(newAddress);
-                }}
+                name="city"
+                onChange={onManualAddressChange()}
+                {...inputProps?.city}
               />
             </div>
           </>
