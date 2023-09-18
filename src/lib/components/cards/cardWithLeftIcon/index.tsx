@@ -1,5 +1,5 @@
 import { associatedClassForCardState, CardProps, headingForCardSize } from '..';
-import { Icon, IconSize, arrowRight } from '../icons';
+import { arrowRight, Icon, IconSize } from '../icons';
 
 import styles from './style.module.scss';
 
@@ -37,7 +37,7 @@ export type CardWithLeftIconProps = Omit<CardProps, 'title'> & {
   leftIconSize?: IconSize;
   title?: string;
   subtitle?: string;
-}
+};
 
 export const CardWithLeftIcon = ({
   className = '',
@@ -78,9 +78,7 @@ export const CardWithLeftIcon = ({
         <div className="d-flex">
           {(title || subtitle) && (
             <div>
-              {title && (
-                <div className={headingStyle}>{title}</div>
-              )}
+              {title && <div className={headingStyle}>{title}</div>}
               {subtitle && (
                 <div className={`tc-grey-500 ${headingStyle}`}>{subtitle}</div>
               )}
@@ -96,7 +94,7 @@ export const CardWithLeftIcon = ({
             />
           )}
         </div>
-        <p className={cardTextStyle}>{children}</p>
+        <div className={cardTextStyle}>{children}</div>
       </div>
     </div>
   );
