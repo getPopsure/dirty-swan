@@ -9,7 +9,7 @@ const story = {
     uploadedFiles: {
       defaultValue: [{
         id: '123456789',
-        name: 'dummyfile.png'
+        name: 'my-code-doesnt-work-i-have-no-idea-why-my-code-works.jpg'
       }],
       description: 'List of files to be displayed on the component.',
     },
@@ -75,7 +75,7 @@ export const MultiDropzoneStory = ({
   const [localFiles, setLocalFiles] = useState<UploadedFile[]>(uploadedFiles);
 
   const handleOnRemoveFile = (id: string) => {
-    onRemoveFile(id);
+    onRemoveFile?.(id);
     setLocalFiles((prevFiles) => prevFiles.filter((file) => file.id !== id));
   };
 

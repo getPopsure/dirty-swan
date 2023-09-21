@@ -28,7 +28,7 @@ interface MultiDropzoneProps {
   uploadedFiles: UploadedFile[];
   uploading: boolean;
   onFileSelect: (files: File[]) => void;
-  onRemoveFile: (id: string) => void;
+  onRemoveFile?: (id: string) => void;
   accept?: AcceptType;
   isCondensed?: boolean;
   maxFiles?: number;
@@ -152,7 +152,8 @@ const MultiDropzone = ({
               uploadStatus={getUploadStatus(file.progress, file.error)}
               file={file}
               key={file.id}
-              onRemoveFile={onRemoveFile}
+              
+              {...!onRemoveFile ? {} : {onRemoveFile}}
               uploading={uploading}
             />
           ))}
