@@ -8,7 +8,7 @@ import { UploadStatus, UploadedFile } from '../types';
 interface Props {
   uploadStatus: UploadStatus;
   file: UploadedFile;
-  onRemoveFile: (id: string) => void;
+  onRemoveFile?: (id: string) => void;
   uploading: boolean;
 }
 
@@ -38,11 +38,11 @@ const UploadFileCell: React.FC<Props> = ({
     ERROR: icons.fileErrorIcon,
   };
 
-  const mapDisplayText: { [s in UploadStatus]: string } = {
+  const displayText = {
     UPLOADING: 'Uploading...',
     COMPLETE: name,
     ERROR: error ?? 'Something went wrong. Try uploading again.',
-  };
+  }[uploadStatus];
 
   return (
     <div
@@ -57,8 +57,8 @@ const UploadFileCell: React.FC<Props> = ({
           alt=""
         />
         <div className="w100">
-          <div className={`p-p ${styles['upload-display-text']}`}>
-            {mapDisplayText[uploadStatus]}
+          <div className={`p-p ${styles['upload-display-text']}`} title={displayText}>
+            {displayText}
           </div>
 
           {isUploading && showProgressBar && (
@@ -100,14 +100,16 @@ const UploadFileCell: React.FC<Props> = ({
               </a>
             )}
 
-            <img
-              className={classnames(styles['remove-icon'], {
-                [styles.disabled]: uploading,
-              })}
-              src={hasError ? icons.trashErrorIcon : icons.trashIcon}
-              onClick={() => onRemoveFile(id)}
-              alt="remove"
-            />
+            {onRemoveFile && (
+              <img
+                className={classnames(styles['remove-icon'], {
+                  [styles.disabled]: uploading,
+                })}
+                src={hasError ? icons.trashErrorIcon : icons.trashIcon}
+                onClick={() => onRemoveFile(id)}
+                alt="remove"
+              />
+            )}
           </div>
         )}
       </div>
