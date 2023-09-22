@@ -68,9 +68,14 @@
   }
 }
 
-.container {
+.wrapper {
   position: relative;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
 
+.container {
   background-color: white;
 
   border-top-left-radius: 8px;
@@ -82,8 +87,6 @@
   animation-duration: 0.4s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
-
-  top: 0;
 
   &--close {
     @extend .container;

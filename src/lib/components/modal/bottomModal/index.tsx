@@ -47,30 +47,34 @@ export const BottomModal = ({
       className={isClosing ? styles['overlay--close'] : styles.overlay}
       onClick={handleOnOverlayClick}
     >
-      <div
-        className={`${
-          isClosing ? styles['container--close'] : styles.container
-        } ${className}`}
-        ref={containerRef}
-        style={{ top: `${containerXOffset}px` }}
-        onClick={handleContainerClick}
+    <div
+      className={styles.wrapper}
+      ref={containerRef}
+      onClick={handleContainerClick}
+      style={{ top: `${containerXOffset}px` }}
       >
-        <div className={classNames(styles.header, {
-          'jc-between': !!title,
-          'jc-end': !title
-        })}>
-          <div className={`p-h4 ${styles.title}`}>{title}</div>
-          {dismissible && (
-            <button
-              type="button"
-              className={styles.close}
-              onClick={handleOnClose}
-            >
-              <img src={imageClose} alt="Close" />
-            </button>
-          )}
+        <div
+          className={`${
+            isClosing ? styles['container--close'] : styles.container
+          } ${className}`}
+        >
+          <div className={classNames(styles.header, {
+            'jc-between': !!title,
+            'jc-end': !title
+          })}>
+            <div className={`p-h4 ${styles.title}`}>{title}</div>
+            {dismissible && (
+              <button
+                type="button"
+                className={styles.close}
+                onClick={handleOnClose}
+              >
+                <img src={imageClose} alt="Close" />
+              </button>
+            )}
+          </div>
+          <div className={styles.content}>{children}</div>
         </div>
-        <div className={styles.content}>{children}</div>
       </div>
     </div>
   );
