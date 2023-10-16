@@ -3,7 +3,6 @@ import React, { useState, useCallback } from 'react';
 import { Props } from '..';
 import styles from './style.module.scss';
 
-import imageClose from './img/close.svg';
 import { XIcon } from '../../icon/icons';
 import useOnClose from '../hooks/useOnClose';
 import classNames from 'classnames';
