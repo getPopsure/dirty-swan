@@ -36,10 +36,16 @@
 .chip-remove-button,
 .chip-remove-button-highlighted {
   position: absolute;
+  margin: 0;
 }
 
-.chip-remove-button:hover {
+.chip-remove-button-highlighted {
   opacity: 0;
+  z-index: 2;
+}
+
+.chip-remove-button-highlighted:hover {
+  opacity: 1;
 }
 
 @keyframes appearInAnimation {

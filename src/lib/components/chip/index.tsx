@@ -1,7 +1,6 @@
 import styles from './style.module.scss';
-import removeButtonIcon from './icons/remove-button.svg';
-import removeButtonHighlightedIcon from './icons/remove-button-highlighted.svg';
 import { Option } from '../../models/autoSuggestInput';
+import { XIcon } from '../icon/icons';
 
 export default ({
   className,
@@ -25,16 +24,14 @@ export default ({
       className={`c-pointer ${styles['chip-button-container']}`}
       onClick={() => onRemove(value)}
     >
-      <img
-        className={styles['chip-remove-button-highlighted']}
-        src={removeButtonHighlightedIcon}
-        alt="removal x button highlighted"
-      />
-      <img
-        className={styles['chip-remove-button']}
-        src={removeButtonIcon}
-        alt="removal x button"
-      />
+      <XIcon color={'purple-300'} className={styles['chip-remove-button']} />
+      {
+        <XIcon
+          color={'purple-500'}
+          size={16}
+          className={styles['chip-remove-button-highlighted']}
+        />
+      }
     </div>
   </div>
 );
