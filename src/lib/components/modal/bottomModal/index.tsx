@@ -4,6 +4,7 @@ import { Props } from '..';
 import styles from './style.module.scss';
 
 import imageClose from './img/close.svg';
+import { XIcon } from '../../icon/icons';
 import useOnClose from '../hooks/useOnClose';
 import classNames from 'classnames';
 
@@ -20,12 +21,8 @@ export const BottomModal = ({
     isClosing,
     handleContainerClick,
     handleOnClose,
-    handleOnOverlayClick
-   } = useOnClose(
-    onClose,
-    isOpen,
-    dismissible
-  );
+    handleOnOverlayClick,
+  } = useOnClose(onClose, isOpen, dismissible);
 
   const containerRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
@@ -47,21 +44,23 @@ export const BottomModal = ({
       className={isClosing ? styles['overlay--close'] : styles.overlay}
       onClick={handleOnOverlayClick}
     >
-    <div
-      className={styles.wrapper}
-      ref={containerRef}
-      onClick={handleContainerClick}
-      style={{ top: `${containerXOffset}px` }}
+      <div
+        className={styles.wrapper}
+        ref={containerRef}
+        onClick={handleContainerClick}
+        style={{ top: `${containerXOffset}px` }}
       >
         <div
           className={`${
             isClosing ? styles['container--close'] : styles.container
           } ${className}`}
         >
-          <div className={classNames(styles.header, {
-            'jc-between': !!title,
-            'jc-end': !title
-          })}>
+          <div
+            className={classNames(styles.header, {
+              'jc-between': !!title,
+              'jc-end': !title,
+            })}
+          >
             <div className={`p-h4 ${styles.title}`}>{title}</div>
             {dismissible && (
               <button
@@ -69,7 +68,7 @@ export const BottomModal = ({
                 className={styles.close}
                 onClick={handleOnClose}
               >
-                <img src={imageClose} alt="Close" />
+                <XIcon size={24} color={'grey-700'} />
               </button>
             )}
           </div>

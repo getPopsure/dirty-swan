@@ -4,8 +4,7 @@ import { Props } from '..';
 import useOnClose from '../hooks/useOnClose';
 
 import styles from './style.module.scss';
-
-import imageClose from './img/close.svg';
+import { XIcon } from '../../icon/icons';
 import classNames from 'classnames';
 
 export const RegularModal = ({
@@ -20,12 +19,8 @@ export const RegularModal = ({
     isClosing,
     handleContainerClick,
     handleOnClose,
-    handleOnOverlayClick
-  } = useOnClose(
-    onClose,
-    isOpen,
-    dismissible
-  );
+    handleOnOverlayClick,
+  } = useOnClose(onClose, isOpen, dismissible);
 
   if (!isOpen) {
     return <></>;
@@ -41,14 +36,13 @@ export const RegularModal = ({
           isClosing ? styles['container--close'] : styles.container
         } ${className}`}
       >
-        <div
-          className={styles.body}
-          onClick={handleContainerClick}
-        >
-          <div className={classNames(styles.header, {
-            'jc-between': !!title,
-            'jc-end': !title
-          })}>
+        <div className={styles.body} onClick={handleContainerClick}>
+          <div
+            className={classNames(styles.header, {
+              'jc-between': !!title,
+              'jc-end': !title,
+            })}
+          >
             {title && <div className={`p-h2 ${styles.title}`}>{title}</div>}
             {dismissible && (
               <button
@@ -56,7 +50,7 @@ export const RegularModal = ({
                 className={styles.close}
                 onClick={handleOnClose}
               >
-                <img src={imageClose} alt="Close" />
+                <XIcon size={24} color={'grey-700'} />
               </button>
             )}
           </div>

@@ -239,6 +239,7 @@ export const DateSelector = ({
           ref={calendarContainerRef}
         >
           <button
+            type="button"
             onClick={() => setOpenCalendar(!openCalendar)}
             className={styles.calendarButton}
           >
