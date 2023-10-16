@@ -1,8 +1,7 @@
 import { FormEvent, createElement, ReactNode } from 'react';
 
 import styles from './style.module.scss';
-import { chevronRight } from '../icons';
-
+import { ChevronRightIcon } from '../../icon/icons';
 
 type ActionProps =
   | { href: string; onClick?: (e: FormEvent) => void }
@@ -31,7 +30,11 @@ const CardContent = ({
         description
       )}
     </div>
-    <img {...chevronRight} alt="Expander icon" />
+    <ChevronRightIcon
+      size={16}
+      color={'purple-500'}
+      className={styles.chevronRight}
+    />
   </>
 );
 
