@@ -11,7 +11,7 @@ import {
 } from '../../util/calendarDate';
 import styles from './style.module.scss';
 import './datepicker.scss';
-import calendarIcon from './icons/calendar.svg';
+import { CalendarIcon } from '../icon/icons';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 dayjs.extend(localeData);
@@ -238,12 +238,12 @@ export const DateSelector = ({
           className={styles['date-calendar-container']}
           ref={calendarContainerRef}
         >
-          <img
-            className="c-pointer"
-            src={calendarIcon}
-            alt="calendar"
+          <button
             onClick={() => setOpenCalendar(!openCalendar)}
-          />
+            className={styles.calendarButton}
+          >
+            <CalendarIcon color={'purple-500'} size={24} />
+          </button>
           {openCalendar && (
             <DayPicker
               month={selectedDateInDateType}
