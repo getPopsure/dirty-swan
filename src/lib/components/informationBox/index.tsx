@@ -48,6 +48,7 @@ const InformationBox = ({
             <AlertCircleIcon
               className={styles.icon}
               color={mapAlertIconColor[variant]}
+              size={size === 'default' ? 24 : 16}
             />
           </div>
         )}
