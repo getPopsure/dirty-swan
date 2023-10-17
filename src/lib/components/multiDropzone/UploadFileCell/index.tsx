@@ -33,7 +33,7 @@ const UploadFileCell: React.FC<Props> = ({
   const isUploading = uploadStatus === 'UPLOADING';
   const hasError = uploadStatus === 'ERROR';
 
-  const mapFileIcon: { [k in UploadStatus]: Color } = {
+  const mapFileIconColor: { [k in UploadStatus]: Color } = {
     UPLOADING: 'purple-500',
     COMPLETE: 'grey-500',
     ERROR: 'red-500',
@@ -54,7 +54,7 @@ const UploadFileCell: React.FC<Props> = ({
       <div className={`w100 ${styles['cell-left-section']}`}>
         <FileIcon
           className={classnames(`${styles['main-icon']} ${styles.icon}`)}
-          color={mapFileIcon[uploadStatus]}
+          color={mapFileIconColor[uploadStatus]}
           size={24}
         />
         <div className="w100">

@@ -1,7 +1,8 @@
 import { FormEvent, createElement, ReactNode } from 'react';
 
-import styles from './style.module.scss';
 import { ChevronRightIcon } from '../../icon/icons';
+
+import styles from './style.module.scss';
 
 type ActionProps =
   | { href: string; onClick?: (e: FormEvent) => void }

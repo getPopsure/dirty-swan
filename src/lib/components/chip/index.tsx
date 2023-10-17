@@ -1,6 +1,7 @@
-import styles from './style.module.scss';
 import { Option } from '../../models/autoSuggestInput';
 import { XIcon } from '../icon/icons';
+
+import styles from './style.module.scss';
 
 export default ({
   className,
