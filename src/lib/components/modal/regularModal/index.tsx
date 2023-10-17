@@ -50,7 +50,11 @@ export const RegularModal = ({
                 className={styles.close}
                 onClick={handleOnClose}
               >
-                <XIcon size={24} color={'grey-700'} />
+                <XIcon
+                  size={24}
+                  color={'grey-700'}
+                  className={`${styles.closeIcon}`}
+                />
               </button>
             )}
           </div>
