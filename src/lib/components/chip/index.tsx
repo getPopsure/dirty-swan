@@ -21,18 +21,12 @@ export default ({
       />
     )}
     <div className="mr8">{value.value}</div>
-    <div
+    <button
       className={`c-pointer ${styles['chip-button-container']}`}
+      type="button"
       onClick={() => onRemove(value)}
     >
-      <XIcon color={'purple-300'} className={styles['chip-remove-button']} />
-      {
-        <XIcon
-          color={'purple-500'}
-          size={16}
-          className={styles['chip-remove-button-highlighted']}
-        />
-      }
-    </div>
+      <XIcon className={styles['chip-remove-button']} />
+    </button>
   </div>
 );
