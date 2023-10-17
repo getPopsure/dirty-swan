@@ -115,6 +115,7 @@ const UploadFileCell: React.FC<Props> = ({
                 className={classnames(styles['remove-icon'], {
                   [styles.disabled]: uploading,
                 })}
+                data-testid="remove-button"
               >
                 <Trash2Icon
                   color={hasError ? 'red-500' : 'grey-500'}

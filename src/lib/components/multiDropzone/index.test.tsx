@@ -98,7 +98,7 @@ describe('MultiDropzone component', () => {
         fireEvent.change(input, { target: { files: [file] } });
       });
 
-      await user.click(getByAltText('remove'));
+      await user.click(getByTestId('remove-button'));
 
       expect(
         queryByText('File type must be one of DOC, DOCX, PDF')
@@ -179,7 +179,7 @@ describe('MultiDropzone component', () => {
         uploadedFiles: [uploadedFilesMock],
       });
 
-      screen.getByAltText('remove').click();
+      screen.getByTestId('remove-button').click();
 
       expect(mockOnRemoveFile).toBeCalledWith(uploadedFilesMock.id);
     });

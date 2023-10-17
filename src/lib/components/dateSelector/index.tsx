@@ -242,6 +242,7 @@ export const DateSelector = ({
             type="button"
             onClick={() => setOpenCalendar(!openCalendar)}
             className={styles.calendarButton}
+            data-testid="calendar-button"
           >
             <CalendarIcon
               color={'purple-500'}
