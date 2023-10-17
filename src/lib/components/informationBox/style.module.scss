@@ -1,5 +1,4 @@
-
-@use "../../scss/public/colors" as *;
+@use '../../scss/public/colors' as *;
 
 .informationBox {
   border: 1px solid;
@@ -27,36 +26,5 @@
   &--neutral {
     background-color: $ds-white;
     border-color: $ds-white;
-  }
-}
-
-.icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-
-  mask-image: url('./info.svg');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-
-  &--information {
-    background-color: $ds-blue-500;
-  }
-
-  &--error {
-    background-color: $ds-red-500;
-  }
-
-  &--warning {
-    background-color: $ds-yellow-500;
-  }
-
-  &--success {
-    background-color: $ds-green-500;
-  }
-
-  &--neutral {
-    background-color: $ds-primary-500;
   }
 }
