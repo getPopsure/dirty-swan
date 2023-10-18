@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
-
 import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
 import DayPicker from 'react-day-picker';
@@ -9,10 +8,11 @@ import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
 } from '../../util/calendarDate';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
+import { CalendarIcon } from '../icon/icons';
+
 import styles from './style.module.scss';
 import './datepicker.scss';
-import calendarIcon from './icons/calendar.svg';
-import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -238,12 +238,18 @@ export const DateSelector = ({
           className={styles['date-calendar-container']}
           ref={calendarContainerRef}
         >
-          <img
-            className="c-pointer"
-            src={calendarIcon}
-            alt="calendar"
+          <button
+            type="button"
             onClick={() => setOpenCalendar(!openCalendar)}
-          />
+            className={styles.calendarButton}
+            data-testid="calendar-button"
+          >
+            <CalendarIcon
+              color={'purple-500'}
+              size={24}
+              className={`${styles.calendarIcon}`}
+            />
+          </button>
           {openCalendar && (
             <DayPicker
               month={selectedDateInDateType}

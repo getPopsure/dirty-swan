@@ -1,7 +1,6 @@
 import arrowRightImage from './arrow-right.svg';
 import featherLogoImage from './feather-logo.svg';
 import infoImage from './info.svg';
-import chevronRightImage from './chevron-right.svg';
 
 export interface Icon {
   src: string;
@@ -28,9 +27,5 @@ const info: Icon = {
   alt: 'circle with the letter i inside for information',
 };
 
-const chevronRight: Icon = {
-  src: chevronRightImage,
-  alt: 'chevron facing right',
-};
 
-export { arrowRight, featherLogo, info, chevronRight };
+export { arrowRight, featherLogo, info };

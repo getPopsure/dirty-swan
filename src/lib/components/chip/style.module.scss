@@ -1,3 +1,5 @@
+@use '../../scss/public/colors' as *;
+
 .chip {
   background: var(--ds-primary-100);
 
@@ -27,19 +29,37 @@
 }
 
 .chip-button-container {
+  color: $ds-purple-300;
+  position: relative;
   width: 16px;
   height: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: inherit;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 
-  position: relative;
+  &:hover {
+    color: $ds-purple-500;
+  }
 }
 
-.chip-remove-button,
-.chip-remove-button-highlighted {
+.chip-remove-button {
+  margin: 0;
   position: absolute;
-}
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-.chip-remove-button:hover {
-  opacity: 0;
+  svg {
+    vertical-align: top;
+  }
 }
 
 @keyframes appearInAnimation {

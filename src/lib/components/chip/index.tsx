@@ -1,7 +1,7 @@
-import styles from './style.module.scss';
-import removeButtonIcon from './icons/remove-button.svg';
-import removeButtonHighlightedIcon from './icons/remove-button-highlighted.svg';
 import { Option } from '../../models/autoSuggestInput';
+import { XIcon } from '../icon/icons';
+
+import styles from './style.module.scss';
 
 export default ({
   className,
@@ -21,20 +21,12 @@ export default ({
       />
     )}
     <div className="mr8">{value.value}</div>
-    <div
+    <button
       className={`c-pointer ${styles['chip-button-container']}`}
+      type="button"
       onClick={() => onRemove(value)}
     >
-      <img
-        className={styles['chip-remove-button-highlighted']}
-        src={removeButtonHighlightedIcon}
-        alt="removal x button highlighted"
-      />
-      <img
-        className={styles['chip-remove-button']}
-        src={removeButtonIcon}
-        alt="removal x button"
-      />
-    </div>
+      <XIcon className={styles['chip-remove-button']} />
+    </button>
   </div>
 );

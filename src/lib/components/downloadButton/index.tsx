@@ -1,8 +1,7 @@
 import Button from '../button';
 import { DownloadStatus } from '../../models/download';
-
-import checkIcon from './icons/check.svg';
 import downloadIcon from './icons/download.svg';
+import { CheckIcon } from '../icon/icons';
 import styles from './style.module.scss';
 
 export interface DownloadButtonProps {
@@ -33,7 +32,7 @@ const GeneratingButton = () => (
 
 const CompletedChip = () => (
   <div className={styles['chip-complete']}>
-    <img src={checkIcon} alt="grey check" />
+    <CheckIcon color={'grey-500'} size={16} />
     <div className="p-h4 tc-grey-500 ml8">Download complete</div>
   </div>
 );

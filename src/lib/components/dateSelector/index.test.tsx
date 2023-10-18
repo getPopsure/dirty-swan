@@ -18,8 +18,8 @@ describe('DateSelector component', () => {
     const callback = jest.fn();
     const date = '2024-01-01';
     const expectedDate = '2024-01-17';
-    const { getByAltText, getByLabelText, user } = setup(date, callback);
-    const button = getByAltText('calendar');
+    const { getByTestId, getByLabelText, user } = setup(date, callback);
+    const button = getByTestId('calendar-button');
 
     await user.click(button);
 
@@ -35,8 +35,8 @@ describe('DateSelector component', () => {
   it('should close the calendar when clicking outside', async () => {
     const callback = jest.fn();
     const date = '2024-01-01';
-    const { getByAltText, getByLabelText, user } = setup(date, callback);
-    const button = getByAltText('calendar');
+    const { getByTestId, getByLabelText, user } = setup(date, callback);
+    const button = getByTestId('calendar-button');
 
     await user.click(button);
 

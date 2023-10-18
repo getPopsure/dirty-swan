@@ -2,7 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 
 import styles from './style.module.scss';
-import icons from '../icons/index';
+import { FileIcon, Trash2Icon, EyeVisionIcon } from '../../icon/icons';
+import { Color } from '../../../models/styles';
 import { UploadStatus, UploadedFile } from '../types';
 
 interface Props {
@@ -25,17 +26,17 @@ const UploadFileCell: React.FC<Props> = ({
     progress,
     previewUrl,
     showLoadingSpinner = false,
-    showProgressBar = true
+    showProgressBar = true,
   } = file;
 
   const isComplete = uploadStatus === 'COMPLETE';
   const isUploading = uploadStatus === 'UPLOADING';
   const hasError = uploadStatus === 'ERROR';
 
-  const mapFileIcon: { [k in UploadStatus]: string } = {
-    UPLOADING: icons.fileUploadIcon,
-    COMPLETE: icons.fileIcon,
-    ERROR: icons.fileErrorIcon,
+  const mapFileIconColor: { [k in UploadStatus]: Color } = {
+    UPLOADING: 'purple-500',
+    COMPLETE: 'grey-500',
+    ERROR: 'red-500',
   };
 
   const displayText = {
@@ -51,13 +52,16 @@ const UploadFileCell: React.FC<Props> = ({
       })}
     >
       <div className={`w100 ${styles['cell-left-section']}`}>
-        <img
-          className={styles['main-icon']}
-          src={mapFileIcon[uploadStatus]}
-          alt=""
+        <FileIcon
+          className={classnames(`${styles['main-icon']} ${styles.icon}`)}
+          color={mapFileIconColor[uploadStatus]}
+          size={24}
         />
         <div className="w100">
-          <div className={`p-p ${styles['upload-display-text']}`} title={displayText}>
+          <div
+            className={`p-p ${styles['upload-display-text']}`}
+            title={displayText}
+          >
             {displayText}
           </div>
 
@@ -82,13 +86,13 @@ const UploadFileCell: React.FC<Props> = ({
           <div className={styles.spinner}>
             {showLoadingSpinner && (
               <div
-                className='ds-spinner ds-spinner__m'
+                className="ds-spinner ds-spinner__m"
                 data-testid="ds-filecell-spinner"
               />
             )}
           </div>
         ) : (
-          <div>
+          <>
             {isComplete && (
               <a
                 className={styles['view-icon']}
@@ -96,21 +100,31 @@ const UploadFileCell: React.FC<Props> = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={icons.eyeIcon} alt="preview" />
+                <EyeVisionIcon
+                  color={'grey-500'}
+                  size={24}
+                  className={styles.icon}
+                />
               </a>
             )}
 
             {onRemoveFile && (
-              <img
+              <button
+                type="button"
+                onClick={() => onRemoveFile(id)}
                 className={classnames(styles['remove-icon'], {
                   [styles.disabled]: uploading,
                 })}
-                src={hasError ? icons.trashErrorIcon : icons.trashIcon}
-                onClick={() => onRemoveFile(id)}
-                alt="remove"
-              />
+                data-testid="remove-button"
+              >
+                <Trash2Icon
+                  color={hasError ? 'red-500' : 'grey-500'}
+                  size={24}
+                  className={styles.icon}
+                />
+              </button>
             )}
-          </div>
+          </>
         )}
       </div>
     </div>

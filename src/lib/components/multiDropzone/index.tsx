@@ -4,7 +4,7 @@ import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
 import generateId from '../../util/generateId';
 import styles from './style.module.scss';
-import icons from './icons/index'; // TODO: inline all of the svgs
+import { UploadCloudIcon } from '../icon/icons';
 import UploadFileCell from './UploadFileCell';
 import {
   formatAcceptFileList,
@@ -106,10 +106,10 @@ const MultiDropzone = ({
           id={uniqueId.current}
           {...getInputProps()}
         />
-        <img
+        <UploadCloudIcon
           className={isCondensed ? styles.img : ''}
-          src={isCondensed ? icons.uploadSmallIcon : icons.uploadIcon}
-          alt="purple cloud with an arrow"
+          size={isCondensed ? 24 : 64}
+          color={'purple-500'}
         />
         <label
           htmlFor={uniqueId.current}
@@ -152,8 +152,7 @@ const MultiDropzone = ({
               uploadStatus={getUploadStatus(file.progress, file.error)}
               file={file}
               key={file.id}
-              
-              {...!onRemoveFile ? {} : {onRemoveFile}}
+              {...(!onRemoveFile ? {} : { onRemoveFile })}
               uploading={uploading}
             />
           ))}

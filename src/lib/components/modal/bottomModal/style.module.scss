@@ -1,4 +1,4 @@
-@use "../../../scss/public/grid" as *;
+@use '../../../scss/public/grid' as *;
 
 @keyframes fade-in {
   0% {
@@ -45,6 +45,10 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.closeIcon {
+  margin: 0;
 }
 
 .overlay {
