@@ -1,16 +1,16 @@
-import classNames from "classnames";
-import { ReactNode } from "react";
+import classNames from 'classnames';
+import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 export interface RadioWithDescription {
-  title: string;
+  title: ReactNode;
   description?: string;
   icon?: (selected: boolean) => ReactNode;
   hideBox?: boolean;
 }
 
 export interface RadioProps<ValueType extends string> {
-  options: Record<ValueType, string | RadioWithDescription>;
+  options: Record<ValueType, ReactNode | RadioWithDescription>;
   value?: ValueType;
   onChange: (value: ValueType) => void;
   wide?: boolean;
@@ -30,38 +30,46 @@ export const Radio = <ValueType extends string>({
   wide = false,
   inlineLayout = false,
   classNames: classNamesObj,
-  bordered = true
+  bordered = true,
 }: RadioProps<ValueType>) => {
   const entries = Object.entries(options) as [
     ValueType,
-    string | RadioWithDescription
+    ReactNode | RadioWithDescription
   ][];
-
 
   return (
     <div
-      className={classNames(classNamesObj?.container, styles.container, 'd-flex gap8', {
-        [styles.wide]: wide,
-        [styles.narrow]: !wide,
-        'fd-row': inlineLayout,
-        'f-wrap': inlineLayout,
-        'fd-column': !inlineLayout,
-      })}
+      className={classNames(
+        classNamesObj?.container,
+        styles.container,
+        'd-flex gap8',
+        {
+          [styles.wide]: wide,
+          [styles.narrow]: !wide,
+          'fd-row': inlineLayout,
+          'f-wrap': inlineLayout,
+          'fd-column': !inlineLayout,
+        }
+      )}
     >
       {entries.map(([currentValue, label]) => {
         const checked = value === currentValue;
         const customIcon = (label as RadioWithDescription)?.icon;
         const hideIcon = (label as RadioWithDescription)?.hideBox;
 
+        const isRadioLabelObject = (
+          label: ReactNode | RadioWithDescription
+        ): label is RadioWithDescription => {
+          return (label as RadioWithDescription).title !== undefined;
+        };
+
         return (
           <div className={classNamesObj?.option} key={currentValue}>
             <input
-              className={classNames(
-                "p-radio", {
-                  'p-radio--no-icon': customIcon || hideIcon,
-                  'p-radio--centered': !label,
-                }
-              )}
+              className={classNames('p-radio', {
+                'p-radio--no-icon': customIcon || hideIcon,
+                'p-radio--centered': !label,
+              })}
               id={currentValue}
               type="radio"
               value={currentValue}
@@ -72,29 +80,25 @@ export const Radio = <ValueType extends string>({
 
             <label
               htmlFor={currentValue}
-              className={classNames(
-                classNamesObj?.label,
-                'p-label',
-                {
-                  'jc-center': customIcon,
-                  'fd-column': customIcon,
-                  'p-label--bordered': bordered
-                }
-              )}
+              className={classNames(classNamesObj?.label, 'p-label', {
+                'jc-center': customIcon,
+                'fd-column': customIcon,
+                'p-label--bordered': bordered,
+              })}
               data-cy={`radio-${currentValue}`}
               data-testid={`radio-${currentValue}`}
             >
-              {customIcon && (
-                <div className="mt8">{customIcon?.(checked)}</div>
-              )}
+              {customIcon && <div className="mt8">{customIcon?.(checked)}</div>}
 
-              {typeof label === 'string' ? label : (
+              {isRadioLabelObject(label) ? (
                 <div>
                   <p className="p-p">{label.title}</p>
                   <span className="d-block p-p p-p--small tc-grey-600">
                     {label.description}
                   </span>
                 </div>
+              ) : (
+                label
               )}
             </label>
           </div>
