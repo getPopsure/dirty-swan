@@ -65,7 +65,7 @@ export const Checkbox = <ValueType extends string>({
     ReactNode | CheckboxWithDescription
   ][];
 
-  const isLabelObject = (
+  const isCheckboxLabelObject = (
     label: ReactNode | CheckboxWithDescription
   ): label is CheckboxWithDescription => {
     return (label as CheckboxWithDescription).title !== undefined;
@@ -115,7 +115,7 @@ export const Checkbox = <ValueType extends string>({
             >
               {customIcon && <div className="mt8">{customIcon?.(checked)}</div>}
 
-              {isLabelObject(label) ? (
+              {isCheckboxLabelObject(label) ? (
                 <div>
                   <p className="p-p">{label.title}</p>
                   <span className="d-block p-p p-p--small tc-grey-600">
