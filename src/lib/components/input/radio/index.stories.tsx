@@ -209,7 +209,7 @@ export const RadioWithCustomLabel = ({ onChange, wide, classNames, inlineLayout 
 
 RadioStory.storyName = 'Radio';
 
-export const RadioIconOnly = ({ onChange, wide, classNames, inlineLayout }: RadioProps<string>) => {
+export const RadioIconOnly = ({ onChange }: RadioProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string>();
 
   const handleOnChange = (newValue: string) => {

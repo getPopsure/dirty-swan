@@ -46,6 +46,7 @@ import { Markdown } from './components/markdown';
 import { Link } from './components/link';
 import { images } from './util/images';
 import { Spinner } from './components/spinner';
+import { Toggle } from './components/input/toggle';
 
 export * from './components/icon';
 
@@ -85,6 +86,7 @@ export {
   Badge,
   images,
   Spinner,
+  Toggle,
 };
 
 export type {
