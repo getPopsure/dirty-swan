@@ -34,7 +34,7 @@ describe('Radio component', () => {
 
     await user.click(getByTestId('radio-DOG'));
 
-    expect(mockOnChange).toBeCalledWith("DOG");
+    expect(mockOnChange).toBeCalledWith('DOG');
   });
 
   it('Should render checked items when value is passed', async () => {
@@ -44,51 +44,67 @@ describe('Radio component', () => {
   });
 
   it('Should render custom description', () => {
-      const { getByText } = render(
-        <Radio
-          options={{
-            CAT: {
-              title: 'Cat',
-              description: 'Cat description'
-            },
-          }}
-          onChange={mockOnChange}
-        />
-      );
+    const { getByText } = render(
+      <Radio
+        options={{
+          CAT: {
+            title: 'Cat',
+            description: 'Cat description',
+          },
+        }}
+        onChange={mockOnChange}
+      />
+    );
 
     expect(getByText('Cat description')).toBeInTheDocument();
   });
 
   it('Should render custom icon', () => {
-      const { getByText } = render(
-        <Radio
-          options={{
-            CAT: {
-              title: 'Cat',
-              icon: () => 'ICON'
-            },
-          }}
-          onChange={mockOnChange}
-        />
-      );
+    const { getByText } = render(
+      <Radio
+        options={{
+          CAT: {
+            title: 'Cat',
+            icon: () => 'ICON',
+          },
+        }}
+        onChange={mockOnChange}
+      />
+    );
 
     expect(getByText('ICON')).toBeInTheDocument();
   });
 
   it('Should render custom icon with selected', () => {
-      const { getByText } = render(
-        <Radio
-          options={{
-            CAT: {
-              title: 'Cat',
-              icon: (selected) => selected ? 'SELECTED-ICON' : 'ICON'
-            },
-          }}
-          onChange={mockOnChange}
-          value={'CAT'}
-        />
-      );
+    const { getByText } = render(
+      <Radio
+        options={{
+          CAT: {
+            title: 'Cat',
+            icon: (selected) => (selected ? 'SELECTED-ICON' : 'ICON'),
+          },
+        }}
+        onChange={mockOnChange}
+        value={'CAT'}
+      />
+    );
 
     expect(getByText('SELECTED-ICON')).toBeInTheDocument();
+  });
+
+  it('Should render label text passed in HTML format', () => {
+    const { getByText } = render(
+      <Radio
+        options={{
+          CAT: {
+            title: <p>Cat</p>,
+            description: 'Cat description',
+          },
+        }}
+        onChange={mockOnChange}
+      />
+    );
+
+    expect(getByText('Cat')).toBeInTheDocument();
   });
 });
