@@ -42,6 +42,10 @@ const story = {
       description: 'Property that defines if options should show inline instead of block. Check inline checkbox options story for examples.',
       defaultValue: false
     },
+    disabled: {
+      description: 'Shows toggle on a disabled state.',
+      defaultValue: false
+    },
     className: {
       description: 'ClassNames for custom styling',
       defaultValue: {
@@ -59,6 +63,7 @@ export const ToggleStory = ({
   bordered,
   classNames,
   inlineLayout,
+  disabled,
 }: ToggleProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string[]>([]);
 
@@ -75,6 +80,7 @@ export const ToggleStory = ({
       bordered={bordered}
       classNames={classNames}
       inlineLayout={inlineLayout}
+      disabled={disabled}
     />
   );
 }
