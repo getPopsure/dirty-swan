@@ -1,0 +1,85 @@
+@use '../../scss/public/colors' as *;
+
+.toastWrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.toast {
+  position: relative;
+  margin: 0;
+  width: 392px;
+  overflow: hidden;
+  padding: 20px 16px 20px 20px;
+}
+
+.toastSidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 8px;
+
+  &--information {
+    background-color: $ds-blue-500;
+  }
+
+  &--error {
+    background-color: $ds-red-500;
+  }
+
+  &--warning {
+    background-color: $ds-yellow-500;
+  }
+
+  &--success {
+    background-color: $ds-green-500;
+  }
+}
+
+.closeButton {
+  background-color: transparent;
+  color: $ds-grey-400;
+  min-width: 24px;
+
+  &:hover {
+    color: $ds-grey-600;
+  }
+}
+
+.actionButton {
+  background-color: transparent;
+
+  &--warning {
+    color: $ds-yellow-700;
+
+    &:hover {
+      color: $ds-yellow-900;
+    }
+  }
+
+  &--error {
+    color: $ds-red-500;
+
+    &:hover {
+      color: $ds-red-700;
+    }
+  }
+
+  &--success {
+    color: $ds-green-700;
+
+    &:hover {
+      color: $ds-green-900;
+    }
+  }
+
+  &--information {
+    color: $ds-blue-500;
+
+    &:hover {
+      color: $ds-blue-700;
+    }
+  }
+
+}

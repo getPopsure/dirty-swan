@@ -47,6 +47,7 @@ import { Link } from './components/link';
 import { images } from './util/images';
 import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
+import { Toaster, toast } from './components/toast';
 
 export * from './components/icon';
 
@@ -87,6 +88,8 @@ export {
   images,
   Spinner,
   Toggle,
+  Toaster,
+  toast
 };
 
 export type {
