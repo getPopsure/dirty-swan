@@ -1,13 +1,14 @@
+import { ReactNode } from "react";
 import classNames from "classnames";
 
 import styles from './styles.module.scss';
 export interface ToggleWithDescription {
-  title: string;
+  title: ReactNode;
   description?: string;
 }
 
 export interface ToggleProps<ValueType extends string> {
-  options: Record<ValueType, string | ToggleWithDescription>;
+  options: Record<ValueType, ReactNode | ToggleWithDescription>;
   value?: ValueType[];
   onChange: (value: ValueType[]) => void;
   inlineLayout?: boolean;
@@ -28,6 +29,12 @@ export const Toggle = <ValueType extends string>({
   classNames: classNamesObj,
 }: ToggleProps<ValueType> & {  }) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
+
+  const isToggleLabelObject = (
+    label: ReactNode | ToggleWithDescription
+  ): label is ToggleWithDescription => {
+    return (label as ToggleWithDescription).title !== undefined;
+  };
 
   const handleOnChange = (newValue: ValueType) => {
     if (value?.includes(newValue)) {
@@ -101,14 +108,14 @@ export const Toggle = <ValueType extends string>({
                 <span className={styles.toggle} />
               </span>
               
-              {typeof label === 'string' ? label : (
+              {isToggleLabelObject(label) ? (
                 <div>
                   <p className="p-p">{label.title}</p>
                   <span className="d-block p-p p-p--small tc-grey-600">
                     {label.description}
                   </span>
                 </div>
-              )}
+              ) : label}
             </label>
           </div>
         );

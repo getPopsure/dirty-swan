@@ -7,7 +7,7 @@ const story = {
   component: Toggle,
   argTypes: {
     options: {
-      description: 'Object that contains the possible options for rendering in the input.',
+      description: 'Object that contains the possible options for rendering in the input. To create an icon-only toggle, pass an empty string.',
       defaultValue: {
         CAT:{
           title: 'Cat',
