@@ -12,7 +12,8 @@ export interface ToggleProps<ValueType extends string> {
   value?: ValueType[];
   onChange: (value: ValueType[]) => void;
   inlineLayout?: boolean;
-  bordered?: Boolean,
+  disabled?: boolean;
+  bordered?: boolean,
   classNames?: {
     container?: string;
     label?: string;
@@ -27,6 +28,7 @@ export const Toggle = <ValueType extends string>({
   inlineLayout = false,
   bordered = true,
   classNames: classNamesObj,
+  disabled,
 }: ToggleProps<ValueType> & {  }) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
 
@@ -104,6 +106,7 @@ export const Toggle = <ValueType extends string>({
                   onChange={() => handleOnChange(currentValue)}
                   type="checkbox" 
                   value={currentValue}
+                  disabled={disabled}
                 />
                 <span className={styles.toggle} />
               </span>
