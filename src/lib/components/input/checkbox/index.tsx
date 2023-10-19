@@ -1,25 +1,25 @@
-import classNames from "classnames";
-import { ReactNode } from "react";
+import classNames from 'classnames';
+import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
 export interface CheckboxWithDescription {
-  title: string;
+  title: ReactNode;
   description?: string;
   icon?: (selected: boolean) => ReactNode;
 }
 
 export interface CheckboxProps<ValueType extends string> {
-  options: Record<ValueType, string | CheckboxWithDescription>;
+  options: Record<ValueType, ReactNode | CheckboxWithDescription>;
   value?: ValueType[];
   onChange: (value: ValueType[]) => void;
   wide?: boolean;
   inlineLayout?: boolean;
-  bordered?: Boolean,
+  bordered?: Boolean;
   classNames?: {
     container?: string;
     label?: string;
     option?: string;
-  }
+  };
 }
 
 export const Checkbox = <ValueType extends string>({
@@ -30,7 +30,7 @@ export const Checkbox = <ValueType extends string>({
   inlineLayout = false,
   bordered = true,
   classNames: classNamesObj,
-}: CheckboxProps<ValueType> & {  }) => {
+}: CheckboxProps<ValueType> & {}) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
 
   const handleOnChange = (newValue: ValueType) => {
@@ -56,26 +56,34 @@ export const Checkbox = <ValueType extends string>({
       return;
     }
 
-    const newValues = value
-      ? [...value, newValue]
-      : [newValue];
+    const newValues = value ? [...value, newValue] : [newValue];
     onChange(newValues);
   };
 
-
   const entries = Object.entries(options) as [
     ValueType,
-    string | CheckboxWithDescription
+    ReactNode | CheckboxWithDescription
   ][];
+
+  const isCheckboxLabelObject = (
+    label: ReactNode | CheckboxWithDescription
+  ): label is CheckboxWithDescription => {
+    return (label as CheckboxWithDescription).title !== undefined;
+  };
 
   return (
     <div
-      className={classNames(classNamesObj?.container, styles.container, 'd-flex gap8', {
-        [styles.narrow]: !wide,
-        'fd-row': inlineLayout,
-        'f-wrap': inlineLayout,
-        'fd-column': !inlineLayout,
-      })}
+      className={classNames(
+        classNamesObj?.container,
+        styles.container,
+        'd-flex gap8',
+        {
+          [styles.narrow]: !wide,
+          'fd-row': inlineLayout,
+          'f-wrap': inlineLayout,
+          'fd-column': !inlineLayout,
+        }
+      )}
     >
       {entries.map(([currentValue, label]) => {
         const checked = value?.includes(currentValue);
@@ -84,11 +92,9 @@ export const Checkbox = <ValueType extends string>({
         return (
           <div className={classNamesObj?.option} key={currentValue}>
             <input
-              className={classNames(
-                "p-checkbox", {
-                  'p-checkbox--no-icon': customIcon
-                }
-              )}
+              className={classNames('p-checkbox', {
+                'p-checkbox--no-icon': customIcon,
+              })}
               id={currentValue}
               type="checkbox"
               value={currentValue}
@@ -99,29 +105,25 @@ export const Checkbox = <ValueType extends string>({
 
             <label
               htmlFor={currentValue}
-              className={classNames(
-                classNamesObj?.label,
-                'p-label pr16',
-                {
-                  'p-label--bordered': bordered,
-                  'jc-center': customIcon,
-                  'fd-column': customIcon
-                }
-              )}
+              className={classNames(classNamesObj?.label, 'p-label pr16', {
+                'p-label--bordered': bordered,
+                'jc-center': customIcon,
+                'fd-column': customIcon,
+              })}
               data-cy={`checkbox-${currentValue}`}
               data-testid={`checkbox-${currentValue}`}
             >
-              {customIcon && (
-                <div className="mt8">{customIcon?.(checked)}</div>
-              )}
+              {customIcon && <div className="mt8">{customIcon?.(checked)}</div>}
 
-              {typeof label === 'string' ? label : (
+              {isCheckboxLabelObject(label) ? (
                 <div>
                   <p className="p-p">{label.title}</p>
                   <span className="d-block p-p p-p--small tc-grey-600">
                     {label.description}
                   </span>
                 </div>
+              ) : (
+                label
               )}
             </label>
           </div>
