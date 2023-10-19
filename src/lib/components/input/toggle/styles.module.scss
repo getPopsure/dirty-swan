@@ -1,0 +1,68 @@
+.container {
+  max-width: 100%;
+}
+
+.toggleContainer {
+  position: relative;
+  width: 40px;
+  height: 12px;
+}
+
+.label {
+  align-items: center;
+}
+
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ds-grey-400);
+  transition: all 0.3s ease-in-out;
+  border-radius: 100px;
+  
+  &:before {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    left: 0;
+    bottom: -4px;
+    background: var(--ds-grey-500);
+    transition: 0.3s ease-in-out;
+    transition-property: background-color, outline, transform;
+    outline-color: var(--ds-purple-300);
+    border-radius: 50%;
+  }
+}
+
+.input {
+  opacity: 0;
+
+  &:checked {
+    & + .toggle {
+      background: var(--ds-purple-100);
+    }
+    + .toggle:before {
+      background: var(--ds-purple-500);
+    }
+  }
+
+  &:disabled + .toggle {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  &:focus-visible ~ .toggle:before {
+    outline: 4px solid var(--ds-purple-300);
+  }
+
+  &:checked + .toggle:before {
+    // Toggle width - thumb width = 40px - 20px = 20px
+    transform: translateX(20px);
+  }
+}
+
+

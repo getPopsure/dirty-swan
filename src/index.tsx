@@ -37,6 +37,7 @@ export {
   Badge,
   images,
   Spinner,
+  Toggle
 } from './lib';
 
 export * from './lib/components/icon';
