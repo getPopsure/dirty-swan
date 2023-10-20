@@ -15,6 +15,7 @@ export interface RadioProps<ValueType extends string> {
   onChange: (value: ValueType) => void;
   wide?: boolean;
   inlineLayout?: boolean;
+  inlineIcon?: boolean;
   classNames?: {
     container?: string;
     label?: string;
@@ -29,6 +30,7 @@ export const Radio = <ValueType extends string>({
   onChange,
   wide = false,
   inlineLayout = false,
+  inlineIcon = false,
   classNames: classNamesObj,
   bordered = true,
 }: RadioProps<ValueType>) => {
@@ -81,14 +83,23 @@ export const Radio = <ValueType extends string>({
             <label
               htmlFor={currentValue}
               className={classNames(classNamesObj?.label, 'p-label', {
-                'jc-center': customIcon,
-                'fd-column': customIcon,
+                'jc-center': customIcon && !inlineIcon,
+                'fd-column': customIcon && !inlineIcon,
                 'p-label--bordered': bordered,
               })}
               data-cy={`radio-${currentValue}`}
               data-testid={`radio-${currentValue}`}
             >
-              {customIcon && <div className="mt8">{customIcon?.(checked)}</div>}
+              {customIcon && (
+                <div 
+                  className={classNames(
+                    "d-inline-flex ai-center jc-center", 
+                    inlineIcon ? "mr8" : "mt8"
+                  )}
+                >
+                  {customIcon?.(checked)}
+                </div>
+              )}
 
               {isRadioLabelObject(label) ? (
                 <div>
