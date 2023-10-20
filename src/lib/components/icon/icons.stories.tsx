@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { Input } from '../input';
 import * as icons from './icons';
-import Button from '../button';
+import { Button } from '../button';
 import classNames from 'classnames';
 import styles from './style.module.scss';
 
@@ -45,7 +45,9 @@ export const IconsList = () => {
           placeholder='Search icon'
           value={value} 
         />
-        <Button className='w30' disabled={!value} buttonTitle='Clear search' onClick={clearSearch} />
+        <Button className='w30' disabled={!value} onClick={clearSearch}>
+          Clear search
+        </Button>
         </div>
       </div>
 

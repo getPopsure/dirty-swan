@@ -56,4 +56,4 @@ export type Color = 'transparent' | 'blue-100'
 | 'yellow-700'
 | 'yellow-900';
 
-export type Size = 0 | 8 | 16 | 24 | 32 | 40 | 48 | 56 | 64 | 72 | 80 | 88 | 96;
+export type Size = 0 | 8 | 16 | 20 | 24 | 32 | 40 | 48 | 56 | 64 | 72 | 80 | 88 | 96;
