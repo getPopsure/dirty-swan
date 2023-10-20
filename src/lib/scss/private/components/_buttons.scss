@@ -12,13 +12,15 @@
 }
 
 .p-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   position: relative;
   cursor: pointer;
 
   height: 48px;
-  padding: 12px 24px;
+  padding: 0 24px;
 
   line-height: 24px;
 
@@ -37,6 +39,12 @@
   &[disabled] {
     cursor: default;
     opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--icon-only {
+    width: 48px;
+    padding: 0;
   }
 
   &--primary {
@@ -95,6 +103,20 @@
       @extend .p-btn--secondary;
       background-color: $ds-primary-50;
     }
+
+    &-white {
+      @extend .p-btn--secondary;
+      background-color: $ds-white;
+    }
+
+    &-inverted {
+      @extend .p-btn--secondary;
+      color: $ds-white;
+
+      &:hover, &:focus {
+        background-color: $ds-primary-700;
+      }
+    }
   }
 
   &--danger {
@@ -119,6 +141,107 @@
       outline: none;
       box-shadow: 0 0 0 1px white,
         0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+    }
+  }
+
+  &--success {
+    @extend .p-btn;
+    background-color: $ds-green-500;
+    color: white;
+
+    &:hover {
+      background-color: $ds-green-700;
+
+      @include p-size-mobile {
+        background-color: $ds-green-500;
+      }
+    }
+
+    &[disabled] {
+      background-color: $ds-green-300;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px white,
+        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+    }
+  }
+
+  &--outline {
+    @extend .p-btn;
+
+    color: $ds-primary-500;
+    background-color: transparent;
+
+    border: 1px solid $ds-primary-300;
+
+    &:hover {
+      color: $ds-primary-700;
+      border-color: $ds-primary-500;
+    }
+
+    &[disabled] {
+      color: $ds-primary-500;
+      border-color: $ds-primary-300;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      color: $ds-primary-700;
+      outline: none;
+      box-shadow: 0 0 0 1px white,
+        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+    }
+
+    &-white {
+      @extend .p-btn;
+
+      color: $ds-white;
+      border: 1px solid $ds-white;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $ds-primary-700;
+        border-color: $ds-primary-700;
+      }
+
+      &[disabled] {
+        background-color: transparent;
+        opacity: 0.5;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px white,
+          0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+      }
+    }
+
+    &-grey {
+      @extend .p-btn;
+
+      color: $ds-grey-500;
+      background-color: transparent;
+
+      border: 1px solid $ds-grey-400;
+
+      &:hover {
+        color: $ds-grey-600;
+        border-color: $ds-grey-500;
+      }
+
+      &[disabled] {
+        color: $ds-grey-500;
+        border-color: $ds-grey-400;
+        opacity: 0.5;
+      }
+
+      &:focus {
+        color: $ds-grey-600;
+        border-color: $ds-grey-600;
+      }
     }
   }
 
@@ -147,55 +270,14 @@
 
       animation: spinner-rotate 0.9s infinite;
     }
-  }
 
-  &--outline {
-    @extend .p-btn;
-
-    color: $ds-primary-500;
-    background-color: transparent;
-
-    border: 1px dashed $ds-primary-300;
-
-    &:hover {
-      color: $ds-primary-700;
-      border-color: $ds-primary-500;
-    }
-
-    &[disabled] {
-      color: $ds-primary-500;
-      border-color: $ds-primary-300;
-      opacity: 0.5;
-    }
-
-    &:focus {
-      color: $ds-primary-700;
-      border-color: $ds-primary-700;
-    }
-
-    &-grey {
-      @extend .p-btn;
-
-      color: $ds-grey-500;
-      background-color: transparent;
-
-      border: 1px dashed $ds-grey-400;
-
-      &:hover {
-        color: $ds-grey-600;
-        border-color: $ds-grey-500;
-      }
-
-      &[disabled] {
-        color: $ds-grey-500;
-        border-color: $ds-grey-400;
-        opacity: 0.5;
-      }
-
-      &:focus {
-        color: $ds-grey-600;
-        border-color: $ds-grey-600;
+    &.p-btn--secondary-grey,
+    &.p-btn--secondary-white {
+      &::before {
+      border-color: rgba($color: $ds-primary-500, $alpha: 0.5);
+      border-left-color: $ds-primary-500;
       }
     }
   }
+
 }

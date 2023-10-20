@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Toast, ToastProps, ToastType, Toaster, toast } from '.';
-import Button from '../button';
+import { Button } from '../button';
 import styles from './style.module.scss';
 
 const toastTypes: ToastType[] = ['success', 'warning', 'error', 'information'];
@@ -87,10 +87,7 @@ export const ToastStory = ({ title, description, action, type, duration }: Toast
       </div>
       <Toaster />
 
-      <Button
-        buttonTitle='Click here to trigger toast'
-        onClick={showToast}
-      />
+      <Button onClick={showToast}>Click here to trigger toast</Button>
     </>
   );
 };

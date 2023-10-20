@@ -1,7 +1,6 @@
-import Button from '../button';
+import { Button } from '../button';
 import { DownloadStatus } from '../../models/download';
-import downloadIcon from './icons/download.svg';
-import { CheckIcon } from '../icon/icons';
+import { CheckIcon, DownloadIcon } from '../icon/icons';
 import styles from './style.module.scss';
 
 export interface DownloadButtonProps {
@@ -14,20 +13,22 @@ export interface DownloadButtonProps {
 const InitialButton = ({ onDownload }: { onDownload: () => void }) => (
   <Button
     className={`w100 ${styles.button}`}
-    buttonTitle="Download"
-    leftIcon={{ src: downloadIcon, alt: 'download arrow icon' }}
+    leftIcon={<DownloadIcon />}
     onClick={onDownload}
     data-cy="download-documents-button"
-  />
+  >
+    Download
+  </Button>
 );
 
 // TODO: Allow setting loading to true to display text
 const GeneratingButton = () => (
   <Button
     className={`w100 ${styles.button}`}
-    buttonTitle="Generating"
     loading={true}
-  />
+  >
+    Generating
+  </Button>
 );
 
 const CompletedChip = () => (
