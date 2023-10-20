@@ -9,6 +9,7 @@ export type IconWrapperProps = {
   size?: Size;
   color?: Color;
   className?: string;
+  noMargin?: boolean;
 };
 
 const IconWrapper = ({
@@ -16,10 +17,12 @@ const IconWrapper = ({
   size = 16,
   color,
   className,
+  noMargin,
 }: IconWrapperProps) => (
   <span
-    className={classNames('d-inline-block', styles.wrapper, className ?? '', {
+    className={classNames('d-inline-block', className ?? '', {
       [`tc-${color}`]: !!color,
+      [styles.wrapper]: !noMargin
     })}
     style={{
       width: `${size}px`,

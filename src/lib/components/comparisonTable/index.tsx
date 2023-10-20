@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 import { AccordionItem } from './components/AccordionItem';

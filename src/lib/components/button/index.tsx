@@ -1,69 +1,100 @@
-import React from 'react';
+import classNames from 'classnames';
+import React, { ReactElement, ReactNode } from 'react';
+import styles from './style.module.scss';
 
-import styles from './styles.module.scss';
+type ButtonVariant =
+  | 'filledColor'
+  | 'filledGray'
+  | 'filledWhite'
+  | 'textColor'
+  | 'textWhite'
+  | 'outlineWhite'
+  | 'filledSuccess'
+  | 'filledError';
 
-type ButtonType =
-  | 'primary'
-  | 'secondary'
-  | 'secondaryGrey'
-  | 'outline'
-  | 'outlineGrey';
-
-const buttonTypeClassNameMap: { [K in ButtonType]: string } = {
-  primary: 'p-btn--primary',
-  secondary: 'p-btn--secondary',
-  secondaryGrey: 'p-btn--secondary-grey',
-  outline: 'p-btn--outline',
-  outlineGrey: 'p-btn--outline-grey',
+const buttonTypeClassNameMap: { [K in ButtonVariant]: string } = {
+  filledColor: 'p-btn--primary',
+  filledGray: 'p-btn--secondary-grey',
+  filledWhite: 'p-btn--secondary-white',
+  textColor: 'p-btn--secondary',
+  textWhite: 'p-btn--secondary-inverted',
+  outlineWhite: 'p-btn--outline-white',
+  filledSuccess: 'p-btn--success',
+  filledError: 'p-btn--danger',
 };
 
-interface Icon {
-  src: string;
-  alt: string;
-}
-
 type ButtonProps = {
-  buttonTitle: string;
-  buttonType?: ButtonType;
-  leftIcon?: Icon;
+  children: ReactNode;
+  variant?: ButtonVariant;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
   loading?: boolean;
+  hideLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['button'], 'children'>;
 
-export default React.forwardRef(
-  (
-    {
-      className,
-      loading = false,
-      buttonTitle,
-      buttonType = 'primary',
-      leftIcon,
-      ...props
-    }: ButtonProps,
-    ref?: React.ForwardedRef<HTMLButtonElement>
-  ) => {
-    const buttonClassName = buttonTypeClassNameMap[buttonType];
-    const loadingClassName = loading ? 'p-btn--loading' : '';
-    return (
-      <button
-        ref={ref}
-        className={`${buttonClassName} ${loadingClassName} ${className ?? ''}`}
-        {...props}
-      >
-        {leftIcon ? (
-          <div className={styles['content-container']}>
-            <img
-              width="20px"
-              height="20px"
-              className="mr8"
-              src={leftIcon.src}
-              alt={leftIcon.alt}
-            />
-            <div>{buttonTitle}</div>
+const Button = React.forwardRef((
+  {
+    className,
+    loading = false,
+    children,
+    variant = 'filledColor',
+    leftIcon,
+    rightIcon,
+    hideLabel,
+    ...props
+  }: ButtonProps,
+  ref?: React.ForwardedRef<HTMLButtonElement>
+) => (
+    <button
+      ref={ref}
+      className={classNames(
+        buttonTypeClassNameMap[variant], 
+        className, {
+          'p-btn--loading': loading,
+          'p-btn--icon-only': hideLabel,
+        })}
+      data-testid="button"
+      {...props}
+    >
+      {leftIcon || rightIcon ? (
+        <div className="d-flex jc-center ai-center">
+          {leftIcon && (
+            <span
+              className={classNames('d-inline-flex', {
+                'mr8': !hideLabel
+              })}
+            >
+              {React.cloneElement(leftIcon, { 
+                size: 20, 
+                noMargin: true
+              })}
+            </span>
+          )}
+          
+          <div className={classNames({
+              'sr-only': hideLabel
+            })}
+          >
+            {children}
           </div>
-        ) : (
-          <>{buttonTitle}</>
-        )}
-      </button>
-    );
-  }
+
+          {rightIcon && (
+            <span
+              className={classNames('d-inline-flex', {
+                'ml8': !hideLabel
+              })}
+            >
+              {React.cloneElement(rightIcon, { 
+                size: 20, 
+                noMargin: true
+              })}
+            </span>
+          )}
+        </div>
+      ) : children}
+    </button>
+  )
 );
+
+export { Button };
+export type { ButtonProps, ButtonVariant };

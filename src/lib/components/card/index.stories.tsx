@@ -1,6 +1,6 @@
 import { Card, CardProps } from '.';
 import { illustrations } from '../../util/images';
-import Button from '../button';
+import { Button } from '../button';
 import { Badge } from '../badge';
 import { CheckIcon, MehIcon, PlusCircleIcon, XIcon } from '../icon';
 
@@ -202,9 +202,10 @@ export const CardsWithinCardsAndComplexLayout = ({
 
           <Button
             onClick={() => {}}
-            buttonTitle='Full coverage details'
-            buttonType='secondaryGrey'
-          />
+            variant='filledGray'
+          >
+            Full coverage details
+          </Button>
         </div>
       )}
     >
