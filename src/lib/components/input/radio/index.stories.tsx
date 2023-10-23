@@ -207,6 +207,39 @@ export const RadioWithCustomLabel = ({ onChange, wide, classNames, inlineLayout 
   );
 }
 
+export const RadioWithCustomLabelInline = ({ onChange, wide, classNames, inlineLayout }: RadioProps<string>) => {
+  const [checkedValues, setCheckedValues] = useState<string>();
+
+  const handleOnChange = (newValue: string) => {
+    setCheckedValues(newValue);
+    onChange(newValue);
+  }
+
+  return (
+    <Radio 
+      options={{
+        BIGDOG: {
+          icon: () => <img src={images.bigDog} alt='' />,
+          title: 'Dog',
+        },
+        FISH:{
+          icon: () => <img src={images.brokenAquarium} alt='' />,
+          title: 'Fish',
+        },
+        OTHER:{
+          icon: () => <img src={images.brokenGlass} alt='' />,
+          title: 'Other',
+        }
+      }} 
+      onChange={handleOnChange}
+      inlineIcon
+      value={checkedValues}
+      classNames={{ option: "w30" }}
+      inlineLayout
+    />
+  );
+}
+
 RadioStory.storyName = 'Radio';
 
 export const RadioIconOnly = ({ onChange }: RadioProps<string>) => {
