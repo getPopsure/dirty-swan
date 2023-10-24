@@ -44,7 +44,7 @@ import {
 import { SegmentedControl } from './components/segmentedControl';
 import { Markdown } from './components/markdown';
 import { Link } from './components/link';
-import { images } from './util/images';
+import { illustrations, images, IllustrationKeys } from './util/images';
 import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
@@ -86,13 +86,15 @@ export {
   InformationBox,
   Badge,
   images,
+  illustrations,
   Spinner,
   Toggle,
   Toaster,
-  toast
+  toast,
 };
 
 export type {
+  IllustrationKeys,
   FileType,
   MultiDropzoneProps,
   TableHeader,

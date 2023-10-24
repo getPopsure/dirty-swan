@@ -36,6 +36,7 @@ export {
   InformationBox,
   Badge,
   images,
+  illustrations,
   Spinner,
   Toggle,
   Toaster,
@@ -46,6 +47,7 @@ export * from './lib/components/icon';
 
 export type {
   DownloadStatus,
+  IllustrationKeys,
   FileType,
   MultiDropzoneProps,
   TableHeader,
