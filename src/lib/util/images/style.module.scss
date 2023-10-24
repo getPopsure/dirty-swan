@@ -1,0 +1,20 @@
+@use '../../scss/public/colors' as *;
+
+.searchBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid $ds-grey-300;
+  padding: 4px 20px;
+  z-index: 9;
+}
+
+.imageWrapper {
+  width: 32px;
+  height: 32px;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,35 +1,75 @@
-import { images } from '../../util/images';
+import { ChangeEvent, useState } from 'react';
+import { illustrations } from '../../util/images';
+import classNames from 'classnames';
+import { Button, Input } from '../..';
+import styles from './style.module.scss';
 
 const story = {
-  title: 'Utils/Images',
+  title: 'Utils/Illustrations',
   parameters: {
     docs: {
       description: {
         component:
-          'Use the `images` object export to access our list of available images.',
+          'Use the `illustrations` object export to access our list of available images.',
       },
     },
   },
 };
 
-export const Images = () => (
-  <div className="d-flex gap8 f-wrap">
-    {Object.entries(images).map(([key, value]) => {
-      if (typeof value !== 'string') {
-        return null;
-      }
-      return (
-        <div
-          key={key}
-          className="ws3 d-flex fd-column ai-center br4 p24 pt16 pb16 bg-grey-100"
-        >
-          <span className="p-p--small mb8">{key}</span>
+const initialImages = Object.entries(illustrations)
 
-          <img alt={key} src={value} />
+export const Illustrations = () => {
+  const [value, setValue] = useState('');
+  const [options, setOptions] = useState(initialImages);
+
+  const clearSearch = () => {
+    setValue('');
+    setOptions(initialImages);
+  };
+
+  const handleOnSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = event.target.value;
+    setValue(event.target.value);
+
+    if (searchValue === '') {
+      setOptions(initialImages);
+      return;
+    }
+
+    setOptions(initialImages.filter(([key]) => 
+      key.toLowerCase()
+        .includes(searchValue.toLowerCase())
+    ));
+  };
+
+  return (
+    <div>
+      <div className={classNames(styles.searchBar, 'bg-white')}>
+        <div className='d-flex gap8 wmx12 m-auto'>
+        <Input
+          className='w70'
+          onChange={handleOnSearch}
+          placeholder='Search icon'
+          value={value} 
+        />
+        <Button className='w30' disabled={!value} buttonTitle='Clear search' onClick={clearSearch} />
         </div>
-      );
-    })}
-  </div>
-);
+      </div>
+
+      <div className='d-flex f-wrap'>
+        {options.map(([iconKey, src]) => (
+          <div key={iconKey} className="w20 p8">
+            <div className='br4 p24 pt16 pb16 bg-grey-100 w100 d-flex fd-column ai-center'>
+              <div className={styles.imageWrapper}>
+                <img src={src} alt={iconKey} />
+              </div>
+              <span className='p-p--small mt16'>{iconKey}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default story;
