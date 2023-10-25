@@ -8,9 +8,13 @@
 .toast {
   position: relative;
   margin: 0;
+  padding: 0;
   width: 392px;
   overflow: hidden;
-  padding: 20px 16px 20px 20px;
+}
+
+.toastContent {
+  padding: 4px 0 4px 8px;
 }
 
 .toastSidebar {
@@ -67,18 +71,18 @@
   }
 
   &--success {
-    color: $ds-green-700;
+    color: $ds-spearmint-700;
 
     &:hover {
-      color: $ds-green-900;
+      color: $ds-spearmint-900;
     }
   }
 
   &--information {
-    color: $ds-blue-500;
+    color: $ds-blue-700;
 
     &:hover {
-      color: $ds-blue-700;
+      color: $ds-blue-900;
     }
   }
 

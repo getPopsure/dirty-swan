@@ -35,7 +35,7 @@ const story = {
   },
   args: {
     title: 'We couldn’t open the chat',
-    description: 'Description description description description description description description',
+    description: "We couldn't open the chat description. We couldn't open the chat description.",
     action: {
       title: 'Send an email',
       onClick: () => {}
@@ -52,7 +52,12 @@ const FakeInlineToast = ({
   type
 }: Omit<ToastProps, 'onDismiss'>) => (
   <div className='mb32'>
-    <div className={classNames(styles.toast, 'br8 bs-lg d-inline-flex')}>
+    <div
+      className={classNames(styles.toast, 'br8 bs-lg d-inline-flex')}
+      style={{
+        padding: "12px 20px"
+      }}
+    >
       <Toast 
         title={title}
         onDismiss={() => {}}

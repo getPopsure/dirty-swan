@@ -37,14 +37,18 @@ const Toast = ({
   title,
   type = "success"
 }: ToastProps) => (
-  <div className='d-flex jc-between w100'>
+  <div 
+    className={classNames(
+      styles.toastContent,
+      'd-flex jc-between w100'
+  )}>
     <div
       className={classNames(
         styles.toastSidebar, 
         styles[`toastSidebar--${type}`]
       )}
     />
-    <div className='mr16'>
+    <div className='d-flex fd-column jc-center ta-left mr8'>
       <h4 className='p-h4'>{title}</h4>
       
       {description && (
@@ -56,7 +60,7 @@ const Toast = ({
           className={classNames(
             styles.actionButton,
             styles[`actionButton--${type}`],
-            'mt8 c-pointer'
+            'mt8 c-pointer ta-left'
           )}
           onClick={() => {
             action.onClick();
@@ -75,7 +79,7 @@ const Toast = ({
         onClick={onDismiss}
         data-testid="toast-close-button"
       >
-        <XIcon /> 
+        <XIcon size={24} /> 
       </button>
     </div>
   </div>
