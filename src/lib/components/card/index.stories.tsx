@@ -1,5 +1,5 @@
 import { Card, CardProps } from '.';
-import { IllustrationKeys, illustrations } from '../../util/images';
+import { illustrations } from '../../util/images';
 import Button from '../button';
 import { Badge } from '../badge';
 import { CheckIcon, MehIcon, PlusCircleIcon, XIcon } from '../icon';
@@ -133,7 +133,7 @@ export const CardsWithIcons = ({
       title={title}
     />
     <Card
-      icon={<MehIcon size={20} />}
+      icon={<MehIcon size={24} />}
       title={title}
     />
   </div>

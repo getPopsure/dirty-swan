@@ -11,3 +11,27 @@
     color: $ds-primary-500;
   }
 }
+
+.icon {
+  margin-right: 12px;
+
+  &balanced {
+    margin-right: 16px;
+  }
+
+  &spacious {
+    margin-right: 24px;
+  }
+}
+
+.actionIcon {
+  margin-left: 12px;
+
+  &balanced {
+    margin-left: 16px;
+  }
+
+  &spacious {
+    margin-left: 24px;
+  }
+}

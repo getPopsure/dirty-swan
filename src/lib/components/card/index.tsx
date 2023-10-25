@@ -43,9 +43,9 @@ const CardContent = ({
 }: CardProps) => (
   <section
     className={classNamesUtil(
-      'br8 bg-white bs-sm w100 ta-left', 
+      'd-flex fd-column jc-center br8 bg-white w100 ta-left', 
+      { 'bs-sm': dropShadow },
       {
-        'bs-sm': dropShadow,
         compact: 'p16',
         balanced: 'p24',
         spacious: 'p32'
@@ -53,11 +53,13 @@ const CardContent = ({
       classNames?.wrapper,
     )}
   >
-    <div className='d-flex'>
+    <div className='d-flex w100'>
       {icon && (
         <div 
           className={classNamesUtil(
-            'd-flex mr16 ai-center tc-primary-500',
+            `d-flex ai-center tc-primary-500`,
+            styles.icon,
+            styles[`icon${density}`],
             classNames?.icon
           )}
         >
@@ -103,8 +105,10 @@ const CardContent = ({
         {onClick && (
           <div
             className={classNamesUtil(
+              styles.actionIcon,
               classNames?.actionIcon,
-              "d-flex ml16 ai-center"
+              styles[`actionIcon${density}`],
+              'd-flex ai-center'
             )}
           >
             {actionIcon || <ChevronRightIcon size={24} />}
