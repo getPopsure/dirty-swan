@@ -27,14 +27,7 @@ export interface CardProps {
   actionIcon?: ReactNode;
 } 
 
-/*
-@TODO:
-
-Allow action
-- render icon util
-*/
-
-const renderContent = ({ 
+const CardContent = ({ 
   children,
   classNames,
   density = 'balanced',
@@ -136,12 +129,12 @@ const Card = (props: CardProps) => {
         onClick={onClick} 
         type="button"
       >
-        {renderContent(props)}
+        <CardContent {...props} />
       </button>
     )
   }
 
-  return renderContent(props);
+  return <CardContent {...props} />;
 }
 
 export { Card };
