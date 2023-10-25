@@ -52,7 +52,9 @@ export const Illustrations = () => {
           placeholder='Search icon'
           value={value} 
         />
-        <Button className='w30' disabled={!value} buttonTitle='Clear search' onClick={clearSearch} />
+        <Button className='w30' disabled={!value} onClick={clearSearch}>
+          Clear search
+        </Button>
         </div>
       </div>
 
