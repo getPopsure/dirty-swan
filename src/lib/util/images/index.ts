@@ -22,7 +22,7 @@ const images = {
   books: `${basePath}/books.svg`,
   finalExpenses: `${basePath}/finalExpenses.svg`,
   mortgage: `${basePath}/mortgage.svg`,
-} as const;
+};
 
 const illustrations = {
   aids: `${basePathIllustrations}/aids.svg`,
@@ -155,7 +155,7 @@ const illustrations = {
   water: `${basePathIllustrations}/water.svg`,
   wavingHand: `${basePathIllustrations}/waving-hand.svg`,
   worldwide: `${basePathIllustrations}/worldwide.svg`,
-} as const;
+};
 
 type IllustrationKeys = keyof typeof illustrations;
 
