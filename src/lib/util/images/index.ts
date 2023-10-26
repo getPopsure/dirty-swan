@@ -1,7 +1,11 @@
 const basePath = 'https://assets.cdn.feather-insurance.com/assets/images';
 const basePathIllustrations = `${basePath}/illustrations`;
 
-const images = {
+interface ImagesType {
+  [key: string]: string | Record<string, string>;
+}
+
+const images: ImagesType = {
   aid: `${basePath}/aid.svg`,
   bed: `${basePath}/bed.svg`,
   bigDog: `${basePath}/bigDog.svg`,
@@ -22,9 +26,9 @@ const images = {
   books: `${basePath}/books.svg`,
   finalExpenses: `${basePath}/finalExpenses.svg`,
   mortgage: `${basePath}/mortgage.svg`,
-} as const;
+};
 
-const illustrations = {
+const illustrations: ImagesType = {
   aids: `${basePathIllustrations}/aids.svg`,
   allInOneAccount: `${basePathIllustrations}/all-in-one-account.svg`,
   ambulance: `${basePathIllustrations}/ambulance.svg`,
@@ -155,7 +159,7 @@ const illustrations = {
   water: `${basePathIllustrations}/water.svg`,
   wavingHand: `${basePathIllustrations}/waving-hand.svg`,
   worldwide: `${basePathIllustrations}/worldwide.svg`,
-} as const;
+};
 
 type IllustrationKeys = keyof typeof illustrations;
 
