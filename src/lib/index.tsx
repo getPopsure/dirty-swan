@@ -28,6 +28,7 @@ import {
   InfoCard,
   CardButton,
 } from './components/cards';
+import { Card  } from './components/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
@@ -66,6 +67,7 @@ export {
   CardWithLeftIcon,
   CardWithTopIcon,
   InfoCard,
+  Card,
   CardButton,
   Button,
   CurrencyInput,
