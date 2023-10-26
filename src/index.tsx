@@ -17,6 +17,7 @@ export {
   CardWithTopIcon,
   InfoCard,
   CardButton,
+  Card,
   Button,
   AutoSuggestMultiSelect,
   Chip,
