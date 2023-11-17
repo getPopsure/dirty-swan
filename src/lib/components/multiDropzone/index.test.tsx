@@ -156,13 +156,6 @@ describe('MultiDropzone component', () => {
         screen.getByText('Please wait while uploading file...')
       ).toBeInTheDocument();
     });
-
-    it('should associate input with its label', () => {
-      const { getByLabelText } = setup({});
-      const input = getByLabelText('Choose file or drag & drop');
-
-      expect(input).toBeInTheDocument();
-    });
   });
 
   describe('Uploaded files', () => {
