@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState } from 'react';
 import classnames from 'classnames';
 import { useDropzone, FileRejection } from 'react-dropzone';
 import AnimateHeight from 'react-animate-height';
@@ -88,8 +88,6 @@ const MultiDropzone = ({
     onDrop,
   });
 
-  const uniqueId = useRef(generateId());
-
   return (
     <div className={styles.container}>
       <div
@@ -103,7 +101,6 @@ const MultiDropzone = ({
       >
         <input
           data-testid="ds-drop-input"
-          id={uniqueId.current}
           {...getInputProps()}
         />
         <UploadCloudIcon
@@ -111,8 +108,7 @@ const MultiDropzone = ({
           size={isCondensed ? 24 : 64}
           color={'purple-500'}
         />
-        <label
-          htmlFor={uniqueId.current}
+        <div
           className={`p-h4 mt8 d-block c-pointer ${
             isCondensed ? styles.textInline : ''
           }`}
@@ -121,7 +117,7 @@ const MultiDropzone = ({
             ? textOverrides?.currentlyUploadingText ||
               'Please wait while uploading file...'
             : textOverrides?.instructionsText || 'Choose file or drag & drop'}
-        </label>
+        </div>
         <div className="p-p--small tc-grey-500">
           {textOverrides?.supportsText || placeholder}
         </div>
