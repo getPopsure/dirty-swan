@@ -1,6 +1,6 @@
 import { render } from '../../../util/testUtils';
 
-import CurrencyInput from '.';
+import { CurrencyInput } from '.';
 
 const setup = () => {
   const utils = render(<CurrencyInput />);
