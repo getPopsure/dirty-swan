@@ -3,16 +3,18 @@ import { useEffect, useRef, useState } from 'react';
 import { formatInput, reverseFormatInput } from './format';
 import { Input, InputProps } from '..';
 
+export type CurrencyInputProps = {
+  value?: number | null | undefined;
+  placeholder?: string;
+  onChange?: (value: number | null) => void;
+} & Omit<InputProps, 'onChange' | 'value' | 'ref'>
+
 const CurrencyInput = ({
   value,
   onChange,
   type,
   ...props
-}: {
-  value?: number;
-  placeholder?: string;
-  onChange?: (value: number) => void;
-} & Omit<InputProps, 'onChange' | 'value' | 'ref'>) => {
+}: CurrencyInputProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [cursor, setCursor] = useState<number | null>(null);
   const [shadowValue, setShadowValue] = useState('');
@@ -35,7 +37,9 @@ const CurrencyInput = ({
   }, [value]);
 
   useEffect(() => {
-    if (shadowValue) {
+    if (shadowValue === '' && value) {
+      onChange?.(null)
+    } else if (shadowValue) {
       onChange?.(reverseFormatInput(shadowValue));
     }
     // eslint-disable-next-line
@@ -69,4 +73,4 @@ const CurrencyInput = ({
   );
 };
 
-export default CurrencyInput;
+export { CurrencyInput };
