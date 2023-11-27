@@ -22,9 +22,9 @@ export const CurrencyInputStory = ({
   prefix,
   error
 }: CurrencyInputProps) => {
-  const [newValue, setValue] = useState<number | null>(Number);
+  const [newValue, setValue] = useState<number>(Number);
 
-  const handleOnChange = (value: number | null) => {
+  const handleOnChange = (value: number) => {
     setValue(value)
     onChange?.(value);
   }
