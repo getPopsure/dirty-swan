@@ -4,9 +4,9 @@ import { formatInput, reverseFormatInput } from './format';
 import { Input, InputProps } from '..';
 
 export type CurrencyInputProps = {
-  value?: number | null | undefined;
+  value?: number;
   placeholder?: string;
-  onChange?: (value: number | null) => void;
+  onChange?: (value: number) => void;
 } & Omit<InputProps, 'onChange' | 'value' | 'ref'>
 
 const CurrencyInput = ({
@@ -38,7 +38,7 @@ const CurrencyInput = ({
 
   useEffect(() => {
     if (shadowValue === '' && value) {
-      onChange?.(null)
+      onChange?.(0);
     } else if (shadowValue) {
       onChange?.(reverseFormatInput(shadowValue));
     }
