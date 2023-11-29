@@ -1,6 +1,7 @@
 @use '../../scss/public/colors' as *;
 
 .button {
+  background-color: transparent;
   border: 1px solid transparent;
   color: $ds-grey-900;
   outline-color: $ds-primary-500;
