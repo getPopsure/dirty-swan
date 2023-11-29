@@ -7,6 +7,7 @@ import styles from './style.module.scss';
 export interface CardProps {
   children?: ReactNode;
   classNames?: {
+    buttonWrapper?: string;
     wrapper?: string;
     label?: string;
     title?: string;
@@ -25,9 +26,9 @@ export interface CardProps {
   label?: ReactNode;
   onClick?: () => void;
   actionIcon?: ReactNode;
-} 
+}
 
-const CardContent = ({ 
+const CardContent = ({
   children,
   classNames,
   density = 'balanced',
@@ -43,19 +44,19 @@ const CardContent = ({
 }: CardProps) => (
   <section
     className={classNamesUtil(
-      'd-flex fd-column jc-center br8 bg-white w100 ta-left', 
+      'd-flex fd-column jc-center br8 bg-white w100 ta-left',
       { 'bs-sm': dropShadow },
       {
         compact: 'p16',
         balanced: 'p24',
-        spacious: 'p32'
+        spacious: 'p32',
       }[density],
-      classNames?.wrapper,
+      classNames?.wrapper
     )}
   >
-    <div className='d-flex w100'>
+    <div className="d-flex w100">
       {icon && (
-        <div 
+        <div
           className={classNamesUtil(
             `d-flex ai-center tc-primary-500`,
             styles.icon,
@@ -67,23 +68,24 @@ const CardContent = ({
         </div>
       )}
 
-      <div className='d-flex jc-between w100'>
-        <div className='d-flex jc-center gap8 fd-column tc-grey-900 w100'>
+      <div className="d-flex jc-between w100">
+        <div className="d-flex jc-center gap8 fd-column tc-grey-900 w100">
           {label && (
-            <h3
-              className={classNamesUtil('p-p--small', classNames?.label)}
-            >
+            <h3 className={classNamesUtil('p-p--small', classNames?.label)}>
               {label}
             </h3>
           )}
 
           {title && (
             <h2
-              className={classNamesUtil(classNames?.title, {
-                large:'p-h3',
-                medium:'p-h4',
-                small:'p-p',
-              }[titleVariant])}
+              className={classNamesUtil(
+                classNames?.title,
+                {
+                  large: 'p-h3',
+                  medium: 'p-h4',
+                  small: 'p-p',
+                }[titleVariant]
+              )}
             >
               {title}
             </h2>
@@ -117,9 +119,7 @@ const CardContent = ({
       </div>
     </div>
 
-    {children && (
-      <div className={classNames?.children}>{children}</div>
-    )}
+    {children && <div className={classNames?.children}>{children}</div>}
   </section>
 );
 
@@ -129,16 +129,20 @@ const Card = (props: CardProps) => {
   if (onClick) {
     return (
       <button
-        className={classNamesUtil('c-pointer d-flex w100 br8', styles.button)}
-        onClick={onClick} 
+        className={classNamesUtil(
+          'c-pointer d-flex w100 br8',
+          styles.button,
+          props.classNames?.buttonWrapper
+        )}
+        onClick={onClick}
         type="button"
       >
         <CardContent {...props} />
       </button>
-    )
+    );
   }
 
   return <CardContent {...props} />;
-}
+};
 
 export { Card };
