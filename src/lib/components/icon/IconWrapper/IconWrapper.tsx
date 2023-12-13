@@ -25,6 +25,7 @@ const IconWrapper = ({
       [styles.wrapper]: !noMargin
     })}
     style={{
+      minWidth: `${size}px`,
       width: `${size}px`,
       height: `${size}px`
     }}
