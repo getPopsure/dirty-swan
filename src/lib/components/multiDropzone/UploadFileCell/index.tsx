@@ -52,11 +52,12 @@ const UploadFileCell: React.FC<Props> = ({
       })}
     >
       <div className={`w100 ${styles['cell-left-section']}`}>
-        <FileIcon
-          className={classnames(`${styles['main-icon']} ${styles.icon}`)}
-          color={mapFileIconColor[uploadStatus]}
-          size={24}
-        />
+        <div className={classnames(`${styles['main-icon']} ${styles.icon}`)}>
+          <FileIcon
+            color={mapFileIconColor[uploadStatus]}
+            size={24}
+          />
+        </div>
         <div className="w100">
           <div
             className={`p-p ${styles['upload-display-text']}`}
