@@ -2,13 +2,17 @@
 
 .button {
   background-color: transparent;
-  border: 1px solid transparent;
   color: $ds-grey-900;
-  outline-color: $ds-primary-500;
+  outline: 1px solid transparent;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    border-color: $ds-primary-500;
+    outline: 1px solid $ds-primary-500;
+    color: $ds-primary-500;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $ds-primary-500;
     color: $ds-primary-500;
   }
 }
