@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { ArrowValues } from '../components/TableArrows';
 import generateId from '../../../util/generateId';
@@ -49,6 +49,18 @@ export const useComparisonTable = () => {
       }
       observerRef.current?.disconnect();
     };
+  }, []);
+
+  useLayoutEffect(() => {
+    const resetHeaderWidth = () => {
+      if (headerRef.current) {
+        setHeaderWidth(headerRef.current.clientWidth);
+      }
+    }
+
+    window.addEventListener('resize', resetHeaderWidth);
+
+    return () => window.removeEventListener('resize', resetHeaderWidth);
   }, []);
 
   const handleTableScroll = () => {
