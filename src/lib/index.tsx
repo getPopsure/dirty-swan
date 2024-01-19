@@ -10,7 +10,7 @@ import {
   UploadStatus,
 } from './components/multiDropzone';
 import { DownloadButton } from './components/downloadButton';
-import { InformationBox } from './components/informationBox';
+import { InformationBox, InformationBoxProps } from './components/informationBox';
 import IbanInput from './components/input/iban';
 import { CurrencyInput } from './components/input/currency';
 import { Badge } from './components/badge';
@@ -97,6 +97,7 @@ export {
 
 export type {
   IllustrationKeys,
+  InformationBoxProps,
   FileType,
   MultiDropzoneProps,
   TableHeader,
