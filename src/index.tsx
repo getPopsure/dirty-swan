@@ -48,6 +48,7 @@ export * from './lib/components/icon';
 
 export type {
   DownloadStatus,
+  InformationBoxProps,
   IllustrationKeys,
   FileType,
   MultiDropzoneProps,
