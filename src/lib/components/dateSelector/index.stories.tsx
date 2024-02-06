@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DateSelector, DateSelectorProps } from '.';
 import de from 'dayjs/locale/de';
 
@@ -71,14 +72,23 @@ export const DateSelectorStory = ({
   onChange,
   yearBoundaries,
   value
-}: DateSelectorProps) => (
-  <DateSelector
-    onChange={onChange}
-    displayCalendar={displayCalendar}
-    yearBoundaries={yearBoundaries}
-    value={value}
-  />
-);
+}: DateSelectorProps) => {
+  const [newValue, setValue] = useState(value);
+
+  const handleOnChange = (value: string) => {
+    setValue(value)
+    onChange?.(value);
+  }
+
+  return (
+    <DateSelector
+      onChange={handleOnChange}
+      displayCalendar={displayCalendar}
+      yearBoundaries={yearBoundaries}
+      value={newValue}
+    />
+  );
+}
 
 DateSelectorStory.storyName = "DateSelector";
 

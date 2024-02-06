@@ -20,7 +20,12 @@ const sharedConfig = {
     control: { type: 'text' }
   },
   hideLabel: {
-    description: 'Whether or not a label should be hidden.. This is needed for accessibility purposes and a label should always be provided',
+    description: 'Whether or not a label should be hidden. This is needed for accessibility purposes and a label should always be provided',
+    defaultValue: false,
+    control: { type: 'boolean' }
+  },
+  labelInsideInput: {
+    description: 'Whether or not a label should be visually displayed inside the input borders.',
     defaultValue: false,
     control: { type: 'boolean' }
   },

@@ -12,7 +12,7 @@ const IbanInput = ({
 } & Omit<InputProps, 'onChange' | 'value' | 'ref'>) => (
   <Input
     value={formatIban(value)}
-    onChange={(e) => onChange(formatIban(e.target.value))}
+    onChange={(e) => onChange?.(formatIban(e.target.value))}
     {...props}
   />
 );
