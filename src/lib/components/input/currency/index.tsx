@@ -62,7 +62,7 @@ const CurrencyInput = ({
     <Input
       prefix="€"
       ref={inputRef}
-      type="string"
+      type="number"
       value={formattedShadowValue}
       onChange={(e) => {
         setCursor(e.target.selectionStart);
