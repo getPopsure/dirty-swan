@@ -60,6 +60,7 @@ const CurrencyInput = ({
 
   return (
     <Input
+      inputMode='decimal'
       prefix="€"
       ref={inputRef}
       type="string"
