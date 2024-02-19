@@ -60,9 +60,10 @@ const CurrencyInput = ({
 
   return (
     <Input
+      inputMode='decimal'
       prefix="€"
       ref={inputRef}
-      type="number"
+      type="string"
       value={formattedShadowValue}
       onChange={(e) => {
         setCursor(e.target.selectionStart);
