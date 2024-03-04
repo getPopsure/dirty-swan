@@ -107,4 +107,23 @@ describe('Radio component', () => {
 
     expect(getByText('Cat')).toBeInTheDocument();
   });
+
+  it('Should disable the input', async () => {
+    const { getByTestId } = render(
+      <Radio
+        options={{
+          CAT: {
+            title: 'Cat',
+            description: 'Cat description',
+          },
+        }}
+        onChange={mockOnChange}
+        disabled
+      />
+    );
+
+    const radioInput = getByTestId('radio-input-CAT');
+
+    expect(radioInput).toBeDisabled();
+  });
 });

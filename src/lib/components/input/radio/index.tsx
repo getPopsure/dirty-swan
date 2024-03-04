@@ -22,6 +22,7 @@ export interface RadioProps<ValueType extends string> {
     option?: string;
   };
   bordered?: boolean;
+  disabled?: boolean;
 }
 
 export const Radio = <ValueType extends string>({
@@ -33,6 +34,7 @@ export const Radio = <ValueType extends string>({
   inlineIcon = false,
   classNames: classNamesObj,
   bordered = true,
+  disabled = false,
 }: RadioProps<ValueType>) => {
   const entries = Object.entries(options) as [
     ValueType,
@@ -78,6 +80,7 @@ export const Radio = <ValueType extends string>({
               onChange={() => onChange(currentValue)}
               checked={checked}
               data-testid={`radio-input-${currentValue}`}
+              disabled={disabled}
             />
 
             <label
@@ -91,10 +94,10 @@ export const Radio = <ValueType extends string>({
               data-testid={`radio-${currentValue}`}
             >
               {customIcon && (
-                <div 
+                <div
                   className={classNames(
-                    "d-inline-flex ai-center jc-center", 
-                    inlineIcon ? "mr8" : "mt8"
+                    'd-inline-flex ai-center jc-center',
+                    inlineIcon ? 'mr8' : 'mt8'
                   )}
                 >
                   {customIcon?.(checked)}
