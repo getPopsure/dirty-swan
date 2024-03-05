@@ -20,7 +20,7 @@ const IbanInput = ({
   }
   return <Input
     name='iban'
-    value={formatIban(iban)}
+    defaultValue={formatIban(iban)}
     onChange={handleChange}
     {...props}
   />
