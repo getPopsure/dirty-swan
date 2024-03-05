@@ -96,12 +96,23 @@
 }
 
 .p-radio--no-icon + label::before {
-  display: none!important;
+  display: none !important;
 }
 .p-radio:checked {
   & + label::before {
     border-color: $ds-primary-500;
     background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-primary-500)}"/></svg>');
+  }
+}
+
+.p-radio:disabled {
+  + .p-label {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  + .p-label--bordered:hover {
+    border-color: $ds-grey-400;
   }
 }
 
