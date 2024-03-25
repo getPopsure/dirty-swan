@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import { Toast, ToastProps, ToastType, Toaster, toast } from '.';
+import { ToasterProps, Toast, ToastProps, ToastType, Toaster, toast } from '.';
 import { Button } from '../button';
 import styles from './style.module.scss';
+import classNames from 'classnames';
 
 const toastTypes: ToastType[] = ['success', 'warning', 'error', 'information'];
 
@@ -31,7 +31,13 @@ const story = {
       table: {
         disable: true,
       },
-    }
+    },
+    classNames: {
+      description: 'Allows customization of toast and toast wrapper (named as Toaster)',
+      table: {
+        category: 'Toaster props',
+      },
+    },
   },
   args: {
     title: 'We couldn’t open the chat',
@@ -42,6 +48,10 @@ const story = {
     },
     type: 'success',
     duration: 3000,
+    classNames: {
+      toast: "",
+      wrapper: ""
+    }
   },
 };
 
@@ -49,7 +59,7 @@ const FakeInlineToast = ({
   title, 
   description, 
   action, 
-  type
+  type,
 }: Omit<ToastProps, 'onDismiss'>) => (
   <div className='mb32'>
     <div
@@ -69,7 +79,14 @@ const FakeInlineToast = ({
   </div>
 );
 
-export const ToastStory = ({ title, description, action, type, duration }: ToastProps) => {
+export const ToastStory = ({ 
+  title, 
+  description, 
+  action, 
+  type, 
+  duration, 
+  classNames: toasterClassNames 
+}: ToastProps & ToasterProps) => {
   const showToast = () => toast(
     title, 
     {
@@ -90,7 +107,7 @@ export const ToastStory = ({ title, description, action, type, duration }: Toast
           {"() => toast(title, { description, type, action })"}
         </pre>
       </div>
-      <Toaster />
+      <Toaster classNames={toasterClassNames} />
 
       <Button onClick={showToast}>Click here to trigger toast</Button>
     </>
