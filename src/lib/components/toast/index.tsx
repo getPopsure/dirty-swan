@@ -5,6 +5,13 @@ import styles from './style.module.scss';
 import { Toaster as HotToaster, toast as hotToast } from 'react-hot-toast';
 import { XIcon } from '../icon';
 
+export interface ToasterProps {
+  classNames?: {
+    wrapper?: string;
+    toast?: string;
+  };
+}
+
 export type ToastType = 'warning' | 'error' | 'success' | 'information';
 
 export interface ToastOptions {
@@ -22,10 +29,11 @@ export interface ToastProps extends ToastOptions {
   title: string 
 };
 
-const Toaster = () => (
+const Toaster = ({ classNames: toasterClassNames }: ToasterProps) => (
   <HotToaster 
+  containerClassName={toasterClassNames?.wrapper}
     toastOptions={{
-      className: classNames(styles.toast, 'bs-lg'),
+      className: classNames(styles.toast, 'bs-lg', toasterClassNames?.toast),
     }}
   />
 );
