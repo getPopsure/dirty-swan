@@ -27,9 +27,8 @@ import {
   CardWithTopIcon,
   InfoCard,
   CardButton,
-  CardProps,
 } from './components/cards';
-import { Card  } from './components/card';
+import { Card, CardProps  } from './components/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
