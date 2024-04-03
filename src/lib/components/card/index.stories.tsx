@@ -40,7 +40,11 @@ const story = {
       description: 'Wether to display card with drop shadow styles or not.',
     },
     actionIcon: {
+      control: { type: 'text' },
       description: 'ReactNode to be rendered on the right side of the card when there is an onClick action. By default it renders the ChevronRightIcon.',
+    },
+    showActionIcon: {
+      description: 'Property that always displays action icon even if no onClick is set.',
     },
   },
   args: {
@@ -66,6 +70,7 @@ const story = {
 
 export const CardStory = ({ 
   actionIcon,
+  showActionIcon,
   children,
   classNames,
   density,
@@ -91,6 +96,7 @@ export const CardStory = ({
       titleVariant={titleVariant}
       onClick={onClick}
       actionIcon={actionIcon}
+      showActionIcon={showActionIcon}
     >
       {children}
     </Card>

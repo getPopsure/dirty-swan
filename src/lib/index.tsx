@@ -27,6 +27,7 @@ import {
   CardWithTopIcon,
   InfoCard,
   CardButton,
+  CardProps,
 } from './components/cards';
 import { Card  } from './components/card';
 import { Button } from './components/button';
@@ -49,6 +50,7 @@ import { illustrations, images, IllustrationKeys } from './util/images';
 import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
+import { IconWrapperProps } from './components/icon/IconWrapper';
 
 export * from './components/icon';
 
@@ -103,6 +105,8 @@ export type {
   TableHeader,
   UploadedFile,
   UploadStatus,
+  CardProps,
+  IconWrapperProps
 };
 
 export type { DownloadStatus } from './models/download';

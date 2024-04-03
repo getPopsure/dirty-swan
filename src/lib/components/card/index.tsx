@@ -26,6 +26,7 @@ export interface CardProps {
   label?: ReactNode;
   onClick?: () => void;
   actionIcon?: ReactNode;
+  showActionIcon?: boolean;
 }
 
 const CardContent = ({
@@ -41,6 +42,7 @@ const CardContent = ({
   actionIcon,
   title,
   titleVariant = 'large',
+  showActionIcon
 }: CardProps) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
 
@@ -107,7 +109,7 @@ const CardContent = ({
             )}
           </div>
 
-          {onClick && !hideActionIcon && (
+          {(showActionIcon || (onClick && !hideActionIcon)) && (
             <div
               className={classNamesUtil(
                 styles.actionIcon,

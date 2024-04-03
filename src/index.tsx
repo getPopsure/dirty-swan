@@ -55,6 +55,8 @@ export type {
   TableHeader,
   UploadedFile,
   UploadStatus,
+  CardProps,
+  IconWrapperProps
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
