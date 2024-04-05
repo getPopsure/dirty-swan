@@ -1,10 +1,14 @@
-import { ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
 import classNamesUtil from 'classnames';
 import { ChevronRightIcon } from '../icon';
 
 import styles from './style.module.scss';
 
-export interface CardProps {
+const CardDefault = 'button' as const
+type CardDefaultAsType = typeof CardDefault;
+
+export interface CardProps<E extends ElementType = CardDefaultAsType> {
+  as?: E;
   children?: ReactNode;
   classNames?: {
     buttonWrapper?: string;
@@ -29,7 +33,7 @@ export interface CardProps {
   showActionIcon?: boolean;
 }
 
-const CardContent = ({
+const CardContent = <E extends React.ElementType = CardDefaultAsType>({
   children,
   classNames,
   density = 'balanced',
@@ -43,7 +47,7 @@ const CardContent = ({
   title,
   titleVariant = 'large',
   showActionIcon
-}: CardProps) => {
+}: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
 
   return (
@@ -129,22 +133,23 @@ const CardContent = ({
   );
 };
 
-const Card = (props: CardProps) => {
-  const { onClick } = props;
+const Card = <E extends React.ElementType = CardDefaultAsType>(props: CardProps<E>) => {
+  const { as, onClick } = props;
+  const Tag = as || 'button';
 
-  if (onClick) {
+  if (onClick || as) {
     return (
-      <button
+      <Tag
         className={classNamesUtil(
           'c-pointer d-flex w100 br8 ai-stretch',
           styles.button,
           props.classNames?.buttonWrapper
         )}
         onClick={onClick}
-        type="button"
+        {...onClick && { type: "button" }}
       >
         <CardContent {...props} />
-      </button>
+      </Tag>
     );
   }
 

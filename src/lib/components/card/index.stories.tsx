@@ -8,6 +8,10 @@ const story = {
   title: 'JSX/Card',
   component: Card,
   argTypes: {
+    as: {
+      control: { type: 'text' },
+      description: 'Allow wrapper element type to be custom defined'
+    },
     density: {
       description: 'Spacing around the card'
     },
@@ -69,6 +73,7 @@ const story = {
 };
 
 export const CardStory = ({ 
+  as,
   actionIcon,
   showActionIcon,
   children,
@@ -85,6 +90,7 @@ export const CardStory = ({
 }: CardProps) => (
   <div className='d-flex p24 bg-grey-200'>
     <Card
+      as={as}
       classNames={classNames}
       description={description}
       descriptionVariant={descriptionVariant}
@@ -190,11 +196,7 @@ export const CardOverridesStyles = ({
   </div>
 );
 
-export const CardsWithinCardsAndComplexLayout = ({ 
-  children,
-  label,
-  title,
-}: CardProps) => (
+export const CardsWithinCardsAndComplexLayout = () => (
   <div className='d-flex p24 bg-grey-200'>
     <Card
       label={(
