@@ -2,12 +2,16 @@ import { Card, CardProps } from '.';
 import { illustrations } from '../../util/images';
 import { Button } from '../button';
 import { Badge } from '../badge';
-import { CheckIcon, MehIcon, PlusCircleIcon, XIcon } from '../icon';
+import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../icon';
 
 const story = {
   title: 'JSX/Card',
   component: Card,
   argTypes: {
+    as: {
+      control: { type: 'text' },
+      description: 'Allow wrapper element type to be custom defined'
+    },
     density: {
       description: 'Spacing around the card'
     },
@@ -69,6 +73,7 @@ const story = {
 };
 
 export const CardStory = ({ 
+  as,
   actionIcon,
   showActionIcon,
   children,
@@ -85,6 +90,7 @@ export const CardStory = ({
 }: CardProps) => (
   <div className='d-flex p24 bg-grey-200'>
     <Card
+      as={as}
       classNames={classNames}
       description={description}
       descriptionVariant={descriptionVariant}
@@ -105,6 +111,32 @@ export const CardStory = ({
 
 CardStory.storyName = "Card";
 
+export const CardAsOtherComponents = () => (
+  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+   
+    <h3 className='p-h3'>As an anchor:</h3>
+    <Card
+      as="a"
+      href="https://feather-insurance.com"
+      target="_blank"
+      title="Card with an a tag"
+      density='compact'
+    />
+
+    <h3 className='p-h3'>As a nav:</h3>
+    <Card
+      as="nav"
+      title="Card with a nav tag"
+      density='compact'
+    />
+
+    <p className='p-p p-p--small fw-bold d-flex ai-center gap8 mt32'>
+      <InfoIcon />
+      Inspect elements to see the different HTML tags being rendered.
+    </p>
+  </div>
+);
+
 export const CardDensities = () => (
   <div className='d-flex fd-column gap16 p24 bg-grey-200'>
     <Card
@@ -122,11 +154,7 @@ export const CardDensities = () => (
   </div>
 );
 
-export const CardsWithIcons = ({ 
-  children,
-  icon,
-  title,
-}: CardProps) => (
+export const CardsWithIcons = ({ title }: CardProps) => (
   <div className='d-flex gap16 p24 bg-grey-200'>
     <Card
       icon={
@@ -139,7 +167,7 @@ export const CardsWithIcons = ({
       title={title}
     />
     <Card
-      icon={<MehIcon size={24} />}
+      icon={<MehIcon size={24} noMargin />}
       title={title}
     />
   </div>
@@ -147,7 +175,6 @@ export const CardsWithIcons = ({
 
 export const CardWithOnClickAction = ({ 
   children,
-  icon,
   title,
 }: CardProps) => (
   <div className='d-flex p24 bg-grey-200'>
@@ -190,11 +217,7 @@ export const CardOverridesStyles = ({
   </div>
 );
 
-export const CardsWithinCardsAndComplexLayout = ({ 
-  children,
-  label,
-  title,
-}: CardProps) => (
+export const CardsWithinCardsAndComplexLayout = () => (
   <div className='d-flex p24 bg-grey-200'>
     <Card
       label={(
