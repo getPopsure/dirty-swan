@@ -1,11 +1,13 @@
-import { ElementType, ReactNode } from 'react';
+import { ComponentProps, ElementType, ReactNode } from 'react';
 import classNamesUtil from 'classnames';
 import { ChevronRightIcon } from '../icon';
 
 import styles from './style.module.scss';
 
-const CardDefault = 'section' as const
-type CardDefaultAsType = typeof CardDefault;
+const cardDefaultAs = 'section' as const
+type CardDefaultAsType = typeof cardDefaultAs;
+type DensityType = 'balanced' | 'compact' | 'spacious';
+type TitleVariantType = 'small' | 'medium' | 'large';
 
 type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   as?: E;
@@ -20,21 +22,21 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
     icon?: string;
     actionIcon?: string;
   };
-  density?: 'balanced' | 'compact' | 'spacious';
+  density?: DensityType;
   dropShadow?: boolean;
   icon?: ReactNode;
   title?: ReactNode;
-  titleVariant?: 'small' | 'medium' | 'large';
+  titleVariant?: TitleVariantType;
   description?: ReactNode;
   descriptionVariant?: 'small' | 'large';
   label?: ReactNode;
   onClick?: () => void;
   actionIcon?: ReactNode;
   showActionIcon?: boolean;
-}
+} 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
-  Omit<React.ComponentProps<E>, keyof CardOwnProps<E>>
+  Omit<ComponentProps<E>, keyof CardOwnProps<E>>
 
 const Card = <E extends ElementType = CardDefaultAsType>({
   as,
@@ -55,7 +57,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
 }: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
   const propsWithActionIcon = onClick || rest?.href || rest.to; 
-  const cardDefaultTag = onClick ? 'button' : CardDefault;
+  const cardDefaultTag = onClick ? 'button' : cardDefaultAs;
   const Tag = as || cardDefaultTag;
   
   return (
@@ -82,7 +84,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
             compact: 'p16',
             balanced: 'p24',
             spacious: 'p32',
-          }[density],
+          }[density as DensityType],
           classNames?.wrapper
         )}
       >
@@ -116,7 +118,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                       large: 'p-h3',
                       medium: 'p-h4',
                       small: 'p-p',
-                    }[titleVariant]
+                    }[titleVariant as TitleVariantType]
                   )}
                 >
                   {title}
