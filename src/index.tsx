@@ -42,8 +42,6 @@ export {
   Toggle,
   Toaster,
   toast,
-  getCountryFlagByCountryCode,
-  mapCountryFlag
 } from './lib';
 
 export * from './lib/components/icon';

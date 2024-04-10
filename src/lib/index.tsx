@@ -50,7 +50,6 @@ import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
-import { getCountryFlagByCountryCode, mapCountryFlag } from './util/flags'
 
 export * from './components/icon';
 
@@ -95,8 +94,6 @@ export {
   Toggle,
   Toaster,
   toast,
-  getCountryFlagByCountryCode,
-  mapCountryFlag
 };
 
 export type {
