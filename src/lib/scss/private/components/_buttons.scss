@@ -271,6 +271,7 @@
       animation: spinner-rotate 0.9s infinite;
     }
 
+    &.p-btn--secondary,
     &.p-btn--secondary-grey,
     &.p-btn--secondary-white {
       &::before {

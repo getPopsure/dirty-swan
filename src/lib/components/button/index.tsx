@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { ReactElement, ReactNode } from 'react';
-import styles from './style.module.scss';
 
 type ButtonVariant =
   | 'filledColor'
@@ -51,12 +50,13 @@ const Button = React.forwardRef((
         buttonTypeClassNameMap[variant], 
         className, {
           'p-btn--loading': loading,
+          'tc-transparent': loading,
           'p-btn--icon-only': hideLabel,
         })}
       data-testid="button"
       {...props}
     >
-      {leftIcon || rightIcon ? (
+      {!loading && (leftIcon || rightIcon) ? (
         <div className="d-flex jc-center ai-center">
           {leftIcon && (
             <span
