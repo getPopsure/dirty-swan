@@ -43,7 +43,7 @@ export const InfoCard = ({
         />
       )}
       <div className="p-h4 ta-center mt64">{title}</div>
-      <p className="p-p mt16 tc-grey-600">{children}</p>
+      <div className="p-p mt16 tc-grey-600">{children}</div>
     </div>
   </div>
 );
