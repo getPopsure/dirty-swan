@@ -3,7 +3,7 @@ import './lib/scss/index.scss';
 
 import { DateSelector } from './lib/components/dateSelector';
 import { SignaturePad } from './lib/components/signaturePad';
-import { CardWithLeftIcon } from './lib/components/cards';
+import { Card } from './lib';
 
 function App() {
   return (
@@ -26,15 +26,13 @@ function App() {
         />
       </div>
       <div className="mt80"></div>
-      <CardWithLeftIcon
+      <Card
         title="Lorem ipsum"
-        cardSize="small"
         className="wmx6 mt8"
-        rightIcon="arrow"
       >
         Praesent euismod porta odio at tempus. Aenean urna massa, facilisis
         malesuada eros at, rhoncus imperdiet nunc
-      </CardWithLeftIcon>
+      </Card>
     </div>
   );
 }

@@ -1,6 +1,3 @@
-import { CardWithTopLeftIcon } from './cardWithTopLeftIcon';
-import { CardWithLeftIcon } from './cardWithLeftIcon';
-import { CardWithTopIcon } from './cardWithTopIcon';
 import { InfoCard } from './infoCard';
 import { CardButton } from './cardButton';
 
@@ -49,9 +46,6 @@ export const associatedClassForCardState = (
 };
 
 export {
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   CardButton,
 };
