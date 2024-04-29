@@ -36,7 +36,7 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
 } 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
-  Omit<ComponentProps<E>, keyof CardOwnProps<E>>
+  Omit<ComponentProps<E>, keyof CardOwnProps<E>>;
 
 const Card = <E extends ElementType = CardDefaultAsType>({
   as,

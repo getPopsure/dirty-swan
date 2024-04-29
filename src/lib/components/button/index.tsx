@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ElementType, ComponentProps, ReactNode } from 'react';
 
 type ButtonVariant =
   | 'filledColor'
@@ -22,7 +22,11 @@ const buttonTypeClassNameMap: { [K in ButtonVariant]: string } = {
   filledError: 'p-btn--danger',
 };
 
-type ButtonProps = {
+const buttonDefaultAs = 'button' as const
+type ButtonDefaultAsType = typeof buttonDefaultAs;
+
+type ButtonOwnProps<E> = {
+  as?: E; 
   children: ReactNode;
   variant?: ButtonVariant;
   leftIcon?: ReactElement;
@@ -31,8 +35,12 @@ type ButtonProps = {
   hideLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['button'], 'children'>;
 
-const Button = React.forwardRef((
+export type ButtonProps<E extends ElementType = ButtonDefaultAsType> = ButtonOwnProps<E> &
+  Omit<ComponentProps<E>, keyof ButtonOwnProps<E>>;
+
+const Button = React.forwardRef(<E extends ElementType = ButtonDefaultAsType>(
   {
+    as,
     className,
     loading = false,
     children,
@@ -41,10 +49,13 @@ const Button = React.forwardRef((
     rightIcon,
     hideLabel,
     ...props
-  }: ButtonProps,
-  ref?: React.ForwardedRef<HTMLButtonElement>
-) => (
-    <button
+  }: ButtonProps<E>,
+  ref?: React.ForwardedRef<E>
+) => {
+  const ButtonTag = as || 'button';
+
+  return (
+    <ButtonTag
       ref={ref}
       className={classNames(
         buttonTypeClassNameMap[variant], 
@@ -92,9 +103,9 @@ const Button = React.forwardRef((
           )}
         </div>
       ) : children}
-    </button>
+    </ButtonTag>
   )
-);
+});
 
 export { Button };
-export type { ButtonProps, ButtonVariant };
+export type { ButtonVariant };
