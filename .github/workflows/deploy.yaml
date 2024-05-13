@@ -1,7 +1,6 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
-      pages: write
+      contents: write
 
     steps:
       - uses: actions/checkout@master
