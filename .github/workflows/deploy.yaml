@@ -9,6 +9,10 @@ jobs:
   deploy-storybook-to-gh-pages:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      pages: write
+
     steps:
       - uses: actions/checkout@master
 
