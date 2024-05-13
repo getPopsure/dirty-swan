@@ -20,12 +20,16 @@
     background-color: $ds-primary-50;
 
     svg {
-      fill: $ds-primary-300;
+      path {
+        fill: $ds-primary-300;
+      }
     }
   }
 
   svg {
-    fill: $ds-primary-100;
+    path {
+      fill: $ds-grey-400;
+    }
     transition: all 0.3s ease;
   }
 
