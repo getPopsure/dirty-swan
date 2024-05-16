@@ -1,56 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, ChangeEvent, useRef, KeyboardEvent } from 'react';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import { CalendarDate } from '@popsure/public-models';
-import DayPicker from 'react-day-picker';
 
 import {
   calendarDateToISODate,
   isoStringtoCalendarDate,
 } from '../../util/calendarDate';
-import { useOnClickOutside } from '../../hooks/useOnClickOutside';
-import { CalendarIcon } from '../icon/icons';
 
 import styles from './style.module.scss';
-import './datepicker.scss';
+import { Input } from '../input';
+import classNames from 'classnames';
+import { Calendar } from './components/Calendar';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
-
-/*
-  Fill an array with an increment from a number to another number.
-  i.e. fillArray from 1 to 4 will return the following: [1, 2, 3, 4]
-  
-  You can fill descending by flipping the to value
-  i.e. fillArray from 4 to 1 will return the following: [4, 3, 2, 1]
-*/
-export const fillArray = (from: number, to: number): number[] => {
-  const ascending = from > to;
-  const arraySize = Math.abs(from - to) + 1;
-  const toReturn = new Array(arraySize).fill(0).map((_, index) => {
-    return ascending ? to + index : from + index;
-  });
-
-  if (ascending) {
-    return toReturn.reverse();
-  }
-
-  return toReturn;
-};
-
-/*
-  Return the maximum number of days given a month and a year.
-*/
-export const daysInMonthOfYear = ({
-  month,
-  year,
-}: {
-  month: number;
-  year: number;
-}) => {
-  return dayjs(`${year}-${month}`).daysInMonth();
-};
-
+type FormatPlaceholder = 'dayFormat' | 'monthFormat' | 'yearFormat';
 export interface DateSelectorProps {
   value?: string;
   onChange: (date: string) => void;
@@ -59,229 +24,233 @@ export interface DateSelectorProps {
   dayjsLocale?: ILocale;
   placeholders?: {
     day?: string;
+    dayFormat?: string;
     month?: string;
+    monthFormat?: string;
     year?: string;
+    yearFormat?: string;
+    error?: string;
   };
   firstDayOfWeek?: number;
+}
+
+const defaultPlaceholders: DateSelectorProps["placeholders"] = {
+  day: "Day",
+  dayFormat: "DD",
+  month: "Month",
+  monthFormat: "MM",
+  year: "Year",
+  yearFormat: "YYYY",
+  error: "Please enter a valid date"
+}
+
+type ErrorField = 'all' | 'day' | 'month' | 'year' | undefined;
+
+const isDateValid = (
+  date: string | undefined,
+  yearBoundaries: DateSelectorProps["yearBoundaries"]
+): {
+  isValid: boolean;
+  field?: ErrorField;
+} => {
+  const { min = 0, max = 0 } = yearBoundaries;
+
+  if (!date) {
+    return { isValid: false, field: 'all' };
+  }
+
+  if (max && dayjs(date).isAfter(`${max}-01-01`, 'year')) { 
+    return { isValid: false, field: 'year' };
+  }
+  
+  if (min && dayjs(date).isBefore(`${min}-01-01`, 'year')) {  
+    return { isValid: false, field: 'year' };
+  }
+  
+  const isDateValid = dayjs(date, COLLECTABLE_DATE_FORMAT, true).isValid();
+
+  return {
+    isValid: isDateValid,
+    field: isDateValid ? undefined : 'all',
+  };
 }
 
 export const DateSelector = ({
   value,
   onChange,
+  placeholders: placeholdersProps,
   yearBoundaries,
   displayCalendar,
-  placeholders,
   dayjsLocale,
   firstDayOfWeek = 0,
 }: DateSelectorProps) => {
-  const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
-  const daysInSelectedDate = calendarDateValue
-    ? daysInMonthOfYear({
-        month: calendarDateValue.month,
-        year: calendarDateValue.year,
-      })
-    : 31;
+  const placeholders = {
+    ...defaultPlaceholders,
+    ...placeholdersProps
+  }
 
-  const localeDate = dayjsLocale
-    ? dayjs().locale(dayjsLocale).localeData()
-    : dayjs().locale('en').localeData();
-
-  const localizedWeekdays = localeDate.weekdays();
-  const localizedWeekdaysShort = localeDate.weekdaysShort();
-  const localizedMonths = localeDate.months();
-  const localizedMonthsShort = localeDate.monthsShort();
-
-  const availableDays = fillArray(1, daysInSelectedDate);
-  const availableYears = fillArray(yearBoundaries.max, yearBoundaries.min);
-  const availableMonths = localizedMonthsShort;
-
-  const [date, setDate] = useState<Partial<CalendarDate>>(
-    calendarDateValue ?? {}
-  );
-  const [openCalendar, setOpenCalendar] = useState(false);
-
-  const calendarContainerRef = useRef<HTMLDivElement | null>(null);
-
-  const calendarDefaultDate =
-    dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
-      ? dayjs().toDate()
-      : dayjs().set('year', yearBoundaries.max).toDate();
-  const selectedDateInDateType = value
-    ? dayjs(value).toDate()
-    : calendarDefaultDate;
-  const dateCalendarFromMonth = dayjs(String(yearBoundaries.min))
-    .startOf('year')
-    .toDate();
-  const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
-    .endOf('year')
-    .toDate();
-
-  useOnClickOutside(calendarContainerRef, () => setOpenCalendar(false));
+  const itemsRef = useRef<HTMLInputElement[]>([]);
+  const [isDirty, setIsDirty] = useState(false);
+  const [hasError, setHasError] = useState<ErrorField>();
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [internalValue, setInternalValue] = useState<Partial<CalendarDate>>({});
 
   useEffect(() => {
-    if (calendarDateValue) {
-      setDate(calendarDateValue);
-    }
-  }, [value]); //eslint-disable-line react-hooks/exhaustive-deps
+    const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
 
-  useEffect(() => {
-    if (
-      date.year !== undefined &&
-      date.month !== undefined &&
-      date.day !== undefined
-    ) {
-      if (
-        calendarDateValue === undefined ||
-        date.day !== calendarDateValue.day ||
-        date.month !== calendarDateValue.month ||
-        date.year !== calendarDateValue.year
-      ) {
-        onChange(
-          calendarDateToISODate({
-            day: date.day,
-            month: date.month,
-            year: date.year,
-          })
-        );
-      }
+    if(value !== calendarDateValue && calendarDateValue?.day && calendarDateValue?.month && calendarDateValue?.year) {
+      const { isValid, field } = isDateValid(value, yearBoundaries)
+      setInternalValue(calendarDateValue)
+      setHasError(isValid ? undefined : field);
+      setIsDirty(true);
     }
-  }, [date]); //eslint-disable-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]); 
 
-  const handleOnChange = (key: keyof CalendarDate, v: number) => {
-    const newValue = { ...date, [key]: v };
-    if (
-      key !== 'day' &&
-      newValue.month !== undefined &&
-      newValue.year !== undefined &&
-      newValue.day !== undefined
-    ) {
-      const cappedDays = Math.min(
-        daysInMonthOfYear({ month: newValue.month, year: newValue.year }),
-        newValue.day
-      );
-      setDate({ ...newValue, day: cappedDays });
-    } else {
-      setDate(newValue);
+
+  const handleOnChange = (key: keyof CalendarDate, v?: string) => {
+    const tempValue = { ...internalValue, [key]: v || undefined };
+    setInternalValue(tempValue);
+
+    const formattedDate =  calendarDateToISODate({
+      day: tempValue.day || 0,
+      month: tempValue.month || 0,
+      year: tempValue.year || 0,
+    })
+    
+    const { isValid, field } = isDateValid(formattedDate, yearBoundaries);
+
+    if (dayjs(formattedDate, COLLECTABLE_DATE_FORMAT, true).isValid()) {
+      setIsDirty(true);
     }
 
-    setOpenCalendar(false);
+    setHasError(isValid ? undefined : field);
+    onChange(isValid ? formattedDate : "");
+    setIsCalendarOpen(false);
   };
 
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
+    const currentInput = itemsRef.current?.[index];
+    const inputSelectionStart = currentInput?.selectionStart;
+    const inputSelectionEnd = currentInput?.selectionEnd;
+
+    if (
+      // is not day input
+      index > 0 &&
+      // has clicked backspace or arrow left
+      ['Backspace', "ArrowLeft"].includes(event.key) && 
+      // is focused at the first character of the input
+      inputSelectionStart === 0 && inputSelectionEnd === 0
+    ) {
+      const prevInput = itemsRef.current?.[index - 1];
+
+      event.preventDefault();
+      prevInput?.focus();
+      prevInput?.setSelectionRange(0, 3);
+    }
+
+    if (
+        // is not year input
+        index < 2
+        // has clicked arrow right
+        && event.key === "ArrowRight"
+        // is focused at the last character of the input value
+        && inputSelectionStart === currentInput.value.length
+      ) {
+      const nextInput = itemsRef.current?.[index + 1];
+      
+      event.preventDefault();
+      nextInput?.focus();
+      nextInput?.setSelectionRange(0, index === 1 ? 4 : 3);
+    }
+  }
+
+  const handleOnKeyUp = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
+    const currentInput = itemsRef.current?.[index];
+    const inputSelectionStart = currentInput?.selectionStart;
+
+    if (
+        // is not year input
+        index < 2
+        // is a number key
+        && /^\d+$/.test(event.key)
+        && (
+          // is focused at the last character of the input value
+          inputSelectionStart === currentInput.maxLength 
+          // or month value is over 1 or day value is over 3
+          || Number(currentInput.value) > (index === 1 ? 1 : 3)
+        )
+      ) {
+      const nextInput = itemsRef.current?.[index + 1];
+      
+      event.preventDefault();
+      event.stopPropagation();
+      
+      nextInput?.focus();
+      nextInput?.setSelectionRange(0, index === 1 ? 4 : 3);
+    }
+  }
+
+  const getInputProps = (key: keyof CalendarDate, index: number) => ({
+    'data-cy': `date-selector-${key}`,
+    'data-testid': `date-selector-${key}`,
+    className: styles[`${key}Input`],
+    id: key,
+    name: key,
+    maxLength: 2,
+    required: true,
+    label: placeholders?.[key],
+    placeholder: placeholders?.[`${key}Format` as FormatPlaceholder] ?? "",
+    labelInsideInput: true,
+    value: internalValue[key] ?? '',
+    error: (hasError && [key, 'all'].includes(hasError)) && isDirty,
+    type: "text", 
+    ref: (el: HTMLInputElement) => { itemsRef.current[index] = el },
+    onKeyUp: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyUp(event, index),
+    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyDown(event, index),
+    onChange: ({ target }: ChangeEvent<HTMLInputElement>) => handleOnChange(key, target.value),
+  });
+
   return (
-    <div className={styles.container}>
-      <div className={styles['date-selector-container']}>
-        <div className={styles['row-container']}>
-          <select
-            data-cy="date-selector-day"
-            className={`p-select ${styles['day-select']}`}
-            id="day"
-            name="day"
-            required={true}
-            value={date.day ?? ''}
-            onChange={(e) => {
-              handleOnChange('day', parseInt(e.target.value, 10));
-            }}
-          >
-            <option value="" disabled={true}>
-              {placeholders?.day || 'Day'}
-            </option>
-            {availableDays.map((day) => (
-              <option key={day} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
-          <select
-            data-cy="date-selector-month"
-            className={`p-select ${styles['month-select']}`}
-            id="month"
-            name="month"
-            required={true}
-            value={date.month ?? ''}
-            onChange={(e) => {
-              handleOnChange('month', parseInt(e.target.value, 10));
-            }}
-          >
-            <option value="" disabled={true}>
-              {placeholders?.month || 'Month'}
-            </option>
-            {availableMonths.map((month, i) => (
-              <option key={month} value={i + 1}>
-                {month}
-              </option>
-            ))}
-          </select>
+    <div>
+      <div className="d-flex ai-center">
+        <div className={classNames(styles.container, "d-flex gap8")}>
+          <div className={"d-flex gap8 jc-between"}>
+            <Input
+              {...getInputProps('day', 0)}
+              inputMode='numeric'
+            />
+
+            <Input
+              {...getInputProps('month', 1)}
+              inputMode='numeric'
+            />
+          </div>
+
+          <Input
+            {...getInputProps('year', 2)}
+            inputMode='numeric'
+            maxLength={4}
+          />
         </div>
-        <select
-          data-cy="date-selector-year"
-          className={`p-select ${styles['year-select']}`}
-          id="year"
-          name="year"
-          required={true}
-          value={date.year ?? ''}
-          onChange={(e) => {
-            handleOnChange('year', parseInt(e.target.value, 10));
-          }}
-        >
-          <option value="" disabled={true}>
-            {placeholders?.year || 'Year'}
-          </option>
-          {availableYears.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+
+        <Calendar
+          dateFormat={COLLECTABLE_DATE_FORMAT}
+          yearBoundaries={yearBoundaries}
+          displayCalendar={displayCalendar}
+          dayjsLocale={dayjsLocale}
+          firstDayOfWeek={firstDayOfWeek}
+          isOpen={isCalendarOpen}
+          setCalendarOpen={setIsCalendarOpen}
+          value={value}
+          onChange={onChange}
+        />
       </div>
-      {displayCalendar && (
-        <div
-          className={styles['date-calendar-container']}
-          ref={calendarContainerRef}
-        >
-          <button
-            type="button"
-            onClick={() => setOpenCalendar(!openCalendar)}
-            className={styles.calendarButton}
-            data-testid="calendar-button"
-          >
-            <CalendarIcon
-              color={'purple-500'}
-              size={24}
-              className={`${styles.calendarIcon}`}
-            />
-          </button>
-          {openCalendar && (
-            <DayPicker
-              month={selectedDateInDateType}
-              showOutsideDays={true}
-              fromMonth={dateCalendarFromMonth}
-              toMonth={dateCalendarToMonth}
-              selectedDays={selectedDateInDateType}
-              onDayClick={(date: Date) => {
-                if (
-                  dayjs(date).isAfter(dateCalendarFromMonth) ||
-                  dayjs(date).isBefore(dateCalendarToMonth)
-                ) {
-                  const selectedDate = dayjs(date).format(
-                    COLLECTABLE_DATE_FORMAT
-                  );
-                  onChange(selectedDate);
-                  setOpenCalendar(false);
-                }
-              }}
-              pagedNavigation={true}
-              disabledDays={{
-                before: dateCalendarFromMonth,
-                after: dateCalendarToMonth,
-              }}
-              firstDayOfWeek={firstDayOfWeek}
-              locale={dayjsLocale?.name || 'en'}
-              months={localizedMonths}
-              weekdaysLong={localizedWeekdays}
-              weekdaysShort={localizedWeekdaysShort}
-            />
-          )}
-        </div>
+
+      {hasError && isDirty && (
+        <p className="p-p--small tc-red-500 w100 mt8">
+          {placeholders.error}
+        </p>
       )}
     </div>
   );

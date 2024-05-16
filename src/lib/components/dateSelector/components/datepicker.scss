@@ -1,5 +1,5 @@
-@use '../../scss/public/grid' as *;
-@use '../../scss/public/colors' as *;
+@use '../../../scss/public/grid' as *;
+@use '../../../scss/public/colors' as *;
 
 .DayPickerInput {
   cursor: pointer;
@@ -281,12 +281,12 @@
 }
 
 .DayPicker-NavButton--prev {
-  background-image: url('./icons/chevron-left.svg');
+  background-image: url('../../icon/assets/chevron-left.svg');
   margin-left: 16px;
 }
 
 .DayPicker-NavButton--next {
-  background-image: url('./icons/chevron-right.svg');
+  background-image: url('../../icon/assets/chevron-right.svg');
   margin-right: 16px;
 }
 
