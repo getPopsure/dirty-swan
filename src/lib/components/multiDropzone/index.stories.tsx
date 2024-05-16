@@ -177,6 +177,37 @@ export const ErrorState = () => (
   />
 );
 
+export const TooManyFilesErrorState = () => (
+  <MultiDropzone
+    maxFiles={2}
+    isCondensed
+    uploadedFiles={[
+      {
+        id: '123',
+        progress: 100,
+        name: 'test_file_name.pdf',
+        previewUrl: 'http://getpopsure.com/test_file_name.pdf',
+      },
+      {
+        id: '124',
+        progress: 100,
+        name: 'test_file_name.pdf',
+        previewUrl: 'http://getpopsure.com/test_file_name.pdf',
+        showLoadingSpinner: true,
+        showProgressBar: false,
+      },
+      {
+        id: '125',
+        progress: 100,
+        name: 'test_file_name.pdf',
+        previewUrl: 'http://getpopsure.com/test_file_name.pdf',
+        showLoadingSpinner: true,
+      },
+    ]} uploading={false} onFileSelect={function (files: File[]): void {
+      throw new Error('Function not implemented.');
+    } }  />
+);
+
 export const AcceptingOnlyImages = () => (
   <MultiDropzone
     accept="image"
@@ -185,6 +216,7 @@ export const AcceptingOnlyImages = () => (
     onFileSelect={() => {}}
     uploading={false}
     onRemoveFile={() => {}}
+    textOverrides={{ supportsText: 'Accepts images' }}
   />
 );
 
@@ -196,6 +228,19 @@ export const AcceptingOnlyDocuments = () => (
     onFileSelect={() => {}}
     uploading={false}
     onRemoveFile={() => {}}
+    textOverrides={{ supportsText: 'Accepts documents' }}
+  />
+);
+
+export const AcceptingOnlyVideos = () => (
+  <MultiDropzone
+    accept="video"
+    isCondensed
+    uploadedFiles={[]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+    textOverrides={{ supportsText: 'Accepts videos' }}
   />
 );
 

@@ -7,7 +7,8 @@ import {
   FileType,
   IMAGE_FILES, 
   TextOverrides,
-  UploadStatus
+  UploadStatus,
+  VIDEO_FILES
 } from "../types";
 
 export const getUploadStatus = (progress: number, error?: string): UploadStatus => {
@@ -34,6 +35,7 @@ const formatMimeType = (values: FileType[]): Accept  => {
 
 export const DOCUMENT_FILES_ACCEPT = formatMimeType(DOCUMENT_FILES);
 export const IMAGE_FILES_ACCEPT = formatMimeType(IMAGE_FILES);
+export const VIDEO_FILES_ACCEPT = formatMimeType(VIDEO_FILES);
   
 export const getFormattedAcceptObject = (accept: AcceptType = {}): Accept => {
   if (accept === "document") {
@@ -44,7 +46,19 @@ export const getFormattedAcceptObject = (accept: AcceptType = {}): Accept => {
     return IMAGE_FILES_ACCEPT;
   };
 
-  return accept;
+  if (accept === "video") {
+    return VIDEO_FILES_ACCEPT;
+  }
+
+  if (accept) {
+    return accept;
+  }
+
+  return {
+    ...DOCUMENT_FILES_ACCEPT,
+    ...IMAGE_FILES_ACCEPT,
+    ...VIDEO_FILES_ACCEPT
+  };
 }
   
 export const formatAcceptFileList = (accept: Accept): string => (
@@ -62,7 +76,7 @@ export const getErrorMessage = (
 ): string => {
   switch (code) {
     case ErrorCode.FileInvalidType:
-      return `${textOverrides?.fileTypeError || "File type must be one of"} ${fileList}`;
+      return `${textOverrides?.fileTypeError || "File type must be"} ${fileList}`;
     case ErrorCode.FileTooLarge:
       return `${textOverrides?.fileTooLargeError || "File is too large. It must be less than"} ${formatBytes(maxSize || 0)}.`;
     default:

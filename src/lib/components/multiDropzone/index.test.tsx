@@ -56,7 +56,7 @@ describe('MultiDropzone component', () => {
         ],
       });
 
-      expect(screen.getByText('Too many files.')).toBeVisible();
+      expect(screen.getByText('You can upload maximum 1 files.')).toBeVisible();
     });
 
     it('should show max file size error message', async () => {
@@ -82,12 +82,12 @@ describe('MultiDropzone component', () => {
       });
 
       expect(
-        getByText('File type must be one of DOC, DOCX, PDF')
+        getByText('File type must be DOC, DOCX, PDF')
       ).toBeInTheDocument();
     });
 
     it('should remove wrong filetype error message', async () => {
-      const { getByAltText, getByTestId, queryByText, user } = setup({
+      const { getByTestId, queryByText, user } = setup({
         accept: 'document',
       });
       const input = getByTestId(inputTestId);
@@ -101,7 +101,7 @@ describe('MultiDropzone component', () => {
       await user.click(getByTestId('remove-button'));
 
       expect(
-        queryByText('File type must be one of DOC, DOCX, PDF')
+        queryByText('File type must be PDF')
       ).not.toBeInTheDocument();
     });
   });
@@ -128,14 +128,14 @@ describe('MultiDropzone component', () => {
       const screen = setup({ accept: 'image' });
 
       expect(
-        screen.getByText('Supports HEIC, BMP, JPEG, JPG, PNG')
+        screen.getByText('Supports images, videos and documents')
       ).toBeInTheDocument();
     });
 
     it('should show document accept file type label', () => {
       const screen = setup({ accept: 'document' });
 
-      expect(screen.getByText('Supports DOC, DOCX, PDF')).toBeInTheDocument();
+      expect(screen.getByText('Supports images, videos and documents')).toBeInTheDocument();
     });
 
     it('should custom document accept file type label', () => {
@@ -146,7 +146,7 @@ describe('MultiDropzone component', () => {
         },
       });
 
-      expect(screen.getByText('Supports PDF, JPG')).toBeInTheDocument();
+      expect(screen.getByText('Supports images, videos and documents')).toBeInTheDocument();
     });
 
     it('should show disabled text if is uploading', () => {
