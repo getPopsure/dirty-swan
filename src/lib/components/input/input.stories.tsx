@@ -19,6 +19,7 @@ export const InputStory = ({
   value,
   label,
   hideLabel,
+  labelInsideInput,
   prefix,
   error
 }: InputProps) => {
@@ -37,6 +38,7 @@ export const InputStory = ({
       placeholder={placeholder}
       label={label}
       hideLabel={hideLabel}
+      labelInsideInput={labelInsideInput}
       prefix={prefix}
       error={error}
     />

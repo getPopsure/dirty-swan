@@ -7,11 +7,12 @@ import styles from './style.module.scss';
 // Something weird is going on with enterKeyHint that makes it a required field under certain circumstances. The & Omit<…> and & Pick<…> is a hacky way to go around that.
 export type InputProps =  Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
  Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>> & {
-  error?: string;
+  error?: string | boolean;
   prefix?: string;
   label?: string;
   id?: string;
   hideLabel?: boolean;
+  labelInsideInput?: boolean;
 };
 
 export const Input = React.forwardRef(
@@ -25,14 +26,16 @@ export const Input = React.forwardRef(
       error,
       disabled,
       hideLabel = false,
+      labelInsideInput = false,
       ...props
     }: InputProps,
     ref?: React.ForwardedRef<HTMLInputElement>
   ) => {
     const [uniqueId] = useState(id ?? generateId());
+
     return (
       <div className={`${styles.container} ${className ?? ''}`}>
-        {label && (
+        {label && !labelInsideInput && (
           <label
             htmlFor={uniqueId}
             className={classnames('p-p', styles.label, {
@@ -51,12 +54,15 @@ export const Input = React.forwardRef(
             ref={ref}
             className={classnames(
               error ? 'p-input--error' : 'p-input',
-              !label && placeholder && placeholder.length > 0
+              (!label || labelInsideInput) && placeholder && placeholder.length > 0
                 ? styles.input
                 : styles['input--no-placeholder'],
-              { [styles['input--with-prefix']]: prefix }
+              {
+                [styles['input--with-prefix']]: prefix, 
+                [styles['input--with-inside-label']]: labelInsideInput
+              }
             )}
-            placeholder={label ? placeholder : ' '}
+            placeholder={label || labelInsideInput ? placeholder : ' '}
             disabled={disabled}
             {...props}
           />
@@ -71,7 +77,7 @@ export const Input = React.forwardRef(
               {prefix}
             </span>
           )}
-          {!label && (
+          {(!label || labelInsideInput) && (
             <label
               htmlFor={uniqueId}
               className={classnames(
@@ -80,7 +86,7 @@ export const Input = React.forwardRef(
                 { [styles['placeholder--with-error']]: error }
               )}
             >
-              {placeholder}
+              {labelInsideInput ? label : placeholder}
             </label>
           )}
         </div>

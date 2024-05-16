@@ -24,7 +24,8 @@
 }
 
 .input:not(:placeholder-shown) ~ .placeholder,
-.input:focus ~ .placeholder {
+.input:focus ~ .placeholder,
+.input--with-inside-label ~ .placeholder {
   top: 7px;
   left: 16px;
 
@@ -55,6 +56,12 @@
 .input:not(:placeholder-shown) ~ .prefix,
 .input:focus ~ .prefix {
   top: 28px;
+}
+
+.input--with-inside-label ~ .prefix,
+.input--with-inside-label:focus ~ .prefix,
+.input--with-inside-label:not(:placeholder-shown) ~ .prefix {
+  top: 29px;
 }
 
 .input {
