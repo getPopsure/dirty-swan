@@ -9,13 +9,20 @@ import {
 } from '../../util/calendarDate';
 
 import styles from './style.module.scss';
-import { Input } from '../input';
+import { Input, InputProps } from '../input';
 import classNames from 'classnames';
 import { Calendar } from './components/Calendar';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
 type FormatPlaceholder = 'dayFormat' | 'monthFormat' | 'yearFormat';
+
+interface DateSelectorInputProps extends InputProps {
+  'data-cy': string;
+  'data-testid': string;
+  ref: (el: HTMLInputElement) => void;
+}
+
 export interface DateSelectorProps {
   value?: string;
   onChange: (date: string) => void;
@@ -32,6 +39,7 @@ export interface DateSelectorProps {
     error?: string;
   };
   firstDayOfWeek?: number;
+  inputProps?: (key: keyof CalendarDate) => Partial<DateSelectorInputProps>;
 }
 
 const defaultPlaceholders: DateSelectorProps["placeholders"] = {
@@ -83,6 +91,7 @@ export const DateSelector = ({
   displayCalendar,
   dayjsLocale,
   firstDayOfWeek = 0,
+  inputProps,
 }: DateSelectorProps) => {
   const placeholders = {
     ...defaultPlaceholders,
@@ -191,13 +200,13 @@ export const DateSelector = ({
     }
   }
 
-  const getInputProps = (key: keyof CalendarDate, index: number) => ({
+  const getInputProps = (key: keyof CalendarDate, index: number): DateSelectorInputProps => ({
     'data-cy': `date-selector-${key}`,
     'data-testid': `date-selector-${key}`,
     className: styles[`${key}Input`],
     id: key,
     name: key,
-    maxLength: 2,
+    maxLength: key === 'year' ? 4 : 2,
     required: true,
     label: placeholders?.[key],
     placeholder: placeholders?.[`${key}Format` as FormatPlaceholder] ?? "",
@@ -205,10 +214,12 @@ export const DateSelector = ({
     value: internalValue[key] ?? '',
     error: (hasError && [key, 'all'].includes(hasError)) && isDirty,
     type: "text", 
-    ref: (el: HTMLInputElement) => { itemsRef.current[index] = el },
+    inputMode: "numeric",
+    ref: (el: HTMLInputElement) => { itemsRef.current[index] = el }, 
     onKeyUp: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyUp(event, index),
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyDown(event, index),
     onChange: ({ target }: ChangeEvent<HTMLInputElement>) => handleOnChange(key, target.value),
+    ...inputProps?.(key) || {},
   });
 
   return (
@@ -216,22 +227,12 @@ export const DateSelector = ({
       <div className="d-flex ai-center">
         <div className={classNames(styles.container, "d-flex gap8")}>
           <div className={"d-flex gap8 jc-between"}>
-            <Input
-              {...getInputProps('day', 0)}
-              inputMode='numeric'
-            />
+            <Input {...getInputProps('day', 0)} />
 
-            <Input
-              {...getInputProps('month', 1)}
-              inputMode='numeric'
-            />
+            <Input {...getInputProps('month', 1)} />
           </div>
 
-          <Input
-            {...getInputProps('year', 2)}
-            inputMode='numeric'
-            maxLength={4}
-          />
+          <Input {...getInputProps('year', 2)} />
         </div>
 
         <Calendar

@@ -16,97 +16,97 @@ const setup = (date?: string, onChange: (date: string) => void = () => {}) => {
 describe('DateSelector component', () => {
   it('should show the value inside the inputs', () => {
     const date = '2024-01-01';
-    const { getByTestId } = setup(date);
+    const { getByLabelText } = setup(date);
 
-    expect(getByTestId('date-selector-day')).toHaveValue('1');
-    expect(getByTestId('date-selector-month')).toHaveValue('1');
-    expect(getByTestId('date-selector-year')).toHaveValue('2024');
+    expect(getByLabelText('Day')).toHaveValue('1');
+    expect(getByLabelText('Month')).toHaveValue('1');
+    expect(getByLabelText('Year')).toHaveValue('2024');
   });
 
   it('should call onChange with the value changed', async () => {
     const callback = jest.fn();
-    const { getByTestId, user } = setup(undefined, callback);
+    const { getByLabelText, user } = setup(undefined, callback);
 
-    await user.type(getByTestId('date-selector-day'), '5');
-    await user.type(getByTestId('date-selector-month'), '7');
-    await user.type(getByTestId('date-selector-year'), '2023');
+    await user.type(getByLabelText('Day'), '5');
+    await user.type(getByLabelText('Month'), '7');
+    await user.type(getByLabelText('Year'), '2023');
 
-    expect(getByTestId('date-selector-day')).toHaveValue('5');
-    expect(getByTestId('date-selector-month')).toHaveValue('7');
-    expect(getByTestId('date-selector-year')).toHaveValue('2023');
+    expect(getByLabelText('Day')).toHaveValue('5');
+    expect(getByLabelText('Month')).toHaveValue('7');
+    expect(getByLabelText('Year')).toHaveValue('2023');
     expect(callback).toHaveBeenCalledWith('2023-07-05');
   });
 
   it('should call onChange with the value changed with initial value', async () => {
     const callback = jest.fn();
     const date = '2024-01-01';
-    const { getByTestId, user } = setup(date, callback);
+    const { getByLabelText, user } = setup(date, callback);
 
-    await user.type(getByTestId('date-selector-day'), '{backspace}3');
-    await user.type(getByTestId('date-selector-month'), '{backspace}7');
-    await user.type(getByTestId('date-selector-year'), '{backspace}3');
+    await user.type(getByLabelText('Day'), '{backspace}3');
+    await user.type(getByLabelText('Month'), '{backspace}7');
+    await user.type(getByLabelText('Year'), '{backspace}3');
 
-    expect(getByTestId('date-selector-day')).toHaveValue('3');
-    expect(getByTestId('date-selector-month')).toHaveValue('7');
-    expect(getByTestId('date-selector-year')).toHaveValue('2023');
+    expect(getByLabelText('Day')).toHaveValue('3');
+    expect(getByLabelText('Month')).toHaveValue('7');
+    expect(getByLabelText('Year')).toHaveValue('2023');
     expect(callback).toHaveBeenCalledWith('2023-07-03');
   });
 
   it('should call onChange empty when invalid date', async () => {
     const callback = jest.fn();
-    const { getByTestId, user } = setup(undefined, callback);
+    const { getByLabelText, user } = setup(undefined, callback);
 
-    await user.type(getByTestId('date-selector-day'), '5');
+    await user.type(getByLabelText('Day'), '5');
 
-    expect(getByTestId('date-selector-day')).toHaveValue('5');
+    expect(getByLabelText('Day')).toHaveValue('5');
     expect(callback).toHaveBeenCalledWith('');
   });
 
   it('should call onChange empty when year out of boundaries', async () => {
     const callback = jest.fn();
     const date = '2024-01-01';
-    const { getByTestId, user } = setup(date, callback);
+    const { getByLabelText, user } = setup(date, callback);
 
-    await user.type(getByTestId('date-selector-year'), '{backspace}{backspace}30');
+    await user.type(getByLabelText('Year'), '{backspace}{backspace}30');
 
-    expect(getByTestId('date-selector-year')).toHaveValue('2030');
+    expect(getByLabelText('Year')).toHaveValue('2030');
     expect(callback).toHaveBeenCalledWith('');
   });
 
   it('should call onChange when year in boundaries after being out of boundaries', async () => {
     const callback = jest.fn();
     const date = '2030-01-01';
-    const { getByTestId, user } = setup(date, callback);
+    const { getByLabelText, user } = setup(date, callback);
 
-    await user.type(getByTestId('date-selector-year'), '{backspace}{backspace}23');
+    await user.type(getByLabelText('Year'), '{backspace}{backspace}23');
 
-    expect(getByTestId('date-selector-year')).toHaveValue('2023');
+    expect(getByLabelText('Year')).toHaveValue('2023');
     expect(callback).toHaveBeenCalledWith('2023-01-01');
   });
 
   it('should call onChange with the value changed', async () => {
     const callback = jest.fn();
     const date = '2024-01-01';
-    const { getByTestId, user } = setup(date, callback);
+    const { getByLabelText, user } = setup(date, callback);
 
-    await user.type(getByTestId('date-selector-day'), '{backspace}3');
-    await user.type(getByTestId('date-selector-month'), '{backspace}7');
-    await user.type(getByTestId('date-selector-year'), '{backspace}3');
+    await user.type(getByLabelText('Day'), '{backspace}3');
+    await user.type(getByLabelText('Month'), '{backspace}7');
+    await user.type(getByLabelText('Year'), '{backspace}3');
 
-    expect(getByTestId('date-selector-day')).toHaveValue('3');
-    expect(getByTestId('date-selector-month')).toHaveValue('7');
+    expect(getByLabelText('Day')).toHaveValue('3');
+    expect(getByLabelText('Month')).toHaveValue('7');
     expect(callback).toHaveBeenCalledWith('2023-07-03');
   });
 
   it('should navigate inputs from day to month when day is over 3', async () => {
     const callback = jest.fn();
     const date = '2024-01-01';
-    const { getByTestId, user } = setup(date, callback);
+    const { getByLabelText, user } = setup(date, callback);
 
-    await user.type(getByTestId('date-selector-day'), '{backspace}45');
+    await user.type(getByLabelText('Day'), '{backspace}45');
 
-    expect(getByTestId('date-selector-day')).toHaveValue('4');
-    expect(getByTestId('date-selector-month')).toHaveValue('5');
+    expect(getByLabelText('Day')).toHaveValue('4');
+    expect(getByLabelText('Month')).toHaveValue('5');
     expect(callback).toHaveBeenCalledWith('2024-05-04');
   });
 
@@ -115,7 +115,7 @@ describe('DateSelector component', () => {
       const callback = jest.fn();
       const date = '2024-01-01';
       const expectedDate = '2024-01-17';
-      const { getByTestId, getByLabelText, user } = setup(date, callback);
+      const { getByLabelText, getByTestId, user } = setup(date, callback);
       const button = getByTestId('calendar-button');
 
       await user.click(button);
@@ -132,7 +132,7 @@ describe('DateSelector component', () => {
     it('should close the calendar when clicking outside', async () => {
       const callback = jest.fn();
       const date = '2024-01-01';
-      const { getByTestId, getByLabelText, user } = setup(date, callback);
+      const { getByLabelText, getByTestId, user } = setup(date, callback);
       const button = getByTestId('calendar-button');
 
       await user.click(button);

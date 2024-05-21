@@ -74,6 +74,7 @@ export const Calendar = ({
         hideLabel
         variant='textColor'
         leftIcon={<CalendarIcon />}
+        type="button"
       >
         Select date
       </Button>
@@ -86,6 +87,10 @@ export const Calendar = ({
           toMonth={dateCalendarToMonth}
           selectedDays={selectedDateInDateType}
           onDayClick={(date: Date) => {
+            if (!dayjs(date).isValid()) {
+              return;
+            }
+
             if (
               dayjs(date).isAfter(dateCalendarFromMonth) ||
               dayjs(date).isBefore(dateCalendarToMonth)
