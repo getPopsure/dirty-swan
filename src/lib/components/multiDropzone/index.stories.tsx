@@ -203,9 +203,10 @@ export const TooManyFilesErrorState = () => (
         previewUrl: 'http://getpopsure.com/test_file_name.pdf',
         showLoadingSpinner: true,
       },
-    ]} uploading={false} onFileSelect={function (files: File[]): void {
-      throw new Error('Function not implemented.');
-    } }  />
+    ]}
+    uploading={false}
+    onFileSelect={() => {}}
+  />
 );
 
 export const AcceptingOnlyImages = () => (
@@ -216,7 +217,6 @@ export const AcceptingOnlyImages = () => (
     onFileSelect={() => {}}
     uploading={false}
     onRemoveFile={() => {}}
-    textOverrides={{ supportsText: 'Accepts images' }}
   />
 );
 
@@ -228,7 +228,6 @@ export const AcceptingOnlyDocuments = () => (
     onFileSelect={() => {}}
     uploading={false}
     onRemoveFile={() => {}}
-    textOverrides={{ supportsText: 'Accepts documents' }}
   />
 );
 
@@ -240,7 +239,6 @@ export const AcceptingOnlyVideos = () => (
     onFileSelect={() => {}}
     uploading={false}
     onRemoveFile={() => {}}
-    textOverrides={{ supportsText: 'Accepts videos' }}
   />
 );
 

@@ -57,6 +57,9 @@ export interface TextOverrides {
   sizeUpToText?: string;
   supportsText?: string;
   supportsTextShort?: string;
+  supportsTextDocument?: string;
+  supportsTextImage?: string;
+  supportsTextVideo?: string;
   tooManyFilesError?: string;
 }
 export interface ErrorMessage {

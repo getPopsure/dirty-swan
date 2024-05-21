@@ -128,14 +128,14 @@ describe('MultiDropzone component', () => {
       const screen = setup({ accept: 'image' });
 
       expect(
-        screen.getByText('Supports images, videos and documents')
+        screen.getByText('Supports images')
       ).toBeInTheDocument();
     });
 
     it('should show document accept file type label', () => {
       const screen = setup({ accept: 'document' });
 
-      expect(screen.getByText('Supports images, videos and documents')).toBeInTheDocument();
+      expect(screen.getByText('Supports documents')).toBeInTheDocument();
     });
 
     it('should custom document accept file type label', () => {

@@ -22,7 +22,7 @@ import {
   UploadStatus,
 } from './types';
 
-import { formatBytes } from '../../util/formatBytes';
+import { getPlaceholder } from './utils';
 
 interface MultiDropzoneProps {
   uploadedFiles: UploadedFile[];
@@ -50,11 +50,7 @@ const MultiDropzone = ({
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
-  const maxSizePlaceholder =
-    maxSize && maxSize > 0
-      ? `${textOverrides?.sizeUpToText || 'up to'} ${formatBytes(maxSize)}`
-      : '';
-  const placeholder = `${textOverrides?.supportsTextShort || 'Supports images, videos and documents'} ${maxSizePlaceholder}`;
+  const placeholder = getPlaceholder(textOverrides, accept, maxSize);
   const isOverMaxFiles = maxFiles > 0 && uploadedFiles.length > maxFiles;
 
   const removeError = (removeId: string) =>

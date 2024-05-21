@@ -69,6 +69,26 @@ export const formatAcceptFileList = (accept: Accept): string => (
     .toUpperCase()
 );
 
+export const getPlaceholder = (
+  textOverrides?: TextOverrides,
+  accept?: AcceptType,
+  maxSize?: number
+) => {
+  const maxSizePlaceholder =
+    maxSize && maxSize > 0
+      ? `${textOverrides?.sizeUpToText || 'up to'} ${formatBytes(maxSize)}`
+      : '';
+  
+      const isAcceptString = 
+    typeof accept === 'string' && 
+    ['video', 'image', 'document'].includes(accept)
+  
+  const defaultPlaceholder = `${textOverrides?.supportsTextShort || 'Supports images, videos and documents'} ${maxSizePlaceholder}`;
+  const acceptPlaceholder = `${textOverrides?.supportsTextShort || `Supports ${accept}s ${maxSizePlaceholder}`}`;
+
+  return isAcceptString ? acceptPlaceholder : defaultPlaceholder;
+}
+
 export const getErrorMessage = (
   { code, message }: FileError,
   { fileList = "", maxSize }: { fileList?: string, maxSize?: number },
