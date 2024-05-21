@@ -1,25 +1,41 @@
 import { Accept } from "react-dropzone";
 
 export enum FileMimeTypes {
+  avi = "video/x-msvideo",
   bmp = "image/bmp",
   doc = "application/msword",
   docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   heic = "image/heic",
   jpeg = "image/jpeg",
   jpg = "image/jpg",
+  mov = "video/quicktime",
+  mp4 = "video/mp4",
   pdf = "application/pdf",
   png = "image/png",
+  svg = "image/svg+xml",
   tif = "image/tiff",
   tiff = "image/tiff",
   webp = "image/webp",
 }
+
+// mp4, mov, avi
 
 export type FileType = keyof typeof FileMimeTypes;
 
 export type UploadStatus = 'UPLOADING' | 'COMPLETE' | 'ERROR';
 
 export const DOCUMENT_FILES: FileType[] = ['doc', 'docx', 'pdf'];
-export const IMAGE_FILES: FileType[] = ['heic', 'bmp', 'jpeg', 'jpg', 'png'];
+export const VIDEO_FILES: FileType[] = ['avi', 'mov', 'mp4'];
+export const IMAGE_FILES: FileType[] = [
+  'heic',
+  'bmp',
+  'jpeg',
+  'jpg',
+  'png',
+  'tiff',
+  'webp',
+  'svg'
+];
 
 export interface UploadedFile {
   id: string;
@@ -31,7 +47,7 @@ export interface UploadedFile {
   showLoadingSpinner?: boolean;
 }
 
-export type AcceptType = "document" | "image" | Accept;
+export type AcceptType = "document" | "image" | "video" | Accept;
 
 export interface TextOverrides {
   currentlyUploadingText?: string;
@@ -41,6 +57,9 @@ export interface TextOverrides {
   sizeUpToText?: string;
   supportsText?: string;
   supportsTextShort?: string;
+  supportsTextDocument?: string;
+  supportsTextImage?: string;
+  supportsTextVideo?: string;
   tooManyFilesError?: string;
 }
 export interface ErrorMessage {

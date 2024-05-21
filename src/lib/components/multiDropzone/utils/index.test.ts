@@ -8,8 +8,8 @@ import {
 
 const documentsAccept = {
   'application/msword': ['.doc'],
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
-  'application/pdf': ['.pdf']
+  'application/pdf': ['.pdf'],
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
 };
 
 const imagesAccept = {
@@ -17,7 +17,10 @@ const imagesAccept = {
   'image/bmp': [".bmp"],
   'image/jpeg': [".jpeg"],
   'image/jpg': [".jpg"],
-  'image/png': [".png"]
+  'image/png': [".png"],
+  'image/svg+xml': [".svg"],
+  'image/tiff': [".tiff"],
+  'image/webp': [".webp"]
 };
 
 describe('getUploadStatus', () => {
@@ -56,11 +59,11 @@ describe('formatAcceptFileList', () => {
   });
 
   it('Should return documents list if documents accept is passed', () => {
-    expect(formatAcceptFileList(documentsAccept)).toEqual("DOC, DOCX, PDF");
+    expect(formatAcceptFileList(documentsAccept)).toEqual("DOC, PDF, DOCX");
   });
 
   it('Should return images list if images accept is passed', () => {
-    expect(formatAcceptFileList(imagesAccept)).toEqual("HEIC, BMP, JPEG, JPG, PNG"); 
+    expect(formatAcceptFileList(imagesAccept)).toEqual("HEIC, BMP, JPEG, JPG, PNG, SVG, TIFF, WEBP"); 
   });
 
   it('Should return extension based on accept passed', () => {
@@ -95,7 +98,7 @@ describe('getErrorMessage', () => {
         code: ErrorCode.FileInvalidType,
         message: ""
       }, { fileList })
-    ).toEqual(`File type must be one of ${fileList}`);
+    ).toEqual(`File type must be ${fileList}`);
   });
 
   it('Should return FileInvalidType with textOverride message', () => {

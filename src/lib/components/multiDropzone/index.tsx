@@ -22,7 +22,7 @@ import {
   UploadStatus,
 } from './types';
 
-import { formatBytes } from '../../util/formatBytes';
+import { getPlaceholder } from './utils';
 
 interface MultiDropzoneProps {
   uploadedFiles: UploadedFile[];
@@ -50,13 +50,7 @@ const MultiDropzone = ({
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
-  const maxSizePlaceholder =
-    maxSize && maxSize > 0
-      ? `${textOverrides?.sizeUpToText || 'up to'} ${formatBytes(maxSize)}`
-      : '';
-  const placeholder = `${textOverrides?.supportsTextShort || 'Supports'} ${
-    fileList || 'JPEG, PNG, PDF'
-  } ${maxSizePlaceholder}`;
+  const placeholder = getPlaceholder(textOverrides, accept, maxSize);
   const isOverMaxFiles = maxFiles > 0 && uploadedFiles.length > maxFiles;
 
   const removeError = (removeId: string) =>
@@ -156,8 +150,8 @@ const MultiDropzone = ({
       )}
 
       <AnimateHeight duration={300} height={isOverMaxFiles ? 'auto' : 0}>
-        <p className="tc-red-500 p-p--small">
-          {textOverrides?.tooManyFilesError || 'Too many files.'}
+        <p className="tc-red-500 mt16">
+          {textOverrides?.tooManyFilesError || `You can upload maximum ${maxFiles} files.`}
         </p>
       </AnimateHeight>
     </div>
