@@ -47,6 +47,8 @@ export interface ComparisonTableProps<T> {
   headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
+  hideDetailsCaption?: string;
+  showDetailsCaption?: string;
   hideScrollBars?: boolean;
   hideScrollBarsMobile?: boolean;
   collapsibleSections?: boolean;
@@ -67,6 +69,8 @@ const ComparisonTable = <T extends { id: number }>(
     headers,
     data,
     hideDetails,
+    hideDetailsCaption = 'Hide details',
+    showDetailsCaption = 'Show details',
     styles,
     hideScrollBars,
     hideScrollBarsMobile,
@@ -246,7 +250,7 @@ const ComparisonTable = <T extends { id: number }>(
                   onClick={toggleMoreRows}
                   type="button"
                 >
-                  {showMore ? 'Hide details' : 'Show details'}
+                  {showMore ? hideDetailsCaption : showDetailsCaption}
                   <Chevron
                     className={showMore ? '' : baseStyles['icon-inverted']}
                   />
