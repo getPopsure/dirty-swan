@@ -65,6 +65,8 @@ export interface ClassNameOverrides {
   container?: string;
   cell?: string;
   headerCell?: string;
+  collapsibleSection?: string;
+  section?: string;
 }
 
 const ComparisonTable = <T extends { id: number }>(
@@ -180,7 +182,10 @@ const ComparisonTable = <T extends { id: number }>(
                   <Fragment key={idString}>
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
-                        className="mt8"
+                        className={classNames(
+                          'mt8',
+                          classNameOverrides?.collapsibleSection
+                        )}
                         label={headerGroup.label}
                         headerClassName="p24 br8"
                         isOpen={selectedSection === idString}
@@ -210,7 +215,13 @@ const ComparisonTable = <T extends { id: number }>(
                         </ScrollSyncPane>
                       </AccordionItem>
                     ) : (
-                      <div key={idString}>
+                      <section
+                        key={idString}
+                        className={classNames(
+                          baseStyles.section,
+                          classNameOverrides?.section
+                        )}
+                      >
                         <ScrollSyncPane>
                           <div
                             className={classNames(
@@ -246,7 +257,7 @@ const ComparisonTable = <T extends { id: number }>(
                             </div>
                           </div>
                         </ScrollSyncPane>
-                      </div>
+                      </section>
                     )}
                   </Fragment>
                 );

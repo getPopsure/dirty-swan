@@ -70,12 +70,17 @@ export interface Header<T> {
 
 ### ClassNameOverrides
 
+Note that if the component uses custom css such as media queries etc. for certain properties, the override must also use
+custom css (and not just Dirty Swan classes) or else it won't to able override the existing rules.
+
 ```typescript
 export interface ClassNameOverrides {
   header?: string;
   container?: string;
   cell?: string;
   headerCell?: string;
+  collapsibleSection?: string;
+  section?: string;
 }
 ```
 
