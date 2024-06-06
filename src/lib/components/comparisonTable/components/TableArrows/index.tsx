@@ -27,6 +27,7 @@ const TableArrows = (props: TableArrowsProps) => {
             [styles.active]: active.left,
           }
         )}
+        disabled={!active.left}
       >
         <ArrowIcon />
       </button>
@@ -40,6 +41,7 @@ const TableArrows = (props: TableArrowsProps) => {
             [styles.active]: active.right,
           }
         )}
+        disabled={!active.right}
       >
         <ArrowIcon />
       </button>
