@@ -56,11 +56,15 @@ export interface ComparisonTableProps<T> {
   firstColumnWidth?: number;
   stickyHeaderTopOffset?: number;
   growContent?: boolean;
-  styles?: {
-    header?: string;
-    container?: string;
-  };
+  classNameOverrides?: ClassNameOverrides;
   onSelectionChanged?: (selectedIndex: number) => void;
+}
+
+export interface ClassNameOverrides {
+  header?: string;
+  container?: string;
+  cell?: string;
+  headerCell?: string;
 }
 
 const ComparisonTable = <T extends { id: number }>(
@@ -72,7 +76,7 @@ const ComparisonTable = <T extends { id: number }>(
     hideDetails,
     hideDetailsCaption = 'Hide details',
     showDetailsCaption = 'Show details',
-    styles,
+    classNameOverrides,
     hideScrollBars,
     hideScrollBarsMobile,
     collapsibleSections,
@@ -111,7 +115,9 @@ const ComparisonTable = <T extends { id: number }>(
   return (
     <ScrollSync onSync={scrollContainerCallbackRef}>
       <div style={cssVariablesStyle}>
-        <div className={classNames(baseStyles.header, styles?.header)}>
+        <div
+          className={classNames(baseStyles.header, classNameOverrides?.header)}
+        >
           <ScrollSyncPane>
             <div
               id={headerId}
@@ -135,6 +141,7 @@ const ComparisonTable = <T extends { id: number }>(
                     cell={headers[0].cells[0]}
                     data={data}
                     isRowHeader
+                    cellClassName={classNameOverrides?.headerCell}
                   />
                 </div>
               </div>
@@ -157,7 +164,13 @@ const ComparisonTable = <T extends { id: number }>(
                   if (index === 0 && headerGroupIndex === 0) return null;
 
                   return (
-                    <Row<T> key={rowId} rowId={rowId} cell={cell} data={data} />
+                    <Row<T>
+                      key={rowId}
+                      rowId={rowId}
+                      cell={cell}
+                      data={data}
+                      cellClassName={classNameOverrides?.cell}
+                    />
                   );
                 });
 
@@ -178,7 +191,7 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
-                              styles?.container,
+                              classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
                               }
@@ -202,7 +215,7 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
-                              styles?.container,
+                              classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
                               }
