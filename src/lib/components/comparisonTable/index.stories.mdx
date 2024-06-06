@@ -33,6 +33,7 @@ The Comparison Table component provides an easy way to compare vast amounts of i
 | data                  | array               | The title text that needs to be displayed                  | n/a           | true     |
 | hideDetails           | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
 | hideScrollBars        | boolean             | Hide scroll bars                                           | false         | false    |
+| hideScrollBarsMobile  | boolean             | Hide scroll bars on mobile only                            | false         | false    |
 | collapsibleSections   | boolean             | Make table groups with a label collapsible                 | false         | false    |
 | cellWidth             | number              | Width of a table content cell                              | 256px         | false    |
 | firstColumnWidth      | number              | Width of the first column of the table                     | 288px         | false    |
@@ -76,9 +77,7 @@ export const ComparisonTableWithData = () => {
           key: 'name',
           label: 'Films',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
@@ -91,15 +90,18 @@ export const ComparisonTableWithData = () => {
           key: 'imdb',
           label: 'IMDB rating',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
+          label: (
+            <TableRowHeader
+              label="Our rating of movies found online on IMDB lists"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => (
             <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
@@ -322,9 +324,7 @@ export const ComparisonTableWithData = () => {
           key: 'name',
           label: 'Films',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
@@ -337,15 +337,18 @@ export const ComparisonTableWithData = () => {
           key: 'imdb',
           label: 'IMDB rating',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
+          label: (
+            <TableRowHeader
+              label="Our rating of movies found online on IMDB lists"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => (
             <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />

@@ -26,6 +26,22 @@
   scroll-snap-type: unset;
 }
 
+.noScrollBarsMobile {
+  @include p-size-tablet {
+    // Disable the scrollbar in all browsers
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    &::-webkit-scrollbar {
+      /* WebKit */
+      width: 0;
+      height: 0;
+    }
+
+    // Disable snapping since it's not needed without scrollbars
+    scroll-snap-type: unset;
+  }
+}
+
 .overflow-container {
   width: max-content;
   min-width: 100%;

@@ -48,6 +48,7 @@ export interface ComparisonTableProps<T> {
   data: Array<T>;
   hideDetails?: boolean;
   hideScrollBars?: boolean;
+  hideScrollBarsMobile?: boolean;
   collapsibleSections?: boolean;
   cellWidth?: number;
   firstColumnWidth?: number;
@@ -68,6 +69,7 @@ const ComparisonTable = <T extends { id: number }>(
     hideDetails,
     styles,
     hideScrollBars,
+    hideScrollBarsMobile,
     collapsibleSections,
     cellWidth,
     firstColumnWidth,
@@ -109,6 +111,7 @@ const ComparisonTable = <T extends { id: number }>(
               id={headerId}
               className={classNames(baseStyles.container, {
                 [baseStyles.noScrollBars]: hideScrollBars,
+                [baseStyles.noScrollBarsMobile]: hideScrollBarsMobile,
               })}
             >
               <div className={classNames(baseStyles['overflow-container'])}>
