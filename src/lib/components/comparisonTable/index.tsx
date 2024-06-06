@@ -60,6 +60,7 @@ export interface ComparisonTableProps<T> {
     header?: string;
     container?: string;
   };
+  onSelectionChanged?: (selectedIndex: number) => void;
 }
 
 const ComparisonTable = <T extends { id: number }>(
@@ -79,6 +80,7 @@ const ComparisonTable = <T extends { id: number }>(
     firstColumnWidth,
     stickyHeaderTopOffset,
     growContent,
+    onSelectionChanged,
   } = props;
 
   const {
@@ -92,7 +94,7 @@ const ComparisonTable = <T extends { id: number }>(
     toggleMoreRows,
     showMore,
     headerId,
-  } = useComparisonTable();
+  } = useComparisonTable({ onSelectionChanged });
 
   const cssVariablesStyle = {
     '--tableWidth': `${headerWidth}px`,
