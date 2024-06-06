@@ -1,26 +1,9 @@
-@use "../../../../scss/public/colors" as *;
+.wrapper {
+  position: relative;
+}
 
-.button {
-  background-color: transparent;
-  color: $ds-grey-700;
-  cursor: pointer;
-  margin: 2px 0;
-  padding: 2px;
-  transition: color 0.3s ease;
-
-  span {
-    border-bottom: 2px dashed $ds-grey-600;
-    display: inline;
-    transition: border-color 0.3s ease;
-  }
-
-  &:hover,
-  &:focus {
-    color: $ds-primary-500;
-    outline-color: $ds-primary-500;
-    
-    span {
-      border-color: $ds-primary-500;
-    }
-  }
+.infoButton {
+  position: absolute;
+  right: -32px;
+  top: 0;
 }

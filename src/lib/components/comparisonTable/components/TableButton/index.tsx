@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styles from './style.module.scss';
+import TableInfoButton from '../TableInfoButton';
 
 interface Props {
   children: ReactNode;
@@ -12,15 +13,14 @@ const TableButton: React.FC<Props> = ({
   onClick,
   className = '',
 }) => (
-  <button
-    className={`${styles.button} ${className}`}
-    data-testid="ds-table-button"
-    onClick={onClick}
-  >
-    <span>
-      {children}
-    </span>
-  </button>
+  <div className={styles.wrapper}>
+    {children}
+    <TableInfoButton
+      className={`${styles.infoButton} ${className}`}
+      data-testid="ds-table-button"
+      onClick={onClick}
+    />
+  </div>
 );
 
 export default TableButton;

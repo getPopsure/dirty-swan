@@ -11,6 +11,7 @@ const TableInfoButton = ({
   <button
     className={`p-btn--secondary ${styles.button} ${className}`}
     type="button"
+    data-testid="ds-table-button"
     onClick={onClick}
   >
     <Info size={20} />
