@@ -1,7 +1,7 @@
 @use "../../../../scss/public/colors" as *;
 @use "../../../../scss/public/grid" as *;
 
-$cell-min-width: var(--cellWidth, 256px);
+$cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
 .header {
   position: relative;
@@ -31,7 +31,11 @@ $cell-min-width: var(--cellWidth, 256px);
 
   line-height: 24px;
 
-  padding: 16px;
+  padding: 16px 0;
+
+  &:first-child {
+    padding: 16px 0 16px 16px;
+  }
 
   color: $ds-grey-900;
 
@@ -55,19 +59,23 @@ $cell-min-width: var(--cellWidth, 256px);
   @include p-size-tablet {
     flex: 1 0 $cell-min-width;
     width: $cell-min-width;
-    padding: 24px;
+    &:first-child {
+      padding: 24px 0 24px 24px;
+    }
+
+    padding: 24px 0;
 
     &:last-child {
-      padding: 24px 8px 24px 24px;
+      padding: 24px 24px 24px 0;
     }
   }
 }
 
 h4.cell {
-  // Set the max width of the first column to the supplied firstColumnWidth (or 288px if not specified) but only
+  // Set the max width of the first column to the supplied firstColumnWidth (or 212px if not specified) but only
   // if this value does not exceed half of the table's width.
   // This is to ensure that the first column is at most as wide as half the table, which will be the case on mobile where only the first column and one other are shown.
-  max-width: min(var(--firstColumnWidth, 288px), calc(var(--tableWidth) / 2));
+  max-width: min(var(--firstColumnWidth, 212px), calc(var(--tableWidth) / 2));
 }
 
 .title {
