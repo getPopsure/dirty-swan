@@ -183,7 +183,7 @@ const ComparisonTable = <T extends { id: number }>(
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className={classNames(
-                          'mt8',
+                          'mt16',
                           classNameOverrides?.collapsibleSection
                         )}
                         label={headerGroup.label}
@@ -196,6 +196,7 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
+                              'pb16',
                               classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
@@ -226,6 +227,7 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
+                              'pb16',
                               classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
