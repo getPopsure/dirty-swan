@@ -42,7 +42,7 @@
   }
 }
 
-.section {
+.section + .section {
   margin-top: 48px;
 
   @include p-size-tablet {
