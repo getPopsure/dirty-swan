@@ -120,7 +120,7 @@ h4.cell {
 h4.addon {
   border-right: none;
   max-width: calc(100vw - 64px);
-  width: 100&;
+  width: 100%;
 
   @include p-size-desktop {
     max-width: 976px;
