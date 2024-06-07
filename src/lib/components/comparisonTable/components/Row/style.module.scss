@@ -31,10 +31,10 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
   line-height: 24px;
 
-  padding: 16px 0;
+  padding: 16px 8px;
 
   &:first-child {
-    padding: 16px 0 16px 16px;
+    padding: 16px 8px 16px 16px;
   }
 
   color: $ds-grey-900;
@@ -60,10 +60,10 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
     flex: 1 0 $cell-min-width;
     width: $cell-min-width;
     &:first-child {
-      padding: 24px 0 24px 24px;
+      padding: 24px 8px 24px 24px;
     }
 
-    padding: 24px 0;
+    padding: 24px 8px;
   }
 }
 
