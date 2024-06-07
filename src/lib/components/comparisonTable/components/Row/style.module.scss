@@ -64,10 +64,6 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
     }
 
     padding: 24px 0;
-
-    &:last-child {
-      padding: 24px 24px 24px 0;
-    }
   }
 }
 
@@ -124,7 +120,7 @@ h4.cell {
 h4.addon {
   border-right: none;
   max-width: calc(100vw - 64px);
-  width: 100vw;
+  width: 100&;
 
   @include p-size-desktop {
     max-width: 976px;
