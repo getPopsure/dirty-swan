@@ -116,18 +116,18 @@ const ComparisonTable = <T extends { id: number }>(
 
   return (
     <ScrollSync onSync={scrollContainerCallbackRef}>
-      <div style={cssVariablesStyle}>
+      <div
+        style={cssVariablesStyle}
+        className={classNames({
+          [baseStyles.noScrollBars]: hideScrollBars,
+          [baseStyles.noScrollBarsMobile]: hideScrollBarsMobile,
+        })}
+      >
         <div
           className={classNames(baseStyles.header, classNameOverrides?.header)}
         >
           <ScrollSyncPane>
-            <div
-              id={headerId}
-              className={classNames(baseStyles.container, {
-                [baseStyles.noScrollBars]: hideScrollBars,
-                [baseStyles.noScrollBarsMobile]: hideScrollBarsMobile,
-              })}
-            >
+            <div id={headerId} className={classNames(baseStyles.container)}>
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
                   <TableArrows
