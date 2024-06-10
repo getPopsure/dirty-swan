@@ -27,17 +27,22 @@ The Comparison Table component provides an easy way to compare vast amounts of i
 
 ## Arguments
 
-| attribute             | unit                | description                                                | default value | required |
-| --------------------- | ------------------- | ---------------------------------------------------------- | ------------- | -------- |
-| headers               | [Header[]](#header) | The structure of the table                                 | n/a           | true     |
-| data                  | array               | The title text that needs to be displayed                  | n/a           | true     |
-| hideDetails           | boolean             | Hide table groups that do not have the `default` attribute | false         | false    |
-| hideScrollBars        | boolean             | Hide scroll bars                                           | false         | false    |
-| collapsibleSections   | boolean             | Make table groups with a label collapsible                 | false         | false    |
-| cellWidth             | number              | Width of a table content cell                              | 256px         | false    |
-| firstColumnWidth      | number              | Width of the first column of the table                     | 288px         | false    |
-| stickyHeaderTopOffset | number              | Y-offset of the sticky header row                          | 0px           | false    |
-| growContent           | boolean             | Makes the content area grow to fill the available space    | false         | false    |
+| attribute             | unit                                      | description                                                         | default value  | required |
+| --------------------- | ----------------------------------------- | ------------------------------------------------------------------- | -------------- | -------- |
+| headers               | [Header[]](#header)                       | The structure of the table                                          | n/a            | true     |
+| data                  | array                                     | The title text that needs to be displayed                           | n/a            | true     |
+| hideDetails           | boolean                                   | Hide table groups that do not have the `default` attribute          | false          | false    |
+| hideDetailsCaption    | string                                    | Caption of the button to hide the details                           | 'Hide details' | false    |
+| showDetailsCaption    | string                                    | Caption of the button to show the details                           | 'Show details' | false    |
+| hideScrollBars        | boolean                                   | Hide scroll bars                                                    | false          | false    |
+| hideScrollBarsMobile  | boolean                                   | Hide scroll bars on mobile only                                     | false          | false    |
+| collapsibleSections   | boolean                                   | Make table groups with a label collapsible                          | false          | false    |
+| cellWidth             | number                                    | Width of a table content cell                                       | 211px          | false    |
+| firstColumnWidth      | number                                    | Width of the first column of the table                              | 212px          | false    |
+| stickyHeaderTopOffset | number                                    | Y-offset of the sticky header row                                   | 0px            | false    |
+| growContent           | boolean                                   | Makes the content area grow to fill the available space             | false          | false    |
+| onSelectionChanged    | (number) => void                          | Callback to be called when the selected tab index changes on mobile | n/a            | false    |
+| classNameOverrides    | [ClassNameOverrides](#classnameoverrides) | "className" props to be passed down to various internal components  | n/a            | false    |
 
 ## Types
 
@@ -63,6 +68,23 @@ export interface Header<T> {
 }
 ```
 
+### ClassNameOverrides
+
+Note that if the component uses custom css such as media queries etc. for certain properties, the override must also use
+custom css (and not just Dirty Swan classes) or else it won't to able override the existing rules.
+
+```typescript
+export interface ClassNameOverrides {
+  header?: string;
+  container?: string;
+  cell?: string;
+  headerCell?: string;
+  collapsibleSection?: string;
+  section?: string;
+  hideDetailsButton?: string;
+}
+```
+
 ## Default example
 
 export const ComparisonTableWithData = () => {
@@ -76,9 +98,7 @@ export const ComparisonTableWithData = () => {
           key: 'name',
           label: 'Films',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
@@ -91,15 +111,18 @@ export const ComparisonTableWithData = () => {
           key: 'imdb',
           label: 'IMDB rating',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
+          label: (
+            <TableRowHeader
+              label="Our rating of movies found online on IMDB lists"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => (
             <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
@@ -286,6 +309,9 @@ export const ComparisonTableWithData = () => {
       headers={headers}
       collapsibleSections
       hideDetails
+      classNameOverrides={{
+        hideDetailsButton: 'p-container wmx6',
+      }}
     />
   );
 };
@@ -322,9 +348,7 @@ export const ComparisonTableWithData = () => {
           key: 'name',
           label: 'Films',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
@@ -337,15 +361,18 @@ export const ComparisonTableWithData = () => {
           key: 'imdb',
           label: 'IMDB rating',
           render: (value) => (
-            <TableButton onClick={() => {}}>
-              {value}
-            </TableButton>
+            <TableButton onClick={() => {}}>{value}</TableButton>
           ),
         },
         {
           id: 3,
           key: 'rating',
-          label: <TableRowHeader label="Our rating of movies found online on IMDB lists" onClickInfo={() => {}} />,
+          label: (
+            <TableRowHeader
+              label="Our rating of movies found online on IMDB lists"
+              onClickInfo={() => {}}
+            />
+          ),
           render: (value) => (
             <TableButton onClick={() => {}}>
               <TableRating type="star" rating={value} />
@@ -532,6 +559,9 @@ export const ComparisonTableWithData = () => {
       headers={headers}
       collapsibleSections
       hideDetails
+      classNameOverrides={{
+        hideDetailsButton: 'p-container wmx6',
+      }}
     />
   );
 };

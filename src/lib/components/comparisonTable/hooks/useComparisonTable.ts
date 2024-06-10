@@ -4,7 +4,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowValues } from '../components/TableArrows';
 import generateId from '../../../util/generateId';
 
-export const useComparisonTable = () => {
+export const useComparisonTable = ({
+  onSelectionChanged,
+}: {
+  onSelectionChanged?: (selectedIndex: number) => void;
+}) => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [headerWidth, setHeaderWidth] = useState(1400);
   const [headerId, setHeaderId] = useState('');
@@ -137,6 +141,11 @@ export const useComparisonTable = () => {
   useEffect(() => {
     setHeaderId(generateId());
   }, []);
+
+  useEffect(() => {
+    onSelectionChanged?.(selectedTabIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTabIndex]);
 
   return {
     headerWidth,

@@ -47,7 +47,7 @@ export const AccordionItem = ({
   };
 
   return (
-    <div className={`d-flex fd-column ${className} ${styles.container}`}>
+    <section className={`d-flex fd-column ${styles.container} ${className}`}>
       <button
         className={`d-flex ai-center jc-between ${styles.headerButton} ${headerClassName}`}
         onClick={handleClick}
@@ -69,6 +69,6 @@ export const AccordionItem = ({
       <AnimateHeight duration={300} height={isOpen ? 'auto' : 0.1}>
         {children}
       </AnimateHeight>
-    </div>
+    </section>
   );
 };

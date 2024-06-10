@@ -1,5 +1,6 @@
-import TableButton from '../TableButton';
+import classNames from 'classnames';
 import styles from './style.module.scss';
+import TableInfoButton from '../TableInfoButton';
 
 interface TableRowHeaderProps {
   label: string;
@@ -8,18 +9,24 @@ interface TableRowHeaderProps {
   onClickInfo?: () => void;
 }
 
-const TableRowHeader = ({ icon, label, subtitle, onClickInfo }: TableRowHeaderProps) => (
+const TableRowHeader = ({
+  icon,
+  label,
+  subtitle,
+  onClickInfo,
+}: TableRowHeaderProps) => (
   <div className="d-flex">
     {icon && <span className={`mr8 ${styles.icon}`}>{icon}</span>}
     <div>
       <p className="p-p d-inline">
-        {!onClickInfo ? (
-          <span>{label}</span>
-        ) : (
-          <TableButton className="mr8 ta-left" onClick={onClickInfo}>
-            {label}
-          </TableButton>
-        )}
+        <span
+          className={classNames({
+            mr8: onClickInfo,
+          })}
+        >
+          {label}
+        </span>
+        {onClickInfo && <TableInfoButton onClick={onClickInfo} />}
       </p>
       {subtitle && <p className="p-p--small tc-grey-500">{subtitle}</p>}
     </div>

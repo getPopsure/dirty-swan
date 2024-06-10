@@ -2,11 +2,9 @@
 
 .container {
   width: var(--growContent, min-content);
-  margin: 0 auto;
-}
-
-.container + .container {
-  margin-top: 8px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .chevron {

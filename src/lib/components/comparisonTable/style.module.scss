@@ -21,9 +21,30 @@
     width: 0;
     height: 0;
   }
+}
 
-  // Disable snapping since it's not needed without scrollbars
-  scroll-snap-type: unset;
+.noScrollBarsMobile {
+  @include p-size-mobile {
+    * {
+      // Disable the scrollbar in all browsers
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      -webkit-scrollbar {
+        /* WebKit */
+        width: 0;
+        height: 0;
+        display: none;
+      }
+    }
+  }
+}
+
+.section + .section {
+  margin-top: 48px;
+
+  @include p-size-tablet {
+    margin-top: 72px;
+  }
 }
 
 .overflow-container {
@@ -44,15 +65,9 @@
   background-color: $ds-grey-100;
   border-radius: 8px;
 
-  margin-top: 48px;
-
   & > h4 {
     padding: 24px;
     display: inline-block;
-  }
-
-  @include p-size-tablet {
-    margin-top: 72px;
   }
 }
 

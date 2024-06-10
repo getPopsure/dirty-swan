@@ -2,33 +2,36 @@ import React from 'react';
 
 import type { Cell } from '../../index';
 import styles from './style.module.scss';
+import classNames from 'classnames';
 
 interface RowProps<T> {
   cell: Cell<T>;
   data: Array<T>;
   isRowHeader?: boolean;
   rowId: string;
+  cellClassName?: string;
 }
 
 const Row = <T extends { id: number }>(props: RowProps<T>) => {
-  const { cell, data, isRowHeader, rowId } = props;
+  const { cell, data, isRowHeader, rowId, cellClassName } = props;
 
   return (
     <div
       key={rowId}
-      className={`
-        d-flex
-        w-100
-        ${isRowHeader ? styles.header : ''}
-      `}
+      className={classNames('d-flex w-100', {
+        [styles.header]: isRowHeader,
+      })}
     >
       <h4
-        className={`
-          ${styles.cell}
-          ${styles.sticky}
-          ${isRowHeader ? `p-h2 p--serif ${styles.title}` : ''}
-          ${typeof cell.key === 'undefined' ? styles.addon : ''}
-        `}
+        className={classNames(
+          styles.cell,
+          styles.sticky,
+          {
+            [`p-h2 p--serif ${styles.title}`]: isRowHeader,
+            [styles.addon]: typeof cell.key === 'undefined',
+          },
+          cellClassName
+        )}
       >
         {cell.label}
       </h4>
@@ -44,7 +47,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
 
           return (
             <div
-              className={`ta-center ${styles.cell}`}
+              className={classNames('ta-center', styles.cell, cellClassName)}
               key={`${rowId}-${item.id}`}
             >
               {

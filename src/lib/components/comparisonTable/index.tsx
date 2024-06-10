@@ -47,16 +47,27 @@ export interface ComparisonTableProps<T> {
   headers: Array<TableHeader<T>>;
   data: Array<T>;
   hideDetails?: boolean;
+  hideDetailsCaption?: string;
+  showDetailsCaption?: string;
   hideScrollBars?: boolean;
+  hideScrollBarsMobile?: boolean;
   collapsibleSections?: boolean;
   cellWidth?: number;
   firstColumnWidth?: number;
   stickyHeaderTopOffset?: number;
   growContent?: boolean;
-  styles?: {
-    header?: string;
-    container?: string;
-  };
+  classNameOverrides?: ClassNameOverrides;
+  onSelectionChanged?: (selectedIndex: number) => void;
+}
+
+export interface ClassNameOverrides {
+  header?: string;
+  container?: string;
+  cell?: string;
+  headerCell?: string;
+  collapsibleSection?: string;
+  section?: string;
+  hideDetailsButton?: string;
 }
 
 const ComparisonTable = <T extends { id: number }>(
@@ -66,13 +77,17 @@ const ComparisonTable = <T extends { id: number }>(
     headers,
     data,
     hideDetails,
-    styles,
+    hideDetailsCaption = 'Hide details',
+    showDetailsCaption = 'Show details',
+    classNameOverrides,
     hideScrollBars,
+    hideScrollBarsMobile,
     collapsibleSections,
     cellWidth,
     firstColumnWidth,
     stickyHeaderTopOffset,
     growContent,
+    onSelectionChanged,
   } = props;
 
   const {
@@ -86,7 +101,7 @@ const ComparisonTable = <T extends { id: number }>(
     toggleMoreRows,
     showMore,
     headerId,
-  } = useComparisonTable();
+  } = useComparisonTable({ onSelectionChanged });
 
   const cssVariablesStyle = {
     '--tableWidth': `${headerWidth}px`,
@@ -102,15 +117,18 @@ const ComparisonTable = <T extends { id: number }>(
 
   return (
     <ScrollSync onSync={scrollContainerCallbackRef}>
-      <div style={cssVariablesStyle}>
-        <div className={classNames(baseStyles.header, styles?.header)}>
+      <div
+        style={cssVariablesStyle}
+        className={classNames({
+          [baseStyles.noScrollBars]: hideScrollBars,
+          [baseStyles.noScrollBarsMobile]: hideScrollBarsMobile,
+        })}
+      >
+        <div
+          className={classNames(baseStyles.header, classNameOverrides?.header)}
+        >
           <ScrollSyncPane>
-            <div
-              id={headerId}
-              className={classNames(baseStyles.container, {
-                [baseStyles.noScrollBars]: hideScrollBars,
-              })}
-            >
+            <div id={headerId} className={classNames(baseStyles.container)}>
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
                   <TableArrows
@@ -126,6 +144,7 @@ const ComparisonTable = <T extends { id: number }>(
                     cell={headers[0].cells[0]}
                     data={data}
                     isRowHeader
+                    cellClassName={classNameOverrides?.headerCell}
                   />
                 </div>
               </div>
@@ -148,7 +167,13 @@ const ComparisonTable = <T extends { id: number }>(
                   if (index === 0 && headerGroupIndex === 0) return null;
 
                   return (
-                    <Row<T> key={rowId} rowId={rowId} cell={cell} data={data} />
+                    <Row<T>
+                      key={rowId}
+                      rowId={rowId}
+                      cell={cell}
+                      data={data}
+                      cellClassName={classNameOverrides?.cell}
+                    />
                   );
                 });
 
@@ -158,7 +183,10 @@ const ComparisonTable = <T extends { id: number }>(
                   <Fragment key={idString}>
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
-                        className="mt8"
+                        className={classNames(
+                          'mt16',
+                          classNameOverrides?.collapsibleSection
+                        )}
                         label={headerGroup.label}
                         headerClassName="p24 br8"
                         isOpen={selectedSection === idString}
@@ -169,7 +197,8 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
-                              styles?.container,
+                              'pb16',
+                              classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
                               }
@@ -188,12 +217,19 @@ const ComparisonTable = <T extends { id: number }>(
                         </ScrollSyncPane>
                       </AccordionItem>
                     ) : (
-                      <div key={idString}>
+                      <section
+                        key={idString}
+                        className={classNames(
+                          baseStyles.section,
+                          classNameOverrides?.section
+                        )}
+                      >
                         <ScrollSyncPane>
                           <div
                             className={classNames(
                               baseStyles.container,
-                              styles?.container,
+                              'pb16',
+                              classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
                               }
@@ -224,7 +260,7 @@ const ComparisonTable = <T extends { id: number }>(
                             </div>
                           </div>
                         </ScrollSyncPane>
-                      </div>
+                      </section>
                     )}
                   </Fragment>
                 );
@@ -239,11 +275,15 @@ const ComparisonTable = <T extends { id: number }>(
             >
               <div>
                 <button
-                  className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
+                  className={classNames(
+                    'w100 d-flex p-a p-h4 c-pointer',
+                    baseStyles['show-details-button'],
+                    classNameOverrides?.hideDetailsButton
+                  )}
                   onClick={toggleMoreRows}
                   type="button"
                 >
-                  {showMore ? 'Hide details' : 'Show details'}
+                  {showMore ? hideDetailsCaption : showDetailsCaption}
                   <Chevron
                     className={showMore ? '' : baseStyles['icon-inverted']}
                   />
