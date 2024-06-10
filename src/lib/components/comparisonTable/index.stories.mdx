@@ -81,6 +81,7 @@ export interface ClassNameOverrides {
   headerCell?: string;
   collapsibleSection?: string;
   section?: string;
+  hideDetailsButton?: string;
 }
 ```
 
@@ -308,6 +309,9 @@ export const ComparisonTableWithData = () => {
       headers={headers}
       collapsibleSections
       hideDetails
+      classNameOverrides={{
+        hideDetailsButton: 'p-container wmx6',
+      }}
     />
   );
 };
@@ -555,6 +559,9 @@ export const ComparisonTableWithData = () => {
       headers={headers}
       collapsibleSections
       hideDetails
+      classNameOverrides={{
+        hideDetailsButton: 'p-container wmx6',
+      }}
     />
   );
 };

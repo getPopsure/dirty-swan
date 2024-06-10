@@ -67,6 +67,7 @@ export interface ClassNameOverrides {
   headerCell?: string;
   collapsibleSection?: string;
   section?: string;
+  hideDetailsButton?: string;
 }
 
 const ComparisonTable = <T extends { id: number }>(
@@ -274,7 +275,11 @@ const ComparisonTable = <T extends { id: number }>(
             >
               <div>
                 <button
-                  className={`w100 d-flex p-a p-h4 c-pointer ${baseStyles['show-details-button']}`}
+                  className={classNames(
+                    'w100 d-flex p-a p-h4 c-pointer',
+                    baseStyles['show-details-button'],
+                    classNameOverrides?.hideDetailsButton
+                  )}
                   onClick={toggleMoreRows}
                   type="button"
                 >
