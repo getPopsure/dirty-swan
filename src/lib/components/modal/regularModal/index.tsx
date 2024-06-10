@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Props } from '..';
 import useOnClose from '../hooks/useOnClose';
 

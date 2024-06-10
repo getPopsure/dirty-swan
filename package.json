@@ -25,6 +25,7 @@
   ],
   "dependencies": {
     "@popsure/public-models": "^1.0.1",
+    "@radix-ui/react-dialog": "^1.0.5",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "hastscript": "^7.0.2",

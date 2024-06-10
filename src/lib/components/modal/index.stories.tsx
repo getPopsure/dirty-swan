@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
+import { BottomModal, BottomOrRegularModal, Props, RegularModal, RegularModalV2 } from '.';
 import { Markdown } from '../markdown';
 
 const story = {
@@ -29,7 +29,7 @@ const story = {
       type: 'text',
       table: {
         type: {
-            summary: 'ReactNode'
+          summary: 'ReactNode'
         }
       }
     },
@@ -113,7 +113,7 @@ export const RegularModalStory = ({
 
   return (
     <>
-      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.  
+      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.
       <Markdown>
         If you want to use it for Mobile only, you should check [Bottom modal](#bottommodal) instead.
         Want to use either Regular Modal or Bottom Modal based on the screen width? You can use [Bottom or Regular modal](#bottomorregularmodal).
@@ -220,7 +220,7 @@ export const NonDismissibleModal = ({
 
       <Markdown>
         **Warning:** a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
-       </Markdown>
+      </Markdown>
 
       <button
         className="p-btn--primary wmn2 mt24"
@@ -247,6 +247,39 @@ export const NonDismissibleModal = ({
           </button>
         </div>
       </BottomOrRegularModal>
+    </>
+  );
+}
+
+export const RegularModalV2Story = ({ title, isOpen, children }: Props) => {
+  const [display, setDisplay] = useState(isOpen);
+
+  return (
+    <>
+      <Markdown>
+        ### Regular Modal V2 (using Radix UI)
+      </Markdown>
+      <br />
+
+      <RegularModalV2
+        triggerBtnText='Click to open modal'
+        title={title}
+        open={display}
+        onOpenChange={() => setDisplay(!display)}
+      >
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <div>
+            {children}
+          </div>
+          <button
+            className="p-btn--primary mt24 wmn3"
+            onClick={() => setDisplay(false)}
+          >
+            Continue
+          </button>
+        </div>
+      </RegularModalV2>
+
     </>
   );
 }
