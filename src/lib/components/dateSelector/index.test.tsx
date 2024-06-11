@@ -52,14 +52,44 @@ describe('DateSelector component', () => {
     expect(callback).toHaveBeenCalledWith('2023-07-03');
   });
 
-  it('should call onChange empty when invalid date', async () => {
+  it('should not call onChange when there is an invalid date that has not been completely filled', async () => {
     const callback = jest.fn();
     const { getByLabelText, user } = setup(undefined, callback);
 
     await user.type(getByLabelText('Day'), '5');
 
     expect(getByLabelText('Day')).toHaveValue('5');
-    expect(callback).toHaveBeenCalledWith('');
+    expect(callback).not.toHaveBeenCalled();
+
+    await user.type(getByLabelText('Month'), '4');
+
+    expect(getByLabelText('Month')).toHaveValue('4');
+    expect(callback).not.toHaveBeenCalled();
+
+    await user.type(getByLabelText('Year'), '2020');
+
+    expect(getByLabelText('Year')).toHaveValue('2020');
+    expect(callback).toHaveBeenCalledWith("2020-04-05");
+  });
+
+  it('should show error boundaries error for min date onChange empty when year out of boundaries', async () => {
+    const callback = jest.fn();
+    const date = '2010-01-01';
+    const { getByTestId } = setup(date, callback);
+
+    expect(getByTestId('date-error-message')).toBeVisible();
+    expect(getByTestId('date-error-message')).toHaveTextContent('Please choose a date after 2019');
+    expect(callback).not.toHaveBeenCalled();
+  });
+
+  it('should show error boundaries error for ,ax date onChange empty when year out of boundaries', async () => {
+    const callback = jest.fn();
+    const date = '2100-01-01';
+    const { getByTestId } = setup(date, callback);
+
+    expect(getByTestId('date-error-message')).toBeVisible();
+    expect(getByTestId('date-error-message')).toHaveTextContent('Please choose a date before 2026');
+    expect(callback).not.toHaveBeenCalled();
   });
 
   it('should call onChange empty when year out of boundaries', async () => {
