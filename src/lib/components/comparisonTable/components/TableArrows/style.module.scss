@@ -42,12 +42,6 @@
     background-color: $ds-grey-200;
     cursor: not-allowed;
   }
-  &:disabled {
-    opacity: 1;
-    &:hover {
-      background-color: $ds-grey-200;
-    }
-  }
 }
 
 .active {
@@ -58,4 +52,8 @@
     background-color: $ds-grey-200;
     cursor: pointer;
   }
+}
+
+.noPointerEvents {
+  pointer-events: none;
 }

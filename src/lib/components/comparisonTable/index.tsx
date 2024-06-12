@@ -100,7 +100,6 @@ const ComparisonTable = <T extends { id: number }>(
     handleArrowsClick,
     toggleMoreRows,
     showMore,
-    headerId,
   } = useComparisonTable({ onSelectionChanged });
 
   const cssVariablesStyle = {
@@ -116,7 +115,7 @@ const ComparisonTable = <T extends { id: number }>(
   } as React.CSSProperties;
 
   return (
-    <ScrollSync onSync={scrollContainerCallbackRef}>
+    <ScrollSync>
       <div
         style={cssVariablesStyle}
         className={classNames({
@@ -127,8 +126,8 @@ const ComparisonTable = <T extends { id: number }>(
         <div
           className={classNames(baseStyles.header, classNameOverrides?.header)}
         >
-          <ScrollSyncPane>
-            <div id={headerId} className={classNames(baseStyles.container)}>
+          <ScrollSyncPane innerRef={scrollContainerCallbackRef}>
+            <div className={classNames(baseStyles.container)}>
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
                   <TableArrows

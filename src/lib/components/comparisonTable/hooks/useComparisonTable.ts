@@ -2,7 +2,6 @@ import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ArrowValues } from '../components/TableArrows';
-import generateId from '../../../util/generateId';
 
 export const useComparisonTable = ({
   onSelectionChanged,
@@ -11,7 +10,6 @@ export const useComparisonTable = ({
 }) => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [headerWidth, setHeaderWidth] = useState(1400);
-  const [headerId, setHeaderId] = useState('');
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const [selectedSection, setSelectedSection] = useState('');
 
@@ -127,29 +125,12 @@ export const useComparisonTable = ({
   };
 
   useEffect(() => {
-    if (headerRef.current) {
-      return;
-    }
-
-    const headerById = document.getElementById(headerId);
-
-    if (headerById) {
-      scrollContainerCallbackRef(headerById);
-    }
-  }, [headerId, scrollContainerCallbackRef]);
-
-  useEffect(() => {
-    setHeaderId(generateId());
-  }, []);
-
-  useEffect(() => {
     onSelectionChanged?.(selectedTabIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTabIndex]);
 
   return {
     headerWidth,
-    headerId,
     contentContainerRef,
     selectedSection,
     setSelectedSection,
