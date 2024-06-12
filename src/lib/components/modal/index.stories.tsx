@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
+import { BottomModal, BottomOrRegularModal, Props, RegularModal, RegularModalPopoverApi } from '.';
 import { Markdown } from '../markdown';
 
 const story = {
@@ -29,7 +29,7 @@ const story = {
       type: 'text',
       table: {
         type: {
-            summary: 'ReactNode'
+          summary: 'ReactNode'
         }
       }
     },
@@ -113,7 +113,7 @@ export const RegularModalStory = ({
 
   return (
     <>
-      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.  
+      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.
       <Markdown>
         If you want to use it for Mobile only, you should check [Bottom modal](#bottommodal) instead.
         Want to use either Regular Modal or Bottom Modal based on the screen width? You can use [Bottom or Regular modal](#bottomorregularmodal).
@@ -220,7 +220,7 @@ export const NonDismissibleModal = ({
 
       <Markdown>
         **Warning:** a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
-       </Markdown>
+      </Markdown>
 
       <button
         className="p-btn--primary wmn2 mt24"
@@ -250,5 +250,50 @@ export const NonDismissibleModal = ({
     </>
   );
 }
+
+export const RegularModalPopoverApiStory = ({
+  children,
+  title
+}: Props) => {
+  return (
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+    }}>
+      <Markdown>
+        Regular Modal (Popover API)
+      </Markdown>
+
+      <button
+        className="p-btn--primary wmn2 mt24"
+        type='button'
+        popovertarget="regular-modal-popover"
+      >
+        Click to open modal
+      </button>
+      <RegularModalPopoverApi
+        title={title}
+        popoverId="regular-modal-popover"
+      >
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <div>
+            {children}
+          </div>
+          <button
+            type='button'
+            className="p-btn--primary mt24 wmn3"
+            popovertarget="regular-modal-popover"
+            popovertargetaction="hide"
+          >
+            Continue
+          </button>
+        </div>
+      </RegularModalPopoverApi>
+    </div>
+  )
+}
+
+RegularModalPopoverApiStory.storyName = 'RegularModal (Popover API)';
+
 
 export default story;
