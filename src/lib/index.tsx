@@ -21,13 +21,7 @@ import {
   RegularModal,
   BottomOrRegularModal,
 } from './components/modal';
-import {
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
-  InfoCard,
-  CardButton,
-} from './components/cards';
+import { InfoCard, CardButton } from './components/cards';
 import { Card, CardProps  } from './components/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
@@ -64,9 +58,6 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   Card,
   CardButton,
