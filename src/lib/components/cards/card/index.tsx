@@ -1,6 +1,6 @@
 import { ComponentProps, ElementType, ReactNode } from 'react';
 import classNamesUtil from 'classnames';
-import { ChevronRightIcon } from '../icon';
+import { ChevronRightIcon } from '../../icon';
 
 import styles from './style.module.scss';
 
@@ -128,9 +128,9 @@ const Card = <E extends ElementType = CardDefaultAsType>({
               {description && (
                 <div
                   className={classNamesUtil(
-                    'tc-grey-600',
+                    styles.description,
                     classNames?.description,
-                    descriptionVariant === 'small' ? 'p-p--small' : 'p-p'
+                    descriptionVariant === 'small' ? 'p-p--small' : 'p-p',
                   )}
                 >
                   {description}

@@ -1,4 +1,4 @@
-@use '../../scss/public/colors' as *;
+@use '../../../scss/public/colors' as *;
 
 .button {
   background-color: transparent;
@@ -40,4 +40,8 @@
   &spacious {
     margin-left: 24px;
   }
+}
+
+.description {
+  color: $ds-grey-600;
 }
