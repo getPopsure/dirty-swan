@@ -67,7 +67,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
     <Tag
       className={classNamesUtil(
         classNames?.buttonWrapper,
-        ' d-flex w100 br8 ai-stretch',
+        'd-flex w100 ai-stretch',
         {
           'c-pointer': propsWithActionIcon,
           [styles.button]: propsWithActionIcon
@@ -81,7 +81,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
     >
       <div
         className={classNamesUtil(
-          'd-flex fd-column br8 bg-white w100 ta-left',
+          'd-flex fd-column jc-center w100 ta-left',
           { 'bs-sm': dropShadow },
           {
             compact: 'p16',
@@ -93,6 +93,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
             center: 'jc-center',
             bottom: 'jc-end',
           }[verticalAlignment as VerticalAlignmentType],
+          styles?.wrapper,
           classNames?.wrapper
         )}
       >
@@ -118,13 +119,13 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           <div className="d-flex jc-between w100">
             <div className="d-flex jc-center gap8 fd-column tc-grey-900 w100">
               {label && (
-                <h3 className={classNamesUtil('p-p--small', classNames?.label)}>
+                <h4 className={classNamesUtil('p-p--small', classNames?.label)}>
                   {label}
-                </h3>
+                </h4>
               )}
 
               {title && (
-                <h2
+                <h3
                   className={classNamesUtil(
                     classNames?.title,
                     {
@@ -135,7 +136,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                   )}
                 >
                   {title}
-                </h2>
+                </h3>
               )}
 
               {description && (
