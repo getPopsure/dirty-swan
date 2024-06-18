@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
 import { Markdown } from '../markdown';
+import { ModalFooter } from './components/ModalFooter';
+import { Button } from '../button';
 
 const story = {
   title: 'JSX/Modals',
@@ -245,6 +247,49 @@ export const NonDismissibleModal = ({
           >
             Continue
           </button>
+        </div>
+      </BottomOrRegularModal>
+    </>
+  );
+}
+
+export const ModalWithFooter = ({
+  children,
+  isOpen,
+  onClose,
+  title,
+}: Props) => {
+  const [display, setDisplay] = useState(isOpen);
+  const handleOnClose = () => {
+    onClose();
+    setDisplay(false);
+  };
+
+  return (
+    <>
+      <button
+        className="p-btn--primary wmn2 mt24"
+        onClick={() => setDisplay(true)}
+      >
+        Click to open modal
+      </button>
+
+      <BottomOrRegularModal
+        title={title}
+        isOpen={display}
+        onClose={handleOnClose}
+        footer={(onClose) => 
+          <Button className='w100' onClick={onClose}>
+            Continue
+          </Button>
+        }
+      >
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <div style={{ height: '440px' }} />
+            {children}
+          </div>
         </div>
       </BottomOrRegularModal>
     </>

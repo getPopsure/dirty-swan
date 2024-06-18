@@ -6,6 +6,7 @@ import styles from './style.module.scss';
 import { XIcon } from '../../icon/icons';
 import useOnClose from '../hooks/useOnClose';
 import classNames from 'classnames';
+import { ModalFooter } from '../components/ModalFooter';
 
 export const BottomModal = ({
   title,
@@ -14,8 +15,10 @@ export const BottomModal = ({
   onClose,
   className = '',
   dismissible = true,
+  footer,
 }: Props) => {
   const [containerXOffset, setContainerXOffset] = useState(0);
+  const [footerHeight, setFooterHeight] = useState(80);
   const {
     isClosing,
     handleContainerClick,
@@ -39,45 +42,66 @@ export const BottomModal = ({
   }
 
   return (
-    <div
-      className={isClosing ? styles['overlay--close'] : styles.overlay}
-      onClick={handleOnOverlayClick}
-    >
+    <>
       <div
-        className={styles.wrapper}
-        ref={containerRef}
-        onClick={handleContainerClick}
-        style={{ top: `${containerXOffset}px` }}
+        className={isClosing ? styles.overlayClose : styles.overlay}
+        onClick={handleOnOverlayClick}
       >
         <div
-          className={`${
-            isClosing ? styles['container--close'] : styles.container
-          } ${className}`}
+          className={styles.wrapper}
+          ref={containerRef}
+          onClick={handleContainerClick}
+          style={{ top: `${containerXOffset}px` }}
         >
           <div
-            className={classNames(styles.header, {
-              'jc-between': !!title,
-              'jc-end': !title,
-            })}
-          >
-            <div className={`p-h4 ${styles.title}`}>{title}</div>
-            {dismissible && (
-              <button
-                type="button"
-                className={styles.close}
-                onClick={handleOnClose}
-              >
-                <XIcon
-                  size={24}
-                  color={'grey-700'}
-                  className={`${styles.closeIcon}`}
-                />
-              </button>
+            className={classNames(
+              styles.container,
+              styles.appear,
+              className, {
+                [styles.appearClose]: isClosing, 
+              }
             )}
+            style={{ paddingBottom: footer ? footerHeight : 0 }}
+          >
+            <div
+              className={classNames(styles.header, {
+                'jc-between': !!title,
+                'jc-end': !title,
+              })}
+            >
+              <div className={`p-h4 ${styles.title}`}>{title}</div>
+              {dismissible && (
+                <button
+                  type="button"
+                  className={styles.close}
+                  onClick={handleOnClose}
+                >
+                  <XIcon
+                    size={24}
+                    color={'grey-700'}
+                    className={`${styles.closeIcon}`}
+                  />
+                </button>
+              )}
+            </div>
+            <div className={footer ? '' : styles.content}>{children}</div>
           </div>
-          <div className={styles.content}>{children}</div>
         </div>
       </div>
-    </div>
+
+      {footer && (
+        <ModalFooter
+          className={classNames(
+            styles.appear, {
+              [styles.appearClose]: isClosing, 
+            }
+          )}
+          fixed
+          onHeightChange={setFooterHeight}
+        >
+          {footer?.(handleOnClose)}
+        </ModalFooter>
+      )}
+    </>
   );
 };

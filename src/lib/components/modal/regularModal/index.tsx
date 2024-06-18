@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Props } from '..';
 import useOnClose from '../hooks/useOnClose';
@@ -6,6 +6,7 @@ import useOnClose from '../hooks/useOnClose';
 import styles from './style.module.scss';
 import { XIcon } from '../../icon/icons';
 import classNames from 'classnames';
+import { ModalFooter } from '../components/ModalFooter';
 
 export const RegularModal = ({
   title,
@@ -14,6 +15,7 @@ export const RegularModal = ({
   onClose,
   className = '',
   dismissible = true,
+  footer,
 }: Props) => {
   const {
     isClosing,
@@ -36,7 +38,10 @@ export const RegularModal = ({
           isClosing ? styles['container--close'] : styles.container
         } ${className}`}
       >
-        <div className={styles.body} onClick={handleContainerClick}>
+        <div
+          className={styles.body}
+          onClick={handleContainerClick}
+        >
           <div
             className={classNames(styles.header, {
               'jc-between': !!title,
@@ -58,7 +63,14 @@ export const RegularModal = ({
               </button>
             )}
           </div>
+
           {children}
+
+          {footer && (
+            <ModalFooter>
+              {footer?.(handleOnClose)}
+            </ModalFooter>
+          )}
         </div>
       </div>
     </div>

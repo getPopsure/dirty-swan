@@ -1,0 +1,14 @@
+@use "../../../scss/public/colors" as *;
+
+.wrapper {
+  border-top: 1px solid $ds-grey-300;
+  width: 100%;
+
+  &Fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+  }
+}
