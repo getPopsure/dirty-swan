@@ -1,4 +1,3 @@
-import { FormEvent } from 'react';
 import { CardButton, CardButtonProps } from '.';
 
 const story = {
@@ -29,7 +28,7 @@ const story = {
       },
     },
     href: {
-      defaultValue: '',
+      defaultValue: 'https://feather-insurance.com/',
       description: 'Redirect URL on click of the button',
     },
   },
@@ -42,19 +41,16 @@ export const CardButtonStory = ({
   className,
   href,
   onClick,
-}: CardButtonProps) => {
-  const handleOnClick = (e: FormEvent) => onClick?.(e);
-  return (
-    <CardButton
-      title={title}
-      description={description}
-      disabled={disabled}
-      className={className}
-      href={href}
-      onClick={handleOnClick}
-    />
-  );
-}
+}: CardButtonProps) => (
+  <CardButton
+    title={title}
+    description={description}
+    disabled={disabled}
+    className={className}
+    href={href}
+    onClick={onClick}
+  />
+);
 
 CardButtonStory.storyName = "CardButton";
 

@@ -22,7 +22,7 @@ import {
   BottomOrRegularModal,
 } from './components/modal';
 import { InfoCard, CardButton } from './components/cards';
-import { Card, CardProps  } from './components/card';
+import { Card, CardProps  } from './components/cards/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';

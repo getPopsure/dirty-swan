@@ -1,11 +1,11 @@
 import { Card, CardProps } from '.';
-import { illustrations } from '../../util/images';
-import { Button } from '../button';
-import { Badge } from '../badge';
-import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../icon';
+import { illustrations } from '../../../util/images';
+import { Button } from '../../button';
+import { Badge } from '../../badge';
+import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
 
 const story = {
-  title: 'JSX/Card',
+  title: 'JSX/Cards/Card',
   component: Card,
   argTypes: {
     as: {
