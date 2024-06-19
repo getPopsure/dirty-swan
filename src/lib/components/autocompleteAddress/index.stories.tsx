@@ -15,7 +15,6 @@ const story = {
       },
     },
     apiKey: {
-      defaultValue: 'AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8',
       description:
         'Your private API key for the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview)',
       table: {
@@ -51,6 +50,9 @@ const story = {
       },
     },
   },
+  args: {
+    apiKey: 'AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8',
+  },
   parameters: {
     componentSubtitle:
       'Autocomplete Address are user interface elements which allow users start typing an address and get autocompletion suggestions on the address.',
@@ -59,17 +61,7 @@ const story = {
         component:
           'This component is for now only restricted to "address" types and will restrict every query to Germany.',
       },
-    },
-    customTypes: {
-      Address: `interface Address {
-          street: string;
-          houseNumber: string;
-          postcode: string;
-          city: string;
-          additionalInformation?: string;
-          country: string;
-      }`,
-    },
+    }
   },
 };
 
@@ -151,5 +143,20 @@ export const WithLocalisationPlaceholders = ({
     onAddressChange={onAddressChange}
   />
 );
+
+export const AddressType = () => {
+  return (
+    <pre>
+      {`interface Address {
+          street: string;
+          houseNumber: string;
+          postcode: string;
+          city: string;
+          additionalInformation?: string;
+          country: string;
+      }`}
+    </pre>
+  )
+}
 
 export default story;

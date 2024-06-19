@@ -6,10 +6,12 @@ const story = {
   argTypes: {
     size: {
       control: { type: 'select' },
-      defaultValue: 's',
       description: 'Property that allows to customize the size of the spinner.',
     },
   },
+  args: {
+    size: 's'
+  }
 };
 
 export const SpinnerStory = ({ size }: SpinnerProps) => <Spinner size={size} />;

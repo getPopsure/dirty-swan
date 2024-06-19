@@ -5,15 +5,15 @@ const story = {
   component: Link,
   argTypes: {
     children: {
-      control: 'text',
-      defaultValue: 'Click here to go to Feather Insurance',
       description: 'Content that is displayed as clickable inside the link',
     },
     href: {
-      control: 'text',
-      defaultValue: 'https://feather-insurance.com',
       description: 'Specifies the URL of the page the link goes to',
     },
+  },
+  args: {
+    children: 'Click here to go to Feather Insurance',
+    href: 'https://feather-insurance.com',
   },
   parameters: {
     componentSubtitle: 'Links are a styled helper component for anchor (<a />) tags.',

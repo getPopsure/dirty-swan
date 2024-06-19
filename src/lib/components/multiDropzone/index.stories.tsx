@@ -7,10 +7,6 @@ const story = {
   component: MultiDropzone,
   argTypes: {
     uploadedFiles: {
-      defaultValue: [{
-        id: '123456789',
-        name: 'my-code-doesnt-work-i-have-no-idea-why-my-code-works.jpg'
-      }],
       description: 'List of files to be displayed on the component.',
     },
     uploading: {
@@ -56,6 +52,16 @@ const story = {
     textOverrides: {
       description: 'Properties that allow to localise component',
     },
+  },
+  args: {
+    uploadedFiles: [{
+      id: '123456789',
+      name: 'my-code-doesnt-work-i-have-no-idea-why-my-code-works.jpg'
+    }],
+    uploading: false,
+    isCondensed: false,
+    textOverrides: {},
+    maxFiles: 0
   },
   parameters: {
     componentSubtitle: 'MultiDropzone component allows upload of multiple documents / files.',

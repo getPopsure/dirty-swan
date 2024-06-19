@@ -5,19 +5,15 @@ const story = {
   component: CardButton,
   argTypes: {
     title: {
-      defaultValue: 'Risky Sports',
       description: 'Title text that needs to be displayed',
     },
     description: {
-      defaultValue: 'Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping, Mountain or rock climbing, Bouldering, Martial arts,',
       description: 'Description text that is displayed under title',
     },
     disabled: {
-      defaultValue: false,
       description: 'Disabled state of the button',
     },
     className: {
-      defaultValue: '',
       description: 'Class name for most top parent element',
     },
     onClick: {
@@ -28,10 +24,16 @@ const story = {
       },
     },
     href: {
-      defaultValue: 'https://feather-insurance.com/',
       description: 'Redirect URL on click of the button',
     },
   },
+  args: {
+    title: 'Risky Sports',
+    description: 'Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping, Mountain or rock climbing, Bouldering, Martial arts,',
+    disabled: false,
+    className: '',
+    href: 'https://feather-insurance.com/',
+  }
 };
 
 export const CardButtonStory = ({

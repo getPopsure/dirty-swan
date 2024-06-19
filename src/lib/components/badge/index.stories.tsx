@@ -5,23 +5,25 @@ const story = {
   component: Badge,
   argTypes: {
     children: {
-      control: { type: 'text' },
-      defaultValue: 'Value',
+      control: 'text',
       description: 'Content that is displayed inside the badge',
     },
     className: {
-      defaultValue: '',
       description: 'Class name for the most parent element',
-      control: { type: 'text' }
+      control: 'text'
     },
     size: {
-      defaultValue: 'medium',
       description: 'Define the size of the badge',
     },
     variant: {
-      defaultValue: 'information',
       description: 'Variant that defines the style of the Badge',
     },
+  },
+  args: {
+    children: 'Value',
+    className: '',
+    size: 'medium',
+    variant: 'information',
   }
 };
  

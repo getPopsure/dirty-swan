@@ -9,20 +9,6 @@ const story = {
     options: {
       description:
         'Object that contains the possible options for rendering in the input.',
-      defaultValue: {
-        CAT: {
-          title: 'Cat',
-          description: 'At least 1',
-        },
-        DOG: {
-          title: 'Dog',
-          description: 'At least 2',
-        },
-        NONE: {
-          title: 'None',
-          description: 'No pets',
-        },
-      },
     },
     value: {
       description: 'Current checked values.',
@@ -37,31 +23,52 @@ const story = {
     wide: {
       description:
         'Property that defines if options should fill 100% of available horizontal space',
-      defaultValue: false,
     },
     inlineLayout: {
       description:
         'Property that defines if options should show inline instead of block. Check inline radio options story for examples.',
-      defaultValue: false,
+    },
+    inlineIcon: {
+      description: 'Property that defines if options should show inline with icon',
     },
     classNames: {
       description: 'ClassNames for custom styling',
-      defaultValue: {
-        container: '',
-        label: '',
-        option: '',
-      },
     },
     bordered: {
       description: 'Property that defines if option should show with border',
-      defaultValue: true,
     },
     disabled: {
       description:
         'Property that defines if the input and corresponding label are disabled and not clickable',
-      defaultValue: false,
     },
   },
+  args: {
+    options: {
+      CAT: {
+        title: 'Cat',
+        description: 'At least 1',
+      },
+      DOG: {
+        title: 'Dog',
+        description: 'At least 2',
+      },
+      NONE: {
+        title: 'None',
+        description: 'No pets',
+      },
+    },
+    value: '',
+    wide: false,
+    classNames: {
+      container: '',
+      label: '',
+      option: '',
+    },
+    bordered: true,
+    inlineLayout: false,
+    inlineIcon: false,
+    disabled: false,
+  }
 };
 
 export const RadioStory = ({

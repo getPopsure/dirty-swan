@@ -8,20 +8,6 @@ const story = {
   argTypes: {
     options: {
       description: 'Object that contains the possible options for rendering in the input. To create an icon-only toggle, pass an empty string.',
-      defaultValue: {
-        CAT:{
-          title: 'Cat',
-          description: 'At least 1'
-        },
-        DOG:{
-          title: 'Dog',
-          description: 'At least 2'
-        },
-        NONE:{
-          title: 'None',
-          description: 'No pets'
-        }
-      }
     },
     value: {
       description: 'Current checked values.',
@@ -34,26 +20,43 @@ const story = {
       },
     },
     bordered: {
-      control: { type: 'boolean' },
       description: 'Property that defines if checkbox should show the border around each label',
-      defaultValue: true
     },
     inlineLayout: {
       description: 'Property that defines if options should show inline instead of block. Check inline checkbox options story for examples.',
-      defaultValue: false
     },
     disabled: {
       description: 'Shows toggle on a disabled state.',
-      defaultValue: false
     },
     className: {
       description: 'ClassNames for custom styling',
-      defaultValue: {
-        container: '',
-        label: '',
-        option: ''
+    },
+  },
+  args: {
+    options:{
+      CAT:{
+        title: 'Cat',
+        description: 'At least 1'
+      },
+      DOG:{
+        title: 'Dog',
+        description: 'At least 2'
+      },
+      NONE:{
+        title: 'None',
+        description: 'No pets'
       }
     },
+    value: [],
+    bordered: true,
+    inlineLayout: false,
+    disabled: false,
+    className: {
+      container: '',
+      label: '',
+      option: ''
+    }
+  
   }
 };
 

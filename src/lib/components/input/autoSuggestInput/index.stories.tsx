@@ -9,43 +9,21 @@ const story = {
   argTypes: {
     suggestions: {
       description: 'List of suggestions that should be displayed to the respective input',
-      defaultValue: [
-        { value: 'feather', leftIcon: featherLogo },
-        { value: 'feather2', leftIcon: featherLogo },
-        {
-          value: 'feather3',
-          leftIcon: featherLogo,
-        },
-        {
-          value: 'dirtyswan',
-          leftIcon: featherLogo,
-        },
-        {
-          value: 'test value',
-          leftIcon: featherLogo,
-        },
-      ]
     },
     currentOption: {
-      defaultValue: 'feather',
       description: 'Current input of the component by user',
     },
     placeholder: {
-      defaultValue: 'Placeholder',
       description: 'Placeholder for DirtySwan Input component'
     },
     className: {
-      defaultValue: '',
       description: 'Class name for the most parent element',
-      control: { type: 'text' }
+      control: 'text'
     },
     wrapText: {
-      defaultValue: false,
       description: 'Wether or not wrap the entries in the dropdown or hide overflown text',
     },
     inputProps: {
-      defaultValue: {},
-      description: 'Pass through arbitrary props to the input.',
       control: { type: 'object' },
       table: {
         type: { 
@@ -82,14 +60,31 @@ const story = {
       },
     },
   },
+  args: {
+    suggestions: [
+      { value: 'feather', leftIcon: featherLogo },
+      { value: 'feather2', leftIcon: featherLogo },
+      {
+        value: 'feather3',
+        leftIcon: featherLogo,
+      },
+      {
+        value: 'dirtyswan',
+        leftIcon: featherLogo,
+      },
+      {
+        value: 'test value',
+        leftIcon: featherLogo,
+      },
+    ],
+    currentOption: 'feather',
+    placeholder: 'Placeholder',
+    className: '',
+    wrapText: false,
+    inputProps: {},
+  },
   parameters: {
     componentSubtitle: 'This component allows quick search via the input field to find an option for selection',
-    customTypes: {
-      Option: `interface Option {
-      value: string; // value of option to be stored and displayed on UI
-      leftIcon?: string; // image of the provided option to be displayed on UI
-}`
-    }
   },
 };
 
@@ -158,5 +153,14 @@ export const AutoSuggestInputStory = ({
 };
 
 AutoSuggestInputStory.storyName = "AutoSuggestInput";
+
+export const OptionType = () => (
+  <pre>
+    {`interface Option {
+      value: string; // value of option to be stored and displayed on UI
+      leftIcon?: string; // image of the provided option to be displayed on UI
+}`}
+  </pre>
+)
 
 export default story;

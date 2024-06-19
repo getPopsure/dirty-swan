@@ -6,12 +6,10 @@ const story = {
   component: Button,
   argTypes: {
     children: {
-      control: { type: 'text' },
-      defaultValue: 'Click me',
+      control: 'text',
       description: 'Text that is displayed inside the button. Hidden when hideLabel is set as true',
     },
     variant: {
-      defaultValue: 'filledColor',
       description: 'Variant that defines the style of the Button',
     },
     leftIcon: {
@@ -21,18 +19,23 @@ const story = {
       description: 'Icon to be displayed on the right side of the button. This makes use of [dirty swan Icon component](http://localhost:9009/?path=/docs/jsx-icon--icon-story).',
     },
     loading: {
-      defaultValue: false,
       description: 'Show button on a loading state.',
     },
     hideLabel: {
-      defaultValue: false,
       description: 'Show button as an icon only button. This hides the label but still keeps it for accessibility purposes.',
     },
     className: {
-      defaultValue: 'wmn3',
       type: 'text',
       description: 'Class name for most top parent element',
     },
+  },
+  args: {
+    children: 'Click me',
+    disabled: false,
+    variant: 'filledColor',
+    loading: false,
+    hideLabel: false,
+    className: 'wmn3',
   },
   parameters: {
     design: {
@@ -47,7 +50,10 @@ export const ButtonStory = ({
   loading = false,
   children,
   variant,
-  hideLabel
+  hideLabel,
+  leftIcon,
+  rightIcon,
+  disabled,
 }: ButtonProps) => (
   <div className='wmx6'>
     <Button
@@ -55,6 +61,9 @@ export const ButtonStory = ({
       loading={loading}
       variant={variant}
       hideLabel={hideLabel}
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      disabled={disabled}
     >
       {children}
     </Button>
@@ -84,7 +93,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     <div className='d-flex gap16 p24 bg-grey-300 br8'>
       {["textColor", "textWhite"].map((variant, index) => (
         <div key={variant} className={variant === "textWhite" ? "bg-primary-500 px32 br8" : ""}>
-          <h4 className={`p-h4 mb16 ${variant === "textWhite" ?? "tc-white"}`}>
+          <h4 className={`p-h4 mb16 ${variant === "textWhite" ? "tc-white" : ''}`}>
             {variant}
           </h4>
 

@@ -17,6 +17,7 @@ yargs
   .command(
     'init [path]',
     'initialize dirty swan with a configuration file',
+    // @ts-ignore
     (yargs) => {
       yargs.positional('path', {
         describe: 'path to where the configuration file should be at',
@@ -33,6 +34,7 @@ yargs
   .command(
     'theme [configuration]',
     'theme dirty swan according to the configuration file',
+    // @ts-ignore
     (yargs) => {
       yargs.positional('configuration', {
         describe: '',

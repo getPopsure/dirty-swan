@@ -1,48 +1,9 @@
-import { h } from 'hastscript/html.js';
 import { FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkDirective from 'remark-directive';
-import visit from 'unist-util-visit';
 
 import styles from './styles.module.scss';
 
-// The plugin function 'directiveToHTMLTag' is used in conjunction with 'remarkDirective' to parse custom markdown tags.
-
-// It converts tags in the form of :mytag[value]{attributes} to the
-// corresponding custom HTML tags <mytag ...attributes>value<mytag> .
-// (NOTE: tag names are always converted to lowercase custom html tags)
-
-// These can then be overridden by supplying the ReactMarkdown component with
-// an entry in its 'components' property:
-// <ReactMarkdown components={
-//  mytag: ({ children }) => (<h1>{childrend}</h1>)
-// }>
-
-// Without those plugins, it's only possible to override the standard html tags as listed here:
-// https://github.com/remarkjs/react-markdown#appendix-b-components
-
-const directiveToHTMLTag = () => {
-  return (tree: any) => {
-    // Visit the given tree and transform 'text-', 'leaf-' or 'containerDirectives' (= custom tags) as parsed by
-    // the remarkDirective plugin
-    visit(
-      tree,
-      ['textDirective', 'leafDirective', 'containerDirective'],
-      (node: any) => {
-        // Grab a reference to the data of the custom tag node
-        const data = node.data || (node.data = {});
-
-        // Create a HyperText Abstract Syntax Tree (HAST) from the node
-        const hast = h(node.name, node.attributes);
-
-        // Modify the node data with the resulting HAST's data to transform the node into something
-        // that ReactMarkdown can understand (custom html tag) and later replace with a custom component
-        data.hName = hast.tagName;
-        data.hProperties = hast.properties;
-      }
-    );
-  };
-};
 
 const Link = (openLinksInNewTab: boolean) => (props: any) => {
   return openLinksInNewTab ? (
@@ -134,7 +95,7 @@ const Markdown = ({
       code: Code,
       ...customMDComponents,
     }}
-    remarkPlugins={[remarkDirective, directiveToHTMLTag]}
+    remarkPlugins={[remarkDirective]}
   />
 );
 

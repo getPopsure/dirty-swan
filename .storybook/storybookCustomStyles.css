@@ -1,0 +1,3 @@
+.docs-story :not(.sb-story *) {
+  transform: none;
+}
