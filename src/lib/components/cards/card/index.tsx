@@ -8,6 +8,7 @@ const cardDefaultAs = 'section' as const
 type CardDefaultAsType = typeof cardDefaultAs;
 type DensityType = 'balanced' | 'compact' | 'spacious';
 type TitleVariantType = 'small' | 'medium' | 'large';
+type VerticalAlignmentType = 'top' | 'center' | 'bottom';
 
 type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   as?: E;
@@ -33,6 +34,7 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   onClick?: () => void;
   actionIcon?: ReactNode;
   showActionIcon?: boolean;
+  verticalAlignment?: VerticalAlignmentType;
 } 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
@@ -53,6 +55,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   title,
   titleVariant = 'large',
   showActionIcon,
+  verticalAlignment = 'center',
   ...rest
 }: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
@@ -78,13 +81,18 @@ const Card = <E extends ElementType = CardDefaultAsType>({
     >
       <div
         className={classNamesUtil(
-          'd-flex fd-column jc-center br8 bg-white w100 ta-left',
+          'd-flex fd-column br8 bg-white w100 ta-left',
           { 'bs-sm': dropShadow },
           {
             compact: 'p16',
             balanced: 'p24',
             spacious: 'p32',
           }[density as DensityType],
+          {
+            top: 'jc-start',
+            center: 'jc-center',
+            bottom: 'jc-end',
+          }[verticalAlignment as VerticalAlignmentType],
           classNames?.wrapper
         )}
       >
@@ -92,10 +100,15 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           {icon && (
             <div
               className={classNamesUtil(
-                `d-flex ai-center tc-primary-500`,
+                `d-flex tc-primary-500`,
                 styles.icon,
                 styles[`icon${density}`],
-                classNames?.icon
+                classNames?.icon, 
+                {
+                  top: 'ai-start',
+                  center: 'ai-center',
+                  bottom: 'ai-end',
+                }[verticalAlignment as VerticalAlignmentType],
               )}
             >
               {icon}

@@ -50,6 +50,10 @@ const story = {
     showActionIcon: {
       description: 'Property that always displays action icon even if no onClick is set.',
     },
+    verticalAlignment: {
+      description: 'Vertical alignment of the card content',
+      control: { type: 'select' },
+    },
   },
   args: {
     density: 'balanced',
@@ -69,6 +73,7 @@ const story = {
       icon: ''
     },
     dropShadow: true,
+    verticalAlignment: 'center',
   }
 };
 
@@ -87,6 +92,7 @@ export const CardStory = ({
   onClick,
   title,
   titleVariant,
+  verticalAlignment,
 }: CardProps) => (
   <div className='d-flex p24 bg-grey-200'>
     <Card
@@ -103,6 +109,7 @@ export const CardStory = ({
       onClick={onClick}
       actionIcon={actionIcon}
       showActionIcon={showActionIcon}
+      verticalAlignment={verticalAlignment}
     >
       {children}
     </Card>
