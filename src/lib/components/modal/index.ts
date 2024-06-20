@@ -9,6 +9,7 @@ export interface Props {
   onClose: () => void;
   className?: string;
   dismissible?: boolean;
+  footer?: (onClose: () => void) => React.ReactNode;
 }
 
 export { BottomModal, RegularModal, BottomOrRegularModal };
