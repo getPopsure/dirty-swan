@@ -32,12 +32,14 @@ export const GenericModal = ({
 }: GenericModalProps) => {
   const {
     isClosing,
+    isVisible,
     handleContainerClick,
+    handleOnCloseAnimationEnded,
     handleOnClose,
     handleOnOverlayClick,
   } = useOnClose(onClose, isOpen, dismissible);
 
-  return !isOpen ? null : (
+  return !isVisible ? null : (
     <div
       className={classNamesUtil(
         classNames?.overlay,
@@ -45,6 +47,7 @@ export const GenericModal = ({
           [styles.overlayClose]: isClosing,
         }
       )}
+      onAnimationEnd={handleOnCloseAnimationEnded}
       onClick={handleOnOverlayClick}
     >
       <div 
@@ -119,7 +122,7 @@ export const GenericModal = ({
               )}
             >
               <div className="px24 py16">
-                {footer?.(handleOnClose)}
+                {footer}
               </div>
             </div>
           )}

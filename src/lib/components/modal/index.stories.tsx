@@ -277,12 +277,12 @@ export const ModalWithFooter = ({
         title={title}
         isOpen={display}
         onClose={handleOnClose}
-        footer={(onClose) => (
+        footer={(
           <div className='d-flex fd-row gap8'>
-            <Button variant='textColor' className='w100' onClick={onClose}>
+            <Button variant='textColor' className='w100' onClick={handleOnClose}>
               Skip
             </Button>
-            <Button className='w100' onClick={onClose}>
+            <Button className='w100' onClick={handleOnClose}>
               Continue
             </Button>
           </div>
@@ -323,12 +323,12 @@ export const ModalWithFooterAndScroll = ({
         title={title}
         isOpen={display}
         onClose={handleOnClose}
-        footer={(onClose) => (
+        footer={(
           <div className='d-flex fd-row gap8'>
-            <Button variant='textColor' className='w100' onClick={onClose}>
+            <Button variant='textColor' className='w100' onClick={handleOnClose}>
               Skip
             </Button>
-            <Button className='w100' onClick={onClose}>
+            <Button className='w100' onClick={handleOnClose}>
               Continue
             </Button>
           </div>
