@@ -15,6 +15,7 @@ const BottomModal = ({ className, ...rest }: Props) => (
           [styles.containerClose]: isClosing, 
         }
       ),
+      body: styles.body,
     }}
     {...rest}
   />

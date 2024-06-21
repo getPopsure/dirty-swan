@@ -39,10 +39,6 @@
   bottom: 0;
   position: fixed;
 
-  @include p-size-mobile {
-    padding-bottom: 48px;
-  }
-
   animation-name: appear-in;
   animation-duration: 0.4s;
   animation-fill-mode: both;
@@ -54,5 +50,11 @@
     animation-delay: 0s;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
+  }
+}
+
+.body {
+  @include p-size-mobile {
+    padding-bottom: 48px;
   }
 }
