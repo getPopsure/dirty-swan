@@ -9,28 +9,24 @@ const story = {
   component: IconWrapper,
   argTypes: {
     icon: {
-      defaultValue: 'InfoIcon',
       description: 'Identifier key of the icon',
       table: {
         type: { 
           summary: 'IconKey (see Available Icons story for all icons)'
         },
       },
-      control: { 
-        options: iconsList,
-        type: 'select',
-      },
+      control: 'select',
+      options: iconsList,
     },
     size: {
-      defaultValue: 32,
       description: 'Icon size',
     },
     color: {
-      defaultValue: 'primary-500',
       description: 'Icon color',
     },
     className: {
       description: 'Class name for updating components styles',
+      control: 'text',
       table: {
         type: { 
           summary: 'Your own custom classnames can be added here'
@@ -38,6 +34,13 @@ const story = {
       },
     },
   },
+  args: {
+    icon: 'InfoIcon',
+    size: 32,
+    color: 'primary-500',
+    noMargin: false,
+    className: ''
+  }
 };
 
 export const IconStory = ({ color, className, icon, size }: IconWrapperProps & { icon: IconKey }) => {

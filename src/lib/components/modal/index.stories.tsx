@@ -9,23 +9,18 @@ const story = {
   component: BottomOrRegularModal,
   argTypes: {
     title: {
-      defaultValue: "Modal title",
       description: "The title that needs to be displayed on the modal",
     },
     isOpen: {
-      defaultValue: false,
       description: "When set to `true`, the modal is displayed. When set to `false` the modal gets removed",
     },
     dismissible: {
-      defaultValue: true,
       description: "The content that gets displayed on the modal",
     },
     className: {
-      defaultValue: '',
       description: 'Any additional className',
     },
     children: {
-      defaultValue: 'Modal content to be displayed',
       description: 'The content that gets displayed on the modal',
       type: 'text',
       table: {
@@ -41,6 +36,13 @@ const story = {
         category: "Callbacks",
       },
     },
+  },
+  args: {
+    title: "Modal title",
+    isOpen: false,
+    dismissible: true,
+    className: '',
+    children: 'Modal content to be displayed',
   },
   parameters: {
     componentSubtitle: 'Bottom or Regular modal will automatically choose what’s best to display based on the users screen width.',

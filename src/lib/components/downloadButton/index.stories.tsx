@@ -6,11 +6,10 @@ const story = {
   argTypes: {
     downloadStatus: {
       description: 'Status of the button',
-      defaultValue: 'INITIAL',
     },
     customFail: {
       description: 'Customised error message. Only visible when button is on `FAILED` state.',
-      control: { type: 'text' },
+      control: 'text',
     },
     onDownload: {
       description: 'Called when download button has been clicked.',
@@ -22,6 +21,9 @@ const story = {
     className: {
       description: 'This property allows to add custom styles to the component.',
     }
+  },
+  args: {
+    downloadStatus: 'INITIAL',
   },
   parameters: {
     componentSubtitle: 'DownloadButton component displays progress and status of downloading files.',

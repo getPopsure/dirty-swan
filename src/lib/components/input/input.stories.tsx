@@ -6,7 +6,7 @@ import sharedConfig from './stories/config';
 const story = {
   title: 'JSX/Inputs/Input',
   component: Input,
-  argTypes: sharedConfig,
+  ...sharedConfig,
   parameters: {
     componentSubtitle: 'The default input component is used to gather informations from the user.'
   }

@@ -51,7 +51,7 @@ export const IconsList = () => {
         </div>
       </div>
 
-      <div className='d-flex f-wrap'>
+      <div className='d-flex f-wrap mt80'>
         {options.map(([iconKey, Icon]) => (
           <div key={iconKey} className="w20 p8">
             <div className='br4 p24 pt16 pb16 bg-grey-100 w100 d-flex fd-column ai-center'>

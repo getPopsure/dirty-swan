@@ -1,9 +1,15 @@
 module.exports = {
-  stories: ['../src/**/*.stories.@(tsx|mdx)'],
-  addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
-    'storybook-addon-designs',
-  ],
+  stories: ['../src/**/*.@(mdx|stories.@(tsx))'],
+
+  addons: ['@storybook/addon-essentials'],
+
+  staticDirs: ['../public', '../storybook-assets'],
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript'
+  },
+
+  framework: '@storybook/react-vite',
 };

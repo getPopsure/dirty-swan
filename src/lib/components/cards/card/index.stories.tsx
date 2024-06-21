@@ -9,7 +9,7 @@ const story = {
   component: Card,
   argTypes: {
     as: {
-      control: { type: 'text' },
+      control: 'text',
       description: 'Allow wrapper element type to be custom defined'
     },
     density: {
@@ -34,17 +34,21 @@ const story = {
       description: 'ReactNode to be rendered on the left side of the card',
     },
     children: {
-      control: { type: 'text' },
+      control: 'text',
       description: 'Content that is displayed inside the card under the pre-defined props',
     },
     onClick: {
+      action: true,
+      table: {
+        category: "Callbacks",
+      },
       description: 'On click action to be triggered on card click.',
     },
     dropShadow: {
       description: 'Wether to display card with drop shadow styles or not.',
     },
     actionIcon: {
-      control: { type: 'text' },
+      control: 'text',
       description: 'ReactNode to be rendered on the right side of the card when there is an onClick action. By default it renders the ChevronRightIcon.',
     },
     showActionIcon: {

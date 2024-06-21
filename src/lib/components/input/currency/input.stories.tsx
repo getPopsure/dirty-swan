@@ -4,9 +4,9 @@ import { CurrencyInput, CurrencyInputProps } from '.';
 import sharedConfig from '../stories/config';
 
 const story = {
-  title: 'JSX/Inputs',
+  title: 'JSX/Inputs/CurrencyInput',
   component: CurrencyInput,
-  argTypes: sharedConfig,
+  ...sharedConfig,
   parameters: {
     componentSubtitle: 'The default input component is used to gather informations from the user.'
   }
