@@ -47,7 +47,6 @@
     "test": "jest",
     "test:ci": "CI=true jest",
     "build-storybook": "storybook build",
-    "deploy-storybook": "storybook-to-ghpages",
     "generate-icons": "svgr src/lib/components/icon/assets"
   },
   "eslintConfig": {

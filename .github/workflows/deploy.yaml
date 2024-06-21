@@ -15,13 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Deploy storybook to GitHub Pages
-        run: yarn deploy-storybook -- --ci
-        env:
-          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.2.4
+        with:
+          install_command: yarn install
+          build_command: yarn build-storybook
+          path: storybook-static
