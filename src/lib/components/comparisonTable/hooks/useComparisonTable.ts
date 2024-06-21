@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
-
+import generateId from '../../../util/generateId';
 import { ArrowValues } from '../components/TableArrows';
 
 export const useComparisonTable = ({
@@ -12,12 +12,12 @@ export const useComparisonTable = ({
   const [headerWidth, setHeaderWidth] = useState(1400);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const [selectedSection, setSelectedSection] = useState('');
-
+  const [headerId, setHeaderId] = useState('');
   const headerRef = useRef<HTMLDivElement | null>(null);
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
 
-  const scrollContainerCallbackRef = useCallback((node) => {
+  const headerRefCallbackRef = useCallback((node) => {
     if (node) {
       setHeaderWidth(node.clientWidth);
     }
@@ -112,17 +112,24 @@ export const useComparisonTable = ({
   };
 
   const toggleMoreRows = async () => {
-    if (showMore && headerRef.current && contentContainerRef.current) {
-      window.scroll(
-        0,
-        window.scrollY +
-          (contentContainerRef.current.getBoundingClientRect().y -
-            headerRef.current.getBoundingClientRect().bottom)
-      );
-    }
-
     setShowMore(!showMore);
   };
+
+  useEffect(() => {
+    if (headerRef.current) {
+      return;
+    }
+
+    const headerById = document.getElementById(headerId);
+
+    if (headerById) {
+      headerRefCallbackRef(headerById);
+    }
+  }, [headerId, headerRefCallbackRef]);
+
+  useEffect(() => {
+    setHeaderId(generateId());
+  }, []);
 
   useEffect(() => {
     onSelectionChanged?.(selectedTabIndex);
@@ -131,12 +138,13 @@ export const useComparisonTable = ({
 
   return {
     headerWidth,
+    headerId,
     contentContainerRef,
     selectedSection,
     setSelectedSection,
     selectedTabIndex,
     setSelectedTabIndex,
-    scrollContainerCallbackRef,
+    headerRefCallbackRef,
     handleArrowsClick,
     toggleMoreRows,
     showMore,

@@ -1,4 +1,4 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Meta, Unstyled } from '@storybook/blocks';
 
 import { CardButton } from '../cards';
 
@@ -16,13 +16,18 @@ import {
 
 The Comparison Table component provides an easy way to compare vast amounts of information in a fast and easy way.
 
-<iframe width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FMKs4cbojdVOBKUxv7okb93%2FDirty-Swan-Design-System%3Fnode-id%3D2025%253A12194" allowFullScreen />
+<iframe
+  width="100%"
+  height="450"
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FMKs4cbojdVOBKUxv7okb93%2FDirty-Swan-Design-System%3Fnode-id%3D2025%253A12194"
+  allowFullScreen
+/>
 
 ## Arguments
 
 | attribute             | unit                                      | description                                                         | default value  | required |
 | --------------------- | ----------------------------------------- | ------------------------------------------------------------------- | -------------- | -------- |
-| headers               | [Header\[\]](#header)                       | The structure of the table                                          | n/a            | true     |
+| headers               | [Header\[\]](#header)                     | The structure of the table                                          | n/a            | true     |
 | data                  | array                                     | The title text that needs to be displayed                           | n/a            | true     |
 | hideDetails           | boolean                                   | Hide table groups that do not have the `default` attribute          | false          | false    |
 | hideDetailsCaption    | string                                    | Caption of the button to hide the details                           | 'Hide details' | false    |
@@ -309,7 +314,9 @@ export const ComparisonTableWithData = () => {
   );
 };
 
-<ComparisonTableWithData />
+<Unstyled>
+  <ComparisonTableWithData />
+</Unstyled>
 
 ```typescript jsx
 import ComparisonTable, {
