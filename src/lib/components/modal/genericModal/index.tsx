@@ -106,6 +106,7 @@ export const GenericModal = ({
 
           <div
             className={classNamesUtil(
+              'w100',
               classNames?.body,
               styles.body
             )}
