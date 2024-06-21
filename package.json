@@ -34,9 +34,11 @@
     "react-day-picker": "^7.4.10",
     "react-dropzone": "^14.2.2",
     "react-hot-toast": "^2.4.1",
-    "react-markdown": "^8.0.3",
+    "react-markdown": "^9.0.1",
     "react-scroll-sync": "^0.11.2",
-    "remark-directive": "^2.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-directive": "^3.0.0",
+    "remark-gfm": "^4.0.0",
     "sass": "^1.35.1",
     "signature_pad": "^3.0.0-beta.3"
   },

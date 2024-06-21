@@ -1,6 +1,13 @@
+@use "../../scss/public/colors" as *;
+
 .ulist {
   list-style-type: disc;
-  list-style-position: inside;
+  list-style-position: outside;
+  padding-left: 16px;
+
+  > li {
+    padding-left: 8px;
+  }
 }
 
 .olist {
@@ -8,6 +15,23 @@
   list-style-position: inside;
 }
 
+.table td,
+.table th {
+  border: 1px solid $ds-grey-300;
+}
+
+.pre {
+  line-height: 24px;
+}
+
 .code {
   font-family: monospace;
+  padding: 2px 4px;
+}
+
+:not(.pre) > .code {
+  border: 1px solid $ds-grey-400;
+  background-color: $ds-grey-200;
+  color: $ds-red-500;
+  border-radius: 4px;
 }
