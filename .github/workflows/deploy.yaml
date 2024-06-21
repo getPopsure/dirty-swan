@@ -11,6 +11,7 @@ jobs:
 
     environment:
       name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
 
     permissions:
       contents: write
