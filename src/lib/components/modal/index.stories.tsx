@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
-import { Markdown } from '../markdown';
 import { Button } from '../button';
 
 const story = {
@@ -117,10 +116,8 @@ export const RegularModalStory = ({
   return (
     <>
       Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.  
-      <Markdown>
-        If you want to use it for Mobile only, you should check [Bottom modal](#bottommodal) instead.
-        Want to use either Regular Modal or Bottom Modal based on the screen width? You can use [Bottom or Regular modal](#bottomorregularmodal).
-      </Markdown>
+      If you want to use it for Mobile only, you should check BottomModal instead.
+      Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
 
       <button
         className="p-btn--primary wmn2 mt24"
@@ -167,10 +164,8 @@ export const BottomModalStory = ({
   return (
     <>
       Bottom modals are primary meant to be used on Mobile environment. The modal will appear from the bottom of the screen and the user will be able to dismiss them using the top left "X" icon.
-      <Markdown>
-        If you want to use it for Desktop only, you should check [Regular modal](#regularmodal) instead.
-        Want to use either Regular Modal or Bottom Modal based on the screen width? You can use [Bottom or Regular modal](#bottomorregularmodal).
-      </Markdown>
+      If you want to use it for Desktop only, you should check Regular modal instead.
+      Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
 
       <button
         className="p-btn--primary wmn2 mt24"
@@ -216,14 +211,10 @@ export const NonDismissibleModal = ({
 
   return (
     <>
-      <Markdown>
-        Setting the dismissible prop to false will hide the close button and prevent the user from closing it using the escape key or clicking outside.
-        This prop can be useful if we want the user to explicitly interact with the modal options.
-      </Markdown>
+      Setting the dismissible prop to false will hide the close button and prevent the user from closing it using the escape key or clicking outside.
+      This prop can be useful if we want the user to explicitly interact with the modal options.
 
-      <Markdown>
-        **Warning:** a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
-       </Markdown>
+      <strong>Warning:</strong> a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
 
       <button
         className="p-btn--primary wmn2 mt24"

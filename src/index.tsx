@@ -27,7 +27,6 @@ export {
   TableInfoButton,
   SegmentedControl,
   DownloadButton,
-  Markdown,
   Checkbox,
   Radio,
   Link,

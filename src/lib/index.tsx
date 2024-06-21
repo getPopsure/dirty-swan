@@ -37,7 +37,6 @@ import {
   TableHeader,
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
-import { Markdown } from './components/markdown';
 import { Link } from './components/link';
 import { illustrations, images, IllustrationKeys } from './util/images';
 import { Spinner } from './components/spinner';
@@ -73,7 +72,6 @@ export {
   TableButton,
   TableInfoButton,
   SegmentedControl,
-  Markdown,
   Checkbox,
   Radio,
   Link,
