@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1
+      - uses: bitovi/github-actions-storybook-to-github-pages
         with:
           install_command: yarn install
           build_command: yarn build-storybook
