@@ -9,6 +9,9 @@ jobs:
   deploy-storybook-to-gh-pages:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+
     permissions:
       contents: write
       pages: write
