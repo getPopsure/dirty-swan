@@ -70,8 +70,8 @@ export const GenericModal = ({
             className={classNamesUtil(
               'bg-white d-flex ai-center w100 px24 pt24 pb16',
               styles.header, {
-                'jc-between': !!children,
-                'jc-end': !children,
+                'jc-between': !!title,
+                'jc-end': !title,
               }
             )}
           >
@@ -117,7 +117,7 @@ export const GenericModal = ({
             <div
               className={classNamesUtil(
                 classNames?.footer,
-                'bg-white',
+                'w100 bg-white',
                 styles.footer
               )}
             >
