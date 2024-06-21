@@ -1,22 +1,5 @@
 @use '../../../scss/public/grid' as *;
-
-@keyframes fade-in {
-  0% {
-    background-color: rgba($color: #000000, $alpha: 0);
-  }
-  100% {
-    background-color: rgba($color: #000000, $alpha: 0.3);
-  }
-}
-
-@keyframes fade-out {
-  from {
-    background-color: rgba($color: #000000, $alpha: 0.3);
-  }
-  to {
-    background-color: rgba($color: #000000, $alpha: 0);
-  }
-}
+@use '../../../scss/public/colors' as *;
 
 @keyframes appear-in {
   0% {
@@ -41,78 +24,35 @@
   }
 }
 
-.close {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.closeIcon {
-  margin: 0;
-}
-
-.overlay {
-  position: fixed;
-
-  z-index: 100;
-
-  overflow: auto;
-
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  animation: fade-in 0.3s both;
-
-  &--close {
-    @extend .overlay;
-    animation-delay: 0.1s;
-    animation: fade-out 0.3s both;
-  }
-}
-
 .wrapper {
   position: relative;
   top: 0;
-  width: 100%;
   overflow: hidden;
 }
 
 .container {
-  background-color: white;
-
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
-  width: 100%;
+  overflow: auto;
+  max-height: 90vh;
+  bottom: 0;
+  position: fixed;
+
+  @include p-size-mobile {
+    padding-bottom: 48px;
+  }
 
   animation-name: appear-in;
   animation-duration: 0.4s;
   animation-fill-mode: both;
-  animation-timing-function: ease-out;
+  animation-timing-function: ease-in;
 
-  &--close {
-    @extend .container;
+  &Close {
     animation-name: disappear-out;
     animation-duration: 0.4s;
     animation-delay: 0s;
     animation-fill-mode: both;
     animation-timing-function: ease-out;
-  }
-}
-
-.header {
-  height: 60px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 16px;
-}
-
-.content {
-  @include p-size-mobile {
-    padding-bottom: 48px;
   }
 }

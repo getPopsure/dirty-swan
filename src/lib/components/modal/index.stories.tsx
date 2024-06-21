@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
 import { Markdown } from '../markdown';
+import { Button } from '../button';
 
 const story = {
   title: 'JSX/Modals',
@@ -245,6 +246,100 @@ export const NonDismissibleModal = ({
           >
             Continue
           </button>
+        </div>
+      </BottomOrRegularModal>
+    </>
+  );
+}
+
+export const ModalWithFooter = ({
+  children,
+  isOpen,
+  onClose,
+  title,
+}: Props) => {
+  const [display, setDisplay] = useState(isOpen);
+  const handleOnClose = () => {
+    onClose();
+    setDisplay(false);
+  };
+
+  return (
+    <>
+      <button
+        className="p-btn--primary wmn2"
+        onClick={() => setDisplay(true)}
+      >
+        Click to open modal
+      </button>
+
+      <BottomOrRegularModal
+        title={title}
+        isOpen={display}
+        onClose={handleOnClose}
+        footer={(
+          <div className='d-flex fd-row gap8'>
+            <Button variant='textColor' className='w100' onClick={handleOnClose}>
+              Skip
+            </Button>
+            <Button className='w100' onClick={handleOnClose}>
+              Continue
+            </Button>
+          </div>
+        )}
+      >
+        <div className='p24'>
+          <div>
+            {children}
+          </div>
+        </div>
+      </BottomOrRegularModal>
+    </>
+  );
+}
+
+export const ModalWithFooterAndScroll = ({
+  children,
+  isOpen,
+  onClose,
+  title,
+}: Props) => {
+  const [display, setDisplay] = useState(isOpen);
+  const handleOnClose = () => {
+    onClose();
+    setDisplay(false);
+  };
+
+  return (
+    <>
+      <button
+        className="p-btn--primary wmn2"
+        onClick={() => setDisplay(true)}
+      >
+        Click to open modal
+      </button>
+
+      <BottomOrRegularModal
+        title={title}
+        isOpen={display}
+        onClose={handleOnClose}
+        footer={(
+          <div className='d-flex fd-row gap8'>
+            <Button variant='textColor' className='w100' onClick={handleOnClose}>
+              Skip
+            </Button>
+            <Button className='w100' onClick={handleOnClose}>
+              Continue
+            </Button>
+          </div>
+        )}
+      >
+        <div className='p24'>
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <div style={{ height: '840px' }} />
+            {children}
+          </div>
         </div>
       </BottomOrRegularModal>
     </>

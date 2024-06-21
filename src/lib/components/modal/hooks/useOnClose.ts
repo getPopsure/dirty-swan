@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 interface OnCloseReturn {
   isClosing: boolean;
+  isVisible: boolean;
+  handleOnCloseAnimationEnded: () => void;
   handleContainerClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   handleOnClose: () => void;
   handleOnOverlayClick: () => void;
@@ -12,15 +14,20 @@ const useOnClose = (
   isOpen: boolean,
   dismissable: boolean
 ): OnCloseReturn => {
+  const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   const handleOnClose = useCallback(() => {
     setIsClosing(true);
-    setTimeout(() => {
+  }, []);
+
+  const handleOnCloseAnimationEnded = useCallback(() => {
+    if (isVisible && isClosing) {
       onClose();
+      setIsVisible(false);
       setIsClosing(false);
-    }, 300);
-  }, [setIsClosing, onClose]);
+    }
+  }, [isClosing, isVisible, onClose]);
 
   const handleOnOverlayClick = useCallback(() => {
     if (!dismissable) {
@@ -50,12 +57,20 @@ const useOnClose = (
   }, [handleEscKey]);
 
   useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    }
+    
+    if (!isOpen && isVisible){
+      handleOnClose();
+    }
+
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
 
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
+  }, [handleOnClose, isOpen, isVisible]);
 
   const handleContainerClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -63,7 +78,14 @@ const useOnClose = (
     e.stopPropagation();
   };
 
-  return { isClosing, handleContainerClick, handleOnClose, handleOnOverlayClick };
+  return {
+    isClosing,
+    isVisible,
+    handleContainerClick,
+    handleOnCloseAnimationEnded,
+    handleOnClose,
+    handleOnOverlayClick
+  };
 };
 
 export default useOnClose;
