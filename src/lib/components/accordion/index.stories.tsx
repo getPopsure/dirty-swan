@@ -36,7 +36,7 @@ const story = {
       {
         id: '2',
         question: 'How old is the universe?',
-        answer: '13.8 **billion** years',
+        answer: '13.8 billion years',
         icon: <ZapIcon size={24} />,
       },
       {
@@ -48,7 +48,7 @@ const story = {
       {
         id: '4',
         question: 'Who painted the Mona Lisa?',
-        answer: 'Leonardo da Vinci',
+        answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         icon: <ArthritisIcon size={24} />,
       },
     ],

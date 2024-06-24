@@ -5,13 +5,12 @@ import AnimateHeight from 'react-animate-height';
 import styles from './style.module.scss';
 import { ChevronDownIcon } from '../icon';
 import { Card } from '../cards/card';
-import { Markdown } from '../markdown';
 
 export interface AccordionItem {
   id: string;
   question: string;
   icon?: ReactNode;
-  answer: string;
+  answer: ReactNode;
 }
 
 export interface AccordionProps {
@@ -63,7 +62,6 @@ const Accordion = ({
     <div
       className={
         classnamesUtil(
-          styles.wrapper,
           {
             'br8': !isDefaultVariant,
             [styles.wrapperBordered]: !isDefaultVariant,
@@ -92,21 +90,25 @@ const Accordion = ({
               classNames={{
                 icon: classnamesUtil(
                   classNames?.icon,
-                  'tc-grey-700'
+                  styles.icon,
+                  'tc-grey-700',
                 ),
                 buttonWrapper: classnamesUtil(
                   classNames?.buttonWrapper,
-                  styles.buttonWrapper,
-                  { 'py8': isDefaultVariant, },
+                  styles.buttonWrapper, {
+                    [styles.buttonWrapperDefault]: isDefaultVariant
+                  },
                 ),
                 wrapper: classnamesUtil(
                   classNames?.wrapper,
-                  'bg-transparent br0',
+                  'bg-transparent br0 px8 py8',
                   { 'pl0': isDefaultVariant },
                 ),
                 title: classnamesUtil(
                   classNames?.question,
-                  'tc-grey-700 fw-bold'
+                  styles.question,
+                  'fw-bold', 
+                  { [styles.questionOpen]: isOpen }
                 ),
                 ...classNames,
               }}
@@ -118,7 +120,6 @@ const Accordion = ({
                   className={classnamesUtil(styles.chevron, {
                     [styles.chevronOpen]: isOpen
                   })}
-                  color="grey-700"
                   size={20}
                   noMargin
                 />
@@ -132,15 +133,11 @@ const Accordion = ({
               <div 
                 className={classnamesUtil(
                   classNames?.answer,
-                  'tc-grey-600 p16 pl0', 
+                  'tc-grey-600 pr16 pb16', 
                   { 'pl16': !isDefaultVariant },
                 )}
               >
-                  {typeof answer === 'string' ? (
-                    <Markdown className={classNames.markdown}>{answer}</Markdown>
-                  ) : (
-                    answer
-                  )}
+                  {answer}
               </div>
             </AnimateHeight>
           </div>
