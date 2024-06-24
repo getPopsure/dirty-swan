@@ -3,15 +3,17 @@ import { XIcon } from '../icon/icons';
 
 import styles from './style.module.scss';
 
+export interface ChipProps {
+  value: Option;
+  onRemove: (value: Option) => void;
+  className?: string;
+}
+
 export default ({
   className,
   value,
   onRemove,
-}: {
-  value: Option;
-  onRemove: (value: Option) => void;
-  className?: string;
-}) => (
+}: ChipProps) => (
   <div className={`p-p mr8 mb8 d-flex ${className} ${styles['chip']}`}>
     {value.leftIcon && (
       <img
