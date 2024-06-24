@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 export {
+  Accordion,
   DateSelector,
   SignaturePad,
   AutocompleteAddress,
@@ -43,6 +44,7 @@ export {
 export * from './lib/components/icon';
 
 export type {
+  AccordionProps,
   DownloadStatus,
   InformationBoxProps,
   IllustrationKeys,

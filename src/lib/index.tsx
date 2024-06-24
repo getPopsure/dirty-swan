@@ -43,10 +43,12 @@ import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
+import { Accordion, AccordionProps } from './components/accordion';
 
 export * from './components/icon';
 
 export {
+  Accordion,
   DateSelector,
   SignaturePad,
   AutocompleteAddress,
@@ -86,6 +88,7 @@ export {
 };
 
 export type {
+  AccordionProps,
   IllustrationKeys,
   InformationBoxProps,
   FileType,
