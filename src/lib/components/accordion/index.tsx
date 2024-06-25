@@ -94,14 +94,16 @@ const Accordion = ({
                   'tc-grey-700',
                 ),
                 buttonWrapper: classnamesUtil(
+                  'py8 my8',
                   classNames?.buttonWrapper,
                   styles.buttonWrapper, {
-                    [styles.buttonWrapperDefault]: isDefaultVariant
+                    [styles.buttonWrapperDefault]: isDefaultVariant,
+                    [styles.buttonWrapperOpen]: isOpen
                   },
                 ),
                 wrapper: classnamesUtil(
                   classNames?.wrapper,
-                  'bg-transparent br0 px8 py8',
+                'bg-transparent br0 py0',
                   { 'pl0': isDefaultVariant },
                 ),
                 title: classnamesUtil(
@@ -133,8 +135,12 @@ const Accordion = ({
               <div 
                 className={classnamesUtil(
                   classNames?.answer,
-                  'tc-grey-600 pr16 pb16', 
-                  { 'pl16': !isDefaultVariant },
+                  'tc-grey-600 pr16 pb24', 
+                  { 
+                    'pl16': !isDefaultVariant,
+                    [styles?.answerIcon]: !isDefaultVariant && icon,
+                    [styles?.answerIconDefault]: isDefaultVariant && icon,
+                  },
                 )}
               >
                   {answer}

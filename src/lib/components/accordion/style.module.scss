@@ -25,17 +25,27 @@
   }
 }
 
+.answer {
+  &Icon {
+    padding-left: 20px;
+  }
+  
+  &IconDefault {
+    padding-left: 4px;
+  }
+}
+
 .buttonWrapper {
   background-color: transparent!important;
   color: $ds-primary-500;
-  margin-top: 8px;
-  margin-bottom: 8px;
   outline-offset: -4px;
 
   &Default {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    outline-offset: -2px;
+    outline-offset: 0;
+  }
+
+  &Open {
+    margin-bottom: 4px !important;
   }
 
   &:hover,
