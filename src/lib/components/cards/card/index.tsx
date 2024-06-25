@@ -81,7 +81,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
     >
       <div
         className={classNamesUtil(
-          'd-flex fd-column jc-center w100 ta-left',
+          'd-flex fd-column jc-center w100 ta-left br8',
           { 'bs-sm': dropShadow },
           {
             compact: 'p16',
