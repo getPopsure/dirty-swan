@@ -98,7 +98,6 @@ const Accordion = ({
                   classNames?.buttonWrapper,
                   styles.buttonWrapper, {
                     [styles.buttonWrapperDefault]: isDefaultVariant,
-                    [styles.buttonWrapperOpen]: isOpen
                   },
                 ),
                 wrapper: classnamesUtil(
