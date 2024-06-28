@@ -277,7 +277,7 @@ const story = {
     hideDetailsCaption: 'Hide details',
     showDetailsCaption: 'Show details',
     hideScrollBars: false,
-    hideScrollBarsMobile: false,
+    hideScrollBarsMobile: true,
     collapsibleSections: false,
     cellWidth: undefined,
     firstColumnWidth: undefined,
