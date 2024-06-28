@@ -81,7 +81,7 @@ const ComparisonTable = <T extends { id: number }>(
     showDetailsCaption = 'Show details',
     classNameOverrides,
     hideScrollBars,
-    hideScrollBarsMobile,
+    hideScrollBarsMobile = true,
     collapsibleSections,
     cellWidth,
     firstColumnWidth,
