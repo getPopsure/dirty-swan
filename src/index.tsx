@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 export {
+  Accordion,
   DateSelector,
   SignaturePad,
   AutocompleteAddress,
@@ -12,9 +13,6 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   CardButton,
   Card,
@@ -30,7 +28,6 @@ export {
   TableInfoButton,
   SegmentedControl,
   DownloadButton,
-  Markdown,
   Checkbox,
   Radio,
   Link,
@@ -47,6 +44,7 @@ export {
 export * from './lib/components/icon';
 
 export type {
+  AccordionProps,
   DownloadStatus,
   InformationBoxProps,
   IllustrationKeys,

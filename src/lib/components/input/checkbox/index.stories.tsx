@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Checkbox, CheckboxProps } from '.';
 import { images } from '../../../util/images';
+import classNames from 'classnames';
 
 const story = {
   title: 'JSX/Inputs/Checkbox',
@@ -9,20 +10,6 @@ const story = {
   argTypes: {
     options: {
       description: 'Object that contains the possible options for rendering in the input.',
-      defaultValue: {
-        CAT:{
-          title: 'Cat',
-          description: 'At least 1'
-        },
-        DOG:{
-          title: 'Dog',
-          description: 'At least 2'
-        },
-        NONE:{
-          title: 'None',
-          description: 'No pets'
-        }
-      }
     },
     value: {
       description: 'Current checked values.',
@@ -39,22 +26,41 @@ const story = {
       defaultValue: false
     },
     bordered: {
-      control: { type: 'boolean' },
+      control: 'boolean',
       description: 'Property that defines if checkbox should show the border around each label',
-      defaultValue: true
     },
     inlineLayout: {
       description: 'Property that defines if options should show inline instead of block. Check inline checkbox options story for examples.',
-      defaultValue: false
     },
     className: {
       description: 'ClassNames for custom styling',
-      defaultValue: {
-        container: '',
-        label: '',
-        option: ''
+    },
+  },
+  args: {
+    options: {
+      CAT:{
+        title: 'Cat',
+        description: 'At least 1'
+      },
+      DOG:{
+        title: 'Dog',
+        description: 'At least 2'
+      },
+      NONE:{
+        title: 'None',
+        description: 'No pets'
       }
     },
+    wide: false,
+    bordered: true,
+    inlineLayout: false,
+    classNames: {
+      container: '',
+      label: '',
+      option: ''
+    },
+    value: [],
+    className: ''
   }
 };
 

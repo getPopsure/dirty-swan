@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Theme" />
+
+# Theme configuration
+
+Customizing the default theme for your project.
+
+![Dirty swan with a theme applied to it](/theme/config.png)
+
+***
+
+Dirty Swan ship with a way to configure colors, fonts… so that you can tweak it according to your needs.
+You can use the CLI in order to customize dirty swan theme. To get strated simply run `yarn dirty-swan init` and you'll get a default configuration file.
+
+```shell
+$> yarn dirty-swan init
+🦢 Creating configuration file at: ./dirty-swan.config.json
+🦢 Successfully created configuration file at: ./dirty-swan.config.json
+✨  Done in 0.48s.
+```
+
+The configuration file look like so:
+
+```json
+{
+  "theme": {
+    "colors": {
+      "primary": {
+        "100": "",
+        "300": "",
+        "500": "",
+        "700": "",
+        "900": ""
+      }
+    },
+    "font": {
+      "sans": {
+        "family": [],
+        "url": ""
+      }
+    }
+  }
+}
+```
+
+if you want to apply that theme you'll need to run `yarn dirty-swan theme [path to your configuration file]`.
+
+```shell
+$> yarn dirty-swan theme ./dirty-swan.config.json
+🦢 Reading configuration file theme/hallesche.json
+🦢 Successfully updated with new theme 💫
+✨  Done in 0.74s.
+```
+
+Et voilà! You can now run your project as usual and dirty swan should have updated its style.

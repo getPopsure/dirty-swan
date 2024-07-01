@@ -15,14 +15,9 @@ const story = {
   argTypes: {
     yearBoundaries: {
       description: 'Object containing the min and max year boundaries to show.',
-      defaultValue: {
-        min: 1920, 
-        max: 2001
-      }
     },
     displayCalendar: {
       description: 'Whether the calendar icon/button trigger should show',
-      defaultValue: false
     },
     onChange: {
       description: 'Called when the value is changed. Must be a valid date to be triggered',
@@ -35,7 +30,6 @@ const story = {
       },
     },
     value: {
-      defaultValue: '2000-12-12',
       description: 'Value of the input',
       table: {
         type: { 
@@ -52,6 +46,14 @@ const story = {
     firstDayOfWeek: {
       description: `Index of the first day of the week (0 = Sunday, 1 = Monday, etc.)`
     }
+  },
+  args: {
+    yearBoundaries: {
+      min: 1920,
+      max: 2001
+    },
+    displayCalendar: false,
+    value: '2000-12-12',
   },
   parameters: {
     componentSubtitle: 'Date selector are user interface elements which allow user to select a date in the `YYYY-MM-DD` format.',

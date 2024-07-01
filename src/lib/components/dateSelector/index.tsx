@@ -37,6 +37,8 @@ export interface DateSelectorProps {
     year?: string;
     yearFormat?: string;
     error?: string;
+    errorBeforeMinYear?: string;
+    errorAfterMaxYear?: string;
   };
   firstDayOfWeek?: number;
   inputProps?: (key: keyof CalendarDate) => Partial<DateSelectorInputProps>;
@@ -52,34 +54,37 @@ const defaultPlaceholders: DateSelectorProps["placeholders"] = {
   error: "Please enter a valid date"
 }
 
-type ErrorField = 'all' | 'day' | 'month' | 'year' | undefined;
+type ErrorType = 'afterMax' | 'beforeMin' | 'default';
 
 const isDateValid = (
   date: string | undefined,
-  yearBoundaries: DateSelectorProps["yearBoundaries"]
+  yearBoundaries: DateSelectorProps["yearBoundaries"],
+  dateObject: Partial<CalendarDate>,
 ): {
   isValid: boolean;
-  field?: ErrorField;
+  errorType?: ErrorType;
 } => {
   const { min = 0, max = 0 } = yearBoundaries;
-
+  
   if (!date) {
-    return { isValid: false, field: 'all' };
+    return { isValid: false, errorType: 'default' };
   }
 
+  const isValidYear = dateObject?.year && String(dateObject?.year).length === 4;
+
   if (max && dayjs(date).isAfter(`${max}-01-01`, 'year')) { 
-    return { isValid: false, field: 'year' };
+    return { isValid: false, errorType: isValidYear ? 'afterMax' : 'default' };
   }
   
   if (min && dayjs(date).isBefore(`${min}-01-01`, 'year')) {  
-    return { isValid: false, field: 'year' };
+    return { isValid: false, errorType: isValidYear ? 'beforeMin' : 'default' };
   }
   
-  const isDateValid = dayjs(date, COLLECTABLE_DATE_FORMAT, true).isValid();
+  const isValidDate = dayjs(date, COLLECTABLE_DATE_FORMAT, true).isValid();
 
   return {
-    isValid: isDateValid,
-    field: isDateValid ? undefined : 'all',
+    isValid: isValidDate,
+    errorType: 'default'
   };
 }
 
@@ -100,7 +105,7 @@ export const DateSelector = ({
 
   const itemsRef = useRef<HTMLInputElement[]>([]);
   const [isDirty, setIsDirty] = useState(false);
-  const [hasError, setHasError] = useState<ErrorField>();
+  const [hasError, setHasError] = useState<ErrorType>();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<Partial<CalendarDate>>({});
 
@@ -108,9 +113,9 @@ export const DateSelector = ({
     const calendarDateValue = value ? isoStringtoCalendarDate(value) : undefined;
 
     if(value !== calendarDateValue && calendarDateValue?.day && calendarDateValue?.month && calendarDateValue?.year) {
-      const { isValid, field } = isDateValid(value, yearBoundaries)
+      const { isValid, errorType } = isDateValid(value, yearBoundaries, calendarDateValue)
       setInternalValue(calendarDateValue)
-      setHasError(isValid ? undefined : field);
+      setHasError(isValid ? undefined : errorType);
       setIsDirty(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,15 +132,19 @@ export const DateSelector = ({
       year: tempValue.year || 0,
     })
     
-    const { isValid, field } = isDateValid(formattedDate, yearBoundaries);
-
-    if (dayjs(formattedDate, COLLECTABLE_DATE_FORMAT, true).isValid()) {
+    const { isValid, errorType } = isDateValid(formattedDate, yearBoundaries, tempValue);
+    const isDateInValidFormat = dayjs(formattedDate, COLLECTABLE_DATE_FORMAT, true).isValid();
+    
+    if (isDateInValidFormat) {
       setIsDirty(true);
     }
 
-    setHasError(isValid ? undefined : field);
-    onChange(isValid ? formattedDate : "");
+    setHasError(isValid ? undefined : errorType);
     setIsCalendarOpen(false);
+
+    if (isDateInValidFormat || isDirty) {
+      onChange(isValid ? formattedDate : "");
+    }
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
@@ -212,7 +221,7 @@ export const DateSelector = ({
     placeholder: placeholders?.[`${key}Format` as FormatPlaceholder] ?? "",
     labelInsideInput: true,
     value: internalValue[key] ?? '',
-    error: (hasError && [key, 'all'].includes(hasError)) && isDirty,
+    error: hasError && isDirty,
     type: "text", 
     inputMode: "numeric",
     ref: (el: HTMLInputElement) => { itemsRef.current[index] = el }, 
@@ -249,8 +258,18 @@ export const DateSelector = ({
       </div>
 
       {hasError && isDirty && (
-        <p className="p-p--small tc-red-500 w100 mt8">
-          {placeholders.error}
+        <p 
+          className={classNames(
+            hasError && isDirty ? 'd-block' : 'd-none',
+            "p-p--small tc-red-500 w100 mt8"
+          )}
+          data-testid="date-error-message"
+        >
+          {{
+            default: placeholders.error,
+            afterMax: placeholders.errorAfterMaxYear || `Please choose a date before ${yearBoundaries.max + 1}`,
+            beforeMin: placeholders.errorBeforeMinYear || `Please choose a date after ${yearBoundaries.min - 1}`,
+          }[hasError || "default"]}
         </p>
       )}
     </div>

@@ -1,0 +1,68 @@
+@use "../../scss/public/colors" as *;
+
+.wrapperBordered {
+  border: 1px solid $ds-grey-300;
+}
+
+.container {
+  border-bottom: 1px solid $ds-grey-300;
+
+  &Bordered:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.question {
+  color: $ds-grey-700;
+}
+
+.chevron {
+  color: $ds-grey-700;
+  transition: transform 0.3s ease-in-out;
+
+  &Open {
+    transform: rotate(180deg);
+  }
+}
+
+.answer {
+  &Icon {
+    padding-left: 20px;
+  }
+  
+  &IconDefault {
+    padding-left: 4px;
+  }
+}
+
+.buttonWrapper {
+  background-color: transparent!important;
+  color: $ds-primary-500;
+  outline-offset: -4px;
+
+  &Default {
+    outline-offset: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: $ds-primary-50;
+
+    .icon {
+      color: $ds-primary-500!important;
+    }
+
+    .question,
+    .chevron{
+      color: $ds-primary-500;
+    }
+  }
+
+  &:hover {
+    outline: 0 solid transparent!important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $ds-primary-500!important;
+  }
+}

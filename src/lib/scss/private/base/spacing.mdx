@@ -1,0 +1,187 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="CSS/Base/Spacing" />
+
+# Spacing
+
+Dirty swan provides way to express spacing
+
+## Margin / Padding / Gaps
+
+You can use the shorthand class name to define the four margin properties:
+
+`margin-top` with `.mt{x}`
+
+`margin-bottom` with `.mb{x}`
+
+`margin-right` with `.mr{x}`
+
+`margin-left` with `.ml{x}`
+
+You can use `mx` and `my` respectively to set horizontal or vertical margins:
+
+`margin-left & margin-right` with `.mx{x}`
+
+`margin-top & margin-bottom` with `.my{x}`
+
+The same applies for padding:
+
+`padding-top` with `.pt{x}`
+
+`padding-bottom` with `.pb{x}`
+
+`padding-right` with `.pr{x}`
+
+`padding-left` with `.pl{x}`
+
+`padding-left & padding-right` with `.px{x}`
+
+`padding-top & padding-bottom` with `.py{x}`
+
+Gaps can be expressed via 3 different classes, depending on your use case:
+
+`gap` with `.gap{x}`
+
+`column-gap` with `.c-gap{x}`
+
+`row-gap` with `.r-gap{x}`
+
+### Top margin / padding
+
+| Class   | Output           |
+| ------- | ---------------- |
+| `.mt0`  | `margin-top: 0`  |
+| `.mt8`  | `margin-top: 8`  |
+| `.mt16` | `margin-top: 16` |
+| `.mt24` | `margin-top: 24` |
+| `.mt32` | `margin-top: 32` |
+| `.mt40` | `margin-top: 40` |
+| `.mt48` | `margin-top: 48` |
+| `.mt56` | `margin-top: 56` |
+| `.mt64` | `margin-top: 64` |
+| `.mt72` | `margin-top: 72` |
+| `.mt80` | `margin-top: 80` |
+| `.mt88` | `margin-top: 88` |
+| `.mt96` | `margin-top: 96` |
+
+### Bottom margin / padding
+
+| Class   | Output              |
+| ------- | ------------------- |
+| `.mb0`  | `margin-bottom: 0`  |
+| `.mb8`  | `margin-bottom: 8`  |
+| `.mb16` | `margin-bottom: 16` |
+| `.mb24` | `margin-bottom: 24` |
+| `.mb32` | `margin-bottom: 32` |
+| `.mb40` | `margin-bottom: 40` |
+| `.mb48` | `margin-bottom: 48` |
+| `.mb56` | `margin-bottom: 56` |
+| `.mb64` | `margin-bottom: 64` |
+| `.mb72` | `margin-bottom: 72` |
+| `.mb80` | `margin-bottom: 80` |
+| `.mb88` | `margin-bottom: 88` |
+| `.mb96` | `margin-bottom: 96` |
+
+### Right margin / padding
+
+| Class   | Output             |
+| ------- | ------------------ |
+| `.mr0`  | `margin-right: 0`  |
+| `.mr8`  | `margin-right: 8`  |
+| `.mr16` | `margin-right: 16` |
+| `.mr24` | `margin-right: 24` |
+| `.mr32` | `margin-right: 32` |
+| `.mr40` | `margin-right: 40` |
+| `.mr48` | `margin-right: 48` |
+| `.mr56` | `margin-right: 56` |
+| `.mr64` | `margin-right: 64` |
+| `.mr72` | `margin-right: 72` |
+| `.mr80` | `margin-right: 80` |
+| `.mr88` | `margin-right: 88` |
+| `.mr96` | `margin-right: 96` |
+
+### Left margin / padding
+
+| Class   | Output            |
+| ------- | ----------------- |
+| `.ml0`  | `margin-left: 0`  |
+| `.ml8`  | `margin-left: 8`  |
+| `.ml16` | `margin-left: 16` |
+| `.ml24` | `margin-left: 24` |
+| `.ml32` | `margin-left: 32` |
+| `.ml40` | `margin-left: 40` |
+| `.ml48` | `margin-left: 48` |
+| `.ml56` | `margin-left: 56` |
+| `.ml64` | `margin-left: 64` |
+| `.ml72` | `margin-left: 72` |
+| `.ml80` | `margin-left: 80` |
+| `.ml88` | `margin-left: 88` |
+| `.ml96` | `margin-left: 96` |
+
+### Auto
+
+Note: this only applies to the margin property
+
+| Class      | Output                                   |
+| ---------- | ---------------------------------------- |
+| `.m-auto`  | `margin: auto`                           |
+| `.mt-auto` | `margin-top: auto`                       |
+| `.mb-auto` | `margin-bottom: auto`                    |
+| `.ml-auto` | `margin-left: auto`                      |
+| `.mr-auto` | `margin-right: auto`                     |
+| `.mx-auto` | `margin-left: auto & margin-right: auto` |
+| `.my-auto` | `margin-top: auto & margin-bottom: auto` |
+
+### gap (Equal gap horizontally and vertically)
+
+| Class    | Output    |
+| -------- | --------- |
+| `.gap0`  | `gap: 0`  |
+| `.gap8`  | `gap: 8`  |
+| `.gap6`  | `gap: 16` |
+| `.gap24` | `gap: 24` |
+| `.gap32` | `gap: 32` |
+| `.gap40` | `gap: 40` |
+| `.gap48` | `gap: 48` |
+| `.gap56` | `gap: 56` |
+| `.gap64` | `gap: 64` |
+| `.gap72` | `gap: 72` |
+| `.gap80` | `gap: 80` |
+| `.gap88` | `gap: 88` |
+| `.gap96` | `gap: 96` |
+
+### column-gap (Horizontal gap between items)
+
+| Class      | Output           |
+| ---------- | ---------------- |
+| `.c-gap0`  | `column-gap: 0`  |
+| `.c-gap8`  | `column-gap: 8`  |
+| `.c-gap6`  | `column-gap: 16` |
+| `.c-gap24` | `column-gap: 24` |
+| `.c-gap32` | `column-gap: 32` |
+| `.c-gap40` | `column-gap: 40` |
+| `.c-gap48` | `column-gap: 48` |
+| `.c-gap56` | `column-gap: 56` |
+| `.c-gap64` | `column-gap: 64` |
+| `.c-gap72` | `column-gap: 72` |
+| `.c-gap80` | `column-gap: 80` |
+| `.c-gap88` | `column-gap: 88` |
+| `.c-gap96` | `column-gap: 96` |
+
+### row-gap (Vertical gap between items)
+
+| Class      | Output        |
+| ---------- | ------------- |
+| `.r-gap0`  | `row-gap: 0`  |
+| `.r-gap8`  | `row-gap: 8`  |
+| `.r-gap6`  | `row-gap: 16` |
+| `.r-gap24` | `row-gap: 24` |
+| `.r-gap32` | `row-gap: 32` |
+| `.r-gap40` | `row-gap: 40` |
+| `.r-gap48` | `row-gap: 48` |
+| `.r-gap56` | `row-gap: 56` |
+| `.r-gap64` | `row-gap: 64` |
+| `.r-gap72` | `row-gap: 72` |
+| `.r-gap80` | `row-gap: 80` |
+| `.r-gap88` | `row-gap: 88` |
+| `.r-gap96` | `row-gap: 96` |

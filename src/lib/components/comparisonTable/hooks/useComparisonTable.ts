@@ -1,8 +1,7 @@
 import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
-
-import { ArrowValues } from '../components/TableArrows';
 import generateId from '../../../util/generateId';
+import { ArrowValues } from '../components/TableArrows';
 
 export const useComparisonTable = ({
   onSelectionChanged,
@@ -11,15 +10,14 @@ export const useComparisonTable = ({
 }) => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [headerWidth, setHeaderWidth] = useState(1400);
-  const [headerId, setHeaderId] = useState('');
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const [selectedSection, setSelectedSection] = useState('');
-
+  const [headerId, setHeaderId] = useState('');
   const headerRef = useRef<HTMLDivElement | null>(null);
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
 
-  const scrollContainerCallbackRef = useCallback((node) => {
+  const headerRefCallbackRef = useCallback((node) => {
     if (node) {
       setHeaderWidth(node.clientWidth);
     }
@@ -114,15 +112,6 @@ export const useComparisonTable = ({
   };
 
   const toggleMoreRows = async () => {
-    if (showMore && headerRef.current && contentContainerRef.current) {
-      window.scroll(
-        0,
-        window.scrollY +
-          (contentContainerRef.current.getBoundingClientRect().y -
-            headerRef.current.getBoundingClientRect().bottom)
-      );
-    }
-
     setShowMore(!showMore);
   };
 
@@ -134,9 +123,9 @@ export const useComparisonTable = ({
     const headerById = document.getElementById(headerId);
 
     if (headerById) {
-      scrollContainerCallbackRef(headerById);
+      headerRefCallbackRef(headerById);
     }
-  }, [headerId, scrollContainerCallbackRef]);
+  }, [headerId, headerRefCallbackRef]);
 
   useEffect(() => {
     setHeaderId(generateId());
@@ -155,7 +144,7 @@ export const useComparisonTable = ({
     setSelectedSection,
     selectedTabIndex,
     setSelectedTabIndex,
-    scrollContainerCallbackRef,
+    headerRefCallbackRef,
     handleArrowsClick,
     toggleMoreRows,
     showMore,

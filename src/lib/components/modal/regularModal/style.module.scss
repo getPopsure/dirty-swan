@@ -1,24 +1,4 @@
-@keyframes fade-in {
-  0% {
-    background-color: rgba($color: #000000, $alpha: 0);
-    visibility: hidden;
-  }
-  100% {
-    background-color: rgba($color: #000000, $alpha: 0.3);
-    visibility: visible;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    background-color: rgba($color: #000000, $alpha: 0.3);
-    visibility: visible;
-  }
-  to {
-    background-color: rgba($color: #000000, $alpha: 0);
-    visibility: hidden;
-  }
-}
+@use "../../../scss/public/colors" as *;
 
 @keyframes appear-in {
   0% {
@@ -46,46 +26,16 @@
   }
 }
 
-.overlay {
-  position: fixed;
-
-  z-index: 100;
-
-  overflow: auto;
-
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  animation: fade-in 0.3s both;
-
-  &--close {
-    @extend .overlay;
-    animation-delay: 0.1s;
-    animation: fade-out 0.3s both;
-  }
-}
-
-.container {
+.wrapper {
   position: relative;
-
-  display: flex;
-  align-items: center;
-
-  max-width: 592px;
-  width: 100%;
   min-height: 100%;
-
-  margin: 0 auto;
 
   animation-name: appear-in;
   animation-duration: 0.4s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 
-  &--close {
-    @extend .container;
+  &Close {
     animation-name: disappear-out;
     animation-duration: 0.4s;
     animation-delay: 0s;
@@ -94,25 +44,7 @@
   }
 }
 
-.body {
-  background-color: white;
-  border-radius: 8px;
-  margin: 80px auto;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-
-  padding: 24px 24px 0 24px;
-}
-
-.close {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.closeIcon {
-  margin: 0;
+.container {
+  max-height: 96vh;
+  overflow: hidden;
 }

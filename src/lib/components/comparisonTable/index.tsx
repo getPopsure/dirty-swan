@@ -81,7 +81,7 @@ const ComparisonTable = <T extends { id: number }>(
     showDetailsCaption = 'Show details',
     classNameOverrides,
     hideScrollBars,
-    hideScrollBarsMobile,
+    hideScrollBarsMobile = true,
     collapsibleSections,
     cellWidth,
     firstColumnWidth,
@@ -92,15 +92,15 @@ const ComparisonTable = <T extends { id: number }>(
 
   const {
     headerWidth,
+    headerId,
     contentContainerRef,
     selectedSection,
     setSelectedSection,
     selectedTabIndex,
-    scrollContainerCallbackRef,
+    headerRefCallbackRef,
     handleArrowsClick,
     toggleMoreRows,
     showMore,
-    headerId,
   } = useComparisonTable({ onSelectionChanged });
 
   const cssVariablesStyle = {
@@ -116,7 +116,7 @@ const ComparisonTable = <T extends { id: number }>(
   } as React.CSSProperties;
 
   return (
-    <ScrollSync onSync={scrollContainerCallbackRef}>
+    <ScrollSync onSync={headerRefCallbackRef}>
       <div
         style={cssVariablesStyle}
         className={classNames({
@@ -125,10 +125,11 @@ const ComparisonTable = <T extends { id: number }>(
         })}
       >
         <div
+          id={headerId}
           className={classNames(baseStyles.header, classNameOverrides?.header)}
         >
           <ScrollSyncPane>
-            <div id={headerId} className={classNames(baseStyles.container)}>
+            <div className={classNames(baseStyles.container)}>
               <div className={classNames(baseStyles['overflow-container'])}>
                 <div className={baseStyles['group-container']}>
                   <TableArrows

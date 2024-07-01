@@ -1,0 +1,72 @@
+@use "../../../scss/public/colors" as *;
+
+@keyframes fade-in {
+  0% {
+    background-color: rgba($color: #000, $alpha: 0);
+    visibility: hidden;
+  }
+  100% {
+    background-color: rgba($color: #000, $alpha: 0.3);
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    background-color: rgba($color: #000, $alpha: 0.3);
+    visibility: visible;
+  }
+  to {
+    background-color: rgba($color: #000, $alpha: 0);
+    visibility: hidden;
+  }
+}
+
+.overlay {
+  z-index: 1000;
+  overflow: auto;
+  
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  animation: fade-in 0.3s both;
+
+  &Close {
+    animation-delay: 0.1s;
+    animation: fade-out 0.3s both;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.body {
+  flex-grow: 1;
+  overflow: auto;
+
+  background:
+    linear-gradient($ds-white 30%, $ds-white),
+    linear-gradient($ds-white, $ds-white 70%),
+    linear-gradient($ds-grey-300 30%, $ds-grey-300),
+    linear-gradient($ds-grey-300, $ds-grey-300 70%);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid $ds-grey-300;
+}

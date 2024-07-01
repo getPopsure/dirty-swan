@@ -1,6 +1,7 @@
 name: Deploy
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,22 +10,20 @@ jobs:
   deploy-storybook-to-gh-pages:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
+
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - uses: actions/checkout@master
 
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
-          node-version: '16'
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Deploy storybook to GitHub Pages
-        run: yarn deploy-storybook -- --ci
-        env:
-          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+          install_command: yarn install
+          build_command: yarn build-storybook
+          path: storybook-static

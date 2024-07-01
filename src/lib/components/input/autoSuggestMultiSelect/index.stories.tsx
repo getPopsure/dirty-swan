@@ -10,22 +10,6 @@ const story = {
   argTypes: {
     options: {
       description: 'List of all options available to search from',
-      defaultValue: [
-        { value: 'feather', leftIcon: featherLogo },
-        { value: 'feather2', leftIcon: featherLogo },
-        {
-          value: 'feather3',
-          leftIcon: featherLogo,
-        },
-        {
-          value: 'dirtyswan',
-          leftIcon: featherLogo,
-        },
-        {
-          value: 'test value',
-          leftIcon: featherLogo,
-        },
-      ],
       table: {
         type: { 
           summary: 'Option[]'
@@ -34,10 +18,6 @@ const story = {
     },
     selectedValues: {
       description: 'List of all selected values',
-      defaultValue: [
-        { value: 'feather', leftIcon: featherLogo },
-        { value: 'feather2', leftIcon: featherLogo },
-      ],
       table: {
         type: { 
           summary: 'Option[]'
@@ -45,21 +25,17 @@ const story = {
       },
     },
     placeholder: {
-      defaultValue: 'Placeholder',
       description: 'Placeholder for DirtySwan Input component'
     },
     chipsListClassName: {
-      defaultValue: '',
       description: 'Class name for the most parent element of the Chip component',
-      control: { type: 'text' }
+      control: 'text'
     },
     multiSelectClassName: {
-      defaultValue: '',
       description: 'Class name for the most parent element of the AutoSuggestInput component',
-      control: { type: 'text' }
+      control: 'text'
     },
     wrapText: {
-      defaultValue: false,
       description: 'Wether or not wrap the entries in the dropdown or hide overflown text',
     },
     setValues: {
@@ -69,6 +45,32 @@ const story = {
         category: 'Callbacks',
       },
     },
+  },
+  args: {
+    options: [
+      { value: 'feather', leftIcon: featherLogo },
+      { value: 'feather2', leftIcon: featherLogo },
+      {
+        value: 'feather3',
+        leftIcon: featherLogo,
+      },
+      {
+        value: 'dirtyswan',
+        leftIcon: featherLogo,
+      },
+      {
+        value: 'test value',
+        leftIcon: featherLogo,
+      },
+    ], 
+    selectedValues:  [
+      { value: 'feather', leftIcon: featherLogo },
+      { value: 'feather2', leftIcon: featherLogo },
+    ],
+    placeholder: 'Placeholder',
+    chipsListClassName: '',
+    multiSelectClassName: '',
+    wrapText: false,
   },
   parameters: {
     componentSubtitle: 'AutoSuggestMultiSelect is a combination of the AutoSuggestInput and Chip components',
@@ -80,12 +82,6 @@ const story = {
         \nProp \`setValues\` function must be provided to keep track of removed and added option selections.`
       },
     },
-    customTypes: {
-      Option: `interface Option {
-      value: string; // value of option to be stored and displayed on UI
-      leftIcon?: string; // image of the provided option to be displayed on UI
-}`
-    }
   },
 };
 
@@ -119,6 +115,15 @@ export const AutoSuggestMultiSelectStory = ({
     </div>
   );
 };
+
+export const OptionType = () => (
+  <pre>
+    {`interface Option {
+      value: string; // value of option to be stored and displayed on UI
+      leftIcon?: string; // image of the provided option to be displayed on UI
+}`}
+  </pre>
+)
 
 AutoSuggestMultiSelectStory.storyName = "AutoSuggestMultiSelect";
 

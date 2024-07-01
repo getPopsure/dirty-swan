@@ -1,17 +1,29 @@
-module.exports = {
-  stories: [ '../src/**/*.stories.@(tsx|mdx)' ],
+import remarkGfm from 'remark-gfm';
+
+export default {
+  stories: ['../src/**/*.@(mdx|stories.@(tsx))'],
+
   addons: [
-    '@storybook/addon-docs',
     '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
-    'storybook-addon-designs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
   ],
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    })
-    return config
-  }
+
+  staticDirs: ['../public', '../storybook-assets'],
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript'
+  },
+
+  framework: '@storybook/react-vite',
 };

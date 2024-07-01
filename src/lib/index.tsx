@@ -21,14 +21,8 @@ import {
   RegularModal,
   BottomOrRegularModal,
 } from './components/modal';
-import {
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
-  InfoCard,
-  CardButton,
-} from './components/cards';
-import { Card, CardProps  } from './components/card';
+import { InfoCard, CardButton } from './components/cards';
+import { Card, CardProps  } from './components/cards/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
@@ -43,17 +37,18 @@ import {
   TableHeader,
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
-import { Markdown } from './components/markdown';
 import { Link } from './components/link';
 import { illustrations, images, IllustrationKeys } from './util/images';
 import { Spinner } from './components/spinner';
 import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
+import { Accordion, AccordionProps } from './components/accordion';
 
 export * from './components/icon';
 
 export {
+  Accordion,
   DateSelector,
   SignaturePad,
   AutocompleteAddress,
@@ -64,9 +59,6 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
-  CardWithTopLeftIcon,
-  CardWithLeftIcon,
-  CardWithTopIcon,
   InfoCard,
   Card,
   CardButton,
@@ -82,7 +74,6 @@ export {
   TableButton,
   TableInfoButton,
   SegmentedControl,
-  Markdown,
   Checkbox,
   Radio,
   Link,
@@ -97,6 +88,7 @@ export {
 };
 
 export type {
+  AccordionProps,
   IllustrationKeys,
   InformationBoxProps,
   FileType,

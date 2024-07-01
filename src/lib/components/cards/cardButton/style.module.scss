@@ -1,37 +1,4 @@
-@use '../../../scss/public/colors' as *;
-
-.container {
-  background-color: white;
-
-  padding: 8px 16px;
-
-  box-shadow: 0px 2px 20px rgba(97, 96, 162, 0.07);
-
-  border-radius: 8px;
-  border: 2px solid white;
-
-  transition: border 0.2s ease-in-out;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  text-decoration: none;
-
-  &:hover {
-    border: 2px solid $ds-primary-300;
-  }
-
-  &[disabled] {
-    pointer-events: none;
-    opacity: 0.25;
-  }
-
-  &:focus {
-    border: 2px solid $ds-primary-500;
-  }
-}
-
-.chevronRight {
-  min-width: 16px;
+.containerDisabled {
+  pointer-events: none;
+  opacity: 0.25;
 }
