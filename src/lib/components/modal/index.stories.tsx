@@ -353,6 +353,33 @@ export const RegularModalV2Story = ({ children, title }: Props) => {
           </DialogDescription>
         </DialogHeader>
         {children}
+
+        <button
+          className="p-btn--primary mt24 wmn3"
+          onClick={onOpenChange}
+        >
+          Continue
+        </button>
+
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export const RegularModalWithFooterV2Story = ({ children, title }: Props) => {
+  const [open, setOpen] = useState(false)
+  const onOpenChange = () => setOpen(!open)
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogTrigger className='p-btn--primary wmn2'>Click to open modal</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone.
+          </DialogDescription>
+        </DialogHeader>
+        {children}
         <DialogFooter>
           <div className='d-flex fd-row gap8'>
             <Button variant='textColor' className='w100' onClick={onOpenChange}>
@@ -361,13 +388,15 @@ export const RegularModalV2Story = ({ children, title }: Props) => {
             <Button className='w100' onClick={onOpenChange}>
               Continue
             </Button>
-            </div>
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
 
+
 RegularModalV2Story.storyName = 'RegularModal (Radix UI)';
+RegularModalWithFooterV2Story.storyName = 'RegularModal with Footer (Radix UI)';
 
 export default story;

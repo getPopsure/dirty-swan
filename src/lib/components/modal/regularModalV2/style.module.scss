@@ -150,8 +150,8 @@
 }
 
 .footer {
-  display: flex;
-  flex-direction: column-reverse;
+  // display: flex;
+  // flex-direction: column-reverse;
   border-top: 1px solid $ds-grey-300;
 }
 
@@ -161,8 +161,8 @@
   }
 
   .footer {
-    flex-direction: row;
-    justify-content: flex-end;
+    // flex-direction: row;
+    // justify-content: flex-end;
     gap: 0.5rem;
   }
 }
