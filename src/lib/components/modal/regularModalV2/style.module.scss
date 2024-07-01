@@ -1,0 +1,211 @@
+@use "../../../scss/public/colors" as *;
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.overlay[data-state="open"] {
+  animation: fadeIn 200ms;
+}
+
+.overlay[data-state="closed"] {
+  animation: fadeOut 200ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translate(-50%, -50%) translateX(-50%);
+  }
+
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    transform: translate(-50%, -50%) translateX(-50%);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translate(-50%, -48%);
+  }
+
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideOutToTop {
+  from {
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    transform: translate(-50%, -48%);
+  }
+}
+
+.content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  display: grid;
+  width: 100%;
+  max-width: 32rem;
+  transform: translate(-50%, -50%);
+  gap: 1rem;
+  // border: 1px solid var(--border-color);
+  background:
+    linear-gradient($ds-white 30%, $ds-white),
+    linear-gradient($ds-white, $ds-white 70%),
+    linear-gradient($ds-grey-300 30%, $ds-grey-300),
+    linear-gradient($ds-grey-300, $ds-grey-300 70%);
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 200ms;
+  border-radius: 0.5rem;
+}
+
+.content[data-state="open"] {
+  animation: fadeIn 200ms, zoomIn 200ms, slideInFromLeft 200ms, slideInFromTop 200ms;
+}
+
+.content[data-state="closed"] {
+  animation: fadeOut 200ms, zoomOut 200ms, slideOutToLeft 200ms, slideOutToTop 200ms;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column-reverse;
+  border-top: 1px solid $ds-grey-300;
+}
+
+@media (min-width: 640px) {
+  .header {
+    text-align: left;
+  }
+
+  .footer {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border-radius: 0.125rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  outline: none;
+  pointer-events: auto;
+  background-color: transparent;
+  color: inherit;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.closeButton:focus {
+  outline: none;
+}
+
+.closeButton:disabled {
+  pointer-events: none;
+}
+
+.closeButton[data-state="open"] {
+  // background-color: var(--accent-color);
+  // color: var(--muted-foreground-color);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01562em;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: hsl(var(--muted-foreground));
+}

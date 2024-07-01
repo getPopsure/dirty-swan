@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
+import { BottomModal, BottomOrRegularModal, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Props, RegularModal } from '.';
 import { Button } from '../button';
 
 const story = {
@@ -115,7 +115,7 @@ export const RegularModalStory = ({
 
   return (
     <>
-      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.  
+      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.
       If you want to use it for Mobile only, you should check BottomModal instead.
       Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
 
@@ -338,5 +338,36 @@ export const ModalWithFooterAndScroll = ({
     </>
   );
 }
+
+export const RegularModalV2Story = ({ children, title }: Props) => {
+  const [open, setOpen] = useState(false)
+  const onOpenChange = () => setOpen(!open)
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogTrigger className='p-btn--primary wmn2'>Click to open modal</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone.
+          </DialogDescription>
+        </DialogHeader>
+        {children}
+        <DialogFooter>
+          <div className='d-flex fd-row gap8'>
+            <Button variant='textColor' className='w100' onClick={onOpenChange}>
+              Skip
+            </Button>
+            <Button className='w100' onClick={onOpenChange}>
+              Continue
+            </Button>
+            </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+RegularModalV2Story.storyName = 'RegularModal (Radix UI)';
 
 export default story;
