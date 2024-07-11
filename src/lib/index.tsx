@@ -44,6 +44,7 @@ import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
 import { Accordion, AccordionProps } from './components/accordion';
+import { Table, TableData, TableProps } from './components/table';
 
 export * from './components/icon';
 
@@ -82,6 +83,7 @@ export {
   images,
   illustrations,
   Spinner,
+  Table,
   Toggle,
   Toaster,
   toast,
@@ -97,7 +99,9 @@ export type {
   UploadedFile,
   UploadStatus,
   CardProps,
-  IconWrapperProps
+  IconWrapperProps,
+  TableData,
+  TableProps
 };
 
 export type { DownloadStatus } from './models/download';

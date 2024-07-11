@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
 
+const noop = () => {};
+
 window.google = {
   maps: {
     StyledMapType: class {},
@@ -54,3 +56,16 @@ window.google = {
     Geocoder: class {},
   },
 };
+
+Object.defineProperty(window, 'scrollTo', { value: noop, writable: true });
+
+Object.defineProperty(window, 'matchMedia', {
+  value() {
+    return {
+      matches: true,
+      addEventListener() {},
+      removeEventListener() {},
+    };
+  },
+  writable: true,
+});

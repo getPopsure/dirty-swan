@@ -36,6 +36,7 @@ export {
   images,
   illustrations,
   Spinner,
+  Table,
   Toggle,
   Toaster,
   toast,
@@ -54,7 +55,9 @@ export type {
   UploadedFile,
   UploadStatus,
   CardProps,
-  IconWrapperProps
+  IconWrapperProps,
+  TableData,
+  TableProps
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));

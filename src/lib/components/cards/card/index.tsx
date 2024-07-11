@@ -101,7 +101,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           {icon && (
             <div
               className={classNamesUtil(
-                `d-flex tc-primary-500`,
+                `d-flex`,
                 styles.icon,
                 styles[`icon${density}`],
                 classNames?.icon, 
