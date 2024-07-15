@@ -42,7 +42,7 @@ export const InfoCard = ({
           alt={rightIcon === 'info' ? info.alt : rightIcon.alt}
         />
       )}
-      <div className="p-h4 ta-center mt64">{title}</div>
+      <h3 className="p-h4 ta-center mt64">{title}</h3>
       <div className="p-p mt16 tc-grey-600">{children}</div>
     </div>
   </div>
