@@ -47,7 +47,10 @@ const TableCell = ({
     <div className="d-flex fd-column gap8">
       <div className={classNames("d-flex gap8 ai-center", alignClassName, )}>
         {rating?.value && (
-          <span title={`${rating?.value} out of 3`}>
+          <span
+            data-testid="table-cell-rating"
+            title={`${rating?.value} out of 3`}
+          >
             {validRatingValues.map((value) => (
               <SelectedIcon
                 aria-hidden="true"
@@ -64,12 +67,14 @@ const TableCell = ({
             {boolean 
               ? (
                 <CheckIcon
+                  data-testid="table-cell-boolean-yes"
                   size={24}
                   aria-hidden
                   color="primary-500"
                 />
               ) : (
                 <XIcon
+                  data-testid="table-cell-boolean-no"
                   size={24}
                   aria-hidden
                   color="grey-400"
@@ -78,7 +83,14 @@ const TableCell = ({
           </span>
         )}
 
-        {text && <div className="p-p">{text}</div>}
+        {text && (
+          <div
+            className="p-p"
+            data-testid="table-cell-text"
+          >
+            {text}
+          </div>
+        )}
 
         {info && openModal && (
           <Button

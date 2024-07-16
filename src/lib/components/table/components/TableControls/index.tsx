@@ -36,6 +36,7 @@ const TableControls = ({
         onClick={() => navigateTable()}
         type="button"
         variant='filledGray'
+        data-testid="previous-section-button"
       >
         Previous section
       </Button>
@@ -50,6 +51,7 @@ const TableControls = ({
         onClick={() => navigateTable(true)}
         type="button"
         variant='filledGray'
+        data-testid="next-section-button"
       >
         Next section
       </Button>
