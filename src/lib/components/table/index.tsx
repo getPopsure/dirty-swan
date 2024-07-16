@@ -94,10 +94,10 @@ const Table = ({
     <div className={classNames(styles.wrapper, 'bg-white')}>
       {isMobile ? (
         <TableControls
-        activeSection={activeSection}
-        columnsLength={columnsLength}
-        navigateTable={navigateTable}
-        stickyHeaderTopOffset={stickyHeaderTopOffset}
+          activeSection={activeSection}
+          columnsLength={columnsLength}
+          navigateTable={navigateTable}
+          stickyHeaderTopOffset={stickyHeaderTopOffset}
         >
           <TableCell
             {...currentActiveSection}
@@ -144,6 +144,7 @@ const Table = ({
 
       {hideDetails && (
         <Card
+          data-testid='show-hide-details'
           classNames={{
             buttonWrapper: 'm8 mt32',
             title: 'd-flex gap8 ai-center jc-center',

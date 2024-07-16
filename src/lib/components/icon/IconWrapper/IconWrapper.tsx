@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { Color, Size } from '../../../models/styles';
 
 import styles from './styles.module.scss';
-import { ReactNode } from 'react';
+import { HTMLProps, ReactNode } from 'react';
 
-export type IconWrapperProps = {
+export interface IconWrapperProps extends HTMLProps<HTMLSpanElement> {
   children?: ReactNode;
   size?: Size;
   color?: Color;
@@ -18,6 +18,7 @@ const IconWrapper = ({
   color,
   className,
   noMargin,
+  ...rest
 }: IconWrapperProps) => (
   <span
     className={classNames('d-inline-block', className ?? '', {
@@ -29,6 +30,7 @@ const IconWrapper = ({
       width: `${size}px`,
       height: `${size}px`
     }}
+    {...rest}
   >
     <svg className='w100' viewBox="0 0 24 24" fill="none">
       {children}

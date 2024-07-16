@@ -141,6 +141,7 @@ export const TableStory = ({
   data,
   hideDetails,
   stickyHeaderTopOffset,
+  textOverrides,
   title
 }: TableProps) => (
   <Table
@@ -148,6 +149,7 @@ export const TableStory = ({
     data={data}
     hideDetails={hideDetails}
     stickyHeaderTopOffset={stickyHeaderTopOffset}
+    textOverrides={textOverrides}
     title={title}
   />
 );

@@ -77,7 +77,7 @@ export const useTableNavigation = ({
         behavior: 'smooth',
       });
     }
-  }, [activeSection]);
+  }, [enabled, activeSection]);
 
   return {
     activeSection,
