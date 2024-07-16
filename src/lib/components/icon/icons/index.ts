@@ -358,6 +358,7 @@ export { default as XOctagonIcon } from './XOctagon';
 export { default as XSquareIcon } from './XSquare';
 export { default as XIcon } from './X';
 export { default as YoutubeIcon } from './Youtube';
+export { default as ZapFilledIcon } from './ZapFilled';
 export { default as ZapOffIcon } from './ZapOff';
 export { default as ZapIcon } from './Zap';
 export { default as ZoomInIcon } from './ZoomIn';

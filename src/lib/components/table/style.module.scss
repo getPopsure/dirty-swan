@@ -1,0 +1,29 @@
+
+@use '../../scss/public/grid' as *;
+
+.wrapper {
+  position: relative;
+}
+
+.container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include p-size-tablet {
+    scroll-snap-type: unset;
+  }
+}
+
+.stickyHeader {
+  display: flex;
+  position: sticky;
+  z-index: 9;
+}
