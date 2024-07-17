@@ -104,7 +104,7 @@ const Table = ({
           <TableCell
             {...currentActiveSection}
             openModal={(info) =>
-              handleOpenModal(currentActiveSection?.text, info)
+              handleOpenModal(currentActiveSection?.content, info)
             }
           />
         </TableControls>

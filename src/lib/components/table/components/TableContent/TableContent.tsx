@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import styles from './TableContent.module.scss';
 import { TableCell, TableCellProps } from '../TableCell/TableCell';
 import { ReactNode, useCallback } from 'react';
-import { TableColumn } from '../TableColumn/TableColumn';
 
 export interface TableContentProps {
   className?: string;
@@ -24,16 +23,16 @@ const TableContent = ({
 }: TableContentProps) => {
   const headerRow = data?.[0];
 
-  const getColumnTextByKey = useCallback(
-    (key: number) => data?.[0]?.[key]?.text || '',
+  const getColumnContentByKey = useCallback(
+    (key: number) => data?.[0]?.[key]?.content || '',
     [data]
   );
 
   const handleOpenModal = (
     cellIndex: number,
-    modalBody: ReactNode,
+    modalContent: ReactNode,
     title?: ReactNode
-  ) => openModal?.(title || getColumnTextByKey(cellIndex), modalBody);
+  ) => openModal?.(title || getColumnContentByKey(cellIndex), modalContent);
 
   return (
     <table
@@ -45,34 +44,20 @@ const TableContent = ({
       {headerRow && (
         <thead className={hideHeader ? 'sr-only' : ''}>
           <tr>
-            {headerRow.map(({ cellProps, ...cell }, cellIndex) => {
-              const isFirstColumn = cellIndex === 0;
-
+            {headerRow.map((tableCellProps, cellIndex) => {
+              const isFirstCellInRow = cellIndex === 0;
               return (
-                <TableColumn
+                <TableCell
                   key={cellIndex}
-                  cellProps={cellProps}
-                  isColumn
-                  isFixed={isFirstColumn}
                   isHeader
-                >
-                  {isFirstColumn ? (
-                    <div
-                      aria-hidden
-                      className={classNames(
-                        'tc-grey-800 p-h2 p--serif',
-                        styles.title
-                      )}
-                    >
-                      {cell?.text}
-                    </div>
-                  ) : (
-                    <TableCell
-                      {...cell}
-                      openModal={(info) => handleOpenModal(0, info, cell?.text)}
-                    />
-                  )}
-                </TableColumn>
+                  isFirstCellInRow={isFirstCellInRow}
+                  isTopLeftCell={isFirstCellInRow}
+                  align={isFirstCellInRow ? 'left' : 'center'}
+                  openModal={(modalContent) =>
+                    handleOpenModal(0, modalContent, tableCellProps?.content)
+                  }
+                  {...tableCellProps}
+                />
               );
             })}
           </tr>
@@ -86,31 +71,27 @@ const TableContent = ({
           return (
             rowIndex > 0 && (
               <tr key={rowIndex} className={styles.tr}>
-                {row.map(({ cellProps, ...cell }, cellIndex) => {
-                  const isFirstCol = cellIndex === 0;
+                {row.map((tableCellProps, cellIndex) => {
                   const key = `${rowIndex}-${cellIndex}`;
-                  const isHeader = isFirstCol && !isSingleCell;
+                  const isFirstCellInRow = cellIndex === 0;
 
                   const onCelInfoClick = (info: ReactNode) =>
                     handleOpenModal(
                       cellIndex,
                       info,
-                      isFirstCol ? cell.text : undefined
+                      isFirstCellInRow ? tableCellProps.content : undefined
                     );
 
                   return (
-                    <TableColumn
+                    <TableCell
+                      align={
+                        isFirstCellInRow && !isSingleCell ? 'left' : 'center'
+                      }
+                      isFirstCellInRow={isFirstCellInRow}
+                      openModal={onCelInfoClick}
                       key={key}
-                      cellProps={cellProps}
-                      isFixed={isHeader}
-                      isHeader={isHeader}
-                    >
-                      <TableCell
-                        align={isFirstCol && !isSingleCell ? 'left' : 'center'}
-                        openModal={onCelInfoClick}
-                        {...cell}
-                      />
-                    </TableColumn>
+                      {...tableCellProps}
+                    />
                   );
                 })}
               </tr>
