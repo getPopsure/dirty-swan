@@ -1,4 +1,4 @@
-import { Table, TableData, TableProps } from '.';
+import { Table, TableData, TableProps } from './Table';
 import { DentalPlusIcon, PlaneIcon } from '../icon';
 
 const initialData: TableData = [
@@ -24,11 +24,11 @@ const initialData: TableData = [
       ],
       [
         { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1}, info: 'Maybe' },
-        { rating: { type: 'zap', value: 3} },
-        { rating: { type: 'star', value: 3} },
-      ]
-    ]
+        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+    ],
   },
   {
     section: {
@@ -50,11 +50,11 @@ const initialData: TableData = [
       ],
       [
         { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1}, info: 'Maybe' },
-        { rating: { type: 'zap', value: 3} },
-        { rating: { type: 'star', value: 3} },
-      ]
-    ]
+        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+    ],
   },
   {
     section: {
@@ -76,12 +76,12 @@ const initialData: TableData = [
       ],
       [
         { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1}, info: 'Maybe' },
-        { rating: { type: 'zap', value: 3} },
-        { rating: { type: 'star', value: 3} },
-      ]
-    ]
-  }
+        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+    ],
+  },
 ];
 
 const story = {
@@ -89,37 +89,45 @@ const story = {
   component: Table,
   argTypes: {
     data: {
-      description: 'This property allows to set the data of the Table component.'
+      description:
+        'This property allows to set the data of the Table component.',
     },
     title: {
-      description: 'This property allows to add a title to the Table component for accessibility purposes.'
+      description:
+        'This property allows to add a title to the Table component for accessibility purposes.',
     },
     collapsibleSections: {
-      description: 'This property allows to collapse the sections of the table.'
+      description:
+        'This property allows to collapse the sections of the table.',
     },
     hideDetails: {
-      description: 'This property allows to hide the details of the table.'
+      description: 'This property allows to hide the details of the table.',
     },
     stickyHeaderTopOffset: {
-      description: 'This property allows to set the offset of the sticky header.'
+      description:
+        'This property allows to set the offset of the sticky header.',
     },
     className: {
-      description: 'This property allows to set a custom class to the Table component.'
+      description:
+        'This property allows to set a custom class to the Table component.',
     },
     textOverrides: {
-      description: 'This property allows to set custom text for the show and hide details buttons.'
+      description:
+        'This property allows to set custom text for the show and hide details buttons.',
     },
     onSelectionChanged: {
-      description: 'This event is triggered when a selection is changed. It receives the index of the selection as an argument.',
+      description:
+        'This event is triggered when a selection is changed. It receives the index of the selection as an argument.',
       table: {
-        category: 'Events'
-      }
+        category: 'Events',
+      },
     },
     onModalOpen: {
-      description: 'This event is triggered when a modal is opened. It receives the title and body of the modal as arguments.',
+      description:
+        'This event is triggered when a modal is opened. It receives the title and body of the modal as arguments.',
       table: {
-        category: 'Events'
-      }
+        category: 'Events',
+      },
     },
   },
   args: {
@@ -132,8 +140,8 @@ const story = {
     textOverrides: {
       showDetails: 'Show details',
       hideDetails: 'Hide details',
-    }
-  }
+    },
+  },
 };
 
 export const TableStory = ({
@@ -142,7 +150,7 @@ export const TableStory = ({
   hideDetails,
   stickyHeaderTopOffset,
   textOverrides,
-  title
+  title,
 }: TableProps) => (
   <Table
     collapsibleSections={collapsibleSections}
@@ -179,10 +187,9 @@ type TableData = {
 }[];
       `}
     </pre>
-  )
-}
+  );
+};
 
-TableStory.storyName = "Table";
+TableStory.storyName = 'Table';
 
 export default story;
-

@@ -1,17 +1,22 @@
-import { TableCell, TableCellProps } from './components/TableCell';
+import { TableCell, TableCellProps } from './components/TableCell/TableCell';
 import { BottomOrRegularModal } from '../modal';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon } from '../icon';
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+} from '../icon';
 import { Card } from '../cards/card';
 
-import styles from './style.module.scss';
+import styles from './Table.module.scss';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { TableSection } from './components/TableSection';
+import { TableSection } from './components/TableSection/TableSection';
 import classNames from 'classnames';
-import { useTableNavigation } from './utils/useTableNavigation';
-import { TableControls } from './components/TableControls';
-import { TableContent } from './components/TableContent';
-import { useScrollSync } from './utils/useScrollSync';
+import { useTableNavigation } from './utils/useTableNavigation/useTableNavigation';
+import { TableControls } from './components/TableControls/TableControls';
+import { TableContent } from './components/TableContent/TableContent';
+import { useScrollSync } from './utils/useScrollSync/useScrollSync';
 
 type TextOverrides = {
   showDetails?: string;
@@ -24,8 +29,8 @@ export type TableSectionType = {
 };
 
 interface ModalType {
-  title?: ReactNode; 
-  body?: ReactNode; 
+  title?: ReactNode;
+  body?: ReactNode;
 }
 
 interface TableSectionData {
@@ -61,7 +66,7 @@ const Table = ({
   onSelectionChanged,
   stickyHeaderTopOffset = 0,
   textOverrides: definedTextOverrides,
-  title
+  title,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -73,21 +78,18 @@ const Table = ({
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
-  const {
-    activeSection,
-    navigateTable,
-  } = useTableNavigation({
+  const { activeSection, navigateTable } = useTableNavigation({
     enabled: isMobile,
     containerRef,
     columnsLength,
-    onSelectionChanged
+    onSelectionChanged,
   });
 
   const currentActiveSection = data?.[0]?.items?.[0]?.[activeSection];
 
   const handleOpenModal = (modalTitle: ReactNode, body: ReactNode) => {
     onModalOpen?.(modalTitle, body);
-    setInfoModal({ title: modalTitle, body })
+    setInfoModal({ title: modalTitle, body });
   };
 
   return (
@@ -101,7 +103,7 @@ const Table = ({
         >
           <TableCell
             {...currentActiveSection}
-            openModal={(info) => 
+            openModal={(info) =>
               handleOpenModal(currentActiveSection?.text, info)
             }
           />
@@ -112,10 +114,7 @@ const Table = ({
           className={styles.stickyHeader}
           style={{ top: `${stickyHeaderTopOffset}px` }}
         >
-          <div
-            className={styles.container}
-            ref={headerRef}
-          >
+          <div className={styles.container} ref={headerRef}>
             <TableContent
               data={[data?.[0]?.items?.[0]]}
               title={title}
@@ -126,10 +125,7 @@ const Table = ({
         </div>
       )}
 
-      <div
-        ref={containerRef}
-        className={classNames(styles.container, 'pb8')}
-      >
+      <div ref={containerRef} className={classNames(styles.container, 'pb8')}>
         <TableSection
           data={data}
           title={title}
@@ -144,27 +140,28 @@ const Table = ({
 
       {hideDetails && (
         <Card
-          data-testid='show-hide-details'
+          data-testid="show-hide-details"
           classNames={{
             buttonWrapper: 'm8 mt32',
             title: 'd-flex gap8 ai-center jc-center',
             wrapper: 'bg-grey-200',
           }}
-          title={(
+          title={
             <>
               {shouldHideDetails
                 ? textOverrides.showDetails
                 : textOverrides.hideDetails}
-              {shouldHideDetails
-                  ? <ChevronDownIcon size={24} />
-                  : <ChevronUpIcon size={24} />
-                }
+              {shouldHideDetails ? (
+                <ChevronDownIcon size={24} />
+              ) : (
+                <ChevronUpIcon size={24} />
+              )}
             </>
-          )}
+          }
           actionIcon={null}
           dropShadow={false}
-          titleVariant='small'
-          density='compact'
+          titleVariant="small"
+          density="compact"
           onClick={() => setShouldHideDetails((current) => !current)}
         />
       )}
@@ -174,9 +171,7 @@ const Table = ({
         title={infoModal?.title}
         onClose={() => setInfoModal(null)}
       >
-        <div className='pt8 p24 wmn6'>
-          {infoModal?.body}
-        </div>
+        <div className="pt8 p24 wmn6">{infoModal?.body}</div>
       </BottomOrRegularModal>
     </div>
   );

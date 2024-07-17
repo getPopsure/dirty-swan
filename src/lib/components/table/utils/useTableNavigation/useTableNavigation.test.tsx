@@ -1,13 +1,13 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useTableNavigation } from '.';
+import { useTableNavigation } from './useTableNavigation';
 import { RefObject } from 'react';
 const defaultContainerRef = {
   current: {
     scroll: jest.fn(),
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
-    getBoundingClientRect: jest.fn(() => ({ width: 800 }))
-  }
+    getBoundingClientRect: jest.fn(() => ({ width: 800 })),
+  },
 } as unknown as RefObject<HTMLElement>;
 
 describe('useTableNavigation', () => {
