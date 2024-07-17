@@ -3,12 +3,13 @@ import classNames from 'classnames';
 import styles from './TableContent.module.scss';
 import { TableCell, TableCellProps } from '../TableCell/TableCell';
 import { ReactNode, useCallback } from 'react';
+import { ModalData, ModalFunction } from '../../types';
 
 export interface TableContentProps {
   className?: string;
   data: TableCellProps[][];
   hideHeader?: boolean;
-  openModal?: (title: ReactNode, body: ReactNode) => void;
+  openModal?: ModalFunction;
   title: string;
   width?: number | string;
 }
@@ -28,11 +29,17 @@ const TableContent = ({
     [data]
   );
 
-  const handleOpenModal = (
-    cellIndex: number,
-    modalContent: ReactNode,
-    title?: ReactNode
-  ) => openModal?.(title || getColumnContentByKey(cellIndex), modalContent);
+  const handleOpenModal = ({
+    cellIndex,
+    body,
+    title,
+  }: ModalData & {
+    cellIndex: number;
+  }) =>
+    openModal?.({
+      body,
+      title: title || getColumnContentByKey(cellIndex),
+    });
 
   return (
     <table
@@ -53,8 +60,12 @@ const TableContent = ({
                   isFirstCellInRow={isFirstCellInRow}
                   isTopLeftCell={isFirstCellInRow}
                   align={isFirstCellInRow ? 'left' : 'center'}
-                  openModal={(modalContent) =>
-                    handleOpenModal(0, modalContent, tableCellProps?.content)
+                  openModal={(body) =>
+                    handleOpenModal({
+                      cellIndex,
+                      body,
+                      title: tableCellProps?.content,
+                    })
                   }
                   {...tableCellProps}
                 />
@@ -75,12 +86,14 @@ const TableContent = ({
                   const key = `${rowIndex}-${cellIndex}`;
                   const isFirstCellInRow = cellIndex === 0;
 
-                  const onCelInfoClick = (info: ReactNode) =>
-                    handleOpenModal(
+                  const onCelInfoClick = (body: ReactNode) =>
+                    handleOpenModal({
                       cellIndex,
-                      info,
-                      isFirstCellInRow ? tableCellProps.content : undefined
-                    );
+                      body,
+                      title: isFirstCellInRow
+                        ? tableCellProps.content
+                        : undefined,
+                    });
 
                   return (
                     <TableCell

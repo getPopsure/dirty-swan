@@ -7,6 +7,7 @@ import { Card } from '../../../cards/card';
 import styles from './TableSection.module.scss';
 import classNames from 'classnames';
 import { Collapsible } from './Collapsible';
+import { ModalFunction } from '../../types';
 
 export type TableSectionType = {
   title?: string;
@@ -26,7 +27,7 @@ export interface TableSectionProps {
   data: TableData;
   hideDetails?: boolean;
   isMobile?: boolean;
-  openModal?: (title: ReactNode, body: ReactNode) => void;
+  openModal?: ModalFunction;
   shouldHideDetails?: boolean;
   title: string;
 }

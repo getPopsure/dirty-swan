@@ -6,7 +6,7 @@ const initialData: TableData = [
     items: [
       [
         { content: 'Our plans' },
-        { content: 'Surgery', modalContent: 'More info on this one he' },
+        { content: 'Surgery', modalContent: 'More info on surgery' },
         { content: 'Standard' },
         { content: 'Premium' },
       ],
@@ -20,15 +20,18 @@ const initialData: TableData = [
         { content: 'Yes' },
       ],
       [
-        { content: 'Operations', modalContent: 'info' },
-        { checkmarkValue: true, modalContent: 'Maybe' },
+        { content: 'Operations', modalContent: 'Operations info' },
+        { checkmarkValue: true, modalContent: 'Operations info column 2' },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
       [
-        { content: 'Rating', modalContent: 'info' },
-        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
-        { rating: { type: 'zap', value: 3 } },
+        { content: 'Rating', modalContent: 'Rating info' },
+        { rating: { type: 'zap', value: 1 } },
+        {
+          rating: { type: 'zap', value: 3 },
+          modalContent: 'Rating info column 3',
+        },
         { rating: { type: 'star', value: 3 } },
       ],
     ],
