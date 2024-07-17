@@ -1,12 +1,7 @@
 import { TableCell, TableCellProps } from './components/TableCell/TableCell';
 import { BottomOrRegularModal } from '../modal';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronUpIcon,
-} from '../icon';
+import { useRef, useState } from 'react';
+import { ChevronDownIcon, ChevronUpIcon } from '../icon';
 import { Card } from '../cards/card';
 
 import styles from './Table.module.scss';
@@ -17,26 +12,12 @@ import { useTableNavigation } from './utils/useTableNavigation/useTableNavigatio
 import { TableControls } from './components/TableControls/TableControls';
 import { TableContent } from './components/TableContent/TableContent';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
+import { ModalData, ModalFunction, TableSectionData } from './types';
 
 type TextOverrides = {
   showDetails?: string;
   hideDetails?: string;
 };
-
-export type TableSectionType = {
-  title?: string;
-  icon?: ReactNode;
-};
-
-interface ModalType {
-  title?: ReactNode;
-  body?: ReactNode;
-}
-
-interface TableSectionData {
-  section?: TableSectionType;
-  items: TableCellProps[][];
-}
 
 export type TableData = TableSectionData[];
 
@@ -45,7 +26,7 @@ export interface TableProps {
   collapsibleSections?: boolean;
   data: TableData;
   hideDetails?: boolean;
-  onModalOpen?: (title: ReactNode, body: ReactNode) => void;
+  onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
   stickyHeaderTopOffset?: number;
   textOverrides?: TextOverrides;
@@ -70,7 +51,7 @@ const Table = ({
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
-  const [infoModal, setInfoModal] = useState<ModalType | null>(null);
+  const [infoModalData, setInfoModalData] = useState<ModalData | null>(null);
   const [shouldHideDetails, setShouldHideDetails] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -87,9 +68,9 @@ const Table = ({
 
   const currentActiveSection = data?.[0]?.items?.[0]?.[activeSection];
 
-  const handleOpenModal = (modalTitle: ReactNode, body: ReactNode) => {
-    onModalOpen?.(modalTitle, body);
-    setInfoModal({ title: modalTitle, body });
+  const handleOpenModal: ModalFunction = ({ body, title }) => {
+    onModalOpen?.({ body, title });
+    setInfoModalData({ body, title });
   };
 
   return (
@@ -103,9 +84,13 @@ const Table = ({
         >
           <TableCell
             {...currentActiveSection}
-            openModal={(info) =>
-              handleOpenModal(currentActiveSection?.text, info)
+            openModal={(body) =>
+              handleOpenModal({
+                body,
+                title: currentActiveSection?.content,
+              })
             }
+            isNavigation
           />
         </TableControls>
       ) : (
@@ -167,11 +152,11 @@ const Table = ({
       )}
 
       <BottomOrRegularModal
-        isOpen={infoModal?.body ? true : false}
-        title={infoModal?.title}
-        onClose={() => setInfoModal(null)}
+        isOpen={infoModalData?.body ? true : false}
+        title={infoModalData?.title}
+        onClose={() => setInfoModalData(null)}
       >
-        <div className="pt8 p24 wmn6">{infoModal?.body}</div>
+        <div className="pt8 p24 wmn6">{infoModalData?.body}</div>
       </BottomOrRegularModal>
     </div>
   );

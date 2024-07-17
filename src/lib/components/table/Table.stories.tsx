@@ -5,27 +5,33 @@ const initialData: TableData = [
   {
     items: [
       [
-        { text: 'Our plans' },
-        { text: 'Surgery', info: 'More info on this one he' },
-        { text: 'Standard' },
-        { text: 'Premium' },
+        { content: 'Our plans' },
+        { content: 'Surgery', modalContent: 'More info on surgery' },
+        { content: 'Standard' },
+        { content: 'Premium' },
       ],
       [
-        { text: 'Regular vet visits & medication', description: 'Annual Only' },
-        { text: 'No', description: 'Annual Only' },
-        { text: 'Yes' },
-        { text: 'Yes' },
+        {
+          content: 'Regular vet visits & medication',
+          subContent: 'Annual Only',
+        },
+        { content: 'No', subContent: 'Annual Only' },
+        { content: 'Yes' },
+        { content: 'Yes' },
       ],
       [
-        { text: 'Operations', info: 'info' },
-        { boolean: true, info: 'Maybe' },
-        { boolean: false },
-        { boolean: true },
+        { content: 'Operations', modalContent: 'Operations info' },
+        { checkmarkValue: true, modalContent: 'Operations info column 2' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
       ],
       [
-        { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
-        { rating: { type: 'zap', value: 3 } },
+        { content: 'Rating', modalContent: 'Rating info' },
+        { rating: { type: 'zap', value: 1 } },
+        {
+          rating: { type: 'zap', value: 3 },
+          modalContent: 'Rating info column 3',
+        },
         { rating: { type: 'star', value: 3 } },
       ],
     ],
@@ -37,20 +43,20 @@ const initialData: TableData = [
     },
     items: [
       [
-        { text: 'Regular vet visits & medication' },
-        { text: 'No' },
-        { text: 'Yes' },
-        { text: 'Yes' },
+        { content: 'Regular vet visits & medication' },
+        { content: 'No' },
+        { content: 'Yes' },
+        { content: 'Yes' },
       ],
       [
-        { text: 'Operations', info: 'info' },
-        { boolean: true, info: 'Maybe' },
-        { boolean: false },
-        { boolean: true },
+        { content: 'Operations', modalContent: 'info' },
+        { checkmarkValue: true, modalContent: 'Maybe' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
       ],
       [
-        { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
+        { content: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
         { rating: { type: 'zap', value: 3 } },
         { rating: { type: 'star', value: 3 } },
       ],
@@ -63,20 +69,20 @@ const initialData: TableData = [
     },
     items: [
       [
-        { text: 'Regular vet visits & medication' },
-        { text: 'No', boolean: false },
-        { text: 'Yes' },
-        { text: 'Yes' },
+        { content: 'Regular vet visits & medication' },
+        { content: 'No', checkmarkValue: false },
+        { content: 'Yes' },
+        { content: 'Yes' },
       ],
       [
-        { text: 'Operations', info: 'info' },
-        { boolean: true, info: 'Maybe' },
-        { boolean: false },
-        { boolean: true },
+        { content: 'Operations', modalContent: 'info' },
+        { checkmarkValue: true, modalContent: 'Maybe' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
       ],
       [
-        { text: 'Rating', info: 'info' },
-        { rating: { type: 'zap', value: 1 }, info: 'Maybe' },
+        { content: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
         { rating: { type: 'zap', value: 3 } },
         { rating: { type: 'star', value: 3 } },
       ],
@@ -89,41 +95,40 @@ const story = {
   component: Table,
   argTypes: {
     data: {
-      description:
+      subContent:
         'This property allows to set the data of the Table component.',
     },
     title: {
-      description:
+      subContent:
         'This property allows to add a title to the Table component for accessibility purposes.',
     },
     collapsibleSections: {
-      description:
-        'This property allows to collapse the sections of the table.',
+      subContent: 'This property allows to collapse the sections of the table.',
     },
     hideDetails: {
-      description: 'This property allows to hide the details of the table.',
+      subContent: 'This property allows to hide the details of the table.',
     },
     stickyHeaderTopOffset: {
-      description:
+      subContent:
         'This property allows to set the offset of the sticky header.',
     },
     className: {
-      description:
+      subContent:
         'This property allows to set a custom class to the Table component.',
     },
     textOverrides: {
-      description:
+      subContent:
         'This property allows to set custom text for the show and hide details buttons.',
     },
     onSelectionChanged: {
-      description:
+      subContent:
         'This event is triggered when a selection is changed. It receives the index of the selection as an argument.',
       table: {
         category: 'Events',
       },
     },
     onModalOpen: {
-      description:
+      subContent:
         'This event is triggered when a modal is opened. It receives the title and body of the modal as arguments.',
       table: {
         category: 'Events',
@@ -182,7 +187,7 @@ type TableData = {
       type: 'zap' | 'star';
     }
     text?: ReactNode;
-    openModal?: (info: ReactNode) => void;
+    openModal?: (modalContent: ReactNode) => void;
   }[][];
 }[];
       `}

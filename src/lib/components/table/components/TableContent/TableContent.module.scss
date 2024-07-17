@@ -4,7 +4,7 @@
 .table {
   border-collapse: collapse;
   table-layout: fixed;
-  
+
   @include p-size-tablet {
     min-width: 845px;
   }
@@ -12,27 +12,4 @@
 
 .tr {
   min-height: 72px;
-}
-
-.title {
-  position: relative;
-  display: none;
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: calc(
-      50% + 16px
-    ); // Display bottom border at the same distance regardless of cell height
-
-    height: 4px;
-    width: 100%;
-    max-width: 140px;
-    background-color: $ds-primary-500;
-  }
-
-  @include p-size-tablet {
-    display: flex;
-  }
 }

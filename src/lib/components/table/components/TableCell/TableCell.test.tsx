@@ -5,14 +5,14 @@ const openModal = jest.fn();
 
 describe('TableCell', () => {
   it('renders the component with boolean true', () => {
-    render(<TableCell boolean={true} />);
+    render(<TableCell checkmarkValue={true} />);
 
     expect(screen.getByTitle('Yes')).toBeInTheDocument();
     expect(screen.getByTestId('table-cell-boolean-yes')).toBeInTheDocument();
   });
 
   it('renders the component with boolean false', () => {
-    render(<TableCell boolean={false} />);
+    render(<TableCell checkmarkValue={false} />);
 
     expect(screen.getByTitle('No')).toBeInTheDocument();
     expect(screen.getByTestId('table-cell-boolean-no')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('TableCell', () => {
   });
 
   it('renders the component with text', () => {
-    render(<TableCell text="Sample text" />);
+    render(<TableCell content="Sample text" />);
 
     expect(screen.getByText('Sample text')).toBeInTheDocument();
   });
@@ -62,7 +62,9 @@ describe('TableCell', () => {
   });
 
   it('calls openModal when info button is clicked', () => {
-    render(<TableCell info="Additional information" openModal={openModal} />);
+    render(
+      <TableCell modalContent="Additional information" openModal={openModal} />
+    );
 
     // Click info button
     screen.getByText('View more info').click();
