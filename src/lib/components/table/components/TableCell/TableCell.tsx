@@ -28,6 +28,7 @@ interface PositionalTableCellProps {
   isHeader?: boolean;
   isFirstCellInRow?: boolean;
   isTopLeftCell?: boolean;
+  isNavigation?: boolean;
 }
 
 export type TableCellProps = BaseTableCellProps & PositionalTableCellProps;
@@ -38,13 +39,18 @@ const TableCell = ({
   content = '',
   isFirstCellInRow = false,
   isHeader = false,
+  isNavigation = false,
   isTopLeftCell = false,
   modalContent = '',
   openModal,
   rating,
   subContent = '',
 }: TableCellProps) => {
-  const Tag = isHeader || isFirstCellInRow ? 'th' : 'td';
+  // prettier-ignore
+  const Tag = isNavigation
+    ? 'div'
+    : isHeader || isFirstCellInRow ? 'th' : 'td';
+
   // prettier-ignore
   const thScope = isHeader
     ? 'col'
@@ -130,7 +136,7 @@ const TableCell = ({
 
           {modalContent && openModal && (
             <Button
-              className={classNames(styles.button)}
+              className={styles.button}
               hideLabel
               leftIcon={<InfoIcon size={20} />}
               onClick={() => openModal(modalContent)}

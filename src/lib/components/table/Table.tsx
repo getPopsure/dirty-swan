@@ -12,17 +12,12 @@ import { useTableNavigation } from './utils/useTableNavigation/useTableNavigatio
 import { TableControls } from './components/TableControls/TableControls';
 import { TableContent } from './components/TableContent/TableContent';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
-import { ModalData, ModalFunction, TableSectionType } from './types';
+import { ModalData, ModalFunction, TableSectionData } from './types';
 
 type TextOverrides = {
   showDetails?: string;
   hideDetails?: string;
 };
-
-interface TableSectionData {
-  section?: TableSectionType;
-  items: TableCellProps[][];
-}
 
 export type TableData = TableSectionData[];
 
@@ -95,6 +90,7 @@ const Table = ({
                 title: currentActiveSection?.content,
               })
             }
+            isNavigation
           />
         </TableControls>
       ) : (

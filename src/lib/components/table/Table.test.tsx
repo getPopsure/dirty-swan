@@ -1,20 +1,26 @@
 import { render, screen } from '../../util/testUtils';
 import { Table } from './Table';
+import { TableSectionData } from './types';
 
-const data = [
+const data: TableSectionData[] = [
   {
     section: {
       title: 'Section 1',
       icon: <span>Icon 1</span>,
     },
-    items: [[{ text: 'Item 1' }, { text: 'Item 2' }]],
+    items: [[{ content: 'Item 1' }, { content: 'Item 2' }]],
   },
   {
     section: {
       title: 'Section 2',
       icon: <span>Icon 2</span>,
     },
-    items: [[{ text: 'Item 3' }, { text: 'Item 4', info: 'Additional item' }]],
+    items: [
+      [
+        { content: 'Item 3' },
+        { content: 'Item 4', modalContent: 'Additional item' },
+      ],
+    ],
   },
 ];
 

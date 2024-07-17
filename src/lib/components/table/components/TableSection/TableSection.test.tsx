@@ -4,8 +4,8 @@ import { TableSection, TableSectionProps } from './TableSection';
 const mockData: TableSectionProps['data'] = [
   {
     items: [
-      [{ text: 'Item 1.1.1' }, { text: 'Item 1.1.2' }],
-      [{ text: 'Item 1.2.1' }, { text: 'Item 1.2.2' }],
+      [{ content: 'Item 1.1.1' }, { content: 'Item 1.1.2' }],
+      [{ content: 'Item 1.2.1' }, { content: 'Item 1.2.2' }],
     ],
   },
   {
@@ -13,8 +13,8 @@ const mockData: TableSectionProps['data'] = [
       title: 'Section 2',
     },
     items: [
-      [{ text: 'Item 2.1.1' }, { text: 'Item 2.1.2' }],
-      [{ text: 'Item 2.2.1' }, { text: 'Item 2.2.2' }],
+      [{ content: 'Item 2.1.1' }, { content: 'Item 2.1.2' }],
+      [{ content: 'Item 2.2.1' }, { content: 'Item 2.2.2' }],
     ],
   },
 ];
