@@ -1,5 +1,5 @@
 import { render, screen } from '../../../../util/testUtils';
-import { TableControls, TableControlsProps } from '.';
+import { TableControls, TableControlsProps } from './TableControls';
 
 const mockNavigateTable = jest.fn();
 
@@ -39,7 +39,9 @@ describe('TableControls', () => {
   });
 
   it('calls navigateTable with no arguments when previous button is clicked', async () => {
-    const { user } = render(<TableControls {...defaultProps}  activeSection={2} />);
+    const { user } = render(
+      <TableControls {...defaultProps} activeSection={2} />
+    );
 
     await user.click(screen.getByTestId('previous-section-button'));
 

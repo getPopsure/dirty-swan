@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useScrollSync } from '.';
+import { useScrollSync } from './useScrollSync';
 
 describe('useScrollSync', () => {
   it('should sync scrollLeft of source and target elements', () => {

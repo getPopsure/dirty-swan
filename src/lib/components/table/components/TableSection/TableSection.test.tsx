@@ -1,17 +1,11 @@
 import { render, screen } from '../../../../util/testUtils';
-import { TableSection, TableSectionProps } from './index';
+import { TableSection, TableSectionProps } from './TableSection';
 
 const mockData: TableSectionProps['data'] = [
   {
     items: [
-      [
-        { text: 'Item 1.1.1' },
-        { text: 'Item 1.1.2' },
-      ],
-      [
-        { text: 'Item 1.2.1' },
-        { text: 'Item 1.2.2' },
-      ],
+      [{ text: 'Item 1.1.1' }, { text: 'Item 1.1.2' }],
+      [{ text: 'Item 1.2.1' }, { text: 'Item 1.2.2' }],
     ],
   },
   {
@@ -19,39 +13,21 @@ const mockData: TableSectionProps['data'] = [
       title: 'Section 2',
     },
     items: [
-      [
-        { text: 'Item 2.1.1' },
-        { text: 'Item 2.1.2' },
-      ],
-      [
-        { text: 'Item 2.2.1' },
-        { text: 'Item 2.2.2' },
-      ],
+      [{ text: 'Item 2.1.1' }, { text: 'Item 2.1.2' }],
+      [{ text: 'Item 2.2.1' }, { text: 'Item 2.2.2' }],
     ],
   },
 ];
 
 describe('TableSection', () => {
   it('renders the table sections with sections', () => {
-    render(
-      <TableSection
-        collapsibleSections
-        data={mockData}
-        title="Table"
-      />
-    );
+    render(<TableSection collapsibleSections data={mockData} title="Table" />);
 
     expect(screen.getByText('Section 2')).toBeInTheDocument();
   });
 
   it('renders the table sections with sections data', () => {
-    render(
-      <TableSection
-        collapsibleSections
-        data={mockData}
-        title="Table"
-      />
-    );
+    render(<TableSection collapsibleSections data={mockData} title="Table" />);
 
     expect(screen.getByText('Item 1.2.1')).toBeInTheDocument();
     expect(screen.getByText('Item 1.2.2')).toBeInTheDocument();

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 
-import styles from './style.module.scss';
-import { TableCell, TableCellProps } from '../TableCell';
+import styles from './TableContent.module.scss';
+import { TableCell, TableCellProps } from '../TableCell/TableCell';
 import { ReactNode, useCallback } from 'react';
-import { TableColumn } from '../TableColumn';
+import { TableColumn } from '../TableColumn/TableColumn';
 
 export interface TableContentProps {
   className?: string;
@@ -20,7 +20,7 @@ const TableContent = ({
   hideHeader,
   openModal,
   title,
-  width
+  width,
 }: TableContentProps) => {
   const headerRow = data?.[0];
 
@@ -33,22 +33,19 @@ const TableContent = ({
     cellIndex: number,
     modalBody: ReactNode,
     title?: ReactNode
-  ) => openModal?.(
-    title || getColumnTextByKey(cellIndex),
-    modalBody
-  );
+  ) => openModal?.(title || getColumnTextByKey(cellIndex), modalBody);
 
   return (
     <table
       className={classNames(className, 'w100', styles.table)}
       width={width}
     >
-      <caption className='sr-only'>{title}</caption>
+      <caption className="sr-only">{title}</caption>
 
       {headerRow && (
         <thead className={hideHeader ? 'sr-only' : ''}>
           <tr>
-            {headerRow.map(({ cellProps, ...cell}, cellIndex) => {
+            {headerRow.map(({ cellProps, ...cell }, cellIndex) => {
               const isFirstColumn = cellIndex === 0;
 
               return (
@@ -86,32 +83,38 @@ const TableContent = ({
         {data.map((row, rowIndex) => {
           const isSingleCell = row.length === 1;
 
-          return rowIndex > 0 && (
-            <tr key={rowIndex} className={styles.tr}>
-              {row.map(({ cellProps, ...cell }, cellIndex) => {
-                const isFirstCol = cellIndex === 0;
-                const key = `${rowIndex}-${cellIndex}`;
-                const isHeader = isFirstCol && !isSingleCell;
+          return (
+            rowIndex > 0 && (
+              <tr key={rowIndex} className={styles.tr}>
+                {row.map(({ cellProps, ...cell }, cellIndex) => {
+                  const isFirstCol = cellIndex === 0;
+                  const key = `${rowIndex}-${cellIndex}`;
+                  const isHeader = isFirstCol && !isSingleCell;
 
-                const onCelInfoClick = (info: ReactNode) =>
-                  handleOpenModal(cellIndex, info, isFirstCol ? cell.text : undefined)
-                
-                return (
-                  <TableColumn
-                    key={key}
-                    cellProps={cellProps}
-                    isFixed={isHeader}
-                    isHeader={isHeader}
-                  >
-                    <TableCell
-                      align={isFirstCol && !isSingleCell ? "left" : "center"}
-                      openModal={onCelInfoClick}
-                      {...cell}
-                    />
-                  </TableColumn>
-                );
-              })}
-            </tr>
+                  const onCelInfoClick = (info: ReactNode) =>
+                    handleOpenModal(
+                      cellIndex,
+                      info,
+                      isFirstCol ? cell.text : undefined
+                    );
+
+                  return (
+                    <TableColumn
+                      key={key}
+                      cellProps={cellProps}
+                      isFixed={isHeader}
+                      isHeader={isHeader}
+                    >
+                      <TableCell
+                        align={isFirstCol && !isSingleCell ? 'left' : 'center'}
+                        openModal={onCelInfoClick}
+                        {...cell}
+                      />
+                    </TableColumn>
+                  );
+                })}
+              </tr>
+            )
           );
         })}
       </tbody>

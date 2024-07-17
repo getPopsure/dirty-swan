@@ -1,17 +1,17 @@
 import { RenderResult } from '@testing-library/react';
-import { TableColumn, TableColumnProps } from '.';
+import { TableColumn, TableColumnProps } from './TableColumn';
 import { render, screen } from '../../../../util/testUtils';
 
-
-const setup = (props: TableColumnProps): RenderResult => render(
-  <table>
-    <tbody>
-      <tr>
-        <TableColumn {...props} />
-      </tr>
-    </tbody>
-  </table>
-);
+const setup = (props: TableColumnProps): RenderResult =>
+  render(
+    <table>
+      <tbody>
+        <tr>
+          <TableColumn {...props} />
+        </tr>
+      </tbody>
+    </table>
+  );
 
 describe('TableColumn', () => {
   it('renders children correctly', () => {

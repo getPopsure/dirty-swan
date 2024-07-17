@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '../../../icon';
-import styles from './style.module.scss';
+import styles from './TableControls.module.scss';
 import { Button } from '../../../button';
 import classNames from 'classnames';
 
@@ -17,7 +17,7 @@ const TableControls = ({
   children,
   columnsLength,
   stickyHeaderTopOffset,
-  navigateTable
+  navigateTable,
 }: TableControlsProps) => {
   return (
     <div
@@ -29,13 +29,13 @@ const TableControls = ({
       style={{ top: `${stickyHeaderTopOffset}px` }}
     >
       <Button
-        className={(styles.controlButton)}
+        className={styles.controlButton}
         disabled={activeSection <= 1}
         hideLabel
         leftIcon={<ChevronLeftIcon />}
         onClick={() => navigateTable()}
         type="button"
-        variant='filledGray'
+        variant="filledGray"
         data-testid="previous-section-button"
       >
         Previous section
@@ -50,7 +50,7 @@ const TableControls = ({
         leftIcon={<ChevronRightIcon />}
         onClick={() => navigateTable(true)}
         type="button"
-        variant='filledGray'
+        variant="filledGray"
         data-testid="next-section-button"
       >
         Next section
@@ -60,4 +60,3 @@ const TableControls = ({
 };
 
 export { TableControls };
-  

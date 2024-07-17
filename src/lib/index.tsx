@@ -10,7 +10,10 @@ import {
   UploadStatus,
 } from './components/multiDropzone';
 import { DownloadButton } from './components/downloadButton';
-import { InformationBox, InformationBoxProps } from './components/informationBox';
+import {
+  InformationBox,
+  InformationBoxProps,
+} from './components/informationBox';
 import IbanInput from './components/input/iban';
 import { CurrencyInput } from './components/input/currency';
 import { Badge } from './components/badge';
@@ -22,7 +25,7 @@ import {
   BottomOrRegularModal,
 } from './components/modal';
 import { InfoCard, CardButton } from './components/cards';
-import { Card, CardProps  } from './components/cards/card';
+import { Card, CardProps } from './components/cards/card';
 import { Button } from './components/button';
 import { AutoSuggestMultiSelect } from './components/input/autoSuggestMultiSelect';
 import Chip from './components/chip';
@@ -44,7 +47,7 @@ import { Toggle } from './components/input/toggle';
 import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
 import { Accordion, AccordionProps } from './components/accordion';
-import { Table, TableData, TableProps } from './components/table';
+import { Table, TableData, TableProps } from './components/table/Table';
 
 export * from './components/icon';
 
@@ -101,7 +104,7 @@ export type {
   CardProps,
   IconWrapperProps,
   TableData,
-  TableProps
+  TableProps,
 };
 
 export type { DownloadStatus } from './models/download';
