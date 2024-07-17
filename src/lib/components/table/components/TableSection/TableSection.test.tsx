@@ -1,9 +1,9 @@
 import { render, screen } from '../../../../util/testUtils';
 import { TableSection, TableSectionProps } from './TableSection';
 
-const mockData: TableSectionProps['data'] = [
+const mockData: TableSectionProps['tableData'] = [
   {
-    items: [
+    rows: [
       [{ content: 'Item 1.1.1' }, { content: 'Item 1.1.2' }],
       [{ content: 'Item 1.2.1' }, { content: 'Item 1.2.2' }],
     ],
@@ -12,7 +12,7 @@ const mockData: TableSectionProps['data'] = [
     section: {
       title: 'Section 2',
     },
-    items: [
+    rows: [
       [{ content: 'Item 2.1.1' }, { content: 'Item 2.1.2' }],
       [{ content: 'Item 2.2.1' }, { content: 'Item 2.2.2' }],
     ],
@@ -21,13 +21,17 @@ const mockData: TableSectionProps['data'] = [
 
 describe('TableSection', () => {
   it('renders the table sections with sections', () => {
-    render(<TableSection collapsibleSections data={mockData} title="Table" />);
+    render(
+      <TableSection collapsibleSections tableData={mockData} title="Table" />
+    );
 
     expect(screen.getByText('Section 2')).toBeInTheDocument();
   });
 
   it('renders the table sections with sections data', () => {
-    render(<TableSection collapsibleSections data={mockData} title="Table" />);
+    render(
+      <TableSection collapsibleSections tableData={mockData} title="Table" />
+    );
 
     expect(screen.getByText('Item 1.2.1')).toBeInTheDocument();
     expect(screen.getByText('Item 1.2.2')).toBeInTheDocument();
@@ -40,7 +44,7 @@ describe('TableSection', () => {
       <TableSection
         hideDetails
         shouldHideDetails
-        data={mockData}
+        tableData={mockData}
         title="Table"
       />
     );
@@ -54,7 +58,7 @@ describe('TableSection', () => {
       <TableSection
         collapsibleSections
         isMobile
-        data={mockData}
+        tableData={mockData}
         title="Table"
       />
     );
@@ -68,7 +72,7 @@ describe('TableSection', () => {
       <TableSection
         collapsibleSections
         isMobile
-        data={mockData}
+        tableData={mockData}
         title="Table"
       />
     );

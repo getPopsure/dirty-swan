@@ -7,24 +7,12 @@ import { Card } from '../../../cards/card';
 import styles from './TableSection.module.scss';
 import classNames from 'classnames';
 import { Collapsible } from './Collapsible';
-import { ModalFunction } from '../../types';
-
-export type TableSectionType = {
-  title?: string;
-  icon?: ReactNode;
-};
-
-interface TableSectionData {
-  section?: TableSectionType;
-  items: TableCellProps[][];
-}
-
-export type TableData = TableSectionData[];
+import { ModalFunction, TableData } from '../../types';
 
 export interface TableSectionProps {
   className?: string;
   collapsibleSections?: boolean;
-  data: TableData;
+  tableData: TableData;
   hideDetails?: boolean;
   isMobile?: boolean;
   openModal?: ModalFunction;
@@ -35,7 +23,7 @@ export interface TableSectionProps {
 const TableSection = ({
   className,
   collapsibleSections,
-  data,
+  tableData,
   hideDetails,
   isMobile,
   openModal,
@@ -43,9 +31,8 @@ const TableSection = ({
   title,
 }: TableSectionProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
-  const firstHeadRow = data?.[0]?.items?.[0];
+  const firstHeadRow = tableData?.[0]?.rows?.[0];
   const tableWidth = isMobile ? `${firstHeadRow?.length * 50}%` : '';
-
   const handleToggleSection = (index: number) => {
     setOpenSection((currentSection) =>
       currentSection === index ? null : index
@@ -54,7 +41,7 @@ const TableSection = ({
 
   return (
     <div style={{ width: tableWidth }}>
-      {data.map(({ items, section = {} }, index) => {
+      {tableData.map(({ rows, section = {} }, index) => {
         const isFirstSection = index === 0;
         const isExpanded = !collapsibleSections
           ? true
@@ -98,7 +85,9 @@ const TableSection = ({
               <Collapsible isExpanded={isExpanded} isMobile={isMobile}>
                 <TableContent
                   className={classNames(className, 'mb24')}
-                  data={isFirstSection ? items : [firstHeadRow, ...items]}
+                  tableCellRows={
+                    isFirstSection ? rows : [firstHeadRow, ...rows]
+                  }
                   hideHeader
                   openModal={openModal}
                   title={`${title}${

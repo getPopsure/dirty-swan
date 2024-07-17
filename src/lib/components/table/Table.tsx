@@ -12,19 +12,17 @@ import { useTableNavigation } from './utils/useTableNavigation/useTableNavigatio
 import { TableControls } from './components/TableControls/TableControls';
 import { TableContent } from './components/TableContent/TableContent';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
-import { ModalData, ModalFunction, TableSectionData } from './types';
+import { ModalData, ModalFunction, TableData } from './types';
 
 type TextOverrides = {
   showDetails?: string;
   hideDetails?: string;
 };
 
-export type TableData = TableSectionData[];
-
 export interface TableProps {
   className?: string;
   collapsibleSections?: boolean;
-  data: TableData;
+  tableData: TableData;
   hideDetails?: boolean;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
@@ -41,7 +39,7 @@ const defaultTextOverrides = {
 const Table = ({
   className,
   collapsibleSections,
-  data,
+  tableData,
   hideDetails,
   onModalOpen,
   onSelectionChanged,
@@ -55,7 +53,7 @@ const Table = ({
   const [shouldHideDetails, setShouldHideDetails] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const columnsLength = data[0].items[0].length;
+  const columnsLength = tableData[0].rows[0].length;
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
@@ -66,7 +64,7 @@ const Table = ({
     onSelectionChanged,
   });
 
-  const currentActiveSection = data?.[0]?.items?.[0]?.[activeSection];
+  const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
 
   const handleOpenModal: ModalFunction = ({ body, title }) => {
     onModalOpen?.({ body, title });
@@ -101,7 +99,7 @@ const Table = ({
         >
           <div className={styles.container} ref={headerRef}>
             <TableContent
-              data={[data?.[0]?.items?.[0]]}
+              tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
               className={className}
               openModal={handleOpenModal}
@@ -112,7 +110,7 @@ const Table = ({
 
       <div ref={containerRef} className={classNames(styles.container, 'pb8')}>
         <TableSection
-          data={data}
+          tableData={tableData}
           title={title}
           className={className}
           collapsibleSections={collapsibleSections}

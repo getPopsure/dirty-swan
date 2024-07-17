@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import styles from './TableContent.module.scss';
 import { TableCell, TableCellProps } from '../TableCell/TableCell';
 import { ReactNode, useCallback } from 'react';
-import { ModalData, ModalFunction } from '../../types';
+import { ModalData, ModalFunction, TableCellRowData } from '../../types';
 
 export interface TableContentProps {
   className?: string;
-  data: TableCellProps[][];
+  tableCellRows: TableCellRowData[];
   hideHeader?: boolean;
   openModal?: ModalFunction;
   title: string;
@@ -16,17 +16,17 @@ export interface TableContentProps {
 
 const TableContent = ({
   className,
-  data,
+  tableCellRows,
   hideHeader,
   openModal,
   title,
   width,
 }: TableContentProps) => {
-  const headerRow = data?.[0];
+  const headerRow = tableCellRows?.[0];
 
   const getColumnContentByKey = useCallback(
-    (key: number) => data?.[0]?.[key]?.content || '',
-    [data]
+    (key: number) => tableCellRows?.[0]?.[key]?.content || '',
+    [tableCellRows]
   );
 
   const handleOpenModal = ({
@@ -76,7 +76,7 @@ const TableContent = ({
       )}
 
       <tbody>
-        {data.map((row, rowIndex) => {
+        {tableCellRows.map((row, rowIndex) => {
           const isSingleCell = row.length === 1;
 
           return (

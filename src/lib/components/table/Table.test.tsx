@@ -2,20 +2,20 @@ import { render, screen } from '../../util/testUtils';
 import { Table } from './Table';
 import { TableSectionData } from './types';
 
-const data: TableSectionData[] = [
+const tableData: TableSectionData[] = [
   {
     section: {
       title: 'Section 1',
       icon: <span>Icon 1</span>,
     },
-    items: [[{ content: 'Item 1' }, { content: 'Item 2' }]],
+    rows: [[{ content: 'Item 1' }, { content: 'Item 2' }]],
   },
   {
     section: {
       title: 'Section 2',
       icon: <span>Icon 2</span>,
     },
-    items: [
+    rows: [
       [
         { content: 'Item 3' },
         { content: 'Item 4', modalContent: 'Additional item' },
@@ -26,7 +26,7 @@ const data: TableSectionData[] = [
 
 describe('Table', () => {
   it('renders the table with sections and items', () => {
-    render(<Table data={data} title="Test Table" />);
+    render(<Table tableData={tableData} title="Test Table" />);
 
     expect(screen.getByText('Section 1')).toBeInTheDocument();
     expect(screen.getByText('Section 2')).toBeInTheDocument();
@@ -38,28 +38,28 @@ describe('Table', () => {
   });
 
   it('renders the table without sections', () => {
-    const dataWithoutSections = [{ items: data[0].items }];
+    const dataWithoutSections = [{ rows: tableData[0].rows }];
 
-    render(<Table data={dataWithoutSections} title="Test Table" />);
+    render(<Table tableData={dataWithoutSections} title="Test Table" />);
 
     expect(screen.getAllByText('Item 1')[0]).toBeVisible();
     expect(screen.getAllByText('Item 2')[0]).toBeVisible();
   });
 
   it('hides the show/hide details button if hideDetails is false', () => {
-    render(<Table data={data} hideDetails title="Test Table" />);
+    render(<Table tableData={tableData} hideDetails title="Test Table" />);
 
     expect(screen.queryByTestId('show-hide-details')).toBeInTheDocument();
   });
 
   it('shows the show/hide details button if hideDetails is true', () => {
-    render(<Table data={data} hideDetails title="Test Table" />);
+    render(<Table tableData={tableData} hideDetails title="Test Table" />);
 
     expect(screen.getByTestId('show-hide-details')).toBeInTheDocument();
   });
 
   it('hides the sections if hideDetails is true', () => {
-    render(<Table data={data} hideDetails title="Test Table" />);
+    render(<Table tableData={tableData} hideDetails title="Test Table" />);
 
     expect(screen.queryByText('Section 2')).not.toBeInTheDocument();
     expect(screen.getByTestId('show-hide-details')).toBeInTheDocument();
@@ -67,7 +67,7 @@ describe('Table', () => {
 
   it('hides the sections if hideDetails is true and shows if clicking on button', async () => {
     const { user } = render(
-      <Table data={data} hideDetails title="Test Table" />
+      <Table tableData={tableData} hideDetails title="Test Table" />
     );
 
     expect(screen.getByText('Show details')).toBeVisible();
@@ -79,7 +79,7 @@ describe('Table', () => {
   });
 
   it('shows a modal when clicking on info icon', async () => {
-    const { user } = render(<Table data={data} title="Test Table" />);
+    const { user } = render(<Table tableData={tableData} title="Test Table" />);
 
     await user.click(screen.getByText('View more info'));
 

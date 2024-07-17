@@ -1,7 +1,7 @@
 import { render, screen } from '../../../../util/testUtils';
 import { TableContent, TableContentProps } from './TableContent';
 
-const mockData: TableContentProps['data'] = [
+const tableCellRows: TableContentProps['tableCellRows'] = [
   [{ content: 'Cell 1.1' }, { content: 'Cell 1.2' }, { content: 'Cell 1.3' }],
   [{ content: 'Cell 2.1' }, { content: 'Cell 2.2' }, { content: 'Cell 2.3' }],
 ];
@@ -11,7 +11,7 @@ const mockTitle = 'Test Table';
 const mockOpenModal = jest.fn();
 
 const defaultProps: TableContentProps = {
-  data: mockData,
+  tableCellRows,
   title: mockTitle,
   openModal: mockOpenModal,
 };
