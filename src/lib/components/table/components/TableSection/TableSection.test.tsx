@@ -1,86 +1,56 @@
 import { render, screen } from '../../../../util/testUtils';
-import { TableSection, TableSectionProps } from './TableSection';
+import { TableSection, TableContentProps } from './TableSection';
 
-const mockData: TableSectionProps['tableData'] = [
-  {
-    rows: [
-      [{ content: 'Item 1.1.1' }, { content: 'Item 1.1.2' }],
-      [{ content: 'Item 1.2.1' }, { content: 'Item 1.2.2' }],
-    ],
-  },
-  {
-    section: {
-      title: 'Section 2',
-    },
-    rows: [
-      [{ content: 'Item 2.1.1' }, { content: 'Item 2.1.2' }],
-      [{ content: 'Item 2.2.1' }, { content: 'Item 2.2.2' }],
-    ],
-  },
+const tableCellRows: TableContentProps['tableCellRows'] = [
+  [{ content: 'Cell 1.1' }, { content: 'Cell 1.2' }, { content: 'Cell 1.3' }],
+  [{ content: 'Cell 2.1' }, { content: 'Cell 2.2' }, { content: 'Cell 2.3' }],
 ];
 
+const mockTitle = 'Test Table';
+
+const mockOpenModal = jest.fn();
+
+const defaultProps: TableContentProps = {
+  tableCellRows,
+  title: mockTitle,
+  openModal: mockOpenModal,
+};
+
 describe('TableSection', () => {
-  it('renders the table sections with sections', () => {
-    render(
-      <TableSection collapsibleSections tableData={mockData} title="Table" />
-    );
+  it('renders the table caption', () => {
+    render(<TableSection {...defaultProps} />);
 
-    expect(screen.getByText('Section 2')).toBeInTheDocument();
+    expect(screen.getByText(mockTitle)).toBeInTheDocument();
   });
 
-  it('renders the table sections with sections data', () => {
-    render(
-      <TableSection collapsibleSections tableData={mockData} title="Table" />
-    );
+  it('renders the table with correct data', () => {
+    render(<TableSection {...defaultProps} />);
 
-    expect(screen.getByText('Item 1.2.1')).toBeInTheDocument();
-    expect(screen.getByText('Item 1.2.2')).toBeInTheDocument();
-    expect(screen.getByText('Item 2.1.2')).toBeInTheDocument();
-    expect(screen.getByText('Item 2.2.1')).toBeInTheDocument();
+    expect(screen.getByText('Cell 1.1')).toBeInTheDocument();
+    expect(screen.getByText('Cell 1.2')).toBeInTheDocument();
+    expect(screen.getByText('Cell 1.3')).toBeInTheDocument();
+
+    expect(screen.getByText('Cell 2.1')).toBeInTheDocument();
+    expect(screen.getByText('Cell 2.2')).toBeInTheDocument();
+    expect(screen.getByText('Cell 2.3')).toBeInTheDocument();
   });
 
-  it('hides the table sections when hideDetails and shouldHideDetails is true', () => {
-    render(
-      <TableSection
-        hideDetails
-        shouldHideDetails
-        tableData={mockData}
-        title="Table"
-      />
-    );
+  it('should render table headers', () => {
+    const { container } = render(<TableSection {...defaultProps} />);
 
-    expect(screen.queryByText('Section 2')).not.toBeInTheDocument();
-    expect(screen.queryByText('Item 2.1.1')).not.toBeInTheDocument();
+    const thElements = container.querySelectorAll('th');
+
+    expect(thElements.length).toBe(4);
+    expect(thElements[0]).toHaveTextContent('Cell 1.1');
+    expect(thElements[3]).toHaveTextContent('Cell 2.1');
   });
 
-  it('hides the table sections details when collapsibleSections is true', () => {
-    render(
-      <TableSection
-        collapsibleSections
-        isMobile
-        tableData={mockData}
-        title="Table"
-      />
-    );
+  it('should render table data cells', () => {
+    const { container } = render(<TableSection {...defaultProps} />);
 
-    expect(screen.getByText('Section 2')).toBeVisible();
-    expect(screen.queryByText('Item 2.1.1')).not.toBeVisible();
-  });
-
-  it('shows the table sections when hideDetails is collapsibleSections true has expanded ', async () => {
-    const { user } = render(
-      <TableSection
-        collapsibleSections
-        isMobile
-        tableData={mockData}
-        title="Table"
-      />
-    );
-
-    expect(screen.queryByText('Item 2.1.1')).not.toBeVisible();
-
-    await user.click(screen.getByText('Section 2'));
-
-    expect(screen.getByText('Item 2.1.1')).toBeVisible();
+    const tdElements = container.querySelectorAll('td');
+    expect(tdElements.length).toBe(2);
+    expect(tdElements[0]).toHaveTextContent('Cell 2.2');
+    expect(tdElements[1]).toHaveTextContent('Cell 2.3');
   });
 });

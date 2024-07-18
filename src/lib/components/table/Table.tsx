@@ -6,11 +6,11 @@ import { Card } from '../cards/card';
 
 import styles from './Table.module.scss';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { TableSection } from './components/TableSection/TableSection';
+import { TableContents } from './components/TableContents/TableContents';
 import classNames from 'classnames';
 import { useTableNavigation } from './utils/useTableNavigation/useTableNavigation';
 import { TableControls } from './components/TableControls/TableControls';
-import { TableContent } from './components/TableContent/TableContent';
+import { TableSection } from './components/TableSection/TableSection';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
 import { ModalData, ModalFunction, TableData } from './types';
 
@@ -98,7 +98,7 @@ const Table = ({
           style={{ top: `${stickyHeaderTopOffset}px` }}
         >
           <div className={styles.container} ref={headerRef}>
-            <TableContent
+            <TableSection
               tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
               className={className}
@@ -109,7 +109,7 @@ const Table = ({
       )}
 
       <div ref={containerRef} className={classNames(styles.container, 'pb8')}>
-        <TableSection
+        <TableContents
           tableData={tableData}
           title={title}
           className={className}

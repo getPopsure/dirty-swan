@@ -1,5 +1,6 @@
-import { Table, TableData, TableProps } from './Table';
+import { Table, TableProps } from './Table';
 import { DentalPlusIcon, PlaneIcon } from '../icon';
+import { TableData } from './types';
 
 const initialData: TableData = [
   {
@@ -136,7 +137,7 @@ const story = {
     },
   },
   args: {
-    data: initialData,
+    tableData: initialData,
     collapsibleSections: false,
     hideDetails: false,
     stickyHeaderTopOffset: 0,
