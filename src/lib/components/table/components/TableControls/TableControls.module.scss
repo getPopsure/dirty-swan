@@ -5,11 +5,12 @@
   left: 0;
   right: 0;
   min-height: 72px;
-  z-index: 3;
+  z-index: 9;
 }
 
 .controlButton {
   border-radius: 50%!important;
   width: 32px;
   height: 32px;
+  padding: 0;
 }
