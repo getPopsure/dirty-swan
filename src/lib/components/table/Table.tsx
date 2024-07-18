@@ -60,7 +60,6 @@ const Table = ({
   const { activeSection, navigateTable } = useTableNavigation({
     enabled: isMobile,
     containerRef,
-    columnsLength,
     onSelectionChanged,
   });
 
