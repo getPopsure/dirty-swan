@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { TableCellProps } from './components/TableCell/TableCell';
+import type { TableCellProps } from './components/TableCell/TableCell';
 
 export type TableSectionType = {
   title?: string;
@@ -11,9 +11,13 @@ export type ModalData = {
   body?: ReactNode;
 };
 
-export interface TableSectionData {
+export type TableCellRowData = TableCellProps[];
+
+export type TableSectionData = {
   section?: TableSectionType;
-  items: TableCellProps[][];
-}
+  rows: TableCellRowData[];
+};
+
+export type TableData = TableSectionData[];
 
 export type ModalFunction = (modalData: ModalData) => void;

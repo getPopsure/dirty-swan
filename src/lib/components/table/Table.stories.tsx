@@ -1,9 +1,10 @@
-import { Table, TableData, TableProps } from './Table';
+import { Table, TableProps } from './Table';
 import { DentalPlusIcon, PlaneIcon } from '../icon';
+import { TableData } from './types';
 
 const initialData: TableData = [
   {
-    items: [
+    rows: [
       [
         { content: 'Our plans' },
         { content: 'Surgery', modalContent: 'More info on surgery' },
@@ -41,7 +42,7 @@ const initialData: TableData = [
       icon: <DentalPlusIcon size={24} noMargin />,
       title: 'Dental',
     },
-    items: [
+    rows: [
       [
         { content: 'Regular vet visits & medication' },
         { content: 'No' },
@@ -67,7 +68,7 @@ const initialData: TableData = [
       title: 'Travel',
       icon: <PlaneIcon size={24} noMargin />,
     },
-    items: [
+    rows: [
       [
         { content: 'Regular vet visits & medication' },
         { content: 'No', checkmarkValue: false },
@@ -136,7 +137,7 @@ const story = {
     },
   },
   args: {
-    data: initialData,
+    tableData: initialData,
     collapsibleSections: false,
     hideDetails: false,
     stickyHeaderTopOffset: 0,
@@ -151,7 +152,7 @@ const story = {
 
 export const TableStory = ({
   collapsibleSections,
-  data,
+  tableData,
   hideDetails,
   stickyHeaderTopOffset,
   textOverrides,
@@ -159,7 +160,7 @@ export const TableStory = ({
 }: TableProps) => (
   <Table
     collapsibleSections={collapsibleSections}
-    data={data}
+    tableData={tableData}
     hideDetails={hideDetails}
     stickyHeaderTopOffset={stickyHeaderTopOffset}
     textOverrides={textOverrides}
@@ -176,17 +177,16 @@ type TableData = {
     title?: string;
     icon?: ReactNode;
   };
-  items: {
+  rows: {
     align?: 'center' | 'left' | 'right';
-    boolean?: boolean;
-    cellProps?: HTMLProps<HTMLTableCellElement>;
-    description?: ReactNode;
-    info?: ReactNode;
+    checkmarkValue?: boolean;
+    content?: ReactNode;
+    modalContent?: ReactNode;
+    subContent?: ReactNode;
     rating?: {
       value: number;
       type: 'zap' | 'star';
     }
-    text?: ReactNode;
     openModal?: (modalContent: ReactNode) => void;
   }[][];
 }[];

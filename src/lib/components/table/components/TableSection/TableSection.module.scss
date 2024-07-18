@@ -1,10 +1,15 @@
-.cardWrapper {
-  height: 88px;
+@use '../../../../scss/public/colors' as *;
+@use '../../../../scss/public/grid' as *;
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  @include p-size-tablet {
+    min-width: 845px;
+  }
 }
 
-.card {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 3;
+.tr {
+  min-height: 72px;
 }

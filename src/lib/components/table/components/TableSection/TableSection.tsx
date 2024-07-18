@@ -1,118 +1,121 @@
-import { TableCellProps } from '../TableCell/TableCell';
-import { ReactNode, useState } from 'react';
-import { TableContent } from '../TableContent/TableContent';
-import { ChevronDownIcon, ChevronUpIcon } from '../../../icon';
-import { Card } from '../../../cards/card';
+import classNames from 'classnames';
 
 import styles from './TableSection.module.scss';
-import classNames from 'classnames';
-import { Collapsible } from './Collapsible';
-import { ModalFunction } from '../../types';
-
-export type TableSectionType = {
-  title?: string;
-  icon?: ReactNode;
-};
-
-interface TableSectionData {
-  section?: TableSectionType;
-  items: TableCellProps[][];
-}
-
-export type TableData = TableSectionData[];
+import { TableCell, TableCellProps } from '../TableCell/TableCell';
+import { ReactNode, useCallback } from 'react';
+import { ModalData, ModalFunction, TableCellRowData } from '../../types';
 
 export interface TableSectionProps {
   className?: string;
-  collapsibleSections?: boolean;
-  data: TableData;
-  hideDetails?: boolean;
-  isMobile?: boolean;
+  tableCellRows: TableCellRowData[];
+  hideHeader?: boolean;
   openModal?: ModalFunction;
-  shouldHideDetails?: boolean;
   title: string;
+  width?: number | string;
 }
 
 const TableSection = ({
   className,
-  collapsibleSections,
-  data,
-  hideDetails,
-  isMobile,
+  tableCellRows,
+  hideHeader,
   openModal,
-  shouldHideDetails,
   title,
+  width,
 }: TableSectionProps) => {
-  const [isSectionOpen, setOpenSection] = useState<number | null>(null);
-  const firstHeadRow = data?.[0]?.items?.[0];
-  const tableWidth = isMobile ? `${firstHeadRow?.length * 50}%` : '';
+  const headerRow = tableCellRows?.[0];
 
-  const handleToggleSection = (index: number) => {
-    setOpenSection((currentSection) =>
-      currentSection === index ? null : index
-    );
-  };
+  const getColumnContentByKey = useCallback(
+    (key: number) => tableCellRows?.[0]?.[key]?.content || '',
+    [tableCellRows]
+  );
+
+  const handleOpenModal = ({
+    cellIndex,
+    body,
+    title,
+  }: ModalData & {
+    cellIndex: number;
+  }) =>
+    openModal?.({
+      body,
+      title: title || getColumnContentByKey(cellIndex),
+    });
 
   return (
-    <div style={{ width: tableWidth }}>
-      {data.map(({ items, section = {} }, index) => {
-        const isFirstSection = index === 0;
-        const isExpanded = !collapsibleSections
-          ? true
-          : isSectionOpen === index || isFirstSection;
-        const isVisible = hideDetails ? !shouldHideDetails : true;
+    <table
+      className={classNames(className, 'w100', styles.table)}
+      width={width}
+    >
+      <caption className="sr-only">{title}</caption>
 
-        return (
-          (isFirstSection || isVisible) && (
-            <div key={index}>
-              {section?.title && (
-                <div className={styles.cardWrapper}>
-                  <div className={classNames(styles.card, 'p8')}>
-                    <Card
-                      actionIcon={
-                        isExpanded ? (
-                          <ChevronUpIcon size={24} />
-                        ) : (
-                          <ChevronDownIcon size={24} />
-                        )
-                      }
-                      aria-expanded={isExpanded ? 'true' : 'false'}
-                      aria-hidden
-                      classNames={{
-                        wrapper: 'bg-grey-200',
-                        icon: 'tc-grey-900',
-                      }}
-                      dropShadow={false}
-                      icon={section?.icon}
-                      title={section.title}
-                      titleVariant="medium"
-                      {...(collapsibleSections
-                        ? {
-                            onClick: () => handleToggleSection(index),
-                          }
-                        : {})}
-                    />
-                  </div>
-                </div>
-              )}
-
-              <Collapsible isExpanded={isExpanded} isMobile={isMobile}>
-                <TableContent
-                  className={classNames(className, 'mb24')}
-                  data={isFirstSection ? items : [firstHeadRow, ...items]}
-                  hideHeader
-                  openModal={openModal}
-                  title={`${title}${
-                    section?.title ? ` - ${section.title}` : ''
-                  }`}
-                  width={tableWidth}
+      {headerRow && (
+        <thead className={hideHeader ? 'sr-only' : ''}>
+          <tr>
+            {headerRow.map((tableCellProps, cellIndex) => {
+              const isFirstCellInRow = cellIndex === 0;
+              return (
+                <TableCell
+                  key={cellIndex}
+                  isHeader
+                  isFirstCellInRow={isFirstCellInRow}
+                  isTopLeftCell={isFirstCellInRow}
+                  align={isFirstCellInRow ? 'left' : 'center'}
+                  openModal={(body) =>
+                    handleOpenModal({
+                      cellIndex,
+                      body,
+                      title: tableCellProps?.content,
+                    })
+                  }
+                  {...tableCellProps}
                 />
-              </Collapsible>
-            </div>
-          )
-        );
-      })}
-    </div>
+              );
+            })}
+          </tr>
+        </thead>
+      )}
+
+      <tbody>
+        {tableCellRows.map((row, rowIndex) => {
+          const isSingleCell = row.length === 1;
+
+          return (
+            rowIndex > 0 && (
+              <tr key={rowIndex} className={styles.tr}>
+                {row.map((tableCellProps, cellIndex) => {
+                  const key = `${rowIndex}-${cellIndex}`;
+                  const isFirstCellInRow = cellIndex === 0;
+
+                  const onCelInfoClick = (body: ReactNode) =>
+                    handleOpenModal({
+                      cellIndex,
+                      body,
+                      title: isFirstCellInRow
+                        ? tableCellProps.content
+                        : undefined,
+                    });
+
+                  return (
+                    <TableCell
+                      align={
+                        isFirstCellInRow && !isSingleCell ? 'left' : 'center'
+                      }
+                      isFirstCellInRow={isFirstCellInRow}
+                      openModal={onCelInfoClick}
+                      key={key}
+                      {...tableCellProps}
+                    />
+                  );
+                })}
+              </tr>
+            )
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
+
+export type { TableCellProps };
 
 export { TableSection };

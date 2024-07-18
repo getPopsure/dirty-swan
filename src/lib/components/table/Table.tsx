@@ -6,25 +6,23 @@ import { Card } from '../cards/card';
 
 import styles from './Table.module.scss';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { TableSection } from './components/TableSection/TableSection';
+import { TableContents } from './components/TableContents/TableContents';
 import classNames from 'classnames';
 import { useTableNavigation } from './utils/useTableNavigation/useTableNavigation';
 import { TableControls } from './components/TableControls/TableControls';
-import { TableContent } from './components/TableContent/TableContent';
+import { TableSection } from './components/TableSection/TableSection';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
-import { ModalData, ModalFunction, TableSectionData } from './types';
+import { ModalData, ModalFunction, TableData } from './types';
 
 type TextOverrides = {
   showDetails?: string;
   hideDetails?: string;
 };
 
-export type TableData = TableSectionData[];
-
 export interface TableProps {
   className?: string;
   collapsibleSections?: boolean;
-  data: TableData;
+  tableData: TableData;
   hideDetails?: boolean;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
@@ -41,7 +39,7 @@ const defaultTextOverrides = {
 const Table = ({
   className,
   collapsibleSections,
-  data,
+  tableData,
   hideDetails,
   onModalOpen,
   onSelectionChanged,
@@ -55,7 +53,7 @@ const Table = ({
   const [shouldHideDetails, setShouldHideDetails] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const columnsLength = data[0].items[0].length;
+  const columnsLength = tableData[0].rows[0].length;
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
@@ -66,7 +64,7 @@ const Table = ({
     onSelectionChanged,
   });
 
-  const currentActiveSection = data?.[0]?.items?.[0]?.[activeSection];
+  const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
 
   const handleOpenModal: ModalFunction = ({ body, title }) => {
     onModalOpen?.({ body, title });
@@ -100,8 +98,8 @@ const Table = ({
           style={{ top: `${stickyHeaderTopOffset}px` }}
         >
           <div className={styles.container} ref={headerRef}>
-            <TableContent
-              data={[data?.[0]?.items?.[0]]}
+            <TableSection
+              tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
               className={className}
               openModal={handleOpenModal}
@@ -111,8 +109,8 @@ const Table = ({
       )}
 
       <div ref={containerRef} className={classNames(styles.container, 'pb8')}>
-        <TableSection
-          data={data}
+        <TableContents
+          tableData={tableData}
           title={title}
           className={className}
           collapsibleSections={collapsibleSections}
