@@ -7,9 +7,45 @@ const initialData: TableData = [
     rows: [
       [
         { content: 'Our plans' },
-        { content: 'Surgery', modalContent: 'More info on surgery' },
-        { content: 'Standard' },
-        { content: 'Premium' },
+        {
+          type: 'CTA',
+          content: 'Standard',
+          subContent: '€234',
+          href: 'http://example.com',
+        },
+        {
+          type: 'CTA',
+          content: 'Plus',
+          subContent: '€344',
+          href: 'http://example.com',
+        },
+        {
+          type: 'CTA',
+          content: 'Premium',
+          subContent: '€556',
+          href: 'http://example.com',
+        },
+      ],
+      [
+        { content: 'Select a plan' },
+        {
+          type: 'BUTTON',
+          content: 'Standard',
+          subContent: '€234',
+          onClick: () => {},
+        },
+        {
+          type: 'BUTTON',
+          content: 'Plus',
+          subContent: '€344',
+          onClick: () => {},
+        },
+        {
+          type: 'BUTTON',
+          content: 'Premium',
+          subContent: '€556',
+          onClick: () => {},
+        },
       ],
       [
         {

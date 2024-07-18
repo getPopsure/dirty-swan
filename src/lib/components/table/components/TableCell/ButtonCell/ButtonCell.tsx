@@ -4,7 +4,7 @@ import styles from './ButtonCell.module.scss';
 import { Button } from '../../../../button';
 import { ReactNode } from 'react';
 
-type ButtonCellProps = {
+export type ButtonCellProps = {
   content?: ReactNode;
   disabled?: boolean;
   isSelected?: boolean;
@@ -20,9 +20,9 @@ export const ButtonCell = ({
   disabled,
 }: ButtonCellProps) => {
   return (
-    <div className="w100 d-flex fd-column ai-center jc-center gap8 wmx5">
+    <div className="w100 d-flex fd-column ai-center jc-center gap8">
       <Button
-        className={classNames('w100 d-flex fd-column', styles.buttonCell, {
+        className={classNames('w100 wmx5 d-flex fd-column', styles.buttonCell, {
           [styles.selected]: isSelected,
           [styles.withoutSubContent]: !subContent,
           [styles.withSubContent]: !!subContent,

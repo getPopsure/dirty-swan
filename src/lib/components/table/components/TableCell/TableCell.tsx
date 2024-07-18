@@ -2,6 +2,9 @@ import classNames from 'classnames';
 
 import styles from './TableCell.module.scss';
 import { BaseCell, BaseCellProps } from './BaseCell/BaseCell';
+import { TableCellData } from '../../types';
+import { CTACell } from './CTACell/CTACell';
+import { ButtonCell } from './ButtonCell/ButtonCell';
 
 type PositionalTableCellProps = {
   isHeader?: boolean;
@@ -10,7 +13,7 @@ type PositionalTableCellProps = {
   isNavigation?: boolean;
 };
 
-export type TableCellProps = BaseCellProps & PositionalTableCellProps;
+export type TableCellProps = TableCellData & PositionalTableCellProps;
 
 const TableCell = ({
   isFirstCellInRow = false,
@@ -42,10 +45,14 @@ const TableCell = ({
         pl32: isFirstCellInRow,
       })}
     >
-      <BaseCell
-        {...cellProps}
-        contentFontVariant={isTopLeftCell ? 'BIG_WITH_UNDERLINE' : 'NORMAL'}
-      />
+      {!cellProps.type && (
+        <BaseCell
+          {...cellProps}
+          contentFontVariant={isTopLeftCell ? 'BIG_WITH_UNDERLINE' : 'NORMAL'}
+        />
+      )}
+      {cellProps.type === 'CTA' && <CTACell {...cellProps} />}
+      {cellProps.type === 'BUTTON' && <ButtonCell {...cellProps} />}
     </Tag>
   );
 };

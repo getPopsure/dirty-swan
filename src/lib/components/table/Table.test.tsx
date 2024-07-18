@@ -81,7 +81,7 @@ describe('Table', () => {
   it('shows a modal when clicking on info icon', async () => {
     const { user } = render(<Table tableData={tableData} title="Test Table" />);
 
-    await user.click(screen.getByText('View more info'));
+    await user.click(screen.getByTestId('ds-table-info-button'));
 
     expect(screen.getByText('Additional item')).toBeVisible();
   });

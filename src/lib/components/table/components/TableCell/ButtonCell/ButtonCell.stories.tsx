@@ -5,7 +5,6 @@ const story = {
   component: ButtonCell,
   argTypes: {},
   args: {
-    nFilledBars: 3,
     isSelected: false,
     content: 'Premium',
     subContent: '€277/mo',

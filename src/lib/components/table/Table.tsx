@@ -1,6 +1,6 @@
 import { TableCell, TableCellProps } from './components/TableCell/TableCell';
 import { BottomOrRegularModal } from '../modal';
-import { useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '../icon';
 import { Card } from '../cards/card';
 
@@ -71,6 +71,17 @@ const Table = ({
     setInfoModalData({ body, title });
   };
 
+  const isBaseCell = !currentActiveSection.type;
+  let openModal;
+
+  if (isBaseCell) {
+    openModal = (body: ReactNode) =>
+      handleOpenModal({
+        body,
+        title: currentActiveSection?.content,
+      });
+  }
+
   return (
     <div className={classNames(styles.wrapper, 'bg-white')}>
       {isMobile ? (
@@ -82,12 +93,11 @@ const Table = ({
         >
           <TableCell
             {...currentActiveSection}
-            openModal={(body) =>
-              handleOpenModal({
-                body,
-                title: currentActiveSection?.content,
-              })
-            }
+            {...(isBaseCell
+              ? {
+                  openModal,
+                }
+              : {})}
             isNavigation
           />
         </TableControls>

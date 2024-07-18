@@ -27,8 +27,10 @@ const progressLookup: Record<string, number> = {
   '100%': 5,
 };
 
+export type Alignment = 'center' | 'left' | 'right';
+
 export type BaseCellProps = {
-  align?: 'center' | 'left' | 'right';
+  align?: Alignment;
   checkmarkValue?: boolean;
   content?: ReactNode;
   modalContent?: ReactNode;
