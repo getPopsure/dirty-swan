@@ -11,7 +11,6 @@ const defaultContainerRef = {
 } as unknown as RefObject<HTMLElement>;
 
 describe('useTableNavigation', () => {
-  const columnsLength = 4;
   let onSelectionChanged = jest.fn();
   let containerRef = defaultContainerRef;
 
@@ -25,7 +24,6 @@ describe('useTableNavigation', () => {
       useTableNavigation({
         enabled: false,
         containerRef,
-        columnsLength,
         onSelectionChanged,
       })
     );
@@ -44,7 +42,6 @@ describe('useTableNavigation', () => {
       useTableNavigation({
         enabled: true,
         containerRef,
-        columnsLength,
         onSelectionChanged,
       })
     );
@@ -67,7 +64,6 @@ describe('useTableNavigation', () => {
       useTableNavigation({
         enabled: true,
         containerRef,
-        columnsLength,
         onSelectionChanged,
       })
     );

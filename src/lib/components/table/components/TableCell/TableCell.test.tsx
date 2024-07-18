@@ -1,25 +1,39 @@
 import { render, screen } from '../../../../util/testUtils';
-import { TableCell } from './TableCell';
+import { TableCell, TableCellProps } from './TableCell';
 
 const openModal = jest.fn();
 
+const setup = ({ isNavigation, ...rest }: TableCellProps = {}) => render(
+  isNavigation 
+    ? <TableCell {...rest} isNavigation />
+    : (
+      <table>
+        <tbody>
+          <tr>
+            <TableCell {...rest} />
+          </tr>
+        </tbody>
+      </table>  
+    )
+  );
+
 describe('TableCell', () => {
   it('renders the component with boolean true', () => {
-    render(<TableCell checkmarkValue={true} />);
+    setup({ checkmarkValue: true });
 
     expect(screen.getByTitle('Yes')).toBeInTheDocument();
     expect(screen.getByTestId('table-cell-boolean-yes')).toBeInTheDocument();
   });
 
   it('renders the component with boolean false', () => {
-    render(<TableCell checkmarkValue={false} />);
+    setup({ checkmarkValue: false });
 
     expect(screen.getByTitle('No')).toBeInTheDocument();
     expect(screen.getByTestId('table-cell-boolean-no')).toBeInTheDocument();
   });
 
   it('renders the component without boolean', () => {
-    render(<TableCell />);
+    setup();
 
     expect(screen.queryByTitle('Yes')).not.toBeInTheDocument();
     expect(screen.queryByTitle('No')).not.toBeInTheDocument();
@@ -32,39 +46,37 @@ describe('TableCell', () => {
   });
 
   it('renders the component with rating', () => {
-    render(<TableCell rating={{ type: 'star', value: 2 }} />);
+    setup({ rating: { type: 'star', value: 2 } });
 
     expect(screen.getByTitle('2 out of 3')).toBeInTheDocument();
   });
 
   it('renders the component without rating', () => {
-    render(<TableCell />);
+    setup();
 
     expect(screen.queryByTestId('table-cell-rating')).not.toBeInTheDocument();
   });
 
   it('renders the component with text', () => {
-    render(<TableCell content="Sample text" />);
+    setup({ content: "Sample text" });
 
     expect(screen.getByText('Sample text')).toBeInTheDocument();
   });
 
   it('renders the component without text', () => {
-    render(<TableCell />);
+    setup();
 
     expect(screen.queryByTestId('table-cell-text')).not.toBeInTheDocument();
   });
 
   it('renders the component without info', () => {
-    render(<TableCell />);
+    setup();
 
     expect(screen.queryByText('View more info')).not.toBeInTheDocument();
   });
 
   it('calls openModal when info button is clicked', () => {
-    render(
-      <TableCell modalContent="Additional information" openModal={openModal} />
-    );
+    setup({ modalContent: "Additional information", openModal });
 
     // Click info button
     screen.getByText('View more info').click();
