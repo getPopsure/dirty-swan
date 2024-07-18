@@ -1,7 +1,7 @@
 import { MiniProgressBar } from './MiniProgressBar';
 
 const story = {
-  title: 'JSX/Table',
+  title: 'JSX/Table/Misc',
   component: MiniProgressBar,
   argTypes: {
     nFilledBars: {

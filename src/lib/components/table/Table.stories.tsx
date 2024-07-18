@@ -17,8 +17,8 @@ const initialData: TableData = [
           subContent: 'Annual Only',
         },
         { content: 'No', subContent: 'Annual Only' },
-        { content: 'Yes' },
-        { content: 'Yes' },
+        { content: '50%' },
+        { content: '80%-100%' },
       ],
       [
         { content: 'Operations', modalContent: 'Operations info' },
