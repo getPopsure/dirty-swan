@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
-import type { TableCellProps } from './components/TableCell/TableCell';
+import { BaseCellProps } from './components/TableCell/BaseCell/BaseCell';
+import { CTACellProps } from './components/TableCell/CTACell/CTACell';
+import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
+
+export type TableCellData =
+  | (BaseCellProps & { type?: undefined })
+  | (CTACellProps & { type: 'CTA' })
+  | (ButtonCellProps & { type: 'BUTTON' });
 
 export type TableSectionType = {
   title?: string;
@@ -11,7 +18,7 @@ export type ModalData = {
   body?: ReactNode;
 };
 
-export type TableCellRowData = TableCellProps[];
+export type TableCellRowData = TableCellData[];
 
 export type TableSectionData = {
   section?: TableSectionType;

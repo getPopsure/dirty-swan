@@ -1,7 +1,7 @@
 import { render, screen } from '../../../../util/testUtils';
-import { TableContents, TableSectionProps } from './TableContents';
+import { TableContents, TableContentsProps } from './TableContents';
 
-const mockData: TableSectionProps['tableData'] = [
+const mockData: TableContentsProps['tableData'] = [
   {
     rows: [
       [{ content: 'Item 1.1.1' }, { content: 'Item 1.1.2' }],

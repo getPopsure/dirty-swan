@@ -2,8 +2,9 @@ import classNames from 'classnames';
 
 import styles from './TableSection.module.scss';
 import { TableCell, TableCellProps } from '../TableCell/TableCell';
-import { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { ModalData, ModalFunction, TableCellRowData } from '../../types';
+import { Alignment } from '../TableCell/BaseCell/BaseCell';
 
 export interface TableSectionProps {
   className?: string;
@@ -53,21 +54,35 @@ const TableSection = ({
           <tr>
             {headerRow.map((tableCellProps, cellIndex) => {
               const isFirstCellInRow = cellIndex === 0;
+
+              const isBaseCell = !tableCellProps.type;
+
+              let openModal;
+              let align: Alignment = 'left';
+
+              if (isBaseCell) {
+                openModal = (body: ReactNode) =>
+                  handleOpenModal({
+                    cellIndex,
+                    body,
+                    title: tableCellProps?.content,
+                  });
+                align = isFirstCellInRow ? 'left' : 'center';
+              }
+
               return (
                 <TableCell
                   key={cellIndex}
                   isHeader
                   isFirstCellInRow={isFirstCellInRow}
                   isTopLeftCell={isFirstCellInRow}
-                  align={isFirstCellInRow ? 'left' : 'center'}
-                  openModal={(body) =>
-                    handleOpenModal({
-                      cellIndex,
-                      body,
-                      title: tableCellProps?.content,
-                    })
-                  }
                   {...tableCellProps}
+                  {...(isBaseCell
+                    ? {
+                        openModal,
+                        align,
+                      }
+                    : {})}
                 />
               );
             })}
@@ -95,13 +110,25 @@ const TableSection = ({
                         : undefined,
                     });
 
+                  let openModal;
+                  let align: Alignment = 'left';
+
+                  const isBaseCell = !tableCellProps.type;
+
+                  if (isBaseCell) {
+                    openModal = onCelInfoClick;
+                    align = isFirstCellInRow ? 'left' : 'center';
+                  }
+
                   return (
                     <TableCell
-                      align={
-                        isFirstCellInRow && !isSingleCell ? 'left' : 'center'
-                      }
+                      {...(isBaseCell
+                        ? {
+                            openModal,
+                            align,
+                          }
+                        : {})}
                       isFirstCellInRow={isFirstCellInRow}
-                      openModal={onCelInfoClick}
                       key={key}
                       {...tableCellProps}
                     />

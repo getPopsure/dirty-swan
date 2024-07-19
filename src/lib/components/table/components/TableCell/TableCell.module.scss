@@ -1,17 +1,6 @@
 @use '../../../../scss/public/colors' as *;
 @use '../../../../scss/public/grid' as *;
 
-.button {
-  min-height: initial;
-  height: initial;
-  width: initial;
-  padding: 0;
-}
-
-.icon {
-  margin: 2px;
-}
-
 .th {
   vertical-align: middle;
   scroll-snap-align: end;
@@ -21,15 +10,6 @@
     width: auto;
     scroll-snap-align: unset;
   }
-}
-
-.thRow {
-  position: sticky;
-  top: 0;
-}
-
-.thCol {
-  text-align: left;
 }
 
 .fixedCell {
@@ -45,28 +25,5 @@
     right: 0;
     width: 1px;
     background-color: $ds-grey-200;
-  }
-}
-
-.topLeftCell {
-  position: relative;
-  display: none;
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: calc(
-      50% + 16px
-    ); // Display bottom border at the same distance regardless of cell height
-
-    height: 4px;
-    width: 100%;
-    max-width: 140px;
-    background-color: $ds-primary-500;
-  }
-
-  @include p-size-tablet {
-    display: flex;
   }
 }

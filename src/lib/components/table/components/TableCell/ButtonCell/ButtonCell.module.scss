@@ -1,0 +1,43 @@
+@use "../../../../../scss/public/grid" as *;
+@use "../../../../../scss/public/colors" as *;
+
+.buttonCell {
+  color: $ds-grey-900;
+  border: 1px solid $ds-grey-400;
+
+  transition: all 0.3s ease-in-out;
+
+  @include p-size-mobile {
+    max-width: calc(100% - 96px);
+  }
+
+  &:disabled {
+    border: none;
+    background-color: $ds-grey-200;
+    color: $ds-grey-900;
+    opacity: 1;
+    cursor: default;
+
+    &:hover {
+      background-color: $ds-grey-200;
+    }
+  }
+
+  @include p-size-mobile {
+    pointer-events: none;
+  }
+}
+
+.withoutSubContent {
+  height: 64px;
+}
+
+.withSubContent {
+  height: 75px;
+}
+
+.selected {
+  transition: all 0.3 ease-in-out;
+  border: 2px solid $ds-purple-500;
+  background-color: $ds-purple-50;
+}
