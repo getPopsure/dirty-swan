@@ -71,7 +71,7 @@ export const BaseCell = ({
         'jc-center': align === 'center',
       })}
     >
-      <div className={classNames('d-flex fd-column gap8', alignClassName)}>
+      <div className={classNames('d-flex fd-column', alignClassName)}>
         {progressBarValue !== undefined && (
           <MiniProgressBar nFilledBars={progressBarValue} />
         )}
@@ -92,52 +92,54 @@ export const BaseCell = ({
           </span>
         )}
 
-        {checkmarkValue !== undefined && (
-          <span title={checkmarkValue ? 'Yes' : 'No'}>
-            {checkmarkValue ? (
-              <CheckIcon
-                data-testid="table-cell-boolean-yes"
-                size={24}
-                aria-hidden
-                color="primary-500"
-              />
-            ) : (
-              <XIcon
-                data-testid="table-cell-boolean-no"
-                size={24}
-                aria-hidden
-                color="grey-400"
-              />
-            )}
-          </span>
-        )}
+        <div className="d-flex ai-center">
+          {checkmarkValue !== undefined && (
+            <span title={checkmarkValue ? 'Yes' : 'No'}>
+              {checkmarkValue ? (
+                <CheckIcon
+                  data-testid="table-cell-boolean-yes"
+                  size={24}
+                  aria-hidden
+                  color="primary-500"
+                />
+              ) : (
+                <XIcon
+                  data-testid="table-cell-boolean-no"
+                  size={24}
+                  aria-hidden
+                  color="grey-400"
+                />
+              )}
+            </span>
+          )}
 
-        {content && contentFontVariant === 'NORMAL' && (
-          <div className="p-p" data-testid="table-cell-content">
-            {content}
-          </div>
-        )}
+          {content && contentFontVariant === 'NORMAL' && (
+            <div className="p-p" data-testid="table-cell-content">
+              {content}
+            </div>
+          )}
 
-        {content && contentFontVariant === 'PRICE' && (
-          <div
-            className="p-h1 p--serif tc-primary-500"
-            data-testid="table-cell-content"
-          >
-            {content}
-          </div>
-        )}
+          {content && contentFontVariant === 'PRICE' && (
+            <div
+              className="p-h1 p--serif tc-primary-500"
+              data-testid="table-cell-content"
+            >
+              {content}
+            </div>
+          )}
 
-        {content && contentFontVariant === 'BIG_WITH_UNDERLINE' && (
-          <div
-            aria-hidden
-            className={classNames(
-              'tc-grey-800 p-h2 p--serif',
-              styles.bigWithUnderline
-            )}
-          >
-            {content}
-          </div>
-        )}
+          {content && contentFontVariant === 'BIG_WITH_UNDERLINE' && (
+            <div
+              aria-hidden
+              className={classNames(
+                'tc-grey-800 p-h2 p--serif',
+                styles.bigWithUnderline
+              )}
+            >
+              {content}
+            </div>
+          )}
+        </div>
 
         {subContent && (
           <div
@@ -150,7 +152,6 @@ export const BaseCell = ({
           </div>
         )}
       </div>
-
       {modalContent && openModal && (
         <TableInfoButton onClick={() => openModal(modalContent)} />
       )}
