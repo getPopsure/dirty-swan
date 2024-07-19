@@ -16,10 +16,11 @@
     background-color: $ds-grey-200;
     color: $ds-grey-900;
     opacity: 1;
+    cursor: default;
+
     &:hover {
       background-color: $ds-grey-200;
     }
-    cursor: default;
   }
 
   @include p-size-mobile {
