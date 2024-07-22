@@ -4,9 +4,9 @@ import { CTACellProps } from './components/TableCell/CTACell/CTACell';
 import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
 
 export type TableCellData =
-  | (BaseCellProps & { type?: undefined })
-  | (CTACellProps & { type: 'CTA' })
-  | (ButtonCellProps & { type: 'BUTTON' });
+  | (BaseCellProps & { type?: undefined; cellId?: string })
+  | (CTACellProps & { type: 'CTA'; cellId?: string })
+  | (ButtonCellProps & { type: 'BUTTON'; cellId?: string });
 
 export type TableSectionType = {
   title?: string;
