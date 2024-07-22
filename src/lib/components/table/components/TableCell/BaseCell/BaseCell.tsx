@@ -9,6 +9,7 @@ import { ReactNode } from 'react';
 import styles from './BaseCell.module.scss';
 import { MiniProgressBar } from './MiniProgressBar/MiniProgressBar';
 import { TableInfoButton } from '../../../../comparisonTable';
+import { ModalFunction } from '../../../types';
 
 export type FontVariant = 'NORMAL' | 'BIG_WITH_UNDERLINE' | 'PRICE';
 
@@ -33,13 +34,15 @@ export type BaseCellProps = {
   description?: ReactNode;
   fontVariant?: FontVariant;
   hideProgressBar?: boolean;
+  modalTitle?: ReactNode;
   modalContent?: ReactNode;
-  openModal?: (modalContent: ReactNode) => void;
+  openModal?: ModalFunction;
   text?: ReactNode;
   rating?: {
     value: number;
     type: 'zap' | 'star';
   };
+  cellId?: string;
 };
 
 export const BaseCell = ({
@@ -48,6 +51,7 @@ export const BaseCell = ({
   description = '',
   fontVariant = 'NORMAL',
   hideProgressBar = false,
+  modalTitle = '',
   modalContent = '',
   openModal,
   rating,
@@ -151,7 +155,14 @@ export const BaseCell = ({
 
             {modalContent && openModal && align == 'left' && (
               <span className="ml8">
-                <TableInfoButton onClick={() => openModal(modalContent)} />
+                <TableInfoButton
+                  onClick={() =>
+                    openModal({
+                      title: modalTitle,
+                      body: modalContent,
+                    })
+                  }
+                />
               </span>
             )}
           </div>
@@ -170,7 +181,14 @@ export const BaseCell = ({
 
         {modalContent && openModal && align == 'center' && (
           <span className={styles.infoButtonAbsolute}>
-            <TableInfoButton onClick={() => openModal(modalContent)} />
+            <TableInfoButton
+              onClick={() =>
+                openModal({
+                  title: modalTitle,
+                  body: modalContent,
+                })
+              }
+            />
           </span>
         )}
       </div>

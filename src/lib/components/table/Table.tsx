@@ -1,6 +1,6 @@
-import { TableCell, TableCellProps } from './components/TableCell/TableCell';
+import { TableCell } from './components/TableCell/TableCell';
 import { BottomOrRegularModal } from '../modal';
-import { ReactNode, useRef, useState } from 'react';
+import { ReactNode, useCallback, useRef, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '../icon';
 import { Card } from '../cards/card';
 
@@ -12,7 +12,14 @@ import { useTableNavigation } from './utils/useTableNavigation/useTableNavigatio
 import { TableControls } from './components/TableControls/TableControls';
 import { TableSection } from './components/TableSection/TableSection';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
-import { isBaseCell, ModalData, ModalFunction, TableData } from './types';
+import {
+  CellReplacements,
+  isBaseCell,
+  ModalData,
+  ModalFunction,
+  TableCellData,
+  TableData,
+} from './types';
 
 type TextOverrides = {
   showDetails?: string;
@@ -29,6 +36,7 @@ export interface TableProps {
   stickyHeaderTopOffset?: number;
   textOverrides?: TextOverrides;
   title: string;
+  cellReplacements?: CellReplacements;
 }
 
 const defaultTextOverrides = {
@@ -38,6 +46,7 @@ const defaultTextOverrides = {
 
 const Table = ({
   className,
+  cellReplacements,
   collapsibleSections,
   tableData,
   hideDetails,
@@ -64,11 +73,20 @@ const Table = ({
   });
 
   const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
+  const currentActiveSectionReplacements =
+    (currentActiveSection.cellId &&
+      cellReplacements?.[currentActiveSection.cellId]) ||
+    {};
 
-  const handleOpenModal: ModalFunction = ({ body, title }) => {
+  const activeCellProps = {
+    ...currentActiveSection,
+    ...currentActiveSectionReplacements,
+  } as TableCellData;
+
+  const handleOpenModal: ModalFunction = useCallback(({ body, title }) => {
     onModalOpen?.({ body, title });
     setInfoModalData({ body, title });
-  };
+  }, []);
 
   return (
     <div className={classNames(styles.wrapper, 'bg-white')}>
@@ -80,7 +98,6 @@ const Table = ({
           stickyHeaderTopOffset={stickyHeaderTopOffset}
         >
           <TableCell
-            {...currentActiveSection}
             {...(isBaseCell(currentActiveSection)
               ? {
                   openModal: (body: ReactNode) =>
@@ -90,6 +107,7 @@ const Table = ({
                     }),
                 }
               : {})}
+            {...activeCellProps}
             isNavigation
           />
         </TableControls>
@@ -120,6 +138,7 @@ const Table = ({
           isMobile={isMobile}
           shouldHideDetails={shouldHideDetails}
           openModal={handleOpenModal}
+          cellReplacements={cellReplacements}
         />
       </div>
 

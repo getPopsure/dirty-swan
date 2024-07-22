@@ -3,9 +3,9 @@ import { BaseCellProps } from './components/TableCell/BaseCell/BaseCell';
 import { CTACellProps } from './components/TableCell/CTACell/CTACell';
 import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
 
-type BaseCellData = BaseCellProps & { type?: undefined; cellId?: string };
-type CTACellData = CTACellProps & { type: 'CTA'; cellId?: string };
-type ButtonCellData = ButtonCellProps & { type: 'BUTTON'; cellId?: string };
+type BaseCellData = BaseCellProps & { type?: undefined };
+type CTACellData = CTACellProps & { type: 'CTA' };
+type ButtonCellData = ButtonCellProps & { type: 'BUTTON' };
 
 export type TableCellData = BaseCellData | CTACellData | ButtonCellData;
 
@@ -35,3 +35,5 @@ export type TableSectionData = {
 export type TableData = TableSectionData[];
 
 export type ModalFunction = (modalData: ModalData) => void;
+
+export type CellReplacements = Record<string, Partial<TableCellData>>;

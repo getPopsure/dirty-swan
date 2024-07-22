@@ -2,11 +2,11 @@ import classNames from 'classnames';
 
 import styles from './TableSection.module.scss';
 import { TableCell, TableCellProps } from '../TableCell/TableCell';
-import { ReactNode, useCallback } from 'react';
 import {
+  CellReplacements,
   isBaseCell,
-  ModalData,
   ModalFunction,
+  TableCellData,
   TableCellRowData,
 } from '../../types';
 
@@ -17,6 +17,7 @@ export interface TableSectionProps {
   openModal?: ModalFunction;
   title: string;
   width?: number | string;
+  cellReplacements?: CellReplacements;
 }
 
 const TableSection = ({
@@ -26,6 +27,7 @@ const TableSection = ({
   openModal,
   title,
   width,
+  cellReplacements,
 }: TableSectionProps) => {
   const headerRow = tableCellRows?.[0];
 
@@ -68,6 +70,22 @@ const TableSection = ({
           <tr>
             {headerRow.map((tableCellData, cellIndex) => {
               const isFirstCellInRow = cellIndex === 0;
+              const cellReplacementData =
+                (tableCellData.cellId &&
+                  cellReplacements?.[tableCellData.cellId]) ||
+                {};
+
+              const cellProps = {
+                ...tableCellData,
+                ...cellReplacementData,
+                ...{
+                  openModal,
+                  modalTitle:
+                    (isBaseCell(tableCellData) && tableCellData.text) ||
+                    getModalTitleFromColumnHeader(cellIndex),
+                  align: isFirstCellInRow ? 'left' : 'center',
+                },
+              } as TableCellData;
 
               return (
                 <TableCell
@@ -75,19 +93,7 @@ const TableSection = ({
                   isHeader
                   isFirstCellInRow={isFirstCellInRow}
                   isTopLeftCell={isFirstCellInRow}
-                  {...tableCellData}
-                  {...(isBaseCell(tableCellData)
-                    ? {
-                        openModal: (body: ReactNode) =>
-                          openModal?.({
-                            body,
-                            title:
-                              tableCellData.text ||
-                              getModalTitleFromColumnHeader(cellIndex),
-                          }),
-                        align: isFirstCellInRow ? 'left' : 'center',
-                      }
-                    : {})}
+                  {...cellProps}
                 />
               );
             })}
@@ -106,30 +112,33 @@ const TableSection = ({
                   const key = `${rowIndex}-${cellIndex}`;
                   const isFirstCellInRow = cellIndex === 0;
 
+                  const titleFromRow = getModalTitleFromRowHeader(row);
+                  const titleFromColumnOrRow =
+                    getModalTitleFromColumnHeader(cellIndex) ||
+                    getModalTitleFromRowHeader(row);
+
+                  const cellReplacementData =
+                    (tableCellData.cellId &&
+                      cellReplacements?.[tableCellData.cellId]) ||
+                    {};
+
+                  const cellProps = {
+                    ...tableCellData,
+                    ...cellReplacementData,
+                    ...{
+                      openModal,
+                      modalTitle: isFirstCellInRow
+                        ? titleFromRow
+                        : titleFromColumnOrRow,
+                      align: isFirstCellInRow ? 'left' : 'center',
+                    },
+                  } as TableCellData;
+
                   return (
                     <TableCell
                       isFirstCellInRow={isFirstCellInRow}
                       key={key}
-                      {...tableCellData}
-                      {...(isBaseCell(tableCellData)
-                        ? {
-                            openModal: (body: ReactNode) => {
-                              const titleFromRow =
-                                getModalTitleFromRowHeader(row);
-                              const titleFromColumnOrRow =
-                                getModalTitleFromColumnHeader(cellIndex) ||
-                                getModalTitleFromRowHeader(row);
-
-                              return openModal?.({
-                                body,
-                                title: isFirstCellInRow
-                                  ? titleFromRow
-                                  : titleFromColumnOrRow,
-                              });
-                            },
-                            align: isFirstCellInRow ? 'left' : 'center',
-                          }
-                        : {})}
+                      {...cellProps}
                     />
                   );
                 })}
