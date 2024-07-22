@@ -3,10 +3,17 @@ import { BaseCellProps } from './components/TableCell/BaseCell/BaseCell';
 import { CTACellProps } from './components/TableCell/CTACell/CTACell';
 import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
 
-export type TableCellData =
-  | (BaseCellProps & { type?: undefined })
-  | (CTACellProps & { type: 'CTA' })
-  | (ButtonCellProps & { type: 'BUTTON' });
+type BaseCellData = BaseCellProps & { type?: undefined; cellId?: string };
+type CTACellData = CTACellProps & { type: 'CTA'; cellId?: string };
+type ButtonCellData = ButtonCellProps & { type: 'BUTTON'; cellId?: string };
+
+export type TableCellData = BaseCellData | CTACellData | ButtonCellData;
+
+export const isBaseCell = (
+  tableCellData: TableCellData
+): tableCellData is BaseCellData => {
+  return !tableCellData.type;
+};
 
 export type TableSectionType = {
   title?: string;

@@ -5,18 +5,18 @@ import { Button } from '../../../../button';
 import { ReactNode } from 'react';
 
 export type ButtonCellProps = {
-  content?: ReactNode;
+  buttonCaption: ReactNode;
   disabled?: boolean;
   isSelected?: boolean;
   onClick: () => void;
-  subContent?: ReactNode;
+  price?: ReactNode;
 };
 
 export const ButtonCell = ({
   isSelected,
   onClick,
-  content,
-  subContent,
+  buttonCaption,
+  price,
   disabled,
 }: ButtonCellProps) => {
   return (
@@ -24,16 +24,16 @@ export const ButtonCell = ({
       <Button
         className={classNames('w100 wmx5 d-flex fd-column', styles.buttonCell, {
           [styles.selected]: isSelected,
-          [styles.withoutSubContent]: !subContent,
-          [styles.withSubContent]: !!subContent,
+          [styles.withoutPrice]: !price,
+          [styles.withPrice]: !!price,
         })}
         variant="filledWhite"
         type="submit"
         onClick={onClick}
         disabled={disabled}
       >
-        {content}
-        {subContent && <span className="p-p tc-purple-500">{subContent}</span>}
+        {buttonCaption}
+        {price && <span className="p-p tc-purple-500">{price}</span>}
       </Button>
     </div>
   );

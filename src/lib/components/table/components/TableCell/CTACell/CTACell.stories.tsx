@@ -5,23 +5,26 @@ const story = {
   component: CTACell,
   argTypes: {},
   args: {
-    content: 'Premium',
-    subContent: '€277',
+    title: 'Premium',
+    price: '€277',
+    buttonCaption: 'Get covered',
     grey: false,
     narrow: false,
   },
 };
 
 export const CTACellStory = ({
-  content,
-  subContent,
+  title,
+  price,
+  buttonCaption,
   grey,
   narrow,
 }: React.ComponentProps<typeof CTACell>) => (
   <div className="p48 d-flex fd-column gap16 bg-white">
     <CTACell
-      content={content}
-      subContent={subContent}
+      title={title}
+      price={price}
+      buttonCaption={buttonCaption}
       href=""
       grey={grey}
       narrow={narrow}

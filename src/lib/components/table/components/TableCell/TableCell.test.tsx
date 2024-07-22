@@ -3,17 +3,18 @@ import { TableCell, TableCellProps } from './TableCell';
 
 const openModal = jest.fn();
 
-const setup = ({ isNavigation, ...rest }: TableCellProps = {}) => render(
-  isNavigation 
-    ? <TableCell {...rest} isNavigation />
-    : (
+const setup = ({ isNavigation, ...rest }: TableCellProps = {}) =>
+  render(
+    isNavigation ? (
+      <TableCell {...rest} isNavigation />
+    ) : (
       <table>
         <tbody>
           <tr>
             <TableCell {...rest} />
           </tr>
         </tbody>
-      </table>  
+      </table>
     )
   );
 
@@ -58,7 +59,7 @@ describe('TableCell', () => {
   });
 
   it('renders the component with text', () => {
-    setup({ content: "Sample text" });
+    setup({ text: 'Sample text' });
 
     expect(screen.getByText('Sample text')).toBeInTheDocument();
   });
@@ -76,7 +77,7 @@ describe('TableCell', () => {
   });
 
   it('calls openModal when info button is clicked', () => {
-    setup({ modalContent: "Additional information", openModal });
+    setup({ modalContent: 'Additional information', openModal });
 
     // Click info button
     screen.getByTestId('ds-table-info-button').click();

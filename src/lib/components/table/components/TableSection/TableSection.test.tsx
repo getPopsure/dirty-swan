@@ -2,8 +2,8 @@ import { render, screen } from '../../../../util/testUtils';
 import { TableSection, TableSectionProps } from './TableSection';
 
 const tableCellRows: TableSectionProps['tableCellRows'] = [
-  [{ content: 'Cell 1.1' }, { content: 'Cell 1.2' }, { content: 'Cell 1.3' }],
-  [{ content: 'Cell 2.1' }, { content: 'Cell 2.2' }, { content: 'Cell 2.3' }],
+  [{ text: 'Cell 1.1' }, { text: 'Cell 1.2' }, { text: 'Cell 1.3' }],
+  [{ text: 'Cell 2.1' }, { text: 'Cell 2.2' }, { text: 'Cell 2.3' }],
 ];
 
 const mockTitle = 'Test Table';

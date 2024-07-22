@@ -2,8 +2,9 @@ import classNames from 'classnames';
 import { ReactNode } from 'react';
 
 export type CTACellProps = {
-  content?: ReactNode;
-  subContent?: ReactNode;
+  title: ReactNode;
+  price?: ReactNode;
+  buttonCaption?: ReactNode;
   grey?: boolean;
   narrow?: boolean;
   href: string;
@@ -11,17 +12,18 @@ export type CTACellProps = {
 import styles from './CTACell.module.scss';
 
 export const CTACell = ({
-  content,
-  subContent,
+  title,
+  price,
   grey,
   narrow,
   href,
+  buttonCaption,
 }: CTACellProps) => {
   return (
     <div className="wmn3 ta-center">
       <p className="p-h3">
-        {content}
-        {subContent && <span className="tc-purple-500"> {subContent}</span>}
+        {title}
+        {price && <span className="tc-purple-500"> {price}</span>}
       </p>
       <a
         className={classNames('mt16', {
@@ -33,7 +35,7 @@ export const CTACell = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        Get covered
+        {buttonCaption}
       </a>
     </div>
   );

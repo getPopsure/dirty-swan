@@ -1,69 +1,95 @@
 import { Table, TableProps } from './Table';
 import { DentalPlusIcon, PlaneIcon } from '../icon';
-import { TableData } from './types';
+import { TableCellData, TableData } from './types';
 
 const initialData: TableData = [
   {
     rows: [
       [
-        { content: 'Our plans' },
+        { text: 'Our plans' },
         {
           type: 'CTA',
-          content: 'Standard',
-          subContent: '€234',
+          title: 'Standard',
+          price: '€234',
+          buttonCaption: 'Get covered',
           href: 'http://example.com',
         },
         {
           type: 'CTA',
-          content: 'Plus',
-          subContent: '€344',
+          title: 'Plus',
+          price: '€344',
+          buttonCaption: 'Get covered',
           href: 'http://example.com',
         },
         {
           type: 'CTA',
-          content: 'Premium',
-          subContent: '€556',
+          title: 'Premium',
+          price: '€556',
+          buttonCaption: 'Get covered',
           href: 'http://example.com',
         },
       ],
       [
-        { content: 'Select a plan' },
+        { text: 'Select a plan' },
         {
           type: 'BUTTON',
-          content: 'Standard',
-          subContent: '€234',
+          buttonCaption: 'Standard',
+          price: '€234',
           onClick: () => {},
         },
         {
           type: 'BUTTON',
-          content: 'Plus',
-          subContent: '€344',
+          buttonCaption: 'Plus',
+          price: '€344',
           onClick: () => {},
         },
         {
           type: 'BUTTON',
-          content: 'Premium',
-          subContent: '€556',
+          buttonCaption: 'Premium',
+          price: '€556',
           onClick: () => {},
         },
       ],
       [
         {
-          content: 'Regular vet visits & medication',
-          subContent: 'Annual Only',
+          text: 'Your contribution',
         },
-        { content: 'No', subContent: 'Annual Only' },
-        { content: '50%' },
-        { content: '80%-100%' },
+        {
+          text: '€210',
+          description: 'per month',
+          fontVariant: 'PRICE',
+          modalContent: 'Price info',
+        },
+        {
+          text: '€275',
+          description: 'per month',
+          fontVariant: 'PRICE',
+          modalContent: 'Price info',
+        },
+        {
+          text: '€310',
+          description: 'per month',
+          fontVariant: 'PRICE',
+          modalContent: 'Price info',
+        },
       ],
       [
-        { content: 'Operations', modalContent: 'Operations info' },
+        {
+          text: 'Regular vet visits & medication',
+          description: 'Annual Only',
+        },
+        { text: 'No', description: 'Annual Only' },
+        { text: '50%' },
+        { text: '80%-100%' },
+      ],
+      [
+        { text: 'Operations', modalContent: 'Operations info' },
         { checkmarkValue: true, modalContent: 'Operations info column 2' },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
       [
-        { content: 'Rating', modalContent: 'Rating info' },
+        { text: 'Rating', modalContent: 'Rating info' },
         { rating: { type: 'zap', value: 1 } },
         {
           rating: { type: 'zap', value: 3 },
@@ -80,19 +106,19 @@ const initialData: TableData = [
     },
     rows: [
       [
-        { content: 'Regular vet visits & medication' },
-        { content: 'No' },
-        { content: 'Yes' },
-        { content: 'Yes' },
+        { text: 'Regular vet visits & medication' },
+        { text: 'No' },
+        { text: 'Yes' },
+        { text: 'Yes' },
       ],
       [
-        { content: 'Operations', modalContent: 'info' },
+        { text: 'Operations', modalContent: 'info' },
         { checkmarkValue: true, modalContent: 'Maybe' },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
       [
-        { content: 'Rating', modalContent: 'info' },
+        { text: 'Rating', modalContent: 'info' },
         { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
         { rating: { type: 'zap', value: 3 } },
         { rating: { type: 'star', value: 3 } },
@@ -106,19 +132,19 @@ const initialData: TableData = [
     },
     rows: [
       [
-        { content: 'Regular vet visits & medication' },
-        { content: 'No', checkmarkValue: false },
-        { content: 'Yes' },
-        { content: 'Yes' },
+        { text: 'Regular vet visits & medication' },
+        { text: 'No', checkmarkValue: false },
+        { text: 'Yes' },
+        { text: 'Yes' },
       ],
       [
-        { content: 'Operations', modalContent: 'info' },
+        { text: 'Operations', modalContent: 'info' },
         { checkmarkValue: true, modalContent: 'Maybe' },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
       [
-        { content: 'Rating', modalContent: 'info' },
+        { text: 'Rating', modalContent: 'info' },
         { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
         { rating: { type: 'zap', value: 3 } },
         { rating: { type: 'star', value: 3 } },
@@ -216,7 +242,7 @@ type TableData = {
   rows: {
     align?: 'center' | 'left' | 'right';
     checkmarkValue?: boolean;
-    content?: ReactNode;
+    text?: ReactNode;
     modalContent?: ReactNode;
     subContent?: ReactNode;
     rating?: {

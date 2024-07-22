@@ -48,7 +48,11 @@ const TableCell = ({
       {!cellProps.type && (
         <BaseCell
           {...cellProps}
-          contentFontVariant={isTopLeftCell ? 'BIG_WITH_UNDERLINE' : 'NORMAL'}
+          fontVariant={
+            isTopLeftCell
+              ? 'BIG_WITH_UNDERLINE'
+              : cellProps.fontVariant ?? 'NORMAL'
+          }
         />
       )}
       {cellProps.type === 'CTA' && <CTACell {...cellProps} />}

@@ -1,9 +1,7 @@
 import classNames from 'classnames';
-import { Button } from '../../../../button';
 import {
   CheckIcon,
   XIcon,
-  InfoIcon,
   StarFilledIcon,
   ZapFilledIcon,
 } from '../../../../icon';
@@ -12,7 +10,7 @@ import styles from './BaseCell.module.scss';
 import { MiniProgressBar } from './MiniProgressBar/MiniProgressBar';
 import { TableInfoButton } from '../../../../comparisonTable';
 
-export type ContentFontVariant = 'NORMAL' | 'BIG_WITH_UNDERLINE' | 'PRICE';
+export type FontVariant = 'NORMAL' | 'BIG_WITH_UNDERLINE' | 'PRICE';
 
 const progressLookup: Record<string, number> = {
   '30%': 1,
@@ -32,26 +30,26 @@ export type Alignment = 'center' | 'left' | 'right';
 export type BaseCellProps = {
   align?: Alignment;
   checkmarkValue?: boolean;
-  content?: ReactNode;
+  fontVariant?: FontVariant;
+  description?: ReactNode;
   modalContent?: ReactNode;
   openModal?: (modalContent: ReactNode) => void;
-  subContent?: ReactNode;
+  text?: ReactNode;
   rating?: {
     value: number;
     type: 'zap' | 'star';
   };
-  contentFontVariant?: ContentFontVariant;
 };
 
 export const BaseCell = ({
   align = 'center',
   checkmarkValue,
-  content = '',
+  fontVariant = 'NORMAL',
+  description = '',
   modalContent = '',
   openModal,
   rating,
-  subContent = '',
-  contentFontVariant = 'NORMAL',
+  text = '',
 }: BaseCellProps) => {
   const alignClassName = {
     center: 'ta-center jc-center ai-center',
@@ -63,7 +61,7 @@ export const BaseCell = ({
   const SelectedIcon = rating?.type === 'zap' ? ZapFilledIcon : StarFilledIcon;
 
   const progressBarValue =
-    typeof content === 'string' ? progressLookup[content] : undefined;
+    typeof text === 'string' ? progressLookup[text] : undefined;
 
   return (
     <div
@@ -113,22 +111,22 @@ export const BaseCell = ({
             </span>
           )}
 
-          {content && contentFontVariant === 'NORMAL' && (
-            <div className="p-p" data-testid="table-cell-content">
-              {content}
+          {text && fontVariant === 'NORMAL' && (
+            <div className="p-p" data-testid="table-cell-text">
+              {text}
             </div>
           )}
 
-          {content && contentFontVariant === 'PRICE' && (
+          {text && fontVariant === 'PRICE' && (
             <div
               className="p-h1 p--serif tc-primary-500"
               data-testid="table-cell-content"
             >
-              {content}
+              {text}
             </div>
           )}
 
-          {content && contentFontVariant === 'BIG_WITH_UNDERLINE' && (
+          {text && fontVariant === 'BIG_WITH_UNDERLINE' && (
             <div
               aria-hidden
               className={classNames(
@@ -136,19 +134,19 @@ export const BaseCell = ({
                 styles.bigWithUnderline
               )}
             >
-              {content}
+              {text}
             </div>
           )}
         </div>
 
-        {subContent && (
+        {description && (
           <div
             className={classNames(
               'd-flex p-p--small tc-grey-500',
               alignClassName
             )}
           >
-            {subContent}
+            {description}
           </div>
         )}
       </div>
