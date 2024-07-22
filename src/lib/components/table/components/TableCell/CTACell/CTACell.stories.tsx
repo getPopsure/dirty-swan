@@ -1,3 +1,4 @@
+import { PlaneIcon } from '../../../../icon';
 import { CTACell } from './CTACell';
 
 const story = {
@@ -5,8 +6,9 @@ const story = {
   component: CTACell,
   argTypes: {},
   args: {
-    title: 'Premium',
+    title: 'BARMER',
     price: '€277',
+    icon: <PlaneIcon size={24} noMargin />,
     buttonCaption: 'Get covered',
     grey: false,
     narrow: false,
@@ -16,6 +18,7 @@ const story = {
 export const CTACellStory = ({
   title,
   price,
+  icon,
   buttonCaption,
   grey,
   narrow,
@@ -24,6 +27,7 @@ export const CTACellStory = ({
     <CTACell
       title={title}
       price={price}
+      icon={icon}
       buttonCaption={buttonCaption}
       href=""
       grey={grey}
