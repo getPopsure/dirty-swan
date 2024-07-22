@@ -25,6 +25,7 @@ export const BaseCellStory = ({
   rating,
   fontVariant,
   align,
+  hideProgressBar,
 }: React.ComponentProps<typeof BaseCell>) => (
   <div className="p48 d-flex fd-column gap16 bg-white">
     <BaseCell
@@ -33,6 +34,7 @@ export const BaseCellStory = ({
       fontVariant={fontVariant}
       description={description}
       modalContent={modalContent}
+      hideProgressBar={hideProgressBar}
       openModal={() => {}}
       rating={rating}
       text={text}

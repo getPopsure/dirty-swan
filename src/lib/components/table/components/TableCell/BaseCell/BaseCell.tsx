@@ -30,8 +30,9 @@ export type Alignment = 'center' | 'left' | 'right';
 export type BaseCellProps = {
   align?: Alignment;
   checkmarkValue?: boolean;
-  fontVariant?: FontVariant;
   description?: ReactNode;
+  fontVariant?: FontVariant;
+  hideProgressBar?: boolean;
   modalContent?: ReactNode;
   openModal?: (modalContent: ReactNode) => void;
   text?: ReactNode;
@@ -44,8 +45,9 @@ export type BaseCellProps = {
 export const BaseCell = ({
   align = 'center',
   checkmarkValue,
-  fontVariant = 'NORMAL',
   description = '',
+  fontVariant = 'NORMAL',
+  hideProgressBar = false,
   modalContent = '',
   openModal,
   rating,
@@ -61,7 +63,9 @@ export const BaseCell = ({
   const SelectedIcon = rating?.type === 'zap' ? ZapFilledIcon : StarFilledIcon;
 
   const progressBarValue =
-    typeof text === 'string' ? progressLookup[text] : undefined;
+    !hideProgressBar && typeof text === 'string'
+      ? progressLookup[text]
+      : undefined;
 
   return (
     <div
@@ -69,7 +73,13 @@ export const BaseCell = ({
         'jc-center': align === 'center',
       })}
     >
-      <div className={classNames('d-flex fd-column', alignClassName)}>
+      <div
+        className={classNames(
+          'd-flex fd-column',
+          alignClassName,
+          styles.relative
+        )}
+      >
         {progressBarValue !== undefined && (
           <MiniProgressBar nFilledBars={progressBarValue} />
         )}
@@ -111,32 +121,40 @@ export const BaseCell = ({
             </span>
           )}
 
-          {text && fontVariant === 'NORMAL' && (
-            <div className="p-p" data-testid="table-cell-text">
-              {text}
-            </div>
-          )}
+          <div className="d-inline">
+            {text && fontVariant === 'NORMAL' && (
+              <div className="p-p d-inline" data-testid="table-cell-text">
+                {text}
+              </div>
+            )}
 
-          {text && fontVariant === 'PRICE' && (
-            <div
-              className="p-h1 p--serif tc-primary-500"
-              data-testid="table-cell-content"
-            >
-              {text}
-            </div>
-          )}
+            {text && fontVariant === 'PRICE' && (
+              <div
+                className="p-h1 p--serif tc-primary-500"
+                data-testid="table-cell-content"
+              >
+                {text}
+              </div>
+            )}
 
-          {text && fontVariant === 'BIG_WITH_UNDERLINE' && (
-            <div
-              aria-hidden
-              className={classNames(
-                'tc-grey-800 p-h2 p--serif',
-                styles.bigWithUnderline
-              )}
-            >
-              {text}
-            </div>
-          )}
+            {text && fontVariant === 'BIG_WITH_UNDERLINE' && (
+              <div
+                aria-hidden
+                className={classNames(
+                  'tc-grey-800 p-h2 p--serif',
+                  styles.bigWithUnderline
+                )}
+              >
+                {text}
+              </div>
+            )}
+
+            {modalContent && openModal && align == 'left' && (
+              <span className="ml8">
+                <TableInfoButton onClick={() => openModal(modalContent)} />
+              </span>
+            )}
+          </div>
         </div>
 
         {description && (
@@ -149,10 +167,13 @@ export const BaseCell = ({
             {description}
           </div>
         )}
+
+        {modalContent && openModal && align == 'center' && (
+          <span className={styles.infoButtonAbsolute}>
+            <TableInfoButton onClick={() => openModal(modalContent)} />
+          </span>
+        )}
       </div>
-      {modalContent && openModal && (
-        <TableInfoButton onClick={() => openModal(modalContent)} />
-      )}
     </div>
   );
 };

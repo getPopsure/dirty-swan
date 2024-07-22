@@ -77,6 +77,7 @@ const initialData: TableData = [
         {
           text: 'Regular vet visits & medication',
           description: 'Annual Only',
+          modalContent: 'Some stories about vets',
         },
         { text: 'No', description: 'Annual Only' },
         { text: '50%' },
