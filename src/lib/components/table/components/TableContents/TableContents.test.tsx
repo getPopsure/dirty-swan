@@ -4,8 +4,8 @@ import { TableContents, TableContentsProps } from './TableContents';
 const mockData: TableContentsProps['tableData'] = [
   {
     rows: [
-      [{ content: 'Item 1.1.1' }, { content: 'Item 1.1.2' }],
-      [{ content: 'Item 1.2.1' }, { content: 'Item 1.2.2' }],
+      [{ text: 'Item 1.1.1' }, { text: 'Item 1.1.2' }],
+      [{ text: 'Item 1.2.1' }, { text: 'Item 1.2.2' }],
     ],
   },
   {
@@ -13,8 +13,8 @@ const mockData: TableContentsProps['tableData'] = [
       title: 'Section 2',
     },
     rows: [
-      [{ content: 'Item 2.1.1' }, { content: 'Item 2.1.2' }],
-      [{ content: 'Item 2.2.1' }, { content: 'Item 2.2.2' }],
+      [{ text: 'Item 2.1.1' }, { text: 'Item 2.1.2' }],
+      [{ text: 'Item 2.2.1' }, { text: 'Item 2.2.2' }],
     ],
   },
 ];

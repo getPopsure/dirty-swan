@@ -8,7 +8,7 @@ const tableData: TableSectionData[] = [
       title: 'Section 1',
       icon: <span>Icon 1</span>,
     },
-    rows: [[{ content: 'Item 1' }, { content: 'Item 2' }]],
+    rows: [[{ text: 'Item 1' }, { text: 'Item 2' }]],
   },
   {
     section: {
@@ -16,10 +16,7 @@ const tableData: TableSectionData[] = [
       icon: <span>Icon 2</span>,
     },
     rows: [
-      [
-        { content: 'Item 3' },
-        { content: 'Item 4', modalContent: 'Additional item' },
-      ],
+      [{ text: 'Item 3' }, { text: 'Item 4', modalContent: 'Additional item' }],
     ],
   },
 ];

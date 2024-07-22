@@ -12,7 +12,7 @@ import { useTableNavigation } from './utils/useTableNavigation/useTableNavigatio
 import { TableControls } from './components/TableControls/TableControls';
 import { TableSection } from './components/TableSection/TableSection';
 import { useScrollSync } from './utils/useScrollSync/useScrollSync';
-import { ModalData, ModalFunction, TableData } from './types';
+import { isBaseCell, ModalData, ModalFunction, TableData } from './types';
 
 type TextOverrides = {
   showDetails?: string;
@@ -70,17 +70,6 @@ const Table = ({
     setInfoModalData({ body, title });
   };
 
-  const isBaseCell = !currentActiveSection.type;
-  let openModal;
-
-  if (isBaseCell) {
-    openModal = (body: ReactNode) =>
-      handleOpenModal({
-        body,
-        title: currentActiveSection?.content,
-      });
-  }
-
   return (
     <div className={classNames(styles.wrapper, 'bg-white')}>
       {isMobile ? (
@@ -92,9 +81,13 @@ const Table = ({
         >
           <TableCell
             {...currentActiveSection}
-            {...(isBaseCell
+            {...(isBaseCell(currentActiveSection)
               ? {
-                  openModal,
+                  openModal: (body: ReactNode) =>
+                    handleOpenModal({
+                      body,
+                      title: currentActiveSection?.text,
+                    }),
                 }
               : {})}
             isNavigation

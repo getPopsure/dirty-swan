@@ -5,58 +5,58 @@ const story = {
   component: ButtonCell,
   argTypes: {},
   args: {
+    buttonCaption: 'Premium',
+    price: '€277/mo',
     isSelected: false,
-    content: 'Premium',
-    subContent: '€277/mo',
     disabled: false,
   },
 };
 
 export const ButtonCellStory = ({
   isSelected,
-  content,
-  subContent,
+  buttonCaption,
+  price,
   disabled,
 }: React.ComponentProps<typeof ButtonCell>) => (
   <div className="p48 d-flex fd-column gap16 bg-white">
     <ButtonCell
-      content={content}
-      subContent={subContent}
+      buttonCaption={buttonCaption}
+      price={price}
       isSelected={isSelected}
       disabled={disabled}
       onClick={() => {}}
     />
 
     <ButtonCell
-      content={content}
-      subContent={subContent}
+      buttonCaption={buttonCaption}
+      price={price}
       isSelected
       disabled={disabled}
       onClick={() => {}}
     />
 
     <ButtonCell
-      content={content}
-      subContent={subContent}
+      buttonCaption={buttonCaption}
+      price={price}
       disabled
       onClick={() => {}}
     />
 
     <ButtonCell
-      content={content}
+      buttonCaption={buttonCaption}
       isSelected={isSelected}
       disabled={disabled}
       onClick={() => {}}
     />
 
     <ButtonCell
-      content={content}
+      buttonCaption={buttonCaption}
       isSelected
       disabled={disabled}
       onClick={() => {}}
     />
 
-    <ButtonCell content={content} disabled onClick={() => {}} />
+    <ButtonCell buttonCaption={buttonCaption} disabled onClick={() => {}} />
   </div>
 );
 
