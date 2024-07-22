@@ -1,11 +1,13 @@
 @use "../../../../../scss/public/grid" as *;
 @use "../../../../../scss/public/colors" as *;
 
-.infoButton {
-  min-height: initial;
-  height: initial;
-  width: initial;
-  padding: 0;
+.relative {
+  position: relative;
+}
+
+.infoButtonAbsolute {
+  position: absolute;
+  right: -32px;
 }
 
 .icon {
