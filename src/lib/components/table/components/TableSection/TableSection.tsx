@@ -113,14 +113,20 @@ const TableSection = ({
                       {...tableCellData}
                       {...(isBaseCell(tableCellData)
                         ? {
-                            openModal: (body: ReactNode) =>
-                              openModal?.({
+                            openModal: (body: ReactNode) => {
+                              const titleFromRow =
+                                getModalTitleFromRowHeader(row);
+                              const titleFromColumnOrRow =
+                                getModalTitleFromColumnHeader(cellIndex) ||
+                                getModalTitleFromRowHeader(row);
+
+                              return openModal?.({
                                 body,
                                 title: isFirstCellInRow
-                                  ? getModalTitleFromRowHeader(row)
-                                  : getModalTitleFromColumnHeader(cellIndex) ||
-                                    getModalTitleFromRowHeader(row),
-                              }),
+                                  ? titleFromRow
+                                  : titleFromColumnOrRow,
+                              });
+                            },
                             align: isFirstCellInRow ? 'left' : 'center',
                           }
                         : {})}
