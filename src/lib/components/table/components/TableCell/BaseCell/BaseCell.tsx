@@ -30,8 +30,9 @@ export type Alignment = 'center' | 'left' | 'right';
 export type BaseCellProps = {
   align?: Alignment;
   checkmarkValue?: boolean;
-  fontVariant?: FontVariant;
   description?: ReactNode;
+  fontVariant?: FontVariant;
+  hideProgressBar?: boolean;
   modalContent?: ReactNode;
   openModal?: (modalContent: ReactNode) => void;
   text?: ReactNode;
@@ -44,8 +45,9 @@ export type BaseCellProps = {
 export const BaseCell = ({
   align = 'center',
   checkmarkValue,
-  fontVariant = 'NORMAL',
   description = '',
+  fontVariant = 'NORMAL',
+  hideProgressBar = false,
   modalContent = '',
   openModal,
   rating,
@@ -61,7 +63,9 @@ export const BaseCell = ({
   const SelectedIcon = rating?.type === 'zap' ? ZapFilledIcon : StarFilledIcon;
 
   const progressBarValue =
-    typeof text === 'string' ? progressLookup[text] : undefined;
+    !hideProgressBar && typeof text === 'string'
+      ? progressLookup[text]
+      : undefined;
 
   return (
     <div
