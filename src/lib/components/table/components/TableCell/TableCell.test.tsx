@@ -83,6 +83,9 @@ describe('TableCell', () => {
     screen.getByTestId('ds-table-info-button').click();
 
     // Assert openModal is called with info prop
-    expect(openModal).toHaveBeenCalledWith('Additional information');
+    expect(openModal).toHaveBeenCalledWith({
+      body: 'Additional information',
+      title: '',
+    });
   });
 });
