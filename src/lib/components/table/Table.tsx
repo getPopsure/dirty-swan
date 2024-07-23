@@ -30,6 +30,7 @@ export interface TableProps {
   className?: string;
   collapsibleSections?: boolean;
   tableData: TableData;
+  hideColumns?: number[];
   hideDetails?: boolean;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
@@ -49,6 +50,7 @@ const Table = ({
   cellReplacements,
   collapsibleSections,
   tableData,
+  hideColumns = [],
   hideDetails,
   onModalOpen,
   onSelectionChanged,
@@ -119,10 +121,12 @@ const Table = ({
         >
           <div className={styles.container} ref={headerRef}>
             <TableSection
+              cellReplacements={cellReplacements}
+              className={className}
+              hideColumns={hideColumns}
+              openModal={handleOpenModal}
               tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
-              className={className}
-              openModal={handleOpenModal}
             />
           </div>
         </div>
@@ -134,6 +138,7 @@ const Table = ({
           title={title}
           className={className}
           collapsibleSections={collapsibleSections}
+          hideColumns={hideColumns}
           hideDetails={hideDetails}
           isMobile={isMobile}
           shouldHideDetails={shouldHideDetails}

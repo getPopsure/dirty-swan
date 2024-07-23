@@ -2,12 +2,16 @@ import { ReactNode } from 'react';
 import { BaseCellProps } from './components/TableCell/BaseCell/BaseCell';
 import { CTACellProps } from './components/TableCell/CTACell/CTACell';
 import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
+import { CardCellProps } from './components/TableCell/CardCell/CardCell';
 
-type BaseCellData = BaseCellProps & { type?: undefined };
-type CTACellData = CTACellProps & { type: 'CTA' };
-type ButtonCellData = ButtonCellProps & { type: 'BUTTON' };
+type DefaultCellProps = { colSpan?: number };
 
-export type TableCellData = BaseCellData | CTACellData | ButtonCellData;
+type BaseCellData = BaseCellProps & { type?: undefined } & DefaultCellProps;
+type CTACellData = CTACellProps & { type: 'CTA' } & DefaultCellProps;
+type ButtonCellData = ButtonCellProps & { type: 'BUTTON' } & DefaultCellProps;
+type CardCellData = CardCellProps & { type: 'CARD' } & DefaultCellProps;
+
+export type TableCellData = BaseCellData | CTACellData | ButtonCellData | CardCellData;
 
 export const isBaseCell = (
   tableCellData: TableCellData

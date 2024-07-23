@@ -129,6 +129,15 @@ const initialData: TableData = [
         { rating: { type: 'zap', value: 3 } },
         { rating: { type: 'star', value: 3 } },
       ],
+      [
+        {
+          type: 'CARD',
+          colSpan: 3,
+          title: 'Dental add-on',
+          href: 'https://example.com',
+          description: 'Get your dental cleanings and additional treatments covered for just 10.90€ a month.',
+        },
+      ],
     ],
   },
   {
@@ -163,7 +172,7 @@ const story = {
   title: 'JSX/Table',
   component: Table,
   argTypes: {
-    data: {
+    tableData: {
       subContent:
         'This property allows to set the data of the Table component.',
     },
@@ -188,6 +197,10 @@ const story = {
     textOverrides: {
       subContent:
         'This property allows to set custom text for the show and hide details buttons.',
+    },
+    hideColumns: {
+      subContent:
+        'This property allows to hide defined columns by index.',
     },
     onSelectionChanged: {
       subContent:
@@ -215,12 +228,14 @@ const story = {
       showDetails: 'Show details',
       hideDetails: 'Hide details',
     },
+    hideColumns: [],
   },
 };
 
 export const TableStory = ({
   collapsibleSections,
   tableData,
+  hideColumns,
   hideDetails,
   stickyHeaderTopOffset,
   textOverrides,
@@ -258,6 +273,7 @@ export const TableStory = ({
         }}
         collapsibleSections={collapsibleSections}
         tableData={tableData}
+        hideColumns={hideColumns}
         hideDetails={hideDetails}
         stickyHeaderTopOffset={stickyHeaderTopOffset}
         textOverrides={textOverrides}
