@@ -1,4 +1,4 @@
-import { CalendarDate } from '@popsure/public-models';
+import { CalendarDate } from '@getpopsure/public-models';
 import { calendarDateToISODate, isoStringtoCalendarDate } from '.';
 
 describe('Calendar date to ISO date', () => {

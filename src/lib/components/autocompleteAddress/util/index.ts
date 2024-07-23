@@ -2,7 +2,7 @@ import {
   Address,
   countryNameFromAlphaCode,
   Alpha2CountryCode,
-} from '@popsure/public-models';
+} from '@getpopsure/public-models';
 
 export const geocoderAddressComponentToPartialAddress = (
   input: google.maps.GeocoderAddressComponent[]
