@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: yarn install & test
         run: |
@@ -22,6 +24,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: yarn install & build
         run: |
@@ -30,6 +34,8 @@ jobs:
 
   test-build-storybook:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@master
