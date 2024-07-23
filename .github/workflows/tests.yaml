@@ -11,11 +11,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: yarn install & test
         run: |
+          echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc
           yarn install
           yarn test:ci
 
@@ -29,13 +28,12 @@ jobs:
 
       - name: yarn install & build
         run: |
+          echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc
           yarn install
           yarn build
 
   test-build-storybook:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@master
@@ -45,5 +43,6 @@ jobs:
 
       - name: yarn install & build-storybook
         run: |
+          echo //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }} >> .npmrc
           yarn install
           yarn build-storybook
