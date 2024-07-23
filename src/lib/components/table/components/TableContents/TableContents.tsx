@@ -6,7 +6,7 @@ import { Card } from '../../../cards/card';
 import styles from './TableContents.module.scss';
 import classNames from 'classnames';
 import { Collapsible } from './Collapsible';
-import { ModalFunction, TableData } from '../../types';
+import { CellReplacements, ModalFunction, TableData } from '../../types';
 
 export interface TableContentsProps {
   className?: string;
@@ -17,6 +17,7 @@ export interface TableContentsProps {
   openModal?: ModalFunction;
   shouldHideDetails?: boolean;
   title: string;
+  cellReplacements?: CellReplacements;
 }
 
 const TableContents = ({
@@ -28,6 +29,7 @@ const TableContents = ({
   openModal,
   shouldHideDetails,
   title,
+  cellReplacements,
 }: TableContentsProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
   const firstHeadRow = tableData?.[0]?.rows?.[0];
@@ -93,6 +95,7 @@ const TableContents = ({
                     section?.title ? ` - ${section.title}` : ''
                   }`}
                   width={tableWidth}
+                  cellReplacements={cellReplacements}
                 />
               </Collapsible>
             </div>

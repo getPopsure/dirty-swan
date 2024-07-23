@@ -9,6 +9,7 @@ export type CTACellProps = {
   grey?: boolean;
   narrow?: boolean;
   href: string;
+  cellId?: string;
 };
 import styles from './CTACell.module.scss';
 

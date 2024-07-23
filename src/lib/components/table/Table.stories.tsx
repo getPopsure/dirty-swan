@@ -1,6 +1,8 @@
 import { Table, TableProps } from './Table';
 import { DentalPlusIcon, PlaneIcon } from '../icon';
-import { TableCellData, TableData } from './types';
+import { TableData } from './types';
+import { useState } from 'react';
+import { Input } from '../input';
 
 const initialData: TableData = [
   {
@@ -55,18 +57,21 @@ const initialData: TableData = [
           text: 'Your contribution',
         },
         {
+          cellId: '#1',
           text: '€210',
           description: 'per month',
           fontVariant: 'PRICE',
           modalContent: 'Price info',
         },
         {
+          cellId: '#2',
           text: '€275',
           description: 'per month',
           fontVariant: 'PRICE',
           modalContent: 'Price info',
         },
         {
+          cellId: '#3',
           text: '€310',
           description: 'per month',
           fontVariant: 'PRICE',
@@ -220,16 +225,47 @@ export const TableStory = ({
   stickyHeaderTopOffset,
   textOverrides,
   title,
-}: TableProps) => (
-  <Table
-    collapsibleSections={collapsibleSections}
-    tableData={tableData}
-    hideDetails={hideDetails}
-    stickyHeaderTopOffset={stickyHeaderTopOffset}
-    textOverrides={textOverrides}
-    title={title}
-  />
-);
+}: TableProps) => {
+  const [price, setPrice] = useState(999);
+  return (
+    <div>
+      <div className="d-flex fd-column p24 mb80 gap16 wmx5">
+        <label htmlFor="">Change price to see replacement in action: </label>
+        <Input
+          id="#stuff"
+          type="text"
+          onChange={(e) => setPrice(Number(e.target.value))}
+          value={price}
+        />
+      </div>
+
+      <Table
+        cellReplacements={{
+          '#1': {
+            type: 'CTA',
+            title: 'Replaced!',
+            price: `€${price}`,
+            buttonCaption: 'I got replaced',
+            href: 'http://example.com',
+          },
+          '#2': {
+            type: 'BUTTON',
+            buttonCaption: 'I got replaced too',
+          },
+          '#3': {
+            description: 'per year',
+          },
+        }}
+        collapsibleSections={collapsibleSections}
+        tableData={tableData}
+        hideDetails={hideDetails}
+        stickyHeaderTopOffset={stickyHeaderTopOffset}
+        textOverrides={textOverrides}
+        title={title}
+      />
+    </div>
+  );
+};
 
 export const TableDataType = () => {
   return (

@@ -8,7 +8,7 @@ const tableData: TableSectionData[] = [
       title: 'Section 1',
       icon: <span>Icon 1</span>,
     },
-    rows: [[{ text: 'Item 1' }, { text: 'Item 2' }]],
+    rows: [[{ text: 'Item 1', cellId: '#item1' }, { text: 'Item 2' }]],
   },
   {
     section: {
@@ -81,5 +81,27 @@ describe('Table', () => {
     await user.click(screen.getByTestId('ds-table-info-button'));
 
     expect(screen.getByText('Additional item')).toBeVisible();
+  });
+
+  it('renders the table with cell replacements', () => {
+    render(
+      <Table
+        tableData={tableData}
+        title="Test Table"
+        cellReplacements={{
+          '#item1': {
+            text: 'I was replaced',
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByText('Section 1')).toBeInTheDocument();
+    expect(screen.getByText('Section 2')).toBeInTheDocument();
+
+    expect(screen.getAllByText('I was replaced')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Item 2')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Item 3')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Item 4')[0]).toBeInTheDocument();
   });
 });
