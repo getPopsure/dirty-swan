@@ -1,16 +1,19 @@
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 
+import styles from './CTACell.module.scss';
+import { IconRenderer } from '../../IconRenderer/IconRenderer';
+
 export type CTACellProps = {
   title: ReactNode;
   price?: ReactNode;
   icon?: ReactNode;
+  imageComponent?: (args: any) => JSX.Element;
   buttonCaption?: ReactNode;
   grey?: boolean;
   narrow?: boolean;
   href: string;
 };
-import styles from './CTACell.module.scss';
 
 export const CTACell = ({
   title,
@@ -20,11 +23,16 @@ export const CTACell = ({
   narrow,
   href,
   buttonCaption,
+  imageComponent,
 }: CTACellProps) => {
+  const renderedIcon = (
+    <IconRenderer icon={icon} imageComponent={imageComponent} />
+  );
+
   return (
     <div className="ta-center">
       <div className="d-flex jc-center ai-center gap8">
-        {icon}
+        {renderedIcon}
         <p className="p-h3">
           {title}
           {price && <span className="tc-purple-500"> {price}</span>}

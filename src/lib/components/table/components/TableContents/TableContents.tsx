@@ -7,6 +7,7 @@ import styles from './TableContents.module.scss';
 import classNames from 'classnames';
 import { Collapsible } from './Collapsible';
 import { CellReplacements, ModalFunction, TableData } from '../../types';
+import { IconRenderer } from '../IconRenderer/IconRenderer';
 
 export interface TableContentsProps {
   className?: string;
@@ -19,6 +20,7 @@ export interface TableContentsProps {
   shouldHideDetails?: boolean;
   title: string;
   cellReplacements?: CellReplacements;
+  imageComponent?: (args: any) => JSX.Element;
 }
 
 const TableContents = ({
@@ -32,6 +34,7 @@ const TableContents = ({
   shouldHideDetails,
   title,
   cellReplacements,
+  imageComponent,
 }: TableContentsProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
   const firstHeadRow = tableData?.[0]?.rows?.[0];
@@ -50,6 +53,10 @@ const TableContents = ({
           ? true
           : isSectionOpen === index || isFirstSection;
         const isVisible = hideDetails ? !shouldHideDetails : true;
+
+        const renderedIcon = (
+          <IconRenderer icon={section.icon} imageComponent={imageComponent} />
+        );
 
         return (
           (isFirstSection || isVisible) && (
@@ -72,7 +79,7 @@ const TableContents = ({
                         icon: 'tc-grey-900',
                       }}
                       dropShadow={false}
-                      icon={section?.icon}
+                      icon={renderedIcon}
                       title={section.title}
                       titleVariant="medium"
                       {...(collapsibleSections
@@ -99,6 +106,7 @@ const TableContents = ({
                   }`}
                   width={tableWidth}
                   cellReplacements={cellReplacements}
+                  imageComponent={imageComponent}
                 />
               </Collapsible>
             </div>

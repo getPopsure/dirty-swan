@@ -13,7 +13,7 @@ const tableData: TableSectionData[] = [
   {
     section: {
       title: 'Section 2',
-      icon: <span>Icon 2</span>,
+      icon: 'https://placehold.co/30x30/orange/white',
     },
     rows: [
       [{ text: 'Item 3' }, { text: 'Item 4', modalContent: 'Additional item' }],
@@ -103,5 +103,24 @@ describe('Table', () => {
     expect(screen.getAllByText('Item 2')[0]).toBeInTheDocument();
     expect(screen.getAllByText('Item 3')[0]).toBeInTheDocument();
     expect(screen.getAllByText('Item 4')[0]).toBeInTheDocument();
+  });
+
+  it('renders icons with a custom image component', () => {
+    const CustomImageComponent = ({ src }: { src: string }) => (
+      <>
+        <p>I am custom</p>
+        <img src={src} alt="" />
+      </>
+    );
+
+    render(
+      <Table
+        tableData={tableData}
+        title="Test Table"
+        imageComponent={CustomImageComponent}
+      />
+    );
+
+    expect(screen.getByText('I am custom')).toBeInTheDocument();
   });
 });

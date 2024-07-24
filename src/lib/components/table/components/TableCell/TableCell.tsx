@@ -13,6 +13,7 @@ type ExtraTableCellProps = {
   isFirstCellInRow?: boolean;
   isTopLeftCell?: boolean;
   isNavigation?: boolean;
+  imageComponent?: (args: any) => JSX.Element;
 };
 
 export type TableCellProps = TableCellData & ExtraTableCellProps;

@@ -11,6 +11,7 @@ const initialData: TableData = [
         { text: 'Our plans' },
         {
           type: 'CTA',
+          icon: 'https://placehold.co/24x24/orange/white',
           title: 'Standard',
           price: '€234',
           buttonCaption: 'Get covered',
@@ -18,6 +19,7 @@ const initialData: TableData = [
         },
         {
           type: 'CTA',
+          icon: 'https://placehold.co/24x24/green/white',
           title: 'Plus',
           price: '€344',
           buttonCaption: 'Get covered',
@@ -25,6 +27,7 @@ const initialData: TableData = [
         },
         {
           type: 'CTA',
+          icon: <PlaneIcon size={24} noMargin />,
           title: 'Premium',
           price: '€556',
           buttonCaption: 'Get covered',
@@ -135,7 +138,9 @@ const initialData: TableData = [
           colSpan: 3,
           title: 'Dental add-on',
           href: 'https://example.com',
-          description: 'Get your dental cleanings and additional treatments covered for just 10.90€ a month.',
+          icon: 'https://placehold.co/24x24/green/yellow',
+          description:
+            'Get your dental cleanings and additional treatments covered for just 10.90€ a month.',
         },
       ],
     ],
@@ -143,7 +148,7 @@ const initialData: TableData = [
   {
     section: {
       title: 'Travel',
-      icon: <PlaneIcon size={24} noMargin />,
+      icon: 'https://placehold.co/24x24/red/yellow',
     },
     rows: [
       [
@@ -199,8 +204,7 @@ const story = {
         'This property allows to set custom text for the show and hide details buttons.',
     },
     hideColumns: {
-      subContent:
-        'This property allows to hide defined columns by index.',
+      subContent: 'This property allows to hide defined columns by index.',
     },
     onSelectionChanged: {
       subContent:
