@@ -20,6 +20,7 @@ export interface TableSectionProps {
   title: string;
   width?: number | string;
   cellReplacements?: CellReplacements;
+  imageComponent?: (args: any) => JSX.Element;
 }
 
 const TableSection = ({
@@ -31,6 +32,7 @@ const TableSection = ({
   title,
   width,
   cellReplacements,
+  imageComponent,
 }: TableSectionProps) => {
   const headerRow = tableCellRows?.[0];
 
@@ -103,6 +105,7 @@ const TableSection = ({
                     isFirstCellInRow={isFirstCellInRow}
                     isTopLeftCell={isFirstCellInRow}
                     {...cellProps}
+                    imageComponent={imageComponent}
                   />
                 )
               );
@@ -148,6 +151,7 @@ const TableSection = ({
                         isFirstCellInRow={isFirstCellInRow}
                         key={key}
                         {...cellProps}
+                        imageComponent={imageComponent}
                       />
                     )
                   );

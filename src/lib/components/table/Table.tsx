@@ -27,17 +27,18 @@ type TextOverrides = {
 };
 
 export interface TableProps {
+  cellReplacements?: CellReplacements;
   className?: string;
   collapsibleSections?: boolean;
-  tableData: TableData;
   hideColumns?: number[];
   hideDetails?: boolean;
+  imageComponent?: (args: any) => JSX.Element;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
   stickyHeaderTopOffset?: number;
+  tableData: TableData;
   textOverrides?: TextOverrides;
   title: string;
-  cellReplacements?: CellReplacements;
 }
 
 const defaultTextOverrides = {
@@ -46,15 +47,16 @@ const defaultTextOverrides = {
 };
 
 const Table = ({
-  className,
   cellReplacements,
+  className,
   collapsibleSections,
-  tableData,
   hideColumns = [],
   hideDetails,
+  imageComponent,
   onModalOpen,
   onSelectionChanged,
   stickyHeaderTopOffset = 0,
+  tableData,
   textOverrides: definedTextOverrides,
   title,
 }: TableProps) => {
@@ -110,6 +112,7 @@ const Table = ({
                 }
               : {})}
             {...activeCellProps}
+            imageComponent={imageComponent}
             isNavigation
           />
         </TableControls>
@@ -127,6 +130,7 @@ const Table = ({
               openModal={handleOpenModal}
               tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
+              imageComponent={imageComponent}
             />
           </div>
         </div>
@@ -144,6 +148,7 @@ const Table = ({
           shouldHideDetails={shouldHideDetails}
           openModal={handleOpenModal}
           cellReplacements={cellReplacements}
+          imageComponent={imageComponent}
         />
       </div>
 
