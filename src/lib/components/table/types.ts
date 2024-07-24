@@ -4,14 +4,21 @@ import { CTACellProps } from './components/TableCell/CTACell/CTACell';
 import { ButtonCellProps } from './components/TableCell/ButtonCell/ButtonCell';
 import { CardCellProps } from './components/TableCell/CardCell/CardCell';
 
-type DefaultCellProps = { colSpan?: number };
+type DefaultCellProps = {
+  cellId?: string;
+  colSpan?: number;
+};
 
 type BaseCellData = BaseCellProps & { type?: undefined } & DefaultCellProps;
 type CTACellData = CTACellProps & { type: 'CTA' } & DefaultCellProps;
 type ButtonCellData = ButtonCellProps & { type: 'BUTTON' } & DefaultCellProps;
 type CardCellData = CardCellProps & { type: 'CARD' } & DefaultCellProps;
 
-export type TableCellData = BaseCellData | CTACellData | ButtonCellData | CardCellData;
+export type TableCellData =
+  | BaseCellData
+  | CTACellData
+  | ButtonCellData
+  | CardCellData;
 
 export const isBaseCell = (
   tableCellData: TableCellData

@@ -7,8 +7,8 @@ export type CardCellProps = {
   icon?: ReactNode;
   onClick?: () => void;
   href: string;
-  cellId?: string;
 };
+
 export const CardCell = ({
   title,
   description,
@@ -18,10 +18,10 @@ export const CardCell = ({
 }: CardCellProps) => {
   return (
     <div className="ta-left">
-      <Card 
+      <Card
         title={title}
         description={description}
-        density='balanced'
+        density="balanced"
         icon={icon}
         onClick={onClick}
         {...(href && { href, as: 'a' })}

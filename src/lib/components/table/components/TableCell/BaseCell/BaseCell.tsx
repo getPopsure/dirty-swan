@@ -42,7 +42,6 @@ export type BaseCellProps = {
     value: number;
     type: 'zap' | 'star';
   };
-  cellId?: string;
 };
 
 export const BaseCell = ({
