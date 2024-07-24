@@ -12,7 +12,7 @@ export interface TableContentsProps {
   className?: string;
   collapsibleSections?: boolean;
   tableData: TableData;
-  hideColumns: number[];
+  hideColumns?: number[];
   hideDetails?: boolean;
   isMobile?: boolean;
   openModal?: ModalFunction;

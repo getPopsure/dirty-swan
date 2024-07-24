@@ -10,7 +10,6 @@ export type ButtonCellProps = {
   isSelected?: boolean;
   onClick: () => void;
   price?: ReactNode;
-  cellId?: string;
 };
 
 export const ButtonCell = ({

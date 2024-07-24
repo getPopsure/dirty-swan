@@ -13,7 +13,6 @@ type ExtraTableCellProps = {
   isFirstCellInRow?: boolean;
   isTopLeftCell?: boolean;
   isNavigation?: boolean;
-  colSpan?: number;
 };
 
 export type TableCellProps = TableCellData & ExtraTableCellProps;
