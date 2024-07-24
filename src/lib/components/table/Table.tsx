@@ -33,6 +33,7 @@ export interface TableProps {
   hideColumns?: number[];
   hideDetails?: boolean;
   imageComponent?: (args: any) => JSX.Element;
+  modalContentRenderer?: (content: ReactNode) => ReactNode;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
   stickyHeaderTopOffset?: number;
@@ -53,6 +54,7 @@ const Table = ({
   hideColumns = [],
   hideDetails,
   imageComponent,
+  modalContentRenderer,
   onModalOpen,
   onSelectionChanged,
   stickyHeaderTopOffset = 0,
@@ -185,7 +187,11 @@ const Table = ({
         title={infoModalData?.title}
         onClose={() => setInfoModalData(null)}
       >
-        <div className="pt8 p24 wmn6">{infoModalData?.body}</div>
+        <div className="pt8 p24 wmn6">
+          {modalContentRenderer
+            ? modalContentRenderer(infoModalData?.body)
+            : infoModalData?.body}
+        </div>
       </BottomOrRegularModal>
     </div>
   );

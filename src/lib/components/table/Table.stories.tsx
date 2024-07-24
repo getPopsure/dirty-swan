@@ -206,6 +206,9 @@ const story = {
     hideColumns: {
       subContent: 'This property allows to hide defined columns by index.',
     },
+    modalContentRenderer: {
+      subContent: 'This property allows to render custom modal content.',
+    },
     onSelectionChanged: {
       subContent:
         'This event is triggered when a selection is changed. It receives the index of the selection as an argument.',
