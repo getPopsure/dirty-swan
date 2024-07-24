@@ -6,18 +6,13 @@ export type IconRendererProps = {
 };
 
 export const IconRenderer = ({ icon, imageComponent }: IconRendererProps) => {
-  const ImageComponent = imageComponent ?? 'img';
-  const iconIsUrl = typeof icon === 'string';
-
-  if (!icon) {
-    return null;
+  if (typeof icon !== 'string') {
+    return <>{icon}</>;
   }
 
-  const renderedIcon = iconIsUrl ? (
-    <ImageComponent src={icon} width={24} alt="" />
-  ) : (
-    icon
-  );
-
-  return <>{renderedIcon}</>;
+  if (imageComponent) {
+    return imageComponent?.({ src: icon, width: 24});
+  }
+  
+  return <img src={icon} width={24} alt="" />;
 };
