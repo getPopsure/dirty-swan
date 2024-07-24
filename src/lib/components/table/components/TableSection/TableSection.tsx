@@ -112,8 +112,8 @@ const TableSection = ({
       )}
 
       <tbody>
-        {tableCellRows.map((row, rowIndex) => {
-          return (
+        {tableCellRows.map(
+          (row, rowIndex) =>
             rowIndex > 0 && (
               <tr key={rowIndex} className={styles.tr}>
                 {row.map((tableCellData, cellIndex) => {
@@ -154,8 +154,7 @@ const TableSection = ({
                 })}
               </tr>
             )
-          );
-        })}
+        )}
       </tbody>
     </table>
   );
