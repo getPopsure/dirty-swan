@@ -12,6 +12,7 @@ export interface TableContentsProps {
   className?: string;
   collapsibleSections?: boolean;
   tableData: TableData;
+  hideColumns: number[];
   hideDetails?: boolean;
   isMobile?: boolean;
   openModal?: ModalFunction;
@@ -24,6 +25,7 @@ const TableContents = ({
   className,
   collapsibleSections,
   tableData,
+  hideColumns = [],
   hideDetails,
   isMobile,
   openModal,
@@ -89,6 +91,7 @@ const TableContents = ({
                   tableCellRows={
                     isFirstSection ? rows : [firstHeadRow, ...rows]
                   }
+                  hideColumns={hideColumns}
                   hideHeader
                   openModal={openModal}
                   title={`${title}${

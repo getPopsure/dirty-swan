@@ -9,10 +9,12 @@ import {
   TableCellData,
   TableCellRowData,
 } from '../../types';
+import { useCallback } from 'react';
 
 export interface TableSectionProps {
   className?: string;
   tableCellRows: TableCellRowData[];
+  hideColumns: number[];
   hideHeader?: boolean;
   openModal?: ModalFunction;
   title: string;
@@ -23,6 +25,7 @@ export interface TableSectionProps {
 const TableSection = ({
   className,
   tableCellRows,
+  hideColumns = [],
   hideHeader,
   openModal,
   title,
@@ -58,6 +61,12 @@ const TableSection = ({
     return titleFromRow;
   };
 
+  const isVisibleColumn = useCallback(
+    (cellIndex: number) => (
+      !hideColumns.includes(cellIndex)
+    ), [hideColumns]
+  );
+
   return (
     <table
       className={classNames(className, 'w100', styles.table)}
@@ -87,7 +96,7 @@ const TableSection = ({
                 },
               } as TableCellData;
 
-              return (
+              return isVisibleColumn(cellIndex) && (
                 <TableCell
                   key={cellIndex}
                   isHeader
@@ -103,47 +112,44 @@ const TableSection = ({
 
       <tbody>
         {tableCellRows.map((row, rowIndex) => {
-          const isSingleCell = row.length === 1;
 
-          return (
-            rowIndex > 0 && (
-              <tr key={rowIndex} className={styles.tr}>
-                {row.map((tableCellData, cellIndex) => {
-                  const key = `${rowIndex}-${cellIndex}`;
-                  const isFirstCellInRow = cellIndex === 0;
+          return rowIndex > 0 && (
+            <tr key={rowIndex} className={styles.tr}>
+              {row.map((tableCellData, cellIndex) => {
+                const key = `${rowIndex}-${cellIndex}`;
+                const isFirstCellInRow = cellIndex === 0;
 
-                  const titleFromRow = getModalTitleFromRowHeader(row);
-                  const titleFromColumnOrRow =
-                    getModalTitleFromColumnHeader(cellIndex) ||
-                    getModalTitleFromRowHeader(row);
+                const titleFromRow = getModalTitleFromRowHeader(row);
+                const titleFromColumnOrRow =
+                  getModalTitleFromColumnHeader(cellIndex) ||
+                  getModalTitleFromRowHeader(row);
 
-                  const cellReplacementData =
-                    (tableCellData.cellId &&
-                      cellReplacements?.[tableCellData.cellId]) ||
-                    {};
+                const cellReplacementData =
+                  (tableCellData.cellId &&
+                    cellReplacements?.[tableCellData.cellId]) ||
+                  {};
 
-                  const cellProps = {
-                    ...tableCellData,
-                    ...cellReplacementData,
-                    ...{
-                      openModal,
-                      modalTitle: isFirstCellInRow
-                        ? titleFromRow
-                        : titleFromColumnOrRow,
-                      align: isFirstCellInRow ? 'left' : 'center',
-                    },
-                  } as TableCellData;
+                const cellProps = {
+                  ...tableCellData,
+                  ...cellReplacementData,
+                  ...{
+                    openModal,
+                    modalTitle: isFirstCellInRow
+                      ? titleFromRow
+                      : titleFromColumnOrRow,
+                    align: isFirstCellInRow ? 'left' : 'center',
+                  },
+                } as TableCellData;
 
-                  return (
-                    <TableCell
-                      isFirstCellInRow={isFirstCellInRow}
-                      key={key}
-                      {...cellProps}
-                    />
-                  );
-                })}
-              </tr>
-            )
+                return !hideColumns.includes(cellIndex) && (
+                  <TableCell
+                    isFirstCellInRow={isFirstCellInRow}
+                    key={key}
+                    {...cellProps}
+                  />
+                );
+              })}
+            </tr>
           );
         })}
       </tbody>
