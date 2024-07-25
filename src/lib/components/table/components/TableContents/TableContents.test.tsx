@@ -52,4 +52,4 @@ describe('TableContents', () => {
     expect(screen.queryByText('Section 2')).not.toBeInTheDocument();
     expect(screen.queryByText('Item 2.1.1')).not.toBeInTheDocument();
   });
-
+});
