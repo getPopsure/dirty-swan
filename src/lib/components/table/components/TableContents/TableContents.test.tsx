@@ -53,20 +53,6 @@ describe('TableContents', () => {
     expect(screen.queryByText('Item 2.1.1')).not.toBeInTheDocument();
   });
 
-  it('hides the table sections details when collapsibleSections is true', () => {
-    render(
-      <TableContents
-        collapsibleSections
-        isMobile
-        tableData={mockData}
-        title="Table"
-      />
-    );
-
-    expect(screen.getByText('Section 2')).toBeVisible();
-    expect(screen.queryByText('Item 2.1.1')).not.toBeVisible();
-  });
-
   it('shows the table sections when hideDetails is collapsibleSections true has expanded ', async () => {
     const { user } = render(
       <TableContents

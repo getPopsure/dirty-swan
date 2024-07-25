@@ -2,3 +2,17 @@
   transition: max-height 0.3s ease-in-out;
   overflow-y: clip;
 }
+
+.hideDelayed {
+  animation: 0.3s fadeOut;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  99% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}

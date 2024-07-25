@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import styles from './Collapsible.module.scss';
+import classNames from 'classnames';
 interface CollapsibleProps {
   children: ReactNode;
   isExpanded?: boolean;
@@ -11,7 +12,7 @@ export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (containerRef.current && height === undefined) {
+    if (containerRef.current) {
       const scrollheight = containerRef.current.scrollHeight;
       setHeight(scrollheight);
     }
@@ -19,13 +20,15 @@ export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
 
   return (
     <div
-      className={styles.collapsible}
+      className={classNames(styles.collapsible, {
+        [styles.hideDelayed]: !isExpanded,
+      })}
       ref={containerRef}
       style={{
         maxHeight: isExpanded ? height : '0px',
       }}
     >
-      <div>{children}</div>
+      {children}
     </div>
   );
 };
