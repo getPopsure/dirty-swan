@@ -7,10 +7,6 @@
 
   transition: all 0.3s ease-in-out;
 
-  @include p-size-mobile {
-    max-width: calc(100% - 96px);
-  }
-
   &:disabled {
     border: none;
     background-color: $ds-grey-200;

@@ -69,3 +69,9 @@ Object.defineProperty(window, 'matchMedia', {
   },
   writable: true,
 });
+
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
