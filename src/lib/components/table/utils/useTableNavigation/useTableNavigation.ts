@@ -35,7 +35,7 @@ export const useTableNavigation = ({
     }
 
     const containerWidth = containerRef.current.getBoundingClientRect().width;
-    const scrollLeft = containerRef.current.scrollLeft;
+    const scrollLeft = containerRef.current.scrollLeft * 1.1;
     const cellWidth = containerWidth / 2;
 
     setActiveSection(Math.floor(scrollLeft / cellWidth));
