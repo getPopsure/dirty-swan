@@ -92,7 +92,7 @@ const TableContents = ({
                 </div>
               )}
 
-              <Collapsible isExpanded={isExpanded} isMobile={isMobile}>
+              <Collapsible isExpanded={isExpanded}>
                 <TableSection
                   className={classNames(className, 'mb24')}
                   tableCellRows={

@@ -1,30 +1,31 @@
-import { ReactNode } from "react";
-import AnimateHeight from "react-animate-height";
-import { useMediaQuery } from "../../../../hooks/useMediaQuery";
-
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import styles from './Collapsible.module.scss';
 interface CollapsibleProps {
   children: ReactNode;
   isExpanded?: boolean;
-  isMobile?: boolean;
 }
-  
-export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
-  const isDesktop = useMediaQuery('ABOVE_DESKTOP');
 
-  if (!isDesktop) {
-    return (
-      <div>
-        {isExpanded ? children : null}
-      </div>
-    );
-  }
+export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
+  const [height, setHeight] = useState<number | undefined>();
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (containerRef.current && height === undefined) {
+      const scrollheight = containerRef.current.scrollHeight;
+      setHeight(scrollheight);
+    }
+  }, [containerRef.current]);
 
   return (
-    <AnimateHeight
-      duration={300}
-      height={isExpanded ? 'auto' : 0}
+    <div
+      className={styles.collapsible}
+      ref={containerRef}
+      style={{
+        maxHeight: isExpanded ? height : '0px',
+      }}
     >
       <div>{children}</div>
-    </AnimateHeight>
+    </div>
   );
-}
+};
