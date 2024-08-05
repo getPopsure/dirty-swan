@@ -14,6 +14,7 @@ type ExtraTableCellProps = {
   isTopLeftCell?: boolean;
   isNavigation?: boolean;
   imageComponent?: (args: any) => JSX.Element;
+  isBelowDesktop?: boolean;
 };
 
 export type TableCellProps = TableCellData & ExtraTableCellProps;
@@ -25,6 +26,7 @@ const TableCell = React.memo(
     isNavigation = false,
     isTopLeftCell = false,
     colSpan = 0,
+    isBelowDesktop,
     ...cellProps
   }: TableCellProps) => {
     // prettier-ignore
@@ -46,10 +48,11 @@ const TableCell = React.memo(
         {...scope}
         className={classNames('bg-white py24 px8', styles.th, {
           'ta-left': isFirstCellInRow,
-          [styles.fixedCell]: isFirstCellInRow && colSpan < 1,
+          [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
+          [styles.fixedCard]: cellProps.type === 'CARD',
           pl32: isFirstCellInRow,
         })}
-        colSpan={colSpan}
+        colSpan={isBelowDesktop && cellProps.type === 'CARD' ? 2 : colSpan}
       >
         {!cellProps.type && (
           <BaseCell
