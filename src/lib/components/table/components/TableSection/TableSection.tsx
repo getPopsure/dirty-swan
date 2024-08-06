@@ -10,6 +10,7 @@ import {
   TableCellRowData,
 } from '../../types';
 import { useCallback } from 'react';
+import { useMediaQuery } from '../../../../hooks/useMediaQuery';
 
 export interface TableSectionProps {
   className?: string;
@@ -35,6 +36,7 @@ const TableSection = ({
   imageComponent,
 }: TableSectionProps) => {
   const headerRow = tableCellRows?.[0];
+  const isBelowDesktop = useMediaQuery('BELOW_DESKTOP');
 
   const getModalTitleFromColumnHeader = (cellIndex: number) => {
     const firstCellInColumn = tableCellRows?.[0]?.[cellIndex];
@@ -101,6 +103,7 @@ const TableSection = ({
                 isVisibleColumn(cellIndex) && (
                   <TableCell
                     key={cellIndex}
+                    isBelowDesktop={isBelowDesktop}
                     isHeader
                     isFirstCellInRow={isFirstCellInRow}
                     isTopLeftCell={isFirstCellInRow}
@@ -148,6 +151,7 @@ const TableSection = ({
                   return (
                     !hideColumns.includes(cellIndex) && (
                       <TableCell
+                        isBelowDesktop={isBelowDesktop}
                         isFirstCellInRow={isFirstCellInRow}
                         key={key}
                         {...cellProps}
