@@ -47,6 +47,7 @@ export { default as BatteryChargingIcon } from './BatteryCharging';
 export { default as BatteryIcon } from './Battery';
 export { default as BellOffIcon } from './BellOff';
 export { default as BellIcon } from './Bell';
+export { default as BlogIcon } from './Blog';
 export { default as BluetoothIcon } from './Bluetooth';
 export { default as BoldIcon } from './Bold';
 export { default as BookOpenIcon } from './BookOpen';
