@@ -7,7 +7,7 @@ export default (props: IconWrapperProps) =>
     IconWrapper,
     props,
     <path
-      stroke="#26262E"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
