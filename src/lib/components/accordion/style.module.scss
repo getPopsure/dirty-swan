@@ -13,7 +13,11 @@
 }
 
 .question {
-  color: $ds-grey-700;
+  color: $ds-grey-900;
+
+  &:hover {
+    color: $ds-primary-500;
+  }
 }
 
 .chevron {

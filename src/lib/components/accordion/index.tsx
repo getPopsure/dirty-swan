@@ -108,7 +108,6 @@ const Accordion = ({
                 title: classnamesUtil(
                   classNames?.question,
                   styles.question,
-                  'fw-bold', 
                   { [styles.questionOpen]: isOpen }
                 ),
                 ...classNames,
