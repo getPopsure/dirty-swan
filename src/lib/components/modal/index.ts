@@ -10,6 +10,7 @@ export interface Props {
   onClose: () => void;
   className?: string;
   dismissible?: boolean;
+  size?: 'default' | 'large';
   footer?: ReactNode;
 }
 

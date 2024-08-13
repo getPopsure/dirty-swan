@@ -122,7 +122,7 @@ export const GenericModal = ({
                 styles.footer
               )}
             >
-              <div className="px24 py16">
+              <div className="p24 pt16">
                 {footer}
               </div>
             </div>

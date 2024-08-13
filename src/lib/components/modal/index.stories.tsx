@@ -19,6 +19,14 @@ const story = {
     className: {
       description: 'Any additional className',
     },
+    size: {
+      description: 'The size of the modal, either large or default.',
+      control: 'radio',
+      options: {
+        default: 'default',
+        large: 'large',
+      }
+    },
     children: {
       description: 'The content that gets displayed on the modal',
       type: 'text',
@@ -42,6 +50,7 @@ const story = {
     dismissible: true,
     className: '',
     children: 'Modal content to be displayed',
+    size: 'default',
   },
   parameters: {
     componentSubtitle: 'Bottom or Regular modal will automatically choose what’s best to display based on the users screen width.',
@@ -59,6 +68,7 @@ export const BottomOrRegularModalStory = ({
   dismissible,
   isOpen,
   onClose,
+  size,
   title,
 }: Props) => {
   const [display, setDisplay] = useState(isOpen);
@@ -81,6 +91,7 @@ export const BottomOrRegularModalStory = ({
         className={className}
         title={title}
         isOpen={display}
+        size={size}
         onClose={handleOnClose}
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
