@@ -1,10 +1,11 @@
 import { Props } from '..';
-import useOnClose from '../hooks/useOnClose';
+import useOnClose, { OnCloseReturn } from '../hooks/useOnClose';
 
 import styles from './style.module.scss';
 import classNamesUtil from 'classnames';
 import { Button } from '../../button';
 import { XIcon } from '../../icon';
+import { useRef, useEffect } from 'react';
 
 interface GenericModalProps extends Props {
   classNames?: {
@@ -20,26 +21,40 @@ interface GenericModalProps extends Props {
   titleSize?: 'small' | 'default';
 }
 
-export const GenericModal = ({
+const InnerModal = ({
   title,
-  isOpen,
   children,
-  onClose,
   classNames,
   dismissible = true,
   footer,
   titleSize = 'default',
-}: GenericModalProps) => {
-  const {
-    isClosing,
-    isVisible,
-    handleContainerClick,
-    handleOnCloseAnimationEnded,
-    handleOnClose,
-    handleOnOverlayClick,
-  } = useOnClose(onClose, isOpen, dismissible);
+  isClosing,
+  onModalScroll,
+  handleContainerClick,
+  handleOnCloseAnimationEnded,
+  handleOnClose,
+  handleOnOverlayClick,
+}: GenericModalProps & OnCloseReturn) => {
+  const modalBodyRef = useRef<HTMLDivElement>(null);
 
-  return !isVisible ? null : (
+  useEffect(() => {
+    if (!modalBodyRef.current || !onModalScroll) {
+      return;
+    }
+    const handleOnScroll = () => {
+      if (modalBodyRef.current) {
+        onModalScroll(modalBodyRef.current.scrollTop, modalBodyRef.current)
+      }
+    }
+  
+    modalBodyRef.current.addEventListener('scroll', handleOnScroll);
+  
+    return () => {
+      modalBodyRef.current?.removeEventListener('scroll', handleOnScroll);
+    };
+  }, []);
+
+  return (
     <div
       className={classNamesUtil(
         classNames?.overlay,
@@ -110,6 +125,7 @@ export const GenericModal = ({
               classNames?.body,
               styles.body
             )}
+            ref={modalBodyRef}
           >
             {children}
           </div>
@@ -131,4 +147,18 @@ export const GenericModal = ({
       </div>
     </div>
   );
+}
+
+export const GenericModal = (props: GenericModalProps) => {
+  const { isOpen, onClose, dismissible = true } = props; 
+  const {
+    isVisible,
+    ...rest
+  } = useOnClose(onClose, isOpen, dismissible);
+
+  if (!isVisible) {
+    return null;
+  }
+
+  return <InnerModal {...props} isVisible={isVisible} {...rest} />;
 };

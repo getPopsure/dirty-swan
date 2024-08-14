@@ -8,6 +8,7 @@ export interface Props {
   isOpen: boolean;
   children: ReactNode;
   onClose: () => void;
+  onModalScroll?: (scrollTop: number, element: HTMLDivElement) => void;
   className?: string;
   dismissible?: boolean;
   size?: 'default' | 'large';

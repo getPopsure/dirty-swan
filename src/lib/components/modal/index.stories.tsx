@@ -43,6 +43,13 @@ const story = {
         category: "Callbacks",
       },
     },
+    onModalScroll: {
+      description: 'Callback when the user scroll the modal',
+      action: true,
+      table: {
+        category: "Callbacks",
+      }
+    }
   },
   args: {
     title: "Modal title",
@@ -68,6 +75,7 @@ export const BottomOrRegularModalStory = ({
   dismissible,
   isOpen,
   onClose,
+  onModalScroll,
   size,
   title,
 }: Props) => {
@@ -92,6 +100,7 @@ export const BottomOrRegularModalStory = ({
         title={title}
         isOpen={display}
         size={size}
+        onModalScroll={onModalScroll}
         onClose={handleOnClose}
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
