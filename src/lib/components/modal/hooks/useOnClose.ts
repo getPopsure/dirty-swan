@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-interface OnCloseReturn {
+export interface OnCloseReturn {
   isClosing: boolean;
   isVisible: boolean;
   handleOnCloseAnimationEnded: () => void;
