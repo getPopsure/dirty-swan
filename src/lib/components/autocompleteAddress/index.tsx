@@ -81,6 +81,7 @@ export interface AutocompleteAddressProps {
     preText?: string;
     cta?: string;
   };
+  countryCode: Alpha2CountryCode;
 }
 
 const AutocompleteAddress = ({
@@ -90,6 +91,7 @@ const AutocompleteAddress = ({
   placeholders,
   manualAddressEntryTexts,
   inputProps,
+  countryCode = GERMANY_ALPHA_CODE
 }: AutocompleteAddressProps) => {
   const [manualAddressEntry, setManualAddressEntry] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -131,7 +133,7 @@ const AutocompleteAddress = ({
 
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
       types: ['address'],
-      componentRestrictions: { country: GERMANY_ALPHA_CODE },
+      componentRestrictions: { country: countryCode },
     });
 
     autocomplete.current.addListener('place_changed', onPlaceChanged);
@@ -231,7 +233,7 @@ const AutocompleteAddress = ({
       const newAddress = {
         ...address,
         [e.target.name]: e.target.value,
-        country: GERMANY_ALPHA_CODE,
+        country: countryCode,
       };
       setAddress(newAddress);
       onAddressChange(newAddress);
