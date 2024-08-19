@@ -18,10 +18,6 @@
       background-color: $ds-grey-200;
     }
   }
-
-  @include p-size-mobile {
-    pointer-events: none;
-  }
 }
 
 .withoutPrice {
