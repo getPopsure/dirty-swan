@@ -81,7 +81,7 @@ export interface AutocompleteAddressProps {
     preText?: string;
     cta?: string;
   };
-  countryCode: Alpha2CountryCode;
+  countryCode?: string;
 }
 
 const AutocompleteAddress = ({
