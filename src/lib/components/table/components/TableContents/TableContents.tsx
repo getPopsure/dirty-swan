@@ -63,7 +63,7 @@ const TableContents = ({
             <div key={index}>
               {section?.title && (
                 <div className={styles.cardWrapper}>
-                  <div className={classNames(styles.card, 'p8')}>
+                  <div className={classNames(styles.card, 'p0')}>
                     <Card
                       actionIcon={
                         isExpanded ? (
@@ -75,7 +75,7 @@ const TableContents = ({
                       aria-expanded={isExpanded ? 'true' : 'false'}
                       aria-hidden
                       classNames={{
-                        wrapper: 'bg-grey-200',
+                        wrapper: 'bg-grey-200 pl16',
                         icon: 'tc-grey-900',
                       }}
                       dropShadow={false}

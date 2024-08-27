@@ -170,6 +170,7 @@ export const BaseCell = ({
         {description && (
           <div
             className={classNames(
+              styles.description,
               'd-flex p-p--small tc-grey-500',
               alignClassName
             )}
