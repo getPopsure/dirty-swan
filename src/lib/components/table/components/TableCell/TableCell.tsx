@@ -48,9 +48,10 @@ const TableCell = React.memo(
         {...scope}
         className={classNames('bg-white py24 px8', styles.th, {
           'ta-left': isFirstCellInRow,
+          [styles.thNavigation]: isNavigation,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
-          pl32: isFirstCellInRow,
+          pl16: isFirstCellInRow,
         })}
         colSpan={isBelowDesktop && cellProps.type === 'CARD' ? 2 : colSpan}
       >

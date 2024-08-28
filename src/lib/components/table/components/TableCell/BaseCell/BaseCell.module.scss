@@ -14,23 +14,18 @@
   margin: 2px;
 }
 
+.description {
+  word-break: break-word;
+}
+
 .bigWithUnderline {
   position: relative;
   display: none;
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: calc(
-      50% + 16px
-    ); // Display bottom border at the same distance regardless of cell height
-
-    height: 4px;
-    width: 100%;
-    max-width: 140px;
-    background-color: $ds-primary-500;
-  }
+  line-height: 38px;
+  text-decoration: underline;
+  text-decoration-color: $ds-primary-500;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
 
   @include p-size-tablet {
     display: flex;
