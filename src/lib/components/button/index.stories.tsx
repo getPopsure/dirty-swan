@@ -1,10 +1,15 @@
+import { ElementType } from 'react';
 import { Button, ButtonProps, ButtonVariant } from '.';
-import { PlusIcon, SendIcon } from '../icon';
+import { InfoIcon, PlusIcon, SendIcon } from '../icon';
 
 const story = {
   title: 'JSX/Button',
   component: Button,
   argTypes: {
+    as: {
+      control: { type: 'text' },
+      description: 'Allow wrapper element type to be custom defined'
+    },
     children: {
       control: 'text',
       description: 'Text that is displayed inside the button. Hidden when hideLabel is set as true',
@@ -198,6 +203,30 @@ export const ButtonDisabled = ({ children, onClick }: ButtonProps) => (
   <Button disabled onClick={onClick}>
     {children}
   </Button>
+);
+
+export const ButtonAsOtherComponents = ({ children, as, onClick }: ButtonProps) => (
+  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+    <h3 className='p-h3'>As an anchor:</h3>
+      <Button as="a" href="https://feather-insurance.com" target="_blank">
+        {children}
+      </Button>
+
+  <h3 className='p-h3'>As a button:</h3>
+    <Button as="button" onClick={onClick}>
+      {children}
+    </Button>
+
+  <h3 className='p-h3'>As a h3:</h3>
+    <Button as="h3">
+      {children}
+    </Button>
+
+    <p className='p-p p-p--small fw-bold d-flex ai-center gap8 mt32'>
+      <InfoIcon />
+      Inspect elements to see the different HTML tags being rendered.
+    </p>
+  </div>
 );
 
 export default story;
