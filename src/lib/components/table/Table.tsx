@@ -193,9 +193,8 @@ const Table = ({
             : infoModalData?.body}
         </div>
       </BottomOrRegularModal>
-    </div> 
+    </div>
   );
 };
 
-export type { TableData };
 export { Table };
