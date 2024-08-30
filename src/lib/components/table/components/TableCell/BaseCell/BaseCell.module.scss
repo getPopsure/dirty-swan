@@ -20,14 +20,10 @@
 
 .bigWithUnderline {
   position: relative;
-  display: none;
+  display: flex;
   line-height: 38px;
   text-decoration: underline;
   text-decoration-color: $ds-primary-500;
   text-decoration-thickness: 4px;
   text-underline-offset: 8px;
-
-  @include p-size-tablet {
-    display: flex;
-  }
 }

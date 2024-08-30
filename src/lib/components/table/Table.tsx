@@ -78,6 +78,10 @@ const Table = ({
     onSelectionChanged,
   });
 
+  const titleCell = {
+    text: '',
+    ...tableData?.[0]?.rows?.[0]?.[0] || {},
+  };
   const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
   const currentActiveSectionReplacements =
     (currentActiveSection.cellId &&
@@ -97,27 +101,39 @@ const Table = ({
   return (
     <div className={classNames(styles.wrapper, 'bg-white')}>
       {isMobile ? (
-        <TableControls
-          activeSection={activeSection}
-          columnsLength={columnsLength}
-          navigateTable={navigateTable}
-          stickyHeaderTopOffset={stickyHeaderTopOffset}
-        >
-          <TableCell
-            {...(isBaseCell(currentActiveSection)
-              ? {
-                  openModal: (body: ReactNode) =>
-                    handleOpenModal({
-                      body,
-                      title: currentActiveSection?.text,
-                    }),
-                }
-              : {})}
-            {...activeCellProps}
-            imageComponent={imageComponent}
-            isNavigation
-          />
-        </TableControls>
+        <>
+          {titleCell?.text && (
+            <TableCell
+              {...titleCell}
+              align='left'
+              isNavigation
+              isTopLeftCell
+              type={undefined}
+            />
+          )}
+
+          <TableControls
+            activeSection={activeSection}
+            columnsLength={columnsLength}
+            navigateTable={navigateTable}
+            stickyHeaderTopOffset={stickyHeaderTopOffset}
+          >
+            <TableCell
+              {...(isBaseCell(currentActiveSection)
+                ? {
+                    openModal: (body: ReactNode) =>
+                      handleOpenModal({
+                        body,
+                        title: currentActiveSection?.text,
+                      }),
+                  }
+                : {})}
+              {...activeCellProps}
+              imageComponent={imageComponent}
+              isNavigation
+            />
+          </TableControls>
+        </>
       ) : (
         <div
           aria-hidden
