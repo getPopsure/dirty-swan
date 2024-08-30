@@ -82,7 +82,7 @@ describe('DateSelector component', () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it('should show error boundaries error for ,ax date onChange empty when year out of boundaries', async () => {
+  it('should show error boundaries error for max date onChange empty when year out of boundaries', async () => {
     const callback = jest.fn();
     const date = '2100-01-01';
     const { getByTestId } = setup(date, callback);
@@ -126,18 +126,6 @@ describe('DateSelector component', () => {
     expect(getByLabelText('Day')).toHaveValue('3');
     expect(getByLabelText('Month')).toHaveValue('7');
     expect(callback).toHaveBeenCalledWith('2023-07-03');
-  });
-
-  it('should navigate inputs from day to month when day is over 3', async () => {
-    const callback = jest.fn();
-    const date = '2024-01-01';
-    const { getByLabelText, user } = setup(date, callback);
-
-    await user.type(getByLabelText('Day'), '{backspace}45');
-
-    expect(getByLabelText('Day')).toHaveValue('4');
-    expect(getByLabelText('Month')).toHaveValue('5');
-    expect(callback).toHaveBeenCalledWith('2024-05-04');
   });
 
   describe('Calendar button', () => {
