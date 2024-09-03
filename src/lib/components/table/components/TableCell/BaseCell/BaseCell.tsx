@@ -141,7 +141,7 @@ export const BaseCell = ({
             )}
 
             {text && fontVariant === 'BIG_WITH_UNDERLINE' && (
-              <div
+              <h2
                 aria-hidden
                 className={classNames(
                   'tc-grey-800 p-h2 p--serif',
@@ -149,7 +149,7 @@ export const BaseCell = ({
                 )}
               >
                 {text}
-              </div>
+              </h2>
             )}
 
             {modalContent && openModal && align == 'left' && (
