@@ -1,4 +1,4 @@
-import { Address } from '@popsure/public-models';
+import { Address } from '@getpopsure/public-models';
 import { useState } from 'react';
 import { AutocompleteAddress, AutocompleteAddressProps } from '.';
 
@@ -61,7 +61,7 @@ const story = {
         component:
           'This component is for now only restricted to "address" types and will restrict every query to Germany.',
       },
-    }
+    },
   },
 };
 
@@ -156,7 +156,7 @@ export const AddressType = () => {
           country: string;
       }`}
     </pre>
-  )
-}
+  );
+};
 
 export default story;
