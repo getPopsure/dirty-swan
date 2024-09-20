@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import {
   CheckIcon,
-  XIcon,
   StarFilledIcon,
+  XIcon,
   ZapFilledIcon,
 } from '../../../../icon';
 import { ReactNode } from 'react';
@@ -70,6 +70,8 @@ export const BaseCell = ({
       ? progressLookup[text]
       : undefined;
 
+  console.log(modalContent);
+
   return (
     <div
       className={classNames('d-flex gap8 ai-center', {
@@ -80,7 +82,8 @@ export const BaseCell = ({
         className={classNames(
           'd-flex fd-column',
           alignClassName,
-          styles.relative
+          styles.relative,
+          { [styles.maxWidth]: modalContent && align === 'center' }
         )}
       >
         {progressBarValue !== undefined && (

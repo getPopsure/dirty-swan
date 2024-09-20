@@ -122,7 +122,10 @@ const initialData: TableData = [
       ],
       [
         { text: 'Operations', modalContent: 'info' },
-        { checkmarkValue: true, modalContent: 'Maybe' },
+        {
+          text: 'This is a table cell with a lot of text',
+          modalContent: 'Maybe',
+        },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
