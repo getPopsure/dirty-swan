@@ -70,6 +70,8 @@ export const BaseCell = ({
       ? progressLookup[text]
       : undefined;
 
+  console.log(modalContent);
+
   return (
     <div
       className={classNames('d-flex gap8 ai-center', {
@@ -81,7 +83,7 @@ export const BaseCell = ({
           'd-flex fd-column',
           alignClassName,
           styles.relative,
-          { [styles.maxWidth]: align === 'center' }
+          { [styles.maxWidth]: modalContent && align === 'center' }
         )}
       >
         {progressBarValue !== undefined && (
