@@ -3,6 +3,7 @@ import { illustrations } from '../../../util/images';
 import { Button } from '../../button';
 import { Badge } from '../../badge';
 import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
+import { Link } from '../../link';
 
 const story = {
   title: 'JSX/Cards/Card',
@@ -241,10 +242,11 @@ export const CardsWithinCardsAndComplexLayout = () => (
           Coverage overview
 
           <Button
-            onClick={() => {}}
-            variant='filledGray'
+          as="a"
+          href="#"
+            onClick={console.log}
           >
-            Full coverage details
+            Full covxerage details
           </Button>
         </div>
       )}

@@ -23,6 +23,7 @@ const buttonTypeClassNameMap: { [K in ButtonVariant]: string } = {
 };
 
 type ButtonProps = {
+  as?: React.ElementType
   children: ReactNode;
   variant?: ButtonVariant;
   leftIcon?: ReactElement;
@@ -31,8 +32,24 @@ type ButtonProps = {
   hideLabel?: boolean;
 } & Omit<JSX.IntrinsicElements['button'], 'children'>;
 
+const buttonDefaultAsType = 'button' as const;
+type ButtonDefaultAsType = typeof buttonDefaultAsType;
+
+type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
+type IntrinsicElement<E> = E extends PolymorphicButton ? IntrinsicElement<E> : never;
+
+interface PolymorphicButton {
+  <As = ButtonDefaultAsType>(props:
+  As extends React.ComponentType<infer P> ? Merge<P, ButtonProps & {
+      as?: As;
+  }> : As extends keyof JSX.IntrinsicElements ? Merge<JSX.IntrinsicElements[As], ButtonProps & {
+      as?: As;
+  }> : never): React.ReactElement | null;
+}
+
 const Button = React.forwardRef((
   {
+    as: ButtonTag = buttonDefaultAsType,
     className,
     loading = false,
     children,
@@ -44,7 +61,7 @@ const Button = React.forwardRef((
   }: ButtonProps,
   ref?: React.ForwardedRef<HTMLButtonElement>
 ) => (
-    <button
+    <ButtonTag
       ref={ref}
       className={classNames(
         buttonTypeClassNameMap[variant], 
@@ -92,9 +109,9 @@ const Button = React.forwardRef((
           )}
         </div>
       ) : children}
-    </button>
+    </ButtonTag>
   )
-);
+) as PolymorphicButton;
 
 export { Button };
 export type { ButtonProps, ButtonVariant };
