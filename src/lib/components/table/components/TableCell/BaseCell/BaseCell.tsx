@@ -70,8 +70,6 @@ export const BaseCell = ({
       ? progressLookup[text]
       : undefined;
 
-  console.log(modalContent);
-
   return (
     <div
       className={classNames('d-flex gap8 ai-center', {
