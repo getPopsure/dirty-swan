@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import {
   CheckIcon,
-  XIcon,
   StarFilledIcon,
+  XIcon,
   ZapFilledIcon,
 } from '../../../../icon';
 import { ReactNode } from 'react';
@@ -80,7 +80,8 @@ export const BaseCell = ({
         className={classNames(
           'd-flex fd-column',
           alignClassName,
-          styles.relative
+          styles.relative,
+          { [styles.maxWidth]: align === 'center' }
         )}
       >
         {progressBarValue !== undefined && (

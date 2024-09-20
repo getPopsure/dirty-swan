@@ -5,6 +5,12 @@
   position: relative;
 }
 
+.maxWidth {
+  @include p-size-mobile {
+    max-width: calc(100% - 64px);
+  }
+}
+
 .infoButtonAbsolute {
   position: absolute;
   right: -32px;
