@@ -5,6 +5,7 @@ type ButtonVariant =
   | 'filledColor'
   | 'filledGray'
   | 'filledWhite'
+  | 'filledBlack'
   | 'textColor'
   | 'textWhite'
   | 'outlineWhite'
@@ -15,6 +16,7 @@ const buttonTypeClassNameMap: { [K in ButtonVariant]: string } = {
   filledColor: 'p-btn--primary',
   filledGray: 'p-btn--secondary-grey',
   filledWhite: 'p-btn--secondary-white',
+  filledBlack: 'p-btn--secondary-black',
   textColor: 'p-btn--secondary',
   textWhite: 'p-btn--secondary-inverted',
   outlineWhite: 'p-btn--outline-white',
