@@ -129,8 +129,12 @@
       }
 
       &[disabled] {
-        background-color: $ds-grey-700;
-        opacity: 1;
+        background-color: $ds-grey-900;
+        color: white;
+
+        &:hover {
+          background-color: $ds-grey-900;
+        }
       }
 
       &:focus {
