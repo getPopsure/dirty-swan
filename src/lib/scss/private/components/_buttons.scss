@@ -129,13 +129,13 @@
       }
 
       &[disabled] {
-        background-color: $ds-grey-300;
+        background-color: $ds-grey-700;
         opacity: 1;
       }
 
       &:focus {
-        outline: none;
-        box-shadow: 0 0 0 1px $ds-grey-900;
+        box-shadow: 0 0 0 1px white,
+          0 0 0 3px rgba($color: $ds-primary-900, $alpha: 0.5);
       }
     }
   }
