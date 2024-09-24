@@ -113,8 +113,33 @@
       @extend .p-btn--secondary;
       color: $ds-white;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: $ds-primary-700;
+      }
+    }
+
+    &-black {
+      @extend .p-btn--secondary;
+      background-color: $ds-grey-900;
+      color: white;
+
+      &:hover {
+        background-color: $ds-grey-700;
+      }
+
+      &[disabled] {
+        background-color: $ds-grey-900;
+        color: white;
+
+        &:hover {
+          background-color: $ds-grey-900;
+        }
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 1px white,
+          0 0 0 3px rgba($color: $ds-primary-900, $alpha: 0.5);
       }
     }
   }
@@ -271,14 +296,13 @@
       animation: spinner-rotate 0.9s infinite;
     }
 
-    &.p-btn--secondary,
+    &.p-btn--secondary:not(.p-btn--secondary-black),
     &.p-btn--secondary-grey,
     &.p-btn--secondary-white {
       &::before {
-      border-color: rgba($color: $ds-primary-500, $alpha: 0.5);
-      border-left-color: $ds-primary-500;
+        border-color: rgba($color: $ds-primary-500, $alpha: 0.5);
+        border-left-color: $ds-primary-500;
       }
     }
   }
-
 }

@@ -76,7 +76,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
   <div>
     <h3 className='p-h3 mb24'>Filled variants</h3>
     <div className='d-flex gap16 p24 bg-grey-300 br8'>
-      {[ "filledColor", "filledGray", "filledWhite"].map((variant) => (
+      {[ "filledColor", "filledGray", "filledWhite", "filledBlack"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>
               {variant}
