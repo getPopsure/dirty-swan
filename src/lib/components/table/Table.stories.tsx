@@ -162,7 +162,11 @@ const initialData: TableData = [
       ],
       [
         { text: 'Operations', modalContent: 'info' },
-        { checkmarkValue: true, modalContent: 'Maybe' },
+        {
+          checkmarkValue: true,
+          modalContent: 'Maybe',
+          description: 'This is a table cell with a long subtitle',
+        },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],

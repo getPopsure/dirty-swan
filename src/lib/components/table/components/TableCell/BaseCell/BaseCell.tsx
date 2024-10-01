@@ -77,38 +77,36 @@ export const BaseCell = ({
       })}
     >
       <div
-        className={classNames(
-          'd-flex fd-column',
-          alignClassName,
-          styles.relative,
-          { [styles.maxWidth]: modalContent && align === 'center' }
-        )}
+        className={classNames('d-flex fd-column', alignClassName, {
+          [styles.maxWidth]: modalContent && align === 'center',
+        })}
       >
         {progressBarValue !== undefined && (
           <MiniProgressBar nFilledBars={progressBarValue} />
         )}
 
-        {rating?.value && (
-          <span
-            data-testid="table-cell-rating"
-            title={`${rating?.value} out of 3`}
-          >
-            {validRatingValues.map((value) => (
-              <SelectedIcon
-                aria-hidden="true"
-                key={value}
-                color={value <= rating?.value ? 'primary-500' : 'grey-400'}
-                className={styles.icon}
-              />
-            ))}
-          </span>
-        )}
-
         <div className="d-flex ai-center">
+          {rating?.value && (
+            <span
+              data-testid="table-cell-rating"
+              title={`${rating?.value} out of 3`}
+            >
+              {validRatingValues.map((value) => (
+                <SelectedIcon
+                  aria-hidden="true"
+                  key={value}
+                  color={value <= rating?.value ? 'primary-500' : 'grey-400'}
+                  className={styles.icon}
+                />
+              ))}
+            </span>
+          )}
+
           {checkmarkValue !== undefined && (
             <span title={checkmarkValue ? 'Yes' : 'No'}>
               {checkmarkValue ? (
                 <CheckIcon
+                  noMargin
                   data-testid="table-cell-boolean-yes"
                   size={24}
                   aria-hidden
@@ -116,6 +114,7 @@ export const BaseCell = ({
                 />
               ) : (
                 <XIcon
+                  noMargin
                   data-testid="table-cell-boolean-no"
                   size={24}
                   aria-hidden
@@ -127,7 +126,7 @@ export const BaseCell = ({
 
           <div className="d-inline">
             {text && fontVariant === 'NORMAL' && (
-              <div className="p-p d-inline" data-testid="table-cell-text">
+              <div className="p-p d-inline ml8" data-testid="table-cell-text">
                 {text}
               </div>
             )}
@@ -153,7 +152,7 @@ export const BaseCell = ({
               </h2>
             )}
 
-            {modalContent && openModal && align == 'left' && (
+            {modalContent && openModal && (
               <span className="ml8">
                 <TableInfoButton
                   onClick={() =>
@@ -178,19 +177,6 @@ export const BaseCell = ({
           >
             {description}
           </div>
-        )}
-
-        {modalContent && openModal && align == 'center' && (
-          <span className={styles.infoButtonAbsolute}>
-            <TableInfoButton
-              onClick={() =>
-                openModal({
-                  title: modalTitle,
-                  body: modalContent,
-                })
-              }
-            />
-          </span>
         )}
       </div>
     </div>
