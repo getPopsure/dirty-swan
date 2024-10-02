@@ -55,7 +55,7 @@ const TableContents = ({
         const isVisible = hideDetails ? !shouldHideDetails : true;
 
         const renderedIcon = (
-          <IconRenderer icon={section.icon} imageComponent={imageComponent} />
+          <IconRenderer icon={section.icon} imageComponent={imageComponent} width={20} />
         );
 
         return (
@@ -75,8 +75,8 @@ const TableContents = ({
                       aria-expanded={isExpanded ? 'true' : 'false'}
                       aria-hidden
                       classNames={{
-                        wrapper: 'bg-grey-200 pl16',
-                        icon: 'tc-grey-900',
+                        wrapper: 'bg-purple-50 pl16',
+                        icon: classNames(styles.cardIcon, 'tc-grey-900'),
                       }}
                       dropShadow={false}
                       icon={renderedIcon}

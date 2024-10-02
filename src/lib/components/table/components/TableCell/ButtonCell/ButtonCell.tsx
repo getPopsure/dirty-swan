@@ -10,6 +10,9 @@ export type ButtonCellProps = {
   isSelected?: boolean;
   onClick: () => void;
   price?: ReactNode;
+  className?: string;
+  dataTestId?: string;
+  dataCy?: string;
 };
 
 export const ButtonCell = ({
@@ -18,9 +21,19 @@ export const ButtonCell = ({
   buttonCaption,
   price,
   disabled,
+  className,
+  ...rest
 }: ButtonCellProps) => {
   return (
-    <div className="w100 d-flex fd-column ai-center jc-center gap8">
+    <div
+      className={
+        classNames(
+          "w100 d-flex fd-column ai-center jc-center gap8",
+          className,
+        )
+      }
+      {...rest}
+    >
       <Button
         className={classNames('w100 wmx5 d-flex fd-column', styles.buttonCell, {
           [styles.selected]: isSelected,

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import {
-  CheckIcon,
+  CheckThickIcon,
   StarFilledIcon,
   XIcon,
   ZapFilledIcon,
@@ -42,6 +42,9 @@ export type BaseCellProps = {
     value: number;
     type: 'zap' | 'star';
   };
+  className?: string;
+  dataTestId?: string;
+  dataCy?: string;
 };
 
 export const BaseCell = ({
@@ -55,6 +58,7 @@ export const BaseCell = ({
   openModal,
   rating,
   text = '',
+  className,
 }: BaseCellProps) => {
   const alignClassName = {
     center: 'ta-center jc-center ai-center',
@@ -72,7 +76,9 @@ export const BaseCell = ({
 
   return (
     <div
-      className={classNames('d-flex gap8 ai-center', {
+      className={classNames(
+        className,
+        'd-flex gap8 ai-center', {
         'jc-center': align === 'center',
       })}
     >
@@ -97,15 +103,16 @@ export const BaseCell = ({
                   key={value}
                   color={value <= rating?.value ? 'primary-500' : 'grey-400'}
                   className={styles.icon}
+                  size={rating?.type === 'zap' ? 16 : 14}
                 />
               ))}
             </span>
           )}
 
           {checkmarkValue !== undefined && (
-            <span title={checkmarkValue ? 'Yes' : 'No'}>
+            <span className='d-inline-block mx8' title={checkmarkValue ? 'Yes' : 'No'}>
               {checkmarkValue ? (
-                <CheckIcon
+                <CheckThickIcon
                   noMargin
                   data-testid="table-cell-boolean-yes"
                   size={24}
