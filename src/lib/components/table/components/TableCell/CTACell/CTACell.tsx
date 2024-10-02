@@ -13,6 +13,9 @@ export type CTACellProps = {
   grey?: boolean;
   narrow?: boolean;
   href: string;
+  className?: string;
+  dataTestId?: string;
+  dataCy?: string;
 };
 
 export const CTACell = ({
@@ -24,13 +27,15 @@ export const CTACell = ({
   href,
   buttonCaption,
   imageComponent,
+  className,
+  ...rest
 }: CTACellProps) => {
   const renderedIcon = (
     <IconRenderer icon={icon} imageComponent={imageComponent} />
   );
 
   return (
-    <div className="ta-center">
+    <div className={classNames(className, "ta-center")} {...rest}>
       <div className="d-flex jc-center ai-center gap8">
         {renderedIcon}
         <p className="p-h3">

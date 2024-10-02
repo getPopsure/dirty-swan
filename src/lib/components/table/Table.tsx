@@ -175,7 +175,7 @@ const Table = ({
           data-testid="show-hide-details"
           classNames={{
             buttonWrapper: 'm8 mt32',
-            title: 'd-flex gap8 ai-center jc-center',
+            title: 'd-flex gap8 ai-center jc-center fw-bold',
             wrapper: 'bg-grey-200',
           }}
           title={
@@ -184,9 +184,9 @@ const Table = ({
                 ? textOverrides.showDetails
                 : textOverrides.hideDetails}
               {shouldHideDetails ? (
-                <ChevronDownIcon size={24} />
+                <ChevronDownIcon size={20} />
               ) : (
-                <ChevronUpIcon size={24} />
+                <ChevronUpIcon size={20} />
               )}
             </>
           }

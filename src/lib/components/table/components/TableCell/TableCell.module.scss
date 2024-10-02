@@ -12,7 +12,13 @@
   }
 
   &Navigation {
-    width: auto;
+    width: 100%;
+  }
+
+  @include p-size-tablet {
+    &Navigation {
+      width: auto;
+    }
   }
 }
 
