@@ -147,68 +147,6 @@ export const DateSelector = ({
     }
   };
 
-  const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
-    const currentInput = itemsRef.current?.[index];
-    const inputSelectionStart = currentInput?.selectionStart;
-    const inputSelectionEnd = currentInput?.selectionEnd;
-
-    if (
-      // is not day input
-      index > 0 &&
-      // has clicked backspace or arrow left
-      ['Backspace', "ArrowLeft"].includes(event.key) && 
-      // is focused at the first character of the input
-      inputSelectionStart === 0 && inputSelectionEnd === 0
-    ) {
-      const prevInput = itemsRef.current?.[index - 1];
-
-      event.preventDefault();
-      prevInput?.focus();
-      prevInput?.setSelectionRange(0, 3);
-    }
-
-    if (
-        // is not year input
-        index < 2
-        // has clicked arrow right
-        && event.key === "ArrowRight"
-        // is focused at the last character of the input value
-        && inputSelectionStart === currentInput.value.length
-      ) {
-      const nextInput = itemsRef.current?.[index + 1];
-      
-      event.preventDefault();
-      nextInput?.focus();
-      nextInput?.setSelectionRange(0, index === 1 ? 4 : 3);
-    }
-  }
-
-  const handleOnKeyUp = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
-    const currentInput = itemsRef.current?.[index];
-    const inputSelectionStart = currentInput?.selectionStart;
-
-    if (
-        // is not year input
-        index < 2
-        // is a number key
-        && /^\d+$/.test(event.key)
-        && (
-          // is focused at the last character of the input value
-          inputSelectionStart === currentInput.maxLength 
-          // or month value is over 1 or day value is over 3
-          || Number(currentInput.value) > (index === 1 ? 1 : 3)
-        )
-      ) {
-      const nextInput = itemsRef.current?.[index + 1];
-      
-      event.preventDefault();
-      event.stopPropagation();
-      
-      nextInput?.focus();
-      nextInput?.setSelectionRange(0, index === 1 ? 4 : 3);
-    }
-  }
-
   const getInputProps = (key: keyof CalendarDate, index: number): DateSelectorInputProps => ({
     'data-cy': `date-selector-${key}`,
     'data-testid': `date-selector-${key}`,
@@ -225,8 +163,6 @@ export const DateSelector = ({
     type: "text", 
     inputMode: "numeric",
     ref: (el: HTMLInputElement) => { itemsRef.current[index] = el }, 
-    onKeyUp: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyUp(event, index),
-    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => handleOnKeyDown(event, index),
     onChange: ({ target }: ChangeEvent<HTMLInputElement>) => handleOnChange(key, target.value),
     ...inputProps?.(key) || {},
   });
