@@ -48,6 +48,7 @@ export type {
   AccordionProps,
   DownloadStatus,
   InformationBoxProps,
+  InputProps,
   IllustrationKeys,
   FileType,
   MultiDropzoneProps,
