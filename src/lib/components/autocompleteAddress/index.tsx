@@ -101,7 +101,7 @@ const AutocompleteAddress = ({
   const marker = useRef<google.maps.Marker | null>(null);
   const [address, setAddress] = useState(initialAddress);
   const [hasLoadedGoogleAPI, setHasLoadedGoogleAPI] = useState(
-    window.google !== undefined
+    window.google?.maps !== undefined
   );
 
   loadGoogleMapsApiDynamically(() => {
