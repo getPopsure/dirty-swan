@@ -22,7 +22,8 @@ export const ButtonCell = ({
   price,
   disabled,
   className,
-  ...rest
+  dataCy,
+  dataTestId,
 }: ButtonCellProps) => {
   return (
     <div
@@ -32,7 +33,8 @@ export const ButtonCell = ({
           className,
         )
       }
-      {...rest}
+      data-cy={dataCy}
+      data-testid={dataTestId}
     >
       <Button
         className={classNames('w100 wmx5 d-flex fd-column', styles.buttonCell, {
