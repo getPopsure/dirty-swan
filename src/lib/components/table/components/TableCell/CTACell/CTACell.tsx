@@ -28,14 +28,19 @@ export const CTACell = ({
   buttonCaption,
   imageComponent,
   className,
-  ...rest
+  dataCy,
+  dataTestId,
 }: CTACellProps) => {
   const renderedIcon = (
     <IconRenderer icon={icon} imageComponent={imageComponent} />
   );
 
   return (
-    <div className={classNames(className, "ta-center")} {...rest}>
+    <div
+      className={classNames(className, "ta-center")}
+      data-cy={dataCy}
+      data-testid={dataTestId}
+    >
       <div className="d-flex jc-center ai-center gap8">
         {renderedIcon}
         <p className="p-h3">

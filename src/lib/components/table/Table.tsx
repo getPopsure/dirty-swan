@@ -170,7 +170,7 @@ const Table = ({
         />
       </div>
 
-      {hideDetails && (
+      {tableData?.length > 1 && hideDetails && (
         <Card
           data-testid="show-hide-details"
           classNames={{
