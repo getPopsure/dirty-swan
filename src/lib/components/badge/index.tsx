@@ -39,6 +39,7 @@ const Badge = ({
   children,
 }: BadgeProps) => (
   <div
+    role="status" 
     className={classNames(
       className, 
       'px16 br8 d-inline-block ai-center fw-bold p-p', 
