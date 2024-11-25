@@ -6,6 +6,7 @@ export interface SpinnerProps {
 
 const Spinner = ({ size = 's' }: SpinnerProps) => (
   <div
+    aria-live='polite'
     className={classNames('ds-spinner', `ds-spinner__${size}`)}
     data-testid="ds-spinner"
   ></div>
