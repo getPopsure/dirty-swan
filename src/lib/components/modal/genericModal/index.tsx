@@ -73,6 +73,8 @@ const InnerModal = ({
         }
       >
         <div
+          aria-modal="true"
+          role="dialog"
           className={
             typeof classNames?.container === 'string' 
             ? classNames?.container 

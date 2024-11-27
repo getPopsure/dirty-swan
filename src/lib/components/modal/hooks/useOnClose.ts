@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface OnCloseReturn {
   isClosing: boolean;
@@ -16,8 +16,11 @@ const useOnClose = (
 ): OnCloseReturn => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const triggerButtonRef = useRef<HTMLElement | null>(null);
 
   const handleOnClose = useCallback(() => {
+    triggerButtonRef.current?.focus();
+    triggerButtonRef.current = null;  
     setIsClosing(true);
   }, []);
 
@@ -39,9 +42,9 @@ const useOnClose = (
 
   const handleEscKey = useCallback(
     (e: KeyboardEvent) => {
-      if (e.code !== 'Escape') return;
-      if (!dismissable) return null;
-      if (!isOpen) return null;
+      if (e.code !== 'Escape' || !dismissable || !isOpen) {
+        return null;
+      }
 
       handleOnClose();
     },
@@ -71,6 +74,16 @@ const useOnClose = (
       document.body.style.overflow = 'auto';
     };
   }, [handleOnClose, isOpen, isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) {
+      return;
+    }
+
+    if (document.activeElement && document.activeElement instanceof HTMLElement) {
+      triggerButtonRef.current = document.activeElement;
+    }
+  }, [isVisible]);
 
   const handleContainerClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

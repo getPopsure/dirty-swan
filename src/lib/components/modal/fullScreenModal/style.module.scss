@@ -1,0 +1,49 @@
+@use '../../../scss/public/grid' as *;
+@use '../../../scss/public/colors' as *;
+
+@keyframes appear-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes disappear-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.container {
+  max-height: 100vh;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+
+  animation-name: appear-in;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+
+  &Close {
+    animation-name: disappear-out;
+    animation-duration: 0.4s;
+    animation-delay: 0s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+}
+
+.body {
+  @include p-size-mobile {
+    padding-bottom: 48px;
+  }
+}
