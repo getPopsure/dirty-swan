@@ -4,7 +4,9 @@ export interface OnCloseReturn {
   isClosing: boolean;
   isVisible: boolean;
   handleOnCloseAnimationEnded: () => void;
-  handleContainerClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  handleContainerClick: (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
   handleOnClose: () => void;
   handleOnOverlayClick: () => void;
 }
@@ -16,11 +18,8 @@ const useOnClose = (
 ): OnCloseReturn => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const triggerButtonRef = useRef<HTMLElement | null>(null);
 
   const handleOnClose = useCallback(() => {
-    triggerButtonRef.current?.focus();
-    triggerButtonRef.current = null;  
     setIsClosing(true);
   }, []);
 
@@ -63,8 +62,8 @@ const useOnClose = (
     if (isOpen) {
       setIsVisible(true);
     }
-    
-    if (!isOpen && isVisible){
+
+    if (!isOpen && isVisible) {
       handleOnClose();
     }
 
@@ -74,16 +73,6 @@ const useOnClose = (
       document.body.style.overflow = 'auto';
     };
   }, [handleOnClose, isOpen, isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) {
-      return;
-    }
-
-    if (document.activeElement && document.activeElement instanceof HTMLElement) {
-      triggerButtonRef.current = document.activeElement;
-    }
-  }, [isVisible]);
 
   const handleContainerClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -97,7 +86,7 @@ const useOnClose = (
     handleContainerClick,
     handleOnCloseAnimationEnded,
     handleOnClose,
-    handleOnOverlayClick
+    handleOnOverlayClick,
   };
 };
 
