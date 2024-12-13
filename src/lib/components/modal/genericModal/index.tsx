@@ -6,6 +6,7 @@ import classNamesUtil from 'classnames';
 import { Button } from '../../button';
 import { XIcon } from '../../icon';
 import { useRef, useEffect } from 'react';
+import FocusLock from 'react-focus-lock';
 
 interface GenericModalProps extends Props {
   classNames?: {
@@ -43,12 +44,12 @@ const InnerModal = ({
     }
     const handleOnScroll = () => {
       if (modalBodyRef.current) {
-        onModalScroll(modalBodyRef.current.scrollTop, modalBodyRef.current)
+        onModalScroll(modalBodyRef.current.scrollTop, modalBodyRef.current);
       }
-    }
-  
+    };
+
     modalBodyRef.current.addEventListener('scroll', handleOnScroll);
-  
+
     return () => {
       modalBodyRef.current?.removeEventListener('scroll', handleOnScroll);
     };
@@ -56,105 +57,97 @@ const InnerModal = ({
 
   return (
     <div
-      className={classNamesUtil(
-        classNames?.overlay,
-        styles.overlay, {
-          [styles.overlayClose]: isClosing,
-        }
-      )}
+      className={classNamesUtil(classNames?.overlay, styles.overlay, {
+        [styles.overlayClose]: isClosing,
+      })}
       onAnimationEnd={handleOnCloseAnimationEnded}
       onClick={handleOnOverlayClick}
     >
-      <div 
+      <div
         className={
-          typeof classNames?.wrapper === 'string' 
-            ? classNames?.wrapper 
+          typeof classNames?.wrapper === 'string'
+            ? classNames?.wrapper
             : classNames?.wrapper?.({ isClosing })
         }
       >
         <div
+          aria-modal="true"
+          role="dialog"
           className={
-            typeof classNames?.container === 'string' 
-            ? classNames?.container 
-            : classNames?.container?.({ isClosing })
+            typeof classNames?.container === 'string'
+              ? classNames?.container
+              : classNames?.container?.({ isClosing })
           }
           onClick={handleContainerClick}
         >
-
-          <div
-            className={classNamesUtil(
-              'bg-white d-flex ai-center w100 px24 pt24 pb16',
-              styles.header, {
-                'jc-between': !!title,
-                'jc-end': !title,
-              }
-            )}
-          >
-            {title && (
-              <div
-                className={classNamesUtil(
-                  styles.title,
-                  titleSize === 'small' ? 'p-h4' : 'p-h2'
-                )}
-              >
-                {title}
-              </div>
-            )}
-          
-            {dismissible && (
-              <Button
-                hideLabel
-                leftIcon={<XIcon color="grey-700" />}
-                onClick={handleOnClose}
-                type="button"
-                variant="textColor"
-                className={classNamesUtil(
-                  classNames?.closeButton,
-                  'p0',
-                  styles.closeButton
-                )}
-              >
-                Close modal
-              </Button>
-            )}
-          </div>
-
-          <div
-            className={classNamesUtil(
-              'w100',
-              classNames?.body,
-              styles.body
-            )}
-            ref={modalBodyRef}
-          >
-            {children}
-          </div>
-
-          {footer && (
+          <FocusLock returnFocus>
             <div
               className={classNamesUtil(
-                classNames?.footer,
-                'w100 bg-white',
-                styles.footer
+                'bg-white d-flex ai-center w100 px24 pt24 pb16',
+                styles.header,
+                {
+                  'jc-between': !!title,
+                  'jc-end': !title,
+                }
               )}
             >
-              <div className="p24 pt16">
-                {footer}
-              </div>
+              {title && (
+                <div
+                  className={classNamesUtil(
+                    styles.title,
+                    titleSize === 'small' ? 'p-h4' : 'p-h2'
+                  )}
+                >
+                  {title}
+                </div>
+              )}
+
+              {dismissible && (
+                <Button
+                  hideLabel
+                  leftIcon={<XIcon color="grey-700" />}
+                  onClick={handleOnClose}
+                  type="button"
+                  variant="textColor"
+                  className={classNamesUtil(
+                    classNames?.closeButton,
+                    'p0',
+                    styles.closeButton
+                  )}
+                >
+                  Close modal
+                </Button>
+              )}
             </div>
-          )}
+
+            <div
+              className={classNamesUtil('w100', classNames?.body, styles.body)}
+              ref={modalBodyRef}
+            >
+              {children}
+            </div>
+
+            {footer && (
+              <div
+                className={classNamesUtil(
+                  classNames?.footer,
+                  'w100 bg-white',
+                  styles.footer
+                )}
+              >
+                <div className="p24 pt16">{footer}</div>
+              </div>
+            )}
+          </FocusLock>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export const GenericModal = (props: GenericModalProps) => {
-  const { isOpen, onClose, dismissible = true } = props; 
-  const {
-    isVisible,
-    ...rest
-  } = useOnClose(onClose, isOpen, dismissible);
+  const { isOpen, onClose, dismissible = true } = props;
+  const { isVisible, ...rest } = useOnClose(onClose, isOpen, dismissible);
 
   if (!isVisible) {
     return null;
