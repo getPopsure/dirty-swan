@@ -1,21 +1,25 @@
-import { Props } from "..";
-import styles from "./style.module.scss";
-import classNames from "classnames";
-import { GenericModal } from "../genericModal";
+import { Props } from '..';
+import styles from './style.module.scss';
+import classNamesUtil from 'classnames';
+import { GenericModal } from '../genericModal';
 
-const FullScreenModal = ({ className, ...rest }: Props) => (
+const FullScreenModal = ({ className, classNames, ...rest }: Props) => (
   <GenericModal
     titleSize="small"
     classNames={{
-      wrapper: "w100",
-      container: ({ isClosing }) => classNames(
-        "bg-white d-flex fd-column w100",
-        className,
-        styles.container, {
-          [styles.containerClose]: isClosing, 
-        }
-      ),
-      body: styles.body,
+      ...classNames,
+      wrapper: classNamesUtil(classNames?.wrapper, 'w100'),
+      container: ({ isClosing }) =>
+        classNamesUtil(
+          'bg-white d-flex fd-column w100',
+          className,
+          styles.container,
+          classNames?.container,
+          {
+            [styles.containerClose]: isClosing,
+          }
+        ),
+      body: classNamesUtil(styles.body, classNames?.body),
     }}
     {...rest}
   />
