@@ -13,6 +13,7 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
+  FullScreenModal,
   InfoCard,
   CardButton,
   Card,
@@ -40,6 +41,8 @@ export {
   Toggle,
   Toaster,
   toast,
+  useEscapeKey,
+  useFocusWithin,
 } from './lib';
 
 export * from './lib/components/icon';
@@ -58,7 +61,7 @@ export type {
   CardProps,
   IconWrapperProps,
   TableData,
-  TableProps
+  TableProps,
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));

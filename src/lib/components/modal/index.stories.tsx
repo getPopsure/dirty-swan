@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
 import { Button } from '../button';
+import { FullScreenModal } from './fullScreenModal';
 
 const story = {
   title: 'JSX/Modals',
@@ -88,7 +89,7 @@ export const BottomOrRegularModalStory = ({
   return (
     <>
       <button
-        className="p-btn--primary wmn2"
+        className="d-flex p-btn--primary wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
@@ -140,7 +141,7 @@ export const RegularModalStory = ({
       Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
 
       <button
-        className="p-btn--primary wmn2 mt24"
+        className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
@@ -188,7 +189,7 @@ export const BottomModalStory = ({
       Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
 
       <button
-        className="p-btn--primary wmn2 mt24"
+        className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
@@ -217,6 +218,53 @@ export const BottomModalStory = ({
 
 BottomModalStory.storyName = 'BottomModal';
 
+export const FullScreenModalStory = ({
+  children,
+  isOpen,
+  onClose,
+  title,
+}: Props) => {
+  const [display, setDisplay] = useState(isOpen);
+  const handleOnClose = () => {
+    onClose();
+    setDisplay(false);
+  };
+
+  return (
+    <>
+      Full screen modals are primary meant to be used as blocker screens. The modal will cover the entire screen and the user will be able to dismiss them using the top left "X" icon.  
+
+      <button
+        className="d-flex p-btn--primary wmn2 mt24"
+        onClick={() => setDisplay(true)}
+      >
+        Click to open modal
+      </button>
+
+      <FullScreenModal
+        title={title}
+        isOpen={display}
+        onClose={handleOnClose}
+      >
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <div>
+            {children}
+          </div>
+
+          <button
+            className="p-btn--primary mt24 wmn3"
+            onClick={() => setDisplay(false)}
+          >
+            Continue
+          </button>
+        </div>
+      </FullScreenModal>
+    </>
+  );
+}
+
+FullScreenModalStory.storyName = 'FullScreenModal';
+
 export const NonDismissibleModal = ({
   children,
   isOpen,
@@ -237,7 +285,7 @@ export const NonDismissibleModal = ({
       <strong>Warning:</strong> a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
 
       <button
-        className="p-btn--primary wmn2 mt24"
+        className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
@@ -280,7 +328,7 @@ export const ModalWithFooter = ({
   return (
     <>
       <button
-        className="p-btn--primary wmn2"
+        className="d-flex p-btn--primary wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
@@ -326,7 +374,7 @@ export const ModalWithFooterAndScroll = ({
   return (
     <>
       <button
-        className="p-btn--primary wmn2"
+        className="d-flex p-btn--primary wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal

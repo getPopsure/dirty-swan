@@ -23,6 +23,7 @@ import {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
+  FullScreenModal,
 } from './components/modal';
 import { InfoCard, CardButton } from './components/cards';
 import { Card, CardProps } from './components/cards/card';
@@ -48,6 +49,8 @@ import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
 import { Accordion, AccordionProps } from './components/accordion';
 import { Table, TableData, TableProps } from './components/table/Table';
+import { useEscapeKey } from './hooks/useEscapeKey';
+import { useFocusWithin } from './hooks/useFocusWithin';
 
 export * from './components/icon';
 
@@ -63,6 +66,7 @@ export {
   BottomModal,
   RegularModal,
   BottomOrRegularModal,
+  FullScreenModal,
   InfoCard,
   Card,
   CardButton,
@@ -90,6 +94,8 @@ export {
   Toggle,
   Toaster,
   toast,
+  useEscapeKey,
+  useFocusWithin,
 };
 
 export type {
