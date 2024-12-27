@@ -97,7 +97,8 @@ const InnerModal = ({
                 <div
                   className={classNamesUtil(
                     styles.title,
-                    titleSize === 'small' ? 'p-h4' : 'p-h2'
+                    titleSize === 'small' ? 'p-h4' : 'p-h2',
+                    classNames?.title,
                   )}
                 >
                   {title}
