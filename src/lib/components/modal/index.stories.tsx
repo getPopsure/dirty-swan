@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { BottomModal, BottomOrRegularModal, Props, RegularModal } from '.';
 import { Button } from '../button';
@@ -9,16 +8,21 @@ const story = {
   component: BottomOrRegularModal,
   argTypes: {
     title: {
-      description: "The title that needs to be displayed on the modal",
+      description: 'The title that needs to be displayed on the modal',
     },
     isOpen: {
-      description: "When set to `true`, the modal is displayed. When set to `false` the modal gets removed",
+      description:
+        'When set to `true`, the modal is displayed. When set to `false` the modal gets removed',
     },
     dismissible: {
-      description: "The content that gets displayed on the modal",
+      description: 'The content that gets displayed on the modal',
     },
     className: {
       description: 'Any additional className',
+    },
+    classNames: {
+      description:
+        'Class names for the Modal component and its children elements',
     },
     size: {
       description: 'The size of the modal, either large or default.',
@@ -26,46 +30,59 @@ const story = {
       options: {
         default: 'default',
         large: 'large',
-      }
+      },
     },
     children: {
       description: 'The content that gets displayed on the modal',
       type: 'text',
       table: {
         type: {
-            summary: 'ReactNode'
-        }
-      }
+          summary: 'ReactNode',
+        },
+      },
     },
     onClose: {
       description: 'Callback when the user close the modal',
       action: true,
       table: {
-        category: "Callbacks",
+        category: 'Callbacks',
       },
     },
     onModalScroll: {
       description: 'Callback when the user scroll the modal',
       action: true,
       table: {
-        category: "Callbacks",
-      }
-    }
+        category: 'Callbacks',
+      },
+    },
   },
   args: {
-    title: "Modal title",
+    title: 'Modal title',
     isOpen: false,
     dismissible: true,
     className: '',
+    classNames: {
+      wrapper: '',
+      container: '',
+      overlay: '',
+      header: '',
+      closeButton: '',
+      closeButtonIcon: '',
+      title: '',
+      body: '',
+      footer: '',
+    },
     children: 'Modal content to be displayed',
     size: 'default',
   },
   parameters: {
-    componentSubtitle: 'Bottom or Regular modal will automatically choose what’s best to display based on the users screen width.',
+    componentSubtitle:
+      'Bottom or Regular modal will automatically choose what’s best to display based on the users screen width.',
     docs: {
       description: {
-        component: 'Modals are dialog overlays that prevent the user from interacting with the rest of the website until an action is taken or the dialog is dismissed. Modals are purposefully disruptive and should be used thoughtfully and sparingly.',
-      }
+        component:
+          'Modals are dialog overlays that prevent the user from interacting with the rest of the website until an action is taken or the dialog is dismissed. Modals are purposefully disruptive and should be used thoughtfully and sparingly.',
+      },
     },
   },
 };
@@ -73,6 +90,7 @@ const story = {
 export const BottomOrRegularModalStory = ({
   children,
   className,
+  classNames,
   dismissible,
   isOpen,
   onClose,
@@ -98,6 +116,7 @@ export const BottomOrRegularModalStory = ({
       <BottomOrRegularModal
         dismissible={dismissible}
         className={className}
+        classNames={classNames}
         title={title}
         isOpen={display}
         size={size}
@@ -105,9 +124,7 @@ export const BottomOrRegularModalStory = ({
         onClose={handleOnClose}
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
           <button
             className="p-btn--primary mt24 wmn3"
             onClick={() => setDisplay(false)}
@@ -118,7 +135,7 @@ export const BottomOrRegularModalStory = ({
       </BottomOrRegularModal>
     </>
   );
-}
+};
 
 BottomOrRegularModalStory.storyName = 'BottomOrRegularModal';
 
@@ -136,26 +153,21 @@ export const RegularModalStory = ({
 
   return (
     <>
-      Regular modals are primary meant to be used on Desktop or Tablet environment. The modal will appear in the middle of the screen and the user will be able to dismiss them using the top left "X" icon.  
-      If you want to use it for Mobile only, you should check BottomModal instead.
-      Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
-
+      Regular modals are primary meant to be used on Desktop or Tablet
+      environment. The modal will appear in the middle of the screen and the
+      user will be able to dismiss them using the top left "X" icon. If you want
+      to use it for Mobile only, you should check BottomModal instead. Want to
+      use either Regular Modal or Bottom Modal based on the screen width? You
+      can use Bottom or Regular modal.
       <button
         className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
       </button>
-
-      <RegularModal
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-      >
+      <RegularModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
           <button
             className="p-btn--primary mt24 wmn3"
             onClick={() => setDisplay(false)}
@@ -166,7 +178,7 @@ export const RegularModalStory = ({
       </RegularModal>
     </>
   );
-}
+};
 
 RegularModalStory.storyName = 'RegularModal';
 
@@ -184,26 +196,21 @@ export const BottomModalStory = ({
 
   return (
     <>
-      Bottom modals are primary meant to be used on Mobile environment. The modal will appear from the bottom of the screen and the user will be able to dismiss them using the top left "X" icon.
-      If you want to use it for Desktop only, you should check Regular modal instead.
-      Want to use either Regular Modal or Bottom Modal based on the screen width? You can use Bottom or Regular modal.
-
+      Bottom modals are primary meant to be used on Mobile environment. The
+      modal will appear from the bottom of the screen and the user will be able
+      to dismiss them using the top left "X" icon. If you want to use it for
+      Desktop only, you should check Regular modal instead. Want to use either
+      Regular Modal or Bottom Modal based on the screen width? You can use
+      Bottom or Regular modal.
       <button
         className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
       </button>
-
-      <BottomModal
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-      >
+      <BottomModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
           <button
             className="p-btn--primary mt24 wmn3"
             onClick={() => setDisplay(false)}
@@ -214,7 +221,7 @@ export const BottomModalStory = ({
       </BottomModal>
     </>
   );
-}
+};
 
 BottomModalStory.storyName = 'BottomModal';
 
@@ -232,24 +239,18 @@ export const FullScreenModalStory = ({
 
   return (
     <>
-      Full screen modals are primary meant to be used as blocker screens. The modal will cover the entire screen and the user will be able to dismiss them using the top left "X" icon.  
-
+      Full screen modals are primary meant to be used as blocker screens. The
+      modal will cover the entire screen and the user will be able to dismiss
+      them using the top left "X" icon.
       <button
         className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
       </button>
-
-      <FullScreenModal
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-      >
+      <FullScreenModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
 
           <button
             className="p-btn--primary mt24 wmn3"
@@ -261,7 +262,7 @@ export const FullScreenModalStory = ({
       </FullScreenModal>
     </>
   );
-}
+};
 
 FullScreenModalStory.storyName = 'FullScreenModal';
 
@@ -279,18 +280,18 @@ export const NonDismissibleModal = ({
 
   return (
     <>
-      Setting the dismissible prop to false will hide the close button and prevent the user from closing it using the escape key or clicking outside.
-      This prop can be useful if we want the user to explicitly interact with the modal options.
-
-      <strong>Warning:</strong> a modal with the dismissible prop can only be closed by changing the isOpen prop to false.
-
+      Setting the dismissible prop to false will hide the close button and
+      prevent the user from closing it using the escape key or clicking outside.
+      This prop can be useful if we want the user to explicitly interact with
+      the modal options.
+      <strong>Warning:</strong> a modal with the dismissible prop can only be
+      closed by changing the isOpen prop to false.
       <button
         className="d-flex p-btn--primary wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
       </button>
-
       <BottomOrRegularModal
         dismissible={false}
         title={title}
@@ -298,9 +299,7 @@ export const NonDismissibleModal = ({
         onClose={handleOnClose}
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
           <button
             className="p-btn--primary mt24 wmn3"
             onClick={() => setDisplay(false)}
@@ -311,7 +310,7 @@ export const NonDismissibleModal = ({
       </BottomOrRegularModal>
     </>
   );
-}
+};
 
 export const ModalWithFooter = ({
   children,
@@ -338,26 +337,28 @@ export const ModalWithFooter = ({
         title={title}
         isOpen={display}
         onClose={handleOnClose}
-        footer={(
-          <div className='d-flex fd-row gap8'>
-            <Button variant='textColor' className='w100' onClick={handleOnClose}>
+        footer={
+          <div className="d-flex fd-row gap8">
+            <Button
+              variant="textColor"
+              className="w100"
+              onClick={handleOnClose}
+            >
               Skip
             </Button>
-            <Button className='w100' onClick={handleOnClose}>
+            <Button className="w100" onClick={handleOnClose}>
               Continue
             </Button>
           </div>
-        )}
+        }
       >
-        <div className='p24'>
-          <div>
-            {children}
-          </div>
+        <div className="p24">
+          <div>{children}</div>
         </div>
       </BottomOrRegularModal>
     </>
   );
-}
+};
 
 export const ModalWithFooterAndScroll = ({
   children,
@@ -384,18 +385,22 @@ export const ModalWithFooterAndScroll = ({
         title={title}
         isOpen={display}
         onClose={handleOnClose}
-        footer={(
-          <div className='d-flex fd-row gap8'>
-            <Button variant='textColor' className='w100' onClick={handleOnClose}>
+        footer={
+          <div className="d-flex fd-row gap8">
+            <Button
+              variant="textColor"
+              className="w100"
+              onClick={handleOnClose}
+            >
               Skip
             </Button>
-            <Button className='w100' onClick={handleOnClose}>
+            <Button className="w100" onClick={handleOnClose}>
               Continue
             </Button>
           </div>
-        )}
+        }
       >
-        <div className='p24'>
+        <div className="p24">
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <div style={{ height: '840px' }} />
@@ -405,6 +410,6 @@ export const ModalWithFooterAndScroll = ({
       </BottomOrRegularModal>
     </>
   );
-}
+};
 
 export default story;

@@ -8,17 +8,19 @@ import { XIcon } from '../../icon';
 import { useRef, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 
+export interface GenericModalClassNames {
+  wrapper?: string | (({ isClosing }: { isClosing: boolean }) => string);
+  container?: string | (({ isClosing }: { isClosing: boolean }) => string);
+  overlay?: string;
+  header?: string;
+  closeButton?: string;
+  closeButtonIcon?: string;
+  title?: string;
+  body?: string;
+  footer?: string;
+}
 interface GenericModalProps extends Props {
-  classNames?: {
-    wrapper?: string | (({ isClosing }: { isClosing: boolean }) => string);
-    container?: string | (({ isClosing }: { isClosing: boolean }) => string);
-    overlay?: string;
-    header?: string;
-    closeButton?: string;
-    title?: string;
-    body?: string;
-    footer?: string;
-  };
+  classNames?: GenericModalClassNames;
   titleSize?: 'small' | 'default';
 }
 
@@ -105,7 +107,12 @@ const InnerModal = ({
               {dismissible && (
                 <Button
                   hideLabel
-                  leftIcon={<XIcon color="grey-700" />}
+                  leftIcon={
+                    <XIcon
+                      color="grey-700"
+                      className={classNames?.closeButtonIcon}
+                    />
+                  }
                   onClick={handleOnClose}
                   type="button"
                   variant="textColor"
