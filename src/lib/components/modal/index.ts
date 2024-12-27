@@ -1,6 +1,7 @@
 import { BottomModal } from './bottomModal';
 import { RegularModal } from './regularModal';
 import { BottomOrRegularModal } from './bottomOrRegularModal';
+import { FullScreenModal } from './fullScreenModal';
 import { ReactNode } from 'react';
 
 export interface Props {
@@ -15,4 +16,4 @@ export interface Props {
   footer?: ReactNode;
 }
 
-export { BottomModal, RegularModal, BottomOrRegularModal };
+export { BottomModal, RegularModal, BottomOrRegularModal, FullScreenModal };
