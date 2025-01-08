@@ -203,7 +203,7 @@ const Table = ({
         title={infoModalData?.title}
         onClose={() => setInfoModalData(null)}
       >
-        <div className="pt8 p24 wmn6">
+        <div className={classNames(styles.modalContent, "pt8 p24 wmn6")}>
           {modalContentRenderer
             ? modalContentRenderer(infoModalData?.body)
             : infoModalData?.body}
