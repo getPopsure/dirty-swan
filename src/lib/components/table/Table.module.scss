@@ -27,3 +27,9 @@
   position: sticky;
   z-index: 9;
 }
+
+.modalContent {
+  @include p-size-mobile {
+    min-width: initial;
+  }
+}
