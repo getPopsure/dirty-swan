@@ -72,6 +72,7 @@ const InnerModal = ({
             : classNames?.wrapper?.({ isClosing })
         }
       >
+      <FocusLock returnFocus className="m-auto">
         <div
           aria-modal="true"
           role="dialog"
@@ -82,7 +83,6 @@ const InnerModal = ({
           }
           onClick={handleContainerClick}
         >
-          <FocusLock returnFocus>
             <div
               className={classNamesUtil(
                 'bg-white d-flex ai-center w100 px24 pt24 pb16',
@@ -146,8 +146,8 @@ const InnerModal = ({
                 <div className="p24 pt16">{footer}</div>
               </div>
             )}
-          </FocusLock>
-        </div>
+          </div>
+        </FocusLock>
       </div>
     </div>
   );
