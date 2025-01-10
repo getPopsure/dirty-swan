@@ -43,6 +43,7 @@ export {
   toast,
   useEscapeKey,
   useFocusWithin,
+  useMediaQuery,
 } from './lib';
 
 export * from './lib/components/icon';
