@@ -51,6 +51,7 @@ import { Accordion, AccordionProps } from './components/accordion';
 import { Table, TableData, TableProps } from './components/table/Table';
 import { useEscapeKey } from './hooks/useEscapeKey';
 import { useFocusWithin } from './hooks/useFocusWithin';
+import { useMediaQuery } from './hooks/useMediaQuery';
 
 export * from './components/icon';
 
@@ -96,6 +97,7 @@ export {
   toast,
   useEscapeKey,
   useFocusWithin,
+  useMediaQuery,
 };
 
 export type {
