@@ -133,7 +133,12 @@ export const BaseCell = ({
 
           <div className="d-inline">
             {text && fontVariant === 'NORMAL' && (
-              <div className="p-p d-inline ml8" data-testid="table-cell-text">
+              <div className={classNames(
+                "p-p d-inline",
+                { 'ml8': align !== 'left' }
+              )}
+              data-testid="table-cell-text"
+            >
                 {text}
               </div>
             )}
