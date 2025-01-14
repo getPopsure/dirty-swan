@@ -16,13 +16,14 @@ export type Breakpoint = typeof breakpointsArray[number];
 export type BreakpointData = { initialValue: boolean; queryString: string };
 
 export const breakpointLookup = (breakpoint: Breakpoint): BreakpointData => {
+  if (typeof window === 'undefined') {
+    return {
+      initialValue: false,
+      queryString: '',
+    };
+  }
+
   switch (breakpoint) {
-    case 'BELOW_MOBILE':
-    default:
-      return {
-        initialValue: window.innerWidth <= 544, // 34rem = 544px = mobile breakpoint}
-        queryString: '(max-width: 34rem)',
-      };
     case 'BELOW_TABLET':
       return {
         initialValue: window.innerWidth <= 720, // 45rem = 720px = tablet breakpoint
@@ -47,6 +48,12 @@ export const breakpointLookup = (breakpoint: Breakpoint): BreakpointData => {
       return {
         initialValue: window.innerWidth >= 1024, // 64rem = 1024px = desktop breakpoint
         queryString: '(min-width: 64rem)',
+      };
+    case 'BELOW_MOBILE':
+    default:
+      return {
+        initialValue: window.innerWidth <= 544, // 34rem = 544px = mobile breakpoint}
+        queryString: '(max-width: 34rem)',
       };
   }
 };
