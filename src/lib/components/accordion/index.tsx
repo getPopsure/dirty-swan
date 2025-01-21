@@ -27,6 +27,7 @@ export interface AccordionProps {
   multiple?: boolean;
   onClick?: (item: AccordionItem) => void;
   variant?: 'default' | 'bordered';
+  renderAnswer?: (answer: ReactNode) => ReactNode;
 };
 
 const Accordion = ({
@@ -35,6 +36,7 @@ const Accordion = ({
   variant = 'default',
   multiple = false,
   onClick,
+  renderAnswer,
 }: AccordionProps) => {
   const [selectedQuestionId, setSelectedQuestionId] = useState<(string[])>([]);
   const isDefaultVariant = variant === 'default';
@@ -141,7 +143,7 @@ const Accordion = ({
                   },
                 )}
               >
-                  {answer}
+                  {renderAnswer ? renderAnswer(answer) : answer}
               </div>
             </AnimateHeight>
           </div>
