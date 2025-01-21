@@ -17,6 +17,10 @@ const story = {
     items: {
       description: 'Accordion items to be displayed. Each item should have an id, question, and answer. Optionally, an icon can be added to the item. \n\nThe answer property accepts markdown.',
     },
+    renderAnswer: {
+      description: 'Function that allows you to render the answer in a custom way',
+      action: true,
+    },
     onClick: {
       description: 'Function that runs on click of the Accordion item',
       action: true,
