@@ -138,7 +138,7 @@ const Table = ({
         <div
           aria-hidden
           className={styles.stickyHeader}
-          style={{ top: `${stickyHeaderTopOffset}px` }}
+          style={{ paddingTop: `${stickyHeaderTopOffset}px` }}
         >
           <div className={styles.container} ref={headerRef}>
             <TableSection
