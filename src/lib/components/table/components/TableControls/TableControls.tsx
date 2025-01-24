@@ -26,7 +26,7 @@ const TableControls = ({
         'd-flex ai-center jc-between bg-white px8',
         styles.stickyHeader
       )}
-      style={{ paddingTop: `${stickyHeaderTopOffset}px` }}
+      style={{ top: `${stickyHeaderTopOffset}px` }}
     >
       <Button
         className={styles.controlButton}
