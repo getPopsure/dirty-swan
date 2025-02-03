@@ -92,8 +92,15 @@ const initialData: TableData = [
         { text: '80%-100%' },
       ],
       [
-        { text: 'Operations', modalContent: 'Operations info' },
-        { checkmarkValue: true, modalContent: 'Operations info column 2' },
+        { text: 'Operations',
+          modalContent: 'Operations info',
+          modalTitle: 'Custom operations modal title'
+         },
+        { 
+          checkmarkValue: true,
+          modalContent: 'Operations info column 2',
+          modalTitle: 'Custom operations modal title column 2'
+        },
         { checkmarkValue: false },
         { checkmarkValue: true },
       ],
