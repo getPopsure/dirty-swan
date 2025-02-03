@@ -7,6 +7,7 @@ import { CardCellProps } from './components/TableCell/CardCell/CardCell';
 type DefaultCellProps = {
   cellId?: string;
   colSpan?: number;
+  modalTitle?: ReactNode;
 };
 
 type BaseCellData = BaseCellProps & { type?: undefined } & DefaultCellProps;

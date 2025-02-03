@@ -125,11 +125,7 @@ const TableSection = ({
                 {row.map((tableCellData, cellIndex) => {
                   const key = `${rowIndex}-${cellIndex}`;
                   const isFirstCellInRow = cellIndex === 0;
-
                   const titleFromRow = getModalTitleFromRowHeader(row);
-                  const titleFromColumnOrRow =
-                    getModalTitleFromColumnHeader(cellIndex) ||
-                    getModalTitleFromRowHeader(row);
 
                   const cellReplacementData =
                     (tableCellData.cellId &&
@@ -141,9 +137,7 @@ const TableSection = ({
                     ...cellReplacementData,
                     ...{
                       openModal,
-                      modalTitle: isFirstCellInRow
-                        ? titleFromRow
-                        : titleFromColumnOrRow,
+                      modalTitle: tableCellData?.modalTitle || titleFromRow,
                       align: isFirstCellInRow ? 'left' : 'center',
                     },
                   } as TableCellData;
