@@ -80,6 +80,7 @@ export interface AutocompleteAddressProps {
   manualAddressEntryTexts?: {
     preText?: string;
     cta?: string;
+    ctaSearch?: string;
   };
   countryCode?: string;
 }
@@ -250,7 +251,7 @@ const AutocompleteAddress = ({
           [styles['map-container--hidden']]: place === null,
         })}
       >
-        <div className={styles.map} id="map" />
+        <div className={styles.map} id="map" aria-hidden="true" />
         {isLoading && (
           <div className={styles['loading-spinner']}>
             <div className="ds-spinner ds-spinner__m" />
@@ -258,7 +259,7 @@ const AutocompleteAddress = ({
         )}
       </div>
       <div className={`wmx8`}>
-        {manualAddressEntry === false ? (
+        {!manualAddressEntry ? (
           <div style={{ position: 'relative' }}>
             <Input
               className="w100"
@@ -343,18 +344,20 @@ const AutocompleteAddress = ({
           </>
         )}
       </div>
-      {manualAddressEntry === false && (
-        <div className="p-p mt8">
-          {manualAddressEntryTexts?.preText || 'Or '}
-          <button
-            className={'p-a p-p fw-bold c-pointer bg-transparent'}
-            onClick={handleEnterAddressManually}
-            type="button"
-          >
-            {manualAddressEntryTexts?.cta || 'enter address manually'}
-          </button>
-        </div>
-      )}
+      <div className="p-p mt8">
+        {manualAddressEntryTexts?.preText || 'Or '}
+        <button
+          className={'p-a p-p fw-bold c-pointer bg-transparent'}
+          onClick={() => {
+            manualAddressEntry ? setManualAddressEntry(false) : handleEnterAddressManually();
+          }}
+          type="button"
+        >
+          {manualAddressEntry
+            ? manualAddressEntryTexts?.ctaSearch || 'search for address'
+            : manualAddressEntryTexts?.cta || 'enter address manually'}
+        </button>
+      </div>
     </>
   );
 };
