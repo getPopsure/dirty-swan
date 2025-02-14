@@ -153,7 +153,7 @@ const AutocompleteAddress = ({
     });
 
     setPlaceFromAddress(address);
-  }, [hasLoadedGoogleAPI]); // eslint-disable-line
+  }, [hasLoadedGoogleAPI, countryCode]); // eslint-disable-line
 
   const onPlaceChanged = (
     newPlace:

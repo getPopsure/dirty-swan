@@ -71,6 +71,7 @@ export const AutocompleteAddressStory = ({
   manualAddressEntryTexts,
   onAddressChange,
   placeholders,
+  countryCode
 }: AutocompleteAddressProps) => {
   const [address, setAddress] = useState<Partial<Address> | undefined>(
     defaultAddress
@@ -87,6 +88,7 @@ export const AutocompleteAddressStory = ({
       manualAddressEntryTexts={manualAddressEntryTexts}
       onAddressChange={handleOnAddressChange}
       placeholders={placeholders}
+      countryCode={countryCode}
     />
   );
 };
