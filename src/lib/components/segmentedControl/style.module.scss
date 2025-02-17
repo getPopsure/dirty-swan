@@ -20,6 +20,11 @@
 
   padding-left: 16px;
   padding-right: 16px;
+
+  &:focus {
+    outline-color: var(--ds-primary-500);
+    outline-offset: 2px;
+  }
 }
 
 .select-chip-background {
