@@ -67,7 +67,7 @@ export const BaseCell = ({
   }[align];
 
   const validRatingValues: number[] = [1, 2, 3];
-  const SelectedIcon = rating?.type === 'zap' ? ZapFilledIcon : StarFilledIcon;
+  const SelectedIcon = rating?.type === 'star' ? ZapFilledIcon : StarFilledIcon;
 
   const progressBarValue =
     !hideProgressBar && typeof text === 'string'
