@@ -5,7 +5,7 @@ import { GenericModal } from '../genericModal';
 
 const BottomModal = ({ className, classNames, ...rest }: Props) => (
   <GenericModal
-    titleSize="small"
+    titleSize="default"
     classNames={{
       ...classNames,
       wrapper: classNamesUtil('w100', styles.wrapper, classNames?.wrapper),
