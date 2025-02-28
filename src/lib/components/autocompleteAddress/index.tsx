@@ -80,7 +80,6 @@ export interface AutocompleteAddressProps {
   manualAddressEntryTexts?: {
     preText?: string;
     cta?: string;
-    ctaSearch?: string;
   };
   countryCode?: string;
 }
@@ -259,7 +258,7 @@ const AutocompleteAddress = ({
         )}
       </div>
       <div className={`wmx8`}>
-        {!manualAddressEntry ? (
+        {manualAddressEntry === false ? (
           <div style={{ position: 'relative' }}>
             <Input
               className="w100"
@@ -344,20 +343,18 @@ const AutocompleteAddress = ({
           </>
         )}
       </div>
-      <div className="p-p mt8">
-        {manualAddressEntryTexts?.preText || 'Or '}
-        <button
-          className={'p-a p-p fw-bold c-pointer bg-transparent'}
-          onClick={() => {
-            manualAddressEntry ? setManualAddressEntry(false) : handleEnterAddressManually();
-          }}
-          type="button"
-        >
-          {manualAddressEntry
-            ? manualAddressEntryTexts?.ctaSearch || 'search for address'
-            : manualAddressEntryTexts?.cta || 'enter address manually'}
-        </button>
-      </div>
+      {manualAddressEntry === false && (
+        <div className="p-p mt8">
+          {manualAddressEntryTexts?.preText || 'Or '}
+          <button
+            className={'p-a p-p fw-bold c-pointer bg-transparent'}
+            onClick={handleEnterAddressManually}
+            type="button"
+          >
+            {manualAddressEntryTexts?.cta || 'enter address manually'}
+          </button>
+        </div>
+      )}
     </>
   );
 };
