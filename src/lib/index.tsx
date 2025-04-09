@@ -52,6 +52,7 @@ import { Table, TableData, TableProps } from './components/table/Table';
 import { useEscapeKey } from './hooks/useEscapeKey';
 import { useFocusWithin } from './hooks/useFocusWithin';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { useOnClickOutside } from './hooks/useOnClickOutside';
 
 export * from './components/icon';
 
@@ -97,6 +98,7 @@ export {
   toast,
   useEscapeKey,
   useFocusWithin,
+  useOnClickOutside,
   useMediaQuery,
 };
 
