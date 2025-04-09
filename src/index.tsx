@@ -44,6 +44,7 @@ export {
   useEscapeKey,
   useFocusWithin,
   useMediaQuery,
+  useOnClickOutside,
 } from './lib';
 
 export * from './lib/components/icon';
