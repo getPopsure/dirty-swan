@@ -20,6 +20,7 @@ export interface CheckboxProps<ValueType extends string> {
     label?: string;
     option?: string;
   };
+  fieldLegend?: string;
 }
 
 export const Checkbox = <ValueType extends string>({
@@ -30,6 +31,7 @@ export const Checkbox = <ValueType extends string>({
   inlineLayout = false,
   bordered = true,
   classNames: classNamesObj,
+  fieldLegend,
 }: CheckboxProps<ValueType> & {}) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
 
@@ -72,7 +74,7 @@ export const Checkbox = <ValueType extends string>({
   };
 
   return (
-    <div
+    <fieldset
       className={classNames(
         classNamesObj?.container,
         styles.container,
@@ -85,6 +87,9 @@ export const Checkbox = <ValueType extends string>({
         }
       )}
     >
+      <legend className="sr-only">
+        {fieldLegend ?? 'Select one or more options'}
+      </legend>
       {entries.map(([currentValue, label]) => {
         const checked = value?.includes(currentValue);
         const customIcon = (label as CheckboxWithDescription)?.icon;
@@ -129,6 +134,6 @@ export const Checkbox = <ValueType extends string>({
           </div>
         );
       })}
-    </div>
+    </fieldset>
   );
 };
