@@ -10,6 +10,7 @@ import {
   formatAcceptFileList,
   getErrorMessage,
   getFormattedAcceptObject,
+  getStatusMessage,
   getUploadStatus,
 } from './utils';
 
@@ -61,23 +62,13 @@ const MultiDropzone = ({
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
       onFileSelect(acceptedFiles);
 
-      let message = '';
-      if (acceptedFiles.length > 0) {
-        const fileNames = acceptedFiles.map((file) => file.name).join(', ');
-        message += `File${
-          acceptedFiles.length > 1 ? 's' : ''
-        } uploaded: ${fileNames}`;
-      }
-      if (filesRejected.length > 0) {
-        const firstError = filesRejected[0]?.errors[0];
-        const rejectionMsg = getErrorMessage(
-          firstError,
-          { fileList, maxSize },
-          textOverrides
-        );
-        message += `Could not upload ${filesRejected[0]?.file.name}: ${rejectionMsg}`;
-      }
-      setStatusMessage(message);
+      const messageForScreenReader = getStatusMessage(
+        acceptedFiles,
+        filesRejected,
+        { fileList, maxSize },
+        textOverrides
+      );
+      setStatusMessage(messageForScreenReader);
 
       setErrors((previousErrors) => [
         ...previousErrors,
