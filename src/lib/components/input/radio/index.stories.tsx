@@ -13,6 +13,14 @@ const story = {
     value: {
       description: 'Current checked values.',
     },
+    fieldLegend: {
+      description:
+        'Property that describes the purpose of a group of radio buttons, read aloud by screen readers to provide context.',
+    },
+    groupName: {
+      description:
+        'Property passed to each radio button. Informs the browser that the radio buttons belong to the same group, so only one can be selected',
+    },
     onChange: {
       description: 'Function called everytime a value changes.',
       action: true,
@@ -29,7 +37,8 @@ const story = {
         'Property that defines if options should show inline instead of block. Check inline radio options story for examples.',
     },
     inlineIcon: {
-      description: 'Property that defines if options should show inline with icon',
+      description:
+        'Property that defines if options should show inline with icon',
     },
     classNames: {
       description: 'ClassNames for custom styling',
@@ -57,6 +66,8 @@ const story = {
         description: 'No pets',
       },
     },
+    fieldLegend: 'Owned pets',
+    groupName: 'Pets',
     value: '',
     wide: false,
     classNames: {
@@ -68,7 +79,7 @@ const story = {
     inlineLayout: false,
     inlineIcon: false,
     disabled: false,
-  }
+  },
 };
 
 export const RadioStory = ({
@@ -79,6 +90,8 @@ export const RadioStory = ({
   inlineLayout,
   bordered,
   disabled,
+  fieldLegend,
+  groupName,
 }: RadioProps<string>) => {
   const [checkedValues, setCheckedValues] = useState<string>();
 
@@ -97,6 +110,8 @@ export const RadioStory = ({
       inlineLayout={inlineLayout}
       bordered={bordered}
       disabled={disabled}
+      fieldLegend={fieldLegend}
+      groupName={groupName}
     />
   );
 };

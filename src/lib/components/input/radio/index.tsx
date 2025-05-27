@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { ReactNode } from 'react';
 
 import styles from './styles.module.scss';
+import generateId from '../../../util/generateId';
 export interface RadioWithDescription {
   title: ReactNode;
   description?: string;
@@ -23,6 +24,8 @@ export interface RadioProps<ValueType extends string> {
   };
   bordered?: boolean;
   disabled?: boolean;
+  fieldLegend?: string;
+  groupName?: string;
 }
 
 export const Radio = <ValueType extends string>({
@@ -35,14 +38,18 @@ export const Radio = <ValueType extends string>({
   classNames: classNamesObj,
   bordered = true,
   disabled = false,
+  fieldLegend = 'Select an option',
+  groupName,
 }: RadioProps<ValueType>) => {
   const entries = Object.entries(options) as [
     ValueType,
     ReactNode | RadioWithDescription
   ][];
 
+  const name = groupName ?? generateId();
+
   return (
-    <div
+    <fieldset
       className={classNames(
         classNamesObj?.container,
         styles.container,
@@ -56,6 +63,7 @@ export const Radio = <ValueType extends string>({
         }
       )}
     >
+      <legend className="sr-only">{fieldLegend}</legend>
       {entries.map(([currentValue, label]) => {
         const checked = value === currentValue;
         const customIcon = (label as RadioWithDescription)?.icon;
@@ -81,6 +89,7 @@ export const Radio = <ValueType extends string>({
               checked={checked}
               data-testid={`radio-input-${currentValue}`}
               disabled={disabled}
+              name={name}
             />
 
             <label
@@ -118,6 +127,6 @@ export const Radio = <ValueType extends string>({
           </div>
         );
       })}
-    </div>
+    </fieldset>
   );
 };
