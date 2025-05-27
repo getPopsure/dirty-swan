@@ -62,12 +62,13 @@ const MultiDropzone = ({
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
       onFileSelect(acceptedFiles);
 
-      const messageForScreenReader = getStatusMessage(
+      const messageForScreenReader = getStatusMessage({
         acceptedFiles,
         filesRejected,
-        { fileList, maxSize },
-        textOverrides
-      );
+        fileList,
+        maxSize,
+        textOverrides,
+      });
       setStatusMessage(messageForScreenReader);
 
       setErrors((previousErrors) => [
