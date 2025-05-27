@@ -27,6 +27,7 @@ export default ({
       className={`c-pointer ${styles['chip-button-container']}`}
       type="button"
       onClick={() => onRemove(value)}
+      aria-label={`Remove ${value.value} option`}
     >
       <XIcon className={styles['chip-remove-button']} />
     </button>

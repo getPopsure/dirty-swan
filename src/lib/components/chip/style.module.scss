@@ -48,6 +48,11 @@
   &:hover {
     color: $ds-purple-500;
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-primary-500);
+    border-radius: 2px;
+  }
 }
 
 .chip-remove-button {
