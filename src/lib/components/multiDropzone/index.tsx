@@ -48,6 +48,7 @@ const MultiDropzone = ({
   textOverrides,
 }: MultiDropzoneProps) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
+  const [statusMessage, setStatusMessage] = useState('');
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
   const placeholder = getPlaceholder(textOverrides, accept, maxSize);
@@ -59,6 +60,24 @@ const MultiDropzone = ({
   const onDrop = useCallback(
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
       onFileSelect(acceptedFiles);
+
+      let message = '';
+      if (acceptedFiles.length > 0) {
+        const fileNames = acceptedFiles.map((file) => file.name).join(', ');
+        message += `File${
+          acceptedFiles.length > 1 ? 's' : ''
+        } uploaded: ${fileNames}`;
+      }
+      if (filesRejected.length > 0) {
+        const firstError = filesRejected[0]?.errors[0];
+        const rejectionMsg = getErrorMessage(
+          firstError,
+          { fileList, maxSize },
+          textOverrides
+        );
+        message += `Could not upload ${filesRejected[0]?.file.name}: ${rejectionMsg}`;
+      }
+      setStatusMessage(message);
 
       setErrors((previousErrors) => [
         ...previousErrors,
@@ -93,10 +112,10 @@ const MultiDropzone = ({
         )}
         {...getRootProps()}
       >
-        <input
-          data-testid="ds-drop-input"
-          {...getInputProps()}
-        />
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          {statusMessage}
+        </div>
+        <input data-testid="ds-drop-input" {...getInputProps()} />
         <UploadCloudIcon
           className={isCondensed ? styles.img : ''}
           size={isCondensed ? 24 : 64}
@@ -151,7 +170,8 @@ const MultiDropzone = ({
 
       <AnimateHeight duration={300} height={isOverMaxFiles ? 'auto' : 0}>
         <p className="tc-red-500 mt16">
-          {textOverrides?.tooManyFilesError || `You can upload maximum ${maxFiles} files.`}
+          {textOverrides?.tooManyFilesError ||
+            `You can upload maximum ${maxFiles} files.`}
         </p>
       </AnimateHeight>
     </div>

@@ -1,4 +1,5 @@
 @use '../../scss/public/grid' as *;
+@use "../../scss/public/colors" as *;
 
 .container {
   background-color: transparent;
@@ -10,6 +11,18 @@
   background-color: white;
 
   transition: all 0.6s ease-in-out;
+
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid $ds-grey-900;
+    border-radius: 2px;
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    background-color: var(--ds-primary-100);
+    transition: 0.5s ease;
+  }
 }
 
 .img {
@@ -20,15 +33,6 @@
 
 .textInline {
   display: inline-flex;
-}
-
-.dropzoneContainer:focus {
-  outline: none;
-}
-
-.dropzoneContainer:hover {
-  background-color: var(--ds-primary-100);
-  transition: 0.5s ease;
 }
 
 .dropzoneContainerDisabled {
