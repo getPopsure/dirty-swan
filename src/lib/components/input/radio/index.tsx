@@ -38,7 +38,7 @@ export const Radio = <ValueType extends string>({
   classNames: classNamesObj,
   bordered = true,
   disabled = false,
-  fieldLegend,
+  fieldLegend = 'Select an option',
   groupName,
 }: RadioProps<ValueType>) => {
   const entries = Object.entries(options) as [
@@ -63,7 +63,7 @@ export const Radio = <ValueType extends string>({
         }
       )}
     >
-      <legend className="sr-only">{fieldLegend ?? 'Select an option'}</legend>
+      <legend className="sr-only">{fieldLegend}</legend>
       {entries.map(([currentValue, label]) => {
         const checked = value === currentValue;
         const customIcon = (label as RadioWithDescription)?.icon;

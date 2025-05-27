@@ -31,7 +31,7 @@ export const Checkbox = <ValueType extends string>({
   inlineLayout = false,
   bordered = true,
   classNames: classNamesObj,
-  fieldLegend,
+  fieldLegend = 'Select one or more options',
 }: CheckboxProps<ValueType> & {}) => {
   const hasNoneValue = Object.keys(options).includes('NONE');
 
@@ -87,9 +87,7 @@ export const Checkbox = <ValueType extends string>({
         }
       )}
     >
-      <legend className="sr-only">
-        {fieldLegend ?? 'Select one or more options'}
-      </legend>
+      <legend className="sr-only">{fieldLegend}</legend>
       {entries.map(([currentValue, label]) => {
         const checked = value?.includes(currentValue);
         const customIcon = (label as CheckboxWithDescription)?.icon;
