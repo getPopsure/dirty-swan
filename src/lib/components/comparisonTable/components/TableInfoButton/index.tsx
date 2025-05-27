@@ -13,6 +13,8 @@ const TableInfoButton = ({
     type="button"
     data-testid="ds-table-info-button"
     onClick={onClick}
+    aria-label="View more information"
+    title="View more information"
   >
     <Info size={20} />
   </button>
