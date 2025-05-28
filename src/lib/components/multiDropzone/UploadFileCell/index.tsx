@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import { FileIcon, Trash2Icon, EyeVisionIcon } from '../../icon/icons';
 import { Color } from '../../../models/styles';
 import { UploadStatus, UploadedFile } from '../types';
+import { Button } from '../../button';
 
 interface Props {
   uploadStatus: UploadStatus;
@@ -94,35 +95,40 @@ const UploadFileCell: React.FC<Props> = ({
         ) : (
           <>
             {isComplete && (
-              <a
-                className={styles['view-icon']}
+              <Button
+                as="a"
                 href={previewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                hideLabel
+                variant="filledWhite"
+                className={classnames('mr16', styles.button)}
+                leftIcon={
+                  <EyeVisionIcon noMargin color={'grey-500'} size={24} />
+                }
               >
-                <EyeVisionIcon
-                  color={'grey-500'}
-                  size={24}
-                  className={styles.icon}
-                />
-              </a>
+                Preview file
+              </Button>
             )}
 
             {onRemoveFile && (
-              <button
-                type="button"
+              <Button
                 onClick={() => onRemoveFile(id)}
-                className={classnames(styles['remove-icon'], {
-                  [styles.disabled]: uploading,
-                })}
+                disabled={uploading}
                 data-testid="remove-button"
+                className={styles.button}
+                leftIcon={
+                  <Trash2Icon
+                    color={hasError ? 'red-500' : 'grey-500'}
+                    size={24}
+                    noMargin
+                  />
+                }
+                hideLabel
+                variant="filledWhite"
               >
-                <Trash2Icon
-                  color={hasError ? 'red-500' : 'grey-500'}
-                  size={24}
-                  className={styles.icon}
-                />
-              </button>
+                Delete file
+              </Button>
             )}
           </>
         )}

@@ -10,6 +10,7 @@ import {
   formatAcceptFileList,
   getErrorMessage,
   getFormattedAcceptObject,
+  getStatusMessage,
   getUploadStatus,
 } from './utils';
 
@@ -48,6 +49,7 @@ const MultiDropzone = ({
   textOverrides,
 }: MultiDropzoneProps) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
+  const [statusMessage, setStatusMessage] = useState('');
   const formattedAccept = getFormattedAcceptObject(accept);
   const fileList = formatAcceptFileList(formattedAccept);
   const placeholder = getPlaceholder(textOverrides, accept, maxSize);
@@ -59,6 +61,15 @@ const MultiDropzone = ({
   const onDrop = useCallback(
     (acceptedFiles: File[], filesRejected: FileRejection[]) => {
       onFileSelect(acceptedFiles);
+
+      const messageForScreenReader = getStatusMessage({
+        acceptedFiles,
+        filesRejected,
+        fileList,
+        maxSize,
+        textOverrides,
+      });
+      setStatusMessage(messageForScreenReader);
 
       setErrors((previousErrors) => [
         ...previousErrors,
@@ -93,10 +104,10 @@ const MultiDropzone = ({
         )}
         {...getRootProps()}
       >
-        <input
-          data-testid="ds-drop-input"
-          {...getInputProps()}
-        />
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          {statusMessage}
+        </div>
+        <input data-testid="ds-drop-input" {...getInputProps()} />
         <UploadCloudIcon
           className={isCondensed ? styles.img : ''}
           size={isCondensed ? 24 : 64}
@@ -151,7 +162,8 @@ const MultiDropzone = ({
 
       <AnimateHeight duration={300} height={isOverMaxFiles ? 'auto' : 0}>
         <p className="tc-red-500 mt16">
-          {textOverrides?.tooManyFilesError || `You can upload maximum ${maxFiles} files.`}
+          {textOverrides?.tooManyFilesError ||
+            `You can upload maximum ${maxFiles} files.`}
         </p>
       </AnimateHeight>
     </div>
