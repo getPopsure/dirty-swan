@@ -64,6 +64,8 @@ export const Input = React.forwardRef(
             )}
             placeholder={label || labelInsideInput ? placeholder : ' '}
             disabled={disabled}
+            aria-invalid={!!error}
+            aria-errormessage={error ? error : undefined}
             {...props}
           />
           {prefix && (
