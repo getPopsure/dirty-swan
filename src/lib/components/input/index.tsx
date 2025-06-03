@@ -5,15 +5,15 @@ import generateId from '../../util/generateId';
 import styles from './style.module.scss';
 
 // Something weird is going on with enterKeyHint that makes it a required field under certain circumstances. The & Omit<…> and & Pick<…> is a hacky way to go around that.
-export type InputProps =  Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
- Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>> & {
-  error?: string | boolean;
-  prefix?: string;
-  label?: string;
-  id?: string;
-  hideLabel?: boolean;
-  labelInsideInput?: boolean;
-};
+export type InputProps = Omit<JSX.IntrinsicElements['input'], 'enterKeyHint'> &
+  Partial<Pick<JSX.IntrinsicElements['input'], 'enterKeyHint'>> & {
+    error?: string | boolean;
+    prefix?: string;
+    label?: string;
+    id?: string;
+    hideLabel?: boolean;
+    labelInsideInput?: boolean;
+  };
 
 export const Input = React.forwardRef(
   (
@@ -54,18 +54,20 @@ export const Input = React.forwardRef(
             ref={ref}
             className={classnames(
               error ? 'p-input--error' : 'p-input',
-              (!label || labelInsideInput) && placeholder && placeholder.length > 0
+              (!label || labelInsideInput) &&
+                placeholder &&
+                placeholder.length > 0
                 ? styles.input
                 : styles['input--no-placeholder'],
               {
-                [styles['input--with-prefix']]: prefix, 
-                [styles['input--with-inside-label']]: labelInsideInput
+                [styles['input--with-prefix']]: prefix,
+                [styles['input--with-inside-label']]: labelInsideInput,
               }
             )}
             placeholder={label || labelInsideInput ? placeholder : ' '}
             disabled={disabled}
             aria-invalid={!!error}
-            aria-errormessage={error ? error : undefined}
+            aria-errormessage={error ? `${uniqueId}-error` : undefined}
             {...props}
           />
           {prefix && (
@@ -93,7 +95,10 @@ export const Input = React.forwardRef(
           )}
         </div>
         {error && (
-          <p className={`p-p--small tc-red-500 w100 ${styles.error}`}>
+          <p
+            id={`${uniqueId}-error`}
+            className={`p-p--small tc-red-500 w100 ${styles.error}`}
+          >
             {error}
           </p>
         )}
