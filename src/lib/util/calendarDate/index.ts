@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { CalendarDate } from '@popsure/public-models';
+import { CalendarDate } from '@getpopsure/public-models';
 
 import { zerofill } from '../../util/zeroFill';
 

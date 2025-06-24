@@ -6,7 +6,7 @@ import {
   Address,
   Alpha2CountryCode,
   countryNameFromAlphaCode,
-} from '@popsure/public-models';
+} from '@getpopsure/public-models';
 
 import { geocoderAddressComponentToPartialAddress } from './util';
 
