@@ -1,21 +1,21 @@
-import { Accept } from "react-dropzone";
+import { Accept } from 'react-dropzone';
 
 export enum FileMimeTypes {
-  avi = "video/x-msvideo",
-  bmp = "image/bmp",
-  doc = "application/msword",
-  docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  heic = "image/heic",
-  jpeg = "image/jpeg",
-  jpg = "image/jpg",
-  mov = "video/quicktime",
-  mp4 = "video/mp4",
-  pdf = "application/pdf",
-  png = "image/png",
-  svg = "image/svg+xml",
-  tif = "image/tiff",
-  tiff = "image/tiff",
-  webp = "image/webp",
+  avi = 'video/x-msvideo',
+  bmp = 'image/bmp',
+  doc = 'application/msword',
+  docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  heic = 'image/heic',
+  jpeg = 'image/jpeg',
+  jpg = 'image/jpg',
+  mov = 'video/quicktime',
+  mp4 = 'video/mp4',
+  pdf = 'application/pdf',
+  png = 'image/png',
+  svg = 'image/svg+xml',
+  tif = 'image/tiff',
+  tiff = 'image/tiff',
+  webp = 'image/webp',
 }
 
 // mp4, mov, avi
@@ -34,7 +34,7 @@ export const IMAGE_FILES: FileType[] = [
   'png',
   'tiff',
   'webp',
-  'svg'
+  'svg',
 ];
 
 export interface UploadedFile {
@@ -47,13 +47,14 @@ export interface UploadedFile {
   showLoadingSpinner?: boolean;
 }
 
-export type AcceptType = "document" | "image" | "video" | Accept;
+export type AcceptType = 'document' | 'image' | 'video' | Accept;
 
 export interface TextOverrides {
   currentlyUploadingText?: string;
   fileTypeError?: string;
   fileTooLargeError?: string;
   instructionsText?: string;
+  instructionsTextMobile?: string;
   sizeUpToText?: string;
   supportsText?: string;
   supportsTextShort?: string;
