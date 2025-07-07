@@ -24,6 +24,7 @@ import {
 } from './types';
 
 import { getPlaceholder } from './utils';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 interface MultiDropzoneProps {
   uploadedFiles: UploadedFile[];
@@ -93,6 +94,17 @@ const MultiDropzone = ({
     onDrop,
   });
 
+  const isNonDesktopDevice = useMediaQuery('BELOW_TABLET');
+
+  const instructionsTextDesktop =
+    textOverrides?.instructionsText || 'Choose file or drag & drop';
+  const instructionsTextMobile =
+    textOverrides?.instructionsTextMobile || 'Tap to choose file';
+
+  const instructionsText = isNonDesktopDevice
+    ? instructionsTextMobile
+    : instructionsTextDesktop;
+
   return (
     <div className={styles.container}>
       <div
@@ -121,7 +133,7 @@ const MultiDropzone = ({
           {uploading
             ? textOverrides?.currentlyUploadingText ||
               'Please wait while uploading file...'
-            : textOverrides?.instructionsText || 'Choose file or drag & drop'}
+            : instructionsText}
         </div>
         <div className="p-p--small tc-grey-500">
           {textOverrides?.supportsText || placeholder}

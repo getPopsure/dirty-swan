@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { MultiDropzone, MultiDropzoneProps } from '.';
 import { UploadedFile } from './types';
 
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+
 const story = {
   title: 'JSX/MultiDropzone',
   component: MultiDropzone,
@@ -11,26 +13,31 @@ const story = {
     },
     uploading: {
       defaultValue: false,
-      description: 'Property that allows to display component in an uploading state',
+      description:
+        'Property that allows to display component in an uploading state',
     },
     isCondensed: {
       defaultValue: false,
-      description: 'Property that allows to display component in a smaller layout',
+      description:
+        'Property that allows to display component in a smaller layout',
     },
     maxFiles: {
-      description: 'Property that allows to display the maximum number of files allowed',
+      description:
+        'Property that allows to display the maximum number of files allowed',
       table: {
         category: 'File Validation',
       },
     },
     maxSize: {
-      description: 'Property that allows to display the maximum size of files allowed',
+      description:
+        'Property that allows to display the maximum size of files allowed',
       table: {
         category: 'File Validation',
       },
     },
     accept: {
-      description: 'Property that allows to define which file types are accepted',
+      description:
+        'Property that allows to define which file types are accepted',
       table: {
         category: 'File Validation',
       },
@@ -54,17 +61,20 @@ const story = {
     },
   },
   args: {
-    uploadedFiles: [{
-      id: '123456789',
-      name: 'my-code-doesnt-work-i-have-no-idea-why-my-code-works.jpg'
-    }],
+    uploadedFiles: [
+      {
+        id: '123456789',
+        name: 'my-code-doesnt-work-i-have-no-idea-why-my-code-works.jpg',
+      },
+    ],
     uploading: false,
     isCondensed: false,
     textOverrides: {},
-    maxFiles: 0
+    maxFiles: 0,
   },
   parameters: {
-    componentSubtitle: 'MultiDropzone component allows upload of multiple documents / files.',
+    componentSubtitle:
+      'MultiDropzone component allows upload of multiple documents / files.',
   },
 };
 
@@ -96,11 +106,11 @@ export const MultiDropzoneStory = ({
   };
 
   return (
-    <MultiDropzone 
-      onFileSelect={handleOnFileSelect} 
-      onRemoveFile={handleOnRemoveFile} 
-      uploadedFiles={localFiles} 
-      uploading={uploading} 
+    <MultiDropzone
+      onFileSelect={handleOnFileSelect}
+      onRemoveFile={handleOnRemoveFile}
+      uploadedFiles={localFiles}
+      uploading={uploading}
       isCondensed={isCondensed}
       maxFiles={maxFiles}
       maxSize={maxSize}
@@ -109,7 +119,7 @@ export const MultiDropzoneStory = ({
   );
 };
 
-MultiDropzoneStory.storyName = "MultiDropzone";
+MultiDropzoneStory.storyName = 'MultiDropzone';
 
 export const UploadingState = () => (
   <MultiDropzone
@@ -147,7 +157,6 @@ export const UploadingState = () => (
     onRemoveFile={() => {}}
   />
 );
-
 
 export const CondensedView = () => (
   <MultiDropzone
@@ -269,9 +278,30 @@ export const I18nSupport = () => (
       instructionsText: 'Datei auswählen oder per Drag & Drop platzieren',
       supportsTextShort: 'Unterstützt werden',
       currentlyUploadingText:
-        'Bitte warten während die Datei hochgeladen wird...'
+        'Bitte warten während die Datei hochgeladen wird...',
     }}
   />
 );
+
+export const NonDesktopDevice = () => (
+  <MultiDropzone
+    uploadedFiles={[]}
+    onFileSelect={() => {}}
+    uploading={false}
+    onRemoveFile={() => {}}
+    textOverrides={{
+      instructionsTextMobile: 'Tippen Sie, um eine Datei auszuwählen',
+      currentlyUploadingText:
+        'Bitte warten, während die Datei hochgeladen wird...',
+    }}
+  />
+);
+
+NonDesktopDevice.parameters = {
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+    defaultViewport: 'iphone6',
+  },
+};
 
 export default story;
