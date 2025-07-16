@@ -6,30 +6,31 @@ export default (props: IconWrapperProps) =>
   createElement(
     IconWrapper,
     props,
-    <g
+    <circle
+      cx={13.5}
+      cy={10.5}
+      r={8.5}
       stroke="currentColor"
-      strokeWidth={1.8}
-      clipPath="url(#translation_svg__a)"
-    >
-      <circle cx={11.25} cy={8.75} r={7.083} />
-      <path
-        strokeLinecap="round"
-        d="M11.667 1.667c-2.808 2.237-3.842 5.888-3.102 9.166"
-      />
-      <path
-        strokeLinecap="round"
-        d="M10.833 1.667c4.445 3.541 4.445 10.625 0 14.166M5 6.667h12.5M5 10.833h12.5"
-      />
-      <path
-        fill="#fff"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M10 16.146c0 .276-.109.541-.301.736a1.022 1.022 0 0 1-.728.305H3.724l-2.058 1.146v-6.458c0-.276.109-.541.302-.737.193-.195.454-.305.727-.305h6.276c.273 0 .535.11.728.305.192.196.3.46.3.737v4.27Z"
-      />
-    </g>,
-    <defs>
-      <clipPath id="translation_svg__a">
-        <path fill="#fff" d="M0 0h20v20H0z" />
-      </clipPath>
-    </defs>
+      strokeWidth={2}
+    />,
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth={2}
+      d="M14 2c-3.37 2.685-4.61 7.066-3.722 11"
+    />,
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth={2}
+      d="M13 2c5.333 4.25 5.333 12.75 0 17M6 8h15M6 13h15"
+    />,
+    <path
+      fill="#fff"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 19.375c0 .331-.13.65-.362.884a1.227 1.227 0 0 1-.873.366H4.47L2 22v-7.75c0-.332.13-.65.362-.884.231-.234.545-.366.873-.366h7.53c.328 0 .642.132.873.366.232.235.362.553.362.884v5.125Z"
+    />
   );

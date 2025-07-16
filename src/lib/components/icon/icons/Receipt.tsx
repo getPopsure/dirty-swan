@@ -10,14 +10,14 @@ export default (props: IconWrapperProps) =>
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.8}
+      strokeWidth={2}
       clipPath="url(#receipt_svg__a)"
     >
-      <path d="M6.25 8.125h7.5M6.25 10.625h7.5M2.5 16.25V4.375a.625.625 0 0 1 .625-.625h13.75a.625.625 0 0 1 .625.625V16.25L15 15l-2.5 1.25L10 15l-2.5 1.25L5 15l-2.5 1.25Z" />
+      <path d="M7.5 9.75h9M7.5 12.75h9M3 19.5V5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 .75.75V19.5L18 18l-3 1.5-3-1.5-3 1.5L6 18l-3 1.5Z" />
     </g>,
     <defs>
       <clipPath id="receipt_svg__a">
-        <path fill="#fff" d="M0 0h20v20H0z" />
+        <path fill="#fff" d="M0 0h24v24H0z" />
       </clipPath>
     </defs>
   );
