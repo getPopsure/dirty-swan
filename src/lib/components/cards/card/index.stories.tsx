@@ -99,8 +99,9 @@ export const CardStory = ({
   titleVariant,
   verticalAlignment,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
-    <Card
+  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+    {Array.from({ length: 10 }).map((_, index) => (
+      <Card
       as={as}
       classNames={classNames}
       description={description}
@@ -118,6 +119,7 @@ export const CardStory = ({
     >
       {children}
     </Card>
+    ))}
   </div>
 );
 
