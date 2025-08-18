@@ -220,6 +220,9 @@ const story = {
     hideColumns: {
       subContent: 'This property allows to hide defined columns by index.',
     },
+    hideRows: {
+      subContent: 'This property allows to hide selected rows by index.',
+    },
     modalContentRenderer: {
       subContent: 'This property allows to render custom modal content.',
     },
@@ -250,6 +253,7 @@ const story = {
       hideDetails: 'Hide details',
     },
     hideColumns: [],
+    hideRows: [],
   },
 };
 
@@ -258,6 +262,7 @@ export const TableStory = ({
   tableData,
   hideColumns,
   hideDetails,
+  hideRows,
   stickyHeaderTopOffset,
   textOverrides,
   title,
@@ -296,6 +301,7 @@ export const TableStory = ({
         tableData={tableData}
         hideColumns={hideColumns}
         hideDetails={hideDetails}
+        hideRows={hideRows}
         stickyHeaderTopOffset={stickyHeaderTopOffset}
         textOverrides={textOverrides}
         title={title}

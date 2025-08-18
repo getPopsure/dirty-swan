@@ -15,6 +15,7 @@ export interface TableContentsProps {
   tableData: TableData;
   hideColumns?: number[];
   hideDetails?: boolean;
+  hideRows?: number[];
   isMobile?: boolean;
   openModal?: ModalFunction;
   shouldHideDetails?: boolean;
@@ -29,6 +30,7 @@ const TableContents = ({
   tableData,
   hideColumns = [],
   hideDetails,
+  hideRows = [],
   isMobile,
   openModal,
   shouldHideDetails,
@@ -45,6 +47,9 @@ const TableContents = ({
     );
   };
 
+  // Calculate global row offset for each section
+  let globalRowOffset = 0;
+
   return (
     <div style={{ width: tableWidth }}>
       {tableData.map(({ rows, section = {} }, index) => {
@@ -58,60 +63,69 @@ const TableContents = ({
           <IconRenderer icon={section.icon} imageComponent={imageComponent} width={20} />
         );
 
-        return (
-          (isFirstSection || isVisible) && (
-            <div key={index}>
-              {section?.title && (
-                <div className={styles.cardWrapper}>
-                  <div className={classNames(styles.card, 'p0')}>
-                    <Card
-                      actionIcon={
-                        isExpanded ? (
-                          <ChevronUpIcon size={24} />
-                        ) : (
-                          <ChevronDownIcon size={24} />
-                        )
-                      }
-                      aria-expanded={isExpanded ? 'true' : 'false'}
-                      aria-hidden
-                      classNames={{
-                        wrapper: 'bg-purple-50 pl16',
-                        icon: classNames(styles.cardIcon, 'tc-grey-900'),
-                      }}
-                      dropShadow={false}
-                      icon={renderedIcon}
-                      title={section.title}
-                      titleVariant="medium"
-                      {...(collapsibleSections
-                        ? {
-                            onClick: () => handleToggleSection(index),
-                          }
-                        : {})}
-                    />
-                  </div>
-                </div>
-              )}
+        // Calculate section-specific hideRows based on global offset
+        const sectionHideRows = hideRows
+          .map(globalRowIndex => globalRowIndex - globalRowOffset)
+          .filter(localRowIndex => localRowIndex >= 0 && localRowIndex < rows.length);
 
-              <Collapsible isExpanded={isExpanded}>
-                <TableSection
-                  className={classNames(className, 'mb24')}
-                  tableCellRows={
-                    isFirstSection ? rows : [firstHeadRow, ...rows]
-                  }
-                  hideColumns={hideColumns}
-                  hideHeader
-                  openModal={openModal}
-                  title={`${title}${
-                    section?.title ? ` - ${section.title}` : ''
-                  }`}
-                  width={tableWidth}
-                  cellReplacements={cellReplacements}
-                  imageComponent={imageComponent}
-                />
-              </Collapsible>
-            </div>
-          )
+        const result = (isFirstSection || isVisible) && (
+          <div key={index}>
+            {section?.title && (
+              <div className={styles.cardWrapper}>
+                <div className={classNames(styles.card, 'p0')}>
+                  <Card
+                    actionIcon={
+                      isExpanded ? (
+                        <ChevronUpIcon size={24} />
+                      ) : (
+                        <ChevronDownIcon size={24} />
+                      )
+                    }
+                    aria-expanded={isExpanded ? 'true' : 'false'}
+                    aria-hidden
+                    classNames={{
+                      wrapper: 'bg-purple-50 pl16',
+                      icon: classNames(styles.cardIcon, 'tc-grey-900'),
+                    }}
+                    dropShadow={false}
+                    icon={renderedIcon}
+                    title={section.title}
+                    titleVariant="medium"
+                    {...(collapsibleSections
+                      ? {
+                          onClick: () => handleToggleSection(index),
+                        }
+                      : {})}
+                  />
+                </div>
+              </div>
+            )}
+
+            <Collapsible isExpanded={isExpanded}>
+              <TableSection
+                className={classNames(className, 'mb24')}
+                tableCellRows={
+                  isFirstSection ? rows : [firstHeadRow, ...rows]
+                }
+                hideColumns={hideColumns}
+                hideRows={sectionHideRows}
+                hideHeader
+                openModal={openModal}
+                title={`${title}${
+                  section?.title ? ` - ${section.title}` : ''
+                }`}
+                width={tableWidth}
+                cellReplacements={cellReplacements}
+                imageComponent={imageComponent}
+              />
+            </Collapsible>
+          </div>
         );
+
+        // Update global offset for next section (excluding header row for non-first sections)
+        globalRowOffset += rows.length;
+
+        return result;
       })}
     </div>
   );

@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 import styles from './CTACell.module.scss';
 import { IconRenderer } from '../../IconRenderer/IconRenderer';
+import { Button } from '../../../../button';
 
 export type CTACellProps = {
   title: ReactNode;
@@ -16,6 +17,7 @@ export type CTACellProps = {
   className?: string;
   dataTestId?: string;
   dataCy?: string;
+  onClick?: () => void;
 };
 
 export const CTACell = ({
@@ -30,6 +32,7 @@ export const CTACell = ({
   className,
   dataCy,
   dataTestId,
+  onClick,
 }: CTACellProps) => {
   const renderedIcon = (
     <IconRenderer icon={icon} imageComponent={imageComponent} />
@@ -49,18 +52,21 @@ export const CTACell = ({
         </p>
       </div>
 
-      <a
+      <Button
+        {...onClick ? { onClick } : {
+          as: 'a',
+          href: href,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        }}
         className={classNames('mt16 w100 wmx3', {
           'p-btn--primary': !grey,
           'p-btn--secondary-grey': grey,
           [styles.narrow]: narrow,
         })}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
       >
         {buttonCaption}
-      </a>
+      </Button>
     </div>
   );
 };

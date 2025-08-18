@@ -32,6 +32,7 @@ export interface TableProps {
   collapsibleSections?: boolean;
   hideColumns?: number[];
   hideDetails?: boolean;
+  hideRows?: number[];
   imageComponent?: (args: any) => JSX.Element;
   modalContentRenderer?: (content: ReactNode) => ReactNode;
   onModalOpen?: ModalFunction;
@@ -53,6 +54,7 @@ const Table = ({
   collapsibleSections,
   hideColumns = [],
   hideDetails,
+  hideRows = [],
   imageComponent,
   modalContentRenderer,
   onModalOpen,
@@ -145,6 +147,7 @@ const Table = ({
               cellReplacements={cellReplacements}
               className={className}
               hideColumns={hideColumns}
+              hideRows={hideRows}
               openModal={handleOpenModal}
               tableCellRows={[tableData?.[0]?.rows?.[0]]}
               title={title}
@@ -162,6 +165,7 @@ const Table = ({
           collapsibleSections={collapsibleSections}
           hideColumns={hideColumns}
           hideDetails={hideDetails}
+          hideRows={hideRows}
           isMobile={isMobile}
           shouldHideDetails={shouldHideDetails}
           openModal={handleOpenModal}

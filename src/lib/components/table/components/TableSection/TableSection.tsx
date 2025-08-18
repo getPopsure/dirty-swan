@@ -16,6 +16,7 @@ export interface TableSectionProps {
   className?: string;
   tableCellRows: TableCellRowData[];
   hideColumns?: number[];
+  hideRows?: number[];
   hideHeader?: boolean;
   openModal?: ModalFunction;
   title: string;
@@ -28,6 +29,7 @@ const TableSection = ({
   className,
   tableCellRows,
   hideColumns = [],
+  hideRows = [],
   hideHeader,
   openModal,
   title,
@@ -68,6 +70,11 @@ const TableSection = ({
   const isVisibleColumn = useCallback(
     (cellIndex: number) => !hideColumns.includes(cellIndex),
     [hideColumns]
+  );
+
+  const isVisibleRow = useCallback(
+    (rowIndex: number) => !hideRows.includes(rowIndex),
+    [hideRows]
   );
 
   return (
@@ -120,7 +127,7 @@ const TableSection = ({
       <tbody>
         {tableCellRows.map(
           (row, rowIndex) =>
-            rowIndex > 0 && (
+            rowIndex > 0 && isVisibleRow(rowIndex) && (
               <tr key={rowIndex} className={styles.tr}>
                 {row.map((tableCellData, cellIndex) => {
                   const key = `${rowIndex}-${cellIndex}`;
