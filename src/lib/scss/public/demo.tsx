@@ -148,7 +148,7 @@ const colors = [
   },
   {
     name: 'Grey 100',
-    code: 'grey-100',
+    code: 'neutral-50',
     hex: '#fafaff',
   },
   {
