@@ -116,7 +116,7 @@ export const Radio = <ValueType extends string>({
               {isRadioLabelObject(label) ? (
                 <div>
                   <p className="p-p">{label.title}</p>
-                  <span className="d-block p-p p-p--small tc-grey-600">
+                  <span className="d-block p-p p-p--small tc-neutral-700">
                     {label.description}
                   </span>
                 </div>

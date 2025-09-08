@@ -218,7 +218,7 @@ export const CardOverridesStyles = ({
       titleVariant={'medium'}
       icon={<PlusCircleIcon color="neutral-50" size={32} />}
       classNames={{ 
-        wrapper: 'bg-grey-700',
+        wrapper: 'bg-neutral-800',
         label: 'tc-white',
         title: 'tc-white'
       }}

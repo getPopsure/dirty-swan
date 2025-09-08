@@ -13,7 +13,7 @@
 }
 
 .question {
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   &:hover {
     color: $ds-purple-600;
@@ -21,7 +21,7 @@
 }
 
 .chevron {
-  color: $ds-grey-700;
+  color: $ds-neutral-800;
   transition: transform 0.3s ease-in-out;
 
   &Open {
