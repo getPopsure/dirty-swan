@@ -28,7 +28,7 @@ const TableRowHeader = ({
         </span>
         {onClickInfo && <TableInfoButton onClick={onClickInfo} />}
       </p>
-      {subtitle && <p className="p-p--small tc-grey-500">{subtitle}</p>}
+      {subtitle && <p className="p-p--small tc-neutral-600">{subtitle}</p>}
     </div>
   </div>
 );

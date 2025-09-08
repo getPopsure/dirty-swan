@@ -22,7 +22,7 @@
   transition: box-shadow 0.3s;
 
   &::placeholder {
-    color: $ds-grey-500;
+    color: $ds-neutral-600;
   }
 
   &:disabled {
@@ -253,7 +253,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
   }
 
   &:invalid {
-    color: $ds-grey-500;
+    color: $ds-neutral-600;
   }
 
   &:focus {

@@ -10,7 +10,7 @@
 
   transform: translateY(-50%);
 
-  color: var(--ds-grey-500);
+  color: var(--ds-neutral-600);
 
   transition: 0.3s top;
 
@@ -93,7 +93,7 @@
   transform: translateY(-50%);
   transition: 0.3s ease all;
 
-  color: var(--ds-grey-500);
+  color: var(--ds-neutral-600);
 
   &--with-prefix {
     left: 32px;

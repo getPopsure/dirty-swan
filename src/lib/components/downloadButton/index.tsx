@@ -33,8 +33,8 @@ const GeneratingButton = () => (
 
 const CompletedChip = () => (
   <div className={styles['chip-complete']}>
-    <CheckIcon color={'grey-500'} size={16} />
-    <div className="p-h4 tc-grey-500 ml8">Download complete</div>
+    <CheckIcon color={'neutral-600'} size={16} />
+    <div className="p-h4 tc-neutral-600 ml8">Download complete</div>
   </div>
 );
 

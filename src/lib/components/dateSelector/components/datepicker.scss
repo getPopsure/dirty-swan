@@ -13,7 +13,7 @@
   line-height: 40px;
   border-radius: 4px;
   text-align: left;
-  border: 1px solid $ds-grey-500;
+  border: 1px solid $ds-neutral-600;
 }
 
 .DayPickerInput input {
@@ -34,7 +34,7 @@
   transform: translateY(-50%);
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-top: 12px solid $ds-grey-500;
+  border-top: 12px solid $ds-neutral-600;
 }
 
 .DayPickerInput:hover::before {
