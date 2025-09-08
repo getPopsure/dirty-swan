@@ -53,6 +53,14 @@ import { useEscapeKey } from './hooks/useEscapeKey';
 import { useFocusWithin } from './hooks/useFocusWithin';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { useOnClickOutside } from './hooks/useOnClickOutside';
+import { LogoColor } from './components/logo/LogoColor';
+import { LogoWhite } from './components/logo/LogoWhite';
+import { LogoBlack } from './components/logo/LogoBlack';
+import { LogoOrangeBox } from './components/logo/LogoOrangeBox';
+import { LogoInvertedColor } from './components/logo/LogoInvertedColor';
+import { LogoInverted } from './components/logo/LogoInverted';
+import { LogoPositiveColor } from './components/logo/LogoPositiveColor';
+import { LogoPositiveBlack } from './components/logo/LogoPositiveBlack';
 
 export * from './components/icon';
 
@@ -100,6 +108,14 @@ export {
   useFocusWithin,
   useOnClickOutside,
   useMediaQuery,
+  LogoColor,
+  LogoWhite,
+  LogoBlack,
+  LogoOrangeBox,
+  LogoInvertedColor,
+  LogoInverted,
+  LogoPositiveColor,
+  LogoPositiveBlack,
 };
 
 export type {
