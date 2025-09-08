@@ -45,6 +45,14 @@ export {
   useFocusWithin,
   useMediaQuery,
   useOnClickOutside,
+  LogoColor,
+  LogoWhite,
+  LogoBlack,
+  LogoOrangeBox,
+  LogoInvertedColor,
+  LogoInverted,
+  LogoPositiveColor,
+  LogoPositiveBlack,
 } from './lib';
 
 export * from './lib/components/icon';
