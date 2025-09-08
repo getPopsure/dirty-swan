@@ -93,7 +93,7 @@ const Accordion = ({
                 icon: classnamesUtil(
                   classNames?.icon,
                   styles.icon,
-                  'tc-grey-700',
+                  'tc-neutral-800',
                 ),
                 buttonWrapper: classnamesUtil(
                   'py8 my8',
@@ -135,7 +135,7 @@ const Accordion = ({
               <div 
                 className={classnamesUtil(
                   classNames?.answer,
-                  'tc-grey-600 pr16 pb24', 
+                  'tc-neutral-700 pr16 pb24', 
                   { 
                     'pl16': !isDefaultVariant,
                     [styles?.answerIcon]: !isDefaultVariant && icon,

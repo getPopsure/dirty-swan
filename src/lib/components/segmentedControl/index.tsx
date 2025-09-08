@@ -80,7 +80,7 @@ const SegmentedControl = ({
                     <div
                       className={`p-p--small ta-center ${
                         selectedIndex === index
-                          ? 'tc-grey-500'
+                          ? 'tc-neutral-600'
                           : 'tc-purple-600'
                       }`}
                     >

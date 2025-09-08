@@ -36,7 +36,7 @@ const UploadFileCell: React.FC<Props> = ({
 
   const mapFileIconColor: { [k in UploadStatus]: Color } = {
     UPLOADING: 'purple-600',
-    COMPLETE: 'grey-500',
+    COMPLETE: 'neutral-600',
     ERROR: 'red-500',
   };
 
@@ -104,7 +104,7 @@ const UploadFileCell: React.FC<Props> = ({
                 variant="filledWhite"
                 className={classnames('mr16', styles.button)}
                 leftIcon={
-                  <EyeVisionIcon noMargin color={'grey-500'} size={24} />
+                  <EyeVisionIcon noMargin color={'neutral-600'} size={24} />
                 }
               >
                 Preview file
@@ -119,7 +119,7 @@ const UploadFileCell: React.FC<Props> = ({
                 className={styles.button}
                 leftIcon={
                   <Trash2Icon
-                    color={hasError ? 'red-500' : 'grey-500'}
+                    color={hasError ? 'red-500' : 'neutral-600'}
                     size={24}
                     noMargin
                   />

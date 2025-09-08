@@ -143,22 +143,22 @@ const colors = [
   },
   {
     name: 'Grey 500',
-    code: 'grey-500',
+    code: 'neutral-600',
     hex: '#91919c',
   },
   {
     name: 'Grey 600',
-    code: 'grey-600',
+    code: 'neutral-700',
     hex: '#696970',
   },
   {
     name: 'Grey 700',
-    code: 'grey-700',
+    code: 'neutral-800',
     hex: '#4c4c53',
   },
   {
     name: 'Grey 900',
-    code: 'grey-900',
+    code: 'neutral-900',
     hex: '#26262e',
   },
   {

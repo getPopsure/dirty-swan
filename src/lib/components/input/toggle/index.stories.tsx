@@ -146,7 +146,7 @@ export const ToggleWithCustomLabelStyles = ({ onChange }: ToggleProps<string>) =
         CAT3: 'Cat',
         DOG3: 'Dog',
       }} 
-      classNames={{ label: "bg-grey-900 tc-white" }}
+      classNames={{ label: "bg-neutral-900 tc-white" }}
     />
   );
 }

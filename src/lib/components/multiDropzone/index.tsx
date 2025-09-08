@@ -135,7 +135,7 @@ const MultiDropzone = ({
               'Please wait while uploading file...'
             : instructionsText}
         </div>
-        <div className="p-p--small tc-grey-500">
+        <div className="p-p--small tc-neutral-600">
           {textOverrides?.supportsText || placeholder}
         </div>
       </div>
