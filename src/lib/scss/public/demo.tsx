@@ -122,42 +122,42 @@ const colors = [
     hex: '#4B2525',
   },
   {
-    name: 'Grey 100',
+    name: 'Neutral 100',
     code: 'neutral-50',
     hex: '#fafaff',
   },
   {
-    name: 'Grey 200',
+    name: 'Neutral 200',
     code: 'neutral-100',
     hex: '#f5f6fb',
   },
   {
-    name: 'Grey 300',
+    name: 'Neutral 300',
     code: 'neutral-300',
     hex: '#ededf2',
   },
   {
-    name: 'Grey 400',
+    name: 'Neutral 400',
     code: 'neutral-400',
     hex: '#d2d2d8',
   },
   {
-    name: 'Grey 500',
+    name: 'Neutral 500',
     code: 'neutral-600',
     hex: '#91919c',
   },
   {
-    name: 'Grey 600',
+    name: 'Neutral 600',
     code: 'neutral-700',
     hex: '#696970',
   },
   {
-    name: 'Grey 700',
+    name: 'Neutral 700',
     code: 'neutral-800',
     hex: '#4c4c53',
   },
   {
-    name: 'Grey 900',
+    name: 'Neutral 900',
     code: 'neutral-900',
     hex: '#26262e',
   },
@@ -220,6 +220,56 @@ const colors = [
     name: 'Yellow 900',
     code: 'yellow-900',
     hex: '#483D18',
+  },
+  {
+    name: 'Orange 50',
+    code: 'orange-50',
+    hex: '#FAF8F5',
+  },
+  {
+    name: 'Orange 100',
+    code: 'orange-100',
+    hex: '#FCF7EF',
+  },
+  {
+    name: 'Orange 200',
+    code: 'orange-200',
+    hex: '#FDF2E2',
+  },
+  {
+    name: 'Orange 300',
+    code: 'orange-300',
+    hex: '#FEECD3',
+  },
+  {
+    name: 'Orange 400',
+    code: 'orange-400',
+    hex: '#FCDAAB',
+  },
+  {
+    name: 'Orange 500',
+    code: 'orange-500',
+    hex: '#FFD08F',
+  },
+  {
+    name: 'Orange 600',
+    code: 'orange-600',
+    hex: '#F2B873',
+  },
+  {
+    name: 'Orange 700',
+    code: 'orange-700',
+    hex: '#C6824E',
+  },
+  {
+    name: 'Orange 800',
+    code: 'orange-800',
+    hex: '#7E4B2F',
+  },
+  {
+    name: 'Orange 900',
+    code: 'orange-900',
+    hex: '#4C2D21',
   },
 ];
 
