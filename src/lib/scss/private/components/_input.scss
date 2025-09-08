@@ -248,7 +248,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
   transition: box-shadow 0.3s;
 
   &:hover {
-    color: $ds-grey-700 !important;
+    color: $ds-neutral-800 !important;
     border-color: $ds-purple-600;
   }
 

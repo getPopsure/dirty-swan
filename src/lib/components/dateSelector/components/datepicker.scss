@@ -21,7 +21,7 @@
   border: none;
   background-color: transparent;
   height: 100%;
-  color: $ds-grey-700;
+  color: $ds-neutral-800;
   font-size: 16px;
 }
 
@@ -38,11 +38,11 @@
 }
 
 .DayPickerInput:hover::before {
-  border-top: 12px solid $ds-grey-700;
+  border-top: 12px solid $ds-neutral-800;
 }
 
 .DayPickerInput:hover {
-  border-color: $ds-grey-700;
+  border-color: $ds-neutral-800;
 }
 
 .DayPicker {
