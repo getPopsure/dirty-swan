@@ -87,31 +87,6 @@ const colors = [
     hex: '#2d394a',
   },
   {
-    name: 'Glacier 100',
-    code: 'glacier-100',
-    hex: '#e0f7fe',
-  },
-  {
-    name: 'Glacier 300',
-    code: 'glacier-300',
-    hex: '#aeddec',
-  },
-  {
-    name: 'Glacier 500',
-    code: 'glacier-500',
-    hex: '#8bcbdf',
-  },
-  {
-    name: 'Glacier 700',
-    code: 'glacier-700',
-    hex: '#5d8896',
-  },
-  {
-    name: 'Glacier 900',
-    code: 'glacier-900',
-    hex: '#2d4148',
-  },
-  {
     name: 'Red 100',
     code: 'red-100',
     hex: '#fedede',
@@ -135,31 +110,6 @@ const colors = [
     name: 'Red 900',
     code: 'red-900',
     hex: '#4b2525',
-  },
-  {
-    name: 'Pink 100',
-    code: 'pink-100',
-    hex: '#ffebf1',
-  },
-  {
-    name: 'Pink 300',
-    code: 'pink-300',
-    hex: '#ffb1cb',
-  },
-  {
-    name: 'Pink 500',
-    code: 'pink-500',
-    hex: '#f96092',
-  },
-  {
-    name: 'Pink 700',
-    code: 'pink-700',
-    hex: '#c0305f',
-  },
-  {
-    name: 'Pink 900',
-    code: 'pink-900',
-    hex: '#700024',
   },
   {
     name: 'Grey 100',
@@ -225,31 +175,6 @@ const colors = [
     name: 'Green 900',
     code: 'green-900',
     hex: '#354a2d',
-  },
-  {
-    name: 'Spearmint 100',
-    code: 'spearmint-100',
-    hex: '#e3fff2',
-  },
-  {
-    name: 'Spearmint 300',
-    code: 'spearmint-300',
-    hex: '#aaeacc',
-  },
-  {
-    name: 'Spearmint 500',
-    code: 'spearmint-500',
-    hex: '#85dcb4',
-  },
-  {
-    name: 'Spearmint 700',
-    code: 'spearmint-700',
-    hex: '#599278',
-  },
-  {
-    name: 'Spearmint 900',
-    code: 'spearmint-900',
-    hex: '#2b4639',
   },
   {
     name: 'Yellow 100',
