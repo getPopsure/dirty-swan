@@ -1,11 +1,11 @@
 @use "../../scss/public/colors" as *;
 
 .wrapperBordered {
-  border: 1px solid $ds-grey-300;
+  border: 1px solid $ds-neutral-300;
 }
 
 .container {
-  border-bottom: 1px solid $ds-grey-300;
+  border-bottom: 1px solid $ds-neutral-300;
 
   &Bordered:last-of-type {
     border-bottom: 0;

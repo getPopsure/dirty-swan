@@ -253,13 +253,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
       <div className='d-flex gap16 mt16'>
         <Card
           description="Lost keys"
-          classNames={{ wrapper: 'bg-grey-300' }}
+          classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Broken glass"
-          classNames={{ wrapper: 'bg-grey-300' }}
+          classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<XIcon color={'purple-600'} />}
           density='compact'
         />
@@ -268,13 +268,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
       <div className='d-flex gap16 mt16'>
         <Card
           description="Damage to property"
-          classNames={{ wrapper: 'bg-grey-300' }}
+          classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Drones"
-          classNames={{ wrapper: 'bg-grey-300' }}
+          classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<XIcon color={'purple-600'} />}
           density='compact'
         />

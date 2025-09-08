@@ -14,7 +14,7 @@
   width: 100%;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   background-color: white;
 
   color: $ds-grey-900;
@@ -26,7 +26,7 @@
   }
 
   &:disabled {
-    background-color: $ds-grey-300;
+    background-color: $ds-neutral-300;
     border: none;
   }
 
@@ -81,7 +81,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-400;
+      border: 1px solid $ds-neutral-400;
       border-radius: 50%;
 
       background-color: white;
@@ -117,7 +117,7 @@
   }
 
   + .p-label--bordered:hover {
-    border-color: $ds-grey-400;
+    border-color: $ds-neutral-400;
   }
 }
 
@@ -136,7 +136,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-400;
+      border: 1px solid $ds-neutral-400;
       border-radius: 4px;
 
       background-color: white;
@@ -192,7 +192,7 @@
     padding: 12px 16px;
 
     border-radius: 8px;
-    border: 1px solid $ds-grey-400;
+    border: 1px solid $ds-neutral-400;
     background-color: white;
 
     &:hover {
@@ -230,7 +230,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
   height: 48px;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   background-color: white;
 
   font-family: inherit;

@@ -385,7 +385,7 @@
 }
 
 .DayPicker-Day--outside {
-  color: $ds-grey-400;
+  color: $ds-neutral-400;
   cursor: pointer;
 
   &:hover {
@@ -394,7 +394,7 @@
 }
 
 .DayPicker-Day--disabled {
-  color: $ds-grey-400;
+  color: $ds-neutral-400;
   background-color: transparent;
   pointer-events: none;
 }

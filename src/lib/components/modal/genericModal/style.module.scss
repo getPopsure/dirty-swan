@@ -58,8 +58,8 @@
   background:
     linear-gradient($ds-white 30%, $ds-white),
     linear-gradient($ds-white, $ds-white 70%),
-    linear-gradient($ds-grey-300 30%, $ds-grey-300),
-    linear-gradient($ds-grey-300, $ds-grey-300 70%);
+    linear-gradient($ds-neutral-300 30%, $ds-neutral-300),
+    linear-gradient($ds-neutral-300, $ds-neutral-300 70%);
   background-repeat: no-repeat;
   background-size: 100% 1px;
   background-attachment: local, local, scroll, scroll;
@@ -68,5 +68,5 @@
 .footer {
   position: sticky;
   bottom: 0;
-  border-top: 1px solid $ds-grey-300;
+  border-top: 1px solid $ds-neutral-300;
 }

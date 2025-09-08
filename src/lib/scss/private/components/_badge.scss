@@ -26,7 +26,7 @@
 
   &--inactive {
     @extend .p-badge;
-    background-color: $ds-grey-400;
+    background-color: $ds-neutral-400;
   }
 
   &--danger {
