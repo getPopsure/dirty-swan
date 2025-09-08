@@ -19,7 +19,7 @@
   }
 
   &--disabled {
-    color: var(--ds-grey-600);
+    color: var(--ds-neutral-700);
   }
 }
 
@@ -107,7 +107,7 @@
 .label {
   display: inline-block;
   margin-bottom: 8px;
-  color: var(--ds-grey-600);
+  color: var(--ds-neutral-700);
 
   &--with-error {
     color: var(--ds-red-500);

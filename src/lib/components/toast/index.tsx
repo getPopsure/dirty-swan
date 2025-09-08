@@ -60,7 +60,7 @@ const Toast = ({
       <h4 className='p-h4'>{title}</h4>
       
       {description && (
-        <p className='p-p p-p--small mt8 tc-grey-600'>{description}</p>
+        <p className='p-p p-p--small mt8 tc-neutral-700'>{description}</p>
       )}
 
       {action && (

@@ -135,7 +135,7 @@ const Accordion = ({
               <div 
                 className={classnamesUtil(
                   classNames?.answer,
-                  'tc-grey-600 pr16 pb24', 
+                  'tc-neutral-700 pr16 pb24', 
                   { 
                     'pl16': !isDefaultVariant,
                     [styles?.answerIcon]: !isDefaultVariant && icon,
