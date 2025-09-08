@@ -97,7 +97,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     <h3 className='p-h3 my24'>Text variants</h3>
     <div className='d-flex gap16 p24 bg-grey-300 br8'>
       {["textColor", "textWhite"].map((variant, index) => (
-        <div key={variant} className={variant === "textWhite" ? "bg-primary-500 px32 br8" : ""}>
+        <div key={variant} className={variant === "textWhite" ? "bg-purple-600 px32 br8" : ""}>
           <h4 className={`p-h4 mb16 ${variant === "textWhite" ? "tc-white" : ''}`}>
             {variant}
           </h4>
@@ -110,7 +110,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Outline variants</h3>
-    <div className='d-flex gap16 p24 bg-primary-500 br8'>
+    <div className='d-flex gap16 p24 bg-purple-600 br8'>
       <div>
         <h4 className='p-h4 mb16 tc-white'>
           outlineWhite
@@ -163,7 +163,7 @@ export const ButtonOnBackgrounds = ({ onClick }: ButtonProps) => (
       </div>
     </div>
 
-    <div className='p24 bg-primary-500 br8'>
+    <div className='p24 bg-purple-600 br8'>
       <h3 className='p-h3 mb16 tc-white'>On primary</h3>
       <div className='d-flex gap16'>
         {["filledWhite", "outlineWhite", "textWhite"].map((variant) => (

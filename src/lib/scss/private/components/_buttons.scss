@@ -49,36 +49,36 @@
 
   &--primary {
     @extend .p-btn;
-    background-color: $ds-primary-500;
+    background-color: $ds-purple-600;
     color: white;
 
     &:hover {
-      background-color: $ds-primary-700;
+      background-color: $ds-purple-700;
 
       @include p-size-mobile {
-        background-color: $ds-primary-500;
+        background-color: $ds-purple-600;
       }
     }
 
     &[disabled] {
-      background-color: $ds-primary-300;
+      background-color: $ds-purple-500;
       opacity: 1;
     }
 
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
   }
 
   &--secondary {
     @extend .p-btn;
     background-color: transparent;
-    color: $ds-primary-500;
+    color: $ds-purple-600;
 
     &:hover {
-      background-color: $ds-primary-100;
+      background-color: $ds-purple-300;
 
       @include p-size-mobile {
         background-color: transparent;
@@ -86,7 +86,7 @@
     }
 
     &[disabled] {
-      color: $ds-primary-700;
+      color: $ds-purple-700;
 
       &:hover {
         background-color: transparent;
@@ -96,12 +96,12 @@
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
 
     &-grey {
       @extend .p-btn--secondary;
-      background-color: $ds-primary-50;
+      background-color: $ds-purple-100;
     }
 
     &-white {
@@ -115,7 +115,7 @@
 
       &:hover,
       &:focus {
-        background-color: $ds-primary-700;
+        background-color: $ds-purple-700;
       }
     }
 
@@ -139,7 +139,7 @@
 
       &:focus {
         box-shadow: 0 0 0 1px white,
-          0 0 0 3px rgba($color: $ds-primary-900, $alpha: 0.5);
+          0 0 0 3px rgba($color: $ds-purple-900, $alpha: 0.5);
       }
     }
   }
@@ -165,7 +165,7 @@
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
   }
 
@@ -190,34 +190,34 @@
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
   }
 
   &--outline {
     @extend .p-btn;
 
-    color: $ds-primary-500;
+    color: $ds-purple-600;
     background-color: transparent;
 
-    border: 1px solid $ds-primary-300;
+    border: 1px solid $ds-purple-500;
 
     &:hover {
-      color: $ds-primary-700;
-      border-color: $ds-primary-500;
+      color: $ds-purple-700;
+      border-color: $ds-purple-600;
     }
 
     &[disabled] {
-      color: $ds-primary-500;
-      border-color: $ds-primary-300;
+      color: $ds-purple-600;
+      border-color: $ds-purple-500;
       opacity: 0.5;
     }
 
     &:focus {
-      color: $ds-primary-700;
+      color: $ds-purple-700;
       outline: none;
       box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
 
     &-white {
@@ -228,8 +228,8 @@
       background-color: transparent;
 
       &:hover {
-        background-color: $ds-primary-700;
-        border-color: $ds-primary-700;
+        background-color: $ds-purple-700;
+        border-color: $ds-purple-700;
       }
 
       &[disabled] {
@@ -240,7 +240,7 @@
       &:focus {
         outline: none;
         box-shadow: 0 0 0 1px white,
-          0 0 0 3px rgba($color: $ds-primary-500, $alpha: 0.5);
+          0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
       }
     }
 
@@ -300,8 +300,8 @@
     &.p-btn--secondary-grey,
     &.p-btn--secondary-white {
       &::before {
-        border-color: rgba($color: $ds-primary-500, $alpha: 0.5);
-        border-left-color: $ds-primary-500;
+        border-color: rgba($color: $ds-purple-600, $alpha: 0.5);
+        border-left-color: $ds-purple-600;
       }
     }
   }

@@ -112,12 +112,12 @@ body {
 }
 
 .p-a {
-  color: $ds-primary-500;
+  color: $ds-purple-600;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: $ds-primary-700;
+    color: $ds-purple-700;
   }
 
   &:focus-visible {

@@ -6,7 +6,7 @@
 }
 
 .dropzoneContainer {
-  border: 1px dashed var(--ds-primary-500);
+  border: 1px dashed var(--ds-purple-600);
   padding: 32px 0;
   background-color: white;
 
@@ -19,7 +19,7 @@
   }
 
   &:hover {
-    background-color: var(--ds-primary-100);
+    background-color: var(--ds-purple-300);
     transition: 0.5s ease;
   }
 }

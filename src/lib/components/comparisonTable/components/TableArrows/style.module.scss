@@ -35,7 +35,7 @@
   justify-content: center;
   align-items: center;
 
-  stroke: $ds-primary-100;
+  stroke: $ds-purple-300;
 
   &:hover,
   &:focus {
@@ -45,7 +45,7 @@
 }
 
 .active {
-  stroke: $ds-primary-500;
+  stroke: $ds-purple-600;
 
   &:hover,
   &:focus {

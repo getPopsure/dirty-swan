@@ -33,7 +33,7 @@
     background: var(--ds-grey-500);
     transition: 0.3s ease-in-out;
     transition-property: background-color, outline, transform;
-    outline-color: var(--ds-purple-300);
+    outline-color: var(--ds-purple-500);
     border-radius: 50%;
   }
 }
@@ -43,10 +43,10 @@
 
   &:checked {
     & + .toggle {
-      background: var(--ds-purple-100);
+      background: var(--ds-purple-300);
     }
     + .toggle:before {
-      background: var(--ds-purple-500);
+      background: var(--ds-purple-600);
     }
   }
 
@@ -56,7 +56,7 @@
   }
 
   &:focus-visible ~ .toggle:before {
-    outline: 4px solid var(--ds-purple-300);
+    outline: 4px solid var(--ds-purple-500);
   }
 
   &:checked + .toggle:before {

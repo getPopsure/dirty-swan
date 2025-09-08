@@ -29,7 +29,7 @@ export const CardButton = ({
           className,
           { [styles.containerDisabled]: disabled }
         ),
-        description: 'tc-primary-500 p-p',
+        description: 'tc-purple-600 p-p',
       }}
       density='compact'
       label={title}
@@ -37,7 +37,7 @@ export const CardButton = ({
       actionIcon={
         <ChevronRightIcon
           size={20}
-          color={'purple-500'}
+          color={'purple-600'}
           className={styles.chevronRight}
         />
       }

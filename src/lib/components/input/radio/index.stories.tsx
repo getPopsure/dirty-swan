@@ -134,7 +134,7 @@ export const RadioWithCustomWrapperStyles = ({
         CAT1: 'Cat',
         DOG1: 'Dog',
       }}
-      classNames={{ container: 'p32 bg-primary-300 br24 bs-lg' }}
+      classNames={{ container: 'p32 bg-purple-500 br24 bs-lg' }}
     />
   );
 };

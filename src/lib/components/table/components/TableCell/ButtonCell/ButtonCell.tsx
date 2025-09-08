@@ -48,7 +48,7 @@ export const ButtonCell = ({
         disabled={disabled}
       >
         {buttonCaption}
-        {price && <span className="p-p tc-purple-500">{price}</span>}
+        {price && <span className="p-p tc-purple-600">{price}</span>}
       </Button>
     </div>
   );

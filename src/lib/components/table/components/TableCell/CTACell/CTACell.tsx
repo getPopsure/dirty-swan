@@ -48,7 +48,7 @@ export const CTACell = ({
         {renderedIcon}
         <p className="p-h3">
           {title}
-          {price && <span className="tc-purple-500"> {price}</span>}
+          {price && <span className="tc-purple-600"> {price}</span>}
         </p>
       </div>
 
