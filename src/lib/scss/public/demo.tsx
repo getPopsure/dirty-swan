@@ -64,52 +64,62 @@ const colors = [
   {
     name: 'Blue 100',
     code: 'blue-100',
-    hex: '#e5f0ff',
+    hex: '#E5F0FF',
+  },
+  {
+    name: 'Blue 200',
+    code: 'blue-200',
+    hex: '#DAE8FC',
   },
   {
     name: 'Blue 300',
     code: 'blue-300',
-    hex: '#b0cdf3',
+    hex: '#B0CDF3',
   },
   {
     name: 'Blue 500',
     code: 'blue-500',
-    hex: '#8bb4ea',
+    hex: '#8BB4EA',
   },
   {
     name: 'Blue 700',
     code: 'blue-700',
-    hex: '#5f7ba0',
+    hex: '#5F7BA0',
   },
   {
     name: 'Blue 900',
     code: 'blue-900',
-    hex: '#2d394a',
+    hex: '#2D394A',
   },
   {
     name: 'Red 100',
     code: 'red-100',
-    hex: '#fedede',
+    hex: '#FEE6E6',
+  },
+  {
+    name: 'Red 200',
+    code: 'red-200',
+    hex: '#FED7D7',
   },
   {
     name: 'Red 300',
     code: 'red-300',
-    hex: '#faa0a0',
+    hex: '#FAA0A0',
   },
   {
     name: 'Red 500',
     code: 'red-500',
-    hex: '#e55454',
+    hex: '#E55454',
   },
   {
     name: 'Red 700',
     code: 'red-700',
-    hex: '#c64848',
+    hex: '#C64848',
   },
   {
     name: 'Red 900',
     code: 'red-900',
-    hex: '#4b2525',
+    hex: '#4B2525',
   },
   {
     name: 'Grey 100',
@@ -154,52 +164,62 @@ const colors = [
   {
     name: 'Green 100',
     code: 'green-100',
-    hex: '#e4ffe6',
+    hex: '#E6FAF1',
+  },
+  {
+    name: 'Green 200',
+    code: 'green-200',
+    hex: '#D5F6E7',
   },
   {
     name: 'Green 300',
     code: 'green-300',
-    hex: '#c4f5c8',
+    hex: '#AAEACC',
   },
   {
     name: 'Green 500',
     code: 'green-500',
-    hex: '#84de8a',
+    hex: '#85DCB4',
   },
   {
     name: 'Green 700',
     code: 'green-700',
-    hex: '#5b985f',
+    hex: '#599278',
   },
   {
     name: 'Green 900',
     code: 'green-900',
-    hex: '#354a2d',
+    hex: '#2B4639',
   },
   {
     name: 'Yellow 100',
     code: 'yellow-100',
-    hex: '#fff8e3',
+    hex: '#FEFAEC',
+  },
+  {
+    name: 'Yellow 200',
+    code: 'yellow-200',
+    hex: '#FCF3D1',
   },
   {
     name: 'Yellow 300',
     code: 'yellow-300',
-    hex: '#fae3a5',
+    hex: '#F6E7AC',
   },
   {
     name: 'Yellow 500',
     code: 'yellow-500',
-    hex: '#f7ce5c',
+    hex: '#F0D26F',
   },
   {
     name: 'Yellow 700',
     code: 'yellow-700',
-    hex: '#cc9e21',
+    hex: '#C5A33E',
   },
   {
     name: 'Yellow 900',
     code: 'yellow-900',
-    hex: '#4a3d10',
+    hex: '#483D18',
   },
 ];
 
