@@ -9,13 +9,13 @@
 
   &:disabled {
     border: none;
-    background-color: $ds-grey-200;
+    background-color: $ds-neutral-100;
     color: $ds-grey-900;
     opacity: 1;
     cursor: default;
 
     &:hover {
-      background-color: $ds-grey-200;
+      background-color: $ds-neutral-100;
     }
   }
 

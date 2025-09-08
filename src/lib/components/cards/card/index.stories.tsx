@@ -99,7 +99,7 @@ export const CardStory = ({
   titleVariant,
   verticalAlignment,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       as={as}
       classNames={classNames}
@@ -124,7 +124,7 @@ export const CardStory = ({
 CardStory.storyName = "Card";
 
 export const CardAsOtherComponents = () => (
-  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
    
     <h3 className='p-h3'>As an anchor:</h3>
     <Card
@@ -150,7 +150,7 @@ export const CardAsOtherComponents = () => (
 );
 
 export const CardDensities = () => (
-  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
     <Card
       title={'Card density: Compact'}
       density='compact'
@@ -167,7 +167,7 @@ export const CardDensities = () => (
 );
 
 export const CardsWithIcons = ({ title }: CardProps) => (
-  <div className='d-flex gap16 p24 bg-grey-200'>
+  <div className='d-flex gap16 p24 bg-neutral-100'>
     <Card
       icon={
         <img
@@ -189,7 +189,7 @@ export const CardWithOnClickAction = ({
   children,
   title,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       icon={
         <img
@@ -212,7 +212,7 @@ export const CardOverridesStyles = ({
   label,
   title,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       label={label}
       title={title}
@@ -230,7 +230,7 @@ export const CardOverridesStyles = ({
 );
 
 export const CardsWithinCardsAndComplexLayout = () => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       label={(
         <Badge size='small' variant='success'>
