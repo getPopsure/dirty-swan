@@ -10,17 +10,19 @@ $ds-purple-700: #6A65AE;
 $ds-purple-800: #484676;
 $ds-purple-900: #32334B;
 
-$ds-blue-100: #e5f0ff;
-$ds-blue-300: #b0cdf3;
-$ds-blue-500: #8bb4ea;
-$ds-blue-700: #5f7ba0;
-$ds-blue-900: #2d394a;
+$ds-blue-100: #E5F0FF;
+$ds-blue-200: #DAE8FC;
+$ds-blue-300: #B0CDF3;
+$ds-blue-500: #8BB4EA;
+$ds-blue-700: #5F7BA0;
+$ds-blue-900: #2D394A;
 
-$ds-red-100: #fedede;
-$ds-red-300: #faa0a0;
-$ds-red-500: #e55454;
-$ds-red-700: #c64848;
-$ds-red-900: #4b2525;
+$ds-red-100: #FEE6E6;
+$ds-red-200: #FED7D7;
+$ds-red-300: #FAA0A0;
+$ds-red-500: #E55454;
+$ds-red-700: #C64848;
+$ds-red-900: #4B2525;
 
 $ds-neutral-50: #f9f9fd;
 $ds-neutral-100: #f7f7fd;
@@ -40,17 +42,19 @@ $ds-grey-600: #696970;
 $ds-grey-700: #4c4c53;
 $ds-grey-900: #26262e;
 
-$ds-green-100: #e4ffe6;
-$ds-green-300: #c4f5c8;
-$ds-green-500: #84de8a;
-$ds-green-700: #5b985f;
-$ds-green-900: #354a2d;
+$ds-green-100: #E6FAF1;
+$ds-green-200: #D5F6E7;
+$ds-green-300: #AAEACC;
+$ds-green-500: #85DCB4;
+$ds-green-700: #599278;
+$ds-green-900: #2B4639;
 
-$ds-yellow-100: #fff8e3;
-$ds-yellow-300: #fae3a5;
-$ds-yellow-500: #f7ce5c;
-$ds-yellow-700: #cc9e21;
-$ds-yellow-900: #4a3d10;
+$ds-yellow-100: #FEFAEC;
+$ds-yellow-200: #FCF3D1;
+$ds-yellow-300: #F6E7AC;
+$ds-yellow-500: #F0D26F;
+$ds-yellow-700: #C5A33E;
+$ds-yellow-900: #483D18;
 
 $ds-white: #fff;
 $ds-transparent: transparent;
@@ -59,6 +63,7 @@ $colors: (
   'white': #fff,
   'transparent': transparent,
   'blue-100': $ds-blue-100,
+  'blue-200': $ds-blue-200,
   'blue-300': $ds-blue-300,
   'blue-500': $ds-blue-500,
   'blue-700': $ds-blue-700,
@@ -74,6 +79,7 @@ $colors: (
   'purple-800': $ds-purple-800,
   'purple-900': $ds-purple-900,
   'red-100': $ds-red-100,
+  'red-200': $ds-red-200,
   'red-300': $ds-red-300,
   'red-500': $ds-red-500,
   'red-700': $ds-red-700,
@@ -92,6 +98,7 @@ $colors: (
   'green-700': $ds-green-700,
   'green-900': $ds-green-900,
   'yellow-100': $ds-yellow-100,
+  'yellow-200': $ds-yellow-200,
   'yellow-300': $ds-yellow-300,
   'yellow-500': $ds-yellow-500,
   'yellow-700': $ds-yellow-700,
