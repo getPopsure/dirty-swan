@@ -36,7 +36,7 @@ body {
 .p-h3,
 .p-h4,
 .p-p {
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 }
 
 .p-h1 {
@@ -121,7 +121,7 @@ body {
   }
 
   &:focus-visible {
-    outline: 2px solid $ds-grey-900;
+    outline: 2px solid $ds-neutral-900;
     border-radius: 2px;
     outline-offset: 2px;
   }

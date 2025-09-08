@@ -121,19 +121,19 @@
 
     &-black {
       @extend .p-btn--secondary;
-      background-color: $ds-grey-900;
+      background-color: $ds-neutral-900;
       color: white;
 
       &:hover {
-        background-color: $ds-grey-700;
+        background-color: $ds-neutral-800;
       }
 
       &[disabled] {
-        background-color: $ds-grey-900;
+        background-color: $ds-neutral-900;
         color: white;
 
         &:hover {
-          background-color: $ds-grey-900;
+          background-color: $ds-neutral-900;
         }
       }
 

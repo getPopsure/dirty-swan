@@ -110,7 +110,7 @@ const InnerModal = ({
                   hideLabel
                   leftIcon={
                     <XIcon
-                      color="grey-700"
+                      color="neutral-800"
                       className={classNames?.closeButtonIcon}
                     />
                   }

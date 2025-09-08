@@ -85,7 +85,7 @@ const TableContents = ({
                     aria-hidden
                     classNames={{
                       wrapper: 'bg-purple-100 pl16',
-                      icon: classNames(styles.cardIcon, 'tc-grey-900'),
+                      icon: classNames(styles.cardIcon, 'tc-neutral-900'),
                     }}
                     dropShadow={false}
                     icon={renderedIcon}

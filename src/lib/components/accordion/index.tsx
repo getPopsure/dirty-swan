@@ -93,7 +93,7 @@ const Accordion = ({
                 icon: classnamesUtil(
                   classNames?.icon,
                   styles.icon,
-                  'tc-grey-700',
+                  'tc-neutral-800',
                 ),
                 buttonWrapper: classnamesUtil(
                   'py8 my8',
