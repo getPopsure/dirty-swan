@@ -39,7 +39,17 @@ $ds-pink-500: #f96092;
 $ds-pink-700: #c0305f;
 $ds-pink-900: #700024;
 
-$ds-grey-100: #fafaff;
+$ds-neutral-50: #f9f9fd;
+$ds-neutral-100: #f7f7fd;
+$ds-neutral-200: #f5f5fb;
+$ds-neutral-300: #e7e7ed;
+$ds-neutral-400: #d2d2d9;
+$ds-neutral-500: #b8b8c0;
+$ds-neutral-600: #919199;
+$ds-neutral-700: #696971;
+$ds-neutral-800: #3f3f47;
+$ds-neutral-900: #26262e;
+
 $ds-grey-200: #f5f6fb;
 $ds-grey-300: #ededf2;
 $ds-grey-400: #d2d2d8;
@@ -96,7 +106,7 @@ $colors: (
   'red-500': $ds-red-500,
   'red-700': $ds-red-700,
   'red-900': $ds-red-900,
-  'grey-100': $ds-grey-100,
+  'neutral-50': $ds-neutral-50,
   'grey-200': $ds-grey-200,
   'grey-300': $ds-grey-300,
   'grey-400': $ds-grey-400,
