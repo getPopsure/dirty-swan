@@ -16,7 +16,7 @@ const story = {
       description: 'State that describe the interation with the card',
     },
     topIcon: {
-      description: 'Icon displayed on the top of the card, inside the purple circle',
+      description: 'Icon displayed on the top of the card, inside the circle',
     },
     rightIcon: {
       description: 'Icon displayed on the top right corner of the card',

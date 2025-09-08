@@ -205,7 +205,7 @@
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   position: relative;
 
-  background-color: $ds-purple-500;
+  background-color: $ds-purple-600;
   color: #f0f8ff;
 }
 
@@ -215,7 +215,7 @@
 
 .DayPicker:not(.DayPicker--interactionDisabled)
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-  background-color: $ds-purple-100;
+  background-color: $ds-purple-300;
 }
 
 .DayPickerInput {
@@ -277,7 +277,7 @@
 .DayPicker-NavButton:hover {
   opacity: 1;
   border-radius: 50%;
-  background-color: $ds-purple-100;
+  background-color: $ds-purple-300;
 }
 
 .DayPicker-NavButton--prev {
@@ -389,7 +389,7 @@
   cursor: pointer;
 
   &:hover {
-    background: $ds-primary-100;
+    background: $ds-purple-300;
   }
 }
 

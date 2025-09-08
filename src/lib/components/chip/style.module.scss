@@ -1,9 +1,9 @@
 @use '../../scss/public/colors' as *;
 
 .chip {
-  background: var(--ds-primary-100);
+  background: var(--ds-purple-300);
 
-  border: 2px solid var(--ds-primary-100);
+  border: 2px solid var(--ds-purple-300);
   border-radius: 8px;
 
   padding: 4px 8px;
@@ -20,7 +20,7 @@
 
 .chip:hover {
   transition: 0.2s ease-in;
-  border: 2px solid var(--ds-primary-500);
+  border: 2px solid var(--ds-purple-600);
 }
 
 .chip-image {
@@ -29,7 +29,7 @@
 }
 
 .chip-button-container {
-  color: $ds-purple-300;
+  color: $ds-purple-500;
   position: relative;
   width: 16px;
   height: 16px;
@@ -46,11 +46,11 @@
   cursor: pointer;
 
   &:hover {
-    color: $ds-purple-500;
+    color: $ds-purple-600;
   }
 
   &:focus-visible {
-    outline: 2px solid var(--ds-primary-500);
+    outline: 2px solid var(--ds-purple-600);
     border-radius: 2px;
   }
 }

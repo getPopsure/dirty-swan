@@ -123,7 +123,7 @@ const MultiDropzone = ({
         <UploadCloudIcon
           className={isCondensed ? styles.img : ''}
           size={isCondensed ? 24 : 64}
-          color={'purple-500'}
+          color={'purple-600'}
         />
         <div
           className={`p-h4 mt8 d-block c-pointer ${

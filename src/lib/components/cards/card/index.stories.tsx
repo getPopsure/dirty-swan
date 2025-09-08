@@ -3,7 +3,6 @@ import { illustrations } from '../../../util/images';
 import { Button } from '../../button';
 import { Badge } from '../../badge';
 import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
-import { Link } from '../../link';
 
 const story = {
   title: 'JSX/Cards/Card',
@@ -255,13 +254,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
         <Card
           description="Lost keys"
           classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<CheckIcon color={'primary-500'} />}
+          icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Broken glass"
           classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<XIcon color={'primary-500'} />}
+          icon={<XIcon color={'purple-600'} />}
           density='compact'
         />
       </div>
@@ -270,13 +269,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
         <Card
           description="Damage to property"
           classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<CheckIcon color={'primary-500'} />}
+          icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Drones"
           classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<XIcon color={'primary-500'} />}
+          icon={<XIcon color={'purple-600'} />}
           density='compact'
         />
       </div>

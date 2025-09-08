@@ -16,7 +16,7 @@
   color: $ds-grey-900;
 
   &:hover {
-    color: $ds-primary-500;
+    color: $ds-purple-600;
   }
 }
 
@@ -41,7 +41,7 @@
 
 .buttonWrapper {
   background-color: transparent!important;
-  color: $ds-primary-500;
+  color: $ds-purple-600;
   outline-offset: -4px;
 
   &Default {
@@ -50,15 +50,15 @@
 
   &:hover,
   &:focus-visible {
-    background: $ds-primary-50;
+    background: $ds-purple-100;
 
     .icon {
-      color: $ds-primary-500!important;
+      color: $ds-purple-600!important;
     }
 
     .question,
     .chevron{
-      color: $ds-primary-500;
+      color: $ds-purple-600;
     }
   }
 
@@ -67,6 +67,6 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $ds-primary-500!important;
+    outline: 2px solid $ds-purple-600!important;
   }
 }

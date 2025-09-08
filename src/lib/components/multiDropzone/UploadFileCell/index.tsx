@@ -35,7 +35,7 @@ const UploadFileCell: React.FC<Props> = ({
   const hasError = uploadStatus === 'ERROR';
 
   const mapFileIconColor: { [k in UploadStatus]: Color } = {
-    UPLOADING: 'purple-500',
+    UPLOADING: 'purple-600',
     COMPLETE: 'grey-500',
     ERROR: 'red-500',
   };

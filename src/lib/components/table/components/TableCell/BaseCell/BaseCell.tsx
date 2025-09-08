@@ -101,7 +101,7 @@ export const BaseCell = ({
                 <SelectedIcon
                   aria-hidden="true"
                   key={value}
-                  color={value <= rating?.value ? 'primary-500' : 'grey-400'}
+                  color={value <= rating?.value ? 'purple-600' : 'grey-400'}
                   className={styles.icon}
                   size={rating?.type === 'zap' ? 16 : 14}
                 />
@@ -117,7 +117,7 @@ export const BaseCell = ({
                   data-testid="table-cell-boolean-yes"
                   size={24}
                   aria-hidden
-                  color="primary-500"
+                  color="purple-600"
                 />
               ) : (
                 <XIcon
@@ -145,7 +145,7 @@ export const BaseCell = ({
 
             {text && fontVariant === 'PRICE' && (
               <div
-                className="p-h1 p--serif tc-primary-500"
+                className="p-h1 p--serif tc-purple-600"
                 data-testid="table-cell-content"
               >
                 {text}

@@ -1,19 +1,14 @@
 // TODO: Reference colors
-$ds-primary-25: #fcfcff !default;
-$ds-primary-50: #f7f7ff !default;
-$ds-primary-100: #ebebff !default;
-$ds-primary-300: #b1b0f5 !default;
-$ds-primary-500: #8e8cee !default;
-$ds-primary-700: #6160a2 !default;
-$ds-primary-900: #2e2e4c !default;
-
-$ds-purple-25: #fcfcff;
-$ds-purple-50: #f7f7ff;
-$ds-purple-100: #ebebff;
-$ds-purple-300: #b1b0f5;
-$ds-purple-500: #8e8cee;
-$ds-purple-700: #6160a2;
-$ds-purple-900: #2e2e4c;
+$ds-purple-50: #F9F9FF;
+$ds-purple-100: #F6F6FE;
+$ds-purple-200: #EEEEFE;
+$ds-purple-300: #E8E7FE;
+$ds-purple-400: #D2CFFD;
+$ds-purple-500: #B8B4F3;
+$ds-purple-600: #8883D8;
+$ds-purple-700: #6A65AE;
+$ds-purple-800: #484676;
+$ds-purple-900: #32334B;
 
 $ds-blue-100: #e5f0ff;
 $ds-blue-300: #b0cdf3;
@@ -86,20 +81,16 @@ $colors: (
   'blue-500': $ds-blue-500,
   'blue-700': $ds-blue-700,
   'blue-900': $ds-blue-900,
-  'purple-25': $ds-purple-25,
   'purple-50': $ds-purple-50,
   'purple-100': $ds-purple-100,
+  'purple-200': $ds-purple-200,
   'purple-300': $ds-purple-300,
+  'purple-400': $ds-purple-400,
   'purple-500': $ds-purple-500,
+  'purple-600': $ds-purple-600,
   'purple-700': $ds-purple-700,
+  'purple-800': $ds-purple-800,
   'purple-900': $ds-purple-900,
-  'primary-25': $ds-primary-25,
-  'primary-50': $ds-primary-50,
-  'primary-100': $ds-primary-100,
-  'primary-300': $ds-primary-300,
-  'primary-500': $ds-primary-500,
-  'primary-700': $ds-primary-700,
-  'primary-900': $ds-primary-900,
   'red-100': $ds-red-100,
   'red-300': $ds-red-300,
   'red-500': $ds-red-500,

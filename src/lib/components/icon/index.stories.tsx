@@ -37,7 +37,7 @@ const story = {
   args: {
     icon: 'InfoIcon',
     size: 32,
-    color: 'primary-500',
+    color: 'purple-600',
     noMargin: false,
     className: ''
   }

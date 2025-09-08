@@ -32,7 +32,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px $ds-primary-500;
+    box-shadow: 0 0 0 2px $ds-purple-600;
   }
 
   &--error {
@@ -101,13 +101,13 @@
 
 .p-radio:checked {
   & + label::before {
-    border-color: $ds-primary-500;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-primary-500)}"/></svg>');
+    border-color: $ds-purple-600;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-purple-600)}"/></svg>');
   }
 }
 
 .p-radio:focus-visible + label {
-  outline: 1px solid $ds-primary-500;
+  outline: 1px solid $ds-purple-600;
 }
 
 .p-radio:disabled {
@@ -151,7 +151,7 @@
   & + label {
     &::before {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-primary-500, $alpha: 0.5);
+      box-shadow: 0 0 0 2px rgba($color: $ds-purple-600, $alpha: 0.5);
     }
   }
 }
@@ -162,14 +162,14 @@
     background-repeat: no-repeat;
     background-position: center;
 
-    background-color: $ds-primary-500;
+    background-color: $ds-purple-600;
 
-    border-color: $ds-primary-500;
+    border-color: $ds-purple-600;
   }
 }
 
 .p-checkbox:focus-visible + label {
-  outline: 1px solid $ds-primary-500;
+  outline: 1px solid $ds-purple-600;
 }
 
 .p-checkbox--no-icon + label::before {
@@ -196,7 +196,7 @@
     background-color: white;
 
     &:hover {
-      border-color: $ds-primary-500;
+      border-color: $ds-purple-600;
     }
 
     transition: 0.3s border-color, 0.3s background-color;
@@ -205,8 +205,8 @@
 
 input:checked[type='radio'] + .p-label--bordered,
 input:checked[type='checkbox'] + .p-label--bordered {
-  border-color: $ds-primary-500;
-  background-color: $ds-primary-100;
+  border-color: $ds-purple-600;
+  background-color: $ds-purple-300;
 }
 
 .p-label-container {
@@ -249,7 +249,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
 
   &:hover {
     color: $ds-grey-700 !important;
-    border-color: $ds-primary-500;
+    border-color: $ds-purple-600;
   }
 
   &:invalid {
@@ -258,7 +258,7 @@ input:checked[type='checkbox'] + .p-label--bordered {
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px $ds-primary-500;
+    box-shadow: 0 0 0 2px $ds-purple-600;
   }
 
   & option {
