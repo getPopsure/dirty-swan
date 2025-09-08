@@ -117,7 +117,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           )}
 
           <div className="d-flex jc-between w100">
-            <div className="d-flex jc-center gap8 fd-column tc-grey-900 w100">
+            <div className="d-flex jc-center gap8 fd-column tc-neutral-900 w100">
               {label && (
                 <h4 className={classNamesUtil('p-p--small', classNames?.label)}>
                   {label}
