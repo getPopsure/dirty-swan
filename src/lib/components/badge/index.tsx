@@ -23,7 +23,7 @@ export interface BadgeProps {
 const getVariantClassNames = (variant: Variant) => ({
   information: 'bg-blue-100',
   neutral: 'bg-white',
-  neutral200: 'bg-grey-200',
+  neutral200: 'bg-neutral-100',
   neutral300: 'bg-grey-300',
   warning: 'bg-yellow-100',
   error: 'bg-red-100',

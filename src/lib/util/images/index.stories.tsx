@@ -61,7 +61,7 @@ export const Illustrations = () => {
       <div className='d-flex f-wrap mt80'>
         {options.map(([iconKey, src]) => (
           <div key={iconKey} className="w20 p8">
-            <div className='br4 p24 pt16 pb16 ds-neutral-50 w100 d-flex fd-column ai-center'>
+            <div className='br4 p24 pt16 pb16 bg-neutral-50 w100 d-flex fd-column ai-center'>
               <div className={styles.imageWrapper}>
                 <img src={src} alt={iconKey} />
               </div>

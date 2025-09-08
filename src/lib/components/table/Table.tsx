@@ -180,7 +180,7 @@ const Table = ({
           classNames={{
             buttonWrapper: 'm8 mt32',
             title: 'd-flex gap8 ai-center jc-center fw-bold',
-            wrapper: 'bg-grey-200',
+            wrapper: 'bg-neutral-100',
           }}
           title={
             <>
