@@ -37,7 +37,7 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
     padding: 16px 8px 16px 16px;
   }
 
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   width: 50vw;
   max-width: calc(var(--tableWidth) / 2);
@@ -76,7 +76,7 @@ h4.cell {
 
 .title {
   position: relative;
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   display: none;
 

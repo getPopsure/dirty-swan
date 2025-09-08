@@ -14,19 +14,19 @@
   width: 100%;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   background-color: white;
 
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   transition: box-shadow 0.3s;
 
   &::placeholder {
-    color: $ds-grey-500;
+    color: $ds-neutral-600;
   }
 
   &:disabled {
-    background-color: $ds-grey-300;
+    background-color: $ds-neutral-300;
     border: none;
   }
 
@@ -81,7 +81,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-400;
+      border: 1px solid $ds-neutral-400;
       border-radius: 50%;
 
       background-color: white;
@@ -117,7 +117,7 @@
   }
 
   + .p-label--bordered:hover {
-    border-color: $ds-grey-400;
+    border-color: $ds-neutral-400;
   }
 }
 
@@ -136,7 +136,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-grey-400;
+      border: 1px solid $ds-neutral-400;
       border-radius: 4px;
 
       background-color: white;
@@ -184,7 +184,7 @@
 
   min-height: 48px;
   line-height: 24px;
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   &--bordered {
     align-items: center;
@@ -192,7 +192,7 @@
     padding: 12px 16px;
 
     border-radius: 8px;
-    border: 1px solid $ds-grey-400;
+    border: 1px solid $ds-neutral-400;
     background-color: white;
 
     &:hover {
@@ -230,13 +230,13 @@ input:checked[type='checkbox'] + .p-label--bordered {
   height: 48px;
 
   border-radius: 8px;
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   background-color: white;
 
   font-family: inherit;
   font-size: 16px;
   line-height: 24px;
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   padding-left: 16px;
   padding-right: 32px;
@@ -248,12 +248,12 @@ input:checked[type='checkbox'] + .p-label--bordered {
   transition: box-shadow 0.3s;
 
   &:hover {
-    color: $ds-grey-700 !important;
+    color: $ds-neutral-800 !important;
     border-color: $ds-purple-600;
   }
 
   &:invalid {
-    color: $ds-grey-500;
+    color: $ds-neutral-600;
   }
 
   &:focus {

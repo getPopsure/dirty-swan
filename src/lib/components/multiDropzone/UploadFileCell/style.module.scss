@@ -8,7 +8,7 @@
   min-height: 64px;
   padding: 8px 16px;
 
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   border-radius: 8px;
   background-color: white;
 
@@ -75,7 +75,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $ds-grey-900;
+    outline: 2px solid $ds-neutral-900;
     border-radius: 2px;
     outline-offset: 2px;
   }

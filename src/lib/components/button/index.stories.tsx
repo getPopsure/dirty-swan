@@ -80,7 +80,7 @@ ButtonStory.storyName = "Button";
 export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
   <div>
     <h3 className='p-h3 mb24'>Filled variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {[ "filledColor", "filledGray", "filledWhite", "filledBlack"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>
@@ -95,7 +95,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Text variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {["textColor", "textWhite"].map((variant, index) => (
         <div key={variant} className={variant === "textWhite" ? "bg-purple-600 px32 br8" : ""}>
           <h4 className={`p-h4 mb16 ${variant === "textWhite" ? "tc-white" : ''}`}>
@@ -123,7 +123,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
     
     <h3 className='p-h3 my24'>State variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {["filledSuccess", "filledError"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>

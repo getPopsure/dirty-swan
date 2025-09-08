@@ -24,7 +24,7 @@ const getVariantClassNames = (variant: Variant) => ({
   information: 'bg-blue-100',
   neutral: 'bg-white',
   neutral200: 'bg-neutral-100',
-  neutral300: 'bg-grey-300',
+  neutral300: 'bg-neutral-300',
   warning: 'bg-yellow-200',
   error: 'bg-red-100',
   success: 'bg-green-100',

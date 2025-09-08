@@ -19,7 +19,7 @@
   left: 72px;
   bottom: 32px;
 
-  background-color: var(--ds-grey-400);
+  background-color: var(--ds-neutral-400);
 
   border-radius: 1px;
 }
@@ -65,7 +65,7 @@
   }
 
   &[disabled] {
-    color: var(--ds-grey-500);
+    color: var(--ds-neutral-600);
   }
 }
 
@@ -86,5 +86,5 @@
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 
-  background-color: var(--ds-grey-500);
+  background-color: var(--ds-neutral-600);
 }

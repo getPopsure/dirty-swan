@@ -121,19 +121,19 @@
 
     &-black {
       @extend .p-btn--secondary;
-      background-color: $ds-grey-900;
+      background-color: $ds-neutral-900;
       color: white;
 
       &:hover {
-        background-color: $ds-grey-700;
+        background-color: $ds-neutral-800;
       }
 
       &[disabled] {
-        background-color: $ds-grey-900;
+        background-color: $ds-neutral-900;
         color: white;
 
         &:hover {
-          background-color: $ds-grey-900;
+          background-color: $ds-neutral-900;
         }
       }
 
@@ -247,25 +247,25 @@
     &-grey {
       @extend .p-btn;
 
-      color: $ds-grey-500;
+      color: $ds-neutral-600;
       background-color: transparent;
 
-      border: 1px solid $ds-grey-400;
+      border: 1px solid $ds-neutral-400;
 
       &:hover {
-        color: $ds-grey-600;
-        border-color: $ds-grey-500;
+        color: $ds-neutral-700;
+        border-color: $ds-neutral-600;
       }
 
       &[disabled] {
-        color: $ds-grey-500;
-        border-color: $ds-grey-400;
+        color: $ds-neutral-600;
+        border-color: $ds-neutral-400;
         opacity: 0.5;
       }
 
       &:focus {
-        color: $ds-grey-600;
-        border-color: $ds-grey-600;
+        color: $ds-neutral-700;
+        border-color: $ds-neutral-700;
       }
     }
   }

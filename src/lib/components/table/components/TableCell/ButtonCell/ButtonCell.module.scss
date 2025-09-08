@@ -2,15 +2,15 @@
 @use "../../../../../scss/public/colors" as *;
 
 .buttonCell {
-  color: $ds-grey-900;
-  border: 1px solid $ds-grey-400;
+  color: $ds-neutral-900;
+  border: 1px solid $ds-neutral-400;
 
   transition: all 0.3s ease-in-out;
 
   &:disabled {
     border: none;
     background-color: $ds-neutral-100;
-    color: $ds-grey-900;
+    color: $ds-neutral-900;
     opacity: 1;
     cursor: default;
 
