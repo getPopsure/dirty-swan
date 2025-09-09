@@ -16,7 +16,8 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   children?: ReactNode;
   classNames?: {
     buttonWrapper?: string;
-    wrapper?: string;
+    wrapper?: string
+    contentWrapper?: string;
     label?: string;
     title?: string;
     description?: string;
@@ -85,7 +86,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
       <div
         className={classNamesUtil(
           'd-flex fd-column jc-center w100 ta-left br8',
-          { 'bs-xs': dropShadow && variant === 'default' },
+          { 'bs-sm': dropShadow && variant === 'default' },
           {
             compact: 'p16',
             balanced: 'p24',
@@ -121,7 +122,12 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           )}
 
           <div className="d-flex jc-between w100">
-            <div className="d-flex jc-center gap8 fd-column tc-neutral-900 w100">
+            <div
+              className={classNamesUtil(
+                classNames?.contentWrapper || '',
+                "d-flex jc-center gap8 fd-column tc-neutral-900 w100"
+              )}
+            >
               {label && (
                 <h4 className={classNamesUtil('p-p--small', classNames?.label)}>
                   {label}
