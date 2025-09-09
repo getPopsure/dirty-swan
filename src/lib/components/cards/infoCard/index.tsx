@@ -1,49 +1,84 @@
-import { associatedClassForCardState, CardProps } from '..';
-import { Icon, info } from '../icons';
+import { ReactNode } from 'react';
+import ArrowRight from '../../icon/icons/ArrowRight';
+import { Card, CardProps } from '../card';
 
 import styles from './style.module.scss';
+import classNames from 'classnames';
 
-export type InfoCardProps = CardProps & {
-  topIcon: Icon;
-  rightIcon?: 'info' | Icon;
+export interface InfoCardProps extends CardProps {
+  topIcon: ReactNode;
+  showIcon?: boolean;
+  topIconType?: 'image' | 'icon' | 'banner';
+  disabled?: boolean;
 };
 
 export const InfoCard = ({
   className,
+  showIcon = true,
   title,
   children,
   topIcon,
-  rightIcon,
-  state = 'actionable',
-  dropshadow = true,
-  ...props
+  topIconType,
+  disabled = false,
+  onClick,
+  ...cardProps
 }: InfoCardProps) => (
-  <div className={`${styles['root-container']} ${className ?? ''}`} {...props}>
-    <img
-      src={topIcon.src}
-      alt={topIcon.alt}
-      className={`${styles['top-icon']} ${
-        state === 'muted' ? styles['top-icon--muted'] : ''
-      } `}
-      width="80px"
-      height="80px"
-    />
-    <div
-      className={`${associatedClassForCardState(state, dropshadow)} ${
-        styles.container
-      }`}
-    >
-      {rightIcon && (
-        <img
-          width="20px"
-          height="20px"
-          className={styles['right-icon']}
-          src={rightIcon === 'info' ? info.src : rightIcon.src}
-          alt={rightIcon === 'info' ? info.alt : rightIcon.alt}
-        />
-      )}
-      <h3 className="p-h4 ta-center mt64">{title}</h3>
-      <div className="p-p mt16 tc-neutral-700">{children}</div>
-    </div>
-  </div>
+  <Card
+    {...cardProps}
+    label={topIcon && (
+      <>
+        {topIconType === 'icon' ? (
+          <div
+            className={classNames(
+              'd-flex ai-center jc-center bg-orange-200 br-circle p16',
+              styles.topIconWrapper
+            )}
+          >
+            {topIcon}
+          </div>
+        ) : (
+          <div className={classNames(
+            'd-flex ai-center jc-center',
+            { [styles.topIconBanner]: topIconType === 'banner' }
+          )}>
+            {topIcon}
+          </div>
+        )}
+      </>
+    )}
+    title={title && (
+      <>
+        {title}
+
+        {showIcon && <ArrowRight size={20} />}
+      </>
+    )}
+    titleVariant='medium'
+    description={children}
+    descriptionVariant='small'
+    actionIcon={null}
+    showActionIcon={false}
+    classNames={{
+      buttonWrapper: styles.buttonWrapper,
+      wrapper: classNames({
+        [styles.wrapper]: true,
+        [styles.disabled]: disabled,
+        'pt40': topIcon && topIconType === 'icon',
+        'mt40': topIcon && topIconType === 'icon',
+        [styles.bannerWrapper]: topIcon && topIconType === 'banner',
+      }),
+      label: classNames({
+        [styles.floatingLabel]: topIcon && topIconType !== 'image',
+      }),
+      title: classNames(
+        {'mt16': topIcon && topIconType === 'banner'},
+        'd-flex ai-center jc-center my8'
+      ),
+      description: 'ta-center',
+      contentWrapper: styles.contentWrapper,
+    }}
+    variant='default'
+    onClick={disabled ? undefined : onClick}
+    density='compact'
+  />
 );
