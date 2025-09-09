@@ -1,4 +1,32 @@
 @use '../../../scss/public/colors' as *;
+@use '../../../scss/private/borders/default' as *;
+
+.wrapper {
+  background-color: $ds-white;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+
+  &--default {
+    background-color: $ds-white;
+  }
+
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &--outline {
+    background-color: $ds-white;
+    border: $border-strong-default;
+  }
+
+  &--secondary {
+    background-color: $ds-purple-200;
+  }
+
+  &--primary {
+    background-color: $ds-orange-300;
+  }
+}
 
 .button {
   background-color: transparent;
@@ -7,25 +35,74 @@
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   border-radius: 8px;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
 
-  &:hover {
-    outline: 1px solid $ds-purple-600;
-    color: $ds-purple-600;
+  &:hover .wrapper {
+    &--default {
+      background: $border-strong-default;
+      border: $border-strong-default;
+    }
+
+    &--transparent {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    &--outline {
+      background-color: $ds-white;
+      border: $border-strong-active;
+    }
+
+    &--secondary {
+      background-color: $ds-purple-200;
+      border-color: $ds-purple-500;
+    }
+
+    &--primary {
+      background-color: $ds-orange-300;
+      border-color: $ds-orange-600;
+    }
   }
 
-  &:focus-visible {
-    outline: 2px solid $ds-purple-600;
-    color: $ds-purple-600;
-  }
-}
+  &:focus .wrapper,
+  &:focus-visible .wrapper {
+    &--default {
+      border-color: $ds-neutral-900;
+      box-shadow: inset 0 0 0 1px $ds-neutral-900;
+    }
 
-.wrapper {
-  background-color: $ds-white;
+    &--outline {
+      box-shadow: inset 0 0 0 1px $ds-neutral-900;
+      border-color: $ds-neutral-900;
+    }
+
+    &--transparent {
+      background-color: $ds-neutral-200;
+      box-shadow: none;
+    }
+
+    &--primary {
+      border-color: $ds-orange-700;
+      box-shadow: inset 0 0 0 1px $ds-orange-700;
+    }
+
+    &--secondary {
+      border-color: $ds-purple-700;
+      box-shadow: inset 0 0 0 1px $ds-purple-700;
+    }
+  }
+
+  &:focus-visible .wrapper {
+    border-color: $ds-neutral-900;
+    box-shadow: inset 0 0 0 1px $ds-neutral-900;
+  }
+
 }
 
 .icon {
   margin-right: 12px;
-  color: $ds-purple-600;
+  color: $ds-neutral-900;
 
   &balanced {
     margin-right: 16px;
@@ -37,6 +114,7 @@
 }
 
 .actionIcon {
+  color: $ds-neutral-900;
   margin-left: 12px;
 
   &balanced {

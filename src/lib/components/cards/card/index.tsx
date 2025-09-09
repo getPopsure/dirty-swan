@@ -9,6 +9,7 @@ type CardDefaultAsType = typeof cardDefaultAs;
 type DensityType = 'balanced' | 'compact' | 'spacious';
 type TitleVariantType = 'small' | 'medium' | 'large';
 type VerticalAlignmentType = 'top' | 'center' | 'bottom';
+type CardVariant = 'default' | 'transparent' | 'outline' | 'secondary' | 'primary';
 
 type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   as?: E;
@@ -35,6 +36,7 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   actionIcon?: ReactNode;
   showActionIcon?: boolean;
   verticalAlignment?: VerticalAlignmentType;
+  variant?: CardVariant
 } 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
@@ -56,6 +58,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   titleVariant = 'large',
   showActionIcon,
   verticalAlignment = 'center',
+  variant = 'default',
   ...rest
 }: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
@@ -82,7 +85,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
       <div
         className={classNamesUtil(
           'd-flex fd-column jc-center w100 ta-left br8',
-          { 'bs-sm': dropShadow },
+          { 'bs-xs': dropShadow && variant === 'default' },
           {
             compact: 'p16',
             balanced: 'p24',
@@ -94,6 +97,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
             bottom: 'jc-end',
           }[verticalAlignment as VerticalAlignmentType],
           styles?.wrapper,
+          styles?.[`wrapper--${variant}`],
           classNames?.wrapper
         )}
       >
