@@ -318,25 +318,31 @@ export const BoxShadows = () => {
         className="d-flex ai-center jc-center ws2 border br8 bs-xs p-p"
         style={{ height: '136px' }}
       >
-        .bx-xs
+        .bs-xs
       </div>
       <div
         className="d-flex ai-center jc-center ws2 border br8 bs-sm p-p"
         style={{ height: '136px' }}
       >
-        .bx-sm
+        .bs-sm
       </div>
       <div
         className="d-flex ai-center jc-center ws2 border br8 bs-md p-p"
         style={{ height: '136px' }}
       >
-        .bx-md
+        .bs-md
       </div>
       <div
         className="d-flex ai-center jc-center ws2 border br8 bs-lg p-p"
         style={{ height: '136px' }}
       >
-        .bx-lg
+        .bs-lg
+      </div>
+      <div
+        className="d-flex ai-center jc-center ws2 border br8 bs-lg p-p"
+        style={{ height: '136px' }}
+      >
+        .bs-xl
       </div>
     </div>
   );
