@@ -21,7 +21,8 @@ export const InputStory = ({
   hideLabel,
   labelInsideInput,
   prefix,
-  error
+  error,
+  disabled
 }: InputProps) => {
   const [newValue, setValue] = useState(value);
 
@@ -41,6 +42,7 @@ export const InputStory = ({
       labelInsideInput={labelInsideInput}
       prefix={prefix}
       error={error}
+      disabled={disabled}
     />
   );
 };

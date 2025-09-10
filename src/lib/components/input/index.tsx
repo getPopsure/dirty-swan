@@ -75,7 +75,8 @@ export const Input = React.forwardRef(
               className={classnames(
                 styles.prefix,
                 { [styles['prefix--with-error']]: error },
-                { [styles['prefix--disabled']]: disabled }
+                { [styles['prefix--disabled']]: disabled },
+                { [styles['prefix--with-value']]: props.value }
               )}
             >
               {prefix}
