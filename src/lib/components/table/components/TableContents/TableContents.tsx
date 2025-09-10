@@ -84,13 +84,15 @@ const TableContents = ({
                     aria-expanded={isExpanded ? 'true' : 'false'}
                     aria-hidden
                     classNames={{
-                      wrapper: 'bg-purple-100 pl16',
+                      wrapper: 'pl16',
+                      buttonWrapper: styles.cardButton,
                       icon: classNames(styles.cardIcon, 'tc-neutral-900'),
                     }}
                     dropShadow={false}
                     icon={renderedIcon}
                     title={section.title}
                     titleVariant="medium"
+                    variant="primary"
                     {...(collapsibleSections
                       ? {
                           onClick: () => handleToggleSection(index),

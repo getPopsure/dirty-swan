@@ -60,7 +60,7 @@ const TableCell = React.memo(
             {...cellProps}
             fontVariant={
               isTopLeftCell
-                ? 'BIG_WITH_UNDERLINE'
+                ? 'TITLE'
                 : cellProps.fontVariant ?? 'NORMAL'
             }
           />
