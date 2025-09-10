@@ -19,30 +19,36 @@
 
   color: $ds-neutral-900;
 
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s;
 
   &::placeholder {
     color: $ds-neutral-600;
   }
 
+  &:hover {
+    outline: none;
+    border: 1px solid $ds-neutral-900;
+  }
+
   &:disabled {
+    cursor: not-allowed;
     background-color: $ds-neutral-300;
     border: none;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px $ds-purple-600;
+    border: 1px solid $ds-neutral-900;
+    box-shadow: 0 0 0 1px $ds-neutral-900;
   }
 
-  &--error {
+  &--error,
+  &--error:hover, 
+  &--error:focus {
     @extend .p-input;
     border: 1px solid $ds-red-500;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px $ds-red-500;
-    }
+    outline: none;
+    box-shadow: 0 0 0 1px $ds-red-500;
   }
 
   input {
@@ -117,7 +123,7 @@
   }
 
   + .p-label--bordered:hover {
-    border-color: $ds-neutral-400;
+    border-color: $ds-neutral-700;
   }
 }
 
@@ -184,7 +190,7 @@
 
   min-height: 48px;
   line-height: 24px;
-  color: $ds-neutral-900;
+  color: $ds-neutral-700;
 
   &--bordered {
     align-items: center;
