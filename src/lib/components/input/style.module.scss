@@ -12,7 +12,11 @@
 
   color: var(--ds-neutral-600);
 
-  transition: 0.3s top;
+  transition: top 0.3s, color 0.3s;
+
+  &--with-value {
+    color: var(--ds-neutral-900);
+  }
 
   &--with-error {
     color: var(--ds-red-500);
@@ -45,8 +49,8 @@
   }
 }
 
-.input:focus ~ .prefix {
-  color: var(--ds-purple-600);
+input:focus ~ .prefix {
+  color: var(--ds-neutral-900);
 
   &--with-error {
     color: var(--ds-red-500);

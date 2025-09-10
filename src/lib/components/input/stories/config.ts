@@ -1,3 +1,5 @@
+import { isDisabled } from "@testing-library/user-event/dist/types/utils";
+
 const sharedConfig = {
   argTypes: {
     value: {
@@ -49,7 +51,8 @@ const sharedConfig = {
     labelInsideInput: false,
     prefix: '£',
     id: '1234567890',
-    error: ''
+    error: '',
+    disabled: false
   }
 } 
 
