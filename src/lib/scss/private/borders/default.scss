@@ -1,0 +1,61 @@
+@use '../../public/colors' as *;
+
+// Border tokens
+// Strong borders
+$border-strong-default: 1px solid $ds-neutral-400;
+$border-strong-hover: 1px solid $ds-neutral-600;
+$border-strong-active: 1px solid $ds-neutral-900;
+
+// Medium borders  
+$border-medium-default: 1px solid $ds-neutral-300;
+$border-medium-hover: 1px solid $ds-neutral-500;
+$border-medium-active: 1px solid $ds-neutral-800;
+
+// Soft borders
+$border-soft-default: 1px solid $ds-neutral-200;
+$border-soft-hover: 1px solid $ds-neutral-400;
+$border-soft-active: 1px solid $ds-neutral-600;
+
+// Focus border
+$border-focus: 2px solid $ds-neutral-900;
+
+// CSS Classes for border tokens
+.border-strong-default {
+  border: $border-strong-default;
+}
+
+.border-strong-hover {
+  border: $border-strong-hover;
+}
+
+.border-strong-active {
+  border: $border-strong-active;
+}
+
+.border-medium-default {
+  border: $border-medium-default;
+}
+
+.border-medium-hover {
+  border: $border-medium-hover;
+}
+
+.border-medium-active {
+  border: $border-medium-active;
+}
+
+.border-soft-default {
+  border: $border-soft-default;
+}
+
+.border-soft-hover {
+  border: $border-soft-hover;
+}
+
+.border-soft-active {
+  border: $border-soft-active;
+}
+
+.border-focus {
+  border: $border-focus;
+}
