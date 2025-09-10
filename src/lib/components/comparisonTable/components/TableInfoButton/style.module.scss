@@ -17,11 +17,10 @@
 
   &:hover,
   &:focus {
-    background-color: $ds-purple-100;
-
+    background-color: transparent;
     svg {
       path {
-        fill: $ds-purple-500;
+        fill: $ds-neutral-600;
       }
     }
   }
@@ -34,6 +33,6 @@
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px $ds-purple-600;
+    box-shadow: 0 0 0 2px $ds-neutral-900;
   }
 }

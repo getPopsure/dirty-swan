@@ -1,5 +1,6 @@
 
 @use '../../scss/public/grid' as *;
+@use '../../scss/public/colors' as *;
 
 .wrapper {
   position: relative;
@@ -19,6 +20,23 @@
 
   @include p-size-tablet {
     scroll-snap-type: unset;
+  }
+}
+
+.cardButton {
+  div {
+    background-color: $ds-orange-50;
+  }
+
+  &:hover div {
+    border-color: transparent!important;
+    outline-color: transparent!important;
+    box-shadow: none!important;
+    background-color: $ds-orange-100!important;
+  }
+
+  &:focus-visible div {
+    background-color: $ds-orange-100!important;
   }
 }
 

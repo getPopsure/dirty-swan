@@ -23,38 +23,43 @@ const TableControls = ({
     <div
       aria-hidden
       className={classNames(
-        'd-flex ai-center jc-between bg-white px8',
+        'd-flex ai-stretch jc-between bg-white px8',
         styles.stickyHeader
       )}
       style={{ top: `${stickyHeaderTopOffset}px` }}
     >
-      <Button
-        className={styles.controlButton}
-        disabled={activeSection <= 1}
-        hideLabel
-        leftIcon={<ChevronLeftIcon />}
-        onClick={() => navigateTable()}
-        type="button"
-        variant="filledGray"
-        data-testid="previous-section-button"
-      >
-        Previous section
-      </Button>
+      <div className='py24'>
+        <Button
+          className={classNames('br8', styles.controlButton)}
+          disabled={activeSection <= 1}
+          hideLabel
+          leftIcon={<ChevronLeftIcon />}
+          onClick={() => navigateTable()}
+          type="button"
+          variant="filledGray"
+          data-testid="previous-section-button"
+          style={{ height: '100%' }}
+        >
+          Previous section
+        </Button>
+      </div>
 
       {children}
 
-      <Button
-        className={styles.controlButton}
-        disabled={activeSection >= columnsLength - 1}
-        hideLabel
-        leftIcon={<ChevronRightIcon />}
-        onClick={() => navigateTable(true)}
-        type="button"
-        variant="filledGray"
-        data-testid="next-section-button"
-      >
-        Next section
-      </Button>
+      <div className='py24'>
+        <Button
+          className={classNames('br8', styles.controlButton)}
+          disabled={activeSection >= columnsLength - 1}
+          hideLabel
+          leftIcon={<ChevronRightIcon />}
+          onClick={() => navigateTable(true)}
+          type="button"
+          variant="filledGray"
+          data-testid="next-section-button"
+        >
+          Next section
+        </Button>
+      </div>
     </div>
   );
 };

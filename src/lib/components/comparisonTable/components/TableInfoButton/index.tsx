@@ -1,4 +1,4 @@
-import Info from '../../../icon/icons/Info';
+import { InfoIcon } from '../../../icon';
 import styles from './style.module.scss';
 
 const TableInfoButton = ({
@@ -16,7 +16,7 @@ const TableInfoButton = ({
     aria-label="View more information"
     title="View more information"
   >
-    <Info size={20} />
+    <InfoIcon size={20} />
   </button>
 );
 

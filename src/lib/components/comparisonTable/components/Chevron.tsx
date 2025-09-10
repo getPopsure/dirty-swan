@@ -8,7 +8,7 @@ const Chevron = ({ className }: { className?: string }) => (
   >
     <path
       d="M15 12.5l-5-5-5 5"
-      stroke="#8E8CEE"
+      stroke="#26262e"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

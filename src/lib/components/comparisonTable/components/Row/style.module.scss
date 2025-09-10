@@ -81,10 +81,6 @@ h4.cell {
   display: none;
 
   line-height: 38px;
-  text-decoration: underline;
-  text-decoration-color: $ds-purple-600;
-  text-decoration-thickness: 4px;
-  text-underline-offset: 8px;
 
   @include p-size-tablet {
     display: flex;
