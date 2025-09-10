@@ -112,15 +112,18 @@ body {
 }
 
 .p-a {
-  color: $ds-purple-600;
-  text-decoration: none;
+  color: $ds-neutral-900;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  font-weight: $p-font-weight-bold;
 
   &:hover,
   &:focus {
-    color: $ds-purple-700;
+    color: $ds-neutral-700;
   }
 
   &:focus-visible {
+    color: $ds-neutral-900;
     outline: 2px solid $ds-neutral-900;
     border-radius: 2px;
     outline-offset: 2px;
