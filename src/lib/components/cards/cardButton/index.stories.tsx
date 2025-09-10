@@ -28,8 +28,8 @@ const story = {
     },
   },
   args: {
-    title: 'Risky Sports',
-    description: 'Mountain or rock climbing, Bouldering, Martial arts, Extreme sports, Scuba diving, Sky diving, Bungee jumping, Mountain or rock climbing, Bouldering, Martial arts,',
+    title: 'Label',
+    description: 'Honest, simple insurance',
     disabled: false,
     className: '',
     href: 'https://feather-insurance.com/',
