@@ -2,7 +2,7 @@ import { Card, CardProps } from '.';
 import { illustrations } from '../../../util/images';
 import { Button } from '../../button';
 import { Badge } from '../../badge';
-import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
+import { BasketballSportsIcon, CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
 
 const story = {
   title: 'JSX/Cards/Card',
@@ -117,6 +117,65 @@ export const CardStory = ({
     >
       {children}
     </Card>
+  </div>
+);
+
+export const CardVariants = ({ 
+  description,
+  onClick,
+  title,
+}: CardProps) => (
+  <div className='d-flex fd-column gap24 p24 bg-neutral-50'>
+    <div>
+      <h4 className='p-h4 mb16'>default</h4>
+      <Card
+        description={description}
+        icon={<BasketballSportsIcon size={24} />}
+        onClick={onClick}
+        title={title}
+        variant='default'
+      />
+    </div>
+    <div>
+      <h4 className='p-h4 mb16'>transparent</h4>
+      <Card
+        description={description}
+        icon={<BasketballSportsIcon size={24} />}
+        onClick={onClick}
+        title={title}
+        variant='transparent'
+      />
+    </div>
+    <div>
+      <h4 className='p-h4 mb16'>outline</h4>
+      <Card
+        description={description}
+        icon={<BasketballSportsIcon size={24} />}
+        onClick={onClick}
+        title={title}
+        variant='outline'
+      />
+    </div>
+    <div>
+      <h4 className='p-h4 mb16'>secondary</h4>
+      <Card
+        description={description}
+        icon={<BasketballSportsIcon size={24} />}
+        onClick={onClick}
+        title={title}
+        variant='secondary'
+      />
+    </div>
+    <div>
+      <h4 className='p-h4 mb16'>primary</h4>
+      <Card
+        description={description}
+        icon={<BasketballSportsIcon size={24} />}
+        onClick={onClick}
+        title={title}
+        variant='primary'
+      />
+    </div>
   </div>
 );
 
