@@ -1,53 +1,66 @@
-@use "../../../scss/public/grid" as *;
+@use "../../../scss/public/colors" as *;
+@use "../../../scss/public/shadows" as *;
 
-@keyframes appear-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.bannerWrapper {
+  padding-top: 124px;
 }
 
-.root-container {
-  position: relative;
-  padding-top: 40px;
-
-  &:hover {
-    .right-icon {
-      visibility: visible;
-
-      animation-name: appear-in;
-      animation-duration: 0.3s;
-      animation-fill-mode: both;
-    }
-  }
+.buttonWrapper:focus .wrapper {
+  border-color: $ds-neutral-700;
+  box-shadow: $bs-xs, 0 0 0 1px $ds-neutral-700;
 }
 
-.top-icon {
+.buttonWrapper:focus-visible .wrapper {
+  overflow: hidden;
+  border-color: $ds-neutral-900;
+  box-shadow: $bs-xs, 0 0 0 1px $ds-neutral-900;
+}
+
+.topIconWrapper {
   position: absolute;
+  width: 80px;
+  height: 80px;
 
   left: 50%;
-  transform: translateX(-50%) translateY(-40px);
+  transform: translateX(-50%) translateY(-80px);
 
   &--muted {
     opacity: 0.25;
   }
 }
 
-.right-icon {
-  visibility: hidden;
+.topIconBanner {
   position: absolute;
-  top: 64px;
-  right: 24px;
+  top: -123px;
+  left: -15px;
+  right: -15px;
+  height: 124px;
+  width: calc(100% + 30px);
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
 }
 
-.container {
-  padding: 0 24px 24px 24px;
-  height: 100%;
+.contentWrapper {
+  gap: 0!important;
+}
 
-  @include p-size-mobile {
-    height: fit-content;
-  }
+.floatingLabel {
+  position: relative;
+}
+
+.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
 }
