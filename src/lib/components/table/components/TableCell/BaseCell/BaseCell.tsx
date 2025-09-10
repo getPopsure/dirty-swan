@@ -11,7 +11,7 @@ import { MiniProgressBar } from './MiniProgressBar/MiniProgressBar';
 import { TableInfoButton } from '../../../../comparisonTable';
 import { ModalFunction } from '../../../types';
 
-export type FontVariant = 'NORMAL' | 'BIG_WITH_UNDERLINE' | 'PRICE';
+export type FontVariant = 'NORMAL' | 'TITLE' | 'PRICE';
 
 const progressLookup: Record<string, number> = {
   '30%': 1,
@@ -101,7 +101,7 @@ export const BaseCell = ({
                 <SelectedIcon
                   aria-hidden="true"
                   key={value}
-                  color={value <= rating?.value ? 'purple-600' : 'neutral-400'}
+                  color={value <= rating?.value ? 'neutral-900' : 'neutral-400'}
                   className={styles.icon}
                   size={rating?.type === 'zap' ? 16 : 14}
                 />
@@ -117,7 +117,7 @@ export const BaseCell = ({
                   data-testid="table-cell-boolean-yes"
                   size={24}
                   aria-hidden
-                  color="purple-600"
+                  color="neutral-900"
                 />
               ) : (
                 <XIcon
@@ -145,20 +145,17 @@ export const BaseCell = ({
 
             {text && fontVariant === 'PRICE' && (
               <div
-                className="p-h1 p--serif tc-purple-600"
+                className="p-h1 p--serif tc-neutral-900"
                 data-testid="table-cell-content"
               >
                 {text}
               </div>
             )}
 
-            {text && fontVariant === 'BIG_WITH_UNDERLINE' && (
+            {text && fontVariant === 'TITLE' && (
               <h2
                 aria-hidden
-                className={classNames(
-                  'tc-grey-800 p-h2 p--serif',
-                  styles.bigWithUnderline
-                )}
+                className="tc-grey-800 p-h2 p--serif"
               >
                 {text}
               </h2>
