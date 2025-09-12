@@ -30,7 +30,11 @@ const TableControls = ({
     >
       <div className='py24'>
         <Button
-          className={classNames('br8', styles.controlButton)}
+          className={classNames(
+            { [styles.controlButtonHidden]: activeSection <= 1 },
+            'br8',
+            styles.controlButton
+          )}
           disabled={activeSection <= 1}
           hideLabel
           leftIcon={<ChevronLeftIcon />}
@@ -48,7 +52,11 @@ const TableControls = ({
 
       <div className='py24'>
         <Button
-          className={classNames('br8', styles.controlButton)}
+          className={classNames(
+            { [styles.controlButtonHidden]: activeSection >= columnsLength - 1 },
+            'br8',
+            styles.controlButton
+          )}
           disabled={activeSection >= columnsLength - 1}
           hideLabel
           leftIcon={<ChevronRightIcon />}

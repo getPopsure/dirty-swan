@@ -37,7 +37,7 @@ const story = {
   args: {
     children: 'Click me',
     disabled: false,
-    variant: 'filledColor',
+    variant: 'filledBlack',
     loading: false,
     hideLabel: false,
     className: 'wmn3',
@@ -80,8 +80,8 @@ ButtonStory.storyName = "Button";
 export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
   <div>
     <h3 className='p-h3 mb24'>Filled variants</h3>
-    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
-      {[ "filledColor", "filledGray", "filledWhite", "filledBlack"].map((variant) => (
+    <div className='d-flex gap16 p24 bg-neutral-100 br8'>
+      {[ "filledBlack", "filledGray", "filledWhite"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>
               {variant}
@@ -95,9 +95,9 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Text variants</h3>
-    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
-      {["textColor", "textWhite"].map((variant, index) => (
-        <div key={variant} className={variant === "textWhite" ? "bg-purple-600 px32 br8" : ""}>
+    <div className='d-flex gap16 p24 bg-neutral-100 br8'>
+      {["textBlack", "textWhite"].map((variant, index) => (
+        <div key={variant} className={variant === "textWhite" ? "bg-neutral-800 px32 pb16 br8" : ""}>
           <h4 className={`p-h4 mb16 ${variant === "textWhite" ? "tc-white" : ''}`}>
             {variant}
           </h4>
@@ -110,23 +110,11 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Outline variants</h3>
-    <div className='d-flex gap16 p24 bg-purple-600 br8'>
-      <div>
-        <h4 className='p-h4 mb16 tc-white'>
-          outlineWhite
-        </h4>
-
-        <Button onClick={onClick} variant={'outlineWhite'}>
-          {children}
-        </Button>
-      </div>
-    </div>
-    
-    <h3 className='p-h3 my24'>State variants</h3>
-    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
-      {["filledSuccess", "filledError"].map((variant) => (
-          <div key={variant}>
-            <h4 className='p-h4 mb16'>
+    <div className='d-flex gap16 p24 bg-neutral-100 br8'>
+      {["outlineGray", "outlineWhite"].map((variant, index) => (
+        <div key={variant} className={variant === "outlineWhite" ? "bg-neutral-800 px32 py16 br8" : "px32 py16"}>
+          <div>
+            <h4 className={`p-h4 mb16 ${variant === "outlineWhite" ? "tc-white" : ''}`}>
               {variant}
             </h4>
 
@@ -134,43 +122,20 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
               {children}
             </Button>
           </div>
+        </div>
       ))}
     </div>
-  </div>
-);
+    
+    <h3 className='p-h3 my24'>State variants</h3>
+    <div className='d-flex gap16 p24 bg-neutral-100 br8'>
+      <div>
+        <h4 className='p-h4 mb16'>
+          filledError
+        </h4>
 
-export const ButtonOnBackgrounds = ({ onClick }: ButtonProps) => (
-  <div>
-    <div className='p24 bg-white br8'>
-      <h3 className='p-h3 mb16'>On white</h3>
-      <div className='d-flex gap16'>
-        {[ "filledColor", "filledGray", "textColor"].map((variant) => (
-          <Button key={variant} onClick={onClick} variant={variant as ButtonVariant}>
-            {variant}
-          </Button>
-        ))}
-      </div>
-    </div>
-
-    <div className='p24 bg-neutral-100 br8'>
-      <h3 className='p-h3 mb16'>On grey</h3>
-      <div className='d-flex gap16'>
-        {[ "filledColor", "filledWhite", "textColor"].map((variant) => (
-          <Button key={variant} onClick={onClick} variant={variant as ButtonVariant}>
-            {variant}
-          </Button>
-        ))}
-      </div>
-    </div>
-
-    <div className='p24 bg-purple-600 br8'>
-      <h3 className='p-h3 mb16 tc-white'>On primary</h3>
-      <div className='d-flex gap16'>
-        {["filledWhite", "outlineWhite", "textWhite"].map((variant) => (
-          <Button key={variant} onClick={onClick} variant={variant as ButtonVariant}>
-            {variant}
-          </Button>
-        ))}
+        <Button onClick={onClick} variant="filledError">
+          {children}
+        </Button>
       </div>
     </div>
   </div>

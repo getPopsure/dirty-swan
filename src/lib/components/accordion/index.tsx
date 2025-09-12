@@ -88,6 +88,7 @@ const Accordion = ({
               title={question}
               titleVariant="small"
               density='compact'
+              variant='transparent'
               icon={icon}
               classNames={{
                 icon: classnamesUtil(
