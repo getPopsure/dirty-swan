@@ -49,36 +49,35 @@
 
   &--primary {
     @extend .p-btn;
-    background-color: $ds-purple-600;
+    background-color: $ds-neutral-200;
     color: white;
 
     &:hover {
-      background-color: $ds-purple-700;
+      background-color: $ds-neutral-300;
 
       @include p-size-mobile {
-        background-color: $ds-purple-600;
+        background-color: $ds-neutral-300;
       }
     }
 
     &[disabled] {
-      background-color: $ds-purple-500;
+      background-color: $ds-neutral-200;
       opacity: 1;
     }
 
-    &:focus {
+    &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
+      box-shadow: 0 0 0 2px $ds-neutral-400;
     }
   }
 
   &--secondary {
     @extend .p-btn;
     background-color: transparent;
-    color: $ds-purple-600;
+    color: $ds-neutral-900;
 
     &:hover {
-      background-color: $ds-purple-300;
+      background-color: $ds-neutral-200;
 
       @include p-size-mobile {
         background-color: transparent;
@@ -86,36 +85,69 @@
     }
 
     &[disabled] {
-      color: $ds-purple-700;
+      color: $ds-neutral-900;
 
       &:hover {
         background-color: transparent;
       }
     }
 
-    &:focus {
+    &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
+      box-shadow: 0 0 0 2px $ds-neutral-900;
     }
 
     &-grey {
       @extend .p-btn--secondary;
-      background-color: $ds-purple-100;
+      background-color: $ds-neutral-200;
+
+      &:hover {
+        background-color: $ds-neutral-300;
+      }
+
+      &:focus {
+        background-color: $ds-neutral-400;
+      }
+
+      &:focus-visible {
+        background-color: $ds-purple-100;
+      }
+        background-color: $ds-neutral-200;
+
+      &[disabled]:hover {
+        background-color: $ds-neutral-200;
+      }
+
     }
 
     &-white {
       @extend .p-btn--secondary;
       background-color: $ds-white;
+
+      &:hover {
+        background-color: $ds-neutral-200;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px $ds-neutral-500;
+      }
     }
 
     &-inverted {
       @extend .p-btn--secondary;
       color: $ds-white;
 
-      &:hover,
+      &:hover {
+        background-color: $ds-neutral-700;
+      }
+
       &:focus {
-        background-color: $ds-purple-700;
+        background-color: $ds-neutral-600;
+      }
+
+      &:focus-visible {
+        background-color: transparent;
+        box-shadow: 0 0 0 2px $ds-white;
       }
     }
 
@@ -129,17 +161,16 @@
       }
 
       &[disabled] {
-        background-color: $ds-neutral-900;
-        color: white;
+        color: $ds-white;
+        background-color: rgba($ds-neutral-900, 50%);
 
         &:hover {
-          background-color: $ds-neutral-900;
+        background-color: rgba($ds-neutral-900, 50%);
         }
       }
 
-      &:focus {
-        box-shadow: 0 0 0 1px white,
-          0 0 0 3px rgba($color: $ds-purple-900, $alpha: 0.5);
+      &:focus-visible {
+        box-shadow: 0 0 0 2px $ds-neutral-500;
       }
     }
   }
@@ -158,39 +189,14 @@
     }
 
     &[disabled] {
-      background-color: $ds-red-300;
+      background-color: $ds-red-500;
+      color: $ds-red-300;
       opacity: 1;
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
-    }
-  }
-
-  &--success {
-    @extend .p-btn;
-    background-color: $ds-green-500;
-    color: white;
-
-    &:hover {
-      background-color: $ds-green-700;
-
-      @include p-size-mobile {
-        background-color: $ds-green-500;
-      }
-    }
-
-    &[disabled] {
-      background-color: $ds-green-300;
-      opacity: 1;
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 1px white,
-        0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
+      box-shadow: 0 0 0 2px $ds-red-700;
     }
   }
 
@@ -228,8 +234,8 @@
       background-color: transparent;
 
       &:hover {
-        background-color: $ds-purple-700;
-        border-color: $ds-purple-700;
+        background-color: transparent;
+        border-color: $ds-white;
       }
 
       &[disabled] {
@@ -239,35 +245,64 @@
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 1px white,
-          0 0 0 3px rgba($color: $ds-purple-600, $alpha: 0.5);
+        box-shadow: 0 0 0 1px $ds-white;
       }
     }
 
     &-grey {
       @extend .p-btn;
 
-      color: $ds-neutral-600;
+      color: $ds-neutral-900;
       background-color: transparent;
 
       border: 1px solid $ds-neutral-400;
 
       &:hover {
-        color: $ds-neutral-700;
-        border-color: $ds-neutral-600;
+        border-color: $ds-neutral-900;
       }
 
       &[disabled] {
-        color: $ds-neutral-600;
         border-color: $ds-neutral-400;
-        opacity: 0.5;
+        opacity: 0.7;
       }
 
       &:focus {
-        color: $ds-neutral-700;
-        border-color: $ds-neutral-700;
+        border-color: $ds-neutral-900;
+        box-shadow: 0 0 0 1px $ds-neutral-900;
+        color: $ds-neutral-900;
+        outline: 0;
       }
     }
+  }
+
+  &--text-black {
+    @extend .p-btn;
+
+    color: $ds-purple-900;
+    background-color: transparent;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: rgba($color: $ds-neutral-900, $alpha: 0.04)
+    }
+
+    &:focus {
+      background-color: rgba($color: $ds-neutral-900, $alpha: 0.08)
+    }
+
+    &:focus-visible {
+      background-color: transparent;
+      border: 1px solid $ds-neutral-900;
+      box-shadow: 0 0 0 1px $ds-neutral-900;
+      outline: 0;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+      background-color: transparent;
+      border: none;
+    }
+
   }
 
   &--loading {
@@ -296,12 +331,19 @@
       animation: spinner-rotate 0.9s infinite;
     }
 
+
+    &:focus-visible {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
     &.p-btn--secondary:not(.p-btn--secondary-black),
     &.p-btn--secondary-grey,
+    &.p-btn--text-black,
     &.p-btn--secondary-white {
       &::before {
-        border-color: rgba($color: $ds-purple-600, $alpha: 0.5);
-        border-left-color: $ds-purple-600;
+        border-color: rgba($color: $ds-neutral-900, $alpha: 0.5);
+        border-left-color: $ds-neutral-900;
       }
     }
   }
