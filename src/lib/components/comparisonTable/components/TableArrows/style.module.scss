@@ -55,5 +55,6 @@
 }
 
 .noPointerEvents {
+  visibility: hidden;
   pointer-events: none;
 }

@@ -72,7 +72,7 @@ export const Calendar = ({
         onClick={() => setCalendarOpen(!isOpen)}
         data-testid="calendar-button"
         hideLabel
-        variant='textColor'
+        variant='filledBlack'
         leftIcon={<CalendarIcon />}
         type="button"
       >
