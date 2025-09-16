@@ -116,7 +116,7 @@ const InnerModal = ({
                   }
                   onClick={handleOnClose}
                   type="button"
-                  variant="textColor"
+                  variant="textBlack"
                   className={classNamesUtil(
                     classNames?.closeButton,
                     'p0',

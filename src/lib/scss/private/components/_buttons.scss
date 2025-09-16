@@ -283,11 +283,11 @@
     border: 1px solid transparent;
 
     &:hover {
-      background-color: rgba($color: $ds-neutral-900, $alpha: 0.04)
+      border-color: $ds-neutral-400;
     }
 
     &:focus {
-      background-color: rgba($color: $ds-neutral-900, $alpha: 0.08)
+      border-color: $ds-neutral-500;
     }
 
     &:focus-visible {
