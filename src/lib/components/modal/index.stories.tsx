@@ -125,12 +125,12 @@ export const BottomOrRegularModalStory = ({
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomOrRegularModal>
     </>
@@ -168,12 +168,12 @@ export const RegularModalStory = ({
       <RegularModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </RegularModal>
     </>
@@ -211,12 +211,12 @@ export const BottomModalStory = ({
       <BottomModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomModal>
     </>
@@ -252,12 +252,12 @@ export const FullScreenModalStory = ({
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
 
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </FullScreenModal>
     </>
@@ -300,12 +300,12 @@ export const NonDismissibleModal = ({
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomOrRegularModal>
     </>
