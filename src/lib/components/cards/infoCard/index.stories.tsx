@@ -42,7 +42,7 @@ const story = {
     title: 'Knowledge Base',
     children: 'Find the answers you\'re looking for in our comprehensive, fact-checked library of articles and resources.',
     topIcon: <BookOpenIcon size={40} />,
-    topIconType: 'icon',
+    topIconType: 'iconWithBackground',
     showIcon: true,
     disabled: false,
     className: '',
@@ -73,7 +73,7 @@ export const IconTypes = () => {
           <InfoCard
             title='Knowledge Base'
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='icon'
+            topIconType='iconWithBackground'
             onClick={() => console.log('Book clicked!')}
           >
             Find answers in our comprehensive library of articles.
@@ -84,7 +84,7 @@ export const IconTypes = () => {
           <InfoCard
             title='Favorites'
             topIcon={<HeartIcon size={40} />}
-            topIconType='icon'
+            topIconType='iconWithBackground'
             onClick={() => console.log('Heart clicked!')}
           >
             Save and organize your favorite items.
@@ -95,7 +95,7 @@ export const IconTypes = () => {
           <InfoCard
             title='Premium Features'
             topIcon={<StarIcon size={40} />}
-            topIconType='icon'
+            topIconType='iconWithBackground'
             onClick={() => console.log('Star clicked!')}
           >
             Unlock advanced features with premium.
@@ -108,20 +108,33 @@ export const IconTypes = () => {
 
 export const TopIconTypes = () => {
   return (
-    <div className='bg-neutral-50 p32'>
+    <div className='bg-neutral-50 p32 m-auto wmx12'>
       <div className='d-flex gap32 flex-wrap'>
-        <div className='wmx4'>
+        <div className='w50'>
           <div className='mb16 fw-bold'>Icon Type</div>
           <InfoCard
             title='Help Center'
-            topIcon={<BookOpenIcon size={40} />}
+            topIcon={<img src="https://placehold.co/80x80" alt="Banner" />}
             topIconType='icon'
             onClick={() => console.log('Icon type clicked!')}
           >
-            Icon is displayed in a circular background.
+            Icon is displayed in a circular way without any background.
           </InfoCard>
         </div>
-        <div className='wmx4'>
+        <div className='w50'>
+          <div className='mb16 fw-bold'>Icon with background Type</div>
+          <InfoCard
+            title='Help Center'
+            topIcon={<BookOpenIcon size={40} />}
+            topIconType='iconWithBackground'
+            onClick={() => console.log('Icon type clicked!')}
+          >
+            Icon is displayed in a circular background with the orange color.
+          </InfoCard>
+        </div>
+      </div>
+      <div className='d-flex gap32 flex-wrap mt40'>
+        <div className='w50'>
           <div className='mb16 fw-bold'>Image Type</div>
           <InfoCard
             title='Image Gallery'
@@ -132,7 +145,7 @@ export const TopIconTypes = () => {
             Image is displayed as-is without background.
           </InfoCard>
         </div>
-        <div className='wmx4'>
+        <div className='w50'>
           <div className='mb16 fw-bold'>Banner Type</div>
           <InfoCard
             title='Featured Content'
