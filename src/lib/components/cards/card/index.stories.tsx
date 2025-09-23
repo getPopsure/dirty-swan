@@ -125,7 +125,7 @@ export const CardVariants = ({
   onClick,
   title,
 }: CardProps) => (
-  <div className='d-flex fd-column gap24 p24 bg-neutral-50'>
+  <div className='d-flex fd-column gap24 p24'>
     <div>
       <h4 className='p-h4 mb16'>default</h4>
       <Card
@@ -134,6 +134,7 @@ export const CardVariants = ({
         onClick={onClick}
         title={title}
         variant='default'
+        dropShadow={false}
       />
     </div>
     <div>

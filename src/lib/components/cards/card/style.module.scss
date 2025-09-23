@@ -8,6 +8,10 @@
 
   &--default {
     background-color: $ds-white;
+
+    &NoShadow {
+      border: 1px solid $ds-neutral-200;
+    }
   }
 
   &--transparent {
@@ -44,7 +48,7 @@
     }
 
     &--transparent {
-      background-color: transparent;
+      background-color: $ds-neutral-50;
       border-color: transparent;
     }
 
@@ -64,39 +68,48 @@
     }
   }
 
-  &:focus .wrapper,
   &:focus-visible .wrapper {
+    border-color: $ds-neutral-900;
+    box-shadow: inset 0 0 0 1px $ds-neutral-900;
+
     &--default {
       border-color: $ds-neutral-900;
-      box-shadow: inset 0 0 0 1px $ds-neutral-900;
     }
 
     &--outline {
-      box-shadow: inset 0 0 0 1px $ds-neutral-900;
       border-color: $ds-neutral-900;
     }
 
     &--transparent {
       background-color: $ds-neutral-200;
+    }
+  }
+
+  &:active .wrapper {
+    border-color: $ds-neutral-500;
+    box-shadow: inset 0 0 0 1px $ds-neutral-500;
+
+    &--outline {
+      border-color: $ds-neutral-900;
+      box-shadow: inset 0 0 0 1px $ds-neutral-900;
+    }
+
+    &--transparent {
+      background-color: $ds-neutral-200;
+      border-color: transparent;
       box-shadow: none;
     }
 
     &--primary {
-      border-color: $ds-orange-700;
-      box-shadow: inset 0 0 0 1px $ds-orange-700;
+      border-color: $ds-orange-600;
+      box-shadow: inset 0 0 0 1px $ds-orange-600;
     }
 
     &--secondary {
-      border-color: $ds-purple-700;
-      box-shadow: inset 0 0 0 1px $ds-purple-700;
+      border-color: $ds-purple-600;
+      box-shadow: inset 0 0 0 1px $ds-purple-600;
     }
   }
-
-  &:focus-visible .wrapper {
-    border-color: $ds-neutral-900;
-    box-shadow: inset 0 0 0 1px $ds-neutral-900;
-  }
-
 }
 
 .icon {

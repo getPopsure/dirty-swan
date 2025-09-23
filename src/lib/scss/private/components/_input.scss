@@ -74,6 +74,8 @@
 
 .p-radio {
   & + label {
+    color: $ds-neutral-900;
+
     &::before {
       content: '';
 
@@ -130,6 +132,8 @@
 
 .p-checkbox {
   & + label {
+    color: $ds-neutral-900;
+
     &::before {
       content: '';
 

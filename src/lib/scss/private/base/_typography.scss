@@ -63,7 +63,7 @@ body {
 }
 
 .p-h2 {
-  font-weight: bold;
+  font-weight: $p-font-weight-bold;
   font-size: 24px;
   line-height: 34px;
   letter-spacing: 0.5px;
@@ -115,7 +115,6 @@ body {
   color: $ds-neutral-900;
   text-decoration: underline;
   text-underline-offset: 5px;
-  font-weight: $p-font-weight-bold;
 
   &:hover,
   &:focus {
