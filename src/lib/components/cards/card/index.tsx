@@ -99,6 +99,9 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           }[verticalAlignment as VerticalAlignmentType],
           styles?.wrapper,
           styles?.[`wrapper--${variant}`],
+          {
+            [styles?.[`wrapper--defaultNoShadow`]]: !dropShadow && variant === 'default',
+          },
           classNames?.wrapper
         )}
       >
