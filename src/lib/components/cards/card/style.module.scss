@@ -140,4 +140,8 @@
 
 .description {
   color: $ds-neutral-700;
+
+  &--primary {
+    color: $ds-neutral-800;
+  }
 }
