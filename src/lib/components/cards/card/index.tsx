@@ -158,6 +158,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                     styles.description,
                     classNames?.description,
                     descriptionVariant === 'small' ? 'p-p--small' : 'p-p',
+                    styles?.[`description--${variant}`]
                   )}
                 >
                   {description}
