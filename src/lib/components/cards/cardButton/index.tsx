@@ -33,7 +33,7 @@ export const CardButton = ({
         description: 'tc-neutral-900 p-p',
         contentWrapper: styles.contentWrapper
       }}
-      density='compact'
+      density='xsmall'
       label={title}
       description={typeof description === 'string' ? description : null}
       actionIcon={

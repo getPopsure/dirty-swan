@@ -60,7 +60,7 @@ const story = {
     },
   },
   args: {
-    density: 'balanced',
+    density: 'medium',
     description: 'Believe you’re a great fit but can’t find a position listed for your skill set? We’d love to hear from you!',
     descriptionVariant: 'large',
     label: 'Label',
@@ -191,14 +191,14 @@ export const CardAsOtherComponents = () => (
       href="https://feather-insurance.com"
       target="_blank"
       title="Card with an a tag"
-      density='compact'
+      density='xsmall'
     />
 
     <h3 className='p-h3'>As a nav:</h3>
     <Card
       as="nav"
       title="Card with a nav tag"
-      density='compact'
+      density='xsmall'
     />
 
     <p className='p-p p-p--small fw-bold d-flex ai-center gap8 mt32'>
@@ -211,16 +211,20 @@ export const CardAsOtherComponents = () => (
 export const CardDensities = () => (
   <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
     <Card
-      title={'Card density: Compact'}
-      density='compact'
+      title={'Card density: xsmall'}
+      density='xsmall'
     />
     <Card
-      title={'Card density: Balanced'}
-      density='balanced'
+      title={'Card density: small'}
+      density='small'
     />
     <Card
-      title={'Card density: Spacious'}
-      density='spacious'
+      title={'Card density: medium'}
+      density='medium'
+    />
+    <Card
+      title={'Card density: large'}
+      density='large'
     />
   </div>
 );
@@ -315,13 +319,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
           description="Lost keys"
           classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<CheckIcon color={'purple-600'} />}
-          density='compact'
+          density='xsmall'
         />
         <Card
           description="Broken glass"
           classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<XIcon color={'purple-600'} />}
-          density='compact'
+          density='xsmall'
         />
       </div>
       
@@ -330,13 +334,13 @@ export const CardsWithinCardsAndComplexLayout = () => (
           description="Damage to property"
           classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<CheckIcon color={'purple-600'} />}
-          density='compact'
+          density='xsmall'
         />
         <Card
           description="Drones"
           classNames={{ wrapper: 'bg-neutral-300' }}
           icon={<XIcon color={'purple-600'} />}
-          density='compact'
+          density='xsmall'
         />
       </div>
     </Card>
