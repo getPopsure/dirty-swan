@@ -27,7 +27,7 @@ export const CardCell = ({
       <Card
         title={title}
         description={description}
-        density="balanced"
+        density="medium"
         icon={renderedIcon}
         onClick={onClick}
         {...(href && { href, as: 'a' })}
