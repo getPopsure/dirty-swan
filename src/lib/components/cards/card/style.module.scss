@@ -112,16 +112,26 @@
   }
 }
 
+.smallPadding {
+  padding: 20px!important;
+}
+
 .icon {
   margin-right: 12px;
   color: $ds-neutral-900;
 
-  &balanced {
-    margin-right: 16px;
-  }
+  &Density {
+    &--small {
+      margin-right: 14px;
+    }
 
-  &spacious {
-    margin-right: 24px;
+    &--medium {
+      margin-right: 16px;
+    }
+
+    &--large {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -129,12 +139,18 @@
   color: $ds-neutral-900;
   margin-left: 12px;
 
-  &balanced {
-    margin-left: 16px;
-  }
+  &Density {
+    &--small {
+      margin-right: 14px;
+    }
 
-  &spacious {
-    margin-left: 24px;
+    &--medium {
+      margin-right: 16px;
+    }
+
+    &--large {
+      margin-right: 20px;
+    }
   }
 }
 

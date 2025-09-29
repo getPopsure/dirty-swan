@@ -77,14 +77,15 @@ export const InfoCard = ({
         }),
         title: classNames(
           {'mt16': topIcon && topIconType === 'banner'},
-          'd-flex ai-center jc-center my8'
+          'd-flex ai-center jc-center ta-center my8'
         ),
         description: 'ta-center',
         contentWrapper: styles.contentWrapper,
+        ...cardProps?.classNames || {}
       }}
       variant='default'
       onClick={disabled ? undefined : onClick}
-      density='compact'
+      density='xsmall'
     />
   );
 }

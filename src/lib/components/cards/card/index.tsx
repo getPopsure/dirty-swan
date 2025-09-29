@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 
 const cardDefaultAs = 'section' as const
 type CardDefaultAsType = typeof cardDefaultAs;
-type DensityType = 'balanced' | 'compact' | 'spacious';
+type DensityType = 'xsmall' | 'small' | 'medium' | 'large';
 type TitleVariantType = 'small' | 'medium' | 'large';
 type VerticalAlignmentType = 'top' | 'center' | 'bottom';
 type CardVariant = 'default' | 'transparent' | 'outline' | 'secondary' | 'primary';
@@ -47,7 +47,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   as,
   children,
   classNames,
-  density = 'balanced',
+  density = 'medium',
   description,
   descriptionVariant = 'large',
   dropShadow = true,
@@ -88,9 +88,10 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           'd-flex fd-column jc-center w100 ta-left br8',
           { 'bs-sm': dropShadow && variant === 'default' },
           {
-            compact: 'p16',
-            balanced: 'p24',
-            spacious: 'p32',
+            xsmall: 'p16',
+            small: styles.smallPadding,
+            medium: 'p24',
+            large: 'p32',
           }[density as DensityType],
           {
             top: 'jc-start',
@@ -111,7 +112,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
               className={classNamesUtil(
                 `d-flex`,
                 styles.icon,
-                styles[`icon${density}`],
+                styles[`iconDensity--${density}`],
                 classNames?.icon, 
                 {
                   top: 'ai-start',
@@ -171,7 +172,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                 className={classNamesUtil(
                   styles.actionIcon,
                   classNames?.actionIcon,
-                  styles[`actionIcon${density}`],
+                  styles[`actionIconDensity--${density}`],
                   'd-flex ai-center'
                 )}
               >

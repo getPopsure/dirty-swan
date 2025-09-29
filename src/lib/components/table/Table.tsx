@@ -196,7 +196,7 @@ const Table = ({
           actionIcon={null}
           dropShadow={false}
           titleVariant="small"
-          density="compact"
+          density="xsmall"
           onClick={() => setShouldHideDetails((current) => !current)}
         />
       )}
