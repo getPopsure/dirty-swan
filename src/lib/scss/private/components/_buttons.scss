@@ -38,37 +38,13 @@
 
   &[disabled] {
     cursor: default;
-    opacity: 0.5;
+    opacity: 0.3;
     cursor: not-allowed;
   }
 
   &--icon-only {
     width: 48px;
     padding: 0;
-  }
-
-  &--primary {
-    @extend .p-btn;
-    background-color: $ds-neutral-200;
-    color: white;
-
-    &:hover {
-      background-color: $ds-neutral-300;
-
-      @include p-size-mobile {
-        background-color: $ds-neutral-300;
-      }
-    }
-
-    &[disabled] {
-      background-color: $ds-neutral-200;
-      opacity: 1;
-    }
-
-    &:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 2px $ds-neutral-400;
-    }
   }
 
   &--secondary {
