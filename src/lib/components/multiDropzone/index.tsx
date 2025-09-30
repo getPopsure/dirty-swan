@@ -25,6 +25,7 @@ import {
 
 import { getPlaceholder } from './utils';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
+import classNames from 'classnames';
 
 interface MultiDropzoneProps {
   uploadedFiles: UploadedFile[];
@@ -112,6 +113,7 @@ const MultiDropzone = ({
           `w100 ta-center br8 c-pointer ${styles.dropzoneContainer}`,
           {
             [styles['dropzoneContainerDisabled']]: uploading,
+            [styles['dropzoneContainerCondensed']]: isCondensed,
           }
         )}
         {...getRootProps()}
@@ -120,20 +122,27 @@ const MultiDropzone = ({
           {statusMessage}
         </div>
         <input data-testid="ds-drop-input" {...getInputProps()} />
-        <UploadCloudIcon
-          className={isCondensed ? styles.img : ''}
-          size={isCondensed ? 24 : 64}
-          color={'purple-600'}
-        />
+        {!isCondensed && (
+          <UploadCloudIcon size={56} color={'neutral-900'} />
+        )}
         <div
           className={`p-h4 mt8 d-block c-pointer ${
             isCondensed ? styles.textInline : ''
           }`}
         >
-          {uploading
-            ? textOverrides?.currentlyUploadingText ||
-              'Please wait while uploading file...'
-            : instructionsText}
+          <div className='d-flex ai-center jc-center w100'>
+            {isCondensed && (
+              <UploadCloudIcon
+                className={classNames('mr16', styles.img)}
+                size={20}
+                color={'neutral-900'}
+              />
+            )}
+            {uploading
+              ? textOverrides?.currentlyUploadingText ||
+                'Please wait while uploading file...'
+              : instructionsText}
+            </div>
         </div>
         <div className="p-p--small tc-neutral-600">
           {textOverrides?.supportsText || placeholder}
