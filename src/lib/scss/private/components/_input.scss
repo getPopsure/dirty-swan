@@ -89,7 +89,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-neutral-400;
+      border: 1px solid $ds-neutral-500;
       border-radius: 50%;
 
       background-color: white;
@@ -117,6 +117,10 @@
 .p-radio:focus-visible + label {
   border: 1px solid $ds-neutral-900;
   outline: 1px solid $ds-neutral-900;
+
+   &:before {
+    border: 1px solid $ds-neutral-900;
+   }
 }
 
 .p-radio:disabled {
@@ -147,7 +151,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-neutral-900;
+      border: 1px solid $ds-neutral-500;
       border-radius: 4px;
 
       background-color: white;
@@ -157,8 +161,8 @@
   }
 }
 
-.p-checkbox:focus,
-.p-radio:focus {
+.p-checkbox:active,
+.p-radio:active {
   & + label {
     &::before {
       outline: none;
@@ -173,6 +177,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: $ds-neutral-900;
+    border: 1px solid transparent;
   }
 }
 
