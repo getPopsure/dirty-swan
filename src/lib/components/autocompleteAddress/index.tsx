@@ -270,6 +270,7 @@ const AutocompleteAddress = ({
                 placeholders?.manualAddressEntry || 'Search for address'
               }
               ref={autocompleteElement}
+              disabled={hasLoadedGoogleAPI === false}
             />
             {hasLoadedGoogleAPI === false && (
               <div
