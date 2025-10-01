@@ -120,7 +120,7 @@ export const CheckboxWithCustomWrapperStyles = ({
         CAT1: 'Cat',
         DOG1: 'Dog',
       }}
-      classNames={{ container: 'p32 bg-primary-300 br24 bs-lg' }}
+      classNames={{ container: 'p32 bg-purple-500 br24 bs-lg' }}
     />
   );
 };
@@ -166,7 +166,7 @@ export const CheckboxWithCustomLabelStyles = ({
         CAT3: 'Cat',
         DOG3: 'Dog',
       }}
-      classNames={{ label: 'bg-grey-900 tc-white' }}
+      classNames={{ label: 'bg-neutral-900 tc-white' }}
     />
   );
 };

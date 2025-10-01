@@ -62,7 +62,7 @@
 .group-title {
   width: 100%;
 
-  background-color: $ds-grey-100;
+  background-color: $ds-neutral-50;
   border-radius: 8px;
 
   & > h4 {
@@ -80,7 +80,7 @@
   left: 0;
 
   @include p-size-tablet {
-    border-right: 1px solid $ds-grey-100;
+    border-right: 1px solid $ds-neutral-50;
   }
 }
 
@@ -108,7 +108,7 @@
 
 .show-details-button {
   font-family: inherit;
-  background-color: $ds-grey-100;
+  background-color: $ds-neutral-50;
 
   border: none;
   border-radius: 8px;

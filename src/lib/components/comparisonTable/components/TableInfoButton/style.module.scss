@@ -17,23 +17,23 @@
 
   &:hover,
   &:focus {
-    background-color: $ds-primary-50;
+    background-color: $ds-purple-100;
 
     svg {
       path {
-        fill: $ds-primary-300;
+        fill: $ds-purple-500;
       }
     }
   }
 
   svg {
     path {
-      fill: $ds-grey-400;
+      fill: $ds-neutral-400;
     }
     transition: all 0.3s ease;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px $ds-primary-500;
+    box-shadow: 0 0 0 2px $ds-purple-600;
   }
 }

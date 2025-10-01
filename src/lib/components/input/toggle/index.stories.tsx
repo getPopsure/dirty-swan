@@ -104,7 +104,7 @@ export const ToggleWithCustomWrapperStyles = ({ onChange }: ToggleProps<string>)
         CAT1: 'Cat',
         DOG1: 'Dog',
       }} 
-      classNames={{ container: "p32 bg-primary-300 br24 bs-lg" }}
+      classNames={{ container: "p32 bg-purple-500 br24 bs-lg" }}
     />
   );
 }
@@ -146,7 +146,7 @@ export const ToggleWithCustomLabelStyles = ({ onChange }: ToggleProps<string>) =
         CAT3: 'Cat',
         DOG3: 'Dog',
       }} 
-      classNames={{ label: "bg-grey-900 tc-white" }}
+      classNames={{ label: "bg-neutral-900 tc-white" }}
     />
   );
 }

@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  background-color: var(--ds-grey-200);
+  background-color: var(--ds-neutral-100);
   border-radius: 8px;
   height: 272px;
 }
@@ -19,7 +19,7 @@
   left: 72px;
   bottom: 32px;
 
-  background-color: var(--ds-grey-400);
+  background-color: var(--ds-neutral-400);
 
   border-radius: 1px;
 }
@@ -31,7 +31,7 @@
   right: 16px;
   bottom: 32px;
 
-  color: var(--ds-primary-500);
+  color: var(--ds-purple-600);
   cursor: pointer;
 
   border: none;
@@ -42,7 +42,7 @@
   background-color: transparent;
 
   &:hover {
-    color: var(--ds-primary-700);
+    color: var(--ds-purple-700);
   }
 
   &:before {
@@ -65,7 +65,7 @@
   }
 
   &[disabled] {
-    color: var(--ds-grey-500);
+    color: var(--ds-neutral-600);
   }
 }
 
@@ -86,5 +86,5 @@
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 
-  background-color: var(--ds-grey-500);
+  background-color: var(--ds-neutral-600);
 }

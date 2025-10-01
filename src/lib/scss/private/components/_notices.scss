@@ -7,16 +7,16 @@
 
   &--primary {
     @extend .p-notice;
-    background-color: $ds-purple-100;
-    border-color: $ds-purple-500;
-    color: $ds-grey-900;
+    background-color: $ds-purple-300;
+    border-color: $ds-purple-600;
+    color: $ds-neutral-900;
   }
 
   &--danger {
     @extend .p-notice;
     background-color: $ds-red-100;
     border-color: $ds-red-500;
-    color: $ds-grey-900;
+    color: $ds-neutral-900;
   }
 
   &--warning {

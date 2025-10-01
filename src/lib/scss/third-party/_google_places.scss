@@ -11,12 +11,12 @@
   font-family: Lato, sans-serif;
 
   &:hover {
-    background-color: var(--ds-grey-200);
+    background-color: var(--ds-neutral-100);
   }
 }
 
 .pac-item-selected {
-  background-color: var(--ds-primary-100);
+  background-color: var(--ds-purple-300);
 }
 
 .pac-item {
@@ -47,7 +47,7 @@
 
 .pac-container {
   background-color: white;
-  border: 1px solid var(--ds-grey-400);
+  border: 1px solid var(--ds-neutral-400);
   box-shadow: none;
   border-radius: 8px;
   margin-top: 8px;

@@ -80,7 +80,7 @@ ButtonStory.storyName = "Button";
 export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
   <div>
     <h3 className='p-h3 mb24'>Filled variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {[ "filledColor", "filledGray", "filledWhite", "filledBlack"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>
@@ -95,9 +95,9 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Text variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {["textColor", "textWhite"].map((variant, index) => (
-        <div key={variant} className={variant === "textWhite" ? "bg-primary-500 px32 br8" : ""}>
+        <div key={variant} className={variant === "textWhite" ? "bg-purple-600 px32 br8" : ""}>
           <h4 className={`p-h4 mb16 ${variant === "textWhite" ? "tc-white" : ''}`}>
             {variant}
           </h4>
@@ -110,7 +110,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
 
     <h3 className='p-h3 my24'>Outline variants</h3>
-    <div className='d-flex gap16 p24 bg-primary-500 br8'>
+    <div className='d-flex gap16 p24 bg-purple-600 br8'>
       <div>
         <h4 className='p-h4 mb16 tc-white'>
           outlineWhite
@@ -123,7 +123,7 @@ export const ButtonVariants = ({ children, onClick }: ButtonProps) => (
     </div>
     
     <h3 className='p-h3 my24'>State variants</h3>
-    <div className='d-flex gap16 p24 bg-grey-300 br8'>
+    <div className='d-flex gap16 p24 bg-neutral-300 br8'>
       {["filledSuccess", "filledError"].map((variant) => (
           <div key={variant}>
             <h4 className='p-h4 mb16'>
@@ -152,7 +152,7 @@ export const ButtonOnBackgrounds = ({ onClick }: ButtonProps) => (
       </div>
     </div>
 
-    <div className='p24 bg-grey-200 br8'>
+    <div className='p24 bg-neutral-100 br8'>
       <h3 className='p-h3 mb16'>On grey</h3>
       <div className='d-flex gap16'>
         {[ "filledColor", "filledWhite", "textColor"].map((variant) => (
@@ -163,7 +163,7 @@ export const ButtonOnBackgrounds = ({ onClick }: ButtonProps) => (
       </div>
     </div>
 
-    <div className='p24 bg-primary-500 br8'>
+    <div className='p24 bg-purple-600 br8'>
       <h3 className='p-h3 mb16 tc-white'>On primary</h3>
       <div className='d-flex gap16'>
         {["filledWhite", "outlineWhite", "textWhite"].map((variant) => (
@@ -206,7 +206,7 @@ export const ButtonDisabled = ({ children, onClick }: ButtonProps) => (
 );
 
 export const ButtonAsOtherComponents = ({ children, as, onClick }: ButtonProps) => (
-  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
     <h3 className='p-h3'>As an anchor:</h3>
       <Button as="a" href="https://feather-insurance.com" target="_blank">
         {children}

@@ -2,20 +2,20 @@
 @use "../../../../../scss/public/colors" as *;
 
 .buttonCell {
-  color: $ds-grey-900;
-  border: 1px solid $ds-grey-400;
+  color: $ds-neutral-900;
+  border: 1px solid $ds-neutral-400;
 
   transition: all 0.3s ease-in-out;
 
   &:disabled {
     border: none;
-    background-color: $ds-grey-200;
-    color: $ds-grey-900;
+    background-color: $ds-neutral-100;
+    color: $ds-neutral-900;
     opacity: 1;
     cursor: default;
 
     &:hover {
-      background-color: $ds-grey-200;
+      background-color: $ds-neutral-100;
     }
   }
 
@@ -34,6 +34,6 @@
 
 .selected {
   transition: all 0.3 ease-in-out;
-  border: 2px solid $ds-purple-500;
-  background-color: $ds-purple-50;
+  border: 2px solid $ds-purple-600;
+  background-color: $ds-purple-100;
 }

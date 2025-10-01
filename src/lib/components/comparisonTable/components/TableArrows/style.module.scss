@@ -30,26 +30,26 @@
   padding: 0;
 
   border-radius: 50%;
-  background-color: $ds-grey-200;
+  background-color: $ds-neutral-100;
 
   justify-content: center;
   align-items: center;
 
-  stroke: $ds-primary-100;
+  stroke: $ds-purple-300;
 
   &:hover,
   &:focus {
-    background-color: $ds-grey-200;
+    background-color: $ds-neutral-100;
     cursor: not-allowed;
   }
 }
 
 .active {
-  stroke: $ds-primary-500;
+  stroke: $ds-purple-600;
 
   &:hover,
   &:focus {
-    background-color: $ds-grey-200;
+    background-color: $ds-neutral-100;
     cursor: pointer;
   }
 }

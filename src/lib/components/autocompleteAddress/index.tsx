@@ -246,7 +246,7 @@ const AutocompleteAddress = ({
   return (
     <>
       <div
-        className={classNames(`wmx8 bg-grey-500 ${styles['map-container']}`, {
+        className={classNames(`wmx8 bg-neutral-600 ${styles['map-container']}`, {
           [styles['map-container--hidden']]: place === null,
         })}
       >

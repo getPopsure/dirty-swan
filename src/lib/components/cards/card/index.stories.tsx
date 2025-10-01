@@ -3,7 +3,6 @@ import { illustrations } from '../../../util/images';
 import { Button } from '../../button';
 import { Badge } from '../../badge';
 import { CheckIcon, InfoIcon, MehIcon, PlusCircleIcon, XIcon } from '../../icon';
-import { Link } from '../../link';
 
 const story = {
   title: 'JSX/Cards/Card',
@@ -99,7 +98,7 @@ export const CardStory = ({
   titleVariant,
   verticalAlignment,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       as={as}
       classNames={classNames}
@@ -124,7 +123,7 @@ export const CardStory = ({
 CardStory.storyName = "Card";
 
 export const CardAsOtherComponents = () => (
-  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
    
     <h3 className='p-h3'>As an anchor:</h3>
     <Card
@@ -150,7 +149,7 @@ export const CardAsOtherComponents = () => (
 );
 
 export const CardDensities = () => (
-  <div className='d-flex fd-column gap16 p24 bg-grey-200'>
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
     <Card
       title={'Card density: Compact'}
       density='compact'
@@ -167,7 +166,7 @@ export const CardDensities = () => (
 );
 
 export const CardsWithIcons = ({ title }: CardProps) => (
-  <div className='d-flex gap16 p24 bg-grey-200'>
+  <div className='d-flex gap16 p24 bg-neutral-100'>
     <Card
       icon={
         <img
@@ -189,7 +188,7 @@ export const CardWithOnClickAction = ({
   children,
   title,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       icon={
         <img
@@ -212,14 +211,14 @@ export const CardOverridesStyles = ({
   label,
   title,
 }: CardProps) => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       label={label}
       title={title}
       titleVariant={'medium'}
-      icon={<PlusCircleIcon color="grey-100" size={32} />}
+      icon={<PlusCircleIcon color="neutral-50" size={32} />}
       classNames={{ 
-        wrapper: 'bg-grey-700',
+        wrapper: 'bg-neutral-800',
         label: 'tc-white',
         title: 'tc-white'
       }}
@@ -230,7 +229,7 @@ export const CardOverridesStyles = ({
 );
 
 export const CardsWithinCardsAndComplexLayout = () => (
-  <div className='d-flex p24 bg-grey-200'>
+  <div className='d-flex p24 bg-neutral-100'>
     <Card
       label={(
         <Badge size='small' variant='success'>
@@ -254,14 +253,14 @@ export const CardsWithinCardsAndComplexLayout = () => (
       <div className='d-flex gap16 mt16'>
         <Card
           description="Lost keys"
-          classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<CheckIcon color={'primary-500'} />}
+          classNames={{ wrapper: 'bg-neutral-300' }}
+          icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Broken glass"
-          classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<XIcon color={'primary-500'} />}
+          classNames={{ wrapper: 'bg-neutral-300' }}
+          icon={<XIcon color={'purple-600'} />}
           density='compact'
         />
       </div>
@@ -269,14 +268,14 @@ export const CardsWithinCardsAndComplexLayout = () => (
       <div className='d-flex gap16 mt16'>
         <Card
           description="Damage to property"
-          classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<CheckIcon color={'primary-500'} />}
+          classNames={{ wrapper: 'bg-neutral-300' }}
+          icon={<CheckIcon color={'purple-600'} />}
           density='compact'
         />
         <Card
           description="Drones"
-          classNames={{ wrapper: 'bg-grey-300' }}
-          icon={<XIcon color={'primary-500'} />}
+          classNames={{ wrapper: 'bg-neutral-300' }}
+          icon={<XIcon color={'purple-600'} />}
           density='compact'
         />
       </div>

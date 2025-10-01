@@ -37,7 +37,7 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
     padding: 16px 8px 16px 16px;
   }
 
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   width: 50vw;
   max-width: calc(var(--tableWidth) / 2);
@@ -76,13 +76,13 @@ h4.cell {
 
 .title {
   position: relative;
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   display: none;
 
   line-height: 38px;
   text-decoration: underline;
-  text-decoration-color: $ds-primary-500;
+  text-decoration-color: $ds-purple-600;
   text-decoration-thickness: 4px;
   text-underline-offset: 8px;
 
@@ -102,7 +102,7 @@ h4.cell {
   width: 50vw;
 
   @include p-size-tablet {
-    border-right: 1px solid $ds-grey-100;
+    border-right: 1px solid $ds-neutral-50;
     flex: 1 0 288px;
   }
 }

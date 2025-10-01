@@ -1,11 +1,11 @@
 @use "../../scss/public/colors" as *;
 
 .wrapperBordered {
-  border: 1px solid $ds-grey-300;
+  border: 1px solid $ds-neutral-300;
 }
 
 .container {
-  border-bottom: 1px solid $ds-grey-300;
+  border-bottom: 1px solid $ds-neutral-300;
 
   &Bordered:last-of-type {
     border-bottom: 0;
@@ -13,15 +13,15 @@
 }
 
 .question {
-  color: $ds-grey-900;
+  color: $ds-neutral-900;
 
   &:hover {
-    color: $ds-primary-500;
+    color: $ds-purple-600;
   }
 }
 
 .chevron {
-  color: $ds-grey-700;
+  color: $ds-neutral-800;
   transition: transform 0.3s ease-in-out;
 
   &Open {
@@ -41,7 +41,7 @@
 
 .buttonWrapper {
   background-color: transparent!important;
-  color: $ds-primary-500;
+  color: $ds-purple-600;
   outline-offset: -4px;
 
   &Default {
@@ -50,15 +50,15 @@
 
   &:hover,
   &:focus-visible {
-    background: $ds-primary-50;
+    background: $ds-purple-100;
 
     .icon {
-      color: $ds-primary-500!important;
+      color: $ds-purple-600!important;
     }
 
     .question,
     .chevron{
-      color: $ds-primary-500;
+      color: $ds-purple-600;
     }
   }
 
@@ -67,6 +67,6 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $ds-primary-500!important;
+    outline: 2px solid $ds-purple-600!important;
   }
 }

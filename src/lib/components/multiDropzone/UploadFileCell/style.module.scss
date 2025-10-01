@@ -8,7 +8,7 @@
   min-height: 64px;
   padding: 8px 16px;
 
-  border: 1px solid $ds-grey-400;
+  border: 1px solid $ds-neutral-400;
   border-radius: 8px;
   background-color: white;
 
@@ -43,13 +43,13 @@
 }
 
 .progress-bar {
-  background-color: $ds-grey-200;
+  background-color: $ds-neutral-100;
   border-radius: 10px;
   height: 4px;
 }
 
 .progress-bar-filler {
-  background-color: $ds-primary-500;
+  background-color: $ds-purple-600;
   border-radius: 10px;
   height: 4px;
   position: absolute;
@@ -75,7 +75,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $ds-grey-900;
+    outline: 2px solid $ds-neutral-900;
     border-radius: 2px;
     outline-offset: 2px;
   }

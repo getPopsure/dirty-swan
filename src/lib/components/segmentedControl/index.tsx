@@ -63,7 +63,7 @@ const SegmentedControl = ({
                 {typeof value === 'string' ? (
                   <div
                     className={`p-h4 ta-center ${
-                      selectedIndex === index ? '' : 'tc-primary-500'
+                      selectedIndex === index ? '' : 'tc-purple-600'
                     }`}
                   >
                     {value}
@@ -72,7 +72,7 @@ const SegmentedControl = ({
                   <>
                     <div
                       className={`p-h4 ta-center ${
-                        selectedIndex === index ? '' : 'tc-primary-500'
+                        selectedIndex === index ? '' : 'tc-purple-600'
                       }`}
                     >
                       {value.title}
@@ -80,8 +80,8 @@ const SegmentedControl = ({
                     <div
                       className={`p-p--small ta-center ${
                         selectedIndex === index
-                          ? 'tc-grey-500'
-                          : 'tc-primary-500'
+                          ? 'tc-neutral-600'
+                          : 'tc-purple-600'
                       }`}
                     >
                       {value.subtitle}

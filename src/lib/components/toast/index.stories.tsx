@@ -103,7 +103,7 @@ export const ToastStory = ({
         <div>
           Show a toast using the following code:
         </div>
-        <pre className='bg-grey-300 br4 d-inline-flex p8 mt8'>
+        <pre className='bg-neutral-300 br4 d-inline-flex p8 mt8'>
           {"() => toast(title, { description, type, action })"}
         </pre>
       </div>

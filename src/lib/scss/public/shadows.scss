@@ -1,7 +1,8 @@
-$bs-xs: 0px 4px 6px rgba(97, 96, 162, 0.01);
-$bs-sm: 0px 2px 20px 0px rgba(97, 96, 162, 0.06);
-$bs-md: 0px 2px 28px rgba(97, 96, 162, 0.12);
-$bs-l: 0px 2px 28px rgba(97, 96, 162, 0.15);
+$bs-xs: 0 2px 12px rgba($ds-neutral-900, 0.03);
+$bs-sm: 0 2px 20px 0 rgba($ds-neutral-900, 0.04);
+$bs-md: 0 2px 28px rgba($ds-neutral-900, 0.08);
+$bs-lg: 0 2px 32px rgba($ds-neutral-900, 0.1);
+$bs-xl: 0 2px 50px rgba($ds-neutral-900, 0.18);
 
 .bs-xs {
   box-shadow: $bs-xs;
@@ -16,5 +17,9 @@ $bs-l: 0px 2px 28px rgba(97, 96, 162, 0.15);
 }
 
 .bs-lg {
-  box-shadow: $bs-l;
+  box-shadow: $bs-lg;
+}
+
+.bs-xl {
+  box-shadow: $bs-xl;
 }

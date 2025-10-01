@@ -1,70 +1,64 @@
 // TODO: Reference colors
-$ds-primary-25: #fcfcff !default;
-$ds-primary-50: #f7f7ff !default;
-$ds-primary-100: #ebebff !default;
-$ds-primary-300: #b1b0f5 !default;
-$ds-primary-500: #8e8cee !default;
-$ds-primary-700: #6160a2 !default;
-$ds-primary-900: #2e2e4c !default;
+$ds-purple-50: #F9F9FF;
+$ds-purple-100: #F6F6FE;
+$ds-purple-200: #EEEEFE;
+$ds-purple-300: #E8E7FE;
+$ds-purple-400: #D2CFFD;
+$ds-purple-500: #B8B4F3;
+$ds-purple-600: #8883D8;
+$ds-purple-700: #6A65AE;
+$ds-purple-800: #484676;
+$ds-purple-900: #32334B;
 
-$ds-purple-25: #fcfcff;
-$ds-purple-50: #f7f7ff;
-$ds-purple-100: #ebebff;
-$ds-purple-300: #b1b0f5;
-$ds-purple-500: #8e8cee;
-$ds-purple-700: #6160a2;
-$ds-purple-900: #2e2e4c;
+$ds-blue-100: #E5F0FF;
+$ds-blue-200: #DAE8FC;
+$ds-blue-300: #B0CDF3;
+$ds-blue-500: #8BB4EA;
+$ds-blue-700: #5F7BA0;
+$ds-blue-900: #2D394A;
 
-$ds-blue-100: #e5f0ff;
-$ds-blue-300: #b0cdf3;
-$ds-blue-500: #8bb4ea;
-$ds-blue-700: #5f7ba0;
-$ds-blue-900: #2d394a;
+$ds-red-100: #FEE6E6;
+$ds-red-200: #FED7D7;
+$ds-red-300: #FAA0A0;
+$ds-red-500: #E55454;
+$ds-red-700: #C64848;
+$ds-red-900: #4B2525;
 
-$ds-glacier-100: #e0f7fe;
-$ds-glacier-300: #aeddec;
-$ds-glacier-500: #8bcbdf;
-$ds-glacier-700: #5d8896;
-$ds-glacier-900: #2d4148;
+$ds-neutral-50: #f9f9fd;
+$ds-neutral-100: #f7f7fd;
+$ds-neutral-200: #f5f5fb;
+$ds-neutral-300: #e7e7ed;
+$ds-neutral-400: #d2d2d9;
+$ds-neutral-500: #b8b8c0;
+$ds-neutral-600: #919199;
+$ds-neutral-700: #696971;
+$ds-neutral-800: #3f3f47;
+$ds-neutral-900: #26262e;
 
-$ds-red-100: #fedede;
-$ds-red-300: #faa0a0;
-$ds-red-500: #e55454;
-$ds-red-700: #c64848;
-$ds-red-900: #4b2525;
+$ds-green-100: #E6FAF1;
+$ds-green-200: #D5F6E7;
+$ds-green-300: #AAEACC;
+$ds-green-500: #85DCB4;
+$ds-green-700: #599278;
+$ds-green-900: #2B4639;
 
-$ds-pink-100: #ffebf1;
-$ds-pink-300: #ffb1cb;
-$ds-pink-500: #f96092;
-$ds-pink-700: #c0305f;
-$ds-pink-900: #700024;
+$ds-yellow-100: #FEFAEC;
+$ds-yellow-200: #FCF3D1;
+$ds-yellow-300: #F6E7AC;
+$ds-yellow-500: #F0D26F;
+$ds-yellow-700: #C5A33E;
+$ds-yellow-900: #483D18;
 
-$ds-grey-100: #fafaff;
-$ds-grey-200: #f5f6fb;
-$ds-grey-300: #ededf2;
-$ds-grey-400: #d2d2d8;
-$ds-grey-500: #91919c;
-$ds-grey-600: #696970;
-$ds-grey-700: #4c4c53;
-$ds-grey-900: #26262e;
-
-$ds-green-100: #e4ffe6;
-$ds-green-300: #c4f5c8;
-$ds-green-500: #84de8a;
-$ds-green-700: #5b985f;
-$ds-green-900: #354a2d;
-
-$ds-spearmint-100: #e3fff2;
-$ds-spearmint-300: #aaeacc;
-$ds-spearmint-500: #85dcb4;
-$ds-spearmint-700: #599278;
-$ds-spearmint-900: #2b4639;
-
-$ds-yellow-100: #fff8e3;
-$ds-yellow-300: #fae3a5;
-$ds-yellow-500: #f7ce5c;
-$ds-yellow-700: #cc9e21;
-$ds-yellow-900: #4a3d10;
+$ds-orange-50: #FAF8F5;
+$ds-orange-100: #FCF7EF;
+$ds-orange-200: #FDF2E2;
+$ds-orange-300: #FEECD3;
+$ds-orange-400: #FCDAAB;
+$ds-orange-500: #FFD08F;
+$ds-orange-600: #F2B873;
+$ds-orange-700: #C6824E;
+$ds-orange-800: #7E4B2F;
+$ds-orange-900: #4C2D21;
 
 $ds-white: #fff;
 $ds-transparent: transparent;
@@ -73,60 +67,54 @@ $colors: (
   'white': #fff,
   'transparent': transparent,
   'blue-100': $ds-blue-100,
+  'blue-200': $ds-blue-200,
   'blue-300': $ds-blue-300,
   'blue-500': $ds-blue-500,
   'blue-700': $ds-blue-700,
   'blue-900': $ds-blue-900,
-  'purple-25': $ds-purple-25,
   'purple-50': $ds-purple-50,
   'purple-100': $ds-purple-100,
+  'purple-200': $ds-purple-200,
   'purple-300': $ds-purple-300,
+  'purple-400': $ds-purple-400,
   'purple-500': $ds-purple-500,
+  'purple-600': $ds-purple-600,
   'purple-700': $ds-purple-700,
+  'purple-800': $ds-purple-800,
   'purple-900': $ds-purple-900,
-  'primary-25': $ds-primary-25,
-  'primary-50': $ds-primary-50,
-  'primary-100': $ds-primary-100,
-  'primary-300': $ds-primary-300,
-  'primary-500': $ds-primary-500,
-  'primary-700': $ds-primary-700,
-  'primary-900': $ds-primary-900,
   'red-100': $ds-red-100,
+  'red-200': $ds-red-200,
   'red-300': $ds-red-300,
   'red-500': $ds-red-500,
   'red-700': $ds-red-700,
   'red-900': $ds-red-900,
-  'grey-100': $ds-grey-100,
-  'grey-200': $ds-grey-200,
-  'grey-300': $ds-grey-300,
-  'grey-400': $ds-grey-400,
-  'grey-500': $ds-grey-500,
-  'grey-600': $ds-grey-600,
-  'grey-700': $ds-grey-700,
-  'grey-900': $ds-grey-900,
+  'neutral-50': $ds-neutral-50,
+  'neutral-100': $ds-neutral-100,
+  'neutral-300': $ds-neutral-300,
+  'neutral-400': $ds-neutral-400,
+  'neutral-600': $ds-neutral-600,
+  'neutral-700': $ds-neutral-700,
+  'neutral-800': $ds-neutral-800,
+  'neutral-900': $ds-neutral-900,
   'green-100': $ds-green-100,
   'green-300': $ds-green-300,
   'green-500': $ds-green-500,
   'green-700': $ds-green-700,
   'green-900': $ds-green-900,
-  'glacier-100': $ds-glacier-100,
-  'glacier-300': $ds-glacier-300,
-  'glacier-500': $ds-glacier-500,
-  'glacier-700': $ds-glacier-700,
-  'glacier-900': $ds-glacier-900,
-  'spearmint-100': $ds-spearmint-100,
-  'spearmint-300': $ds-spearmint-300,
-  'spearmint-500': $ds-spearmint-500,
-  'spearmint-700': $ds-spearmint-700,
-  'spearmint-900': $ds-spearmint-900,
-  'pink-100': $ds-pink-100,
-  'pink-300': $ds-pink-300,
-  'pink-500': $ds-pink-500,
-  'pink-700': $ds-pink-700,
-  'pink-900': $ds-pink-900,
   'yellow-100': $ds-yellow-100,
+  'yellow-200': $ds-yellow-200,
   'yellow-300': $ds-yellow-300,
   'yellow-500': $ds-yellow-500,
   'yellow-700': $ds-yellow-700,
   'yellow-900': $ds-yellow-900,
+  'orange-50': $ds-orange-50,
+  'orange-100': $ds-orange-100,
+  'orange-200': $ds-orange-200,
+  'orange-300': $ds-orange-300,
+  'orange-400': $ds-orange-400,
+  'orange-500': $ds-orange-500,
+  'orange-600': $ds-orange-600,
+  'orange-700': $ds-orange-700,
+  'orange-800': $ds-orange-800,
+  'orange-900': $ds-orange-900,
 );
