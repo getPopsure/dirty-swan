@@ -190,9 +190,6 @@ const ComparisonTable = <T extends { id: number }>(
                         )}
                         label={headerGroup.label}
                         headerClassName="p24 br8"
-                        isOpen={selectedSection === idString}
-                        onOpen={() => setSelectedSection(idString)}
-                        onClose={() => setSelectedSection('')}
                       >
                         <ScrollSyncPane>
                           <div
