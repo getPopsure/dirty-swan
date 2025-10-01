@@ -2,25 +2,23 @@ import classNames from 'classnames';
 import React, { ReactElement, ReactNode } from 'react';
 
 type ButtonVariant =
-  | 'filledColor'
+  | 'filledBlack'
   | 'filledGray'
   | 'filledWhite'
-  | 'filledBlack'
-  | 'textColor'
+  | 'textBlack'
   | 'textWhite'
+  | 'outlineGray'
   | 'outlineWhite'
-  | 'filledSuccess'
   | 'filledError';
 
 const buttonTypeClassNameMap: { [K in ButtonVariant]: string } = {
-  filledColor: 'p-btn--primary',
+  filledBlack: 'p-btn--secondary-black',
   filledGray: 'p-btn--secondary-grey',
   filledWhite: 'p-btn--secondary-white',
-  filledBlack: 'p-btn--secondary-black',
-  textColor: 'p-btn--secondary',
+  textBlack: 'p-btn--text-black',
   textWhite: 'p-btn--secondary-inverted',
   outlineWhite: 'p-btn--outline-white',
-  filledSuccess: 'p-btn--success',
+  outlineGray: 'p-btn--outline-grey',
   filledError: 'p-btn--danger',
 };
 
@@ -55,7 +53,7 @@ const Button = React.forwardRef((
     className,
     loading = false,
     children,
-    variant = 'filledColor',
+    variant = 'filledBlack',
     leftIcon,
     rightIcon,
     hideLabel,

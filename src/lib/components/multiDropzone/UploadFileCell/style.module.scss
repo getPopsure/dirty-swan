@@ -19,7 +19,7 @@
 
 .upload-file-cell-error {
   border-color: $ds-red-500;
-  background-color: rgba(229, 84, 84, 0.2);
+  background-color: $ds-red-200;
 }
 
 .cell-left-section {
@@ -43,13 +43,13 @@
 }
 
 .progress-bar {
-  background-color: $ds-neutral-100;
+  background-color: $ds-neutral-300;
   border-radius: 10px;
   height: 4px;
 }
 
 .progress-bar-filler {
-  background-color: $ds-purple-600;
+  background-color: $ds-neutral-900;
   border-radius: 10px;
   height: 4px;
   position: absolute;

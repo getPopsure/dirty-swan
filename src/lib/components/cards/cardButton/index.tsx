@@ -29,15 +29,17 @@ export const CardButton = ({
           className,
           { [styles.containerDisabled]: disabled }
         ),
-        description: 'tc-purple-600 p-p',
+        label: 'tc-neutral-700',
+        description: 'tc-neutral-900 p-p',
+        contentWrapper: styles.contentWrapper
       }}
-      density='compact'
+      density='xsmall'
       label={title}
       description={typeof description === 'string' ? description : null}
       actionIcon={
         <ChevronRightIcon
           size={20}
-          color={'purple-600'}
+          color={'neutral-900'}
           className={styles.chevronRight}
         />
       }

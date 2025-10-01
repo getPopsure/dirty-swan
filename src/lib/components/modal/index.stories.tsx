@@ -106,12 +106,12 @@ export const BottomOrRegularModalStory = ({
 
   return (
     <>
-      <button
-        className="d-flex p-btn--primary wmn2"
+      <Button
+        className="wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
 
       <BottomOrRegularModal
         dismissible={dismissible}
@@ -125,12 +125,12 @@ export const BottomOrRegularModalStory = ({
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomOrRegularModal>
     </>
@@ -159,21 +159,21 @@ export const RegularModalStory = ({
       to use it for Mobile only, you should check BottomModal instead. Want to
       use either Regular Modal or Bottom Modal based on the screen width? You
       can use Bottom or Regular modal.
-      <button
-        className="d-flex p-btn--primary wmn2 mt24"
+      <Button
+        className="wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
       <RegularModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </RegularModal>
     </>
@@ -202,21 +202,21 @@ export const BottomModalStory = ({
       Desktop only, you should check Regular modal instead. Want to use either
       Regular Modal or Bottom Modal based on the screen width? You can use
       Bottom or Regular modal.
-      <button
-        className="d-flex p-btn--primary wmn2 mt24"
+      <Button
+        className="wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
       <BottomModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomModal>
     </>
@@ -242,22 +242,22 @@ export const FullScreenModalStory = ({
       Full screen modals are primary meant to be used as blocker screens. The
       modal will cover the entire screen and the user will be able to dismiss
       them using the top left "X" icon.
-      <button
-        className="d-flex p-btn--primary wmn2 mt24"
+      <Button
+        className="wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
       <FullScreenModal title={title} isOpen={display} onClose={handleOnClose}>
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
 
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </FullScreenModal>
     </>
@@ -286,12 +286,12 @@ export const NonDismissibleModal = ({
       the modal options.
       <strong>Warning:</strong> a modal with the dismissible prop can only be
       closed by changing the isOpen prop to false.
-      <button
-        className="d-flex p-btn--primary wmn2 mt24"
+      <Button
+        className="wmn2 mt24"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
       <BottomOrRegularModal
         dismissible={false}
         title={title}
@@ -300,12 +300,12 @@ export const NonDismissibleModal = ({
       >
         <div style={{ padding: '0 24px 24px 24px' }}>
           <div>{children}</div>
-          <button
-            className="p-btn--primary mt24 wmn3"
+          <Button
+            className="mt24 wmn3"
             onClick={() => setDisplay(false)}
           >
             Continue
-          </button>
+          </Button>
         </div>
       </BottomOrRegularModal>
     </>
@@ -326,12 +326,12 @@ export const ModalWithFooter = ({
 
   return (
     <>
-      <button
-        className="d-flex p-btn--primary wmn2"
+      <Button
+        className="wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
 
       <BottomOrRegularModal
         title={title}
@@ -340,7 +340,7 @@ export const ModalWithFooter = ({
         footer={
           <div className="d-flex fd-row gap8">
             <Button
-              variant="textColor"
+              variant="textBlack"
               className="w100"
               onClick={handleOnClose}
             >
@@ -374,12 +374,12 @@ export const ModalWithFooterAndScroll = ({
 
   return (
     <>
-      <button
-        className="d-flex p-btn--primary wmn2"
+      <Button
+        className="wmn2"
         onClick={() => setDisplay(true)}
       >
         Click to open modal
-      </button>
+      </Button>
 
       <BottomOrRegularModal
         title={title}
@@ -388,7 +388,7 @@ export const ModalWithFooterAndScroll = ({
         footer={
           <div className="d-flex fd-row gap8">
             <Button
-              variant="textColor"
+              variant="textBlack"
               className="w100"
               onClick={handleOnClose}
             >

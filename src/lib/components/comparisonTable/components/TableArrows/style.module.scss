@@ -7,7 +7,7 @@
   height: 100%;
   padding: 0 16px;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   display: flex;
   @include p-size-tablet {
     display: none;
@@ -24,18 +24,18 @@
 
 .arrow {
   width: 32px;
-  height: 32px;
+  height: 56px;
   z-index: 3;
 
   padding: 0;
 
-  border-radius: 50%;
+  border-radius: 8px;
   background-color: $ds-neutral-100;
 
   justify-content: center;
   align-items: center;
 
-  stroke: $ds-purple-300;
+  stroke: $ds-neutral-500;
 
   &:hover,
   &:focus {
@@ -45,7 +45,7 @@
 }
 
 .active {
-  stroke: $ds-purple-600;
+  stroke: $ds-neutral-900;
 
   &:hover,
   &:focus {
@@ -55,5 +55,6 @@
 }
 
 .noPointerEvents {
+  visibility: hidden;
   pointer-events: none;
 }

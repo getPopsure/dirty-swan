@@ -4,66 +4,31 @@
 @use '../../public/font' as *;
 
 @font-face {
-  font-family: 'Merriweather';
+  font-family: 'Mona Sans';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNZVcf6hPvhPUWH.woff2)
-    format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
-    U+FE2E-FE2F;
+  src: url(https://github.githubassets.com/static/fonts/Mona-Sans-Medium.woff2) format('woff2');
+  font-feature-settings: "ss05" on;
 }
 
 @font-face {
-  font-family: 'Merriweather';
+  font-family: 'Mona Sans';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNZXMf6hPvhPUWH.woff2)
-    format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNZV8f6hPvhPUWH.woff2)
-    format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
-    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNZVsf6hPvhPUWH.woff2)
-    format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNZWMf6hPvhPQ.woff2)
-    format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
+  src: url(https://github.githubassets.com/static/fonts/Mona-Sans-SemiBold.woff2) format('woff2');
+  font-feature-settings: "ss05" on;
 }
 
 body {
   font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
 }
 
 .p--serif {
-  font-family: 'Merriweather', serif;
+  font-family: 'Mona Sans', sans-serif;
+  font-feature-settings: "ss05" on;
 }
 
 .p-h1,
@@ -87,8 +52,8 @@ body {
 
   &--xl {
     @extend .p-h1;
-    font-size: 48px;
-    line-height: 58px;
+    font-size: 44px;
+    line-height: 56px;
 
     @include p-size-mobile {
       font-size: 32px;
@@ -98,7 +63,7 @@ body {
 }
 
 .p-h2 {
-  font-weight: bold;
+  font-weight: $p-font-weight-bold;
   font-size: 24px;
   line-height: 34px;
   letter-spacing: 0.5px;
@@ -136,8 +101,9 @@ body {
 
   &--small {
     @extend .p-p;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 18px;
+    letter-spacing: 0.4px;
   }
 }
 
@@ -146,15 +112,17 @@ body {
 }
 
 .p-a {
-  color: $ds-purple-600;
-  text-decoration: none;
+  color: $ds-neutral-900;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 
   &:hover,
   &:focus {
-    color: $ds-purple-700;
+    color: $ds-neutral-700;
   }
 
   &:focus-visible {
+    color: $ds-neutral-900;
     outline: 2px solid $ds-neutral-900;
     border-radius: 2px;
     outline-offset: 2px;

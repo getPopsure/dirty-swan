@@ -1,10 +1,11 @@
 @use '../../public/colors' as *;
+@use '../../public/shadows' as *;
 
 .ds-card {
   background-color: white;
   border-radius: 8px;
-  border: 2px solid transparent;
-  box-shadow: 0px 2px 28px rgba(97, 96, 162, 0.1);
+  border: 1px solid transparent;
+  box-shadow: $bs-xs;
 
   transition: border-color 0.3s;
 
@@ -12,12 +13,13 @@
     cursor: pointer;
     @extend .ds-card;
     &:hover {
-      border: 2px solid $ds-purple-500;
+      border: 1px solid $ds-neutral-900;
     }
 
-    &:focus {
-      outline: 3px solid $ds-purple-600;
-      border: 2px solid transparent;
+    &:focus-visible {
+      border: 1px solid $ds-neutral-900;
+      box-shadow: 0 0 0 1px $ds-neutral-900;
+      outline: none;
     }
   }
 

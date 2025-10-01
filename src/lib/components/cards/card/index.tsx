@@ -6,16 +6,18 @@ import styles from './style.module.scss';
 
 const cardDefaultAs = 'section' as const
 type CardDefaultAsType = typeof cardDefaultAs;
-type DensityType = 'balanced' | 'compact' | 'spacious';
+type DensityType = 'xsmall' | 'small' | 'medium' | 'large';
 type TitleVariantType = 'small' | 'medium' | 'large';
 type VerticalAlignmentType = 'top' | 'center' | 'bottom';
+type CardVariant = 'default' | 'transparent' | 'outline' | 'secondary' | 'primary';
 
 type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   as?: E;
   children?: ReactNode;
   classNames?: {
     buttonWrapper?: string;
-    wrapper?: string;
+    wrapper?: string
+    contentWrapper?: string;
     label?: string;
     title?: string;
     description?: string;
@@ -35,6 +37,7 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   actionIcon?: ReactNode;
   showActionIcon?: boolean;
   verticalAlignment?: VerticalAlignmentType;
+  variant?: CardVariant
 } 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
@@ -44,7 +47,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   as,
   children,
   classNames,
-  density = 'balanced',
+  density = 'medium',
   description,
   descriptionVariant = 'large',
   dropShadow = true,
@@ -56,6 +59,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   titleVariant = 'large',
   showActionIcon,
   verticalAlignment = 'center',
+  variant = 'default',
   ...rest
 }: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
@@ -82,11 +86,12 @@ const Card = <E extends ElementType = CardDefaultAsType>({
       <div
         className={classNamesUtil(
           'd-flex fd-column jc-center w100 ta-left br8',
-          { 'bs-sm': dropShadow },
+          { 'bs-sm': dropShadow && variant === 'default' },
           {
-            compact: 'p16',
-            balanced: 'p24',
-            spacious: 'p32',
+            xsmall: 'p16',
+            small: styles.smallPadding,
+            medium: 'p24',
+            large: 'p32',
           }[density as DensityType],
           {
             top: 'jc-start',
@@ -94,6 +99,10 @@ const Card = <E extends ElementType = CardDefaultAsType>({
             bottom: 'jc-end',
           }[verticalAlignment as VerticalAlignmentType],
           styles?.wrapper,
+          styles?.[`wrapper--${variant}`],
+          {
+            [styles?.[`wrapper--defaultNoShadow`]]: !dropShadow && variant === 'default',
+          },
           classNames?.wrapper
         )}
       >
@@ -103,7 +112,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
               className={classNamesUtil(
                 `d-flex`,
                 styles.icon,
-                styles[`icon${density}`],
+                styles[`iconDensity--${density}`],
                 classNames?.icon, 
                 {
                   top: 'ai-start',
@@ -117,7 +126,12 @@ const Card = <E extends ElementType = CardDefaultAsType>({
           )}
 
           <div className="d-flex jc-between w100">
-            <div className="d-flex jc-center gap8 fd-column tc-neutral-900 w100">
+            <div
+              className={classNamesUtil(
+                classNames?.contentWrapper || '',
+                "d-flex jc-center gap8 fd-column tc-neutral-900 w100"
+              )}
+            >
               {label && (
                 <h4 className={classNamesUtil('p-p--small', classNames?.label)}>
                   {label}
@@ -145,6 +159,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                     styles.description,
                     classNames?.description,
                     descriptionVariant === 'small' ? 'p-p--small' : 'p-p',
+                    styles?.[`description--${variant}`]
                   )}
                 >
                   {description}
@@ -157,7 +172,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
                 className={classNamesUtil(
                   styles.actionIcon,
                   classNames?.actionIcon,
-                  styles[`actionIcon${density}`],
+                  styles[`actionIconDensity--${density}`],
                   'd-flex ai-center'
                 )}
               >

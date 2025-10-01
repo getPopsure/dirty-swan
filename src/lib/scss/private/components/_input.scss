@@ -19,30 +19,36 @@
 
   color: $ds-neutral-900;
 
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s;
 
   &::placeholder {
     color: $ds-neutral-600;
   }
 
+  &:hover {
+    outline: none;
+    border: 1px solid $ds-neutral-900;
+  }
+
   &:disabled {
+    cursor: not-allowed;
     background-color: $ds-neutral-300;
     border: none;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px $ds-purple-600;
+    border: 1px solid $ds-neutral-900;
+    box-shadow: 0 0 0 1px $ds-neutral-900;
   }
 
-  &--error {
+  &--error,
+  &--error:hover, 
+  &--error:focus {
     @extend .p-input;
     border: 1px solid $ds-red-500;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px $ds-red-500;
-    }
+    outline: none;
+    box-shadow: 0 0 0 1px $ds-red-500;
   }
 
   input {
@@ -68,6 +74,8 @@
 
 .p-radio {
   & + label {
+    color: $ds-neutral-900;
+
     &::before {
       content: '';
 
@@ -81,7 +89,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-neutral-400;
+      border: 1px solid $ds-neutral-500;
       border-radius: 50%;
 
       background-color: white;
@@ -101,13 +109,18 @@
 
 .p-radio:checked {
   & + label::before {
-    border-color: $ds-purple-600;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-purple-600)}"/></svg>');
+    border-color: $ds-neutral-900;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 20 20" stroke="white" stroke-width="4" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="50%" fill="#{util.url-encoded-color($ds-neutral-900)}"/></svg>');
   }
 }
 
 .p-radio:focus-visible + label {
-  outline: 1px solid $ds-purple-600;
+  border: 1px solid $ds-neutral-900;
+  outline: 1px solid $ds-neutral-900;
+
+   &:before {
+    border: 1px solid $ds-neutral-900;
+   }
 }
 
 .p-radio:disabled {
@@ -117,12 +130,14 @@
   }
 
   + .p-label--bordered:hover {
-    border-color: $ds-neutral-400;
+    border-color: $ds-neutral-700;
   }
 }
 
 .p-checkbox {
   & + label {
+    color: $ds-neutral-900;
+
     &::before {
       content: '';
 
@@ -136,7 +151,7 @@
       height: 16px;
       min-height: 16px;
 
-      border: 1px solid $ds-neutral-400;
+      border: 1px solid $ds-neutral-500;
       border-radius: 4px;
 
       background-color: white;
@@ -146,12 +161,12 @@
   }
 }
 
-.p-checkbox:focus,
-.p-radio:focus {
+.p-checkbox:active,
+.p-radio:active {
   & + label {
     &::before {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($color: $ds-purple-600, $alpha: 0.5);
+      box-shadow: 0 0 0 1px $ds-neutral-900;
     }
   }
 }
@@ -161,15 +176,14 @@
     background-image: url('./assets/checkmark.svg');
     background-repeat: no-repeat;
     background-position: center;
-
-    background-color: $ds-purple-600;
-
-    border-color: $ds-purple-600;
+    background-color: $ds-neutral-900;
+    border: 1px solid transparent;
   }
 }
 
 .p-checkbox:focus-visible + label {
-  outline: 1px solid $ds-purple-600;
+  border: 1px solid $ds-neutral-900;
+  outline: 1px solid $ds-neutral-900;
 }
 
 .p-checkbox--no-icon + label::before {
@@ -184,7 +198,7 @@
 
   min-height: 48px;
   line-height: 24px;
-  color: $ds-neutral-900;
+  color: $ds-neutral-700;
 
   &--bordered {
     align-items: center;
@@ -196,7 +210,7 @@
     background-color: white;
 
     &:hover {
-      border-color: $ds-purple-600;
+      border-color: $ds-neutral-600;
     }
 
     transition: 0.3s border-color, 0.3s background-color;
@@ -205,8 +219,8 @@
 
 input:checked[type='radio'] + .p-label--bordered,
 input:checked[type='checkbox'] + .p-label--bordered {
-  border-color: $ds-purple-600;
-  background-color: $ds-purple-300;
+  border-color: $ds-neutral-900;
+  background-color: $ds-neutral-50;
 }
 
 .p-label-container {
@@ -249,16 +263,17 @@ input:checked[type='checkbox'] + .p-label--bordered {
 
   &:hover {
     color: $ds-neutral-800 !important;
-    border-color: $ds-purple-600;
+    border-color: $ds-neutral-900;
   }
 
   &:invalid {
-    color: $ds-neutral-600;
+    color: $ds-neutral-900;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px $ds-purple-600;
+    box-shadow: 0 0 0 1px $ds-neutral-900;
+    border-color: $ds-neutral-900;
   }
 
   & option {

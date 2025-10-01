@@ -36,7 +36,7 @@ const UploadFileCell: React.FC<Props> = ({
 
   const mapFileIconColor: { [k in UploadStatus]: Color } = {
     UPLOADING: 'purple-600',
-    COMPLETE: 'neutral-600',
+    COMPLETE: 'neutral-900',
     ERROR: 'red-500',
   };
 
@@ -101,7 +101,7 @@ const UploadFileCell: React.FC<Props> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 hideLabel
-                variant="filledWhite"
+                variant="textBlack"
                 className={classnames('mr16', styles.button)}
                 leftIcon={
                   <EyeVisionIcon noMargin color={'neutral-600'} size={24} />
@@ -125,7 +125,7 @@ const UploadFileCell: React.FC<Props> = ({
                   />
                 }
                 hideLabel
-                variant="filledWhite"
+                variant="textBlack"
               >
                 Delete file
               </Button>

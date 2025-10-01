@@ -190,9 +190,6 @@ const ComparisonTable = <T extends { id: number }>(
                         )}
                         label={headerGroup.label}
                         headerClassName="p24 br8"
-                        isOpen={selectedSection === idString}
-                        onOpen={() => setSelectedSection(idString)}
-                        onClose={() => setSelectedSection('')}
                       >
                         <ScrollSyncPane>
                           <div
@@ -277,7 +274,7 @@ const ComparisonTable = <T extends { id: number }>(
               <div>
                 <button
                   className={classNames(
-                    'w100 d-flex p-a p-h4 c-pointer',
+                    'w100 d-flex p-h4 c-pointer',
                     baseStyles['show-details-button'],
                     classNameOverrides?.hideDetailsButton
                   )}

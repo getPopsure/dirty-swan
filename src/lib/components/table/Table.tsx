@@ -178,9 +178,8 @@ const Table = ({
         <Card
           data-testid="show-hide-details"
           classNames={{
-            buttonWrapper: 'm8 mt32',
+            buttonWrapper: classNames(styles.cardButton, 'm8 mt32'),
             title: 'd-flex gap8 ai-center jc-center fw-bold',
-            wrapper: 'bg-neutral-100',
           }}
           title={
             <>
@@ -197,7 +196,7 @@ const Table = ({
           actionIcon={null}
           dropShadow={false}
           titleVariant="small"
-          density="compact"
+          density="xsmall"
           onClick={() => setShouldHideDetails((current) => !current)}
         />
       )}

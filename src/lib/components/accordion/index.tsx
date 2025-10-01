@@ -87,7 +87,8 @@ const Accordion = ({
             <Card
               title={question}
               titleVariant="small"
-              density='compact'
+              density='xsmall'
+              variant='transparent'
               icon={icon}
               classNames={{
                 icon: classnamesUtil(

@@ -1,4 +1,36 @@
 @use '../../../scss/public/colors' as *;
+@use '../../../scss/private/borders/default' as *;
+
+.wrapper {
+  background-color: $ds-white;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+
+  &--default {
+    background-color: $ds-white;
+
+    &NoShadow {
+      border: 1px solid $ds-neutral-200;
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &--outline {
+    background-color: $ds-white;
+    border: $border-strong-default;
+  }
+
+  &--secondary {
+    background-color: $ds-purple-200;
+  }
+
+  &--primary {
+    background-color: $ds-orange-300;
+  }
+}
 
 .button {
   background-color: transparent;
@@ -7,47 +39,125 @@
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   border-radius: 8px;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
 
-  &:hover {
-    outline: 1px solid $ds-purple-600;
-    color: $ds-purple-600;
+  &:hover .wrapper {
+    &--default {
+      border: $border-strong-default;
+    }
+
+    &--transparent {
+      background-color: $ds-neutral-50;
+      border-color: transparent;
+    }
+
+    &--outline {
+      background-color: $ds-white;
+      border: $border-strong-active;
+    }
+
+    &--secondary {
+      background-color: $ds-purple-200;
+      border-color: $ds-purple-500;
+    }
+
+    &--primary {
+      background-color: $ds-orange-300;
+      border-color: $ds-orange-600;
+    }
   }
 
-  &:focus-visible {
-    outline: 2px solid $ds-purple-600;
-    color: $ds-purple-600;
+  &:focus-visible .wrapper {
+    border-color: $ds-neutral-900;
+    box-shadow: inset 0 0 0 1px $ds-neutral-900;
+
+    &--default {
+      border-color: $ds-neutral-900;
+    }
+
+    &--outline {
+      border-color: $ds-neutral-900;
+    }
+
+    &--transparent {
+      background-color: $ds-neutral-200;
+    }
+  }
+
+  &:active .wrapper {
+    border-color: $ds-neutral-500;
+    box-shadow: inset 0 0 0 1px $ds-neutral-500;
+
+    &--outline {
+      border-color: $ds-neutral-900;
+      box-shadow: inset 0 0 0 1px $ds-neutral-900;
+    }
+
+    &--transparent {
+      background-color: $ds-neutral-200;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &--primary {
+      border-color: $ds-orange-600;
+      box-shadow: inset 0 0 0 1px $ds-orange-600;
+    }
+
+    &--secondary {
+      border-color: $ds-purple-600;
+      box-shadow: inset 0 0 0 1px $ds-purple-600;
+    }
   }
 }
 
-.wrapper {
-  background-color: $ds-white;
+.smallPadding {
+  padding: 20px!important;
 }
 
 .icon {
   margin-right: 12px;
-  color: $ds-purple-600;
+  color: $ds-neutral-900;
 
-  &balanced {
-    margin-right: 16px;
-  }
+  &Density {
+    &--small {
+      margin-right: 14px;
+    }
 
-  &spacious {
-    margin-right: 24px;
+    &--medium {
+      margin-right: 16px;
+    }
+
+    &--large {
+      margin-right: 20px;
+    }
   }
 }
 
 .actionIcon {
+  color: $ds-neutral-900;
   margin-left: 12px;
 
-  &balanced {
-    margin-left: 16px;
-  }
+  &Density {
+    &--small {
+      margin-right: 14px;
+    }
 
-  &spacious {
-    margin-left: 24px;
+    &--medium {
+      margin-right: 16px;
+    }
+
+    &--large {
+      margin-right: 20px;
+    }
   }
 }
 
 .description {
   color: $ds-neutral-700;
+
+  &--primary {
+    color: $ds-neutral-800;
+  }
 }
