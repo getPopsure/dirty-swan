@@ -1,6 +1,7 @@
 import AnimateHeight from 'react-animate-height';
 
 import styles from './AccordionItem.module.scss';
+import { useState } from 'react';
 
 const ChevronSVG = ({ className }: { className?: string }) => (
   <svg
@@ -25,25 +26,16 @@ export const AccordionItem = ({
   children,
   className = '',
   headerClassName = '',
-  isOpen,
-  onOpen,
-  onClose,
   label,
 }: {
   children: React.ReactNode | string;
   className?: string;
   headerClassName?: string;
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
   label: React.ReactNode;
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
-    if (!isOpen) {
-      onOpen();
-    } else {
-      onClose();
-    }
+    setIsOpen(!isOpen);
   };
 
   return (
