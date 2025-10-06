@@ -72,11 +72,10 @@ export const Calendar = ({
         onClick={() => setCalendarOpen(!isOpen)}
         data-testid="calendar-button"
         hideLabel
-        variant='filledBlack'
-        leftIcon={<CalendarIcon />}
+        variant='textBlack'
         type="button"
       >
-        Select date
+        <CalendarIcon size={24} />
       </Button>
 
       {isOpen && (

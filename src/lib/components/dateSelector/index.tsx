@@ -233,7 +233,7 @@ export const DateSelector = ({
 
   return (
     <div>
-      <div className="d-flex ai-center">
+      <div className="d-flex">
         <div className={classNames(styles.container, "d-flex gap8")}>
           <div className={"d-flex gap8 jc-between"}>
             <Input {...getInputProps('day', 0)} />

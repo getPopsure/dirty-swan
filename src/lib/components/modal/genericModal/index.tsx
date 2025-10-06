@@ -143,7 +143,7 @@ const InnerModal = ({
                   styles.footer
                 )}
               >
-                <div className="p24 pt16">{footer}</div>
+                <div className="p24 pt16 pb32">{footer}</div>
               </div>
             )}
           </div>

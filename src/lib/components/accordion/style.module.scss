@@ -41,24 +41,22 @@
 
 .buttonWrapper {
   background-color: transparent!important;
-  color: $ds-purple-600;
+  color: $ds-neutral-900;
   outline-offset: -4px;
 
   &Default {
     outline-offset: 0;
   }
 
-  &:hover,
-  &:focus-visible {
-    background: $ds-purple-100;
-
+  &:focus-visible,
+  &:hover {
     .icon {
-      color: $ds-purple-600!important;
+      color: $ds-neutral-900!important;
     }
 
     .question,
     .chevron{
-      color: $ds-purple-600;
+      color: $ds-neutral-900;
     }
   }
 
