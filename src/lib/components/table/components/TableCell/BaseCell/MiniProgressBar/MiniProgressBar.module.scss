@@ -1,12 +1,14 @@
 @use "../../../../../../scss/public/colors" as *;
 
-$defaultColor: $ds-purple-300;
-$oneOrTwoColor: $ds-neutral-600;
-$threeOrFourColor: $ds-blue-300;
-$allFilledColor: $ds-purple-600;
+$defaultColor: $ds-neutral-200;
+$oneColor: $ds-neutral-600;
+$twoColor: $ds-neutral-600;
+$threeColor: $ds-neutral-600;
+$fourColor: $ds-neutral-700;
+$allFilledColor: $ds-neutral-900;
 
 .progressBar {
-  margin-bottom: 4px;
+  margin-top: 4px;
 
   rect {
     fill: $defaultColor;
@@ -15,25 +17,25 @@ $allFilledColor: $ds-purple-600;
 
 .filledBars1 {
   rect:first-child {
-    fill: $oneOrTwoColor;
+    fill: $oneColor;
   }
 }
 
 .filledBars2 {
   rect:nth-child(-n + 2) {
-    fill: $oneOrTwoColor;
+    fill: $twoColor;
   }
 }
 
 .filledBars3 {
   rect:nth-child(-n + 3) {
-    fill: $threeOrFourColor;
+    fill: $threeColor;
   }
 }
 
 .filledBars4 {
   rect:nth-child(-n + 4) {
-    fill: $threeOrFourColor;
+    fill: $fourColor;
   }
 }
 

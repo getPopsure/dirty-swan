@@ -29,7 +29,7 @@ const InformationBox = ({
     error: 'red-500',
     success: 'green-500',
     information: 'blue-500',
-    neutral: 'purple-600',
+    neutral: 'neutral-900',
   };
 
   return (

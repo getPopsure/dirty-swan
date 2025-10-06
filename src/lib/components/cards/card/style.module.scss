@@ -1,7 +1,7 @@
 @use '../../../scss/public/colors' as *;
 @use '../../../scss/private/borders/default' as *;
 
-.wrapper {
+@mixin wrapper-base-styles {
   background-color: $ds-white;
   border: 1px solid transparent;
   transition: all 0.2s ease-in-out;
@@ -30,6 +30,10 @@
   &--primary {
     background-color: $ds-orange-300;
   }
+}
+
+.wrapper {
+  @include wrapper-base-styles;
 }
 
 .button {
@@ -108,6 +112,13 @@
     &--secondary {
       border-color: $ds-purple-600;
       box-shadow: inset 0 0 0 1px $ds-purple-600;
+    }
+  }
+
+  @media (pointer: coarse) {
+    &:hover .wrapper,
+    &:active .wrapper {
+      @include wrapper-base-styles;
     }
   }
 }
