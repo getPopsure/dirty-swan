@@ -1,13 +1,125 @@
+@use '../../scss/public/colors' as *;
 
 .badge {
-  &--small,
+  border: 1px solid $ds-white;
+  position: relative;
+  gap: 6px;
+
+  &--xsmall {
+    padding: 4px 10px;
+  }
+  
+  &--small {
+    padding: 6px 12px;
+  }
+
   &--medium {
-    padding-bottom: 6px;
-    padding-top: 6px;
+    padding: 6px 16px;
   }
  
   &--large {
-    padding-bottom: 8px;
-    padding-top: 8px;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  // Variants
+  &--white {
+    background-color: $ds-white;
+    border-color: $ds-neutral-100;
+  }
+
+  &--neutral {
+    background-color: $ds-neutral-100;
+    border-color: $ds-neutral-200;
+  }
+
+  &--neutralStrong {
+    background-color: $ds-neutral-300;
+    border-color: $ds-neutral-300;
+  }
+
+  &--information {
+    background-color: $ds-blue-100;
+    border-color: $ds-blue-200;
+  }
+
+  &--warning,
+  &--primary {
+    background-color: $ds-orange-300;
+    border-color: $ds-orange-400;
+  }
+
+  &--error {
+    background-color: $ds-red-100;
+    border-color: $ds-red-200;
+  }
+
+  &--success {
+    background-color: $ds-green-100;
+    border-color: $ds-green-200;
+  }
+
+  &--black {
+    background-color: $ds-neutral-900;
+    border-color: $ds-neutral-900;
+    color: $ds-white;
+  }
+
+  &--secondary {
+    background-color: $ds-purple-200;
+    border-color: $ds-purple-300;
+  }
+
+  &--secondaryStrong {
+    background-color: $ds-purple-600;
+    border-color: $ds-purple-600;
+    color: $ds-white;
+  }
+}
+
+.badgeDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  &--primary,
+  &--warning {
+    background-color: $ds-orange-700;
+  }
+  &--white {
+    background-color: $ds-neutral-500;
+  }
+
+  &--neutral {
+    background-color: $ds-neutral-600;
+  }
+
+  &--neutralStrong {
+    background-color: $ds-neutral-700;
+  }
+
+  &--information {
+    background-color: $ds-blue-700;
+  }
+
+  &--error {
+    background-color: $ds-red-700;
+  }
+
+  &--success {
+    background-color: $ds-green-700;
+  }
+
+  &--black {
+    background-color: $ds-white;
+  }
+
+  &--secondary {
+    background-color: $ds-purple-700;
+  }
+
+  &--secondaryStrong {
+    background-color: $ds-white;
   }
 }
