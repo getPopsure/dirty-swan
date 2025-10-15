@@ -266,6 +266,7 @@ export const TableStory = ({
   stickyHeaderTopOffset,
   textOverrides,
   title,
+  activeSection,
 }: TableProps) => {
   const [price, setPrice] = useState(999);
   return (
@@ -305,6 +306,7 @@ export const TableStory = ({
         stickyHeaderTopOffset={stickyHeaderTopOffset}
         textOverrides={textOverrides}
         title={title}
+        activeSection={activeSection}
       />
     </div>
   );

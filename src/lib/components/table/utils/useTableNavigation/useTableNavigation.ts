@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 interface UseTableNavigationReturn {
   activeSection: number;
   navigateTable: (increase?: boolean) => void;
+  setActiveSection: (section: number) => void;
 }
 
 interface UseTableNavigationProps {
@@ -75,5 +76,6 @@ export const useTableNavigation = ({
   return {
     activeSection: activeSection + 1,
     navigateTable: handleScrollToSection,
+    setActiveSection,
   }
 }
