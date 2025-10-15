@@ -1,6 +1,6 @@
 import { TableCell } from './components/TableCell/TableCell';
 import { BottomOrRegularModal } from '../modal';
-import { ReactNode, useCallback, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '../icon';
 import { Card } from '../cards/card';
 
@@ -41,6 +41,7 @@ export interface TableProps {
   tableData: TableData;
   textOverrides?: TextOverrides;
   title: string;
+  activeSection?: number;
 }
 
 const defaultTextOverrides = {
@@ -63,6 +64,7 @@ const Table = ({
   tableData,
   textOverrides: definedTextOverrides,
   title,
+  activeSection: externalActiveSection
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -74,7 +76,7 @@ const Table = ({
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
-  const { activeSection, navigateTable } = useTableNavigation({
+  const { activeSection, navigateTable, setActiveSection } = useTableNavigation({
     enabled: isMobile,
     containerRef,
     onSelectionChanged,
@@ -99,6 +101,12 @@ const Table = ({
     onModalOpen?.({ body, title });
     setInfoModalData({ body, title });
   }, []);
+
+  useEffect(() => {
+    if (externalActiveSection && externalActiveSection !== activeSection) {
+      setActiveSection(externalActiveSection - 1);
+    }
+  }, [externalActiveSection]);
 
   return (
     <div className={classNames(styles.wrapper, 'bg-white')}>
