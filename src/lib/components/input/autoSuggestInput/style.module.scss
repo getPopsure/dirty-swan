@@ -19,7 +19,7 @@
   z-index: 100;
   overflow: hidden;
   border-radius: 8px;
-  border: 1px solid var(--ds-purple-600);
+  border: 1px solid var(--ds-neutral-600);
 
   width: 100%;
   height: fit-content;
@@ -70,5 +70,5 @@
 }
 
 .suggestionHighlighted {
-  background-color: var(--ds-purple-300);
+  background-color: var(--ds-orange-100);
 }
