@@ -51,7 +51,6 @@ const TableCell = React.memo(
           [styles.thNavigation]: isNavigation,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
-          pl16: isFirstCellInRow,
         })}
         colSpan={isBelowDesktop && cellProps.type === 'CARD' ? 2 : colSpan}
       >

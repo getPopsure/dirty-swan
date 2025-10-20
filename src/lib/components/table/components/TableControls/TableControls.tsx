@@ -23,7 +23,7 @@ const TableControls = ({
     <div
       aria-hidden
       className={classNames(
-        'd-flex ai-stretch jc-between bg-white px8',
+        'd-flex ai-stretch jc-between bg-white',
         styles.stickyHeader
       )}
       style={{ top: `${stickyHeaderTopOffset}px` }}
