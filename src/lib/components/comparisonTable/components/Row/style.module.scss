@@ -34,7 +34,11 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
   padding: 16px 8px;
 
   &:first-child {
-    padding: 16px 8px 16px 16px;
+    padding: 16px 8px 16px 0;
+
+    @include p-size-tablet {
+      padding: 16px 8px 16px 16px;
+    }
   }
 
   color: $ds-neutral-900;

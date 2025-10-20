@@ -36,6 +36,10 @@
     width: 1px;
     background-color: $ds-neutral-100;
   }
+
+  @include p-size-tablet {
+    padding-left: 16px;
+  }
 }
 
 .fixedCard {
