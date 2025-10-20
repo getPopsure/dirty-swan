@@ -299,7 +299,7 @@ const AutocompleteAddress = ({
                 className={`wmx2 ${styles['house-number-input']}`}
                 data-cy="autocomplete-house-number"
                 key="autocomplete-house-number"
-                placeholder={placeholders?.houseNumber || 'House Number'}
+                placeholder={placeholders?.houseNumber || 'House number'}
                 value={address?.houseNumber || ''}
                 name="houseNumber"
                 onChange={onManualAddressChange()}
@@ -312,7 +312,7 @@ const AutocompleteAddress = ({
               key="autocomplete-additional-info"
               placeholder={
                 placeholders?.additionalInformation ||
-                'Additional information (C/O, apartment, …)'
+                'Additional information (C/O, apartment, etc.)'
               }
               value={address?.additionalInformation || ''}
               name="additionalInformation"
