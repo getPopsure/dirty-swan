@@ -87,10 +87,6 @@ export const BaseCell = ({
           [styles.maxWidth]: modalContent && align === 'center',
         })}
       >
-        {progressBarValue !== undefined && (
-          <MiniProgressBar nFilledBars={progressBarValue} />
-        )}
-
         <div className="d-flex ai-center">
           {rating?.value && (
             <span
@@ -175,6 +171,10 @@ export const BaseCell = ({
             )}
           </div>
         </div>
+
+        {progressBarValue !== undefined && (
+          <MiniProgressBar nFilledBars={progressBarValue} />
+        )}
 
         {description && (
           <div
