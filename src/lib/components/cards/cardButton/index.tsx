@@ -29,8 +29,8 @@ export const CardButton = ({
           className,
           { [styles.containerDisabled]: disabled }
         ),
-        label: 'tc-neutral-700',
-        description: 'tc-neutral-900 p-p',
+        label: 'tc-neutral-900',
+        description: 'tc-neutral-700 p-p',
         contentWrapper: styles.contentWrapper
       }}
       density='xsmall'
