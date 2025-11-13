@@ -208,6 +208,24 @@ export const CardAsOtherComponents = () => (
   </div>
 );
 
+export const CardDisabledStates = () => (
+  <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
+    <Card
+      as="button"
+      onClick={() => {}}
+      title="Card with an a tag"
+      density='xsmall'
+    />
+    <Card
+      as="button"
+      onClick={() => {}}
+      title="Card with an a tag"
+      density='xsmall'
+      disabled
+    />
+  </div>
+);
+
 export const CardDensities = () => (
   <div className='d-flex fd-column gap16 p24 bg-neutral-100'>
     <Card
