@@ -38,6 +38,7 @@ type CardOwnProps<E extends ElementType = CardDefaultAsType> = {
   showActionIcon?: boolean;
   verticalAlignment?: VerticalAlignmentType;
   variant?: CardVariant
+  disabled?: boolean;
 } 
 
 export type CardProps<E extends ElementType = CardDefaultAsType> = CardOwnProps<E> &
@@ -60,6 +61,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
   showActionIcon,
   verticalAlignment = 'center',
   variant = 'default',
+  disabled,
   ...rest
 }: CardProps<E>) => {
   const hideActionIcon = typeof actionIcon !== 'undefined' && !actionIcon;
@@ -73,8 +75,9 @@ const Card = <E extends ElementType = CardDefaultAsType>({
         classNames?.buttonWrapper,
         'd-flex w100 ai-stretch',
         {
-          'c-pointer': propsWithActionIcon,
-          [styles.button]: propsWithActionIcon
+          'c-pointer': propsWithActionIcon && !disabled,
+          [styles.button]: propsWithActionIcon,
+          [styles.buttonDisabled]: propsWithActionIcon && disabled,
         },
       )}
       {...onClick && { 

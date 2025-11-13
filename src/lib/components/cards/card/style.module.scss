@@ -46,7 +46,7 @@
   border: 1px solid transparent;
   outline: 1px solid transparent;
 
-  &:hover .wrapper {
+  &:not(.buttonDisabled):hover .wrapper {
     &--default {
       border: $border-strong-default;
     }
@@ -72,7 +72,7 @@
     }
   }
 
-  &:focus-visible .wrapper {
+  &:not(.buttonDisabled):focus-visible .wrapper {
     border-color: $ds-neutral-900;
     box-shadow: inset 0 0 0 1px $ds-neutral-900;
 
@@ -89,7 +89,7 @@
     }
   }
 
-  &:active .wrapper {
+  &:not(.buttonDisabled):active .wrapper {
     border-color: $ds-neutral-500;
     box-shadow: inset 0 0 0 1px $ds-neutral-500;
 
@@ -113,6 +113,11 @@
       border-color: $ds-purple-600;
       box-shadow: inset 0 0 0 1px $ds-purple-600;
     }
+  }
+
+  &Disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 
   @media (pointer: coarse) {
