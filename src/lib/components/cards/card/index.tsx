@@ -84,6 +84,7 @@ const Card = <E extends ElementType = CardDefaultAsType>({
         onClick, 
         type: "button"
       }}
+      disabled={disabled}
       {...rest}
     >
       <div
