@@ -40,62 +40,64 @@ const story = {
   },
   args: {
     title: 'Knowledge Base',
-    children: 'Find the answers you\'re looking for in our comprehensive, fact-checked library of articles and resources.',
+    children:
+      "Find the answers you're looking for in our comprehensive, fact-checked library of articles and resources.",
     topIcon: <BookOpenIcon size={40} />,
     topIconType: 'iconWithBackground',
     showIcon: true,
     disabled: false,
     className: '',
-  }
+  },
 };
 
-export const InfoCardStory = (args: InfoCardProps) => {
-  return (
-    <div className='bg-neutral-50 p32'>
-      <div className='wmx4'>
-        <InfoCard
-          {...args}
-          onClick={() => console.log('InfoCard clicked!')}
-        >
-          {args.children}
-        </InfoCard>
+export const InfoCardStory = {
+  render: (args: InfoCardProps) => {
+    return (
+      <div className="bg-neutral-50 p32">
+        <div className="wmx4">
+          <InfoCard {...args} onClick={() => console.log('InfoCard clicked!')}>
+            {args.children}
+          </InfoCard>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+
+  name: 'InfoCard',
+};
 
 export const IconTypes = () => {
   return (
-    <div className='bg-neutral-50 p32'>
-      <div className='d-flex gap32 flex-wrap'>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Book Icon</div>
+    <div className="bg-neutral-50 p32">
+      <div className="d-flex gap32 flex-wrap">
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Book Icon</div>
           <InfoCard
-            title='Knowledge Base'
+            title="Knowledge Base"
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='iconWithBackground'
+            topIconType="iconWithBackground"
             onClick={() => console.log('Book clicked!')}
           >
             Find answers in our comprehensive library of articles.
           </InfoCard>
         </div>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Heart Icon</div>
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Heart Icon</div>
           <InfoCard
-            title='Favorites'
+            title="Favorites"
             topIcon={<HeartIcon size={40} />}
-            topIconType='iconWithBackground'
+            topIconType="iconWithBackground"
             onClick={() => console.log('Heart clicked!')}
           >
             Save and organize your favorite items.
           </InfoCard>
         </div>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Star Icon</div>
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Star Icon</div>
           <InfoCard
-            title='Premium Features'
+            title="Premium Features"
             topIcon={<StarIcon size={40} />}
-            topIconType='iconWithBackground'
+            topIconType="iconWithBackground"
             onClick={() => console.log('Star clicked!')}
           >
             Unlock advanced features with premium.
@@ -104,53 +106,59 @@ export const IconTypes = () => {
       </div>
     </div>
   );
-}
+};
 
 export const TopIconTypes = () => {
   return (
-    <div className='bg-neutral-50 p32 m-auto wmx12'>
-      <div className='d-flex gap32 flex-wrap'>
-        <div className='w50'>
-          <div className='mb16 fw-bold'>Icon Type</div>
+    <div className="bg-neutral-50 p32 m-auto wmx12">
+      <div className="d-flex gap32 flex-wrap">
+        <div className="w50">
+          <div className="mb16 fw-bold">Icon Type</div>
           <InfoCard
-            title='Help Center'
+            title="Help Center"
             topIcon={<img src="https://placehold.co/80x80" alt="Banner" />}
-            topIconType='icon'
+            topIconType="icon"
             onClick={() => console.log('Icon type clicked!')}
           >
             Icon is displayed in a circular way without any background.
           </InfoCard>
         </div>
-        <div className='w50'>
-          <div className='mb16 fw-bold'>Icon with background Type</div>
+        <div className="w50">
+          <div className="mb16 fw-bold">Icon with background Type</div>
           <InfoCard
-            title='Help Center'
+            title="Help Center"
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='iconWithBackground'
+            topIconType="iconWithBackground"
             onClick={() => console.log('Icon type clicked!')}
           >
             Icon is displayed in a circular background with the orange color.
           </InfoCard>
         </div>
       </div>
-      <div className='d-flex gap32 flex-wrap mt40'>
-        <div className='w50'>
-          <div className='mb16 fw-bold'>Image Type</div>
+      <div className="d-flex gap32 flex-wrap mt40">
+        <div className="w50">
+          <div className="mb16 fw-bold">Image Type</div>
           <InfoCard
-            title='Image Gallery'
-            topIcon={<img src="https://placehold.co/80x80" alt="Image" style={{borderRadius: '8px'}} />}
-            topIconType='image'
+            title="Image Gallery"
+            topIcon={
+              <img
+                src="https://placehold.co/80x80"
+                alt="Image"
+                style={{ borderRadius: '8px' }}
+              />
+            }
+            topIconType="image"
             onClick={() => console.log('Image type clicked!')}
           >
             Image is displayed as-is without background.
           </InfoCard>
         </div>
-        <div className='w50'>
-          <div className='mb16 fw-bold'>Banner Type</div>
+        <div className="w50">
+          <div className="mb16 fw-bold">Banner Type</div>
           <InfoCard
-            title='Featured Content'
+            title="Featured Content"
             topIcon={<img src="https://placehold.co/600x200" alt="Banner" />}
-            topIconType='banner'
+            topIconType="banner"
             onClick={() => console.log('Banner type clicked!')}
           >
             Banner spans the full width of the card.
@@ -159,41 +167,41 @@ export const TopIconTypes = () => {
       </div>
     </div>
   );
-}
+};
 
 export const States = () => {
   return (
-    <div className='bg-neutral-50 p32'>
-      <div className='d-flex gap32 flex-wrap'>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Default State</div>
+    <div className="bg-neutral-50 p32">
+      <div className="d-flex gap32 flex-wrap">
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Default State</div>
           <InfoCard
-            title='Default Card'
+            title="Default Card"
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='icon'
+            topIconType="icon"
             onClick={() => console.log('Default clicked!')}
           >
             This is a default interactive card.
           </InfoCard>
         </div>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Disabled State</div>
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Disabled State</div>
           <InfoCard
-            title='Disabled Card'
+            title="Disabled Card"
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='icon'
+            topIconType="icon"
             disabled={true}
             onClick={() => console.log('This should not fire')}
           >
             This card is disabled and non-interactive.
           </InfoCard>
         </div>
-        <div className='wmx4'>
-          <div className='mb16 fw-bold'>Without Arrow Icon</div>
+        <div className="wmx4">
+          <div className="mb16 fw-bold">Without Arrow Icon</div>
           <InfoCard
-            title='No Arrow'
+            title="No Arrow"
             topIcon={<BookOpenIcon size={40} />}
-            topIconType='icon'
+            topIconType="icon"
             showIcon={false}
             onClick={() => console.log('No arrow clicked!')}
           >
@@ -203,8 +211,6 @@ export const States = () => {
       </div>
     </div>
   );
-}
-
-InfoCardStory.storyName = "InfoCard";
+};
 
 export default story;

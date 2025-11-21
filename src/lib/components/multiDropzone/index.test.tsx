@@ -81,9 +81,7 @@ describe('MultiDropzone component', () => {
         fireEvent.change(input, { target: { files: [file] } });
       });
 
-      expect(
-        getByText('File type must be DOC, DOCX, PDF')
-      ).toBeInTheDocument();
+      expect(getByText('File type must be DOC, DOCX, PDF')).toBeInTheDocument();
     });
 
     it('should remove wrong filetype error message', async () => {
@@ -100,9 +98,7 @@ describe('MultiDropzone component', () => {
 
       await user.click(getByTestId('remove-button'));
 
-      expect(
-        queryByText('File type must be PDF')
-      ).not.toBeInTheDocument();
+      expect(queryByText('File type must be PDF')).not.toBeInTheDocument();
     });
   });
 
@@ -127,9 +123,7 @@ describe('MultiDropzone component', () => {
     it('should show image accept file type label', () => {
       const screen = setup({ accept: 'image' });
 
-      expect(
-        screen.getByText('Supports images')
-      ).toBeInTheDocument();
+      expect(screen.getByText('Supports images')).toBeInTheDocument();
     });
 
     it('should show document accept file type label', () => {
@@ -146,7 +140,9 @@ describe('MultiDropzone component', () => {
         },
       });
 
-      expect(screen.getByText('Supports images, videos and documents')).toBeInTheDocument();
+      expect(
+        screen.getByText('Supports images, videos and documents')
+      ).toBeInTheDocument();
     });
 
     it('should show disabled text if is uploading', () => {
@@ -174,7 +170,7 @@ describe('MultiDropzone component', () => {
 
       screen.getByTestId('remove-button').click();
 
-      expect(mockOnRemoveFile).toBeCalledWith(uploadedFilesMock.id);
+      expect(mockOnRemoveFile).toHaveBeenCalledWith(uploadedFilesMock.id);
     });
 
     it('should show uploaded file with uploading label', () => {

@@ -2,7 +2,7 @@ import { IconWrapper, IconWrapperProps } from './IconWrapper';
 import * as icons from './icons';
 
 const iconsList = Object.keys(icons);
-type IconKey = typeof iconsList[number];
+type IconKey = (typeof iconsList)[number];
 
 const story = {
   title: 'JSX/Icon',
@@ -11,8 +11,8 @@ const story = {
     icon: {
       description: 'Identifier key of the icon',
       table: {
-        type: { 
-          summary: 'IconKey (see Available Icons story for all icons)'
+        type: {
+          summary: 'IconKey (see Available Icons story for all icons)',
         },
       },
       control: 'select',
@@ -28,8 +28,8 @@ const story = {
       description: 'Class name for updating components styles',
       control: 'text',
       table: {
-        type: { 
-          summary: 'Your own custom classnames can be added here'
+        type: {
+          summary: 'Your own custom classnames can be added here',
         },
       },
     },
@@ -39,23 +39,24 @@ const story = {
     size: 32,
     color: 'purple-600',
     noMargin: false,
-    className: ''
-  }
+    className: '',
+  },
 };
 
-export const IconStory = ({ color, className, icon, size }: IconWrapperProps & { icon: IconKey }) => {
-  // @ts-ignore
-  const Icon = icons?.[icon];
+export const IconStory = {
+  render: ({
+    color,
+    className,
+    icon,
+    size,
+  }: IconWrapperProps & { icon: IconKey }) => {
+    // @ts-ignore
+    const Icon = icons?.[icon];
 
-  return Icon && (
-    <Icon
-      size={size}
-      color={color}
-      className={className}
-    />
-  );
-}
+    return Icon && <Icon size={size} color={color} className={className} />;
+  },
 
-IconStory.storyName = "Icon";
+  name: 'Icon',
+};
 
 export default story;

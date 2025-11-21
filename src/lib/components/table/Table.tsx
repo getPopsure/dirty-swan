@@ -21,6 +21,8 @@ import {
   TableData,
 } from './types';
 
+export type { TableData } from './types';
+
 type TextOverrides = {
   showDetails?: string;
   hideDetails?: string;
@@ -64,7 +66,7 @@ const Table = ({
   tableData,
   textOverrides: definedTextOverrides,
   title,
-  activeSection: externalActiveSection
+  activeSection: externalActiveSection,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -76,15 +78,17 @@ const Table = ({
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
-  const { activeSection, navigateTable, setActiveSection } = useTableNavigation({
-    enabled: isMobile,
-    containerRef,
-    onSelectionChanged,
-  });
+  const { activeSection, navigateTable, setActiveSection } = useTableNavigation(
+    {
+      enabled: isMobile,
+      containerRef,
+      onSelectionChanged,
+    }
+  );
 
   const titleCell = {
     text: '',
-    ...tableData?.[0]?.rows?.[0]?.[0] || {},
+    ...(tableData?.[0]?.rows?.[0]?.[0] || {}),
   };
   const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
   const currentActiveSectionReplacements =
@@ -115,7 +119,7 @@ const Table = ({
           {titleCell?.text && (
             <TableCell
               {...titleCell}
-              align='left'
+              align="left"
               isNavigation
               isTopLeftCell
               type={undefined}
@@ -214,7 +218,7 @@ const Table = ({
         title={infoModalData?.title}
         onClose={() => setInfoModalData(null)}
       >
-        <div className={classNames(styles.modalContent, "pt8 p24 wmn6")}>
+        <div className={classNames(styles.modalContent, 'pt8 p24 wmn6')}>
           {modalContentRenderer
             ? modalContentRenderer(infoModalData?.body)
             : infoModalData?.body}

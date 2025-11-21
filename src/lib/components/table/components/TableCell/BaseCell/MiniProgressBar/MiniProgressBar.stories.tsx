@@ -18,12 +18,12 @@ const story = {
   },
 };
 
-export const MiniProgressBarStory = ({
-  nFilledBars,
-}: React.ComponentProps<typeof MiniProgressBar>) => (
-  <MiniProgressBar nFilledBars={nFilledBars} />
-);
+export const MiniProgressBarStory = {
+  render: ({ nFilledBars }: React.ComponentProps<typeof MiniProgressBar>) => (
+    <MiniProgressBar nFilledBars={nFilledBars} />
+  ),
 
-MiniProgressBarStory.storyName = 'MiniProgressBar';
+  name: 'MiniProgressBar',
+};
 
 export default story;

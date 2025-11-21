@@ -92,14 +92,15 @@ const initialData: TableData = [
         { text: '80%-100%' },
       ],
       [
-        { text: 'Operations',
+        {
+          text: 'Operations',
           modalContent: 'Operations info',
-          modalTitle: 'Custom operations modal title'
-         },
-        { 
+          modalTitle: 'Custom operations modal title',
+        },
+        {
           checkmarkValue: true,
           modalContent: 'Operations info column 2',
-          modalTitle: 'Custom operations modal title column 2'
+          modalTitle: 'Custom operations modal title column 2',
         },
         { checkmarkValue: false },
         { checkmarkValue: true },
@@ -257,59 +258,63 @@ const story = {
   },
 };
 
-export const TableStory = ({
-  collapsibleSections,
-  tableData,
-  hideColumns,
-  hideDetails,
-  hideRows,
-  stickyHeaderTopOffset,
-  textOverrides,
-  title,
-  activeSection,
-}: TableProps) => {
-  const [price, setPrice] = useState(999);
-  return (
-    <div>
-      <div className="d-flex fd-column p24 mb80 gap16 wmx5">
-        <label htmlFor="">Change price to see replacement in action: </label>
-        <Input
-          id="#stuff"
-          type="text"
-          onChange={(e) => setPrice(Number(e.target.value))}
-          value={price}
+export const TableStory = {
+  render: ({
+    collapsibleSections,
+    tableData,
+    hideColumns,
+    hideDetails,
+    hideRows,
+    stickyHeaderTopOffset,
+    textOverrides,
+    title,
+    activeSection,
+  }: TableProps) => {
+    const [price, setPrice] = useState(999);
+    return (
+      <div>
+        <div className="d-flex fd-column p24 mb80 gap16 wmx5">
+          <label htmlFor="">Change price to see replacement in action: </label>
+          <Input
+            id="#stuff"
+            type="text"
+            onChange={(e) => setPrice(Number(e.target.value))}
+            value={price}
+          />
+        </div>
+
+        <Table
+          cellReplacements={{
+            '#1': {
+              type: 'CTA',
+              title: 'Replaced!',
+              price: `€${price}`,
+              buttonCaption: 'I got replaced',
+              href: 'http://example.com',
+            },
+            '#2': {
+              type: 'BUTTON',
+              buttonCaption: 'I got replaced too',
+            },
+            '#3': {
+              description: 'per year',
+            },
+          }}
+          collapsibleSections={collapsibleSections}
+          tableData={tableData}
+          hideColumns={hideColumns}
+          hideDetails={hideDetails}
+          hideRows={hideRows}
+          stickyHeaderTopOffset={stickyHeaderTopOffset}
+          textOverrides={textOverrides}
+          title={title}
+          activeSection={activeSection}
         />
       </div>
+    );
+  },
 
-      <Table
-        cellReplacements={{
-          '#1': {
-            type: 'CTA',
-            title: 'Replaced!',
-            price: `€${price}`,
-            buttonCaption: 'I got replaced',
-            href: 'http://example.com',
-          },
-          '#2': {
-            type: 'BUTTON',
-            buttonCaption: 'I got replaced too',
-          },
-          '#3': {
-            description: 'per year',
-          },
-        }}
-        collapsibleSections={collapsibleSections}
-        tableData={tableData}
-        hideColumns={hideColumns}
-        hideDetails={hideDetails}
-        hideRows={hideRows}
-        stickyHeaderTopOffset={stickyHeaderTopOffset}
-        textOverrides={textOverrides}
-        title={title}
-        activeSection={activeSection}
-      />
-    </div>
-  );
+  name: 'Table',
 };
 
 export const TableDataType = () => {
@@ -338,7 +343,5 @@ type TableData = {
     </pre>
   );
 };
-
-TableStory.storyName = 'Table';
 
 export default story;

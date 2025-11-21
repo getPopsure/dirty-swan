@@ -26,27 +26,29 @@ const story = {
     showIcon: false,
     size: 'default',
     variant: 'information',
-  }
+  },
 };
 
-export const InformationBoxStory = ({
-  children,
-  showIcon,
-  title,
-  size,
-  variant,
-}: InformationBoxProps) => (
-  <div className='wmx6'>
-    <InformationBox
-      children={children}
-      showIcon={showIcon}
-      title={title}
-      size={size}
-      variant={variant}
-    />
-  </div>
-);
+export const InformationBoxStory = {
+  render: ({
+    children,
+    showIcon,
+    title,
+    size,
+    variant,
+  }: InformationBoxProps) => (
+    <div className="wmx6">
+      <InformationBox
+        children={children}
+        showIcon={showIcon}
+        title={title}
+        size={size}
+        variant={variant}
+      />
+    </div>
+  ),
 
-InformationBoxStory.storyName = "InformationBox";
+  name: 'InformationBox',
+};
 
 export default story;

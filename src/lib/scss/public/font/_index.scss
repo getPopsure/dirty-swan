@@ -1,2 +1,2 @@
-@import 'overrides';
-@import 'default';
+@use 'overrides';
+@forward 'default';

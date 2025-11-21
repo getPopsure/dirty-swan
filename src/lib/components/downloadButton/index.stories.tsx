@@ -8,7 +8,8 @@ const story = {
       description: 'Status of the button',
     },
     customFail: {
-      description: 'Customised error message. Only visible when button is on `FAILED` state.',
+      description:
+        'Customised error message. Only visible when button is on `FAILED` state.',
       control: 'text',
     },
     onDownload: {
@@ -19,42 +20,45 @@ const story = {
       },
     },
     className: {
-      description: 'This property allows to add custom styles to the component.',
-    }
+      description:
+        'This property allows to add custom styles to the component.',
+    },
   },
   args: {
     downloadStatus: 'INITIAL',
   },
   parameters: {
-    componentSubtitle: 'DownloadButton component displays progress and status of downloading files.',
+    componentSubtitle:
+      'DownloadButton component displays progress and status of downloading files.',
   },
 };
 
-export const DownloadButtonStory = ({
-  downloadStatus,
-  onDownload,
-  className,
-  customFail
-}: DownloadButtonProps) => (
-  <DownloadButton
-    className={className}
-    customFail={customFail}
-    downloadStatus={downloadStatus}
-    onDownload={onDownload}
-  />
-);
-
-DownloadButtonStory.storyName = "DownloadButton";
-
-export const CustomErrorMessage = ({
+export const DownloadButtonStory = {
+  render: ({
+    downloadStatus,
     onDownload,
-}: DownloadButtonProps) => (
-  <DownloadButton
-    customFail="Custom error message"
-    downloadStatus="FAILED"
-    onDownload={onDownload}
-  />
-);
+    className,
+    customFail,
+  }: DownloadButtonProps) => (
+    <DownloadButton
+      className={className}
+      customFail={customFail}
+      downloadStatus={downloadStatus}
+      onDownload={onDownload}
+    />
+  ),
 
+  name: 'DownloadButton',
+};
+
+export const CustomErrorMessage = {
+  render: ({ onDownload }: DownloadButtonProps) => (
+    <DownloadButton
+      customFail="Custom error message"
+      downloadStatus="FAILED"
+      onDownload={onDownload}
+    />
+  ),
+};
 
 export default story;

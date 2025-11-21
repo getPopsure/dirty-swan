@@ -8,8 +8,8 @@ const story = {
     values: {
       description: 'Array containing the text that needs to be displayed',
       table: {
-        type: { 
-          summary: 'string[] OR { title: string; subtitle: string;}[]'
+        type: {
+          summary: 'string[] OR { title: string; subtitle: string;}[]',
         },
       },
     },
@@ -19,7 +19,7 @@ const story = {
     onChange: {
       action: true,
       table: {
-        category: "Callbacks",
+        category: 'Callbacks',
       },
     },
   },
@@ -28,55 +28,52 @@ const story = {
     selectedIndex: 0,
   },
   parameters: {
-    componentSubtitle: 'A segmented control is a linear set of two or more segments, each of which functions as a mutually exclusive button.',
+    componentSubtitle:
+      'A segmented control is a linear set of two or more segments, each of which functions as a mutually exclusive button.',
   },
 };
 
-export const SegmentedControlStory = ({
-  onChange,
-  selectedIndex,
-  values
-}: SegmentedControlProps) => {
-  const [index, setIndex] = useState(selectedIndex);
+export const SegmentedControlStory = {
+  render: ({ onChange, selectedIndex, values }: SegmentedControlProps) => {
+    const [index, setIndex] = useState(selectedIndex);
 
-  const handleOnChange = (newIndex: number) => {
-    onChange?.(newIndex);
-    setIndex(newIndex);
-  };
+    const handleOnChange = (newIndex: number) => {
+      onChange?.(newIndex);
+      setIndex(newIndex);
+    };
 
-  return (
-    <SegmentedControl
-      values={values}
-      selectedIndex={index}
-      onChange={handleOnChange}
-    />
-  );
+    return (
+      <SegmentedControl
+        values={values}
+        selectedIndex={index}
+        onChange={handleOnChange}
+      />
+    );
+  },
+
+  name: 'SegmentedControl',
 };
 
-SegmentedControlStory.storyName = "SegmentedControl";
+export const SegmentedControlWithSubtitle = {
+  render: ({ onChange, selectedIndex, values }: SegmentedControlProps) => {
+    const [index, setIndex] = useState(selectedIndex);
 
-export const SegmentedControlWithSubtitle = ({
-  onChange,
-  selectedIndex,
-  values
-}: SegmentedControlProps) => {
-  const [index, setIndex] = useState(selectedIndex);
+    const handleOnChange = (newIndex: number) => {
+      onChange?.(newIndex);
+      setIndex(newIndex);
+    };
 
-  const handleOnChange = (newIndex: number) => {
-    onChange?.(newIndex);
-    setIndex(newIndex);
-  };
-
-  return (
-    <SegmentedControl
-      values={[
-        { title: 'Basic', subtitle: '€288,65' },
-        { title: 'Premium', subtitle: '€288,65' },
-      ]}
-      selectedIndex={index}
-      onChange={handleOnChange}
-    />
-  );
+    return (
+      <SegmentedControl
+        values={[
+          { title: 'Basic', subtitle: '€288,65' },
+          { title: 'Premium', subtitle: '€288,65' },
+        ]}
+        selectedIndex={index}
+        onChange={handleOnChange}
+      />
+    );
+  },
 };
 
 export default story;

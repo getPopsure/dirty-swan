@@ -61,90 +61,92 @@ const story = {
         component:
           'This component is for now only restricted to "address" types and will restrict every query to Germany.',
       },
-    }
+    },
   },
 };
 
-export const AutocompleteAddressStory = ({
-  address: defaultAddress,
-  apiKey,
-  manualAddressEntryTexts,
-  onAddressChange,
-  placeholders,
-  countryCode
-}: AutocompleteAddressProps) => {
-  const [address, setAddress] = useState<Partial<Address> | undefined>(
-    defaultAddress
-  );
-  const handleOnAddressChange = (newAddress: Partial<Address>) => {
-    onAddressChange?.(newAddress);
-    setAddress(newAddress);
-  };
+export const AutocompleteAddressStory = {
+  render: ({
+    address: defaultAddress,
+    apiKey,
+    manualAddressEntryTexts,
+    onAddressChange,
+    placeholders,
+    countryCode,
+  }: AutocompleteAddressProps) => {
+    const [address, setAddress] = useState<Partial<Address> | undefined>(
+      defaultAddress
+    );
+    const handleOnAddressChange = (newAddress: Partial<Address>) => {
+      onAddressChange?.(newAddress);
+      setAddress(newAddress);
+    };
 
-  return (
-    <AutocompleteAddress
-      address={address}
-      apiKey={apiKey}
-      manualAddressEntryTexts={manualAddressEntryTexts}
-      onAddressChange={handleOnAddressChange}
-      placeholders={placeholders}
-      countryCode={countryCode}
-    />
-  );
+    return (
+      <AutocompleteAddress
+        address={address}
+        apiKey={apiKey}
+        manualAddressEntryTexts={manualAddressEntryTexts}
+        onAddressChange={handleOnAddressChange}
+        placeholders={placeholders}
+        countryCode={countryCode}
+      />
+    );
+  },
+
+  name: 'AutocompleteAddress',
 };
 
-AutocompleteAddressStory.storyName = 'AutocompleteAddress';
+export const WithAddress = {
+  render: ({
+    apiKey,
+    onAddressChange,
+    placeholders,
+  }: AutocompleteAddressProps) => (
+    <AutocompleteAddress
+      address={{
+        street: 'Lohmuehlenstraße',
+        houseNumber: '65',
+        city: 'Berlin',
+        country: 'DE',
+        additionalInformation: 'c/o Factory',
+      }}
+      apiKey={apiKey}
+      onAddressChange={onAddressChange}
+    />
+  ),
+};
 
-export const WithAddress = ({
-  apiKey,
-  onAddressChange,
-  placeholders,
-}: AutocompleteAddressProps) => (
-  <AutocompleteAddress
-    address={{
-      street: 'Lohmuehlenstraße',
-      houseNumber: '65',
-      city: 'Berlin',
-      country: 'DE',
-      additionalInformation: 'c/o Factory',
-    }}
-    apiKey={apiKey}
-    onAddressChange={onAddressChange}
-  />
-);
+export const WithLocalisationEntryText = {
+  render: ({ apiKey, onAddressChange }: AutocompleteAddressProps) => (
+    <AutocompleteAddress
+      apiKey={apiKey}
+      manualAddressEntryTexts={{
+        preText: 'Oder ',
+        cta: 'Adresse direkt eingeben',
+      }}
+      onAddressChange={onAddressChange}
+    />
+  ),
+};
 
-export const WithLocalisationEntryText = ({
-  apiKey,
-  onAddressChange,
-}: AutocompleteAddressProps) => (
-  <AutocompleteAddress
-    apiKey={apiKey}
-    manualAddressEntryTexts={{
-      preText: 'Oder ',
-      cta: 'Adresse direkt eingeben',
-    }}
-    onAddressChange={onAddressChange}
-  />
-);
-
-export const WithLocalisationPlaceholders = ({
-  apiKey,
-  onAddressChange,
-}: AutocompleteAddressProps) => (
-  <AutocompleteAddress
-    address={{}}
-    apiKey={apiKey}
-    placeholders={{
-      manualAddressEntry: 'Adresse suchen',
-      street: 'Straße',
-      houseNumber: 'Hausnummer',
-      additionalInformation: 'Adresszusatz (c/o, z.Hd., o.V.i.A, ...)',
-      postcode: 'PLZ',
-      city: 'Stadt',
-    }}
-    onAddressChange={onAddressChange}
-  />
-);
+export const WithLocalisationPlaceholders = {
+  render: ({ apiKey, onAddressChange }: AutocompleteAddressProps) => (
+    <AutocompleteAddress
+      address={{}}
+      apiKey={apiKey}
+      placeholders={{
+        manualAddressEntry: 'Adresse suchen',
+        street: 'Straße',
+        houseNumber: 'Hausnummer',
+        additionalInformation: 'Adresszusatz (c/o, z.Hd., o.V.i.A, ...)',
+        postcode: 'PLZ',
+        city: 'Stadt',
+      }}
+      onAddressChange={onAddressChange}
+    />
+  ),
+};
 
 export const AddressType = () => {
   return (
@@ -158,7 +160,7 @@ export const AddressType = () => {
           country: string;
       }`}
     </pre>
-  )
-}
+  );
+};
 
 export default story;

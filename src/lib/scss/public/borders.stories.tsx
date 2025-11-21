@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
 const borders = [
   {
@@ -117,7 +117,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Border tokens for consistent border styling across the design system. Includes strong, medium, and soft variants with default, hover, active, and focus states.',
+        component:
+          'Border tokens for consistent border styling across the design system. Includes strong, medium, and soft variants with default, hover, active, and focus states.',
       },
     },
   },

@@ -33,27 +33,29 @@ const story = {
     disabled: false,
     className: '',
     href: 'https://feather-insurance.com/',
-  }
+  },
 };
 
-export const CardButtonStory = ({
-  title,
-  description,
-  disabled,
-  className,
-  href,
-  onClick,
-}: CardButtonProps) => (
-  <CardButton
-    title={title}
-    description={description}
-    disabled={disabled}
-    className={className}
-    href={href}
-    onClick={onClick}
-  />
-);
+export const CardButtonStory = {
+  render: ({
+    title,
+    description,
+    disabled,
+    className,
+    href,
+    onClick,
+  }: CardButtonProps) => (
+    <CardButton
+      title={title}
+      description={description}
+      disabled={disabled}
+      className={className}
+      href={href}
+      onClick={onClick}
+    />
+  ),
 
-CardButtonStory.storyName = "CardButton";
+  name: 'CardButton',
+};
 
 export default story;

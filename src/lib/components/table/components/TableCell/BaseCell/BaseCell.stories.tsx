@@ -17,31 +17,33 @@ const story = {
   },
 };
 
-export const BaseCellStory = ({
-  text,
-  description,
-  modalContent,
-  checkmarkValue,
-  rating,
-  fontVariant,
-  align,
-  hideProgressBar,
-}: React.ComponentProps<typeof BaseCell>) => (
-  <div className="p48 d-flex fd-column gap16 bg-white">
-    <BaseCell
-      align={align}
-      checkmarkValue={checkmarkValue}
-      fontVariant={fontVariant}
-      description={description}
-      modalContent={modalContent}
-      hideProgressBar={hideProgressBar}
-      openModal={() => {}}
-      rating={rating}
-      text={text}
-    />
-  </div>
-);
+export const BaseCellStory = {
+  render: ({
+    text,
+    description,
+    modalContent,
+    checkmarkValue,
+    rating,
+    fontVariant,
+    align,
+    hideProgressBar,
+  }: React.ComponentProps<typeof BaseCell>) => (
+    <div className="p48 d-flex fd-column gap16 bg-white">
+      <BaseCell
+        align={align}
+        checkmarkValue={checkmarkValue}
+        fontVariant={fontVariant}
+        description={description}
+        modalContent={modalContent}
+        hideProgressBar={hideProgressBar}
+        openModal={() => {}}
+        rating={rating}
+        text={text}
+      />
+    </div>
+  ),
 
-BaseCellStory.storyName = 'BaseCell';
+  name: 'BaseCell',
+};
 
 export default story;
