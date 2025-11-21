@@ -4,7 +4,7 @@ export default {
   stories: ['../src/**/*.@(mdx|stories.@(tsx))'],
 
   addons: [
-    '@storybook/addon-essentials',
+    '@storybook/addon-links',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -22,7 +22,7 @@ export default {
   docs: {},
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
+    reactDocgen: 'react-docgen-typescript',
   },
 
   framework: '@storybook/react-vite',

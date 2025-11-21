@@ -7,29 +7,26 @@ const story = {
     onChange: {
       action: true,
       table: {
-        category: "Callbacks",
+        category: 'Callbacks',
       },
     },
   },
   parameters: {
-    componentSubtitle: 'Signature pad are user interface elements which allow user sign any legal document.',
+    componentSubtitle:
+      'Signature pad are user interface elements which allow user sign any legal document.',
   },
 };
 
-export const SignaturePadStory = ({
-  onChange,
-}: SignaturePadProps) => {
-  const handleOnChange = (newIndex: string) => {
-    onChange?.(newIndex);
-  };
+export const SignaturePadStory = {
+  render: ({ onChange }: SignaturePadProps) => {
+    const handleOnChange = (newIndex: string) => {
+      onChange?.(newIndex);
+    };
 
-  return (
-    <SignaturePad
-      onChange={handleOnChange}
-    />
-  );
+    return <SignaturePad onChange={handleOnChange} />;
+  },
+
+  name: 'SignaturePad',
 };
-
-SignaturePadStory.storyName = "SignaturePad";
 
 export default story;

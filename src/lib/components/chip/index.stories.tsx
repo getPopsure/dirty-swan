@@ -14,7 +14,7 @@ const story = {
     onRemove: {
       description: 'Function that is called when the remove button is clicked',
       table: {
-        category: 'Callbacks'
+        category: 'Callbacks',
       },
     },
     className: {
@@ -29,23 +29,18 @@ const story = {
     className: '',
   },
   parameters: {
-    componentSubtitle: 'Chip component displays text and image (optional) of given values.'
-  }
+    componentSubtitle:
+      'Chip component displays text and image (optional) of given values.',
+  },
 };
- 
-export const ChipStory = ({
-  onRemove,
-  value,
-  className,
-}: ChipProps) => (
-  <Chip
-    onRemove={onRemove}
-    value={value}
-    className={className}
-  />
-);
 
-ChipStory.storyName = "Chip";
+export const ChipStory = {
+  render: ({ onRemove, value, className }: ChipProps) => (
+    <Chip onRemove={onRemove} value={value} className={className} />
+  ),
+
+  name: 'Chip',
+};
 
 export const MultipleChips = () => {
   const values = [

@@ -1,4 +1,11 @@
-import { ComparisonTable, ComparisonTableProps, TableButton, TableRating, TableRowHeader, TableTrueFalse } from '.';
+import {
+  ComparisonTable,
+  ComparisonTableProps,
+  TableButton,
+  TableRating,
+  TableRowHeader,
+  TableTrueFalse,
+} from '.';
 import { CardButton } from '../cards';
 
 const headers = [
@@ -222,8 +229,8 @@ const story = {
   title: 'JSX/ComparisonTable',
   component: ComparisonTable,
   argTypes: {
-   headers: {
-     description: 'The structure of the table',
+    headers: {
+      description: 'The structure of the table',
     },
     data: {
       description: 'The title text that needs to be displayed',
@@ -261,13 +268,15 @@ const story = {
       description: 'Makes the content area grow to fill the available space',
     },
     classNameOverrides: {
-      description: '"className" props to be passed down to various internal components',
+      description:
+        '"className" props to be passed down to various internal components',
     },
     onSelectionChanged: {
-      description: 'Callback to be called when the selected tab index changes on mobile',
+      description:
+        'Callback to be called when the selected tab index changes on mobile',
       table: {
-        category: 'Callbacks'
-      }
+        category: 'Callbacks',
+      },
     },
   },
   args: {
@@ -291,10 +300,11 @@ const story = {
       collapsibleSection: '',
       section: '',
       hideDetailsButton: '',
-    }
+    },
   },
   parameters: {
-    componentSubtitle: 'The Comparison Table component provides an easy way to compare vast amounts of information in a fast and easy way.',
+    componentSubtitle:
+      'The Comparison Table component provides an easy way to compare vast amounts of information in a fast and easy way.',
   },
 };
 
@@ -310,51 +320,53 @@ interface Data {
   boxOffice: number;
 }
 
-export const ComparisonTableStory = ({
-  data,
-  headers,
-  collapsibleSections,
-  hideDetails,
-  classNameOverrides,
-  hideDetailsCaption,
-  showDetailsCaption,
-  hideScrollBars,
-  hideScrollBarsMobile,
-  cellWidth,
-  firstColumnWidth,
-  stickyHeaderTopOffset,
-  growContent,
-}: ComparisonTableProps<Data>) => (
-  <div className='bg-white'> 
-    <ComparisonTable
-      data={data}
-      headers={headers}
-      collapsibleSections={collapsibleSections}
-      hideDetails={hideDetails}
-      classNameOverrides={classNameOverrides}
-      hideDetailsCaption={hideDetailsCaption}
-      showDetailsCaption={showDetailsCaption}
-      hideScrollBars={hideScrollBars}
-      hideScrollBarsMobile={hideScrollBarsMobile}
-      cellWidth={cellWidth}
-      firstColumnWidth={firstColumnWidth}
-      stickyHeaderTopOffset={stickyHeaderTopOffset}
-      growContent={growContent}
-    />
-  </div>
-);
+export const ComparisonTableStory = {
+  render: ({
+    data,
+    headers,
+    collapsibleSections,
+    hideDetails,
+    classNameOverrides,
+    hideDetailsCaption,
+    showDetailsCaption,
+    hideScrollBars,
+    hideScrollBarsMobile,
+    cellWidth,
+    firstColumnWidth,
+    stickyHeaderTopOffset,
+    growContent,
+  }: ComparisonTableProps<Data>) => (
+    <div className="bg-white">
+      <ComparisonTable
+        data={data}
+        headers={headers}
+        collapsibleSections={collapsibleSections}
+        hideDetails={hideDetails}
+        classNameOverrides={classNameOverrides}
+        hideDetailsCaption={hideDetailsCaption}
+        showDetailsCaption={showDetailsCaption}
+        hideScrollBars={hideScrollBars}
+        hideScrollBarsMobile={hideScrollBarsMobile}
+        cellWidth={cellWidth}
+        firstColumnWidth={firstColumnWidth}
+        stickyHeaderTopOffset={stickyHeaderTopOffset}
+        growContent={growContent}
+      />
+    </div>
+  ),
 
-ComparisonTableStory.storyName = "ComparisonTable";
+  name: 'ComparisonTable',
+};
 
 export const HeaderType = () => (
   <pre>
-   {`export interface Header<T> {
+    {`export interface Header<T> {
     id: number;
     label?: React.ReactNode;
     cells: Array<Cell<T>>;
     default?: boolean;
   }`}
   </pre>
-)
+);
 
 export default story;

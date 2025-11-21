@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { MultiDropzone, MultiDropzoneProps } from '.';
 import { UploadedFile } from './types';
 
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+// @ts-ignore
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
 
 const story = {
   title: 'JSX/MultiDropzone',
@@ -78,48 +79,50 @@ const story = {
   },
 };
 
-export const MultiDropzoneStory = ({
-  onFileSelect,
-  onRemoveFile,
-  uploading,
-  uploadedFiles = [],
-  isCondensed,
-  maxFiles,
-  maxSize,
-  textOverrides,
-}: MultiDropzoneProps) => {
-  const [localFiles, setLocalFiles] = useState<UploadedFile[]>(uploadedFiles);
+export const MultiDropzoneStory = {
+  render: ({
+    onFileSelect,
+    onRemoveFile,
+    uploading,
+    uploadedFiles = [],
+    isCondensed,
+    maxFiles,
+    maxSize,
+    textOverrides,
+  }: MultiDropzoneProps) => {
+    const [localFiles, setLocalFiles] = useState<UploadedFile[]>(uploadedFiles);
 
-  const handleOnRemoveFile = (id: string) => {
-    onRemoveFile?.(id);
-    setLocalFiles((prevFiles) => prevFiles.filter((file) => file.id !== id));
-  };
+    const handleOnRemoveFile = (id: string) => {
+      onRemoveFile?.(id);
+      setLocalFiles((prevFiles) => prevFiles.filter((file) => file.id !== id));
+    };
 
-  const handleOnFileSelect = (files: File[]) => {
-    const newFiles = files.map((newFile) => ({
-      id: String(new Date().getTime()),
-      name: newFile.name,
-      progress: 100,
-    }));
-    setLocalFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onFileSelect(files);
-  };
+    const handleOnFileSelect = (files: File[]) => {
+      const newFiles = files.map((newFile) => ({
+        id: String(new Date().getTime()),
+        name: newFile.name,
+        progress: 100,
+      }));
+      setLocalFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      onFileSelect(files);
+    };
 
-  return (
-    <MultiDropzone
-      onFileSelect={handleOnFileSelect}
-      onRemoveFile={handleOnRemoveFile}
-      uploadedFiles={localFiles}
-      uploading={uploading}
-      isCondensed={isCondensed}
-      maxFiles={maxFiles}
-      maxSize={maxSize}
-      textOverrides={textOverrides}
-    />
-  );
+    return (
+      <MultiDropzone
+        onFileSelect={handleOnFileSelect}
+        onRemoveFile={handleOnRemoveFile}
+        uploadedFiles={localFiles}
+        uploading={uploading}
+        isCondensed={isCondensed}
+        maxFiles={maxFiles}
+        maxSize={maxSize}
+        textOverrides={textOverrides}
+      />
+    );
+  },
+
+  name: 'MultiDropzone',
 };
-
-MultiDropzoneStory.storyName = 'MultiDropzone';
 
 export const UploadingState = () => (
   <MultiDropzone
@@ -283,24 +286,26 @@ export const I18nSupport = () => (
   />
 );
 
-export const NonDesktopDevice = () => (
-  <MultiDropzone
-    uploadedFiles={[]}
-    onFileSelect={() => {}}
-    uploading={false}
-    onRemoveFile={() => {}}
-    textOverrides={{
-      instructionsTextMobile: 'Tippen Sie, um eine Datei auszuwählen',
-      currentlyUploadingText:
-        'Bitte warten, während die Datei hochgeladen wird...',
-    }}
-  />
-);
+export const NonDesktopDevice = {
+  render: () => (
+    <MultiDropzone
+      uploadedFiles={[]}
+      onFileSelect={() => {}}
+      uploading={false}
+      onRemoveFile={() => {}}
+      textOverrides={{
+        instructionsTextMobile: 'Tippen Sie, um eine Datei auszuwählen',
+        currentlyUploadingText:
+          'Bitte warten, während die Datei hochgeladen wird...',
+      }}
+    />
+  ),
 
-NonDesktopDevice.parameters = {
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-    defaultViewport: 'iphone6',
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
   },
 };
 

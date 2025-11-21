@@ -37,7 +37,7 @@ describe('Checkbox component', () => {
 
     await user.click(getByTestId('checkbox-DOG'));
 
-    expect(mockOnChange).toBeCalledWith(['DOG']);
+    expect(mockOnChange).toHaveBeenCalledWith(['DOG']);
   });
 
   it('Should render checked items when value is passed', async () => {
@@ -51,7 +51,7 @@ describe('Checkbox component', () => {
 
     await user.click(getByTestId('checkbox-NONE'));
 
-    expect(mockOnChange).toBeCalledWith(['NONE']);
+    expect(mockOnChange).toHaveBeenCalledWith(['NONE']);
   });
 
   it('Should call onchange empty when removing NONE option', async () => {
@@ -59,7 +59,7 @@ describe('Checkbox component', () => {
 
     await user.click(getByTestId('checkbox-NONE'));
 
-    expect(mockOnChange).toBeCalledWith([]);
+    expect(mockOnChange).toHaveBeenCalledWith([]);
   });
 
   it('Should render custom description', () => {

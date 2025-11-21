@@ -16,7 +16,7 @@ const story = {
   },
 };
 
-const initialImages = Object.entries(illustrations)
+const initialImages = Object.entries(illustrations);
 
 export const Illustrations = () => {
   const [value, setValue] = useState('');
@@ -36,42 +36,43 @@ export const Illustrations = () => {
       return;
     }
 
-    setOptions(initialImages.filter(([key]) => 
-      key.toLowerCase()
-        .includes(searchValue.toLowerCase())
-    ));
+    setOptions(
+      initialImages.filter(([key]) =>
+        key.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
   };
 
   return (
     <div>
       <div className={classNames(styles.searchBar, 'bg-white')}>
-        <div className='d-flex gap8 wmx12 m-auto'>
-        <Input
-          className='w70'
-          onChange={handleOnSearch}
-          placeholder='Search icon'
-          value={value} 
-        />
-        <Button className='w30' disabled={!value} onClick={clearSearch}>
-          Clear search
-        </Button>
+        <div className="d-flex gap8 wmx12 m-auto">
+          <Input
+            className="w70"
+            onChange={handleOnSearch}
+            placeholder="Search icon"
+            value={value}
+          />
+          <Button className="w30" disabled={!value} onClick={clearSearch}>
+            Clear search
+          </Button>
         </div>
       </div>
 
-      <div className='d-flex f-wrap mt80'>
+      <div className="d-flex f-wrap mt80">
         {options.map(([iconKey, src]) => (
           <div key={iconKey} className="w20 p8">
-            <div className='br4 p24 pt16 pb16 bg-neutral-50 w100 d-flex fd-column ai-center'>
+            <div className="br4 p24 pt16 pb16 bg-neutral-50 w100 d-flex fd-column ai-center">
               <div className={styles.imageWrapper}>
                 <img src={src} alt={iconKey} />
               </div>
-              <span className='p-p--small mt16'>{iconKey}</span>
+              <span className="p-p--small mt16">{iconKey}</span>
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default story;

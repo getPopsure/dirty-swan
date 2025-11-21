@@ -87,329 +87,277 @@ const story = {
   },
 };
 
-export const BottomOrRegularModalStory = ({
-  children,
-  className,
-  classNames,
-  dismissible,
-  isOpen,
-  onClose,
-  onModalScroll,
-  size,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
+export const BottomOrRegularModalStory = {
+  render: ({
+    children,
+    className,
+    classNames,
+    dismissible,
+    isOpen,
+    onClose,
+    onModalScroll,
+    size,
+    title,
+  }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
 
-  return (
-    <>
-      <Button
-        className="wmn2"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
+    return (
+      <>
+        <Button className="wmn2" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
 
-      <BottomOrRegularModal
-        dismissible={dismissible}
-        className={className}
-        classNames={classNames}
-        title={title}
-        isOpen={display}
-        size={size}
-        onModalScroll={onModalScroll}
-        onClose={handleOnClose}
-      >
-        <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>{children}</div>
-          <Button
-            className="mt24 wmn3"
-            onClick={() => setDisplay(false)}
-          >
-            Continue
-          </Button>
-        </div>
-      </BottomOrRegularModal>
-    </>
-  );
-};
-
-BottomOrRegularModalStory.storyName = 'BottomOrRegularModal';
-
-export const RegularModalStory = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
-
-  return (
-    <>
-      Regular modals are primary meant to be used on Desktop or Tablet
-      environment. The modal will appear in the middle of the screen and the
-      user will be able to dismiss them using the top left "X" icon. If you want
-      to use it for Mobile only, you should check BottomModal instead. Want to
-      use either Regular Modal or Bottom Modal based on the screen width? You
-      can use Bottom or Regular modal.
-      <Button
-        className="wmn2 mt24"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-      <RegularModal title={title} isOpen={display} onClose={handleOnClose}>
-        <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>{children}</div>
-          <Button
-            className="mt24 wmn3"
-            onClick={() => setDisplay(false)}
-          >
-            Continue
-          </Button>
-        </div>
-      </RegularModal>
-    </>
-  );
-};
-
-RegularModalStory.storyName = 'RegularModal';
-
-export const BottomModalStory = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
-
-  return (
-    <>
-      Bottom modals are primary meant to be used on Mobile environment. The
-      modal will appear from the bottom of the screen and the user will be able
-      to dismiss them using the top left "X" icon. If you want to use it for
-      Desktop only, you should check Regular modal instead. Want to use either
-      Regular Modal or Bottom Modal based on the screen width? You can use
-      Bottom or Regular modal.
-      <Button
-        className="wmn2 mt24"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-      <BottomModal title={title} isOpen={display} onClose={handleOnClose}>
-        <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>{children}</div>
-          <Button
-            className="mt24 wmn3"
-            onClick={() => setDisplay(false)}
-          >
-            Continue
-          </Button>
-        </div>
-      </BottomModal>
-    </>
-  );
-};
-
-BottomModalStory.storyName = 'BottomModal';
-
-export const FullScreenModalStory = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
-
-  return (
-    <>
-      Full screen modals are primary meant to be used as blocker screens. The
-      modal will cover the entire screen and the user will be able to dismiss
-      them using the top left "X" icon.
-      <Button
-        className="wmn2 mt24"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-      <FullScreenModal title={title} isOpen={display} onClose={handleOnClose}>
-        <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>{children}</div>
-
-          <Button
-            className="mt24 wmn3"
-            onClick={() => setDisplay(false)}
-          >
-            Continue
-          </Button>
-        </div>
-      </FullScreenModal>
-    </>
-  );
-};
-
-FullScreenModalStory.storyName = 'FullScreenModal';
-
-export const NonDismissibleModal = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
-
-  return (
-    <>
-      Setting the dismissible prop to false will hide the close button and
-      prevent the user from closing it using the escape key or clicking outside.
-      This prop can be useful if we want the user to explicitly interact with
-      the modal options.
-      <strong>Warning:</strong> a modal with the dismissible prop can only be
-      closed by changing the isOpen prop to false.
-      <Button
-        className="wmn2 mt24"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-      <BottomOrRegularModal
-        dismissible={false}
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-      >
-        <div style={{ padding: '0 24px 24px 24px' }}>
-          <div>{children}</div>
-          <Button
-            className="mt24 wmn3"
-            onClick={() => setDisplay(false)}
-          >
-            Continue
-          </Button>
-        </div>
-      </BottomOrRegularModal>
-    </>
-  );
-};
-
-export const ModalWithFooter = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
-
-  return (
-    <>
-      <Button
-        className="wmn2"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-
-      <BottomOrRegularModal
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-        footer={
-          <div className="d-flex fd-row gap8">
-            <Button
-              variant="textBlack"
-              className="w100"
-              onClick={handleOnClose}
-            >
-              Skip
-            </Button>
-            <Button className="w100" onClick={handleOnClose}>
+        <BottomOrRegularModal
+          dismissible={dismissible}
+          className={className}
+          classNames={classNames}
+          title={title}
+          isOpen={display}
+          size={size}
+          onModalScroll={onModalScroll}
+          onClose={handleOnClose}
+        >
+          <div style={{ padding: '0 24px 24px 24px' }}>
+            <div>{children}</div>
+            <Button className="mt24 wmn3" onClick={() => setDisplay(false)}>
               Continue
             </Button>
           </div>
-        }
-      >
-        <div className="p24">
-          <div>{children}</div>
-        </div>
-      </BottomOrRegularModal>
-    </>
-  );
+        </BottomOrRegularModal>
+      </>
+    );
+  },
+
+  name: 'BottomOrRegularModal',
 };
 
-export const ModalWithFooterAndScroll = ({
-  children,
-  isOpen,
-  onClose,
-  title,
-}: Props) => {
-  const [display, setDisplay] = useState(isOpen);
-  const handleOnClose = () => {
-    onClose();
-    setDisplay(false);
-  };
+export const RegularModalStory = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
 
-  return (
-    <>
-      <Button
-        className="wmn2"
-        onClick={() => setDisplay(true)}
-      >
-        Click to open modal
-      </Button>
-
-      <BottomOrRegularModal
-        title={title}
-        isOpen={display}
-        onClose={handleOnClose}
-        footer={
-          <div className="d-flex fd-row gap8">
-            <Button
-              variant="textBlack"
-              className="w100"
-              onClick={handleOnClose}
-            >
-              Skip
-            </Button>
-            <Button className="w100" onClick={handleOnClose}>
+    return (
+      <>
+        Regular modals are primary meant to be used on Desktop or Tablet
+        environment. The modal will appear in the middle of the screen and the
+        user will be able to dismiss them using the top left "X" icon. If you
+        want to use it for Mobile only, you should check BottomModal instead.
+        Want to use either Regular Modal or Bottom Modal based on the screen
+        width? You can use Bottom or Regular modal.
+        <Button className="wmn2 mt24" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+        <RegularModal title={title} isOpen={display} onClose={handleOnClose}>
+          <div style={{ padding: '0 24px 24px 24px' }}>
+            <div>{children}</div>
+            <Button className="mt24 wmn3" onClick={() => setDisplay(false)}>
               Continue
             </Button>
           </div>
-        }
-      >
-        <div className="p24">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            <div style={{ height: '840px' }} />
-            {children}
+        </RegularModal>
+      </>
+    );
+  },
+
+  name: 'RegularModal',
+};
+
+export const BottomModalStory = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
+
+    return (
+      <>
+        Bottom modals are primary meant to be used on Mobile environment. The
+        modal will appear from the bottom of the screen and the user will be
+        able to dismiss them using the top left "X" icon. If you want to use it
+        for Desktop only, you should check Regular modal instead. Want to use
+        either Regular Modal or Bottom Modal based on the screen width? You can
+        use Bottom or Regular modal.
+        <Button className="wmn2 mt24" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+        <BottomModal title={title} isOpen={display} onClose={handleOnClose}>
+          <div style={{ padding: '0 24px 24px 24px' }}>
+            <div>{children}</div>
+            <Button className="mt24 wmn3" onClick={() => setDisplay(false)}>
+              Continue
+            </Button>
           </div>
-        </div>
-      </BottomOrRegularModal>
-    </>
-  );
+        </BottomModal>
+      </>
+    );
+  },
+
+  name: 'BottomModal',
+};
+
+export const FullScreenModalStory = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
+
+    return (
+      <>
+        Full screen modals are primary meant to be used as blocker screens. The
+        modal will cover the entire screen and the user will be able to dismiss
+        them using the top left "X" icon.
+        <Button className="wmn2 mt24" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+        <FullScreenModal title={title} isOpen={display} onClose={handleOnClose}>
+          <div style={{ padding: '0 24px 24px 24px' }}>
+            <div>{children}</div>
+
+            <Button className="mt24 wmn3" onClick={() => setDisplay(false)}>
+              Continue
+            </Button>
+          </div>
+        </FullScreenModal>
+      </>
+    );
+  },
+
+  name: 'FullScreenModal',
+};
+
+export const NonDismissibleModal = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
+
+    return (
+      <>
+        Setting the dismissible prop to false will hide the close button and
+        prevent the user from closing it using the escape key or clicking
+        outside. This prop can be useful if we want the user to explicitly
+        interact with the modal options.
+        <strong>Warning:</strong> a modal with the dismissible prop can only be
+        closed by changing the isOpen prop to false.
+        <Button className="wmn2 mt24" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+        <BottomOrRegularModal
+          dismissible={false}
+          title={title}
+          isOpen={display}
+          onClose={handleOnClose}
+        >
+          <div style={{ padding: '0 24px 24px 24px' }}>
+            <div>{children}</div>
+            <Button className="mt24 wmn3" onClick={() => setDisplay(false)}>
+              Continue
+            </Button>
+          </div>
+        </BottomOrRegularModal>
+      </>
+    );
+  },
+};
+
+export const ModalWithFooter = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
+
+    return (
+      <>
+        <Button className="wmn2" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+
+        <BottomOrRegularModal
+          title={title}
+          isOpen={display}
+          onClose={handleOnClose}
+          footer={
+            <div className="d-flex fd-row gap8">
+              <Button
+                variant="textBlack"
+                className="w100"
+                onClick={handleOnClose}
+              >
+                Skip
+              </Button>
+              <Button className="w100" onClick={handleOnClose}>
+                Continue
+              </Button>
+            </div>
+          }
+        >
+          <div className="p24">
+            <div>{children}</div>
+          </div>
+        </BottomOrRegularModal>
+      </>
+    );
+  },
+};
+
+export const ModalWithFooterAndScroll = {
+  render: ({ children, isOpen, onClose, title }: Props) => {
+    const [display, setDisplay] = useState(isOpen);
+    const handleOnClose = () => {
+      onClose();
+      setDisplay(false);
+    };
+
+    return (
+      <>
+        <Button className="wmn2" onClick={() => setDisplay(true)}>
+          Click to open modal
+        </Button>
+
+        <BottomOrRegularModal
+          title={title}
+          isOpen={display}
+          onClose={handleOnClose}
+          footer={
+            <div className="d-flex fd-row gap8">
+              <Button
+                variant="textBlack"
+                className="w100"
+                onClick={handleOnClose}
+              >
+                Skip
+              </Button>
+              <Button className="w100" onClick={handleOnClose}>
+                Continue
+              </Button>
+            </div>
+          }
+        >
+          <div className="p24">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <div style={{ height: '840px' }} />
+              {children}
+            </div>
+          </div>
+        </BottomOrRegularModal>
+      </>
+    );
+  },
 };
 
 export default story;

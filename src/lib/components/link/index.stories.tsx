@@ -16,14 +16,19 @@ const story = {
     href: 'https://feather-insurance.com',
   },
   parameters: {
-    componentSubtitle: 'Links are a styled helper component for anchor (<a />) tags.',
+    componentSubtitle:
+      'Links are a styled helper component for anchor (<a />) tags.',
   },
 };
 
-export const LinkStory = ({ children, href, ...rest }: LinkProps) => (
-  <Link href={href} {...rest}>{children}</Link>
-);
+export const LinkStory = {
+  render: ({ children, href, ...rest }: LinkProps) => (
+    <Link href={href} {...rest}>
+      {children}
+    </Link>
+  ),
 
-LinkStory.storyName = "Link";
+  name: 'Link',
+};
 
 export default story;

@@ -10,7 +10,7 @@ const story = {
     },
     className: {
       description: 'Class name for the most parent element',
-      control: 'text'
+      control: 'text',
     },
     size: {
       description: 'Define the size of the badge',
@@ -20,35 +20,31 @@ const story = {
     },
     showDot: {
       description: 'Whether to show a dot indicator',
-    }
+    },
   },
   args: {
     children: 'Value',
     className: '',
     size: 'medium',
     variant: 'information',
-    showDot: false
-  }
+    showDot: false,
+  },
 };
- 
-export const BadgeStory = ({
-  children,
-  className,
-  size,
-  variant,
-  showDot,
-}: BadgeProps) => (
-  <Badge
-    className={className}
-    size={size}
-    variant={variant}
-    showDot={showDot}
-  >
-    {children}
-  </Badge>
-);
 
-BadgeStory.storyName = "Badge";
+export const BadgeStory = {
+  render: ({ children, className, size, variant, showDot }: BadgeProps) => (
+    <Badge
+      className={className}
+      size={size}
+      variant={variant}
+      showDot={showDot}
+    >
+      {children}
+    </Badge>
+  ),
+
+  name: 'Badge',
+};
 
 const variants: BadgeProps['variant'][] = [
   'white',
@@ -65,19 +61,14 @@ const variants: BadgeProps['variant'][] = [
 ];
 
 export const Variants = () => (
-  <div className='d-flex fd-column gap16'>
+  <div className="d-flex fd-column gap16">
     {variants.map((variant) => (
-      <div key={variant} className='d-flex'>
-        <div className='ws3'>
-          <Badge variant={variant}>
-            {variant}
-          </Badge>
+      <div key={variant} className="d-flex">
+        <div className="ws3">
+          <Badge variant={variant}>{variant}</Badge>
         </div>
-        <div className='ws3 ml32'>
-          <Badge
-            variant={variant}
-            showDot
-          >
+        <div className="ws3 ml32">
+          <Badge variant={variant} showDot>
             {variant}
           </Badge>
         </div>
@@ -89,15 +80,13 @@ export const Variants = () => (
 const sizes: BadgeProps['size'][] = ['xsmall', 'small', 'medium', 'large'];
 
 export const Sizes = () => (
-  <div className='d-flex fd-column gap16'>
+  <div className="d-flex fd-column gap16">
     {sizes.map((size) => (
-      <div key={size} className='d-flex'>
-        <div className='ws3'>
-          <Badge size={size}>
-            {size}
-          </Badge>
+      <div key={size} className="d-flex">
+        <div className="ws3">
+          <Badge size={size}>{size}</Badge>
         </div>
-        <div className='ws3 ml32'>
+        <div className="ws3 ml32">
           <Badge size={size} showDot>
             {size}
           </Badge>
@@ -106,7 +95,5 @@ export const Sizes = () => (
     ))}
   </div>
 );
-
-BadgeStory.storyName = "Badge";
 
 export default story;

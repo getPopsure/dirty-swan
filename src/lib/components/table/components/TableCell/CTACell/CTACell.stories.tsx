@@ -15,27 +15,29 @@ const story = {
   },
 };
 
-export const CTACellStory = ({
-  title,
-  price,
-  icon,
-  buttonCaption,
-  grey,
-  narrow,
-}: React.ComponentProps<typeof CTACell>) => (
-  <div className="p48 d-flex fd-column gap16 bg-white">
-    <CTACell
-      title={title}
-      price={price}
-      icon={icon}
-      buttonCaption={buttonCaption}
-      href=""
-      grey={grey}
-      narrow={narrow}
-    />
-  </div>
-);
+export const CTACellStory = {
+  render: ({
+    title,
+    price,
+    icon,
+    buttonCaption,
+    grey,
+    narrow,
+  }: React.ComponentProps<typeof CTACell>) => (
+    <div className="p48 d-flex fd-column gap16 bg-white">
+      <CTACell
+        title={title}
+        price={price}
+        icon={icon}
+        buttonCaption={buttonCaption}
+        href=""
+        grey={grey}
+        narrow={narrow}
+      />
+    </div>
+  ),
 
-CTACellStory.storyName = 'CTACell';
+  name: 'CTACell',
+};
 
 export default story;
