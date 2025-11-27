@@ -12,54 +12,56 @@ const story = {
   },
 };
 
-export const ButtonCellStory = ({
-  isSelected,
-  buttonCaption,
-  price,
-  disabled,
-}: React.ComponentProps<typeof ButtonCell>) => (
-  <div className="p48 d-flex fd-column gap16 bg-white">
-    <ButtonCell
-      buttonCaption={buttonCaption}
-      price={price}
-      isSelected={isSelected}
-      disabled={disabled}
-      onClick={() => {}}
-    />
+export const ButtonCellStory = {
+  render: ({
+    isSelected,
+    buttonCaption,
+    price,
+    disabled,
+  }: React.ComponentProps<typeof ButtonCell>) => (
+    <div className="p48 d-flex fd-column gap16 bg-white">
+      <ButtonCell
+        buttonCaption={buttonCaption}
+        price={price}
+        isSelected={isSelected}
+        disabled={disabled}
+        onClick={() => {}}
+      />
 
-    <ButtonCell
-      buttonCaption={buttonCaption}
-      price={price}
-      isSelected
-      disabled={disabled}
-      onClick={() => {}}
-    />
+      <ButtonCell
+        buttonCaption={buttonCaption}
+        price={price}
+        isSelected
+        disabled={disabled}
+        onClick={() => {}}
+      />
 
-    <ButtonCell
-      buttonCaption={buttonCaption}
-      price={price}
-      disabled
-      onClick={() => {}}
-    />
+      <ButtonCell
+        buttonCaption={buttonCaption}
+        price={price}
+        disabled
+        onClick={() => {}}
+      />
 
-    <ButtonCell
-      buttonCaption={buttonCaption}
-      isSelected={isSelected}
-      disabled={disabled}
-      onClick={() => {}}
-    />
+      <ButtonCell
+        buttonCaption={buttonCaption}
+        isSelected={isSelected}
+        disabled={disabled}
+        onClick={() => {}}
+      />
 
-    <ButtonCell
-      buttonCaption={buttonCaption}
-      isSelected
-      disabled={disabled}
-      onClick={() => {}}
-    />
+      <ButtonCell
+        buttonCaption={buttonCaption}
+        isSelected
+        disabled={disabled}
+        onClick={() => {}}
+      />
 
-    <ButtonCell buttonCaption={buttonCaption} disabled onClick={() => {}} />
-  </div>
-);
+      <ButtonCell buttonCaption={buttonCaption} disabled onClick={() => {}} />
+    </div>
+  ),
 
-ButtonCellStory.storyName = 'ButtonCell';
+  name: 'ButtonCell',
+};
 
 export default story;

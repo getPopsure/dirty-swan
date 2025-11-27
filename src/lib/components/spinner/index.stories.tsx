@@ -10,12 +10,13 @@ const story = {
     },
   },
   args: {
-    size: 's'
-  }
+    size: 's',
+  },
 };
 
-export const SpinnerStory = ({ size }: SpinnerProps) => <Spinner size={size} />;
-
-SpinnerStory.storyName = 'Spinner';
+export const SpinnerStory = {
+  render: ({ size }: SpinnerProps) => <Spinner size={size} />,
+  name: 'Spinner',
+};
 
 export default story;

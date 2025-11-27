@@ -2,14 +2,14 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import url from 'rollup-plugin-url';
 
-import glob from 'glob';
+import { sync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const postcssCustomProperties = require('postcss-custom-properties');
+import postcssCustomProperties from 'postcss-custom-properties';
 
 /**
  *
@@ -46,16 +46,14 @@ export default [
   },
   {
     input: Object.fromEntries(
-      glob
-        // we need to look into why adding ts breaks the build
-        .sync('src/lib/**/*(*.tsx)')
-        .map((file) => [
-          path.relative(
-            'src/lib',
-            file.slice(0, file.length - path.extname(file).length)
-          ),
-          fileURLToPath(new URL(file, import.meta.url)),
-        ])
+      // we need to look into why adding ts breaks the build
+      sync('src/lib/**/*(*.tsx)').map((file) => [
+        path.relative(
+          'src/lib',
+          file.slice(0, file.length - path.extname(file).length)
+        ),
+        fileURLToPath(new URL(file, import.meta.url)),
+      ])
     ),
     output: [
       {

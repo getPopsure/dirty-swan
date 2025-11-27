@@ -11,32 +11,35 @@ const story = {
     options: {
       description: 'List of all options available to search from',
       table: {
-        type: { 
-          summary: 'Option[]'
+        type: {
+          summary: 'Option[]',
         },
       },
     },
     selectedValues: {
       description: 'List of all selected values',
       table: {
-        type: { 
-          summary: 'Option[]'
+        type: {
+          summary: 'Option[]',
         },
       },
     },
     placeholder: {
-      description: 'Placeholder for DirtySwan Input component'
+      description: 'Placeholder for DirtySwan Input component',
     },
     chipsListClassName: {
-      description: 'Class name for the most parent element of the Chip component',
-      control: 'text'
+      description:
+        'Class name for the most parent element of the Chip component',
+      control: 'text',
     },
     multiSelectClassName: {
-      description: 'Class name for the most parent element of the AutoSuggestInput component',
-      control: 'text'
+      description:
+        'Class name for the most parent element of the AutoSuggestInput component',
+      control: 'text',
     },
     wrapText: {
-      description: 'Wether or not wrap the entries in the dropdown or hide overflown text',
+      description:
+        'Wether or not wrap the entries in the dropdown or hide overflown text',
     },
     setValues: {
       description: 'Function that runs when selecting values',
@@ -62,8 +65,8 @@ const story = {
         value: 'test value',
         leftIcon: featherLogo,
       },
-    ], 
-    selectedValues:  [
+    ],
+    selectedValues: [
       { value: 'feather', leftIcon: featherLogo },
       { value: 'feather2', leftIcon: featherLogo },
     ],
@@ -73,47 +76,52 @@ const story = {
     wrapText: false,
   },
   parameters: {
-    componentSubtitle: 'AutoSuggestMultiSelect is a combination of the AutoSuggestInput and Chip components',
+    componentSubtitle:
+      'AutoSuggestMultiSelect is a combination of the AutoSuggestInput and Chip components',
     docs: {
       description: {
         component: `This component allows quick search via the input field to find an option for selection.
         \nUpon selecting an option, the option is displayed above the input field as a chip.
         \nThe chip can be removed by clicking on the X button. Multi options can be selected as well.
-        \nProp \`setValues\` function must be provided to keep track of removed and added option selections.`
+        \nProp \`setValues\` function must be provided to keep track of removed and added option selections.`,
       },
     },
   },
 };
 
-export const AutoSuggestMultiSelectStory = ({
-  options,
-  selectedValues,
-  setValues,
-  placeholder,
-  chipsListClassName,
-  multiSelectClassName,
-  wrapText,
-}: AutoSuggestMultiSelectProps) => {
-  const [values, setSelectedValues] = useState(selectedValues);
+export const AutoSuggestMultiSelectStory = {
+  render: ({
+    options,
+    selectedValues,
+    setValues,
+    placeholder,
+    chipsListClassName,
+    multiSelectClassName,
+    wrapText,
+  }: AutoSuggestMultiSelectProps) => {
+    const [values, setSelectedValues] = useState(selectedValues);
 
-  const handleSetValues = (options: Option[]) => {
-    setValues(options);
-    setSelectedValues(options);
-  }
+    const handleSetValues = (options: Option[]) => {
+      setValues(options);
+      setSelectedValues(options);
+    };
 
-  return (
-    <div style={{ minHeight: '240px' }}>
-      <AutoSuggestMultiSelect
-       options={options}
-       selectedValues={values}
-       setValues={handleSetValues}
-       placeholder={placeholder}
-       chipsListClassName={chipsListClassName}
-       multiSelectClassName={multiSelectClassName}
-       wrapText={wrapText}
-      />
-    </div>
-  );
+    return (
+      <div style={{ minHeight: '240px' }}>
+        <AutoSuggestMultiSelect
+          options={options}
+          selectedValues={values}
+          setValues={handleSetValues}
+          placeholder={placeholder}
+          chipsListClassName={chipsListClassName}
+          multiSelectClassName={multiSelectClassName}
+          wrapText={wrapText}
+        />
+      </div>
+    );
+  },
+
+  name: 'AutoSuggestMultiSelect',
 };
 
 export const OptionType = () => (
@@ -123,8 +131,6 @@ export const OptionType = () => (
       leftIcon?: string; // image of the provided option to be displayed on UI
 }`}
   </pre>
-)
-
-AutoSuggestMultiSelectStory.storyName = "AutoSuggestMultiSelect";
+);
 
 export default story;

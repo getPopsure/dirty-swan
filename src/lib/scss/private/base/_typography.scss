@@ -1,7 +1,7 @@
 @use '../../public/colors' as *;
 @use '../../public/font-weight' as *;
 @use '../../public/grid' as *;
-@use '../../public/font' as *;
+@use '../../public/font' as font;
 
 @font-face {
   font-family: 'Mona Sans';
@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: $font-family;
+  font-family: font.$font-family;
   -webkit-font-smoothing: antialiased;
 }
 

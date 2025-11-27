@@ -34,7 +34,7 @@ describe('toggle component', () => {
 
     await user.click(getByTestId('toggle-DOG'));
 
-    expect(mockOnChange).toBeCalledWith(["DOG"]);
+    expect(mockOnChange).toHaveBeenCalledWith(['DOG']);
   });
 
   it('Should render checked items when value is passed', async () => {
@@ -48,7 +48,7 @@ describe('toggle component', () => {
 
     await user.click(getByTestId('toggle-NONE'));
 
-    expect(mockOnChange).toBeCalledWith(["NONE"]);
+    expect(mockOnChange).toHaveBeenCalledWith(['NONE']);
   });
 
   it('Should call onchange empty when removing NONE option', async () => {
@@ -56,21 +56,21 @@ describe('toggle component', () => {
 
     await user.click(getByTestId('toggle-NONE'));
 
-    expect(mockOnChange).toBeCalledWith([]);
+    expect(mockOnChange).toHaveBeenCalledWith([]);
   });
 
   it('Should render custom description', () => {
-      const { getByText } = render(
-        <Toggle
-          options={{
-            CAT: {
-              title: 'Cat',
-              description: 'Cat description'
-            },
-          }}
-          onChange={mockOnChange}
-        />
-      );
+    const { getByText } = render(
+      <Toggle
+        options={{
+          CAT: {
+            title: 'Cat',
+            description: 'Cat description',
+          },
+        }}
+        onChange={mockOnChange}
+      />
+    );
 
     expect(getByText('Cat description')).toBeInTheDocument();
   });

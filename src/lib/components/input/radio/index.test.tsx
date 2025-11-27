@@ -34,7 +34,7 @@ describe('Radio component', () => {
 
     await user.click(getByTestId('radio-DOG'));
 
-    expect(mockOnChange).toBeCalledWith('DOG');
+    expect(mockOnChange).toHaveBeenCalledWith('DOG');
   });
 
   it('Should render checked items when value is passed', async () => {
