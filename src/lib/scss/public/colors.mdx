@@ -1,7 +1,6 @@
 import { Colors } from './demo';
 import { Meta } from '@storybook/addon-docs/blocks';
 
-
 <Meta title="CSS/Variables/Colors" />
 
 # Colors
@@ -11,11 +10,11 @@ For enhanced reusability we’re providing you with a set of color variables. Pl
 ## Usage
 
 Dirty swan provides colors variables for you to use in your Sass files.
-To do so, `@import` or `@use` at the top for your `.scss` file.
+To do so, use `@use` at the top for your `.scss` file.
 
 ```sass
 // demo.scss
-@import '@popsure/dirty-swan/dist/colors';
+@use '@popsure/dirty-swan/dist/colors';
 
 .element {
   color: $ds-neutral-900;

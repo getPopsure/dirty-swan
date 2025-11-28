@@ -51,7 +51,7 @@ export function generateFont(configuration: ConfigurationFile) {
     const sans = configuration.theme.font.sans;
     let result = '';
     if (sans.url && sans.url.length > 0) {
-      result = `@import url('${sans.url}');\n\n`;
+      result = `@use url('${sans.url}');\n\n`;
     }
 
     result =

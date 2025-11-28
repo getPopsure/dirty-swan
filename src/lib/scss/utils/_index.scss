@@ -1,5 +1,7 @@
+@use 'sass:string' as str;
+
 @function url-encoded-color($color) {
-  @return '%23' + str-slice('#{$color}', 2, -1);
+  @return '%23' + str.slice('#{$color}', 2, -1);
 }
 
 .sr-only {

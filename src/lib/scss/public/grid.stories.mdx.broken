@@ -27,7 +27,7 @@ You can use the following helper within your sass code.
 
 ```sass
 // demo.scss
-@import '@popsure/dirty-swan/dist/grid';
+@use '@popsure/dirty-swan/dist/grid';
 
 
 .reponsive-element {
