@@ -1,4 +1,5 @@
 @use '../../../private/base/grid';
+@use 'sass:map';
 
 /** Shared values across align and justify properties */
 $common-values: (
@@ -7,7 +8,7 @@ $common-values: (
   'center': center,
 );
 
-$align-values: map-merge(
+$align-values: map.merge(
   $common-values,
   (
     'stretch': stretch,
@@ -15,7 +16,7 @@ $align-values: map-merge(
   )
 );
 
-$jutify-values: map-merge(
+$jutify-values: map.merge(
   $common-values,
   (
     'between': space-between,

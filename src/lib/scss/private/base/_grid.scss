@@ -1,4 +1,5 @@
 @use '../../public/grid';
+@use 'sass:string' as str;
 
 .p-body {
   @include grid.p-size-mobile {
@@ -27,8 +28,8 @@
 @function remove-dot-from-class($class) {
   $class-string: quote($class);
   @return if(
-    str-slice($class-string, 0, 1) == '.',
-    str-slice($class-string, 2, str-length($class-string)),
+    str.slice($class-string, 0, 1) == '.',
+    str.slice($class-string, 2, str.length($class-string)),
     $class-string
   );
 }

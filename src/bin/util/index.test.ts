@@ -59,7 +59,7 @@ describe('Generate font', () => {
         },
       })
     ).toEqual(
-      `@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');\n\n$font-family: 'Ubuntu', 'sans-serif';`
+      `@use url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');\n\n$font-family: 'Ubuntu', 'sans-serif';`
     );
   });
 
