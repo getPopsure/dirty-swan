@@ -37,6 +37,12 @@ class SignaturePad extends Component<SignaturePadProps, State> {
       onEnd: this.notifyOnChange,
     });
     this.resizeCanvas();
+
+    window.addEventListener('resize', this.resizeCanvas);
+  }
+
+  public componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeCanvas);
   }
 
   public render() {
@@ -85,6 +91,10 @@ class SignaturePad extends Component<SignaturePadProps, State> {
     this.canvas.width = this.canvas.offsetWidth * ratio;
     this.canvas.height = this.canvas.offsetHeight * ratio;
     this.canvas.getContext('2d').scale(ratio, ratio);
+
+    // Restore drawing after resizing
+    const data = this.signaturePad.toData();
+    this.signaturePad.fromData(data);
   }
 
   private clear() {
