@@ -51,7 +51,7 @@ const story = {
     },
   },
   args: {
-    apiKey: 'AIzaSyDg0DSrjYKt5smmsjkVasDz7c4T5rbOXT8',
+    apiKey: 'YOUR_GOOGLE_API_KEY',
   },
   parameters: {
     componentSubtitle:
