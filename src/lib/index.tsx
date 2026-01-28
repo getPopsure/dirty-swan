@@ -16,7 +16,7 @@ import {
 } from './components/informationBox';
 import IbanInput from './components/input/iban';
 import { CurrencyInput } from './components/input/currency';
-import { Badge } from './components/badge';
+import { Badge, BadgeProps } from './components/badge';
 import { Checkbox } from './components/input/checkbox';
 import { Radio } from './components/input/radio';
 import {
@@ -120,6 +120,7 @@ export {
 
 export type {
   AccordionProps,
+  BadgeProps,
   IllustrationKeys,
   InformationBoxProps,
   InputProps,

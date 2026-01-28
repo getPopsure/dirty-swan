@@ -59,6 +59,7 @@ export * from './lib/components/icon';
 
 export type {
   AccordionProps,
+  BadgeProps,
   DownloadStatus,
   InformationBoxProps,
   InputProps,
