@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Fragment } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { ScrollSync, ScrollSyncPane } from 'react-scroll-sync';
 
 import { AccordionItem } from './components/AccordionItem';
@@ -52,6 +52,8 @@ export interface ComparisonTableProps<T> {
   hideScrollBars?: boolean;
   hideScrollBarsMobile?: boolean;
   collapsibleSections?: boolean;
+  scrollOnOpen?: boolean;
+  scrollTopOffset?: number;
   cellWidth?: number;
   firstColumnWidth?: number;
   stickyHeaderTopOffset?: number;
@@ -83,6 +85,8 @@ const ComparisonTable = <T extends { id: number }>(
     hideScrollBars,
     hideScrollBarsMobile = true,
     collapsibleSections,
+    scrollOnOpen,
+    scrollTopOffset = 0,
     cellWidth,
     firstColumnWidth,
     stickyHeaderTopOffset,
@@ -94,14 +98,15 @@ const ComparisonTable = <T extends { id: number }>(
     headerWidth,
     headerId,
     contentContainerRef,
-    selectedSection,
-    setSelectedSection,
     selectedTabIndex,
     headerRefCallbackRef,
     handleArrowsClick,
     toggleMoreRows,
     showMore,
   } = useComparisonTable({ onSelectionChanged });
+
+  const [openSectionId, setOpenSectionId] = useState<number | null>(null);
+  const stickyHeaderRef = useRef<HTMLDivElement>(null);
 
   const cssVariablesStyle = {
     '--tableWidth': `${headerWidth}px`,
@@ -125,6 +130,7 @@ const ComparisonTable = <T extends { id: number }>(
         })}
       >
         <div
+          ref={stickyHeaderRef}
           id={headerId}
           className={classNames(baseStyles.header, classNameOverrides?.header)}
         >
@@ -190,6 +196,18 @@ const ComparisonTable = <T extends { id: number }>(
                         )}
                         label={headerGroup.label}
                         headerClassName="p24 br8"
+                        isOpen={openSectionId === headerGroup.id}
+                        onToggle={() =>
+                          setOpenSectionId((prev) =>
+                            prev === headerGroup.id ? null : headerGroup.id
+                          )
+                        }
+                        scrollOnOpen={scrollOnOpen}
+                        scrollTopOffset={
+                          scrollTopOffset +
+                          (stickyHeaderRef.current?.getBoundingClientRect()
+                            .height ?? 0)
+                        }
                       >
                         <ScrollSyncPane>
                           <div

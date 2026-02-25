@@ -254,6 +254,14 @@ const story = {
     collapsibleSections: {
       description: 'Make table groups with a label collapsible',
     },
+    scrollOnOpen: {
+      description:
+        'When enabled, the page scrolls to the top of a newly expanded section.',
+    },
+    scrollTopOffset: {
+      description:
+        'Offset in pixels from the top of the viewport when scrolling to an expanded section.',
+    },
     cellWidth: {
       description: 'Width of a table content cell',
     },
@@ -287,7 +295,9 @@ const story = {
     showDetailsCaption: 'Show details',
     hideScrollBars: false,
     hideScrollBarsMobile: true,
-    collapsibleSections: false,
+    collapsibleSections: true,
+    scrollOnOpen: true,
+    scrollTopOffset: 0,
     cellWidth: undefined,
     firstColumnWidth: undefined,
     stickyHeaderTopOffset: 0,
@@ -325,6 +335,8 @@ export const ComparisonTableStory = {
     data,
     headers,
     collapsibleSections,
+    scrollOnOpen,
+    scrollTopOffset,
     hideDetails,
     classNameOverrides,
     hideDetailsCaption,
@@ -341,6 +353,8 @@ export const ComparisonTableStory = {
         data={data}
         headers={headers}
         collapsibleSections={collapsibleSections}
+        scrollOnOpen={scrollOnOpen}
+        scrollTopOffset={scrollTopOffset}
         hideDetails={hideDetails}
         classNameOverrides={classNameOverrides}
         hideDetailsCaption={hideDetailsCaption}

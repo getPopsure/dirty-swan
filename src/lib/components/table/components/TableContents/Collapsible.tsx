@@ -4,9 +4,10 @@ import classNames from 'classnames';
 interface CollapsibleProps {
   children: ReactNode;
   isExpanded?: boolean;
+  onTransitionEnd?: () => void;
 }
 
-export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
+export const Collapsible = ({ children, isExpanded, onTransitionEnd }: CollapsibleProps) => {
   const [height, setHeight] = useState<number | undefined>();
 
   const observerRef = useRef<ResizeObserver | null>(null);
@@ -45,6 +46,7 @@ export const Collapsible = ({ children, isExpanded }: CollapsibleProps) => {
       style={{
         maxHeight: isExpanded ? height : '0px',
       }}
+      onTransitionEnd={isExpanded ? onTransitionEnd : undefined}
     >
       {children}
     </div>

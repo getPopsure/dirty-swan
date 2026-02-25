@@ -39,6 +39,8 @@ export interface TableProps {
   modalContentRenderer?: (content: ReactNode) => ReactNode;
   onModalOpen?: ModalFunction;
   onSelectionChanged?: (index: number) => void;
+  scrollOnOpen?: boolean;
+  scrollTopOffset?: number;
   stickyHeaderTopOffset?: number;
   tableData: TableData;
   textOverrides?: TextOverrides;
@@ -63,6 +65,8 @@ const Table = ({
   modalContentRenderer,
   onModalOpen,
   onSelectionChanged,
+  scrollOnOpen,
+  scrollTopOffset = 0,
   stickyHeaderTopOffset = 0,
   tableData,
   textOverrides: definedTextOverrides,
@@ -76,6 +80,7 @@ const Table = ({
   const [shouldHideDetails, setShouldHideDetails] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const stickyHeaderRef = useRef<HTMLDivElement | null>(null);
   const columnsLength = tableData[0].rows[0].length;
 
   useScrollSync(headerRef, containerRef, !isMobile);
@@ -154,6 +159,7 @@ const Table = ({
         </>
       ) : (
         <div
+          ref={stickyHeaderRef}
           aria-hidden
           className={styles.stickyHeader}
           style={{ top: `${stickyHeaderTopOffset}px` }}
@@ -179,6 +185,9 @@ const Table = ({
           title={title}
           className={className}
           collapsibleSections={collapsibleSections}
+          scrollOnOpen={scrollOnOpen}
+          scrollTopOffset={scrollTopOffset}
+          stickyHeaderRef={stickyHeaderRef}
           hideColumns={hideColumns}
           hideDetails={hideDetails}
           hideRows={hideRows}

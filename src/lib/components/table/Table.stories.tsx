@@ -144,6 +144,48 @@ const initialData: TableData = [
         { rating: { type: 'star', value: 3 } },
       ],
       [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Rating', modalContent: 'info' },
+        { rating: { type: 'zap', value: 1 }, modalContent: 'Maybe' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
         {
           type: 'CARD',
           colSpan: 3,
@@ -203,6 +245,14 @@ const story = {
     collapsibleSections: {
       subContent: 'This property allows to collapse the sections of the table.',
     },
+    scrollOnOpen: {
+      subContent:
+        'When enabled, the page scrolls to the top of a newly expanded section.',
+    },
+    scrollTopOffset: {
+      subContent:
+        'Offset in pixels from the top of the viewport when scrolling to an expanded section.',
+    },
     hideDetails: {
       subContent: 'This property allows to hide the details of the table.',
     },
@@ -244,7 +294,9 @@ const story = {
   },
   args: {
     tableData: initialData,
-    collapsibleSections: false,
+    collapsibleSections: true,
+    scrollOnOpen: true,
+    scrollTopOffset: 0,
     hideDetails: false,
     stickyHeaderTopOffset: 0,
     title: 'Title of the table',
@@ -262,6 +314,8 @@ const story = {
 export const TableStory = {
   render: ({
     collapsibleSections,
+    scrollOnOpen,
+    scrollTopOffset,
     tableData,
     hideColumns,
     hideDetails,
@@ -303,6 +357,8 @@ export const TableStory = {
             },
           }}
           collapsibleSections={collapsibleSections}
+          scrollOnOpen={scrollOnOpen}
+          scrollTopOffset={scrollTopOffset}
           tableData={tableData}
           hideColumns={hideColumns}
           hideDetails={hideDetails}

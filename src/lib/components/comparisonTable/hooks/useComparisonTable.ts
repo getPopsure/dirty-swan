@@ -11,7 +11,6 @@ export const useComparisonTable = ({
   const [showMore, setShowMore] = useState<boolean>(false);
   const [headerWidth, setHeaderWidth] = useState(1400);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-  const [selectedSection, setSelectedSection] = useState('');
   const [headerId, setHeaderId] = useState('');
   const headerRef = useRef<HTMLDivElement | null>(null);
   const contentContainerRef = useRef<HTMLDivElement | null>(null);
@@ -140,8 +139,6 @@ export const useComparisonTable = ({
     headerWidth,
     headerId,
     contentContainerRef,
-    selectedSection,
-    setSelectedSection,
     selectedTabIndex,
     setSelectedTabIndex,
     headerRefCallbackRef,

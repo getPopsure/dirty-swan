@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MutableRefObject, useCallback, useRef, useState } from 'react';
 import { TableSection } from '../TableSection/TableSection';
 import { ChevronDownIcon, ChevronUpIcon } from '../../../icon';
 import { Card } from '../../../cards/card';
@@ -12,6 +12,9 @@ import { IconRenderer } from '../IconRenderer/IconRenderer';
 export interface TableContentsProps {
   className?: string;
   collapsibleSections?: boolean;
+  scrollOnOpen?: boolean;
+  scrollTopOffset?: number;
+  stickyHeaderRef?: MutableRefObject<HTMLDivElement | null>;
   tableData: TableData;
   hideColumns?: number[];
   hideDetails?: boolean;
@@ -27,6 +30,9 @@ export interface TableContentsProps {
 const TableContents = ({
   className,
   collapsibleSections,
+  scrollOnOpen,
+  scrollTopOffset = 0,
+  stickyHeaderRef,
   tableData,
   hideColumns = [],
   hideDetails,
@@ -39,13 +45,32 @@ const TableContents = ({
   imageComponent,
 }: TableContentsProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
+  const lastToggledSection = useRef<number | null>(null);
+  const sectionRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const firstHeadRow = tableData?.[0]?.rows?.[0];
   const tableWidth = isMobile ? `${firstHeadRow?.length * 50}%` : '';
   const handleToggleSection = (index: number) => {
+    lastToggledSection.current = isSectionOpen === index ? null : index;
     setOpenSection((currentSection) =>
       currentSection === index ? null : index
     );
   };
+
+  const handleScrollToSection = useCallback(
+    (index: number) => {
+      if (scrollOnOpen && lastToggledSection.current === index && sectionRefs.current[index]) {
+        const headerHeight =
+          stickyHeaderRef?.current?.getBoundingClientRect().height ?? 0;
+        const top =
+          sectionRefs.current[index]!.getBoundingClientRect().top +
+          window.scrollY -
+          scrollTopOffset -
+          headerHeight;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    },
+    [scrollOnOpen, scrollTopOffset, stickyHeaderRef]
+  );
 
   // Calculate global row offset for each section
   let globalRowOffset = 0;
@@ -69,7 +94,7 @@ const TableContents = ({
           .filter(localRowIndex => localRowIndex >= 0 && localRowIndex < rows.length);
 
         const result = (isFirstSection || isVisible) && (
-          <div key={index}>
+          <div key={index} ref={(el) => { sectionRefs.current[index] = el; }}>
             {section?.title && (
               <div className={styles.cardWrapper}>
                 <div className={classNames(styles.card, 'p0')}>
@@ -103,7 +128,10 @@ const TableContents = ({
               </div>
             )}
 
-            <Collapsible isExpanded={isExpanded}>
+            <Collapsible
+              isExpanded={isExpanded}
+              onTransitionEnd={() => handleScrollToSection(index)}
+            >
               <TableSection
                 className={classNames(className, 'mb24')}
                 tableCellRows={
