@@ -42,6 +42,7 @@ export interface DateSelectorProps {
   };
   firstDayOfWeek?: number;
   inputProps?: (key: keyof CalendarDate) => Partial<DateSelectorInputProps>;
+  defaultDayPickerDate?: string;
 }
 
 const defaultPlaceholders: DateSelectorProps["placeholders"] = {
@@ -97,6 +98,7 @@ export const DateSelector = ({
   dayjsLocale,
   firstDayOfWeek = 0,
   inputProps,
+  defaultDayPickerDate,
 }: DateSelectorProps) => {
   const placeholders = {
     ...defaultPlaceholders,
@@ -254,6 +256,7 @@ export const DateSelector = ({
           setCalendarOpen={setIsCalendarOpen}
           value={value}
           onChange={onChange}
+          defaultDayPickerDate={defaultDayPickerDate}
         />
       </div>
 

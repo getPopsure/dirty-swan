@@ -48,14 +48,18 @@ const story = {
     firstDayOfWeek: {
       description: `Index of the first day of the week (0 = Sunday, 1 = Monday, etc.)`,
     },
+    defaultDayPickerDate: {
+      description: 'Default date the calendar opens to when no value is set',
+      control: 'text',
+    },
   },
   args: {
     yearBoundaries: {
       min: 1920,
       max: 2001,
     },
-    displayCalendar: false,
-    value: '2000-12-12',
+    displayCalendar: true,
+    defaultDayPickerDate: '1990-01-01',
   },
   parameters: {
     componentSubtitle:
@@ -78,6 +82,7 @@ export const DateSelectorStory = {
     onChange,
     yearBoundaries,
     value,
+    defaultDayPickerDate,
   }: DateSelectorProps) => {
     const [newValue, setValue] = useState(value);
 
@@ -92,6 +97,7 @@ export const DateSelectorStory = {
         displayCalendar={displayCalendar}
         yearBoundaries={yearBoundaries}
         value={newValue}
+        defaultDayPickerDate={defaultDayPickerDate}
       />
     );
   },

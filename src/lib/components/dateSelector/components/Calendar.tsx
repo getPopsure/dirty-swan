@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import dayjs from 'dayjs';
 import DayPicker from 'react-day-picker';
 
 import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
 import { CalendarIcon } from '../../icon/icons';
+import { CalendarCaption } from './CalendarCaption';
 
 import styles from './style.module.scss';
 import './datepicker.scss';
@@ -19,6 +20,7 @@ export interface CalendarProps {
   firstDayOfWeek?: number;
   isOpen?: boolean;
   setCalendarOpen: (isOpen: boolean) => void;
+  defaultDayPickerDate?: string;
 }
 
 export const Calendar = ({
@@ -30,32 +32,49 @@ export const Calendar = ({
   dayjsLocale,
   firstDayOfWeek,
   setCalendarOpen,
-  isOpen
+  isOpen,
+  defaultDayPickerDate,
 }: CalendarProps) => {
   const localeDate = dayjsLocale
     ? dayjs().locale(dayjsLocale).localeData()
     : dayjs().locale('en').localeData();
 
   const localizedWeekdays = localeDate.weekdays();
-  const localizedWeekdaysShort = localeDate.weekdaysShort();
+  const localizedWeekdaysShort = localeDate.weekdaysMin();
   const localizedMonths = localeDate.months();
 
   const calendarContainerRef = useRef<HTMLDivElement | null>(null);
+  const [displayedMonth, setDisplayedMonth] = useState<Date | undefined>(undefined);
 
-  const calendarDefaultDate =
-    dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
+  const calendarDefaultDate = defaultDayPickerDate
+    ? dayjs(defaultDayPickerDate).toDate()
+    : dayjs().year() >= yearBoundaries.min && dayjs().year() <= yearBoundaries.max
       ? dayjs().toDate()
       : dayjs().set('year', yearBoundaries.max).toDate();
 
   const selectedDateInDateType = value
     ? dayjs(value).toDate()
-    : calendarDefaultDate;
+    : undefined;
   const dateCalendarFromMonth = dayjs(String(yearBoundaries.min))
     .startOf('year')
     .toDate();
   const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
     .endOf('year')
     .toDate();
+
+  const currentMonth = displayedMonth ?? selectedDateInDateType ?? calendarDefaultDate;
+
+  const handlePrevMonth = () => {
+    const prev = new Date(currentMonth);
+    prev.setMonth(prev.getMonth() - 1);
+    setDisplayedMonth(prev);
+  };
+
+  const handleNextMonth = () => {
+    const next = new Date(currentMonth);
+    next.setMonth(next.getMonth() + 1);
+    setDisplayedMonth(next);
+  };
 
   useOnClickOutside(calendarContainerRef, () => setCalendarOpen(false));
 
@@ -80,7 +99,7 @@ export const Calendar = ({
 
       {isOpen && (
         <DayPicker
-          month={selectedDateInDateType}
+          month={displayedMonth ?? selectedDateInDateType ?? calendarDefaultDate}
           showOutsideDays={true}
           fromMonth={dateCalendarFromMonth}
           toMonth={dateCalendarToMonth}
@@ -99,6 +118,18 @@ export const Calendar = ({
               setCalendarOpen(false);
             }
           }}
+          navbarElement={() => null}
+          onMonthChange={(month: Date) => setDisplayedMonth(month)}
+          captionElement={({ date }: { date: Date }) => (
+            <CalendarCaption
+              date={date}
+              months={localizedMonths}
+              yearBoundaries={yearBoundaries}
+              onMonthChange={(newDate) => setDisplayedMonth(newDate)}
+              onPrevClick={handlePrevMonth}
+              onNextClick={handleNextMonth}
+            />
+          )}
           pagedNavigation={true}
           disabledDays={{
             before: dateCalendarFromMonth,
