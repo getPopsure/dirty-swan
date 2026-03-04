@@ -44,6 +44,7 @@ export interface TableProps {
   textOverrides?: TextOverrides;
   title: string;
   activeSection?: number;
+  hideTableNavigation?: boolean;
 }
 
 const defaultTextOverrides = {
@@ -67,6 +68,7 @@ const Table = ({
   textOverrides: definedTextOverrides,
   title,
   activeSection: externalActiveSection,
+  hideTableNavigation = false,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -126,27 +128,29 @@ const Table = ({
             />
           )}
 
-          <TableControls
-            activeSection={activeSection}
-            columnsLength={columnsLength}
-            navigateTable={navigateTable}
-            stickyHeaderTopOffset={stickyHeaderTopOffset}
-          >
-            <TableCell
-              {...(isBaseCell(currentActiveSection)
-                ? {
-                    openModal: (body: ReactNode) =>
-                      handleOpenModal({
-                        body,
-                        title: currentActiveSection?.text,
-                      }),
-                  }
-                : {})}
-              {...activeCellProps}
-              imageComponent={imageComponent}
-              isNavigation
-            />
-          </TableControls>
+          {!hideTableNavigation && (
+            <TableControls
+              activeSection={activeSection}
+              columnsLength={columnsLength}
+              navigateTable={navigateTable}
+              stickyHeaderTopOffset={stickyHeaderTopOffset}
+            >
+              <TableCell
+                {...(isBaseCell(currentActiveSection)
+                  ? {
+                      openModal: (body: ReactNode) =>
+                        handleOpenModal({
+                          body,
+                          title: currentActiveSection?.text,
+                        }),
+                    }
+                  : {})}
+                {...activeCellProps}
+                imageComponent={imageComponent}
+                isNavigation
+              />
+            </TableControls>
+          )}
         </>
       ) : (
         <div

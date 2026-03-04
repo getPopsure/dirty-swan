@@ -255,6 +255,7 @@ const story = {
     },
     hideColumns: [],
     hideRows: [],
+    hideTableNavigation: true,
   },
 };
 
@@ -269,6 +270,7 @@ export const TableStory = {
     textOverrides,
     title,
     activeSection,
+    hideTableNavigation,
   }: TableProps) => {
     const [price, setPrice] = useState(999);
     return (
@@ -309,6 +311,7 @@ export const TableStory = {
           textOverrides={textOverrides}
           title={title}
           activeSection={activeSection}
+          hideTableNavigation={hideTableNavigation}
         />
       </div>
     );
