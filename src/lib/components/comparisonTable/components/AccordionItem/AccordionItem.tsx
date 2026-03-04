@@ -1,7 +1,7 @@
 import AnimateHeight from 'react-animate-height';
 
 import styles from './AccordionItem.module.scss';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const ChevronSVG = ({ className }: { className?: string }) => (
   <svg
@@ -27,19 +27,52 @@ export const AccordionItem = ({
   className = '',
   headerClassName = '',
   label,
+  isOpen: controlledIsOpen,
+  onToggle,
+  scrollOnOpen,
+  scrollTopOffset = 0,
 }: {
   children: React.ReactNode | string;
   className?: string;
   headerClassName?: string;
   label: React.ReactNode;
+  isOpen?: boolean;
+  onToggle?: () => void;
+  scrollOnOpen?: boolean;
+  scrollTopOffset?: number;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const userToggled = useRef(false);
+
+  const isControlled = controlledIsOpen !== undefined && onToggle !== undefined;
+  const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    userToggled.current = true;
+    if (isControlled) {
+      onToggle();
+    } else {
+      setInternalIsOpen(!internalIsOpen);
+    }
+  };
+
+  const handleAnimationEnd = () => {
+    if (userToggled.current && isOpen && scrollOnOpen && sectionRef.current) {
+      userToggled.current = false;
+      const top =
+        sectionRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        scrollTopOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   };
 
   return (
-    <section className={`d-flex fd-column ${styles.container} ${className}`}>
+    <section
+      ref={sectionRef}
+      className={`d-flex fd-column ${styles.container} ${className}`}
+    >
       <button
         className={`d-flex ai-center jc-between ${styles.headerButton} ${headerClassName}`}
         onClick={handleClick}
@@ -58,7 +91,11 @@ export const AccordionItem = ({
       </button>
       {/* Min height is 0.1 so that the scroll position is correctly synced across accordion items but is not actually shown.
       If set to 0, react-animate-height will set display to "none" which means scrolling is not synced. */}
-      <AnimateHeight duration={300} height={isOpen ? 'auto' : 0.1}>
+      <AnimateHeight
+        duration={300}
+        height={isOpen ? 'auto' : 0.1}
+        onHeightAnimationEnd={handleAnimationEnd}
+      >
         {children}
       </AnimateHeight>
     </section>
