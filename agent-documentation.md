@@ -17,7 +17,7 @@ Use dirty-swan SCSS mixins (`@include p-size-mobile`, `@include p-size-tablet`, 
 
 ## Hooks
 
-The library exports hooks for common UI patterns. Examples: `useMediaQuery` for JS-based responsive logic, `useOnClickOutside` to detect clicks outside an element, `useEscapeKey` to handle escape key presses, and `useFocusWithin` to track focus entering or leaving an element. Check the library exports before writing custom hooks and writing complex logic around the UI.
+The library exports hooks for common UI patterns. Examples: `useMediaQuery` for JS-based responsive logic, `useOnClickOutside` to detect clicks outside an element, `useEscapeKey` to handle escape key presses, and `useFocusWithin` to track focus entering or leaving an element. Check the library exports before writing custom hooks or writing complex logic around the UI.
 
 ## SCSS variables
 
