@@ -1,4 +1,4 @@
-# Dirty Swan Design System — Agent Documentation
+# Design System Agent Documentation
 
 This document describes how to use `@popsure/dirty-swan` to build accessible, responsive, and brand-consistent UIs. It is intended to be read by AI coding agents.
 
