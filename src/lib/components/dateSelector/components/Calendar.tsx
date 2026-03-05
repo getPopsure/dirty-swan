@@ -7,7 +7,10 @@ import { CalendarIcon } from '../../icon/icons';
 import { CalendarCaption } from './CalendarCaption';
 
 import styles from './style.module.scss';
+// We need both: datepicker.module.scss is a reduced version included in the build
+// (most styles are imported by the vendor), while datepicker.scss is needed for Storybook.
 import './datepicker.module.scss';
+import './datepicker.scss';
 import { Button } from '../../button';
 
 export interface CalendarProps {
