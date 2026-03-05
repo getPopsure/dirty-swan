@@ -7,7 +7,7 @@ import { CalendarIcon } from '../../icon/icons';
 import { CalendarCaption } from './CalendarCaption';
 
 import styles from './style.module.scss';
-import './datepicker.scss';
+import './datepicker.module.scss';
 import { Button } from '../../button';
 
 export interface CalendarProps {
