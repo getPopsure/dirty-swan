@@ -21,7 +21,8 @@
   "files": [
     "dist",
     "src",
-    "Readme.md"
+    "Readme.md",
+    "agent-documentation.md"
   ],
   "dependencies": {
     "@popsure/public-models": "^1.0.1",
