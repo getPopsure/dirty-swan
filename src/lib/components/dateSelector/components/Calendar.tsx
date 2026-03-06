@@ -1,16 +1,13 @@
 import { useRef, useState } from 'react';
 import dayjs from 'dayjs';
-import DayPicker from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
+import rdpStyles from 'react-day-picker/style.module.css';
 
 import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
 import { CalendarIcon } from '../../icon/icons';
-import { CalendarCaption } from './CalendarCaption';
 
 import styles from './style.module.scss';
-// We need both: datepicker.module.scss is a reduced version included in the build
-// (most styles are imported by the vendor), while datepicker.scss is needed for Storybook.
-import './datepicker.module.scss';
-import './datepicker.scss';
+import datepickerStyles from './datepicker.module.scss';
 import { Button } from '../../button';
 
 export interface CalendarProps {
@@ -42,9 +39,8 @@ export const Calendar = ({
     ? dayjs().locale(dayjsLocale).localeData()
     : dayjs().locale('en').localeData();
 
-  const localizedWeekdays = localeDate.weekdays();
-  const localizedWeekdaysShort = localeDate.weekdaysMin();
   const localizedMonths = localeDate.months();
+  const localizedWeekdaysShort = localeDate.weekdaysMin();
 
   const calendarContainerRef = useRef<HTMLDivElement | null>(null);
   const [displayedMonth, setDisplayedMonth] = useState<Date | undefined>(undefined);
@@ -64,20 +60,6 @@ export const Calendar = ({
   const dateCalendarToMonth = dayjs(String(yearBoundaries.max))
     .endOf('year')
     .toDate();
-
-  const currentMonth = displayedMonth ?? selectedDateInDateType ?? calendarDefaultDate;
-
-  const handlePrevMonth = () => {
-    const prev = new Date(currentMonth);
-    prev.setMonth(prev.getMonth() - 1);
-    setDisplayedMonth(prev);
-  };
-
-  const handleNextMonth = () => {
-    const next = new Date(currentMonth);
-    next.setMonth(next.getMonth() + 1);
-    setDisplayedMonth(next);
-  };
 
   useOnClickOutside(calendarContainerRef, () => setCalendarOpen(false));
 
@@ -103,10 +85,13 @@ export const Calendar = ({
       {isOpen && (
         <DayPicker
           month={displayedMonth ?? selectedDateInDateType ?? calendarDefaultDate}
+          mode="single"
           showOutsideDays={true}
-          fromMonth={dateCalendarFromMonth}
-          toMonth={dateCalendarToMonth}
-          selectedDays={selectedDateInDateType}
+          captionLayout="dropdown"
+          navLayout="around"
+          startMonth={dateCalendarFromMonth}
+          endMonth={dateCalendarToMonth}
+          selected={selectedDateInDateType}
           onDayClick={(date: Date) => {
             if (!dayjs(date).isValid()) {
               return;
@@ -121,28 +106,23 @@ export const Calendar = ({
               setCalendarOpen(false);
             }
           }}
-          navbarElement={() => null}
           onMonthChange={(month: Date) => setDisplayedMonth(month)}
-          captionElement={({ date }: { date: Date }) => (
-            <CalendarCaption
-              date={date}
-              months={localizedMonths}
-              yearBoundaries={yearBoundaries}
-              onMonthChange={(newDate) => setDisplayedMonth(newDate)}
-              onPrevClick={handlePrevMonth}
-              onNextClick={handleNextMonth}
-            />
-          )}
           pagedNavigation={true}
-          disabledDays={{
+          disabled={{
             before: dateCalendarFromMonth,
             after: dateCalendarToMonth,
           }}
-          firstDayOfWeek={firstDayOfWeek}
-          locale={dayjsLocale?.name || 'en'}
-          months={localizedMonths}
-          weekdaysLong={localizedWeekdays}
-          weekdaysShort={localizedWeekdaysShort}
+          weekStartsOn={firstDayOfWeek as 0 | 1 | 2 | 3 | 4 | 5 | 6}
+          formatters={{
+            formatWeekdayName: (_date) => {
+              const dayIndex = _date.getDay();
+              return localizedWeekdaysShort[dayIndex]?.charAt(0) ?? '';
+            },
+            formatMonthDropdown: (date) => {
+              return localizedMonths[date.getMonth()];
+            },
+          }}
+          classNames={{ ...rdpStyles, ...datepickerStyles }}
         />
       )}
     </div>

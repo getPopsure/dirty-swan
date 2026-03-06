@@ -150,7 +150,7 @@ describe('DateSelector component', () => {
 
       await user.click(button);
 
-      const calendarCell = getByLabelText(/17 2024/);
+      const calendarCell = getByLabelText(/January 17/);
 
       await user.click(calendarCell);
 
@@ -167,7 +167,7 @@ describe('DateSelector component', () => {
 
       await user.click(button);
 
-      const calendarCell = getByLabelText(/17 2024/);
+      const calendarCell = getByLabelText(/January 17/);
       expect(calendarCell).toBeVisible();
 
       // click outside the calendar
