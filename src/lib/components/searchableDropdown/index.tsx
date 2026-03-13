@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import { Input } from '../input';
 import { ChevronDownIcon } from '../icon';
+import { useDropdownAlignment } from '../../hooks/useDropdownAlignment';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import generateId from '../../util/generateId';
@@ -52,6 +53,7 @@ export const SearchableDropdown = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const optionRefs = useRef<Map<string, HTMLInputElement>>(new Map());
   const [groupName] = useState(() => groupNameProp ?? `sd-${generateId()}`);
   const dropdownId = `${groupName}-dropdown`;
@@ -67,6 +69,8 @@ export const SearchableDropdown = ({
       if (isOpen) closeAndRestoreFocus();
     }, [isOpen, closeAndRestoreFocus])
   );
+
+  const { alignRight, alignUp } = useDropdownAlignment(containerRef, dropdownRef, isOpen);
 
   useEffect(() => {
     if (isOpen && searchable && searchInputRef.current) {
@@ -198,10 +202,11 @@ export const SearchableDropdown = ({
       {isOpen && (
         <div
           id={dropdownId}
+          ref={dropdownRef}
           className={classnames(
             styles.dropdown,
             'bg-white br8 p8 d-flex fd-column',
-            { [styles.dropdownUp]: dropUp }
+            { [styles.dropdownUp]: dropUp || alignUp, [styles.dropdownRight]: alignRight }
           )}
         >
           {searchable && (
