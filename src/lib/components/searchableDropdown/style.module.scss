@@ -58,6 +58,11 @@
   z-index: 10;
 }
 
+.dropdownRight {
+  left: auto;
+  right: 0;
+}
+
 .dropdownUp {
   top: auto;
   bottom: calc(100% + 4px);

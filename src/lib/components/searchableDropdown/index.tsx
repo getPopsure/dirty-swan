@@ -49,9 +49,11 @@ export const SearchableDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [localValue, setLocalValue] = useState(value);
+  const [alignRight, setAlignRight] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const optionRefs = useRef<Map<string, HTMLInputElement>>(new Map());
   const [groupName] = useState(() => groupNameProp ?? `sd-${generateId()}`);
   const dropdownId = `${groupName}-dropdown`;
@@ -67,6 +69,25 @@ export const SearchableDropdown = ({
       if (isOpen) closeAndRestoreFocus();
     }, [isOpen, closeAndRestoreFocus])
   );
+
+  const updateAlignment = useCallback(() => {
+    if (containerRef.current && dropdownRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const dropdownWidth = dropdownRef.current.offsetWidth;
+      const spaceOnRight = window.innerWidth - containerRect.left;
+      setAlignRight(spaceOnRight < dropdownWidth);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    updateAlignment();
+
+    const observer = new ResizeObserver(updateAlignment);
+    observer.observe(document.documentElement);
+    return () => observer.disconnect();
+  }, [isOpen, updateAlignment]);
 
   useEffect(() => {
     if (isOpen && searchable && searchInputRef.current) {
@@ -198,10 +219,11 @@ export const SearchableDropdown = ({
       {isOpen && (
         <div
           id={dropdownId}
+          ref={dropdownRef}
           className={classnames(
             styles.dropdown,
             'bg-white br8 p8 d-flex fd-column',
-            { [styles.dropdownUp]: dropUp }
+            { [styles.dropdownUp]: dropUp, [styles.dropdownRight]: alignRight }
           )}
         >
           {searchable && (
