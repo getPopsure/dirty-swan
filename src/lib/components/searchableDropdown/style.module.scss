@@ -1,0 +1,132 @@
+@use '../../scss/public/colors' as *;
+@use '../../scss/public/shadows' as *;
+
+.container {
+  position: relative;
+}
+
+.selectTrigger {
+  padding: 10px 12px;
+  border: 1px solid $ds-neutral-300;
+
+  &:hover {
+    border-color: $ds-neutral-500;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $ds-neutral-900;
+    outline-offset: 1px;
+  }
+
+  &Open {
+    border-color: $ds-neutral-900;
+    box-shadow: $bs-xs;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.condensed {
+  width: auto;
+  padding: 8px 10px;
+  gap: 8px;
+}
+
+.bordered {
+  border: 1px solid $ds-neutral-300;
+
+  &:hover {
+    border-color: $ds-neutral-500;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 280px;
+  border: 1px solid $ds-neutral-300;
+  box-shadow: $bs-md;
+  z-index: 10;
+}
+
+.dropdownUp {
+  top: auto;
+  bottom: calc(100% + 4px);
+
+  .searchContainer {
+    order: 2;
+    padding-bottom: 0;
+    padding-top: 8px;
+  }
+
+  .optionList {
+    order: 1;
+  }
+}
+
+.searchContainer {
+  position: sticky;
+  top: 0;
+}
+
+.optionList {
+  max-height: 308px;
+  overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.optionWrapper {
+  position: relative;
+}
+
+.optionRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:focus-visible + label {
+    outline: 2px solid $ds-neutral-900;
+    outline-offset: -2px;
+    border-radius: 8px;
+  }
+}
+
+.option {
+  padding: 10px 12px;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $ds-neutral-100;
+  }
+
+  &Selected {
+    background-color: $ds-purple-100;
+
+    &:hover {
+      background-color: $ds-purple-100;
+    }
+  }
+}
+
+.optionIcon {
+  flex-shrink: 0;
+}
+
+.noResults {
+  padding: 10px 12px;
+}
