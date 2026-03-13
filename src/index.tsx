@@ -53,6 +53,7 @@ export {
   LogoInverted,
   LogoPositiveColor,
   LogoPositiveBlack,
+  SearchableDropdown,
 } from './lib';
 
 export * from './lib/components/icon';
@@ -73,6 +74,8 @@ export type {
   IconWrapperProps,
   TableData,
   TableProps,
+  SearchableDropdownProps,
+  SearchableDropdownOption,
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
