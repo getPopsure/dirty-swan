@@ -99,24 +99,84 @@ export const SearchableDropdown = ({
 
   const selectedOption = options.find((option) => option.id === value);
 
+  const handleTriggerClick = () => {
+    if (!disabled) setIsOpen(!isOpen);
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const target =
+        e.key === 'ArrowDown'
+          ? filteredOptions[0]
+          : filteredOptions[filteredOptions.length - 1];
+      if (target) {
+        setLocalValue(target.id);
+        optionRefs.current.get(target.id)?.focus();
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const target = filteredOptions[0];
+      if (target) {
+        onChange(target.id);
+        closeAndRestoreFocus();
+      }
+    }
+  };
+
+  const handleOptionClick = (optionId: string) => {
+    onChange(optionId);
+    closeAndRestoreFocus();
+  };
+
+  const handleOptionRef = (optionId: string, el: HTMLInputElement | null) => {
+    if (el) optionRefs.current.set(optionId, el);
+    else optionRefs.current.delete(optionId);
+  };
+
+  const handleOptionKeyDown = (e: React.KeyboardEvent, optionId: string) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const currentIndex = filteredOptions.findIndex(
+        (o) => o.id === optionId
+      );
+      const nextIndex =
+        e.key === 'ArrowDown'
+          ? Math.min(currentIndex + 1, filteredOptions.length - 1)
+          : Math.max(currentIndex - 1, 0);
+      const next = filteredOptions[nextIndex];
+      if (next) {
+        setLocalValue(next.id);
+        optionRefs.current.get(next.id)?.focus();
+      }
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onChange(optionId);
+      closeAndRestoreFocus();
+    }
+  };
+
   return (
-    <div className={classnames(styles.container, { [styles.containerCondensed]: condensed })} ref={containerRef}>
+    <div className={classnames(styles.container, { 'd-inline-block': condensed })} ref={containerRef}>
       <button
         ref={triggerRef}
         type="button"
-        className={classnames(styles.selectTrigger, {
-          [styles.selectTriggerOpen]: isOpen,
-          [styles.condensed]: condensed,
-          [styles.bordered]: bordered,
-          [styles.disabled]: disabled,
-        })}
-        onClick={() => !disabled && setIsOpen(!isOpen)}
+        className={classnames(
+          'd-flex ai-center jc-between w100 br8 bg-white c-pointer ta-left tc-neutral-900',
+          styles.selectTrigger, {
+            [styles.selectTriggerOpen]: isOpen,
+            [styles.condensed]: condensed,
+            [styles.bordered]: bordered,
+            [styles.disabled]: disabled,
+          }
+        )}
+        onClick={handleTriggerClick}
         disabled={disabled}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-controls={isOpen ? dropdownId : undefined}
       >
-        <span className={styles.selectTriggerContent}>
+        <span className={'d-flex ai-center gap8'}>
           {selectedOption?.icon && (
             <span className={styles.optionIcon}>{selectedOption.icon}</span>
           )}
@@ -145,7 +205,7 @@ export const SearchableDropdown = ({
           )}
         >
           {searchable && (
-            <div className={styles.searchContainer}>
+            <div className={classnames('pb8 bg-white', styles.searchContainer)}>
               <Input
                 ref={searchInputRef}
                 type="text"
@@ -154,26 +214,7 @@ export const SearchableDropdown = ({
                 onChange={(e) => setSearchTerm(e.target.value)}
                 label={placeholder}
                 hideLabel
-                onKeyDown={(e) => {
-                  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    const target =
-                      e.key === 'ArrowDown'
-                        ? filteredOptions[0]
-                        : filteredOptions[filteredOptions.length - 1];
-                    if (target) {
-                      setLocalValue(target.id);
-                      optionRefs.current.get(target.id)?.focus();
-                    }
-                  } else if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const target = filteredOptions[0];
-                    if (target) {
-                      onChange(target.id);
-                      closeAndRestoreFocus();
-                    }
-                  }
-                }}
+                onKeyDown={handleSearchKeyDown}
               />
             </div>
           )}
@@ -187,44 +228,17 @@ export const SearchableDropdown = ({
                   value={option.id}
                   checked={option.id === localValue}
                   onChange={() => setLocalValue(option.id)}
-                  onClick={() => {
-                    onChange(option.id);
-                    closeAndRestoreFocus();
-                  }}
+                  onClick={() => handleOptionClick(option.id)}
                   tabIndex={option.id === localValue ? 0 : -1}
                   className={styles.optionRadio}
-                  ref={(el) => {
-                    if (el) optionRefs.current.set(option.id, el);
-                    else optionRefs.current.delete(option.id);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                      e.preventDefault();
-                      const currentIndex = filteredOptions.findIndex(
-                        (o) => o.id === option.id
-                      );
-                      const nextIndex =
-                        e.key === 'ArrowDown'
-                          ? Math.min(
-                              currentIndex + 1,
-                              filteredOptions.length - 1
-                            )
-                          : Math.max(currentIndex - 1, 0);
-                      const next = filteredOptions[nextIndex];
-                      if (next) {
-                        setLocalValue(next.id);
-                        optionRefs.current.get(next.id)?.focus();
-                      }
-                    } else if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onChange(option.id);
-                      closeAndRestoreFocus();
-                    }
-                  }}
+                  ref={(el) => handleOptionRef(option.id, el)}
+                  onKeyDown={(e) => handleOptionKeyDown(e, option.id)}
                 />
                 <label
                   htmlFor={`${groupName}-${option.id}`}
-                  className={classnames(styles.option, {
+                  className={classnames(
+                    'd-flex ai-center gap8 w100 br8 c-pointer ta-left tc-neutral-900',
+                    styles.option, {
                     [styles.optionSelected]: option.id === localValue,
                   })}
                 >
