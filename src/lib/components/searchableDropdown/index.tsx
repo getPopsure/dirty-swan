@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import { Input } from '../input';
 import { ChevronDownIcon } from '../icon';
+import { useDropdownAlignment } from '../../hooks/useDropdownAlignment';
 import { useEscapeKey } from '../../hooks/useEscapeKey';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import generateId from '../../util/generateId';
@@ -49,7 +50,6 @@ export const SearchableDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [localValue, setLocalValue] = useState(value);
-  const [alignRight, setAlignRight] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -70,24 +70,7 @@ export const SearchableDropdown = ({
     }, [isOpen, closeAndRestoreFocus])
   );
 
-  const updateAlignment = useCallback(() => {
-    if (containerRef.current && dropdownRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const dropdownWidth = dropdownRef.current.offsetWidth;
-      const spaceOnRight = window.innerWidth - containerRect.left;
-      setAlignRight(spaceOnRight < dropdownWidth);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    updateAlignment();
-
-    const observer = new ResizeObserver(updateAlignment);
-    observer.observe(document.documentElement);
-    return () => observer.disconnect();
-  }, [isOpen, updateAlignment]);
+  const { alignRight, alignUp } = useDropdownAlignment(containerRef, dropdownRef, isOpen);
 
   useEffect(() => {
     if (isOpen && searchable && searchInputRef.current) {
@@ -223,7 +206,7 @@ export const SearchableDropdown = ({
           className={classnames(
             styles.dropdown,
             'bg-white br8 p8 d-flex fd-column',
-            { [styles.dropdownUp]: dropUp, [styles.dropdownRight]: alignRight }
+            { [styles.dropdownUp]: dropUp || alignUp, [styles.dropdownRight]: alignRight }
           )}
         >
           {searchable && (
