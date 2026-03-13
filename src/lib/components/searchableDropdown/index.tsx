@@ -70,7 +70,7 @@ export const SearchableDropdown = ({
     }, [isOpen, closeAndRestoreFocus])
   );
 
-  const { alignRight, alignUp } = useDropdownAlignment(containerRef, dropdownRef, isOpen);
+  const { alignX, alignY } = useDropdownAlignment(containerRef, dropdownRef, isOpen);
 
   useEffect(() => {
     if (isOpen && searchable && searchInputRef.current) {
@@ -206,7 +206,7 @@ export const SearchableDropdown = ({
           className={classnames(
             styles.dropdown,
             'bg-white br8 p8 d-flex fd-column',
-            { [styles.dropdownUp]: dropUp || alignUp, [styles.dropdownRight]: alignRight }
+            { [styles.dropdownYTop]: dropUp || alignY === 'top', [styles.dropdownXRight]: alignX === 'right' }
           )}
         >
           {searchable && (

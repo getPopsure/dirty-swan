@@ -49,13 +49,13 @@ describe('useDropdownAlignment', () => {
     });
   });
 
-  it('should return alignRight and alignUp as false by default', () => {
+  it('should return alignX as left and alignY as bottom by default', () => {
     const { result } = renderHook(() =>
       useDropdownAlignment(containerRef, dropdownRef, false)
     );
 
-    expect(result.current.alignRight).toBe(false);
-    expect(result.current.alignUp).toBe(false);
+    expect(result.current.alignX).toBe('left');
+    expect(result.current.alignY).toBe('bottom');
   });
 
   it('should not compute alignment when isOpen is false', () => {
@@ -76,12 +76,12 @@ describe('useDropdownAlignment', () => {
       useDropdownAlignment(nullContainerRef, nullDropdownRef, true)
     );
 
-    expect(result.current.alignRight).toBe(false);
-    expect(result.current.alignUp).toBe(false);
+    expect(result.current.alignX).toBe('left');
+    expect(result.current.alignY).toBe('bottom');
   });
 
   describe('horizontal alignment', () => {
-    it('should set alignRight to false when there is enough space on the right', () => {
+    it('should set alignX to left when there is enough space on the right', () => {
       jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue(
         mockContainerRect({ left: 100, bottom: 100, top: 100 })
       );
@@ -91,10 +91,10 @@ describe('useDropdownAlignment', () => {
       );
 
       // spaceOnRight = 1024 - 100 = 924, dropdownWidth = 200 → enough space
-      expect(result.current.alignRight).toBe(false);
+      expect(result.current.alignX).toBe('left');
     });
 
-    it('should set alignRight to true when there is not enough space on the right', () => {
+    it('should set alignX to right when there is not enough space on the right', () => {
       jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue(
         mockContainerRect({ left: 900, bottom: 100, top: 100 })
       );
@@ -104,12 +104,12 @@ describe('useDropdownAlignment', () => {
       );
 
       // spaceOnRight = 1024 - 900 = 124, dropdownWidth = 200 → not enough space
-      expect(result.current.alignRight).toBe(true);
+      expect(result.current.alignX).toBe('right');
     });
   });
 
   describe('vertical alignment', () => {
-    it('should set alignUp to false when there is enough space below', () => {
+    it('should set alignY to bottom when there is enough space below', () => {
       jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue(
         mockContainerRect({ left: 100, bottom: 100, top: 100 })
       );
@@ -119,10 +119,10 @@ describe('useDropdownAlignment', () => {
       );
 
       // spaceBelow = 768 - 100 = 668, dropdownHeight = 300 → enough space
-      expect(result.current.alignUp).toBe(false);
+      expect(result.current.alignY).toBe('bottom');
     });
 
-    it('should set alignUp to true when not enough space below and more space above', () => {
+    it('should set alignY to top when not enough space below and more space above', () => {
       jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue(
         mockContainerRect({ left: 100, bottom: 600, top: 600 })
       );
@@ -133,10 +133,10 @@ describe('useDropdownAlignment', () => {
 
       // spaceBelow = 768 - 600 = 168, dropdownHeight = 300 → not enough below
       // containerRect.top = 600 > spaceBelow = 168 → more space above
-      expect(result.current.alignUp).toBe(true);
+      expect(result.current.alignY).toBe('top');
     });
 
-    it('should set alignUp to false when not enough space below but more space below than above', () => {
+    it('should set alignY to bottom when not enough space below but more space below than above', () => {
       jest.spyOn(containerEl, 'getBoundingClientRect').mockReturnValue(
         mockContainerRect({ left: 100, bottom: 500, top: 100 })
       );
@@ -147,7 +147,7 @@ describe('useDropdownAlignment', () => {
 
       // spaceBelow = 768 - 500 = 268, dropdownHeight = 300 → not enough below
       // containerRect.top = 100 < spaceBelow = 268 → more space below
-      expect(result.current.alignUp).toBe(false);
+      expect(result.current.alignY).toBe('bottom');
     });
   });
 
@@ -191,7 +191,7 @@ describe('useDropdownAlignment', () => {
         useDropdownAlignment(containerRef, dropdownRef, true)
       );
 
-      expect(result.current.alignRight).toBe(false);
+      expect(result.current.alignX).toBe('left');
 
       // Simulate viewport change: now not enough space on the right
       jest
@@ -204,7 +204,7 @@ describe('useDropdownAlignment', () => {
         observerCallback();
       });
 
-      expect(result.current.alignRight).toBe(true);
+      expect(result.current.alignX).toBe('right');
     });
   });
 });
