@@ -41,6 +41,11 @@ import {
   TableHeader,
 } from './components/comparisonTable';
 import { SegmentedControl } from './components/segmentedControl';
+import {
+  SearchableDropdown,
+  SearchableDropdownProps,
+  SearchableDropdownOption,
+} from './components/searchableDropdown';
 import { Link } from './components/link';
 import { illustrations, images, IllustrationKeys } from './util/images';
 import { Spinner } from './components/spinner';
@@ -91,6 +96,7 @@ export {
   TableRowHeader,
   TableButton,
   TableInfoButton,
+  SearchableDropdown,
   SegmentedControl,
   Checkbox,
   Radio,
@@ -120,6 +126,8 @@ export {
 
 export type {
   AccordionProps,
+  SearchableDropdownProps,
+  SearchableDropdownOption,
   BadgeProps,
   IllustrationKeys,
   InformationBoxProps,
