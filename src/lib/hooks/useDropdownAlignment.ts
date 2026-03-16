@@ -5,8 +5,8 @@ export const useDropdownAlignment = (
   dropdownRef: RefObject<HTMLElement | null>,
   isOpen: boolean
 ) => {
-  const [alignRight, setAlignRight] = useState(false);
-  const [alignUp, setAlignUp] = useState(false);
+  const [alignX, setAlignX] = useState<'left' | 'right'>('left');
+  const [alignY, setAlignY] = useState<'top' | 'bottom'>('bottom');
 
   const updateAlignment = useCallback(() => {
     if (containerRef.current && dropdownRef.current) {
@@ -15,8 +15,8 @@ export const useDropdownAlignment = (
       const dropdownHeight = dropdownRef.current.offsetHeight;
       const spaceOnRight = window.innerWidth - containerRect.left;
       const spaceBelow = window.innerHeight - containerRect.bottom;
-      setAlignRight(spaceOnRight < dropdownWidth);
-      setAlignUp(spaceBelow < dropdownHeight && containerRect.top > spaceBelow);
+      setAlignX(spaceOnRight < dropdownWidth ? 'right' : 'left');
+      setAlignY(spaceBelow < dropdownHeight && containerRect.top > spaceBelow ? 'top' : 'bottom');
     }
   }, [containerRef, dropdownRef]);
 
@@ -30,5 +30,5 @@ export const useDropdownAlignment = (
     return () => observer.disconnect();
   }, [isOpen, updateAlignment]);
 
-  return { alignRight, alignUp };
+  return { alignX, alignY };
 };
