@@ -210,7 +210,7 @@ export const SearchableDropdown = ({
           )}
         >
           {searchable && (
-            <div className={classnames('pb8 bg-white', styles.searchContainer)}>
+            <div className="pb8 bg-white">
               <Input
                 ref={searchInputRef}
                 type="text"
