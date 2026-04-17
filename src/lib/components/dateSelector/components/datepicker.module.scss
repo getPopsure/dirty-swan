@@ -93,6 +93,12 @@
   }
 }
 
+.today:not(.outside) {
+  .day_button {
+    border-color: $ds-orange-600;
+  }
+}
+
 .outside {
   color: $ds-neutral-400;
 }
