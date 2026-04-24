@@ -48,4 +48,39 @@ describe('geocoderAddressComponentToPartialAddress text', () => {
       expectedOutput
     );
   });
+
+  it('Should not populate postcode when postal_code_prefix is present in types', () => {
+    const input = [
+      {
+        long_name: 'Alte Jakobstraße',
+        short_name: 'Alte Jakobstraße',
+        types: ['route'],
+      },
+      {
+        long_name: 'Berlin',
+        short_name: 'Berlin',
+        types: ['locality', 'political'],
+      },
+      {
+        long_name: 'Germany',
+        short_name: 'DE',
+        types: ['country', 'political'],
+      },
+      {
+        long_name: '10',
+        short_name: '10',
+        types: ['postal_code', 'postal_code_prefix'],
+      },
+    ];
+
+    const expectedOutput = {
+      street: 'Alte Jakobstraße',
+      city: 'Berlin',
+      country: 'DE',
+    };
+
+    expect(geocoderAddressComponentToPartialAddress(input)).toEqual(
+      expectedOutput
+    );
+  });
 });
