@@ -191,7 +191,7 @@ const ComparisonTable = <T extends { id: number }>(
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className={classNames(
-                          'mt16',
+                          baseStyles['collapsible-section'],
                           classNameOverrides?.collapsibleSection
                         )}
                         label={headerGroup.label}
