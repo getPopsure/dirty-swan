@@ -46,6 +46,12 @@ export const geocoderAddressComponentToPartialAddress = (
     const type = value.types[0] as keyof typeof mapping;
     const mappedValue = mapping[type];
     if (mappedValue) {
+      const isPostalCodePrefix = value.types.includes(
+        'postal_code_prefix' as string
+      );
+      if (mappedValue.key === 'postcode' && isPostalCodePrefix) {
+        return;
+      }
       toReturn[mappedValue.key] = value[mappedValue.value];
     }
   });
