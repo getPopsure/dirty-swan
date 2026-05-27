@@ -116,11 +116,11 @@ export const TopIconTypes = () => {
           <div className="mb16 fw-bold">Icon Type</div>
           <InfoCard
             title="Help Center"
-            topIcon={<img src="https://placehold.co/80x80" alt="Banner" />}
+            topIcon={<img src="https://placehold.co/80x80/transparent/F00" alt="Banner" />}
             topIconType="icon"
             onClick={() => console.log('Icon type clicked!')}
           >
-            Icon is displayed in a circular way without any background.
+            Icon is displayed in a rounded square with orange background.
           </InfoCard>
         </div>
         <div className="w50">
@@ -131,7 +131,7 @@ export const TopIconTypes = () => {
             topIconType="iconWithBackground"
             onClick={() => console.log('Icon type clicked!')}
           >
-            Icon is displayed in a circular background with the orange color.
+            Icon is displayed in a rounded square with the orange background.
           </InfoCard>
         </div>
       </div>
@@ -142,9 +142,8 @@ export const TopIconTypes = () => {
             title="Image Gallery"
             topIcon={
               <img
-                src="https://placehold.co/80x80"
+                src="https://placehold.co/80x80/transparent/F00"
                 alt="Image"
-                style={{ borderRadius: '8px' }}
               />
             }
             topIconType="image"
