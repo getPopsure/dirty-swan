@@ -63,6 +63,7 @@ export { default as BoxesAdd2Icon } from './BoxesAdd2';
 export { default as BoxesMultipleFilledIcon } from './BoxesMultipleFilled';
 export { default as BoxesMultipleIcon } from './BoxesMultiple';
 export { default as BriefcaseIcon } from './Briefcase';
+export { default as BrokenGlassIcon } from './BrokenGlass';
 export { default as CalculatorIcon } from './Calculator';
 export { default as CalendarIcon } from './Calendar';
 export { default as CameraOffIcon } from './CameraOff';

@@ -24,6 +24,7 @@ export const InfoCard = ({
   ...cardProps
 }: InfoCardProps) => {
   const isIconType = topIconType === 'icon' || topIconType === 'iconWithBackground';
+  const isFloatingType = isIconType || topIconType === 'image';
 
   return (
     <Card
@@ -33,10 +34,8 @@ export const InfoCard = ({
           {isIconType ? (
             <div
               className={classNames(
-                'd-flex ai-center jc-center br-circle p16',
-                styles.topIconWrapper, {
-                  'bg-orange-200': topIconType === 'iconWithBackground'
-                }
+                'd-flex ai-center jc-center p16 bg-orange-200',
+                styles.topIconWrapper,
               )}
             >
               {topIcon}
@@ -44,7 +43,8 @@ export const InfoCard = ({
           ) : (
             <div className={classNames(
               'd-flex ai-center jc-center',
-              { [styles.topIconBanner]: topIconType === 'banner' }
+              { [styles.topIconBanner]: topIconType === 'banner' },
+              { [styles.topIconImage]: topIconType === 'image' },
             )}>
               {topIcon}
             </div>
@@ -61,6 +61,7 @@ export const InfoCard = ({
       titleVariant='medium'
       description={children}
       descriptionVariant='small'
+      dropShadow={false}
       actionIcon={null}
       showActionIcon={false}
       classNames={{
@@ -68,16 +69,17 @@ export const InfoCard = ({
         wrapper: classNames({
           [styles.wrapper]: true,
           [styles.disabled]: disabled,
-          'pt40': topIcon && isIconType,
-          'mt40': topIcon && isIconType,
+          'pt40': topIcon && isFloatingType,
+          'mt40': topIcon && isFloatingType,
           [styles.bannerWrapper]: topIcon && topIconType === 'banner',
         }),
         label: classNames({
-          [styles.floatingLabel]: topIcon && topIconType !== 'image',
+          [styles.floatingLabel]: topIcon && (isFloatingType || topIconType === 'banner'),
         }),
         title: classNames(
           {'mt16': topIcon && topIconType === 'banner'},
-          'd-flex ai-center jc-center ta-center my8'
+          'd-flex ai-center jc-center ta-center mb8',
+          styles.title,
         ),
         description: 'ta-center',
         contentWrapper: styles.contentWrapper,
