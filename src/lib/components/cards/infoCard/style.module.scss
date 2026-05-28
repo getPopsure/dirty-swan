@@ -40,15 +40,11 @@
 }
 
 .topIconImage {
-  position: absolute;
   width: 80px;
   height: 80px;
   border-radius: 12px;
   background-color: $ds-orange-200;
   overflow: hidden;
-
-  left: 50%;
-  transform: translateX(-50%) translateY(-80px);
 
   img {
     width: 100%;

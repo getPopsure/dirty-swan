@@ -1,5 +1,5 @@
 const basePath = 'https://assets.cdn.feather-insurance.com/assets/images';
-const basePathIllustrations = `${basePath}/illustrations`;
+const basePathIllustrations = `${basePath}/illustrations/v2`;
 
 const images = {
   aid: `${basePath}/aid.svg`,
@@ -92,7 +92,7 @@ const illustrations = {
   mail: `${basePathIllustrations}/mail.svg`,
   medicine: `${basePathIllustrations}/medicine.svg`,
   mentalHealth: `${basePathIllustrations}/mental-health.svg`,
-  mentalIllness: `${basePathIllustrations}/mental-llness.svg`,
+  mentalIllness: `${basePathIllustrations}/mental-illness.svg`,
   miniJobExpat: `${basePathIllustrations}/minijob-expat.svg`,
   moneyIncome: `${basePathIllustrations}/money-income.svg`,
   movingTruck: `${basePathIllustrations}/moving-truck.svg`,

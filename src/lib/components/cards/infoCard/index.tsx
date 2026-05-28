@@ -24,7 +24,7 @@ export const InfoCard = ({
   ...cardProps
 }: InfoCardProps) => {
   const isIconType = topIconType === 'icon' || topIconType === 'iconWithBackground';
-  const isFloatingType = isIconType || topIconType === 'image';
+  const isFloatingType = isIconType;
 
   return (
     <Card
@@ -73,7 +73,7 @@ export const InfoCard = ({
           'mt40': topIcon && isFloatingType,
           [styles.bannerWrapper]: topIcon && topIconType === 'banner',
         }),
-        label: classNames({
+        label: classNames('d-flex jc-center', {
           [styles.floatingLabel]: topIcon && (isFloatingType || topIconType === 'banner'),
         }),
         title: classNames(
