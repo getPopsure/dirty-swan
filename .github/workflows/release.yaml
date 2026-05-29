@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
-      contents: read
+      id-token: write # Required for npm Trusted Publishing (OIDC)
+      contents: write # Required to push the version bump back to main
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: yarn install
@@ -33,8 +33,12 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
           scope: '@popsure'
+      - name: Set package version
+        run: npm version $RELEASE_VERSION --no-git-tag-version --allow-same-version
       - name: Publish new version
-        run: yarn publish --new-version $RELEASE_VERSION --no-git-tag-version --access public
+        # No NODE_AUTH_TOKEN: npm authenticates via the OIDC token exchange.
+        # Provenance attestations are generated automatically.
+        run: npm publish --access public
       - name: Push new package.json version
         run: |
           git commit -am "Bumped package.json to $RELEASE_VERSION"
