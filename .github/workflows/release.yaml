@@ -28,9 +28,9 @@ jobs:
           git config user.email github-actions@github.com
       - name: Build new version
         run: yarn build
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
           scope: '@popsure'
       - name: Publish new version
