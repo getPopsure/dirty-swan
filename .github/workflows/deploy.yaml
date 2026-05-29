@@ -20,7 +20,7 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v6
 
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
