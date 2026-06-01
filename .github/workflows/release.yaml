@@ -33,12 +33,13 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
           scope: '@popsure'
+          package-manager-cache: false # never use caching in release builds
       - name: Set package version
         run: npm version $RELEASE_VERSION --no-git-tag-version --allow-same-version
       - name: Publish new version
         # No NODE_AUTH_TOKEN: npm authenticates via the OIDC token exchange.
         # Provenance attestations are generated automatically.
-        run: npm publish --access public
+        run: npm publish --access public --tag latest
       - name: Push new package.json version
         run: |
           git commit -am "Bumped package.json to $RELEASE_VERSION"
