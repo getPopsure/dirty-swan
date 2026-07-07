@@ -84,9 +84,9 @@ const TableContents = ({
           : isSectionOpen === index || isFirstSection;
         const isVisible = hideDetails ? !shouldHideDetails : true;
 
-        const renderedIcon = (
+        const renderedIcon = section.icon ? (
           <IconRenderer icon={section.icon} imageComponent={imageComponent} width={20} />
-        );
+        ) : null;
 
         // Calculate section-specific hideRows based on global offset
         const sectionHideRows = hideRows
