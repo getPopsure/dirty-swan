@@ -118,7 +118,6 @@ const initialData: TableData = [
   },
   {
     section: {
-      icon: <DentalPlusIcon size={20} noMargin />,
       title: 'Dental',
     },
     rows: [
