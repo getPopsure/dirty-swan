@@ -12,6 +12,7 @@ import styles from './style.module.scss';
 import { Input, InputProps } from '../input';
 import classNames from 'classnames';
 import { Calendar } from './components/Calendar';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 dayjs.extend(localeData);
 const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
@@ -100,6 +101,7 @@ export const DateSelector = ({
   inputProps,
   defaultDayPickerDate,
 }: DateSelectorProps) => {
+  const isMobile = useMediaQuery('BELOW_MOBILE');
   const placeholders = {
     ...defaultPlaceholders,
     ...placeholdersProps
@@ -154,6 +156,10 @@ export const DateSelector = ({
     const inputSelectionStart = currentInput?.selectionStart;
     const inputSelectionEnd = currentInput?.selectionEnd;
 
+    if (!isMobile) {
+      return;
+    }
+
     if (
       // is not day input
       index > 0 &&
@@ -188,6 +194,10 @@ export const DateSelector = ({
   const handleOnKeyUp = (event: KeyboardEvent<HTMLInputElement>, index: number) => {
     const currentInput = itemsRef.current?.[index];
     const inputSelectionStart = currentInput?.selectionStart;
+
+    if (!isMobile) {
+      return;
+    }
 
     if (
         // is not year input
