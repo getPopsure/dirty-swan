@@ -23,6 +23,7 @@ export interface TableSectionProps {
   width?: number | string;
   cellReplacements?: CellReplacements;
   imageComponent?: (args: any) => JSX.Element;
+  selectedColumn?: number;
 }
 
 const TableSection = ({
@@ -36,9 +37,20 @@ const TableSection = ({
   width,
   cellReplacements,
   imageComponent,
+  selectedColumn,
 }: TableSectionProps) => {
   const headerRow = tableCellRows?.[0];
   const isBelowDesktop = useMediaQuery('BELOW_DESKTOP');
+
+  const firstVisibleBodyRowIndex = tableCellRows.findIndex(
+    (_, index) => index > 0 && !hideRows.includes(index)
+  );
+
+  const lastVisibleRowIndex = tableCellRows.reduce(
+    (last, row, index) =>
+      index > 0 && !hideRows.includes(index) && row.length > 1 ? index : last,
+    -1
+  );
 
   const getModalTitleFromColumnHeader = (cellIndex: number) => {
     const firstCellInColumn = tableCellRows?.[0]?.[cellIndex];
@@ -114,6 +126,8 @@ const TableSection = ({
                     isHeader
                     isFirstCellInRow={isFirstCellInRow}
                     isTopLeftCell={isFirstCellInRow}
+                    isSelectedColumn={selectedColumn === cellIndex}
+                    selectedColumnPosition={selectedColumn === cellIndex ? 'top' : undefined}
                     {...cellProps}
                     imageComponent={imageComponent}
                   />
@@ -133,6 +147,14 @@ const TableSection = ({
                   const key = `${rowIndex}-${cellIndex}`;
                   const isFirstCellInRow = cellIndex === 0;
                   const titleFromRow = getModalTitleFromRowHeader(row);
+                  const isSelected = selectedColumn === cellIndex;
+
+                  const getSelectedColumnPosition = () => {
+                    if (!isSelected) return undefined;
+                    if (rowIndex === lastVisibleRowIndex) return 'bottom';
+                    if (hideHeader && rowIndex === firstVisibleBodyRowIndex) return 'top';
+                    return 'middle';
+                  };
 
                   const cellReplacementData =
                     (tableCellData.cellId &&
@@ -154,6 +176,8 @@ const TableSection = ({
                       <TableCell
                         isBelowDesktop={isBelowDesktop}
                         isFirstCellInRow={isFirstCellInRow}
+                        isSelectedColumn={isSelected}
+                        selectedColumnPosition={getSelectedColumnPosition()}
                         key={key}
                         {...cellProps}
                         imageComponent={imageComponent}

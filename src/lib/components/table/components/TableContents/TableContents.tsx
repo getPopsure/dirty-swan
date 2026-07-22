@@ -25,6 +25,7 @@ export interface TableContentsProps {
   title: string;
   cellReplacements?: CellReplacements;
   imageComponent?: (args: any) => JSX.Element;
+  selectedColumn?: number;
 }
 
 const TableContents = ({
@@ -43,6 +44,7 @@ const TableContents = ({
   title,
   cellReplacements,
   imageComponent,
+  selectedColumn,
 }: TableContentsProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
   const lastToggledSection = useRef<number | null>(null);
@@ -147,6 +149,7 @@ const TableContents = ({
                 width={tableWidth}
                 cellReplacements={cellReplacements}
                 imageComponent={imageComponent}
+                selectedColumn={selectedColumn}
               />
             </Collapsible>
           </div>

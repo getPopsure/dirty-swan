@@ -47,6 +47,7 @@ export interface TableProps {
   title: string;
   activeSection?: number;
   hideTableNavigation?: boolean;
+  showSelectedColumn?: boolean;
 }
 
 const defaultTextOverrides = {
@@ -73,6 +74,7 @@ const Table = ({
   title,
   activeSection: externalActiveSection,
   hideTableNavigation = false,
+  showSelectedColumn = false,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -99,7 +101,7 @@ const Table = ({
   };
   const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
   const currentActiveSectionReplacements =
-    (currentActiveSection.cellId &&
+    (currentActiveSection?.cellId &&
       cellReplacements?.[currentActiveSection.cellId]) ||
     {};
 
@@ -133,7 +135,7 @@ const Table = ({
             />
           )}
 
-          {!hideTableNavigation && (
+          {!hideTableNavigation && currentActiveSection && (
             <TableControls
               activeSection={activeSection}
               columnsLength={columnsLength}
@@ -196,6 +198,7 @@ const Table = ({
           openModal={handleOpenModal}
           cellReplacements={cellReplacements}
           imageComponent={imageComponent}
+          selectedColumn={showSelectedColumn ? activeSection : undefined}
         />
       </div>
 

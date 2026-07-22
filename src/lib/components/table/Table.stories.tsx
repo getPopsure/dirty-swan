@@ -307,6 +307,7 @@ const story = {
     hideColumns: [],
     hideRows: [],
     hideTableNavigation: true,
+    showSelectedColumn: false,
   },
 };
 
@@ -324,6 +325,7 @@ export const TableStory = {
     title,
     activeSection,
     hideTableNavigation,
+    showSelectedColumn,
   }: TableProps) => {
     const [price, setPrice] = useState(999);
     return (
@@ -367,6 +369,7 @@ export const TableStory = {
           title={title}
           activeSection={activeSection}
           hideTableNavigation={hideTableNavigation}
+          showSelectedColumn={showSelectedColumn}
         />
       </div>
     );
