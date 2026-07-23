@@ -42,6 +42,14 @@
   }
 }
 
+.selectedColumnTop {
+  border-radius: 16px 16px 0 0;
+}
+
+.selectedColumnBottom {
+  border-radius: 0 0 16px 16px;
+}
+
 .fixedCard {
   position: sticky;
   left: 0;

@@ -13,6 +13,8 @@ type ExtraTableCellProps = {
   isFirstCellInRow?: boolean;
   isTopLeftCell?: boolean;
   isNavigation?: boolean;
+  isSelectedColumn?: boolean;
+  selectedColumnPosition?: 'top' | 'bottom' | 'middle';
   imageComponent?: (args: any) => JSX.Element;
   isBelowDesktop?: boolean;
 };
@@ -24,6 +26,8 @@ const TableCell = React.memo(
     isFirstCellInRow = false,
     isHeader = false,
     isNavigation = false,
+    isSelectedColumn = false,
+    selectedColumnPosition,
     isTopLeftCell = false,
     colSpan = 0,
     isBelowDesktop,
@@ -46,11 +50,13 @@ const TableCell = React.memo(
     return (
       <Tag
         {...scope}
-        className={classNames('bg-white py24 px8', styles.th, {
+        className={classNames(isSelectedColumn ? 'bg-orange-50' : 'bg-white', 'py24 px8', styles.th, {
           'ta-left': isFirstCellInRow,
           [styles.thNavigation]: isNavigation,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
+          [styles.selectedColumnTop]: selectedColumnPosition === 'top',
+          [styles.selectedColumnBottom]: selectedColumnPosition === 'bottom',
         })}
         colSpan={isBelowDesktop && cellProps.type === 'CARD' ? 2 : colSpan}
       >
