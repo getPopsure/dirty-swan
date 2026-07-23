@@ -1,10 +1,17 @@
 @use "../../../../scss/public/colors" as *;
 
+.sectionButtonWrapper {
+  height: 74px;
+}
+
 .sectionButton {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  z-index: 3;
   height: 74px;
   border: none;
   border-bottom: 1px solid $ds-neutral-300;
-  background: none;
   color: $ds-neutral-900;
   padding: 0;
 }
@@ -21,6 +28,6 @@ button.sectionButton {
   }
 }
 
-div:last-child > .sectionButton {
+div:last-child > .sectionButtonWrapper > .sectionButton {
   border-bottom: none;
 }
