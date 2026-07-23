@@ -47,7 +47,6 @@ export interface TableProps {
   title: string;
   activeSection?: number;
   hideTableNavigation?: boolean;
-  hideStickyHeader?: boolean;
   showSelectedColumn?: boolean;
 }
 
@@ -75,7 +74,6 @@ const Table = ({
   title,
   activeSection: externalActiveSection,
   hideTableNavigation = false,
-  hideStickyHeader = false,
   showSelectedColumn = false,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
@@ -101,6 +99,14 @@ const Table = ({
     text: '',
     ...(tableData?.[0]?.rows?.[0]?.[0] || {}),
   };
+  const hasStickyHeaderContent = tableData?.[0]?.rows?.[0]?.some(
+    (cell) =>
+      !isBaseCell(cell) ||
+      Boolean(cell.text) ||
+      Boolean(cell.description) ||
+      Boolean(cell.rating) ||
+      cell.checkmarkValue !== undefined
+  );
   const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
   const currentActiveSectionReplacements =
     (currentActiveSection?.cellId &&
@@ -162,7 +168,7 @@ const Table = ({
           )}
         </>
       ) : (
-        !hideStickyHeader && (
+        hasStickyHeaderContent && (
           <div
             ref={stickyHeaderRef}
             aria-hidden
