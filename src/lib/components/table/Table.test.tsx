@@ -75,27 +75,19 @@ describe('Table', () => {
     expect(screen.getByText('Hide details')).toBeVisible();
   });
 
-  it('renders the sticky header only when the header row has content', () => {
-    const emptyHeaderData: TableSectionData[] = [
-      {
-        rows: [
-          [{ text: '' }, { text: '' }],
-          [{ text: 'Item A' }, { text: 'Item B' }],
-        ],
-      },
-    ];
-
-    const { container, rerender } = render(
+  it('does not render the sticky header row when hideStickyHeader is true', () => {
+    const { rerender } = render(
       <Table tableData={tableData} title="Test Table" />
     );
-    expect(
-      container.querySelector('div[aria-hidden="true"]')
-    ).toBeInTheDocument();
+    const countWithStickyHeader = screen.getAllByText('Item 1').length;
 
-    rerender(<Table tableData={emptyHeaderData} title="Test Table" />);
-    expect(
-      container.querySelector('div[aria-hidden="true"]')
-    ).not.toBeInTheDocument();
+    rerender(
+      <Table tableData={tableData} hideStickyHeader title="Test Table" />
+    );
+
+    expect(screen.getAllByText('Item 1')).toHaveLength(
+      countWithStickyHeader - 1
+    );
   });
 
   it('shows a modal when clicking on info icon', async () => {

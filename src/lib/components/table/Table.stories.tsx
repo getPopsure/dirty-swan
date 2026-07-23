@@ -255,6 +255,10 @@ const story = {
     hideDetails: {
       subContent: 'This property allows to hide the details of the table.',
     },
+    hideStickyHeader: {
+      subContent:
+        'This property allows to hide the sticky header row on desktop, e.g. for single plan tables without a plan selector.',
+    },
     stickyHeaderTopOffset: {
       subContent:
         'This property allows to set the offset of the sticky header.',
@@ -454,6 +458,7 @@ export const SinglePlanQuoteTable = {
         title="Liability insurance quote"
         collapsibleSections
         hideTableNavigation
+        hideStickyHeader
         showSelectedColumn
       />
     </div>
