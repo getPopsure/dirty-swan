@@ -1,7 +1,6 @@
 import { MutableRefObject, useCallback, useRef, useState } from 'react';
 import { TableSection } from '../TableSection/TableSection';
 import { ChevronDownIcon, ChevronUpIcon } from '../../../icon';
-import { Card } from '../../../cards/card';
 
 import styles from './TableContents.module.scss';
 import classNames from 'classnames';
@@ -98,35 +97,40 @@ const TableContents = ({
         const result = (isFirstSection || isVisible) && (
           <div key={index} ref={(el) => { sectionRefs.current[index] = el; }}>
             {section?.title && (
-              <div className={styles.cardWrapper}>
-                <div className={classNames(styles.card, 'p0')}>
-                  <Card
-                    actionIcon={
-                      isExpanded ? (
-                        <ChevronUpIcon size={24} />
-                      ) : (
-                        <ChevronDownIcon size={24} />
-                      )
-                    }
-                    aria-expanded={isExpanded ? 'true' : 'false'}
-                    aria-hidden
-                    classNames={{
-                      wrapper: 'pl16',
-                      buttonWrapper: styles.cardButton,
-                      icon: classNames(styles.cardIcon, 'tc-neutral-900'),
-                    }}
-                    dropShadow={false}
-                    icon={renderedIcon}
-                    title={section.title}
-                    titleVariant="medium"
-                    variant="primary"
-                    {...(collapsibleSections
-                      ? {
-                          onClick: () => handleToggleSection(index),
-                        }
-                      : {})}
-                  />
-                </div>
+              <div className={styles.sectionButtonWrapper}>
+                {collapsibleSections ? (
+                  <button
+                    type="button"
+                    aria-expanded={isExpanded}
+                    className={classNames(
+                      'd-flex ai-center jc-between ta-left bg-white',
+                      styles.sectionButton
+                    )}
+                    onClick={() => handleToggleSection(index)}
+                  >
+                    <span className="d-flex ai-center gap8">
+                      {renderedIcon}
+                      <span className="p-h3">{section.title}</span>
+                    </span>
+                    {isExpanded ? (
+                      <ChevronUpIcon size={20} />
+                    ) : (
+                      <ChevronDownIcon size={20} />
+                    )}
+                  </button>
+                ) : (
+                  <div
+                    className={classNames(
+                      'd-flex ai-center jc-between ta-left bg-white',
+                      styles.sectionButton
+                    )}
+                  >
+                    <span className="d-flex ai-center gap8">
+                      {renderedIcon}
+                      <span className="p-h3">{section.title}</span>
+                    </span>
+                  </div>
+                )}
               </div>
             )}
 
@@ -135,7 +139,9 @@ const TableContents = ({
               onTransitionEnd={() => handleScrollToSection(index)}
             >
               <TableSection
-                className={classNames(className, 'mb24')}
+                className={classNames(className, 'mb16', {
+                  mt16: !!section?.title,
+                })}
                 tableCellRows={
                   isFirstSection ? rows : [firstHeadRow, ...rows]
                 }

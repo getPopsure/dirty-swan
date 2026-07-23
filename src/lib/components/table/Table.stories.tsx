@@ -255,6 +255,10 @@ const story = {
     hideDetails: {
       subContent: 'This property allows to hide the details of the table.',
     },
+    hideStickyHeader: {
+      subContent:
+        'This property allows to hide the sticky header row on desktop, e.g. for single plan tables without a plan selector.',
+    },
     stickyHeaderTopOffset: {
       subContent:
         'This property allows to set the offset of the sticky header.',
@@ -376,6 +380,91 @@ export const TableStory = {
   },
 
   name: 'Table',
+};
+
+const singlePlanData: TableData = [
+  {
+    rows: [
+      [{ text: '' }, { text: '' }],
+      [
+        { text: 'Price' },
+        {
+          text: '€9.99',
+          description: 'With monthly cancellation',
+          fontVariant: 'PRICE',
+        },
+      ],
+      [
+        {
+          text: 'Regular vet visits & medication',
+          modalContent: 'Some stories about vets',
+        },
+        { text: 'Up to €1 million' },
+      ],
+      [
+        {
+          text: 'Specialist visits',
+          modalContent: 'Some stories about specialists',
+        },
+        { text: '4 visits per year' },
+      ],
+      [{ text: 'Medication' }, { text: '80% covered' }],
+      [{ text: 'Grooming' }, { checkmarkValue: false }],
+      [{ text: 'Boarding fees' }, { checkmarkValue: false }],
+      [
+        {
+          text: 'Alternative treatments',
+          description: 'E.g. physiotherapy, hydrotherapy',
+        },
+        { checkmarkValue: false },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Dental',
+    },
+    rows: [
+      [{ text: 'Dental cleanings' }, { text: 'Up to €500' }],
+      [{ text: 'Dental treatments' }, { text: 'Up to €500' }],
+      [{ text: 'Operations' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Travel',
+    },
+    rows: [
+      [{ text: 'Trips abroad' }, { checkmarkValue: true }],
+      [{ text: 'Emergency care abroad' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Add-ons',
+    },
+    rows: [
+      [{ text: 'Extended coverage' }, { checkmarkValue: true }],
+      [{ text: 'Equipment protection' }, { checkmarkValue: true }],
+    ],
+  },
+];
+
+export const SinglePlanQuoteTable = {
+  render: () => (
+    <div style={{ maxWidth: 756 }}>
+      <Table
+        tableData={singlePlanData}
+        title="Single plan quote"
+        collapsibleSections
+        hideTableNavigation
+        hideStickyHeader
+        showSelectedColumn
+      />
+    </div>
+  ),
+
+  name: 'Single Plan Quote',
 };
 
 export const TableDataType = () => {

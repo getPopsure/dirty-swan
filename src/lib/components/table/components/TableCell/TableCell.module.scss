@@ -5,6 +5,7 @@
   vertical-align: middle;
   scroll-snap-align: end;
   width: 50%;
+  padding: 28px 24px;
 
   @include p-size-tablet {
     width: auto;
@@ -26,6 +27,7 @@
   position: sticky;
   left: 0;
   z-index: 2;
+  padding-left: 0;
 
   &:after {
     content: '';
@@ -35,10 +37,6 @@
     right: 0;
     width: 1px;
     background-color: $ds-neutral-100;
-  }
-
-  @include p-size-tablet {
-    padding-left: 16px;
   }
 }
 

@@ -4,7 +4,9 @@
 .table {
   border-collapse: collapse;
   table-layout: fixed;
+}
 
+.tableMultiplePlans {
   @include p-size-tablet {
     min-width: 845px;
   }
@@ -12,4 +14,9 @@
 
 .tr {
   min-height: 72px;
+  border-bottom: 1px solid $ds-neutral-300;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }

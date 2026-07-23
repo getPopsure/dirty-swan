@@ -1,34 +1,33 @@
 @use "../../../../scss/public/colors" as *;
 
-.cardWrapper {
-  height: 88px;
+.sectionButtonWrapper {
+  height: 74px;
 }
 
-.cardButton {
-  div {
-    background-color: $ds-orange-50;
-  }
-
-  &:hover div {
-    border-color: transparent!important;
-    outline-color: transparent!important;
-    box-shadow: none!important;
-    background-color: $ds-orange-100!important;
-  }
-
-  &:focus-visible div {
-    background-color: $ds-orange-100!important;
-  }
-}
-
-.card {
+.sectionButton {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 24px;
+  right: 24px;
   z-index: 3;
+  height: 74px;
+  border: none;
+  border-bottom: 1px solid $ds-neutral-300;
+  color: $ds-neutral-900;
+  padding: 0;
 }
 
-.cardIcon {
-  width: 20px;
-  margin-right: 8px;
+button.sectionButton {
+  cursor: pointer;
+
+  &:hover {
+    color: $ds-neutral-700;
+
+    :global(.p-h3) {
+      color: $ds-neutral-700;
+    }
+  }
+}
+
+div:last-child > .sectionButtonWrapper > .sectionButton {
+  border-bottom: none;
 }

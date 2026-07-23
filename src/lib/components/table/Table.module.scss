@@ -4,6 +4,9 @@
 
 .wrapper {
   position: relative;
+  border: 1px solid $ds-neutral-200;
+  border-radius: 12px;
+  padding: 24px 24px 0;
 }
 
 .container {
