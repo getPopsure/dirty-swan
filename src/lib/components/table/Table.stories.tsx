@@ -382,39 +382,39 @@ export const TableStory = {
   name: 'Table',
 };
 
-const liabilityQuoteData: TableData = [
+const singlePlanData: TableData = [
   {
     rows: [
       [{ text: '' }, { text: '' }],
       [
         { text: 'Price' },
         {
-          text: '€4.95',
-          description: 'With monthly cancellation policy',
+          text: '€9.99',
+          description: 'With monthly cancellation',
           fontVariant: 'PRICE',
         },
       ],
       [
         {
-          text: "General doctors' visits",
-          modalContent: 'Coverage for visits to general practitioners.',
+          text: 'Regular vet visits & medication',
+          modalContent: 'Some stories about vets',
         },
-        { text: 'Up to €2 million' },
+        { text: 'Up to €1 million' },
       ],
       [
         {
-          text: 'Specialists',
-          modalContent: 'Visits to medical specialists.',
+          text: 'Specialist visits',
+          modalContent: 'Some stories about specialists',
         },
         { text: '4 visits per year' },
       ],
       [{ text: 'Medication' }, { text: '80% covered' }],
-      [{ text: 'Mental health therapy' }, { checkmarkValue: false }],
-      [{ text: 'Radiation therapy' }, { checkmarkValue: false }],
+      [{ text: 'Grooming' }, { checkmarkValue: false }],
+      [{ text: 'Boarding fees' }, { checkmarkValue: false }],
       [
         {
-          text: 'Natural health treatments',
-          description: 'E.g. acupuncture, osteopathy, cupping',
+          text: 'Alternative treatments',
+          description: 'E.g. physiotherapy, hydrotherapy',
         },
         { checkmarkValue: false },
       ],
@@ -422,30 +422,30 @@ const liabilityQuoteData: TableData = [
   },
   {
     section: {
-      title: 'Damage and injury',
+      title: 'Dental',
     },
     rows: [
-      [{ text: 'Personal injury' }, { text: 'Up to €50 million' }],
-      [{ text: 'Property damage' }, { text: 'Up to €50 million' }],
-      [{ text: 'Loss of private keys' }, { checkmarkValue: true }],
+      [{ text: 'Dental cleanings' }, { text: 'Up to €500' }],
+      [{ text: 'Dental treatments' }, { text: 'Up to €500' }],
+      [{ text: 'Operations' }, { checkmarkValue: true }],
     ],
   },
   {
     section: {
-      title: 'Employment',
+      title: 'Travel',
     },
     rows: [
-      [{ text: 'Damage caused at work' }, { checkmarkValue: true }],
-      [{ text: 'Volunteer work' }, { checkmarkValue: true }],
+      [{ text: 'Trips abroad' }, { checkmarkValue: true }],
+      [{ text: 'Emergency care abroad' }, { checkmarkValue: true }],
     ],
   },
   {
     section: {
-      title: 'Additional coverage',
+      title: 'Add-ons',
     },
     rows: [
-      [{ text: 'Rental property damage' }, { checkmarkValue: true }],
-      [{ text: 'Damage to borrowed items' }, { checkmarkValue: true }],
+      [{ text: 'Extended coverage' }, { checkmarkValue: true }],
+      [{ text: 'Equipment protection' }, { checkmarkValue: true }],
     ],
   },
 ];
@@ -454,8 +454,8 @@ export const SinglePlanQuoteTable = {
   render: () => (
     <div style={{ maxWidth: 756 }}>
       <Table
-        tableData={liabilityQuoteData}
-        title="Liability insurance quote"
+        tableData={singlePlanData}
+        title="Single plan quote"
         collapsibleSections
         hideTableNavigation
         hideStickyHeader
