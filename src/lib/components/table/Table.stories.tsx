@@ -255,6 +255,10 @@ const story = {
     hideDetails: {
       subContent: 'This property allows to hide the details of the table.',
     },
+    hideStickyHeader: {
+      subContent:
+        'This property allows to hide the sticky header row on desktop, e.g. for single plan tables without a plan selector.',
+    },
     stickyHeaderTopOffset: {
       subContent:
         'This property allows to set the offset of the sticky header.',
@@ -376,6 +380,91 @@ export const TableStory = {
   },
 
   name: 'Table',
+};
+
+const liabilityQuoteData: TableData = [
+  {
+    rows: [
+      [{ text: '' }, { text: '' }],
+      [
+        { text: 'Price' },
+        {
+          text: '€4.95',
+          description: 'With monthly cancellation policy',
+          fontVariant: 'PRICE',
+        },
+      ],
+      [
+        {
+          text: "General doctors' visits",
+          modalContent: 'Coverage for visits to general practitioners.',
+        },
+        { text: 'Up to €2 million' },
+      ],
+      [
+        {
+          text: 'Specialists',
+          modalContent: 'Visits to medical specialists.',
+        },
+        { text: '4 visits per year' },
+      ],
+      [{ text: 'Medication' }, { text: '80% covered' }],
+      [{ text: 'Mental health therapy' }, { checkmarkValue: false }],
+      [{ text: 'Radiation therapy' }, { checkmarkValue: false }],
+      [
+        {
+          text: 'Natural health treatments',
+          description: 'E.g. acupuncture, osteopathy, cupping',
+        },
+        { checkmarkValue: false },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Damage and injury',
+    },
+    rows: [
+      [{ text: 'Personal injury' }, { text: 'Up to €50 million' }],
+      [{ text: 'Property damage' }, { text: 'Up to €50 million' }],
+      [{ text: 'Loss of private keys' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Employment',
+    },
+    rows: [
+      [{ text: 'Damage caused at work' }, { checkmarkValue: true }],
+      [{ text: 'Volunteer work' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Additional coverage',
+    },
+    rows: [
+      [{ text: 'Rental property damage' }, { checkmarkValue: true }],
+      [{ text: 'Damage to borrowed items' }, { checkmarkValue: true }],
+    ],
+  },
+];
+
+export const SinglePlanQuoteTable = {
+  render: () => (
+    <div style={{ maxWidth: 756 }}>
+      <Table
+        tableData={liabilityQuoteData}
+        title="Liability insurance quote"
+        collapsibleSections
+        hideTableNavigation
+        hideStickyHeader
+        showSelectedColumn
+      />
+    </div>
+  ),
+
+  name: 'Single Plan Quote',
 };
 
 export const TableDataType = () => {

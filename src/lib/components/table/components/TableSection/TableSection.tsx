@@ -89,9 +89,14 @@ const TableSection = ({
     [hideRows]
   );
 
+  const visibleColumnsLength =
+    headerRow?.filter((_, cellIndex) => isVisibleColumn(cellIndex)).length ?? 0;
+
   return (
     <table
-      className={classNames(className, 'w100', styles.table)}
+      className={classNames(className, 'w100', styles.table, {
+        [styles.tableMultiplePlans]: visibleColumnsLength > 2,
+      })}
       width={width}
     >
       <caption className="sr-only">{title}</caption>
@@ -114,7 +119,7 @@ const TableSection = ({
                   modalTitle:
                     (isBaseCell(tableCellData) && tableCellData.text) ||
                     getModalTitleFromColumnHeader(cellIndex),
-                  align: isFirstCellInRow ? 'left' : 'center',
+                  align: 'left',
                 },
               } as TableCellData;
 
@@ -167,7 +172,7 @@ const TableSection = ({
                     ...{
                       openModal,
                       modalTitle: tableCellData?.modalTitle || titleFromRow,
-                      align: isFirstCellInRow ? 'left' : 'center',
+                      align: 'left',
                     },
                   } as TableCellData;
 

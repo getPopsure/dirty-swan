@@ -1,4 +1,4 @@
-import { render, screen } from '../../../../util/testUtils';
+import { fireEvent, render, screen } from '../../../../util/testUtils';
 import { TableContents, TableContentsProps } from './TableContents';
 
 const mockData: TableContentsProps['tableData'] = [
@@ -37,6 +37,27 @@ describe('TableContents', () => {
     expect(screen.getByText('Item 1.2.2')).toBeInTheDocument();
     expect(screen.getByText('Item 2.1.2')).toBeInTheDocument();
     expect(screen.getByText('Item 2.2.1')).toBeInTheDocument();
+  });
+
+  it('renders collapsible section headers as buttons and toggles them', () => {
+    render(
+      <TableContents collapsibleSections tableData={mockData} title="Table" />
+    );
+
+    const sectionButton = screen.getByRole('button', { name: 'Section 2' });
+    expect(sectionButton).toHaveAttribute('aria-expanded', 'false');
+
+    fireEvent.click(sectionButton);
+    expect(sectionButton).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('renders section headers without a button when not collapsible', () => {
+    render(<TableContents tableData={mockData} title="Table" />);
+
+    expect(
+      screen.queryByRole('button', { name: 'Section 2' })
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('Section 2')).toBeInTheDocument();
   });
 
   it('hides the table sections when hideDetails and shouldHideDetails is true', () => {

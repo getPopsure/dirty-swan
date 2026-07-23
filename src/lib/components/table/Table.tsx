@@ -47,6 +47,7 @@ export interface TableProps {
   title: string;
   activeSection?: number;
   hideTableNavigation?: boolean;
+  hideStickyHeader?: boolean;
   showSelectedColumn?: boolean;
 }
 
@@ -74,6 +75,7 @@ const Table = ({
   title,
   activeSection: externalActiveSection,
   hideTableNavigation = false,
+  hideStickyHeader = false,
   showSelectedColumn = false,
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
@@ -160,25 +162,27 @@ const Table = ({
           )}
         </>
       ) : (
-        <div
-          ref={stickyHeaderRef}
-          aria-hidden
-          className={styles.stickyHeader}
-          style={{ top: `${stickyHeaderTopOffset}px` }}
-        >
-          <div className={styles.container} ref={headerRef}>
-            <TableSection
-              cellReplacements={cellReplacements}
-              className={className}
-              hideColumns={hideColumns}
-              hideRows={hideRows}
-              openModal={handleOpenModal}
-              tableCellRows={[tableData?.[0]?.rows?.[0]]}
-              title={title}
-              imageComponent={imageComponent}
-            />
+        !hideStickyHeader && (
+          <div
+            ref={stickyHeaderRef}
+            aria-hidden
+            className={styles.stickyHeader}
+            style={{ top: `${stickyHeaderTopOffset}px` }}
+          >
+            <div className={styles.container} ref={headerRef}>
+              <TableSection
+                cellReplacements={cellReplacements}
+                className={className}
+                hideColumns={hideColumns}
+                hideRows={hideRows}
+                openModal={handleOpenModal}
+                tableCellRows={[tableData?.[0]?.rows?.[0]]}
+                title={title}
+                imageComponent={imageComponent}
+              />
+            </div>
           </div>
-        </div>
+        )
       )}
 
       <div ref={containerRef} className={classNames(styles.container, 'pb8')}>

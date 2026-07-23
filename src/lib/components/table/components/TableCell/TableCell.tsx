@@ -50,7 +50,7 @@ const TableCell = React.memo(
     return (
       <Tag
         {...scope}
-        className={classNames(isSelectedColumn ? 'bg-orange-50' : 'bg-white', 'py24 px8', styles.th, {
+        className={classNames(isSelectedColumn ? 'bg-orange-50' : 'bg-white', styles.th, {
           'ta-left': isFirstCellInRow,
           [styles.thNavigation]: isNavigation,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,

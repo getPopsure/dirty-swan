@@ -75,6 +75,21 @@ describe('Table', () => {
     expect(screen.getByText('Hide details')).toBeVisible();
   });
 
+  it('does not render the sticky header row when hideStickyHeader is true', () => {
+    const { rerender } = render(
+      <Table tableData={tableData} title="Test Table" />
+    );
+    const countWithStickyHeader = screen.getAllByText('Item 1').length;
+
+    rerender(
+      <Table tableData={tableData} hideStickyHeader title="Test Table" />
+    );
+
+    expect(screen.getAllByText('Item 1')).toHaveLength(
+      countWithStickyHeader - 1
+    );
+  });
+
   it('shows a modal when clicking on info icon', async () => {
     const { user } = render(<Table tableData={tableData} title="Test Table" />);
 
