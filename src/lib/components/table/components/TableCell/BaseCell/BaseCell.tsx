@@ -121,7 +121,7 @@ export const BaseCell = ({
                   data-testid="table-cell-boolean-no"
                   size={24}
                   aria-hidden
-                  color="neutral-400"
+                  color="neutral-500"
                 />
               )}
             </span>
