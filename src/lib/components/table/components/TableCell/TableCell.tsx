@@ -52,6 +52,7 @@ const TableCell = React.memo(
         {...scope}
         className={classNames(isSelectedColumn ? 'bg-orange-50' : 'bg-white', styles.th, {
           'ta-left': isFirstCellInRow,
+          [styles.headerCell]: isHeader,
           [styles.thNavigation]: isNavigation,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
