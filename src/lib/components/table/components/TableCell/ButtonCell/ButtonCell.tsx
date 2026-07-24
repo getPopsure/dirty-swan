@@ -29,7 +29,7 @@ export const ButtonCell = ({
     <div
       className={
         classNames(
-          "w100 d-flex fd-column ai-center jc-center gap8",
+          "w100 d-flex fd-column ai-start jc-center gap8",
           className,
         )
       }

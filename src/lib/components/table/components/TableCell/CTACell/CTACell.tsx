@@ -40,11 +40,11 @@ export const CTACell = ({
 
   return (
     <div
-      className={classNames(className, "ta-center")}
+      className={classNames(className, "ta-left")}
       data-cy={dataCy}
       data-testid={dataTestId}
     >
-      <div className="d-flex jc-center ai-center gap8">
+      <div className="d-flex ai-center gap8">
         {renderedIcon}
         <p className="p-h3">
           {title}
