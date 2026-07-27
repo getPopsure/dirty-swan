@@ -141,7 +141,7 @@ export const BaseCell = ({
 
             {text && fontVariant === 'PRICE' && (
               <div
-                className="p-h1 p--serif tc-neutral-900"
+                className="p-h2 tc-neutral-900"
                 data-testid="table-cell-content"
               >
                 {text}
