@@ -59,7 +59,7 @@ export const CTACell = ({
           target: '_blank',
           rel: 'noopener noreferrer',
         }}
-        className={classNames('mt16 w100 wmx3', {
+        className={classNames('mt16 w100', styles.button, {
           'p-btn--primary': !grey,
           'p-btn--secondary-grey': grey,
           [styles.narrow]: narrow,
