@@ -1,4 +1,5 @@
 .collapsible {
+  display: flow-root;
   transition: max-height 0.3s ease-in-out;
   overflow-y: clip;
 }

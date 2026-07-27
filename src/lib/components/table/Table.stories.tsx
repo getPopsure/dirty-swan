@@ -467,6 +467,396 @@ export const SinglePlanQuoteTable = {
   name: 'Single Plan Quote',
 };
 
+const singlePlanWebsiteData: TableData = [
+  {
+    rows: [
+      [
+        { text: 'Our plans' },
+        {
+          type: 'CTA',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: 'http://example.com',
+        },
+      ],
+      [
+        { text: 'Monthly price' },
+        {
+          text: '~€99',
+          fontVariant: 'PRICE',
+          modalContent: 'Price info',
+        },
+      ],
+      [
+        { text: 'Label with a description value' },
+        { text: 'Value', description: 'Value description' },
+      ],
+      [
+        {
+          text: 'Label with a long text that wraps into multiple lines in the table',
+        },
+        {
+          checkmarkValue: true,
+          modalContent: 'Checkmark info',
+        },
+      ],
+      [
+        {
+          text: 'Label with a boolean value',
+        },
+        { checkmarkValue: false },
+      ],
+      [
+        {
+          text: 'Label with info',
+          modalContent: 'Label info',
+        },
+        { text: 'Text value' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'First section',
+    },
+    rows: [
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Second section',
+    },
+    rows: [
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+      [{ text: 'Row label' }, { checkmarkValue: false }],
+    ],
+  },
+  {
+    section: {
+      title: 'Third section',
+    },
+    rows: [
+      [
+        { text: 'Row label' },
+        { text: 'Up to €1,500', description: 'Value description' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Fourth section',
+    },
+    rows: [
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Fifth section',
+    },
+    rows: [
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+    ],
+  },
+  {
+    section: {
+      title: 'Sixth section',
+    },
+    rows: [
+      [{ text: 'Row label' }, { text: 'Up to €5,000' }],
+      [{ text: 'Row label' }, { checkmarkValue: true }],
+    ],
+  },
+];
+
+export const SinglePlanQuoteWebsite = {
+  render: () => (
+    <div style={{ maxWidth: 756 }}>
+      <Table
+        tableData={singlePlanWebsiteData}
+        title="Single plan quote website"
+        collapsibleSections
+        hideTableNavigation
+      />
+    </div>
+  ),
+
+  name: 'Single Plan - Website',
+};
+
+const twoPlanWebsiteData: TableData = [
+  {
+    rows: [
+      [
+        { text: 'Our plans' },
+        {
+          type: 'CTA',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: 'http://example.com',
+        },
+        {
+          type: 'CTA',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: 'http://example.com',
+        },
+      ],
+      [
+        {
+          text: 'Monthly price',
+          description: 'Label description with additional pricing context',
+        },
+        { text: '~€14-35', fontVariant: 'PRICE' },
+        { text: '~€50-91', fontVariant: 'PRICE' },
+      ],
+      [
+        {
+          text: 'Label with info',
+          modalContent: 'Label info',
+        },
+        { text: 'Text value' },
+        { text: 'Text value' },
+      ],
+      [
+        {
+          text: 'Label with info',
+          modalContent: 'Label info',
+        },
+        { text: 'Text value', modalContent: 'Value info' },
+        { text: 'Text value', modalContent: 'Value info' },
+      ],
+      [
+        { text: 'Label with a boolean value' },
+        { checkmarkValue: true, description: 'Value description' },
+        { checkmarkValue: true, description: 'Value description' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'First section',
+    },
+    rows: [
+      [
+        { text: 'Row label' },
+        { text: 'Up to €1,500' },
+        { text: 'Up to €3,000' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Second section',
+    },
+    rows: [
+      [
+        { text: 'Row label', description: 'Row label description' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Row label' },
+        { checkmarkValue: false },
+        { checkmarkValue: false },
+      ],
+      [
+        { text: 'Row label', description: 'Row label description' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Row label' },
+        { text: 'Text value' },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Row label' },
+        { text: 'Text value', description: 'Value description' },
+        { text: 'Text value', description: 'Value description' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Third section',
+    },
+    rows: [
+      [
+        { text: 'Row label' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Fourth section',
+    },
+    rows: [
+      [
+        { text: 'Row label' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Fifth section',
+    },
+    rows: [
+      [
+        { text: 'Row label' },
+        { text: 'Text value' },
+        { text: 'Text value' },
+      ],
+    ],
+  },
+];
+
+export const TwoPlanQuoteWebsite = {
+  render: () => (
+    <div style={{ maxWidth: 900 }}>
+      <Table
+        tableData={twoPlanWebsiteData}
+        title="Two plan quote website"
+        collapsibleSections
+        hideTableNavigation
+      />
+    </div>
+  ),
+
+  name: 'Two Plan - Website',
+};
+
+const threePlanWebsiteData: TableData = [
+  {
+    rows: [
+      [
+        { text: 'Our plans' },
+        {
+          type: 'CTA',
+          icon: 'https://placehold.co/24x24/green/white',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: '',
+          onClick: () => {},
+        },
+        {
+          type: 'CTA',
+          icon: 'https://placehold.co/24x24/blue/white',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: '',
+          onClick: () => {},
+        },
+        {
+          type: 'CTA',
+          icon: 'https://placehold.co/24x24/orange/white',
+          title: 'Plan name',
+          buttonCaption: 'Get a quote',
+          href: '',
+          onClick: () => {},
+        },
+      ],
+      [
+        { text: 'Monthly price' },
+        { text: '€–', fontVariant: 'PRICE' },
+        { text: '€–', fontVariant: 'PRICE' },
+        { text: '€–', fontVariant: 'PRICE' },
+      ],
+      [
+        { text: 'Label with star rating' },
+        { rating: { type: 'star', value: 2 }, modalContent: 'Rating info' },
+        { rating: { type: 'star', value: 3 } },
+        { rating: { type: 'star', value: 3 } },
+      ],
+      [
+        { text: 'Label with zap rating' },
+        { rating: { type: 'zap', value: 3 } },
+        { rating: { type: 'zap', value: 3 }, modalContent: 'Rating info' },
+        { rating: { type: 'zap', value: 3 }, modalContent: 'Rating info' },
+      ],
+      [
+        { text: 'Label with info', modalContent: 'Label info' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Label with progress bar' },
+        { text: '100%' },
+        { text: '70%' },
+        { text: '100%' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'First section',
+    },
+    rows: [
+      [
+        { text: 'Row label with info', modalContent: 'Label info' },
+        { text: 'Up to €2 million' },
+        { text: 'Up to €1.5 million' },
+        { text: 'Up to €1.5 million' },
+      ],
+      [
+        { text: 'Row label with info', modalContent: 'Label info' },
+        { text: 'Text value' },
+        { text: 'Text value' },
+        { text: 'Text value' },
+      ],
+      [
+        { text: 'Row label' },
+        { text: '80% covered' },
+        { text: '80% covered' },
+        { text: '80% covered' },
+      ],
+      [
+        { text: 'Row label' },
+        { checkmarkValue: false },
+        { checkmarkValue: false },
+        { checkmarkValue: false },
+      ],
+      [
+        { text: 'Row label' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Row label' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+];
+
+export const ThreePlanQuoteWebsite = {
+  render: () => (
+    <div style={{ maxWidth: 900 }}>
+      <Table
+        tableData={threePlanWebsiteData}
+        title="Three plan quote website"
+        collapsibleSections
+        hideTableNavigation
+      />
+    </div>
+  ),
+
+  name: 'Three Plan - Website',
+};
+
 export const TableDataType = () => {
   return (
     <pre>
