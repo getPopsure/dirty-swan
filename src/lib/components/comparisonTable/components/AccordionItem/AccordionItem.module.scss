@@ -21,17 +21,23 @@
 
 .headerButton {
   border: none;
-  background: colors.$ds-orange-50;
+  border-bottom: 1px solid colors.$ds-neutral-300;
+  background: white;
+  color: colors.$ds-neutral-900;
   column-gap: 16px;
   cursor: pointer;
   font-family: inherit;
   outline: none;
   position: relative;
   text-align: inherit;
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 
   &:hover {
-    background: colors.$ds-orange-100;
+    color: colors.$ds-neutral-700;
+
+    :global(.p-h3) {
+      color: colors.$ds-neutral-700;
+    }
   }
 }
 

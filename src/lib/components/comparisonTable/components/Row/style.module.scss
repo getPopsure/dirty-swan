@@ -24,7 +24,7 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
 .cell {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   scroll-snap-align: end;

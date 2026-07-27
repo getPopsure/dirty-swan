@@ -47,7 +47,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
 
           return (
             <div
-              className={classNames('ta-center', styles.cell, cellClassName)}
+              className={classNames('ta-left', styles.cell, cellClassName)}
               key={`${rowId}-${item.id}`}
             >
               {
