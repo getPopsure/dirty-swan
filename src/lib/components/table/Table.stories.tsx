@@ -581,7 +581,6 @@ export const SinglePlanQuoteWebsite = {
         tableData={singlePlanWebsiteData}
         title="Single plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),
@@ -727,7 +726,6 @@ export const TwoPlanQuoteWebsite = {
         tableData={twoPlanWebsiteData}
         title="Two plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),
@@ -849,7 +847,6 @@ export const ThreePlanQuoteWebsite = {
         tableData={threePlanWebsiteData}
         title="Three plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),

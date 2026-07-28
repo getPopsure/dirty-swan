@@ -13,6 +13,7 @@ export type CTACellProps = {
   buttonCaption?: ReactNode;
   grey?: boolean;
   narrow?: boolean;
+  centered?: boolean;
   href: string;
   className?: string;
   dataTestId?: string;
@@ -26,6 +27,7 @@ export const CTACell = ({
   icon,
   grey,
   narrow,
+  centered,
   href,
   buttonCaption,
   imageComponent,
@@ -40,7 +42,9 @@ export const CTACell = ({
 
   return (
     <div
-      className={classNames(className, "ta-left")}
+      className={classNames(className, 'ta-left', {
+        'd-flex fd-column ai-center': centered,
+      })}
       data-cy={dataCy}
       data-testid={dataTestId}
     >
