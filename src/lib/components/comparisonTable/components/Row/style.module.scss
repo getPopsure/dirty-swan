@@ -3,6 +3,14 @@
 
 $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
+.row {
+  border-bottom: 1px solid $ds-neutral-300;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
 .header {
   position: relative;
 
@@ -102,13 +110,11 @@ h4.cell {
   width: 50vw;
 
   @include p-size-tablet {
-    border-right: 1px solid $ds-neutral-50;
     flex: 1 0 288px;
   }
 }
 
 h4.addon {
-  border-right: none;
   max-width: calc(100vw - 64px);
   width: 100%;
 

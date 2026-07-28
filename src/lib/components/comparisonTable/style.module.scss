@@ -78,10 +78,6 @@
 
   top: 0;
   left: 0;
-
-  @include p-size-tablet {
-    border-right: 1px solid $ds-neutral-50;
-  }
 }
 
 .header {

@@ -20,6 +20,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
       key={rowId}
       className={classNames('d-flex w-100', {
         [styles.header]: isRowHeader,
+        [styles.row]: !isRowHeader,
       })}
     >
       <h4
