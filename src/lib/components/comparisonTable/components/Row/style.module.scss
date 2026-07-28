@@ -14,6 +14,17 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 .header {
   position: relative;
 
+  .cell {
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+
+    @include p-size-tablet {
+      justify-content: flex-start;
+      text-align: left;
+    }
+  }
+
   & > div {
     width: var(--tableWidth);
     max-width: 100vw;
@@ -91,8 +102,6 @@ h4.cell {
   color: $ds-neutral-900;
 
   display: none;
-
-  line-height: 38px;
 
   @include p-size-tablet {
     display: flex;

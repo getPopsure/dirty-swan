@@ -1,6 +1,16 @@
 @use "../../scss/public/grid" as *;
 @use "../../scss/public/colors" as *;
 
+.card {
+  border: 1px solid $ds-neutral-200;
+  border-radius: 12px;
+  padding: 24px;
+
+  section:last-of-type > button {
+    border-bottom: none;
+  }
+}
+
 .container {
   width: 100%;
   overflow-x: auto;

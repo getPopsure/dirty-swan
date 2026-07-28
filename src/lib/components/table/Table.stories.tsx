@@ -612,8 +612,8 @@ const twoPlanWebsiteData: TableData = [
           text: 'Monthly price',
           description: 'Label description with additional pricing context',
         },
-        { text: '~€14-35', fontVariant: 'PRICE' },
-        { text: '~€50-91', fontVariant: 'PRICE' },
+        { text: '~€14-35', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '~€50-91', fontVariant: 'PRICE', modalContent: 'Price info' },
       ],
       [
         {
@@ -767,9 +767,9 @@ const threePlanWebsiteData: TableData = [
       ],
       [
         { text: 'Monthly price' },
-        { text: '€–', fontVariant: 'PRICE' },
-        { text: '€–', fontVariant: 'PRICE' },
-        { text: '€–', fontVariant: 'PRICE' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
       ],
       [
         { text: 'Label with star rating' },

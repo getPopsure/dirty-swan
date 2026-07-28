@@ -1,4 +1,5 @@
 @use '../../../../scss/public/colors' as colors;
+@use '../../../../scss/public/grid' as *;
 
 .container {
   width: var(--growContent, min-content);
@@ -28,9 +29,14 @@
   cursor: pointer;
   font-family: inherit;
   outline: none;
+  padding: 24px 0;
   position: relative;
   text-align: inherit;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+  @include p-size-tablet {
+    padding: 24px;
+  }
 
   &:hover {
     color: colors.$ds-neutral-700;
