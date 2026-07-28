@@ -20,6 +20,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
       key={rowId}
       className={classNames('d-flex w-100', {
         [styles.header]: isRowHeader,
+        [styles.row]: !isRowHeader,
       })}
     >
       <h4
@@ -47,7 +48,7 @@ const Row = <T extends { id: number }>(props: RowProps<T>) => {
 
           return (
             <div
-              className={classNames('ta-center', styles.cell, cellClassName)}
+              className={classNames('ta-left', styles.cell, cellClassName)}
               key={`${rowId}-${item.id}`}
             >
               {

@@ -124,7 +124,7 @@ const ComparisonTable = <T extends { id: number }>(
     <ScrollSync onSync={headerRefCallbackRef}>
       <div
         style={cssVariablesStyle}
-        className={classNames({
+        className={classNames(baseStyles.card, {
           [baseStyles.noScrollBars]: hideScrollBars,
           [baseStyles.noScrollBarsMobile]: hideScrollBarsMobile,
         })}
@@ -191,11 +191,9 @@ const ComparisonTable = <T extends { id: number }>(
                     {headerGroup.label && collapsibleSections ? (
                       <AccordionItem
                         className={classNames(
-                          baseStyles['collapsible-section'],
                           classNameOverrides?.collapsibleSection
                         )}
                         label={headerGroup.label}
-                        headerClassName="p24 br8"
                         isOpen={openSectionId === headerGroup.id}
                         onToggle={() =>
                           setOpenSectionId((prev) =>
@@ -213,7 +211,6 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
-                              'pb16',
                               classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,
@@ -244,7 +241,6 @@ const ComparisonTable = <T extends { id: number }>(
                           <div
                             className={classNames(
                               baseStyles.container,
-                              'pb16',
                               classNameOverrides?.container,
                               {
                                 [baseStyles.noScrollBars]: hideScrollBars,

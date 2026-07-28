@@ -1,6 +1,16 @@
 @use "../../scss/public/grid" as *;
 @use "../../scss/public/colors" as *;
 
+.card {
+  border: 1px solid $ds-neutral-200;
+  border-radius: 12px;
+  padding: 24px;
+
+  section:last-of-type > button {
+    border-bottom: none;
+  }
+}
+
 .container {
   width: 100%;
   overflow-x: auto;
@@ -37,10 +47,6 @@
       }
     }
   }
-}
-
-.collapsible-section {
-  margin-top: 6px;
 }
 
 .section + .section {
@@ -82,10 +88,6 @@
 
   top: 0;
   left: 0;
-
-  @include p-size-tablet {
-    border-right: 1px solid $ds-neutral-50;
-  }
 }
 
 .header {

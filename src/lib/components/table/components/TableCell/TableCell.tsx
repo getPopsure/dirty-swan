@@ -54,6 +54,7 @@ const TableCell = React.memo(
           'ta-left': isFirstCellInRow,
           [styles.headerCell]: isHeader,
           [styles.thNavigation]: isNavigation,
+          [styles.navigationTitle]: isNavigation && isTopLeftCell,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
           [styles.selectedColumnTop]: selectedColumnPosition === 'top',
@@ -71,7 +72,9 @@ const TableCell = React.memo(
             }
           />
         )}
-        {cellProps.type === 'CTA' && <CTACell {...cellProps} />}
+        {cellProps.type === 'CTA' && (
+          <CTACell {...cellProps} centered={isNavigation} />
+        )}
         {cellProps.type === 'BUTTON' && <ButtonCell {...cellProps} />}
         {cellProps.type === 'CARD' && <CardCell {...cellProps} />}
       </Tag>

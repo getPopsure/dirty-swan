@@ -581,7 +581,6 @@ export const SinglePlanQuoteWebsite = {
         tableData={singlePlanWebsiteData}
         title="Single plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),
@@ -612,8 +611,8 @@ const twoPlanWebsiteData: TableData = [
           text: 'Monthly price',
           description: 'Label description with additional pricing context',
         },
-        { text: '~€14-35', fontVariant: 'PRICE' },
-        { text: '~€50-91', fontVariant: 'PRICE' },
+        { text: '~€14-35', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '~€50-91', fontVariant: 'PRICE', modalContent: 'Price info' },
       ],
       [
         {
@@ -727,7 +726,6 @@ export const TwoPlanQuoteWebsite = {
         tableData={twoPlanWebsiteData}
         title="Two plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),
@@ -767,9 +765,9 @@ const threePlanWebsiteData: TableData = [
       ],
       [
         { text: 'Monthly price' },
-        { text: '€–', fontVariant: 'PRICE' },
-        { text: '€–', fontVariant: 'PRICE' },
-        { text: '€–', fontVariant: 'PRICE' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
+        { text: '€–', fontVariant: 'PRICE', modalContent: 'Price info' },
       ],
       [
         { text: 'Label with star rating' },
@@ -849,7 +847,6 @@ export const ThreePlanQuoteWebsite = {
         tableData={threePlanWebsiteData}
         title="Three plan quote website"
         collapsibleSections
-        hideTableNavigation
       />
     </div>
   ),

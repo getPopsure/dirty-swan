@@ -127,7 +127,7 @@ export const BaseCell = ({
             </span>
           )}
 
-          <div className="d-inline">
+          <div className="d-flex ai-center">
             {text && fontVariant === 'NORMAL' && (
               <div className={classNames(
                 "p-p d-inline",

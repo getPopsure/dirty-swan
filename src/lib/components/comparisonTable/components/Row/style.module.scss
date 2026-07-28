@@ -3,8 +3,27 @@
 
 $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
+.row {
+  border-bottom: 1px solid $ds-neutral-300;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
 .header {
   position: relative;
+
+  .cell {
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+
+    @include p-size-tablet {
+      justify-content: flex-start;
+      text-align: left;
+    }
+  }
 
   & > div {
     width: var(--tableWidth);
@@ -24,7 +43,7 @@ $cell-min-width: var(--cellWidth, 211px); // 195 + 16px
 
 .cell {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   scroll-snap-align: end;
@@ -84,8 +103,6 @@ h4.cell {
 
   display: none;
 
-  line-height: 38px;
-
   @include p-size-tablet {
     display: flex;
   }
@@ -102,13 +119,11 @@ h4.cell {
   width: 50vw;
 
   @include p-size-tablet {
-    border-right: 1px solid $ds-neutral-50;
     flex: 1 0 288px;
   }
 }
 
 h4.addon {
-  border-right: none;
   max-width: calc(100vw - 64px);
   width: 100%;
 

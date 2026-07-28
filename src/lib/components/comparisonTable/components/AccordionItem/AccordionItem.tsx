@@ -80,7 +80,7 @@ export const AccordionItem = ({
       >
         <div className={`d-flex ai-center ${styles.iconAndTextContainer}`}>
           {typeof label === 'string' ? (
-            <h4 className="p-h4">{label}</h4>
+            <h4 className="p-h3">{label}</h4>
           ) : (
             <>{label}</>
           )}
