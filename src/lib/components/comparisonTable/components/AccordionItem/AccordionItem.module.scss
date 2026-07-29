@@ -38,6 +38,10 @@
     padding: 24px;
   }
 
+  &[aria-expanded='true'] {
+    border-bottom-color: transparent;
+  }
+
   &:hover {
     color: colors.$ds-neutral-700;
 

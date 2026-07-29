@@ -74,6 +74,7 @@ export const AccordionItem = ({
       className={`d-flex fd-column ${styles.container} ${className}`}
     >
       <button
+        aria-expanded={isOpen}
         className={`d-flex ai-center jc-between ${styles.headerButton} ${headerClassName}`}
         onClick={handleClick}
         type="button"
