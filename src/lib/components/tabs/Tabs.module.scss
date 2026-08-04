@@ -1,0 +1,26 @@
+@use '../../scss/public/colors' as *;
+@use '../../scss/public/font-weight' as *;
+
+.tabs {
+  display: flex;
+  column-gap: 24px;
+}
+
+.tab {
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-weight: $p-font-weight-bold;
+  padding: 0 0 4px;
+  color: $ds-neutral-500;
+
+  &:hover, &Active {
+    color: $ds-neutral-900;
+    border-bottom-color: $ds-neutral-900;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $ds-neutral-900;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
