@@ -939,6 +939,25 @@ export const ThreePlanQuoteWebsite = {
   name: 'Three Plan - Website',
 };
 
+export const TabsNavigationMobile = {
+  render: () => (
+    <div style={{ maxWidth: 900 }}>
+      <p className="p-p tc-neutral-500 mb16">
+        Resize the browser to a mobile width to see tabs instead of
+        left/right arrow buttons.
+      </p>
+      <Table
+        tableData={threePlanWebsiteData}
+        title="Tabs navigation (mobile)"
+        collapsibleSections
+        mobileNavigationMode="tabs"
+      />
+    </div>
+  ),
+
+  name: 'Tabs Navigation (Mobile)',
+};
+
 export const TableDataType = () => {
   return (
     <pre>

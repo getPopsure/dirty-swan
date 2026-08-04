@@ -54,6 +54,7 @@ import { Toaster, toast } from './components/toast';
 import { IconWrapperProps } from './components/icon/IconWrapper';
 import { Accordion, AccordionProps } from './components/accordion';
 import { Table, TableData, TableProps } from './components/table/Table';
+import { Tabs, TabsProps, TabItem } from './components/tabs/Tabs';
 import { useEscapeKey } from './hooks/useEscapeKey';
 import { useFocusWithin } from './hooks/useFocusWithin';
 import { useMediaQuery } from './hooks/useMediaQuery';
@@ -107,6 +108,7 @@ export {
   illustrations,
   Spinner,
   Table,
+  Tabs,
   Toggle,
   Toaster,
   toast,
@@ -139,6 +141,8 @@ export type {
   UploadStatus,
   CardProps,
   IconWrapperProps,
+  TabItem,
+  TabsProps,
   TableData,
   TableProps,
 };

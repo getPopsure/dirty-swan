@@ -25,6 +25,7 @@ export interface TableContentsProps {
   cellReplacements?: CellReplacements;
   imageComponent?: (args: any) => JSX.Element;
   selectedColumn?: number;
+  showHeader?: boolean;
 }
 
 const TableContents = ({
@@ -44,6 +45,7 @@ const TableContents = ({
   cellReplacements,
   imageComponent,
   selectedColumn,
+  showHeader = false,
 }: TableContentsProps) => {
   const [isSectionOpen, setOpenSection] = useState<number | null>(null);
   const lastToggledSection = useRef<number | null>(null);
@@ -147,7 +149,7 @@ const TableContents = ({
                 }
                 hideColumns={hideColumns}
                 hideRows={sectionHideRows}
-                hideHeader
+                hideHeader={!showHeader}
                 openModal={openModal}
                 title={`${title}${
                   section?.title ? ` - ${section.title}` : ''

@@ -20,6 +20,7 @@ import {
   TableCellData,
   TableData,
 } from './types';
+import { Tabs, TabItem } from '../tabs/Tabs';
 
 export type { TableData } from './types';
 
@@ -49,6 +50,7 @@ export interface TableProps {
   hideTableNavigation?: boolean;
   hideStickyHeader?: boolean;
   showSelectedColumn?: boolean;
+  mobileNavigationMode?: 'arrows' | 'tabs';
 }
 
 const defaultTextOverrides = {
@@ -77,6 +79,7 @@ const Table = ({
   hideTableNavigation = false,
   hideStickyHeader = false,
   showSelectedColumn = false,
+  mobileNavigationMode = 'arrows',
 }: TableProps) => {
   const textOverrides = { ...defaultTextOverrides, ...definedTextOverrides };
   const isMobile = useMediaQuery('BELOW_MOBILE');
@@ -89,6 +92,8 @@ const Table = ({
 
   useScrollSync(headerRef, containerRef, !isMobile);
 
+  const useTabs = isMobile && mobileNavigationMode === 'tabs';
+
   const { activeSection, navigateTable, setActiveSection } = useTableNavigation(
     {
       enabled: isMobile,
@@ -97,11 +102,25 @@ const Table = ({
     }
   );
 
+  const headerRow = tableData?.[0]?.rows?.[0];
   const titleCell = {
     text: '',
-    ...(tableData?.[0]?.rows?.[0]?.[0] || {}),
+    ...(headerRow?.[0] || {}),
   };
-  const currentActiveSection = tableData?.[0]?.rows?.[0]?.[activeSection];
+  const currentActiveSection = headerRow?.[activeSection];
+
+  const mobileTabs: TabItem[] = useTabs
+    ? headerRow
+        ?.slice(1)
+        .map((cell, index) => {
+          let label = '';
+          if (!cell.type) label = String(cell.text || '');
+          else if (cell.type === 'CTA') label = String(cell.title || '');
+          else if (cell.type === 'BUTTON') label = String(cell.buttonCaption || '');
+          return { id: String(index), label };
+        }) ?? []
+    : [];
+
   const currentActiveSectionReplacements =
     (currentActiveSection?.cellId &&
       cellReplacements?.[currentActiveSection.cellId]) ||
@@ -127,7 +146,7 @@ const Table = ({
     <div className={classNames(styles.wrapper, 'bg-white')}>
       {isMobile ? (
         <>
-          {titleCell?.text && (
+          {!useTabs && titleCell?.text && (
             <TableCell
               {...titleCell}
               align="left"
@@ -138,27 +157,44 @@ const Table = ({
           )}
 
           {!hideTableNavigation && currentActiveSection && (
-            <TableControls
-              activeSection={activeSection}
-              columnsLength={columnsLength}
-              navigateTable={navigateTable}
-              stickyHeaderTopOffset={stickyHeaderTopOffset}
-            >
-              <TableCell
-                {...(isBaseCell(currentActiveSection)
-                  ? {
-                      openModal: (body: ReactNode) =>
-                        handleOpenModal({
-                          body,
-                          title: currentActiveSection?.text,
-                        }),
-                    }
-                  : {})}
-                {...activeCellProps}
-                imageComponent={imageComponent}
-                isNavigation
-              />
-            </TableControls>
+            useTabs ? (
+              <div
+                className={classNames(
+                  'bg-white',
+                  styles.stickyHeader
+                )}
+                style={{ top: `${stickyHeaderTopOffset}px` }}
+              >
+                <Tabs
+                  tabs={mobileTabs}
+                  activeIndex={activeSection - 1}
+                  onTabChange={(index) => setActiveSection(index)}
+                  className="mb16"
+                />
+              </div>
+            ) : (
+              <TableControls
+                activeSection={activeSection}
+                columnsLength={columnsLength}
+                navigateTable={navigateTable}
+                stickyHeaderTopOffset={stickyHeaderTopOffset}
+              >
+                <TableCell
+                  {...(isBaseCell(currentActiveSection)
+                    ? {
+                        openModal: (body: ReactNode) =>
+                          handleOpenModal({
+                            body,
+                            title: currentActiveSection?.text,
+                          }),
+                      }
+                    : {})}
+                  {...activeCellProps}
+                  imageComponent={imageComponent}
+                  isNavigation
+                />
+              </TableControls>
+            )
           )}
         </>
       ) : (
@@ -203,6 +239,7 @@ const Table = ({
           cellReplacements={cellReplacements}
           imageComponent={imageComponent}
           selectedColumn={showSelectedColumn ? activeSection : undefined}
+          showHeader={useTabs}
         />
       </div>
 
