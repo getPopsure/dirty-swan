@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import styles from './ButtonCell.module.scss';
-import { Button } from '../../../../button';
+import { CircleSelectedIcon, CircleUnselectedIcon } from '../../../../icon';
 import { ReactNode } from 'react';
 
 export type ButtonCellProps = {
@@ -27,29 +27,32 @@ export const ButtonCell = ({
 }: ButtonCellProps) => {
   return (
     <div
-      className={
-        classNames(
-          "w100 d-flex fd-column ai-start jc-center gap8",
-          className,
-        )
-      }
+      className={classNames(
+        "w100 d-flex fd-column ai-start jc-center gap8",
+        className,
+      )}
       data-cy={dataCy}
       data-testid={dataTestId}
     >
-      <Button
-        className={classNames('w100 wmx5 d-flex fd-column', styles.buttonCell, {
+      <button
+        className={classNames('w100 wmx5', styles.buttonCell, {
           [styles.selected]: isSelected,
-          [styles.withoutPrice]: !price,
-          [styles.withPrice]: !!price,
+          [styles.disabled]: disabled,
         })}
-        variant="filledWhite"
-        type="submit"
+        type="button"
         onClick={onClick}
         disabled={disabled}
       >
-        {buttonCaption}
-        {price && <span className="p-p">{price}</span>}
-      </Button>
+        <div className="d-flex fd-column ai-start">
+          <span className="p-p fw-bold">{buttonCaption}</span>
+          {price && <span className="p-p">{price}</span>}
+        </div>
+        {!disabled && (isSelected ? (
+          <CircleSelectedIcon size={16} />
+        ) : (
+          <CircleUnselectedIcon size={16} />
+        ))}
+      </button>
     </div>
   );
 };

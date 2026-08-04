@@ -2,21 +2,28 @@
 @use "../../../../../scss/public/colors" as *;
 
 .buttonCell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% + 48px);
+  margin-left: -24px;
+  margin-right: -24px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: transparent;
   color: $ds-neutral-900;
-  border: 1px solid $ds-neutral-400;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  text-align: left;
 
-  transition: all 0.3s ease-in-out;
+  &:hover:not(:disabled):not(.selected) {
+    background-color: $ds-orange-50;
+  }
 
-  &:disabled {
-    border: none;
-    background-color: $ds-neutral-100;
-    color: $ds-neutral-900;
-    opacity: 1;
-    cursor: default;
-
-    &:hover {
-      background-color: $ds-neutral-100;
-    }
+  &:focus-visible {
+    outline: 1px solid $ds-neutral-900;
+    outline-offset: 0;
   }
 
   @include p-size-mobile {
@@ -24,15 +31,14 @@
   }
 }
 
-.withoutPrice {
-  height: 64px;
-}
-
-.withPrice {
-  height: 75px;
-}
-
 .selected {
-  transition: all 0.3 ease-in-out;
-  border: 2px solid $ds-neutral-900;
+  border: 1px solid $ds-neutral-900;
+  background-color: $ds-orange-50;
+}
+
+.disabled {
+  background-color: $ds-neutral-100;
+  cursor: default;
+  opacity: 1;
+  pointer-events: none;
 }

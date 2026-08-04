@@ -733,6 +733,91 @@ export const TwoPlanQuoteWebsite = {
   name: 'Two Plan - Website',
 };
 
+const twoPlanQuoteData: TableData = [
+  {
+    rows: [
+      [
+        { text: 'Select a plan' },
+        {
+          type: 'BUTTON',
+          buttonCaption: 'Basic',
+          price: '€99/mo',
+          isSelected: true,
+          onClick: () => {},
+        },
+        {
+          type: 'BUTTON',
+          buttonCaption: 'Advanced',
+          price: '€134/mo',
+          onClick: () => {},
+        },
+      ],
+      [
+        { text: 'Your contribution' },
+        { text: '€99', description: 'per month', fontVariant: 'PRICE' },
+        { text: '€134', description: 'per month', fontVariant: 'PRICE' },
+      ],
+      [
+        { text: 'Outpatient treatments', modalContent: 'Outpatient info' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Inpatient treatments', modalContent: 'Inpatient info' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Dental care', modalContent: 'Dental info' },
+        { text: '50%' },
+        { text: '80%' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Coverage details',
+    },
+    rows: [
+      [
+        { text: 'Annual limit' },
+        { text: 'Up to €10,000' },
+        { text: 'Unlimited' },
+      ],
+      [
+        { text: 'Deductible' },
+        { text: '€500' },
+        { text: '€250' },
+      ],
+      [
+        { text: 'Preventive care' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Alternative medicine' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+];
+
+export const TwoPlanQuote = {
+  render: () => (
+    <div style={{ maxWidth: 900 }}>
+      <Table
+        tableData={twoPlanQuoteData}
+        title="Two plan quote"
+        collapsibleSections
+        showSelectedColumn
+      />
+    </div>
+  ),
+
+  name: 'Two Plan Quote',
+};
+
 const threePlanWebsiteData: TableData = [
   {
     rows: [
