@@ -733,7 +733,10 @@ export const TwoPlanQuoteWebsite = {
   name: 'Two Plan - Website',
 };
 
-const twoPlanQuoteData: TableData = [
+const getTwoPlanQuoteData = (
+  selectedPlan: number,
+  setSelectedPlan: (plan: number) => void
+): TableData => [
   {
     rows: [
       [
@@ -742,14 +745,15 @@ const twoPlanQuoteData: TableData = [
           type: 'BUTTON',
           buttonCaption: 'Basic',
           price: '€99/mo',
-          isSelected: true,
-          onClick: () => {},
+          isSelected: selectedPlan === 1,
+          onClick: () => setSelectedPlan(1),
         },
         {
           type: 'BUTTON',
           buttonCaption: 'Advanced',
           price: '€134/mo',
-          onClick: () => {},
+          isSelected: selectedPlan === 2,
+          onClick: () => setSelectedPlan(2),
         },
       ],
       [
@@ -803,17 +807,25 @@ const twoPlanQuoteData: TableData = [
   },
 ];
 
-export const TwoPlanQuote = {
-  render: () => (
+const TwoPlanQuoteStory = () => {
+  const [selectedPlan, setSelectedPlan] = useState(1);
+
+  return (
     <div style={{ maxWidth: 900 }}>
       <Table
-        tableData={twoPlanQuoteData}
+        tableData={getTwoPlanQuoteData(selectedPlan, setSelectedPlan)}
         title="Two plan quote"
         collapsibleSections
         showSelectedColumn
+        activeSection={selectedPlan}
+        onSelectionChanged={setSelectedPlan}
       />
     </div>
-  ),
+  );
+};
+
+export const TwoPlanQuote = {
+  render: () => <TwoPlanQuoteStory />,
 
   name: 'Two Plan Quote',
 };
