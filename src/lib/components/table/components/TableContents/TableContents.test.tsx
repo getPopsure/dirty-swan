@@ -73,4 +73,25 @@ describe('TableContents', () => {
     expect(screen.queryByText('Section 2')).not.toBeInTheDocument();
     expect(screen.queryByText('Item 2.1.1')).not.toBeInTheDocument();
   });
+
+  it('shows the header row only in the first section when showHeader is set', () => {
+    const { container } = render(
+      <TableContents showHeader tableData={mockData} title="Table" />
+    );
+
+    const tableHeaders = container.querySelectorAll('thead');
+    expect(tableHeaders).toHaveLength(2);
+    expect(tableHeaders[0]).not.toHaveClass('sr-only');
+    expect(tableHeaders[1]).toHaveClass('sr-only');
+  });
+
+  it('keeps every header row hidden when showHeader is not set', () => {
+    const { container } = render(
+      <TableContents tableData={mockData} title="Table" />
+    );
+
+    container.querySelectorAll('thead').forEach((tableHeader) => {
+      expect(tableHeader).toHaveClass('sr-only');
+    });
+  });
 });

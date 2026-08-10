@@ -149,7 +149,7 @@ const TableContents = ({
                 }
                 hideColumns={hideColumns}
                 hideRows={sectionHideRows}
-                hideHeader={!showHeader}
+                hideHeader={!showHeader || !isFirstSection}
                 openModal={openModal}
                 title={`${title}${
                   section?.title ? ` - ${section.title}` : ''
