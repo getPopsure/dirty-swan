@@ -1,5 +1,4 @@
 @use '../../../../scss/public/colors' as colors;
-@use '../../../../scss/public/grid' as *;
 
 .container {
   width: var(--growContent, min-content);
@@ -33,10 +32,6 @@
   position: relative;
   text-align: inherit;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-
-  @include p-size-tablet {
-    padding: 24px;
-  }
 
   &[aria-expanded='true'] {
     border-bottom-color: transparent;
