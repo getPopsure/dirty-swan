@@ -11,7 +11,7 @@ import { MiniProgressBar } from './MiniProgressBar/MiniProgressBar';
 import { TableInfoButton } from '../../../../comparisonTable';
 import { ModalFunction } from '../../../types';
 
-export type FontVariant = 'NORMAL' | 'TITLE' | 'PRICE';
+export type FontVariant = 'NORMAL' | 'TITLE' | 'SUBTITLE' | 'PRICE';
 
 const progressLookup: Record<string, number> = {
   '30%': 1,
@@ -152,6 +152,15 @@ export const BaseCell = ({
               <h2
                 aria-hidden
                 className="tc-grey-800 p-h2 p--serif"
+              >
+                {text}
+              </h2>
+            )}
+
+            {text && fontVariant === 'SUBTITLE' && (
+              <h2
+                aria-hidden
+                className="tc-grey-800 p-h4"
               >
                 {text}
               </h2>

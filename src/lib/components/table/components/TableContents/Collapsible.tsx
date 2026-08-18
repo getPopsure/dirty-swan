@@ -7,6 +7,21 @@ interface CollapsibleProps {
   onTransitionEnd?: () => void;
 }
 
+const measureHeight = (element: Element) => {
+  let height = 0;
+
+  for (const child of Array.from(element.children)) {
+    const childStyles = getComputedStyle(child);
+
+    height +=
+      child.getBoundingClientRect().height +
+      (parseFloat(childStyles.marginTop) || 0) +
+      (parseFloat(childStyles.marginBottom) || 0);
+  }
+
+  return Math.ceil(height);
+};
+
 export const Collapsible = ({ children, isExpanded, onTransitionEnd }: CollapsibleProps) => {
   const [height, setHeight] = useState<number | undefined>();
 
@@ -15,24 +30,21 @@ export const Collapsible = ({ children, isExpanded, onTransitionEnd }: Collapsib
 
   useEffect(() => {
     if (!observerRef.current) {
-      observerRef.current = new ResizeObserver((entries) => {
-        entries.forEach((entry) => {
-          const scrollheight = entry.target.scrollHeight;
-
-          setHeight(scrollheight);
-        });
+      observerRef.current = new ResizeObserver(() => {
+        if (containerRef.current) {
+          setHeight(measureHeight(containerRef.current));
+        }
       });
     }
     if (containerRef.current) {
       observerRef.current.observe(containerRef.current);
-      const scrollheight = containerRef.current.scrollHeight;
-      setHeight(scrollheight);
+      Array.from(containerRef.current.children).forEach((child) => {
+        observerRef.current?.observe(child);
+      });
+      setHeight(measureHeight(containerRef.current));
     }
 
     return () => {
-      if (containerRef.current) {
-        observerRef.current?.unobserve(containerRef.current);
-      }
       observerRef.current?.disconnect();
     };
   }, [containerRef.current]);

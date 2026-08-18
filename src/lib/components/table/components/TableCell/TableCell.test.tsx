@@ -88,4 +88,22 @@ describe('TableCell', () => {
       title: '',
     });
   });
+
+  it('renders the top left cell as a title by default', () => {
+    setup({ isTopLeftCell: true, text: 'Choose a plan' });
+
+    expect(screen.getByText('Choose a plan')).toHaveClass('p-h2');
+  });
+
+  it('lets fontVariant override the top left cell title', () => {
+    setup({
+      isTopLeftCell: true,
+      fontVariant: 'SUBTITLE',
+      text: 'Choose a plan',
+    });
+
+    const cellText = screen.getByText('Choose a plan');
+    expect(cellText).toHaveClass('p-h4');
+    expect(cellText).not.toHaveClass('p-h2');
+  });
 });

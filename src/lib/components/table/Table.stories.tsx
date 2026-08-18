@@ -830,6 +830,164 @@ export const TwoPlanQuote = {
   name: 'Two Plan Quote',
 };
 
+const getPlanDetailsData = (
+  selectedPlan: number,
+  setSelectedPlan: (plan: number) => void
+): TableData => [
+  {
+    rows: [
+      [
+        { text: 'Choose plan', fontVariant: 'SUBTITLE' },
+        {
+          type: 'BUTTON',
+          buttonCaption: 'Basic',
+          price: '€99/mo',
+          isSelected: selectedPlan === 1,
+          onClick: () => setSelectedPlan(1),
+        },
+        {
+          type: 'BUTTON',
+          buttonCaption: 'Advanced',
+          price: '€150/mo',
+          isSelected: selectedPlan === 2,
+          onClick: () => setSelectedPlan(2),
+        },
+      ],
+      [
+        {
+          text: "General doctors' visits",
+          modalContent: 'Visits to general practitioners are covered in full.',
+        },
+        { text: 'Up to €2 million' },
+        { text: 'Up to €2 million' },
+      ],
+      [
+        {
+          text: 'Specialists',
+          modalContent: 'Specialist visits are covered with a referral.',
+        },
+        { text: '4 visits per year' },
+        { text: 'Unlimited visits' },
+      ],
+      [
+        { text: 'Documents (not in a safe)' },
+        { text: '20% of the insured sum', description: 'max €3,000' },
+        { text: '30% of the insured sum', description: 'max €5,000' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Theft, fraud and robberies',
+    },
+    rows: [
+      [
+        { text: 'Burglary and vandalism' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        { text: 'Valuables in bank safe deposits' },
+        { text: '5% of the insured sum' },
+        { text: '30% of the insured sum' },
+      ],
+      [
+        { text: 'Credit card misuse', description: 'E.g. after a robbery' },
+        { checkmarkValue: false },
+        { text: '€1,500', description: 'with a €150 deductible' },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Damage protection',
+    },
+    rows: [
+      [
+        { text: 'Weather damage', description: 'Rain, storm, hail or snow' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+      [
+        {
+          text: 'Weather damage due to negligence',
+          description: 'E.g. belongings damaged due to windows left open',
+        },
+        { checkmarkValue: false },
+        { text: '€5,000', description: 'with a €500 deductible' },
+      ],
+      [
+        { text: 'Rainwater pipe leaks (within building)' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Loss & replacement',
+    },
+    rows: [
+      [
+        { text: 'Luggage while travelling' },
+        { text: 'Up to €2,000' },
+        { text: 'Up to €5,000' },
+      ],
+      [
+        { text: 'Keys and locks', modalContent: 'Replacement of home keys and locks after theft.' },
+        { checkmarkValue: true },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+  {
+    section: {
+      title: 'Accommodation & relocation costs',
+    },
+    rows: [
+      [
+        { text: 'Hotel costs', description: 'If your home is uninhabitable' },
+        { text: 'Up to 100 days' },
+        { text: 'Up to 200 days' },
+      ],
+      [
+        { text: 'Relocation costs' },
+        { checkmarkValue: false },
+        { checkmarkValue: true },
+      ],
+    ],
+  },
+];
+
+const PlanDetailsQuoteStory = () => {
+  const [selectedPlan, setSelectedPlan] = useState(1);
+
+  return (
+    <div style={{ maxWidth: 900 }}>
+      <p className="p-p tc-neutral-500 mb16">
+        Plan details table from the Sign-Ups designs: SUBTITLE top left cell,
+        plan selection buttons, selected column highlight, collapsible sections,
+        checkmarks, values with descriptions, and info modals.
+      </p>
+      <Table
+        tableData={getPlanDetailsData(selectedPlan, setSelectedPlan)}
+        title="Plan details"
+        collapsibleSections
+        showSelectedColumn
+        activeSection={selectedPlan}
+        onSelectionChanged={setSelectedPlan}
+        mobileNavigationMode="tabs"
+      />
+    </div>
+  );
+};
+
+export const PlanDetailsQuote = {
+  render: () => <PlanDetailsQuoteStory />,
+
+  name: 'Plan Details - Quote',
+};
+
 const threePlanWebsiteData: TableData = [
   {
     rows: [
