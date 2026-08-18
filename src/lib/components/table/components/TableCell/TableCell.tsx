@@ -53,6 +53,8 @@ const TableCell = React.memo(
         className={classNames(isSelectedColumn ? 'bg-orange-50' : 'bg-white', styles.th, {
           'ta-left': isFirstCellInRow,
           [styles.headerCell]: isHeader,
+          [styles.subtitleCell]:
+            !cellProps.type && cellProps.fontVariant === 'SUBTITLE',
           [styles.thNavigation]: isNavigation,
           [styles.navigationTitle]: isNavigation && isTopLeftCell,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
@@ -66,9 +68,7 @@ const TableCell = React.memo(
           <BaseCell
             {...cellProps}
             fontVariant={
-              isTopLeftCell
-                ? 'TITLE'
-                : cellProps.fontVariant ?? 'NORMAL'
+              cellProps.fontVariant ?? (isTopLeftCell ? 'TITLE' : 'NORMAL')
             }
           />
         )}
