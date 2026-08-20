@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
 
-  background-color: var(--ds-purple-100);
+  background-color: var(--ds-orange-50);
   border-radius: 8px;
 
   padding: 0 8px;
@@ -22,7 +22,7 @@
   padding-right: 16px;
 
   &:focus {
-    outline-color: var(--ds-purple-600);
+    outline-color: var(--ds-primary-900);
     outline-offset: 2px;
   }
 }
@@ -30,7 +30,7 @@
 .select-chip-background {
   position: absolute;
 
-  background-color: white;
+  background-color: var(--ds-neutral-900);
   border-radius: 8px;
 
   top: 8px;
@@ -38,4 +38,8 @@
   z-index: 1;
 
   transition: width 0.3s, left 0.3s;
+}
+
+.text-color {
+  transition: color 0.15s ease-in;
 }
