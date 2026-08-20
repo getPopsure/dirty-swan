@@ -45,6 +45,8 @@ const SegmentedControl = ({
           style={{ height: `${height}px` }}
         >
           {values.map((value: TitleWithSubtitle | string, index: number) => {
+            const selectedColor = selectedIndex === index ? 'tc-white' : 'tc-neutral-900';
+
             return (
               <div
                 role="button"
@@ -62,27 +64,19 @@ const SegmentedControl = ({
               >
                 {typeof value === 'string' ? (
                   <div
-                    className={`p-h4 ta-center ${
-                      selectedIndex === index ? '' : 'tc-purple-600'
-                    }`}
+                    className={`p-h4 ta-center ${selectedColor} ${styles['text-color']}`}
                   >
                     {value}
                   </div>
                 ) : (
                   <>
                     <div
-                      className={`p-h4 ta-center ${
-                        selectedIndex === index ? '' : 'tc-purple-600'
-                      }`}
+                      className={`p-h4 ta-center ${selectedColor} ${styles['text-color']}`}
                     >
                       {value.title}
                     </div>
                     <div
-                      className={`p-p--small ta-center ${
-                        selectedIndex === index
-                          ? 'tc-neutral-600'
-                          : 'tc-purple-600'
-                      }`}
+                      className={`p-p--small ta-center ${selectedColor} ${styles['text-color']}`}
                     >
                       {value.subtitle}
                     </div>
