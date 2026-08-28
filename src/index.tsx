@@ -54,6 +54,9 @@ export {
   LogoPositiveColor,
   LogoPositiveBlack,
   SearchableDropdown,
+  DirtySwanProvider,
+  useDirtySwan,
+  useModalTrack,
 } from './lib';
 
 export * from './lib/components/icon';
