@@ -1,5 +1,6 @@
 import { Props } from '..';
 import useOnClose, { OnCloseReturn } from '../hooks/useOnClose';
+import { useModalTrack } from '../../../context';
 
 import styles from './style.module.scss';
 import classNamesUtil from 'classnames';
@@ -156,6 +157,7 @@ const InnerModal = ({
 export const GenericModal = (props: GenericModalProps) => {
   const { isOpen, onClose, dismissible = true } = props;
   const { isVisible, ...rest } = useOnClose(onClose, isOpen, dismissible);
+  useModalTrack(isVisible);
 
   if (!isVisible) {
     return null;

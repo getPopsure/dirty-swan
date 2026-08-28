@@ -67,6 +67,7 @@ import { LogoInvertedColor } from './components/logo/LogoInvertedColor';
 import { LogoInverted } from './components/logo/LogoInverted';
 import { LogoPositiveColor } from './components/logo/LogoPositiveColor';
 import { LogoPositiveBlack } from './components/logo/LogoPositiveBlack';
+import { DirtySwanProvider, useDirtySwan, useModalTrack } from './context';
 
 export * from './components/icon';
 
@@ -124,6 +125,9 @@ export {
   LogoInverted,
   LogoPositiveColor,
   LogoPositiveBlack,
+  DirtySwanProvider,
+  useDirtySwan,
+  useModalTrack,
 };
 
 export type {
