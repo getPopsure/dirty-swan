@@ -80,4 +80,62 @@ describe('useTableNavigation', () => {
     });
     expect(onSelectionChanged).toHaveBeenCalledWith(0);
   });
+
+  it('starts on the section passed by the parent instead of the first one', () => {
+    const { result } = renderHook(() =>
+      useTableNavigation({
+        enabled: true,
+        containerRef,
+        onSelectionChanged,
+        initialSection: 1,
+      })
+    );
+
+    expect(result.current.activeSection).toBe(2);
+    expect(containerRef.current?.scroll).toHaveBeenCalledWith({
+      top: 0,
+      left: 400,
+      behavior: 'smooth',
+    });
+  });
+
+  it('does not report a section pushed in by the parent as a user selection', () => {
+    const { result } = renderHook(() =>
+      useTableNavigation({
+        enabled: true,
+        containerRef,
+        onSelectionChanged,
+      })
+    );
+    onSelectionChanged.mockClear();
+
+    act(() => {
+      result.current.syncActiveSection(1);
+    });
+
+    expect(result.current.activeSection).toBe(2);
+    expect(onSelectionChanged).not.toHaveBeenCalled();
+  });
+
+  it('keeps reporting user navigation after a parent sync', () => {
+    const { result } = renderHook(() =>
+      useTableNavigation({
+        enabled: true,
+        containerRef,
+        onSelectionChanged,
+      })
+    );
+
+    act(() => {
+      result.current.syncActiveSection(1);
+    });
+    onSelectionChanged.mockClear();
+
+    act(() => {
+      result.current.navigateTable(false);
+    });
+
+    expect(result.current.activeSection).toBe(1);
+    expect(onSelectionChanged).toHaveBeenCalledWith(1);
+  });
 });

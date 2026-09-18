@@ -1,24 +1,38 @@
 import debounce from "lodash.debounce";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseTableNavigationReturn {
   activeSection: number;
   navigateTable: (increase?: boolean) => void;
   setActiveSection: (section: number) => void;
+  syncActiveSection: (section: number) => void;
 }
 
 interface UseTableNavigationProps {
   containerRef: React.RefObject<HTMLElement>,
   enabled?: boolean,
+  initialSection?: number,
   onSelectionChanged?: (index: number) => void
 }
 
 export const useTableNavigation = ({
   enabled,
   containerRef,
+  initialSection = 0,
   onSelectionChanged
 }: UseTableNavigationProps): UseTableNavigationReturn => {
-  const [activeSection, setActiveSection] = useState(0);
+  const [activeSection, setActiveSection] = useState(initialSection);
+  const activeSectionRef = useRef(initialSection);
+  const skipNextReportRef = useRef(false);
+
+  const syncActiveSection = useCallback((section: number) => {
+    if (section === activeSectionRef.current) {
+      return;
+    }
+
+    skipNextReportRef.current = true;
+    setActiveSection(section);
+  }, []);
 
   const handleScrollToSection = (increase?: boolean) => {
     if (!enabled) {
@@ -55,11 +69,18 @@ export const useTableNavigation = ({
   }, [enabled]);
 
   useEffect(() => {
+    activeSectionRef.current = activeSection;
+
+    const skipReport = skipNextReportRef.current;
+    skipNextReportRef.current = false;
+
     if (!enabled) {
       return
     }
 
-    onSelectionChanged?.(activeSection + 1);
+    if (!skipReport) {
+      onSelectionChanged?.(activeSection + 1);
+    }
 
     if (containerRef.current) {
       const containerWidth = containerRef.current.getBoundingClientRect().width;
@@ -77,5 +98,6 @@ export const useTableNavigation = ({
     activeSection: activeSection + 1,
     navigateTable: handleScrollToSection,
     setActiveSection,
+    syncActiveSection,
   }
 }

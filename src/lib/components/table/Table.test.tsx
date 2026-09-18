@@ -1,6 +1,12 @@
+import { useState } from 'react';
 import { render, screen } from '../../util/testUtils';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Table } from './Table';
 import { TableSectionData } from './types';
+
+jest.mock('../../hooks/useMediaQuery', () => ({
+  useMediaQuery: jest.fn(() => false),
+}));
 
 const tableData: TableSectionData[] = [
   {
@@ -137,5 +143,63 @@ describe('Table', () => {
     );
 
     expect(screen.getByText('I am custom')).toBeInTheDocument();
+  });
+});
+
+describe('Table on mobile with a parent-controlled section', () => {
+  const planTable: TableSectionData[] = [
+    {
+      rows: [
+        [{ text: 'Choose your plan' }, { text: 'Basic' }, { text: 'Advanced' }],
+      ],
+    },
+  ];
+
+  const ControlledTable = ({
+    onSelectionChanged,
+  }: {
+    onSelectionChanged: (index: number) => void;
+  }) => {
+    const [activeSection, setActiveSection] = useState(2);
+
+    return (
+      <Table
+        title="Plans"
+        tableData={planTable}
+        activeSection={activeSection}
+        onSelectionChanged={(index) => {
+          onSelectionChanged(index);
+          setActiveSection(index);
+        }}
+      />
+    );
+  };
+
+  beforeAll(() => {
+    HTMLElement.prototype.scroll = jest.fn();
+    (useMediaQuery as jest.Mock).mockReturnValue(true);
+  });
+
+  afterAll(() => {
+    (useMediaQuery as jest.Mock).mockReturnValue(false);
+  });
+
+  it('settles on the parent section instead of bouncing between columns', () => {
+    const reported: number[] = [];
+
+    render(
+      <ControlledTable
+        onSelectionChanged={(index) => {
+          reported.push(index);
+          if (reported.length > 5) {
+            throw new Error(`selection bounced: ${reported.join(',')}`);
+          }
+        }}
+      />
+    );
+
+    expect(reported).toEqual([2]);
+    expect(screen.getByTestId('previous-section-button')).toBeEnabled();
+    expect(screen.getByTestId('next-section-button')).toBeDisabled();
   });
 });
