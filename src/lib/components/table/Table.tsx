@@ -94,13 +94,13 @@ const Table = ({
 
   const useTabs = isMobile && mobileNavigationMode === 'tabs';
 
-  const { activeSection, navigateTable, setActiveSection } = useTableNavigation(
-    {
+  const { activeSection, navigateTable, setActiveSection, syncActiveSection } =
+    useTableNavigation({
       enabled: isMobile,
       containerRef,
+      initialSection: externalActiveSection ? externalActiveSection - 1 : 0,
       onSelectionChanged,
-    }
-  );
+    });
 
   const headerRow = tableData?.[0]?.rows?.[0];
   const titleCell = {
@@ -138,7 +138,7 @@ const Table = ({
 
   useEffect(() => {
     if (externalActiveSection && externalActiveSection !== activeSection) {
-      setActiveSection(externalActiveSection - 1);
+      syncActiveSection(externalActiveSection - 1);
     }
   }, [externalActiveSection]);
 
