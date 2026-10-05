@@ -129,6 +129,12 @@ describe('DateSelector component', () => {
   });
 
   it('should navigate inputs from day to month when day is over 3', async () => {
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 380,
+    });
+
     const callback = jest.fn();
     const date = '2024-01-01';
     const { getByLabelText, user } = setup(date, callback);
