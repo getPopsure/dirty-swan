@@ -42,6 +42,12 @@
   padding-left: 0;
 }
 
+// Lets the ButtonCell stretch (height: 100%) so buttons in the same row match
+// the tallest one; the cell still grows with its content.
+.buttonCell {
+  height: 1px;
+}
+
 .selectedColumnTop {
   border-radius: 16px 16px 0 0;
 }

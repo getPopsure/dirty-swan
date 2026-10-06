@@ -59,6 +59,7 @@ const TableCell = React.memo(
           [styles.navigationTitle]: isNavigation && isTopLeftCell,
           [styles.fixedCell]: isFirstCellInRow && colSpan < 1 ,
           [styles.fixedCard]: cellProps.type === 'CARD',
+          [styles.buttonCell]: cellProps.type === 'BUTTON',
           [styles.selectedColumnTop]: selectedColumnPosition === 'top',
           [styles.selectedColumnBottom]: selectedColumnPosition === 'bottom',
         })}

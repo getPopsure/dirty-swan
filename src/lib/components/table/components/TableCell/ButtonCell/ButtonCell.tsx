@@ -29,6 +29,7 @@ export const ButtonCell = ({
     <div
       className={classNames(
         "w100 d-flex fd-column ai-start jc-center gap8",
+        styles.wrapper,
         className,
       )}
       data-cy={dataCy}
