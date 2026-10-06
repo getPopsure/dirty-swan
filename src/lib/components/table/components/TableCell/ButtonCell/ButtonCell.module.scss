@@ -1,7 +1,12 @@
 @use "../../../../../scss/public/grid" as *;
 @use "../../../../../scss/public/colors" as *;
 
+.wrapper {
+  height: 100%;
+}
+
 .buttonCell {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
