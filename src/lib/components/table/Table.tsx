@@ -58,6 +58,9 @@ const defaultTextOverrides = {
   hideDetails: 'Hide details',
 };
 
+const getCellDataTestId = (cell?: Partial<TableCellData>) =>
+  cell && 'dataTestId' in cell ? cell.dataTestId : undefined;
+
 const Table = ({
   cellReplacements,
   className,
@@ -117,7 +120,12 @@ const Table = ({
           if (!cell.type) label = String(cell.text || '');
           else if (cell.type === 'CTA') label = String(cell.title || '');
           else if (cell.type === 'BUTTON') label = String(cell.buttonCaption || '');
-          return { id: String(index), label };
+          const replacement = cell.cellId
+            ? cellReplacements?.[cell.cellId]
+            : undefined;
+          const dataTestId =
+            getCellDataTestId(replacement) ?? getCellDataTestId(cell);
+          return { id: String(index), label, dataTestId };
         }) ?? []
     : [];
 
