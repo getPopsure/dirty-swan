@@ -203,3 +203,46 @@ describe('Table on mobile with a parent-controlled section', () => {
     expect(screen.getByTestId('next-section-button')).toBeDisabled();
   });
 });
+
+describe('Table on mobile with tabs navigation', () => {
+  const planTable: TableSectionData[] = [
+    {
+      rows: [
+        [
+          { text: 'Choose your plan' },
+          { text: 'Basic', cellId: 'basic' },
+          { text: 'Advanced', cellId: 'advanced', dataTestId: 'advanced-plan' },
+        ],
+      ],
+    },
+  ];
+
+  beforeAll(() => {
+    HTMLElement.prototype.scroll = jest.fn();
+    (useMediaQuery as jest.Mock).mockReturnValue(true);
+  });
+
+  afterAll(() => {
+    (useMediaQuery as jest.Mock).mockReturnValue(false);
+  });
+
+  it('forwards the header cell test ids to the tabs, preferring cell replacements', () => {
+    render(
+      <Table
+        title="Plans"
+        tableData={planTable}
+        mobileNavigationMode="tabs"
+        cellReplacements={{ basic: { dataTestId: 'basic-plan' } }}
+      />
+    );
+
+    expect(screen.getByRole('tab', { name: 'Basic' })).toHaveAttribute(
+      'data-testid',
+      'basic-plan'
+    );
+    expect(screen.getByRole('tab', { name: 'Advanced' })).toHaveAttribute(
+      'data-testid',
+      'advanced-plan'
+    );
+  });
+});

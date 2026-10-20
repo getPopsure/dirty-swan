@@ -6,6 +6,7 @@ import styles from './Tabs.module.scss';
 export interface TabItem {
   id: string;
   label: string;
+  dataTestId?: string;
 }
 
 export interface TabsProps {
@@ -54,6 +55,7 @@ const Tabs = ({ tabs, activeIndex, onTabChange, className }: TabsProps) => {
           })}
           onClick={() => onTabChange(index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
+          data-testid={tab.dataTestId}
         >
           {tab.label}
         </button>
