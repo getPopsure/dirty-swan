@@ -24,7 +24,13 @@ const setup = (
   );
 };
 
-const inputTestId = 'ds-input-input';
+const addressFieldTestIds = [
+  'autocomplete',
+  'autocomplete-house-number',
+  'autocomplete-additional-info',
+  'autocomplete-postcode',
+  'autocomplete-city',
+];
 
 describe('AutocompleteAddress component', () => {
   it('Should show all address fields once a search is completed', async () => {
@@ -55,30 +61,30 @@ describe('AutocompleteAddress component', () => {
       }
     };
 
-    const { getAllByTestId, getByDisplayValue, getByTestId } = setup();
+    const { getByDisplayValue, getByTestId } = setup();
 
-    fireEvent.change(getByTestId(inputTestId), {
+    fireEvent.change(getByTestId('autocomplete'), {
       target: { value: 'Köpeniker' },
     });
 
-    expect(getAllByTestId(inputTestId).length).toEqual(5);
+    addressFieldTestIds.forEach((testId) =>
+      expect(getByTestId(testId)).toBeInTheDocument()
+    );
     expect(getByDisplayValue('Köpeniker Strasse')).toBeVisible();
   });
 
   it('Should enable to enter the address manually', async () => {
     const callback = jest.fn();
-    const { findByText, getAllByTestId, user } = setup(undefined, callback);
+    const { findByText, getByTestId, user } = setup(undefined, callback);
     const btn = await findByText('enter address manually');
 
     await user.click(btn);
 
     // fill out all fields
-    const inputs = getAllByTestId(inputTestId);
-
-    await user.type(inputs[0], 'Köpeniker Strasse');
-    await user.type(inputs[1], '4000');
-    await user.type(inputs[3], '10179');
-    await user.type(inputs[4], 'Berlin');
+    await user.type(getByTestId('autocomplete'), 'Köpeniker Strasse');
+    await user.type(getByTestId('autocomplete-house-number'), '4000');
+    await user.type(getByTestId('autocomplete-postcode'), '10179');
+    await user.type(getByTestId('autocomplete-city'), 'Berlin');
 
     // callback should be called with a complete address
     expect(callback).toHaveBeenCalledWith(address);

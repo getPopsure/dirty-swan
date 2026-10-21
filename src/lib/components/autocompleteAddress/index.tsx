@@ -265,6 +265,7 @@ const AutocompleteAddress = ({
               id="autocomplete"
               key="autocomplete-search"
               data-cy="autocomplete"
+              data-testid="autocomplete"
               type="text"
               placeholder={
                 placeholders?.manualAddressEntry || 'Search for address'
@@ -275,6 +276,7 @@ const AutocompleteAddress = ({
             {hasLoadedGoogleAPI === false && (
               <div
                 data-cy="google-api-loader"
+                data-testid="google-api-loader"
                 className={styles['loading-spinner']}
               >
                 <div className="ds-spinner ds-spinner__m" />
@@ -287,6 +289,7 @@ const AutocompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete"
+                data-testid="autocomplete"
                 key="autocomplete-street"
                 type="text"
                 placeholder={placeholders?.street || 'Street'}
@@ -298,6 +301,7 @@ const AutocompleteAddress = ({
               <Input
                 className={`wmx2 ${styles['house-number-input']}`}
                 data-cy="autocomplete-house-number"
+                data-testid="autocomplete-house-number"
                 key="autocomplete-house-number"
                 placeholder={placeholders?.houseNumber || 'House number'}
                 value={address?.houseNumber || ''}
@@ -309,6 +313,7 @@ const AutocompleteAddress = ({
             <Input
               className="mt16"
               data-cy="autocomplete-additional-info"
+              data-testid="autocomplete-additional-info"
               key="autocomplete-additional-info"
               placeholder={
                 placeholders?.additionalInformation ||
@@ -323,6 +328,7 @@ const AutocompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete-postcode"
+                data-testid="autocomplete-postcode"
                 key="autocomplete-postcode"
                 placeholder={placeholders?.postcode || 'Postcode'}
                 value={address?.postcode || ''}
@@ -333,6 +339,7 @@ const AutocompleteAddress = ({
               <Input
                 className="w100"
                 data-cy="autocomplete-city"
+                data-testid="autocomplete-city"
                 key="autocomplete-city"
                 placeholder={placeholders?.city || 'City'}
                 value={address?.city || ''}
