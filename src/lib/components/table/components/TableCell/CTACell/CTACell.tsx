@@ -17,7 +17,6 @@ export type CTACellProps = {
   href: string;
   className?: string;
   dataTestId?: string;
-  dataCy?: string;
   onClick?: () => void;
 };
 
@@ -32,7 +31,6 @@ export const CTACell = ({
   buttonCaption,
   imageComponent,
   className,
-  dataCy,
   dataTestId,
   onClick,
 }: CTACellProps) => {
@@ -45,7 +43,6 @@ export const CTACell = ({
       className={classNames(className, 'ta-left', {
         'd-flex fd-column ai-center': centered,
       })}
-      data-cy={dataCy}
       data-testid={dataTestId}
     >
       <div className="d-flex ai-center gap8">

@@ -12,7 +12,6 @@ export type ButtonCellProps = {
   price?: ReactNode;
   className?: string;
   dataTestId?: string;
-  dataCy?: string;
 };
 
 export const ButtonCell = ({
@@ -22,7 +21,6 @@ export const ButtonCell = ({
   price,
   disabled,
   className,
-  dataCy,
   dataTestId,
 }: ButtonCellProps) => {
   return (
@@ -32,7 +30,6 @@ export const ButtonCell = ({
         styles.wrapper,
         className,
       )}
-      data-cy={dataCy}
       data-testid={dataTestId}
     >
       <button

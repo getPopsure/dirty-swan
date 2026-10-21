@@ -119,7 +119,6 @@ export const Checkbox = <ValueType extends string>({
                 'jc-center': customIcon,
                 'fd-column': customIcon,
               })}
-              data-cy={`checkbox-${currentValue}`}
               data-testid={`checkbox-${currentValue}`}
             >
               {customIcon && <div className="mt8">{customIcon?.(checked)}</div>}

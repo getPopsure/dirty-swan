@@ -18,7 +18,6 @@ const COLLECTABLE_DATE_FORMAT = 'YYYY-MM-DD';
 type FormatPlaceholder = 'dayFormat' | 'monthFormat' | 'yearFormat';
 
 interface DateSelectorInputProps extends InputProps {
-  'data-cy': string;
   'data-testid': string;
   ref: (el: HTMLInputElement) => void;
 }
@@ -212,7 +211,6 @@ export const DateSelector = ({
   }
 
   const getInputProps = (key: keyof CalendarDate, index: number): DateSelectorInputProps => ({
-    'data-cy': `date-selector-${key}`,
     'data-testid': `date-selector-${key}`,
     className: styles[`${key}Input`],
     id: key,

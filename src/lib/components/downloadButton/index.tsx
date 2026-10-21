@@ -15,7 +15,6 @@ const InitialButton = ({ onDownload }: { onDownload: () => void }) => (
     className={`w100 ${styles.button}`}
     leftIcon={<DownloadIcon />}
     onClick={onDownload}
-    data-cy="download-documents-button"
     data-testid="download-documents-button"
   >
     Download

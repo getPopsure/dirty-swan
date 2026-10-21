@@ -95,7 +95,6 @@ export const Toggle = <ValueType extends string>({
                   'p-label--bordered': bordered,
                 }
               )}
-              data-cy={`toggle-${currentValue}`}
               data-testid={`toggle-${currentValue}`}
             >
               <span className={classNames(styles.toggleContainer, 'd-inline-block')}>
