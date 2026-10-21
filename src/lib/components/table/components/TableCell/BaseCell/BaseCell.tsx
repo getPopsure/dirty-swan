@@ -44,7 +44,6 @@ export type BaseCellProps = {
   };
   className?: string;
   dataTestId?: string;
-  dataCy?: string;
 };
 
 export const BaseCell = ({

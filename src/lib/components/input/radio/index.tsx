@@ -99,7 +99,6 @@ export const Radio = <ValueType extends string>({
                 'fd-column': customIcon && !inlineIcon,
                 'p-label--bordered': bordered,
               })}
-              data-cy={`radio-${currentValue}`}
               data-testid={`radio-${currentValue}`}
             >
               {customIcon && (

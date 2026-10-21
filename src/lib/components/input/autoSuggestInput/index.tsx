@@ -55,7 +55,6 @@ export const AutoSuggestInput = ({
     <Input
       {...autoSuggestInputProps}
       placeholder={placeholder}
-      data-cy="suggest-multi-select-input"
       data-testid="suggest-multi-select-input"
     />
   );
