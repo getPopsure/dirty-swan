@@ -30,7 +30,6 @@ export const ButtonCell = ({
         styles.wrapper,
         className,
       )}
-      data-testid={dataTestId}
     >
       <button
         className={classNames('w100 wmx5', styles.buttonCell, {
@@ -40,6 +39,7 @@ export const ButtonCell = ({
         type="button"
         onClick={onClick}
         disabled={disabled}
+        data-testid={dataTestId}
       >
         <div className="d-flex fd-column ai-start">
           <span className="p-p fw-bold">{buttonCaption}</span>
