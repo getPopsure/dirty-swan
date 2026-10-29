@@ -13,13 +13,15 @@ const address = {
 
 const setup = (
   address: Partial<Address> | undefined = undefined,
-  onAddressChange: (address: Partial<Address>) => void = () => {}
+  onAddressChange: (address: Partial<Address>) => void = () => {},
+  countryCode?: string | null
 ) => {
   return render(
     <AutocompleteAddress
       address={address}
       apiKey={''}
       onAddressChange={onAddressChange}
+      countryCode={countryCode}
     />
   );
 };
@@ -88,6 +90,62 @@ describe('AutocompleteAddress component', () => {
 
     // callback should be called with a complete address
     expect(callback).toHaveBeenCalledWith(address);
+  });
+
+  it('Should not show a country field when restricted to a country', async () => {
+    const { findByText, queryByTestId, user } = setup();
+
+    await user.click(await findByText('enter address manually'));
+
+    expect(queryByTestId('autocomplete-country')).not.toBeInTheDocument();
+  });
+
+  it('Should let the user pick the country when searching worldwide', async () => {
+    const callback = jest.fn();
+    const { findByText, getByRole, getByTestId, user } = setup(
+      undefined,
+      callback,
+      null
+    );
+
+    await user.click(await findByText('enter address manually'));
+
+    await user.type(getByTestId('autocomplete'), 'Calle Mayor');
+    await user.type(getByTestId('autocomplete-house-number'), '1');
+    await user.type(getByTestId('autocomplete-postcode'), '28013');
+    await user.type(getByTestId('autocomplete-city'), 'Madrid');
+
+    expect(callback).toHaveBeenLastCalledWith(
+      expect.objectContaining({ country: undefined })
+    );
+
+    await user.click(getByRole('button', { name: 'Country' }));
+    await user.type(getByRole('textbox', { name: 'Search country' }), 'Spain');
+    await user.click(getByRole('radio', { name: 'Spain' }));
+
+    expect(callback).toHaveBeenLastCalledWith({
+      street: 'Calle Mayor',
+      houseNumber: '1',
+      postcode: '28013',
+      city: 'Madrid',
+      country: 'ES',
+    });
+  });
+
+  it('Should keep the country of a worldwide address when editing it', async () => {
+    const callback = jest.fn();
+    const { getByTestId, user } = setup(
+      { ...address, country: 'ES' },
+      callback,
+      null
+    );
+
+    await user.type(getByTestId('autocomplete-house-number'), '1');
+
+    expect(callback).toHaveBeenLastCalledWith(
+      expect.objectContaining({ houseNumber: '40001', country: 'ES' })
+    );
+    expect(getByTestId('autocomplete-country')).toHaveTextContent('Spain');
   });
 
   it('Should prefill fields if an address is provided', async () => {
