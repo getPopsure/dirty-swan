@@ -45,7 +45,19 @@ const story = {
       table: {
         type: {
           summary:
-            '{ manualAddressEntry?: string; street: string?; houseNumber?: string; additionalInformation?: string; postcode?: string; city?: string; }',
+            '{ manualAddressEntry?: string; street: string?; houseNumber?: string; additionalInformation?: string; postcode?: string; city?: string; country?: string; countrySearch?: string; }',
+        },
+      },
+    },
+    countryCode: {
+      description:
+        'Alpha-2 country code to restrict the search to. Pass `null` to search worldwide and let the user pick the country when entering the address manually.',
+      table: {
+        type: {
+          summary: 'string | null',
+        },
+        defaultValue: {
+          summary: 'DE',
         },
       },
     },
@@ -59,7 +71,7 @@ const story = {
     docs: {
       description: {
         component:
-          'This component is for now only restricted to "address" types and will restrict every query to Germany.',
+          'This component is restricted to "address" types and restricts every query to Germany by default. Use `countryCode` to restrict it to another country, or `null` to search worldwide.',
       },
     },
   },
@@ -112,6 +124,16 @@ export const WithAddress = {
         additionalInformation: 'c/o Factory',
       }}
       apiKey={apiKey}
+      onAddressChange={onAddressChange}
+    />
+  ),
+};
+
+export const Worldwide = {
+  render: ({ apiKey, onAddressChange }: AutocompleteAddressProps) => (
+    <AutocompleteAddress
+      apiKey={apiKey}
+      countryCode={null}
       onAddressChange={onAddressChange}
     />
   ),

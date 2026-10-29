@@ -1,11 +1,20 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import { Input } from '../input';
+import { SearchableDropdown } from '../searchableDropdown';
 import {
   Address,
   Alpha2CountryCode,
   countryNameFromAlphaCode,
+  getAllCountries,
 } from '@popsure/public-models';
 
 import { geocoderAddressComponentToPartialAddress } from './util';
@@ -76,12 +85,14 @@ export interface AutocompleteAddressProps {
     additionalInformation?: string;
     postcode?: string;
     city?: string;
+    country?: string;
+    countrySearch?: string;
   };
   manualAddressEntryTexts?: {
     preText?: string;
     cta?: string;
   };
-  countryCode?: string;
+  countryCode?: string | null;
 }
 
 const AutocompleteAddress = ({
@@ -112,6 +123,16 @@ const AutocompleteAddress = ({
     null
   );
 
+  const isWorldwide = countryCode === null;
+
+  const countryOptions = useMemo(
+    () =>
+      isWorldwide
+        ? getAllCountries().map(({ code, name }) => ({ id: code, label: name }))
+        : [],
+    [isWorldwide]
+  );
+
   useEffect(() => {
     if (address) {
       if (autocompleteElement.current && address.street) {
@@ -133,7 +154,7 @@ const AutocompleteAddress = ({
 
     autocomplete.current = new google.maps.places.Autocomplete(reference, {
       types: ['address'],
-      componentRestrictions: { country: countryCode },
+      ...(countryCode && { componentRestrictions: { country: countryCode } }),
     });
 
     autocomplete.current.addListener('place_changed', onPlaceChanged);
@@ -227,21 +248,27 @@ const AutocompleteAddress = ({
     setManualAddressEntry(true);
   };
 
+  const updateManualAddress = (
+    changes: Partial<Address>,
+    { updatePlace } = { updatePlace: true }
+  ) => {
+    const newAddress = {
+      ...address,
+      ...changes,
+      country: countryCode ?? changes.country ?? address?.country,
+    };
+    setAddress(newAddress);
+    onAddressChange(newAddress);
+
+    if (updatePlace) {
+      debouncedSetPlace(newAddress);
+    }
+  };
+
   const onManualAddressChange =
     ({ updatePlace } = { updatePlace: true }) =>
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const newAddress = {
-        ...address,
-        [e.target.name]: e.target.value,
-        country: countryCode,
-      };
-      setAddress(newAddress);
-      onAddressChange(newAddress);
-
-      if (updatePlace) {
-        debouncedSetPlace(newAddress);
-      }
-    };
+    (e: ChangeEvent<HTMLInputElement>) =>
+      updateManualAddress({ [e.target.name]: e.target.value }, { updatePlace });
 
   return (
     <>
@@ -341,6 +368,21 @@ const AutocompleteAddress = ({
                 {...inputProps?.city}
               />
             </div>
+            {isWorldwide && (
+              <div className="mt16" data-testid="autocomplete-country">
+                <SearchableDropdown
+                  options={countryOptions}
+                  value={address?.country ?? null}
+                  onChange={(country) => updateManualAddress({ country })}
+                  searchable
+                  bordered
+                  showChevron
+                  groupName="autocomplete-country"
+                  triggerPlaceholder={placeholders?.country || 'Country'}
+                  placeholder={placeholders?.countrySearch || 'Search country'}
+                />
+              </div>
+            )}
           </>
         )}
       </div>
