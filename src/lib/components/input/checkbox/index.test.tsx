@@ -62,6 +62,21 @@ describe('Checkbox component', () => {
     expect(mockOnChange).toHaveBeenCalledWith([]);
   });
 
+  it('Should remove NONE on selecting an option when NONE is not one of the options', async () => {
+    const onChange = jest.fn();
+    const { getByTestId, user } = render(
+      <Checkbox
+        options={{ CAT: 'Cat', DOG: 'Dog' }}
+        onChange={onChange}
+        value={['NONE']}
+      />
+    );
+
+    await user.click(getByTestId('checkbox-DOG'));
+
+    expect(onChange).toHaveBeenCalledWith(['DOG']);
+  });
+
   it('Should render custom description', () => {
     const { getByText } = render(
       <Checkbox

@@ -50,15 +50,9 @@ export const Checkbox = <ValueType extends string>({
       return;
     }
 
-    if (hasNoneValue && newValue !== 'NONE') {
-      const newValues = value
-        ? [...value.filter((v) => v !== 'NONE'), newValue]
-        : [newValue];
-      onChange(newValues);
-      return;
-    }
-
-    const newValues = value ? [...value, newValue] : [newValue];
+    const newValues = value
+      ? [...value.filter((v) => v !== 'NONE'), newValue]
+      : [newValue];
     onChange(newValues);
   };
 
