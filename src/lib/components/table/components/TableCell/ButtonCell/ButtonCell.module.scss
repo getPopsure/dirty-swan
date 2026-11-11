@@ -2,7 +2,8 @@
 @use "../../../../../scss/public/colors" as *;
 
 .wrapper {
-  height: 100%;
+  // height: 100% resolves to the cell's 1px in Firefox and clips the button.
+  min-height: 100%;
 }
 
 .buttonCell {
