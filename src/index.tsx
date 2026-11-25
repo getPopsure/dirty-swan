@@ -38,6 +38,8 @@ export {
   illustrations,
   Spinner,
   Table,
+  Tabs,
+  LineChart,
   Toggle,
   Toaster,
   toast,
@@ -79,6 +81,10 @@ export type {
   TableProps,
   SearchableDropdownProps,
   SearchableDropdownOption,
+  TabItem,
+  TabsProps,
+  LineChartProps,
+  LineChartDataPoint,
 } from './lib';
 
 ReactDOM.render(<App />, document.getElementById('root'));
