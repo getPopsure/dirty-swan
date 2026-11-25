@@ -55,6 +55,11 @@ import { IconWrapperProps } from './components/icon/IconWrapper';
 import { Accordion, AccordionProps } from './components/accordion';
 import { Table, TableData, TableProps } from './components/table/Table';
 import { Tabs, TabsProps, TabItem } from './components/tabs/Tabs';
+import {
+  LineChart,
+  LineChartProps,
+  LineChartDataPoint,
+} from './components/lineChart';
 import { useEscapeKey } from './hooks/useEscapeKey';
 import { useFocusWithin } from './hooks/useFocusWithin';
 import { useMediaQuery } from './hooks/useMediaQuery';
@@ -110,6 +115,7 @@ export {
   Spinner,
   Table,
   Tabs,
+  LineChart,
   Toggle,
   Toaster,
   toast,
@@ -149,6 +155,8 @@ export type {
   TabsProps,
   TableData,
   TableProps,
+  LineChartProps,
+  LineChartDataPoint,
 };
 
 export type { DownloadStatus } from './models/download';
