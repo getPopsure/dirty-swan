@@ -1,0 +1,72 @@
+@use '../../scss/public/colors' as *;
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+}
+
+.gridLine {
+  stroke: $ds-neutral-300;
+  stroke-width: 1;
+}
+
+.axisLabel {
+  fill: $ds-neutral-700;
+  font-size: 14px;
+}
+
+.gradientStart {
+  stop-color: $ds-orange-300;
+}
+
+.gradientEnd {
+  stop-color: $ds-orange-300;
+  stop-opacity: 0;
+}
+
+.averageLine {
+  stroke: $ds-neutral-900;
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.line {
+  fill: none;
+  stroke: $ds-orange-600;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dot {
+  fill: $ds-orange-600;
+  stroke: $ds-white;
+  stroke-width: 2;
+}
+
+.pill {
+  position: absolute;
+  padding: 6px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: $ds-neutral-900;
+  pointer-events: none;
+}
+
+.valuePill {
+  background-color: $ds-orange-400;
+}
+
+.averagePill {
+  background-color: $ds-orange-100;
+  transform: translateY(-100%);
+}
+
+.above {
+  transform: translateY(-100%);
+}
